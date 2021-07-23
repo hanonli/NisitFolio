@@ -24,11 +24,10 @@ class Navbar extends React.Component {
 					  <span class="navbar-toggler-icon"></span>
 					</button>
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					
 					  <span class="lg-view-search mx-auto">
 						  <form class="d-flex">
-							<input class="form-control me-2" type="search" placeholder="ค้นหา" aria-label="Search"/>
-							<button class="btn btn-outline-success" type="submit">
+							<input class="form-control btn-search-box" type="search" placeholder="ค้นหา" aria-label="Search"/>
+							<button class="btn btn-search yellow" type="submit">
 								<img src="assets/images/search.png" alt="" width="20" height="20"/>
 							</button>
 						  </form>
