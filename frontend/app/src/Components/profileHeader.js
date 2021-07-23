@@ -40,7 +40,7 @@ class Header extends React.Component {
 								</div>
 							  </div>
 							  <div class="modal-footer">
-								<button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
 								<button type="button" class="btn btn-primary" id="crop">ใช้งาน</button>
 							  </div>
 							</div>
