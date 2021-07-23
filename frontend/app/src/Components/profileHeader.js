@@ -21,7 +21,7 @@ class Header extends React.Component {
 							</div>
 							<div class="col-12 col-md-auto">
 								<a class="btn btn-cta-primary round grey margin-right-m" href="#" target="_blank">แก้ไขโปรไฟล์</a>        
-								<a class="btn btn-cta-primary round yellow" href="#" target="_blank">เพิ่มกิจกรรมของคุณ</a>
+								<a class="btn btn-cta-primary-yellow round" href="#" target="_blank">เพิ่มกิจกรรมของคุณ</a>
 							</div>
 						</div>        
 					</div>

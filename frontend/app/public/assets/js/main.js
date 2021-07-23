@@ -107,4 +107,18 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
           });
         }
       });
+	  
+	  
+	    /*$('button span').parent().click(function () {
+			if($('button span').hasClass('navbar-toggler-icon'))
+			{
+			   $('#bookmark').text('Bookmark'); 
+			}
+			else
+			{      
+				$('button').html('<span class="navbar-toggler-icon"></span> Open'); 
+			}
+		}); */
+
+	  
     });
