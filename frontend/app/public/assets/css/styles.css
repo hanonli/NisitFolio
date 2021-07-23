@@ -382,3 +382,31 @@ a.btn-search:hover, .btn-search:hover {
              0 0  0 2px rgb(255,255,255),
              0.3em 0.3em 1em rgba(0,0,0,0.3);
 }
+
+.profile-sm{
+	margin-bottom: 2vw;
+}
+
+.resume-icon{
+	width: 30vw;
+	height: 30vw;
+}
+
+.portfolio-icon{
+	width: 20vw;
+	height: 30vw;
+}
+
+.analytic-icon{
+	width: 24vw;
+	height: 14vw;
+}
+
+.bookmark-icon{
+	width: 24vw;
+	height: 14vw;
+}
+
+.search-box{
+	margin-left: 30%;
+}

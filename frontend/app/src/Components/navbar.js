@@ -8,10 +8,10 @@ class Navbar extends React.Component {
 				<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				  <div class="container-fluid">
 					<a class="navbar-brand" href="#">
-						<img src="assets/images/nav-bar-icon.png" alt="" width="169" height="30"/>
+						<img src="assets/images/nav-bar-icon.png" alt="" width="135" height="24"/>
 					</a>
 					
-					 <span class="sm-view">
+					 <span class="sm-view me-auto">
 						  <form class="d-flex">
 							<input class="form-control btn-search-box" type="search" placeholder="ค้นหา" aria-label="Search"/>
 							<button class="btn btn-search yellow" type="submit">
@@ -24,15 +24,12 @@ class Navbar extends React.Component {
 					  <span class="navbar-toggler-icon"></span>
 					</button>
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					  <span class="lg-view-search mx-auto">
-						  <form class="d-flex">
+						<form class="d-flex w-25 search-box">
 							<input class="form-control btn-search-box" type="search" placeholder="ค้นหา" aria-label="Search"/>
 							<button class="btn btn-search yellow" type="submit">
 								<img src="assets/images/search.png" alt="" width="20" height="20"/>
 							</button>
-						  </form>
-					  </span>
-					  
+						</form>
 					  <ul class="navbar-nav ms-auto">
 						<li class="nav-item">
 						  <a class="nav-link" aria-current="page" href="#">
