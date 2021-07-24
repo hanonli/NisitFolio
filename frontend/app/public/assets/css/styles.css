@@ -319,11 +319,16 @@ navbar { margin:0; }
 }
 
 .lg-view-search{
-   
+	
 }
 
 .sm-view{
-   display:none;
+	display:none;
+}
+
+.container-search {
+	margin-left: 20%;
+	max-width: 30%;
 }
 
 @media screen and (max-width: 990px) {
