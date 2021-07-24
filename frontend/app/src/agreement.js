@@ -4,6 +4,7 @@ import './index.css';
 import Navbar from './Components/navbar';
 import DataHeader from './Components/dataHeader';
 import reportWebVitals from './reportWebVitals';
+import { Link } from "react-router-dom";
 
 /* NOT AVALIABLE TO TEST RIGHT NOW BC DONT HAVE PATH TO LINK WITH*/
 class Agreement extends React.Component {
@@ -33,9 +34,11 @@ class Agreement extends React.Component {
                 <div class="full-block">
                     <h2 class="desc-b" contenteditable="true">Not Avaliable,Need text permission here</h2>
                 </div>
-				<div class="col block-right">
-					<a class="btn btn-cta-primary-yellow round" href="#" target="_blank">ต่อไป</a>
-				</div>
+				<Link to="/information1">
+					<div class="col block-right">
+						<a class="btn btn-cta-primary-yellow round" href="#" target="_blank">ต่อไป</a>
+					</div>
+				</Link>
 			</div>
 		);
 	}
