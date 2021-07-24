@@ -4,6 +4,7 @@ import './index.css';
 import Navbar from './Components/navbar';
 import LandingHeader from './Components/landingHeader';
 import reportWebVitals from './reportWebVitals';
+import { Link } from "react-router-dom";
 
 class Landing extends React.Component {
 	render (){
@@ -11,6 +12,11 @@ class Landing extends React.Component {
 			<div className="Landing">
 				<Navbar />
 				<LandingHeader />
+				<div class="col block-right">
+					<Link to="/agreement">
+						<a class="btn btn-cta-primary-yellow round" href="#" target="_blank">สมัครสมาชิก</a>
+					</Link>
+				</div>
 			</div>
 		);
 	}

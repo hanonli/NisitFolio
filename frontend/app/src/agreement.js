@@ -12,23 +12,24 @@ class Agreement extends React.Component {
 			<div className="Data">
 				<Navbar />
 				<div className="DataHeader">
-				<header class="header-white">
-					<div class="container">     
-						<div class="row align-items-end">
-							<div class="col">
-								<div class="topData2-content">
-									<h1 class="name inline">ข้อตกลงการให้บริการ</h1>
-									<h1 class="symbol inline">></h1>
-                                    <h1 class="name2 inline">ข้อมูลผู้ใช้</h1>
-                                    <h1 class="symbol inline">></h1>
-									<h1 class="name2 inline">ยืนยันตัวตน</h1>
-									<h1 class="symbol inline">></h1>
-									<h1 class="name2 inline">เสร็จสิ้น</h1>
+					<header class="header-white">
+						<div class="container">     
+							<div class="row align-items-end">
+								<div class="col">
+									<div class="topData2-content">
+										<h1 class="name inline">ข้อตกลงการให้บริการ</h1>
+										<h1 class="symbol inline">></h1>
+										<h1 class="name2 inline">ข้อมูลผู้ใช้</h1>
+										<h1 class="symbol inline">></h1>
+										<h1 class="name2 inline">ยืนยันตัวตน</h1>
+										<h1 class="symbol inline">></h1>
+										<h1 class="name2 inline">เสร็จสิ้น</h1>
+									</div>
 								</div>
-							</div>
-						</div>        
-					</div>
-				</header>
+							</div>        
+						</div>
+					</header>
+				</div>
                 <div class="full-block">
                     <h2 class="desc-b" contenteditable="true">Not Avaliable,Need text permission here</h2>
                 </div>

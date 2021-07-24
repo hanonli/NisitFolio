@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import Landing from './landing';
 import Home from './home';
 import Data from './data';
+import Agreement from './agreement';
 
 const Routes = () => {
   return (
@@ -11,6 +12,7 @@ const Routes = () => {
 	  <Route exact path='/home' component={Home}></Route>
       <Route exact path='/landing' component={Landing}></Route>
       <Route exact path='/data' component={Data}></Route>
+      <Route exact path='/agreement' component={Agreement}></Route>
     </Switch>
   );
 }

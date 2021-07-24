@@ -415,8 +415,8 @@ a.btn-cta-primary-white, .btn-cta-primary-white {
   text-transform: uppercase;
   border: 1px solid #fff;
   background: #fff;
-  padding-left: 50px;
-  padding-right: 50px;
+  padding-left: 25px;
+  padding-right: 25px;
   font-size: 24px;
   font-weight: 500;
   border-width: 10px;
@@ -524,4 +524,3 @@ a.btn-search:hover, .btn-search:hover {
 	margin-top: 1%;
 }
 
->>>>>>> 11b6f259eb8c7b94cc0d9c9e3ac2bf864293de13
