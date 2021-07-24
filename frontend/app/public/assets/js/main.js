@@ -119,6 +119,8 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 				$('button').html('<span class="navbar-toggler-icon"></span> Open'); 
 			}
 		}); */
+		
+		
 
 	  
     });

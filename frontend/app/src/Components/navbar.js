@@ -9,14 +9,14 @@ class Navbar extends React.Component {
 				  <div class="container-fluid">
 					<a class="navbar-brand" href="#">
 						<Link to="/landing">
-							<img src="assets/images/nav-bar-icon.png" alt="" width="169" height="30"/>
+							<img src="assets/images/nav-bar-icon.png" alt="" width="135" height="24"/>
 						</Link>
 					</a>
 					
-					 <span class="sm-view">
+					 <span class="sm-view me-auto">
 						  <form class="d-flex">
-							<input class="form-control me-2" type="search" placeholder="ค้นหา" aria-label="Search"/>
-							<button class="btn btn-outline-success" type="submit">
+							<input class="form-control btn-search-box" type="search" placeholder="ค้นหา" aria-label="Search"/>
+							<button class="btn btn-search yellow" type="submit">
 								<img src="assets/images/search.png" alt="" width="20" height="20"/>
 							</button>
 						  </form>
@@ -26,16 +26,12 @@ class Navbar extends React.Component {
 					  <span class="navbar-toggler-icon"></span>
 					</button>
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					
-					  <span class="lg-view-search mx-auto">
-						  <form class="d-flex">
-							<input class="form-control me-2" type="search" placeholder="ค้นหา" aria-label="Search"/>
-							<button class="btn btn-outline-success" type="submit">
+						<form class="d-flex w-25 search-box">
+							<input class="form-control btn-search-box" type="search" placeholder="ค้นหา" aria-label="Search"/>
+							<button class="btn btn-search yellow" type="submit">
 								<img src="assets/images/search.png" alt="" width="20" height="20"/>
 							</button>
-						  </form>
-					  </span>
-					  
+						</form>
 					  <ul class="navbar-nav ms-auto">
 						<li class="nav-item">
 						  <a class="nav-link" aria-current="page" href="#">
