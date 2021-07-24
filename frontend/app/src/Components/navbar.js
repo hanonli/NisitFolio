@@ -8,7 +8,7 @@ class Navbar extends React.Component {
 				<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				  <div class="container-fluid">
 					<a class="navbar-brand" href="#">
-						<Link to="/landing">
+						<Link to="/home">
 							<img src="assets/images/nav-bar-icon.png" alt="" width="135" height="24"/>
 						</Link>
 					</a>
@@ -76,7 +76,9 @@ class Navbar extends React.Component {
 						<li class="nav-item">
 						  <a class="nav-link" href="#">
 							<span class="lg-view">
-								<img src="assets/images/logout.png" alt="" width="30" height="30"/>
+								<Link to="/landing">
+									<img src="assets/images/logout.png" alt="" width="30" height="30"/>
+								</Link>
 							</span>
 							<span class="sm-view">
 								แฟ้มสะสมงาน

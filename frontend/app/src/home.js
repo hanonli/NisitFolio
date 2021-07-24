@@ -7,6 +7,12 @@ import ProfileContent from './Components/profileContent';
 import reportWebVitals from './reportWebVitals';
 
 class Home extends React.Component {
+	componentDidMount() {
+		const script = document.createElement("script");
+		script.src = "assets/js/home.js";
+		document.body.appendChild(script);
+	}
+	
 	render (){
 		return (
 			<div className="Home">

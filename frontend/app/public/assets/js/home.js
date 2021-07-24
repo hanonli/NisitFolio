@@ -1,5 +1,7 @@
 "use strict";
-	//window.addEventListener('load', function () {
+	console.log("HELLO LV1!");
+
+		console.log("HELLO LV2!");
       var avatar = document.getElementById('avatar');
       var image = document.getElementById('image');
       var input = document.getElementById('input');
@@ -126,4 +128,3 @@
 		})
 
 	  
-    //});
