@@ -472,27 +472,27 @@ a.btn-search:hover, .btn-search:hover {
 }
 
 .profile-sm{
-	margin-bottom: 2vw;
+	margin-bottom: 1vw;
 }
 
 .resume-icon{
-	width: 30vw;
-	height: 30vw;
+	width: 40vw;
+	height: 33vw;
 }
 
 .portfolio-icon{
 	width: 20vw;
-	height: 30vw;
+	height: 33vw;
 }
 
 .analytic-icon{
-	width: 24vw;
-	height: 14vw;
+	width: 30vw;
+	height: 16vw;
 }
 
 .bookmark-icon{
-	width: 24vw;
-	height: 14vw;
+	width: 30vw;
+	height: 16vw;
 }
 
 .search-box{

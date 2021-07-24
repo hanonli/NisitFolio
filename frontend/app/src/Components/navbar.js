@@ -73,6 +73,16 @@ class Navbar extends React.Component {
 							</span>
 						  </a>
 						</li>
+						<li class="nav-item">
+						  <a class="nav-link" href="#">
+							<span class="lg-view">
+								<img src="assets/images/logout.png" alt="" width="30" height="30"/>
+							</span>
+							<span class="sm-view">
+								แฟ้มสะสมงาน
+							</span>
+						  </a>
+						</li>
 					  </ul>
 					  
 					</div>

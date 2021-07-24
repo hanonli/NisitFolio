@@ -120,7 +120,11 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 			}
 		}); */
 		
-		
+		$(".hoverable-icon").mouseover(function () {
+		  $(this).attr('src', $(this).data("hover"));
+		}).mouseout(function () {
+		  $(this).attr('src', $(this).data("src"));
+		});
 
 	  
     });
