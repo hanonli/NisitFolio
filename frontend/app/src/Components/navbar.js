@@ -8,7 +8,9 @@ class Navbar extends React.Component {
 				<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				  <div class="container-fluid">
 					<a class="navbar-brand" href="#">
-						<img src="assets/images/nav-bar-icon.png" alt="" width="169" height="30"/>
+						<Link to="/landing">
+							<img src="assets/images/nav-bar-icon.png" alt="" width="169" height="30"/>
+						</Link>
 					</a>
 					
 					 <span class="sm-view">

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
 class Header extends React.Component {
 	render (){
@@ -20,7 +21,9 @@ class Header extends React.Component {
 								</div>
 							</div>
 							<div class="col-12 col-md-auto">
-								<a class="btn btn-cta-primary round grey margin-right-m" href="#" target="_blank">แก้ไขโปรไฟล์</a>        
+								<Link to="/data">
+									<a class="btn btn-cta-primary round grey margin-right-m" href="#" target="_blank">แก้ไขโปรไฟล์</a>
+								</Link>        
 								<a class="btn btn-cta-primary-yellow round" href="#" target="_blank">เพิ่มกิจกรรมของคุณ</a>
 							</div>
 						</div>        

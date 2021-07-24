@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import Landing from './landing';
 import Home from './home';
+import Data from './data';
 
 const Routes = () => {
   return (
@@ -10,6 +11,7 @@ const Routes = () => {
       <Route exact path='/' component={Home}></Route> /* First page that user see */
 	  <Route exact path='/home' component={Home}></Route>
       <Route exact path='/landing' component={Landing}></Route>
+      <Route exact path='/data' component={Data}></Route>
     </Switch>
   );
 }
