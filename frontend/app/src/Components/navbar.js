@@ -20,14 +20,7 @@ class Navbar extends React.Component {
 								</button>
 							</form>
 						</div>
-					 <span class="sm-view me-auto">
-						  <form class="d-flex">
-							<input class="form-control btn-search-box" type="search" placeholder="ค้นหา" aria-label="Search"/>
-							<button class="btn btn-search yellow" type="submit">
-								<img src="assets/images/search.png" alt="" width="20" height="20"/>
-							</button>
-						  </form>
-					  </span>
+					 
 					
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					  <span class="navbar-toggler-icon"></span>
@@ -87,7 +80,14 @@ class Navbar extends React.Component {
 						  </a>
 						</li>
 					  </ul>
-					  
+					  <span class="sm-view me-auto container-fluid">
+						  <form class="d-flex">
+							<input class="form-control btn-search-box" type="search" placeholder="ค้นหา" aria-label="Search"/>
+							<button class="btn btn-search yellow" type="submit">
+								<img src="assets/images/search.png" alt="" width="20" height="20"/>
+							</button>
+						  </form>
+					  </span>
 					</div>
 				  </div>
 				</nav>

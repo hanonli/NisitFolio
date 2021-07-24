@@ -1,7 +1,7 @@
 "use strict";
-	console.log("HELLO LV1!");
+	console.log("HELLO LV3!");
 
-		console.log("HELLO LV2!");
+		console.log("HELLO LV4!");
       var avatar = document.getElementById('avatar');
       var image = document.getElementById('image');
       var input = document.getElementById('input');
@@ -60,8 +60,8 @@
         $modal.modal('hide');
         if (cropper) {
           canvas = cropper.getCroppedCanvas({
-            width: 180,
-            height: 180,
+            width: 150,
+            height: 150,
           });
           initialAvatarURL = avatar.src;
           avatar.src = canvas.toDataURL();
@@ -70,6 +70,7 @@
             var formData = new FormData();
 
             formData.append('avatar', blob, 'avatar.jpg');
+			console.log("HELLO LV5!");
             /*$.ajax('https://jsonplaceholder.typicode.com/posts', {
               method: 'POST',
               data: formData,

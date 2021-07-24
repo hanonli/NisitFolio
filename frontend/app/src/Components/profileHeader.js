@@ -21,9 +21,9 @@ class Header extends React.Component {
 							</div>
 							<div class="col-12 col-md-auto">
 								<Link to="/data">
-									<a class="btn btn-cta-primary round grey margin-right-m" href="#" target="_blank">แก้ไขโปรไฟล์</a>
+									<a class="btn btn-cta-primary round profile-button grey margin-right-m" href="#" target="_blank">แก้ไขโปรไฟล์</a>
 								</Link>        
-								<a class="btn btn-cta-primary-yellow round" href="#" target="_blank">เพิ่มกิจกรรมของคุณ</a>
+								<a class="btn btn-cta-primary-yellow round profile-button" href="#" target="_blank">เพิ่มกิจกรรมของคุณ</a>
 							</div>
 						</div>
 					</div>

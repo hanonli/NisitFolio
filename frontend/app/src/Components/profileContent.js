@@ -6,7 +6,7 @@ class ProfileContent extends React.Component {
 				<div className="ProfileContent"><br></br>
 							<span class="lg-view-search mx-auto">
 								<div class="container-fluid">
-									<div class="d-flex justify-content-center">
+									<div class="d-flex justify-content-center profile-content">
 										<div class="row">
 											<div class="col-md-auto">
 												<img class="resume-icon hoverable-icon" src="assets/images/MyResume.png" data-src="assets/images/MyResume.png" data-hover="assets/images/Myresume_hover.png" type='button' id="myresume" alt=""/>
