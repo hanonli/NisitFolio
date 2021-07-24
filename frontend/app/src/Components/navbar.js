@@ -28,7 +28,7 @@ class Navbar extends React.Component {
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					  <ul class="navbar-nav ms-auto">
 						<li class="nav-item">
-						  <a class="nav-link" aria-current="page" href="#">
+						  <a class="nav-link shadow-box" aria-current="page" href="#">
 							<span class="lg-view">
 								<img src="assets/images/bookmark_navigation_bar.png" alt="" width="30" height="30"/>
 							</span>
@@ -38,7 +38,7 @@ class Navbar extends React.Component {
 						  </a>
 						</li>
 						<li class="nav-item">
-						  <a class="nav-link" href="#">
+						  <a class="nav-link shadow-box" href="#">
 							<span class="lg-view">
 								<img src="assets/images/Analytic_navigation_bar.png" alt="" width="30" height="30"/>
 							</span>
@@ -48,7 +48,7 @@ class Navbar extends React.Component {
 						  </a>
 						</li>
 						<li class="nav-item">
-						  <a class="nav-link" href="#">
+						  <a class="nav-link shadow-box" href="#">
 							<span class="lg-view">
 								<img src="assets/images/resume_navigation_bar.png" alt="" width="30" height="30"/>
 							</span>
@@ -58,7 +58,7 @@ class Navbar extends React.Component {
 						  </a>
 						</li>
 						<li class="nav-item">
-						  <a class="nav-link" href="#">
+						  <a class="nav-link shadow-box" href="#">
 							<span class="lg-view">
 								<img src="assets/images/Portfolio_navigation_bar.png" alt="" width="30" height="30"/>
 							</span>
@@ -68,7 +68,7 @@ class Navbar extends React.Component {
 						  </a>
 						</li>
 						<li class="nav-item">
-						  <a class="nav-link" href="#">
+						  <a class="nav-link shadow-box" href="#">
 							<span class="lg-view">
 								<Link to="/landing">
 									<img src="assets/images/logout.png" alt="" width="30" height="30"/>
