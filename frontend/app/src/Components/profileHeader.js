@@ -9,7 +9,7 @@ class Header extends React.Component {
 					<div class="container">     
 						<div class="row align-items-end">
 							<div class="col">
-								<img class="profile-image img-fluid float-start rounded-circle" type='button' id="avatar" src="assets/images/profile.jpg" alt="profile image" />
+								<img class="profile-image img-fluid float-start rounded-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="อัพโหลดรูปโปรไฟล์" type='button' id="avatar" src="assets/images/profile.jpg" alt="profile image" />
 								<input type="file" class="sr-only" id="input" accept="image/*" name="image" hidden />
 								<div class="profile-content">
 									<h1 class="name" contenteditable="true">วรเมศ ผดุงเจริญ </h1>
