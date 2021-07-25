@@ -5,7 +5,7 @@ class Navbar extends React.Component {
 	render (){
 		return (
 			<div className="Navbar">
-				<nav class="navbar navbar-expand-lg navbar-light bg-light">
+				<nav class="navbar navbar-no-vertical-padding navbar-expand-lg navbar-light bg-light">
 				  <div class="container-fluid">
 					<a class="navbar-brand" href="#">
 						<Link to="/home">
