@@ -11,23 +11,23 @@ class ProfileContent extends React.Component {
 										<div class="row">
 											<div class="col-md-auto">
 												<Link to="/myresume">
-													<img class="resume-icon hoverable-icon" src="assets/images/MyResume.png" data-src="assets/images/MyResume.png" data-hover="assets/images/Myresume_hover.png" type='button' id="myresume" alt=""/>
+													<img class="resume-icon hoverable-icon" src="assets/images/myresume1.png" data-src="assets/images/myresume1.png" data-hover="assets/images/myresume2.png" type='button' id="myresume" alt=""/>
 												</Link>
 											</div>
 											<div class="col-md-auto">
 												<Link to="/portfolio">
-													<img class="portfolio-icon hoverable-icon"  src="assets/images/Portfolio.png" data-src="assets/images/Portfolio.png" data-hover="assets/images/Portfoliohover.png" type='button' id="portfolio" alt=""/>
+													<img class="portfolio-icon hoverable-icon"  src="assets/images/portfolio1.png" data-src="assets/images/portfolio1.png" data-hover="assets/images/portfolio2.png" type='button' id="portfolio" alt=""/>
 												</Link>
 											</div>
 											<div class="col-md-auto">
 												<div class="col-md-auto profile-sm">
 													<Link to="/analytic">
-														<img class="analytic-icon hoverable-icon"  src="assets/images/Analyt.png" data-src="assets/images/Analyt.png" data-hover="assets/images/Analyt_hover.png" type='button' id="analytic" alt="" />
+														<img class="analytic-icon hoverable-icon"  src="assets/images/analytics1.png" data-src="assets/images/analytics1.png" data-hover="assets/images/analytics2.png" type='button' id="analytic" alt="" />
 													</Link>
 												</div>
 												<div class="col-md-auto">
 													<Link to="/bookmark">
-														<img class="bookmark-icon hoverable-icon"  src="assets/images/Bookmark.png" data-src="assets/images/Bookmark.png" data-hover="assets/images/bookmark_hover.png" type='button' id="bookmark" alt="" />
+														<img class="bookmark-icon hoverable-icon"  src="assets/images/bookmark1.png" data-src="assets/images/bookmark1.png" data-hover="assets/images/bookmark2.png" type='button' id="bookmark" alt="" />
 													</Link>
 												</div>
 											</div>
