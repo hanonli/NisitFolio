@@ -5,6 +5,7 @@ import Navbar from './Components/navbar';
 import InformationHeader from './Components/informationHeader';
 import reportWebVitals from './reportWebVitals';
 import { Link } from "react-router-dom";
+import Tabs from "./Components/Tabs"; 
 
 class Information1 extends React.Component {
 	render (){
@@ -12,9 +13,30 @@ class Information1 extends React.Component {
 			<div className="Information1">
 				<Navbar />
 				<InformationHeader />
-				<div class="full-block">
-                    <h1>ข้อมูลสำคัญ</h1>
-                    <h2 class="desc-b" contenteditable="true">Not Avaliable,Need text permission here<i class="fas fa-pencil-alt"></i></h2>
+				<div>
+                    <Tabs> 
+                        <div label="ข้อมูลสำคัญ"> 
+                            See ya later, <em>Alligator</em>! 
+                        </div> 
+                        <div label="ข้อมูลเพิ่มเติม"> 
+                            After 'while, <em>Crocodile</em>! 
+                        </div> 
+                        <div label="ประวัติการทำงาน"> 
+                            Nothing to see here, this tab is <em>extinct</em>! 
+                        </div> 
+                        <div label="ประวัติการศึกษา"> 
+                            Nothing to see here, this tab is <em>extinct</em>! 
+                        </div> 
+                        <div label="ใบรับรอง"> 
+                            Nothing to see here, this tab is <em>extinct</em>! 
+                        </div> 
+                        <div label="งานที่สนใจ"> 
+                            Nothing to see here, this tab is <em>extinct</em>! 
+                        </div>
+                        <div label="ทักษะเสริม"> 
+                            Nothing to see here, this tab is <em>extinct</em>! 
+                        </div> 
+                    </Tabs>
                 </div>
                 <Link to="/home">
                     <div class="col block-right">
