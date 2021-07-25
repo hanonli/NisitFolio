@@ -12,11 +12,11 @@ class Header extends React.Component {
 								<img class="profile-image img-fluid float-start rounded-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="อัพโหลดรูปโปรไฟล์" type='button' id="avatar" src="assets/images/profile.jpg" alt="profile image" />
 								<input type="file" class="sr-only" id="input" accept="image/*" name="image" hidden />
 								<div class="profile-content">
-									<h1 class="name" contenteditable="true">วรเมศ ผดุงเจริญ </h1>
+									<h1 class="name">วรเมศ ผดุงเจริญ</h1>
 									<a class="btn btn-cta-secondary btn-small round margin-right-s" href="#" target="_blank">Lead Full Stack Developer</a>
 									<a class="btn btn-cta-secondary btn-small round margin-right-s" href="#" target="_blank">Actor</a>
 									<a class="btn btn-cta-secondary btn-small round" href="#" target="_blank">PE Teacher</a>
-									<h2 class="desc-s" contenteditable="true">I'm an ordinary guy who wants to be a great developer. However, one day I met another guy named Fa_ and I realize that he has already achieved my dream.</h2> 
+									<h2 class="desc-s" >I'm an ordinary guy who wants to be a great developer. However, one day I met another guy named Fa_ and I realize that he has already achieved my dream.</h2> 
 								</div>
 							</div>
 							<div class="col-12 col-md-auto">
@@ -42,8 +42,8 @@ class Header extends React.Component {
 								</div>
 							  </div>
 							  <div class="modal-footer">
-								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-								<button type="button" class="btn btn-primary" id="crop">ใช้งาน</button>
+								<a class="btn btn-cta-primary round profile-button grey" data-bs-dismiss="modal">ยกเลิก</a>
+								<a class="btn btn-cta-primary-yellow round profile-button" id="crop">ใช้งานรูปภาพ</a>
 							  </div>
 							</div>
 						  </div>

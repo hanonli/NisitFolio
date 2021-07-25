@@ -1,5 +1,6 @@
 body {
-  font-family: 'Lato', 'Kanit', arial, sans-serif;
+  font-family: 'Nunito','Kanit', arial, sans-serif;
+  font-weight: bold;
   color: #434343;
   /*background: #DAE3E7;*/
   font-size: 16px;
@@ -8,9 +9,10 @@ body {
   /*background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/ed8839e8-3dcb-4bf1-b158-30dcd13e9589/dbgk12z-b8175564-549b-4bf6-a9bc-e3cd668811fb.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvZWQ4ODM5ZTgtM2RjYi00YmYxLWIxNTgtMzBkY2QxM2U5NTg5XC9kYmdrMTJ6LWI4MTc1NTY0LTU0OWItNGJmNi1hOWJjLWUzY2Q2Njg4MTFmYi5naWYifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.lJRTgtV562V7g7CmRlvfhZV32_0g-svgnQGqoEkR9Do");*/
 }
 
-h1, h2, h3, h4, h5, h6, input, span {
-  font-family: 'Montserrat', 'Kanit', sans-serif;
-  font-weight: 700;
+h1, h2, h3, h4, h5, h6, input, span, a {
+  font-family: 'Nunito','Kanit', arial, sans-serif;
+  font-weight: bold;
+  /*font-size: 16px;*/
   color: #778492;
 }
 
@@ -45,7 +47,6 @@ a:focus {
   -moz-transition: all 0.4s ease-in-out;
   -ms-transition: all 0.4s ease-in-out;
   -o-transition: all 0.4s ease-in-out;
-  font-family: 'Montserrat', 'Kanit', sans-serif;
 }
 
 .btn .svg-inline--fa, a.btn .svg-inline--fa {
@@ -102,7 +103,6 @@ a.btn-cta-primary-yellow:hover, .btn-cta-primary-yellow:hover {
 
 a.btn-cta-primary, .btn-cta-primary {
   color: #000000;
-  font-weight: 600;
   text-transform: uppercase;
   padding-left: 30px;
   padding-right: 30px;
@@ -117,10 +117,10 @@ a.btn-cta-primary:hover, .btn-cta-primary:hover {
 a.btn-cta-secondary, .btn-cta-secondary {
   background: #FFFFFF;
   border: 2px solid #479FC8;
-  color: #479FC8;
-  font-weight: 600;
-  text-transform: uppercase;
-  padding: 2px 16px;
+  color: #879FC8;
+  font-size: 14px;
+  padding-top: 1px;
+  padding-bottom: 1px;
 }
 
 a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):active:focus, .btn-cta-secondary:hover, .btn-cta-secondary:not(:disabled):not(.disabled):active:focus {
@@ -165,8 +165,6 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 
 .header .profile-content .desc {
   color: #778492;
-  font-family: "Lato",'Kanit', arial, sans-serif;
-  font-weight: 400;
   font-size: 24px;
   margin-top: 0;
   margin-bottom: 15px;
@@ -174,8 +172,6 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 
 .header .profile-content .desc-s {
   color: #778492;
-  font-family: "Lato",'Kanit', arial, sans-serif;
-  font-weight: 400;
   font-size: 17px;
   margin-top: 15px;
   margin-bottom: 15px;
@@ -406,7 +402,6 @@ navbar { margin:0; }
   -moz-transition: all 0.4s ease-in-out;
   -ms-transition: all 0.4s ease-in-out;
   -o-transition: all 0.4s ease-in-out;
-  font-family: 'Montserrat', 'Kanit', sans-serif;
   display: inline-block;
   border-bottom: 10px  #000;
 }
@@ -446,8 +441,6 @@ a.btn-cta-primary-white:hover, .btn-cta-primary-white:hover {
 }
 .desc-b {
   color: #000;
-  font-family: "Lato",'Kanit', arial, sans-serif;
-  font-weight: 400;
   font-size: 36px;
   text-align: center;
 }
