@@ -116,11 +116,12 @@
 			}
 		}); */
 		
-		$(".hoverable-icon").mouseover(function () {
+		/*$(".hoverable-icon").mouseover(function () {
 		  $(this).attr('src', $(this).data("hover"));
 		}).mouseout(function () {
 		  $(this).attr('src', $(this).data("src"));
-		});
+		});*/
+
 		
 		//Enable tooltips everywhere
 		var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
