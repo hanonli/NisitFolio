@@ -125,7 +125,7 @@ a.btn-cta-secondary, .btn-cta-secondary {
 
 a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):active:focus, .btn-cta-secondary:hover, .btn-cta-secondary:not(:disabled):not(.disabled):active:focus {
   background: #3893bd;
-  border: 1px solid #3893bd;
+  border: 2px solid #3893bd;
   color: #fff;
   box-shadow: none;
 }
