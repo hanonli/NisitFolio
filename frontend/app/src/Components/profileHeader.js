@@ -8,7 +8,7 @@ class Header extends React.Component {
 				<header class="header">
 					<div class="container">     
 						<div class="row align-items-end">
-							<div class="col">
+							<div class="col-md-7">
 								<img class="profile-image img-fluid float-start rounded-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="อัพโหลดรูปโปรไฟล์" type='button' id="avatar" src="assets/images/profile.jpg" alt="profile image" />
 								<input type="file" class="sr-only" id="input" accept="image/*" name="image" hidden />
 								<div class="profile-content">
@@ -19,11 +19,22 @@ class Header extends React.Component {
 									<h2 class="desc-s" >I'm an ordinary guy who wants to be a great developer. However, one day I met another guy named Fa_ and I realize that he has already achieved my dream.</h2> 
 								</div>
 							</div>
-							<div class="col-12 col-md-auto">
-								<Link to="/data">
-									<a class="btn btn-cta-primary round profile-button grey margin-right-m" target="_blank">แก้ไขโปรไฟล์</a>
-								</Link>        
-								<a class="btn btn-cta-primary-yellow round profile-button" href="#" target="_blank">เพิ่มกิจกรรมของคุณ</a>
+							<div class="col-md-5">
+							
+								 <div class="lg-view float-end">
+									<Link to="/data">
+										<a class="btn btn-cta-primary round profile-button grey margin-right-m" target="_blank">แก้ไขโปรไฟล์</a>
+									</Link>        
+									<a class="btn btn-cta-primary-yellow round profile-button" href="#" target="_blank">เพิ่มกิจกรรมของคุณ</a>
+								</div>
+								
+								<div class="sm-view">
+									<Link to="/data">
+										<a class="btn btn-cta-primary round profile-button grey margin-right-m" target="_blank">แก้ไขโปรไฟล์</a>
+									</Link>        
+									<a class="btn btn-cta-primary-yellow round profile-button" href="#" target="_blank">เพิ่มกิจกรรมของคุณ</a>
+								</div>
+								
 							</div>
 						</div>
 					</div>

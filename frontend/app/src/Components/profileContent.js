@@ -11,23 +11,35 @@ class ProfileContent extends React.Component {
 										<div class="row">
 											<div class="col-md-auto">
 												<Link to="/myresume">
-													<img class="resume-icon transition-icon hoverable-icon" src="assets/images/myresume1.png" data-src="assets/images/myresume1.png" data-hover="assets/images/myresume2.png" type='button' id="myresume" alt=""/>
+													<div class="transition-component scale-up-s resume-icon" id="cross-fade">
+														<img class="resume-icon bottom" src="assets/images/myresume2.png" type='button' id="myresume" alt="" />
+														<img class="resume-icon top" src="assets/images/myresume1.png" type='button' id="myresume" alt="" />
+													</div>
 												</Link>
 											</div>
 											<div class="col-md-auto">
 												<Link to="/portfolio">
-													<img class="portfolio-icon transition-icon hoverable-icon"  src="assets/images/portfolio1.png" data-src="assets/images/portfolio1.png" data-hover="assets/images/portfolio2.png" type='button' id="portfolio" alt=""/>
+													<div class="transition-component scale-up-s portfolio-icon" id="cross-fade">
+														<img class="portfolio-icon bottom" src="assets/images/portfolio2.png" type='button' id="portfolio" alt="" />
+														<img class="portfolio-icon top" src="assets/images/portfolio1.png" type='button' id="portfolio" alt="" />
+													</div>
 												</Link>
 											</div>
 											<div class="col-md-auto">
 												<div class="col-md-auto profile-sm">
 													<Link to="/analytic">
-														<img class="analytic-icon transition-icon hoverable-icon"  src="assets/images/analytics1.png" data-src="assets/images/analytics1.png" data-hover="assets/images/analytics2.png" type='button' id="analytic" alt="" />
+														<div class="transition-component scale-up-s analytic-icon" id="cross-fade">
+															<img class="analytic-icon bottom" src="assets/images/analytics2.png" type='button' id="analytic" alt="" />
+															<img class="analytic-icon top" src="assets/images/analytics1.png" type='button' id="analytic" alt="" />
+														</div>
 													</Link>
 												</div>
 												<div class="col-md-auto">
 													<Link to="/bookmark">
-														<img class="bookmark-icon transition-icon hoverable-icon"  src="assets/images/bookmark1.png" data-src="assets/images/bookmark1.png" data-hover="assets/images/bookmark2.png" type='button' id="bookmark" alt="" />
+														<div class="transition-component scale-up-s bookmark-icon" id="cross-fade">
+															<img class="bookmark-icon bottom" src="assets/images/bookmark2.png" type='button' id="bookmark" alt="" />
+															<img class="bookmark-icon top" src="assets/images/bookmark1.png" type='button' id="bookmark" alt="" />
+														</div>
 													</Link>
 												</div>
 											</div>

@@ -537,8 +537,12 @@ a.btn-search:hover, .btn-search:hover {
 	margin-bottom: 1vw;
 }
 
-.transition-icon{
+.transition-component{
 	transition: .1s ease-in-out 0s;
+}
+
+.scale-up-s:hover {
+	transform: scale(1.02);
 }
 
 .resume-icon{
@@ -546,43 +550,22 @@ a.btn-search:hover, .btn-search:hover {
 	height: 31vw;
 }
 
-.resume-icon:hover{
-	width: 35vw;
-	height: 31vw;
-	transform: scale(1.02);
-}
 
 .portfolio-icon{
 	width: 20vw;
 	height: 31vw;
 }
 
-.portfolio-icon:hover{
-	width: 20vw;
-	height: 31vw;
-	transform: scale(1.02);
-}
 
 .analytic-icon{
 	width: 26vw;
 	height: 15vw;
 }
 
-.analytic-icon:hover{
-	width: 26vw;
-	height: 15vw;
-	transform: scale(1.02);
-}
 
 .bookmark-icon{
 	width: 26vw;
 	height: 15vw;
-}
-
-.bookmark-icon:hover{
-	width: 26vw;
-	height: 15vw;
-	transform: scale(1.02);
 }
 
 .search-box{
@@ -593,3 +576,20 @@ a.btn-search:hover, .btn-search:hover {
 	margin-top: 1%;
 }
 
+#cross-fade {
+  position:relative;
+  margin:0 auto;
+}
+
+#cross-fade img {
+  position:absolute;
+  left:0;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  -moz-transition: opacity 0.2s ease-in-out;
+  -o-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+}
+
+#cross-fade img.top:hover {
+  opacity:0;
+}
