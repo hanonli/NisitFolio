@@ -27,57 +27,67 @@ class Navbar extends React.Component {
 					</button>
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					  <ul class="navbar-nav ms-auto">
-						<li class="nav-item">
-						  <a class="nav-link shadow-box" aria-current="page" href="#">
-							<span class="lg-view">
-								<img src="assets/images/bookmark_navigation_bar.png" alt="" width="30" height="30"/>
-							</span>
-							<span class="sm-view">
-								รายการโปรด
-							</span>
-						  </a>
+						<li class="nav-item shadow-box">
+						  <Link to="/landing">
+							  <a class="nav-link" aria-current="page">
+								<span class="lg-view">
+									<img src="assets/images/bookmark_navigation_bar2.png" alt="" width="70" height="30"/>
+								</span>
+								<span class="sm-view">
+									รายการโปรด
+								</span>
+							  </a>
+						  </Link>
 						</li>
-						<li class="nav-item">
-						  <a class="nav-link shadow-box" href="#">
-							<span class="lg-view">
-								<img src="assets/images/Analytic_navigation_bar.png" alt="" width="30" height="30"/>
-							</span>
-							<span class="sm-view">
-								การวิเคราะห์ทางสถิติ
-							</span>
-						  </a>
+						<li class="nav-item shadow-box">
+						  <Link to="/landing">
+							  <a class="nav-link">
+								<span class="lg-view">
+									<img src="assets/images/Analytic_navigation_bar2.png" alt="" width="70" height="30"/>
+								</span>
+								<span class="sm-view">
+									การวิเคราะห์ทางสถิติ
+								</span>
+							  </a>
+						  </Link>
 						</li>
-						<li class="nav-item">
-						  <a class="nav-link shadow-box" href="#">
-							<span class="lg-view">
-								<img src="assets/images/resume_navigation_bar.png" alt="" width="30" height="30"/>
-							</span>
-							<span class="sm-view">
-								เรซูเม่
-							</span>
-						  </a>
+						<li class="nav-item shadow-box">
+						  <Link to="/landing">
+							  <a class="nav-link">
+								<span class="lg-view">
+									<img src="assets/images/resume_navigation_bar2.png" alt="" width="70" height="30"/>
+								</span>
+								<span class="sm-view">
+									เรซูเม่
+								</span>
+							  </a>
+						  </Link>
 						</li>
-						<li class="nav-item">
-						  <a class="nav-link shadow-box" href="#">
-							<span class="lg-view">
-								<img src="assets/images/Portfolio_navigation_bar.png" alt="" width="30" height="30"/>
-							</span>
-							<span class="sm-view">
-								แฟ้มสะสมงาน
-							</span>
-						  </a>
+						<li class="nav-item shadow-box">
+						  <Link to="/landing">
+							  <a class="nav-link">
+								<span class="lg-view">
+									<img src="assets/images/Portfolio_navigation_bar2.png" alt="" width="70" height="30"/>
+								</span>
+								<span class="sm-view">
+									แฟ้มสะสมงาน
+								</span>
+							  </a>
+						  </Link>
 						</li>
-						<li class="nav-item">
-						  <a class="nav-link shadow-box" href="#">
-							<span class="lg-view">
-								<Link to="/landing">
-									<img src="assets/images/logout.png" alt="" width="30" height="30"/>
-								</Link>
-							</span>
-							<span class="sm-view">
-								ออกจากระบบ
-							</span>
-						  </a>
+						<li class="nav-item shadow-box">
+						  <Link to="/landing">
+							  <a class="nav-link">
+								<span class="lg-view">
+									
+										<img src="assets/images/logout2.png" alt="" width="70" height="30"/>
+									
+								</span>
+								<span class="sm-view">
+									ออกจากระบบ
+								</span>
+							  </a>
+						  </Link>
 						</li>
 					  </ul>
 					  <span class="sm-view me-auto container-fluid">
