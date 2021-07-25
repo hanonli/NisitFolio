@@ -7,7 +7,7 @@ class Navbar extends React.Component {
 			<div className="Navbar">
 				<nav class="navbar navbar-no-vertical-padding navbar-expand-lg navbar-light bg-light">
 				  <div class="container-fluid">
-					<a class="navbar-brand" href="#">
+					<a class="navbar-brand">
 						<Link to="/home">
 							<img src="assets/images/nav-bar-icon.png" alt="" width="135" height="24"/>
 						</Link>
@@ -40,13 +40,13 @@ class Navbar extends React.Component {
 						  </Link>
 						</li>
 						<li class="nav-item shadow-box">
-						  <Link to="/analytic">
+						  <Link to="/portfolio">
 							  <a class="nav-link">
 								<span class="lg-view">
-									<img src="assets/images/Analytic_navigation_bar2.png" alt="" width="70" height="30"/>
+									<img src="assets/images/Portfolio_navigation_bar2.png" alt="" width="70" height="30"/>
 								</span>
 								<span class="sm-view">
-									การวิเคราะห์ทางสถิติ
+									แฟ้มสะสมงาน
 								</span>
 							  </a>
 						  </Link>
@@ -64,13 +64,13 @@ class Navbar extends React.Component {
 						  </Link>
 						</li>
 						<li class="nav-item shadow-box">
-						  <Link to="/portfolio">
+						  <Link to="/analytic">
 							  <a class="nav-link">
 								<span class="lg-view">
-									<img src="assets/images/Portfolio_navigation_bar2.png" alt="" width="70" height="30"/>
+									<img src="assets/images/Analytic_navigation_bar2.png" alt="" width="70" height="30"/>
 								</span>
 								<span class="sm-view">
-									แฟ้มสะสมงาน
+									การวิเคราะห์ทางสถิติ
 								</span>
 							  </a>
 						  </Link>
