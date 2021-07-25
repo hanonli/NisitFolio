@@ -21,8 +21,10 @@ class Data extends React.Component {
 						<div label="ข้อมูลเพิ่มเติม"> 
 							After 'while, <em>Crocodile</em>! 
 						</div> 
-						<div label="ประวัติการทำงาน"> 
-							Nothing to see here, this tab is <em>extinct</em>! 
+						<div label="ประวัติการทำงาน">
+							<div class="content-form-block">
+								<h1>Nothing to see here</h1>
+							</div>
 						</div> 
 						<div label="ประวัติการศึกษา"> 
 							Nothing to see here, this tab is <em>extinct</em>! 

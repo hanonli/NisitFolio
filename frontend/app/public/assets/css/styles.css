@@ -437,8 +437,9 @@ a.btn-cta-primary-white:hover, .btn-cta-primary-white:hover {
   background: #b0b7bf;
 }
 .content-form-block {
-
+  padding-top: 10px;
 }
+
 .desc-b {
   color: #000;
   font-size: 36px;
