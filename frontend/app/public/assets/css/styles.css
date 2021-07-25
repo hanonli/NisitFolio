@@ -537,9 +537,19 @@ a.btn-search:hover, .btn-search:hover {
 	margin-bottom: 1vw;
 }
 
+.transition-icon{
+	transition: .1s ease-in-out 0s;
+}
+
 .resume-icon{
 	width: 35vw;
 	height: 31vw;
+}
+
+.resume-icon:hover{
+	width: 35vw;
+	height: 31vw;
+	transform: scale(1.02);
 }
 
 .portfolio-icon{
@@ -547,14 +557,32 @@ a.btn-search:hover, .btn-search:hover {
 	height: 31vw;
 }
 
+.portfolio-icon:hover{
+	width: 20vw;
+	height: 31vw;
+	transform: scale(1.02);
+}
+
 .analytic-icon{
 	width: 26vw;
 	height: 15vw;
 }
 
+.analytic-icon:hover{
+	width: 26vw;
+	height: 15vw;
+	transform: scale(1.02);
+}
+
 .bookmark-icon{
 	width: 26vw;
 	height: 15vw;
+}
+
+.bookmark-icon:hover{
+	width: 26vw;
+	height: 15vw;
+	transform: scale(1.02);
 }
 
 .search-box{
