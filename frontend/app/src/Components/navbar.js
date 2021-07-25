@@ -28,7 +28,7 @@ class Navbar extends React.Component {
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					  <ul class="navbar-nav ms-auto">
 						<li class="nav-item shadow-box">
-						  <Link to="/landing">
+						  <Link to="/bookmark">
 							  <a class="nav-link" aria-current="page">
 								<span class="lg-view">
 									<img src="assets/images/bookmark_navigation_bar2.png" alt="" width="70" height="30"/>
@@ -40,7 +40,7 @@ class Navbar extends React.Component {
 						  </Link>
 						</li>
 						<li class="nav-item shadow-box">
-						  <Link to="/landing">
+						  <Link to="/analytic">
 							  <a class="nav-link">
 								<span class="lg-view">
 									<img src="assets/images/Analytic_navigation_bar2.png" alt="" width="70" height="30"/>
@@ -52,7 +52,7 @@ class Navbar extends React.Component {
 						  </Link>
 						</li>
 						<li class="nav-item shadow-box">
-						  <Link to="/landing">
+						  <Link to="/myresume">
 							  <a class="nav-link">
 								<span class="lg-view">
 									<img src="assets/images/resume_navigation_bar2.png" alt="" width="70" height="30"/>
@@ -64,7 +64,7 @@ class Navbar extends React.Component {
 						  </Link>
 						</li>
 						<li class="nav-item shadow-box">
-						  <Link to="/landing">
+						  <Link to="/portfolio">
 							  <a class="nav-link">
 								<span class="lg-view">
 									<img src="assets/images/Portfolio_navigation_bar2.png" alt="" width="70" height="30"/>
