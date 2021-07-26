@@ -1,45 +1,40 @@
-.LRounded1 {
+.col-lg-12 .LRounded1 {
 
   height: 100%;
   width: 100%;
   padding-top: 1%;
   position: relative;
-
-}
-
-.LRounded2 {
-
-  height: 100%;
-  width: 100%;
-  padding-top: 1%;
-  position: relative;
-}
-
-
-
-img {
   border-radius: 28px;
-  /*margin: 0 auto;
-  display: block;*/
 }
+
+.col-lg-12 .LRounded2 {
+
+  height: 100%;
+  width: 100%;
+  padding-top: 1%;
+  position: relative;
+  border-radius: 28px;
+}
+
 
 
 #resume {
   position: absolute;
   color: white;
-
+  top: 40%;
+  left: 35%;
+  text-align: left;
   font-size: 95px;
   font-family: 'Nunito';
-  top: 40%;
-  left: 60%
+  
 }
 
 #textMyResume1 {
   position: absolute;
   color: white;
   top: 55%;
-  left: 53%;
-
+  left: 28%;
+  text-align: center;
   font-size: 32px;
   font-family: 'Kanit';
   font-weight: 200;
@@ -51,8 +46,8 @@ img {
   position: absolute;
   color: white;
   top: 100%;
-  left: 13%;
-
+  left: 38%;
+  text-align: center;
   font-size: 95px;
   font-family: 'Nunito';
 }
@@ -61,8 +56,8 @@ img {
   position: absolute;
   color: white;
   top: 115%;
-  left: 3%;
-  
+  left: 28%;
+  text-align: center;
   font-size: 32px;
   font-family: 'Kanit';
   font-weight: 200;
