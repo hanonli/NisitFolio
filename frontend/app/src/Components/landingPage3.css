@@ -1,7 +1,9 @@
+
 span{
     width:300px;
     word-wrap:break-word;
 }
+
 
 .column{
     display: flex;
@@ -44,20 +46,27 @@ span{
 
 .textMyBookmark{
     position: absolute;
-    top: 250%;
-    left: 90%;
+
 }
 
 .textMyBookmark #Bookmark{
-
-    color: white;
+    top : 250%;
+    left:200%;
+    color : white;
     font-size: 95px;
     font-family: 'Nunito';
 }
 
 .textMyBookmark #textBookmark{
+
     color: white;
     font-size: 32px;
     font-family: 'Kanit';
     font-weight: 200;
+}
+
+.textMyBookmark span{
+    display: block;
+    width: 1000px;
+
 }
