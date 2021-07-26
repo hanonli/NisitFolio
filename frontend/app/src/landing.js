@@ -8,7 +8,7 @@ import reportWebVitals from './reportWebVitals';
 import { Link } from "react-router-dom";
 
 class Landing extends React.Component {
-	render (){
+	render() {
 		return (
 			<div className="Landing">
 				<NavbarTransparent />
