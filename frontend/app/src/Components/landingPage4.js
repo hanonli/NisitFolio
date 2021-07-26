@@ -1,13 +1,13 @@
 import React from 'react';
 
-class landingPage4 extends React.Component {
+class LandingPage4 extends React.Component {
     render() {
         return (
-            <div className="landingPage4">
+            <div className="landingPage">
 
             </div>
         );
     }
 }
 
-export default landingPage4;
+export default LandingPage4;

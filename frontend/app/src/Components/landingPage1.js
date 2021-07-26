@@ -1,13 +1,14 @@
 import React from 'react';
+import './landingPage.css';
 
-class landingPage1 extends React.Component {
+class LandingPage1 extends React.Component {
     render() {
         return (
-            <div className="landingPage1">
+            <div className="landingPage">
 
             </div>
         );
     }
 }
 
-export default landingPage1;
+export default LandingPage1;
