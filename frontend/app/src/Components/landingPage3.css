@@ -1,17 +1,21 @@
-
+span{
+    width:300px;
+    word-wrap:break-word;
+}
 
 .column{
     display: flex;
 }
 
-.LRounded1{
+.column .LRounded1{
     padding: 1%;
     height: 100%;
     width: 100%;
     position: relative;
+    
 }
 
-.LRounded2{
+.column .LRounded2{
     padding: 1%;
     height: 100%;
     width: 100%;
@@ -31,7 +35,7 @@
 }
 
 
-.text .textMyAnalytics #textAnalytics {
+.textMyAnalytics #textAnalytics {
     color: white;
     font-size: 32px;
     font-family: 'Kanit';

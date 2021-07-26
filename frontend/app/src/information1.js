@@ -14,12 +14,12 @@ class Information1 extends React.Component {
 				<Navbar />
 				<InformationHeader />
 				<div>
-                    <Tabs> 
+                    <Tabs class=""> 
                         <div label="ข้อมูลสำคัญ"> 
-                            See ya later, <em>Alligator</em>! 
+                            Nothing to see here, this tab is <em>extinct</em>! 
                         </div> 
                         <div label="ข้อมูลเพิ่มเติม"> 
-                            After 'while, <em>Crocodile</em>! 
+                            Nothing to see here, this tab is <em>extinct</em>! 
                         </div> 
                         <div label="ประวัติการทำงาน"> 
                             Nothing to see here, this tab is <em>extinct</em>! 
