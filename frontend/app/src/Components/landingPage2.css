@@ -1,0 +1,60 @@
+.LRounded1 {
+  /*position: relative;*/
+  padding-top: 12px;
+  padding-bottom: 6px;
+}
+
+.LRounded2 {
+  /*position: relative;*/
+  padding-top: 6px;
+  padding-bottom: 12px;
+}
+
+img {
+  border-radius: 28px;
+  /*margin: 0 auto;
+  display: block;*/
+}
+
+#resume {
+  position: absolute;
+  color: white;
+  top: 210px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 95px;
+  font-family: 'Nunito';
+}
+
+#textMyResume1 {
+  position: absolute;
+  color: white;
+  top: 375px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 32px;
+  font-family: 'Kanit';
+  font-weight: 200;
+}
+
+
+#portfolio {
+  position: absolute;
+  color: white;
+  top: 760px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 95px;
+  font-family: 'Nunito';
+}
+
+#textMyPortfolio {
+  position: absolute;
+  color: white;
+  top: 925px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 32px;
+  font-family: 'Kanit';
+  font-weight: 200;
+}
