@@ -1,71 +1,27 @@
 
+span{
+    width:300px;
+    word-wrap:break-word;
+}
+
+
 .column{
     display: flex;
 }
-
 .column .LRounded1{
-    border-radius: 28px;
-    padding-top: 1%;
+    padding: 1%;
     height: 100%;
     width: 100%;
     position: relative;
     
 }
-
 .column .LRounded2{
-    border-radius: 28px;
-    padding-top: 1%;
+    padding: 1%;
     height: 100%;
     width: 100%;
     position: relative;
 }
   
-.MyAnalytics #Analytics {
+.textMyAnalytics{
     position: absolute;
-    top: 215%;
-    left: 5%;
-    color: white;
-    font-size: 95px;
-    font-family: 'Nunito';
-}
-
-
-.MytextAnalytics #textAnalytics {
-    position: absolute;
-    top: 230%;
-    left: 5%;
-    color: white;
-    font-size: 32px;
-    font-family: 'Kanit';
-    font-weight: 200;
-}
-
-.textMyBookmark{
-    padding: 0%;
-}
-
-.MyBookmark #Bookmark{
-    position: absolute;
-    top: 142%;
-    left: 75%;
-    color: white;
-    font-size: 95px;
-    font-family: 'Nunito';
-}
-
-.MytextBookmark #textBookmark{
-    position: absolute;
-    top: 157%;
-    left: 45%;
-    text-align: right;
-    color: white;
-    font-size: 32px;
-    font-family: 'Kanit';
-    font-weight: 200;
-}
-
-.MytextBookmark span{
-    display: block;
-    width: 1000px;
-
-}
+    top: 150%;
