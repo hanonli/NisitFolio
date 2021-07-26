@@ -12,11 +12,25 @@ class Data extends React.Component {
 		return (
 			<div className="Data">
 				<Navbar />
-				<div>
+				<header class="header-white">
 					<h1 class="topData2-content name">แก้ไขโปรไฟล์</h1>
+				</header>
+				<div>
 					<Tabs> 
 						<div label="ข้อมูลสำคัญ"> 
-							See ya later, <em>Alligator</em>! 
+							<div class="container-fluid">
+								<div class="container-search">
+									<form class="d-flex inline">
+										<input class="form-control silver" type="form" placeholder="ชื่อ*" aria-label="Name"/>
+										<input class="form-control silver" type="form" placeholder="นามสกุล*" aria-label="Surname"/>
+									</form>
+									<form class="">
+										<input class="form-control silver" type="form" placeholder="อีเมล*" aria-label="Email"/>
+										<input class="form-control silver" type="form" placeholder="รหัสผ่าน*" aria-label="Password"/>
+										<input class="form-control silver" type="form" placeholder="ยืนยันรหัสผ่าน*" aria-label="Confirmpassword"/>
+									</form>
+								</div>
+							</div>
 						</div> 
 						<div label="ข้อมูลเพิ่มเติม"> 
 							After 'while, <em>Crocodile</em>! 
