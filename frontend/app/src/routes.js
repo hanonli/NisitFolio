@@ -9,7 +9,7 @@ import Bookmark from './bookmark';
 import Data from './data';
 import Agreement from './agreement';
 import Information1 from './information1';
-import LandingPage2 from './Components/landingPage2'; //TEST LandingPage2
+import LandingPage1 from './Components/landingPage1'; //TEST LandingPage2
 
 const Routes = () => {
   return (
@@ -24,7 +24,7 @@ const Routes = () => {
       <Route exact path='/data' component={Data}></Route>
       <Route exact path='/agreement' component={Agreement}></Route>
       <Route exact path='/information1' component={Information1}></Route>
-      <Route exact path='/landingPage2' component={LandingPage2}></Route>
+      <Route exact path='/landingPage1' component={LandingPage1}></Route>
     </Switch>
   );
 }
