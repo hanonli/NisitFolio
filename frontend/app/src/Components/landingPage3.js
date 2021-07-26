@@ -1,5 +1,5 @@
 import React from 'react';
-import './landingPage.css';
+import './landingPage3.css';
 
 class LandingPage3 extends React.Component {
     render() {
@@ -11,16 +11,16 @@ class LandingPage3 extends React.Component {
                             <div className="row justify-content-md-center">
                                 <div className="landingpage3">
                                     <div className="col-md-auto">
-                                        <img src="assets/images/Analytics.png" className="LRounded" />
+                                        <img src="assets/images/MyAnalytics.png" className="LRounded1" />
                                     </div>
                                     <div className="Myresume-text">
                                         <h1>Analytics</h1> <br/>
                                         <h3>สร้างเรซูเม่ด้วยเทมเพลตที่ใช้ง่าย</h3>
                                     </div> <br/>
                                     <div className="col-md-auto">
-                                        <img src="assets/images/Bookmark.png" className="LRounded" />
+                                        <img src="assets/images/MyBookmark.png" className="LRounded2" />
                                     </div>
-                                    <div className="Myresume-text">
+                                    <div className="Myresume-text"> 
                                         <h1>Bookmark</h1> <br/>
                                         <h3>สร้างเรซูเม่ด้วยเทมเพลตที่ใช้ง่าย</h3>
                                     </div> <br/>

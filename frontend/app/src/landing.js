@@ -23,7 +23,7 @@ class Landing extends React.Component {
 				<LandingHeader />
 				<LandingBody />
 				<LandingPage2/>
-				<LandingPage3/>
+				
 			</div>
 		);
 	}

@@ -1,13 +1,13 @@
 .LRounded1 {
-  /*position: relative;*/
-  padding-top: 12px;
-  padding-bottom: 6px;
+  height: 100%;
+  width: 100%;
+  position: relative;
+
 }
 
 .LRounded2 {
-  /*position: relative;*/
-  padding-top: 6px;
-  padding-bottom: 12px;
+  width: 100%;
+  position: relative;
 }
 
 img {
@@ -16,22 +16,23 @@ img {
   display: block;*/
 }
 
+
 #resume {
   position: absolute;
   color: white;
-  top: 210px;
-  left: 50%;
-  transform: translate(-50%, -50%);
+
   font-size: 95px;
   font-family: 'Nunito';
+  top: 40%;
+  left: 60%
 }
 
 #textMyResume1 {
   position: absolute;
   color: white;
-  top: 375px;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 55%;
+  left: 53%;
+
   font-size: 32px;
   font-family: 'Kanit';
   font-weight: 200;
@@ -39,11 +40,12 @@ img {
 
 
 #portfolio {
+
   position: absolute;
   color: white;
-  top: 760px;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 100%;
+  left: 13%;
+
   font-size: 95px;
   font-family: 'Nunito';
 }
@@ -51,9 +53,9 @@ img {
 #textMyPortfolio {
   position: absolute;
   color: white;
-  top: 925px;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 115%;
+  left: 3%;
+  
   font-size: 32px;
   font-family: 'Kanit';
   font-weight: 200;
