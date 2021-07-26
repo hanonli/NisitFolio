@@ -325,7 +325,14 @@ navbar { margin:0; }
 }
 
 .container-search {
-	margin-left: 20%;
+	margin-left: 27%;
+	margin-right: 10%;
+	max-width: 30%;
+}
+
+.container-search-no-icons {
+	margin-left: 27%;
+	margin-top: 3px;
 	max-width: 30%;
 }
 
@@ -354,6 +361,10 @@ navbar { margin:0; }
 	.navbar-nav{
 		padding-top:8px;
 	}
+	
+	.search-ex-pad{
+		margin-right:1%;
+	}
 }
 
 @media screen and (min-width: 990px) { /* large screen */
@@ -371,6 +382,11 @@ navbar { margin:0; }
 	}
 
 }
+
+.parent_div{
+   display: flex;
+   flex-wrap: wrap;
+} 
 
 .transparent {
     border-width: 0px;
@@ -524,6 +540,10 @@ a.btn-search:hover, .btn-search:hover {
 }
 
 .navbar-brand{
+	margin-left: 5px;
+}
+
+.navbar-brand-sm{
 	margin-left: 5px;
 }
 
