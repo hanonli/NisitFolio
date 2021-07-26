@@ -1,5 +1,9 @@
 .LRounded {
   border-radius: 18px;
+  max-width: 100%;
+}
+.col-md-auto{
+  margin: 1%;
 }
 
 .landingPage {
@@ -7,4 +11,22 @@
   padding-bottom: 15px;
   padding-right: 15px;
   padding-left: 15px;
+}
+
+.landingpage2{
+  margin: 1%;
+  position: relative;
+}
+
+.landingpage3{
+  margin: 1%;
+  width: 100%;
+  display:flex;
+  position: relative;
+}
+
+.Myresume-text{ 
+  position: absolute;
+  top: 20px;
+  left: 40px;
 }
