@@ -1,0 +1,64 @@
+span{
+
+    width:300px;
+    word-wrap:break-word;
+}
+
+.column{
+    display: flex;
+}
+
+.column .LRounded1{
+    padding: 1%;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    
+}
+
+.column .LRounded2{
+    padding: 1%;
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+  
+
+.textMyAnalytics{
+    position: absolute;
+    top: 150%;
+    left: 3%;
+}
+.textMyAnalytics #Analytics {
+    color: white;
+    font-size: 95px;
+    font-family: 'Nunito';
+}
+
+
+.textMyAnalytics #textAnalytics {
+    color: white;
+    font-size: 32px;
+    font-family: 'Kanit';
+    font-weight: 200;
+}
+
+.textMyBookmark{
+    position: absolute;
+    top: 250%;
+    left: 90%;
+}
+
+.textMyBookmark #Bookmark{
+
+    color: white;
+    font-size: 95px;
+    font-family: 'Nunito';
+}
+
+.textMyBookmark #textBookmark{
+    color: white;
+    font-size: 32px;
+    font-family: 'Kanit';
+    font-weight: 200;
+}
