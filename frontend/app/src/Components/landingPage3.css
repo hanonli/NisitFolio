@@ -5,24 +5,24 @@
 
 .column .LRounded1{
     border-radius: 28px;
-    padding-top: 1%;
+    padding: 0.5%;
+    max-width: 750px;
     height: 100%;
-    width: 100%;
     position: relative;
     
 }
 
 .column .LRounded2{
     border-radius: 28px;
-    padding-top: 1%;
+    padding: 0.9%;
+    max-width: 750px;
     height: 100%;
-    width: 100%;
     position: relative;
 }
   
 .MyAnalytics #Analytics {
     position: absolute;
-    top: 215%;
+    top: 230%;
     left: 5%;
     color: white;
     font-size: 95px;
@@ -32,7 +32,7 @@
 
 .MytextAnalytics #textAnalytics {
     position: absolute;
-    top: 230%;
+    top: 245%;
     left: 5%;
     color: white;
     font-size: 32px;
@@ -41,13 +41,13 @@
 }
 
 .textMyBookmark{
-    padding: 0%;
+    text-align: center;
 }
 
 .MyBookmark #Bookmark{
     position: absolute;
-    top: 142%;
-    left: 75%;
+    top: 145%;
+    left: 68%;
     color: white;
     font-size: 95px;
     font-family: 'Nunito';
@@ -55,8 +55,8 @@
 
 .MytextBookmark #textBookmark{
     position: absolute;
-    top: 157%;
-    left: 45%;
+    top: 159%;
+    left: 30%;
     text-align: right;
     color: white;
     font-size: 32px;
