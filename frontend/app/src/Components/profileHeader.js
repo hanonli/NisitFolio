@@ -19,7 +19,7 @@ class Header extends React.Component {
 									<h2 class="desc-s" >I'm an ordinary guy who wants to be a great developer. However, one day I met another guy named Fa_ and I realize that he has already achieved my dream.</h2> 
 								</div>
 							</div>
-							<div class="col-md-auto">
+							<div class="col-md-5">
 							
 								 <div class="lg-view float-end">
 									<Link to="/data">
