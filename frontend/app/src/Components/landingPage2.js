@@ -20,7 +20,13 @@ class LandingPage2 extends React.Component {
                                 <img src="assets/images/Portfolio.png" className="LRounded2" />
                                 <h1 id="portfolio">Portfolio</h1>
                                 <h1 id="textMyPortfolio">แหล่งจัดเก็บผลงานของคุณตั้งแต่เริ่มใช้งานจนถึงปัจจุบัน</h1>
-                                
+                            </div>
+
+                            <div className="box">
+    	                        <img src="assets/images/Portfolio.png" />
+                                <div className="text">
+                                    <h1>Flying Kites</h1>
+                                </div>
                             </div>
                         </div>
                     </div>

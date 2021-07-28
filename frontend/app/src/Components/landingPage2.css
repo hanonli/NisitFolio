@@ -1,14 +1,13 @@
-.d-flex  .row{
-  position: relative;
-  display: inline-block;
-}
 
+.col-lg-12{
+  position: relative;
+  display: inline-block; /* Make the width of box same as image */
+}
 .col-lg-12 .LRounded1 {
   padding: 0.5%;
   max-width: 100%;
   height: auto;
 
-  position: relative;
   border-radius: 28px;
 }
 
@@ -17,61 +16,59 @@
   max-width: 100%;
   height: auto;
 
-  position: relative;
   border-radius: 28px;
 
 }
 
-#resume {
-  
+.col-lg-12 #resume{
   position: absolute;
   z-index: 999;
   text-align: center;
   color: white;
   left: 0;
   right: 0;
-  top: 9vw;       
-  font-size: 6vw;
+  top: 30%;
+  color: white;
+  font-size: 95px;
   font-family: 'Nunito';
-
 }
 
-#textMyResume1 {
+.col-lg-12 #textMyResume1 {
   position: absolute;
   z-index: 999;
   text-align: center;
   color: white;
   left: 0;
   right: 0;
-  top: 16vw;   
-  font-size: 2vw;
+  top: 50%;   
+  font-size: 42px;
   font-family: 'Kanit';
   font-weight: 200;
 }
 
-
-#portfolio {
-
+.col-lg-12 #portfolio {
   position: absolute;
   z-index: 999;
   text-align: center;
   color: white;
   left: 0;
   right: 0;
-  top: 36vw;   
-  font-size: 6vw;
+  top: 30%;   
+  font-size: 95px;
   font-family: 'Nunito';
+
 }
 
-#textMyPortfolio {
+.col-lg-12 #textMyPortfolio {
   position: absolute;
   z-index: 999;
   text-align: center;
   color: white;
   left: 0;
   right: 0;
-  top: 43vw;   
-  font-size: 2vw;
+  top: 50%;   
+  font-size: 42px;
   font-family: 'Kanit';
   font-weight: 200;
+
 }
