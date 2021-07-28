@@ -5,7 +5,9 @@ class LandingPage2 extends React.Component {
     render() {
         return (
             <div className="landingPage2">
+                <header>    
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+                </header>
                 <div className="container-fluid text-center">
                     <div class="d-flex justify-content-center">
                         <div className="row">

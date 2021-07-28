@@ -1,0 +1,60 @@
+.bg_form{
+    width: 528px;
+    height: 708px;
+    margin: 70px;
+    background:white;
+    border-radius: 20px;
+    padding: 42px;
+    align-items: center;
+}
+
+#signIn_h1 {
+    text-align: center;
+    font-family: 'Kanit';
+    font-weight: 400;
+    font-size: 45px;
+    color: black;
+}
+
+#inputform1 {
+    border-radius: 20px;
+    background-color: #C4C4C4;
+    border-color: #ebf0fc;
+}
+
+#buttom12 {
+    align-items: center;
+    border-radius: 30px;
+    position: absolute; 
+    top: 55px; 
+    padding: 5px;
+    margin: 0px 55px;
+}
+
+#buttonLogIn112 {
+    border-radius: 30px;
+    color: black;
+    width: 250px
+}
+
+#buttonSignIn112 {
+    border-radius: 30px;
+    color: white;
+    width: 250px
+}
+
+#labelText {
+    font-family: 'Kanit';
+    font-weight: 400;
+    color: black;
+    font-size: 25px;
+}
+
+#buttom1125 {
+    font-family: 'Kanit';
+    font-weight: 400;
+}
+
+#forgetText112 a{
+    color: #167bff;
+}
