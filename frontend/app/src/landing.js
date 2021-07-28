@@ -21,11 +21,6 @@ class Landing extends React.Component {
 		return (
 			<div className="Landing">
 				<NavbarTransparent />
-				<div class="col block-right">
-					<Link to="/agreement">
-						<a class="btn btn-cta-primary-yellow round" href="#" target="_blank">สมัครสมาชิก</a>
-					</Link>
-				</div>
 				<LandingPage1/>
 				<LandingPage2/>
 				<LandingPage3/>
