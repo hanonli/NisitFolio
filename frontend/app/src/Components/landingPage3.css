@@ -1,13 +1,14 @@
 
 .column{
     display: flex;
+    flex-wrap: nowrap;
 }
 
 .column .LRounded1{
     border-radius: 28px;
     padding: 0.5%;
     max-width: 750px;
-    height: 100%;
+    height: auto;
     position: relative;
     
 }
@@ -16,26 +17,26 @@
     border-radius: 28px;
     padding: 0.9%;
     max-width: 750px;
-    height: 100%;
+    height: auto;
     position: relative;
 }
   
 .MyAnalytics #Analytics {
     position: absolute;
-    top: 230%;
+    top: 210%;
     left: 5%;
     color: white;
-    font-size: 95px;
+    font-size: 6vw;
     font-family: 'Nunito';
 }
 
 
 .MytextAnalytics #textAnalytics {
     position: absolute;
-    top: 245%;
+    top: 225%;
     left: 5%;
     color: white;
-    font-size: 32px;
+    font-size: 2vw;
     font-family: 'Kanit';
     font-weight: 200;
 }
@@ -49,7 +50,7 @@
     top: 145%;
     left: 68%;
     color: white;
-    font-size: 95px;
+    font-size: 6vw;
     font-family: 'Nunito';
 }
 
@@ -59,7 +60,7 @@
     left: 30%;
     text-align: right;
     color: white;
-    font-size: 32px;
+    font-size: 2vw;
     font-family: 'Kanit';
     font-weight: 200;
 }
