@@ -12,13 +12,13 @@
     position: absolute;
     width: 1000px;
     height: 282px;
-    left: 137px;
-    top: 253px;
+    left: 3%;
+    top: 23%;
 
     font-family: 'Kanit';
     /*font-style: italic;*/
     font-weight: 500;
-    font-size: 65px;
+    font-size: 50px;
     line-height: 76px;
     display: flex;
     align-items: center;
@@ -30,7 +30,7 @@
 .LogoNisitZaa11244 #nisit44Zaa112 {
     position: absolute;
     top: 8%;
-    left: 6%;
+    left: 01%;
 }
 
 #fromNahee {
@@ -64,17 +64,18 @@
 #textOfArrow {
     position: absolute;
     width: 214px;
-    height: 28px;
-    left: 902px;
-    top: 958px;
+
+    text-align: center;
+    top: 90%;
+    left: 47%;
 
     font-family: 'Kanit';
     font-weight: 200;
     font-style: normal;
     font-size: 23px;
     line-height: 28px;
-    display: flex;
-    align-items: center;
+
+
 
     color: #FFFFFF;
 }
