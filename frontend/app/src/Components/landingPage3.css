@@ -23,9 +23,12 @@
   
 .MyAnalytics #Analytics {
     position: absolute;
-    top: 210%;
-    left: 5%;
+    z-index: 999;
+    text-align: left;
     color: white;
+    left: 5vw;
+    right: 0;
+    top: 101vw;       
     font-size: 6vw;
     font-family: 'Nunito';
 }
@@ -33,40 +36,43 @@
 
 .MytextAnalytics #textAnalytics {
     position: absolute;
-    top: 225%;
-    left: 5%;
+    z-index: 999;
+    text-align: left;
     color: white;
+    left: 5vw;
+    right: 0;
+    top: 108vw;
     font-size: 2vw;
     font-family: 'Kanit';
     font-weight: 200;
 }
 
-.textMyBookmark{
-    text-align: center;
-}
-
 .MyBookmark #Bookmark{
     position: absolute;
-    top: 145%;
-    left: 68%;
+    z-index: 999;
+    text-align: right;
     color: white;
+    left: 0;
+    right: 4vw;
+    top: 67vw;
     font-size: 6vw;
     font-family: 'Nunito';
 }
 
 .MytextBookmark #textBookmark{
     position: absolute;
-    top: 159%;
-    left: 30%;
+    z-index: 999;
     text-align: right;
     color: white;
+    left: 0;
+    right: 4vw;
+    top: 74vw;
     font-size: 2vw;
     font-family: 'Kanit';
     font-weight: 200;
 }
 
 .MytextBookmark span{
-    display: block;
-    width: 1000px;
+    display:inline-block
 
 }
