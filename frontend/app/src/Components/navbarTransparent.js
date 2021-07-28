@@ -5,11 +5,11 @@ class NavbarTransparent extends React.Component {
 	render (){
 		return (
 			<div className="NavbarTransparent">
-				<nav class="navbar transparent">
+				<nav class="navbar transparent ex-pad-landing fixed-top navAnimation">
 				  <div class="container-fluid">
 					<a class="navbar-brand">
 						<Link to="/home">
-							<img src="assets/images/nav-bar-icon.png" alt="" width="135" height="24"/>
+							<img src="assets/images/nav-bar-icon-white.png" alt="" width="135" height="24"/>
 						</Link>
 					</a>
 					<div class="lg-view-search container-fluid container-search-no-icons">
