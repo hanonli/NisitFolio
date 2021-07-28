@@ -13,8 +13,8 @@ class Header extends React.Component {
 								<input type="file" class="sr-only" id="input" accept="image/*" name="image" hidden />
 								<div class="profile-content">
 									<h1 class="name">วรเมศ ผดุงเจริญ</h1>
-									<a class="btn btn-cta-secondary btn-small round margin-right-s" href="#" target="_blank">Lead Full Stack Developer</a>
-									<a class="btn btn-cta-secondary btn-small round margin-right-s" href="#" target="_blank">Actor</a>
+									<a class="btn btn-cta-secondary btn-small round margin-right-s" href="#" target="_blank">Full Stack Developer</a>
+									<a class="btn btn-cta-secondary btn-small round margin-right-s" href="#" target="_blank">CEO of KU Happy Place</a>
 									<a class="btn btn-cta-secondary btn-small round" href="#" target="_blank">PE Teacher</a>
 									<h2 class="desc-s" >I'm an ordinary guy who wants to be a great developer. However, one day I met another guy named Fa_ and I realize that he has already achieved my dream.</h2> 
 								</div>
