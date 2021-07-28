@@ -1,22 +1,25 @@
-.col-lg-12 .LRounded1 {
+.d-flex  .row{
+  display: flex
+}
 
+.col-lg-12 .LRounded1 {
+  padding: 0.5%;
   height: 100%;
   width: 100%;
-  padding-top: 1%;
+
   position: relative;
   border-radius: 28px;
 }
 
 .col-lg-12 .LRounded2 {
-
+  padding: 0.5%;
   height: 100%;
   width: 100%;
-  padding-top: 1%;
+
   position: relative;
   border-radius: 28px;
+
 }
-
-
 
 #resume {
   position: absolute;

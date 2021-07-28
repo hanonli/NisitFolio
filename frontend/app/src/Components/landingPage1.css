@@ -1,0 +1,25 @@
+.textOfLandingPage #sloganNisitZaa {
+    position: absolute;
+    color: white;
+    top: 32%;
+    left: 5.5%;
+    font-size: 55px;
+    font-family: 'Kanit';
+    font-weight: 350;
+}
+
+.LogoNisitZaa11244 #NameProject112 {
+    position: absolute;
+    color: white;
+    top: 15%;
+    left: 13.2%;
+    font-size: 115px;
+    font-family: 'Nunito';
+}
+
+.LogoNisitZaa11244 #nisit44Zaa112 {
+    position: absolute;
+    top: 15%;
+    left: 5.5%;
+    font-size: 25px;
+}

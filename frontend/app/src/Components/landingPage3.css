@@ -1,38 +1,39 @@
 
-
 .column{
     display: flex;
 }
 
 .column .LRounded1{
-    padding: 1%;
+    border-radius: 28px;
+    padding: 0.5%;
+    max-width: 750px;
     height: 100%;
-    width: 100%;
     position: relative;
     
 }
 
 .column .LRounded2{
-    padding: 1%;
+    border-radius: 28px;
+    padding: 0.9%;
+    max-width: 750px;
     height: 100%;
-    width: 100%;
     position: relative;
 }
   
-
-.textMyAnalytics{
+.MyAnalytics #Analytics {
     position: absolute;
-    top: 150%;
-    left: 3%;
-}
-.textMyAnalytics #Analytics {
+    top: 230%;
+    left: 5%;
     color: white;
     font-size: 95px;
     font-family: 'Nunito';
 }
 
 
-.textMyAnalytics #textAnalytics {
+.MytextAnalytics #textAnalytics {
+    position: absolute;
+    top: 245%;
+    left: 5%;
     color: white;
     font-size: 32px;
     font-family: 'Kanit';
@@ -40,27 +41,30 @@
 }
 
 .textMyBookmark{
-    position: absolute;
-
+    text-align: center;
 }
 
-.textMyBookmark #Bookmark{
-    top : 250%;
-    left:200%;
-    color : white;
+.MyBookmark #Bookmark{
+    position: absolute;
+    top: 145%;
+    left: 68%;
+    color: white;
     font-size: 95px;
     font-family: 'Nunito';
 }
 
-.textMyBookmark #textBookmark{
-
+.MytextBookmark #textBookmark{
+    position: absolute;
+    top: 159%;
+    left: 30%;
+    text-align: right;
     color: white;
     font-size: 32px;
     font-family: 'Kanit';
     font-weight: 200;
 }
 
-.textMyBookmark span{
+.MytextBookmark span{
     display: block;
     width: 1000px;
 
