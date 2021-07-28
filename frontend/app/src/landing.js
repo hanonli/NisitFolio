@@ -10,11 +10,16 @@ import reportWebVitals from './reportWebVitals';
 import { Link } from "react-router-dom";
 
 class Landing extends React.Component {
+	componentDidMount() {
+		const script = document.createElement("script");
+		script.src = "assets/js/landing.js";
+		document.body.appendChild(script);
+	}
+
 	render() {
 		return (
 			<div className="Landing">
 				<NavbarTransparent />
-				
 				<div class="col block-right">
 					<Link to="/agreement">
 						<a class="btn btn-cta-primary-yellow round" href="#" target="_blank">สมัครสมาชิก</a>
