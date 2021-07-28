@@ -5,7 +5,7 @@
 }
 .col-lg-12 .LRounded1 {
   padding: 0.5%;
-  max-width: 100%;
+  width: 100%;
   height: auto;
 
   border-radius: 28px;
@@ -13,7 +13,7 @@
 
 .col-lg-12 .LRounded2 {
   padding: 0.5%;
-  max-width: 100%;
+  width: 100%;
   height: auto;
 
   border-radius: 28px;
@@ -27,7 +27,7 @@
   color: white;
   left: 0;
   right: 0;
-  top: 25%;
+  top: 30%;
   color: white;
   font-size: 95px;
   font-family: 'Nunito';
