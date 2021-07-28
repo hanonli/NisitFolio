@@ -1,0 +1,406 @@
+/* LandingPage1 */
+
+position: relative;
+width: 1920px;
+height: 1080px;
+overflow-x: scroll;
+
+background: #FFFFFF;
+border: 1px solid #000000;
+box-sizing: border-box;
+
+
+/* Rectangle 13 */
+
+position: absolute;
+width: 1920px;
+height: 1080px;
+left: 0px;
+top: 0px;
+
+background: url(library-869061_1920.jpg);
+
+
+/* Rectangle 14 */
+
+position: absolute;
+width: 1920px;
+height: 1080px;
+left: 0px;
+top: 0px;
+
+background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.24) 100%);
+
+
+/* เริ่มต้นชีวิตในรั้วมหาลัยที่ดีกว่า ด้วยระบบจัดเก็บและโชว์ผลงานที่ดีกว่า */
+
+position: absolute;
+width: 1000px;
+height: 282px;
+left: 137px;
+top: 253px;
+
+font-family: Roboto;
+font-style: italic;
+font-weight: 500;
+font-size: 65px;
+line-height: 76px;
+display: flex;
+align-items: center;
+
+color: #FFFFFF;
+
+
+
+/* Frame 13 */
+
+position: absolute;
+width: 598px;
+height: 190px;
+left: 100px;
+top: 125px;
+
+
+
+/* Rectangle 15 */
+
+position: absolute;
+width: 176px;
+height: 176px;
+left: 9px;
+top: 7px;
+
+background: url(image0.png);
+
+
+/* Nisitfolio */
+
+position: absolute;
+width: 408px;
+height: 50px;
+left: 185px;
+top: 52px;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: 900;
+font-size: 96px;
+line-height: 112px;
+display: flex;
+align-items: center;
+
+color: #FFFFFF;
+
+
+
+/* Frame 14 */
+
+position: absolute;
+width: 950px;
+height: 93px;
+left: 142px;
+top: 493px;
+
+background: #FFFFFF;
+border-radius: 50px;
+
+
+/* Rectangle 16 */
+
+position: absolute;
+width: 130px;
+height: 104px;
+left: 820px;
+top: -2px;
+
+background: #F9DC5C;
+
+
+/* Rectangle 17 */
+
+position: absolute;
+width: 60px;
+height: 60px;
+left: 855px;
+top: 17px;
+
+background: url(searchmagnifierinterfacesymbol1_79893.png);
+
+
+/* ค้นหาบุคคลและผลงานคุณภาพได้ที่นี่ */
+
+position: absolute;
+width: 522px;
+height: 53px;
+left: 35px;
+top: 20px;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 36px;
+line-height: 42px;
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #ADAAAA;
+
+
+
+/* Frame 15 */
+
+position: absolute;
+width: 528px;
+height: 708px;
+left: 1221px;
+top: 177px;
+
+background: #FFFFFF;
+border-radius: 20px;
+
+
+/* เข้าสู่ระบบ */
+
+position: absolute;
+width: 335px;
+height: 44px;
+left: 105px;
+top: 62px;
+
+font-family: Roboto;
+font-style: italic;
+font-weight: 500;
+font-size: 48px;
+line-height: 56px;
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #000000;
+
+
+
+/* Frame 16 */
+
+position: absolute;
+width: 438px;
+height: 109px;
+left: 54px;
+top: 138px;
+
+
+
+/* Frame 17 */
+
+position: absolute;
+width: 362px;
+height: 40px;
+left: 38px;
+top: 58px;
+
+background: #CDCDCD;
+border-radius: 20px;
+
+
+/* อีเมล */
+
+position: absolute;
+width: 51px;
+height: 26px;
+left: 12px;
+top: 17px;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 24px;
+line-height: 28px;
+display: flex;
+align-items: center;
+
+color: #000000;
+
+
+
+/* Frame 17 */
+
+position: absolute;
+width: 438px;
+height: 109px;
+left: 54px;
+top: 247px;
+
+
+
+/* Frame 17 */
+
+position: absolute;
+width: 362px;
+height: 40px;
+left: 38px;
+top: 58px;
+
+background: #CDCDCD;
+border-radius: 20px;
+
+
+/* รหัสผ่าน */
+
+position: absolute;
+width: 80px;
+height: 26px;
+left: 12px;
+top: 17px;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 24px;
+line-height: 28px;
+display: flex;
+align-items: center;
+
+color: #000000;
+
+
+
+/* Frame 18 */
+
+position: absolute;
+width: 250px;
+height: 60px;
+left: 148px;
+top: 421px;
+
+background: #F9DC5C;
+border-radius: 30px;
+
+
+/* เข้าสู่ระบบ */
+
+position: absolute;
+width: 169px;
+height: 31px;
+left: 40px;
+top: 14px;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 24px;
+line-height: 28px;
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #000000;
+
+
+
+/* Frame 19 */
+
+position: absolute;
+width: 250px;
+height: 60px;
+left: 148px;
+top: 562px;
+
+background: #2560A5;
+border-radius: 30px;
+
+
+/* สมัครสมาชิก */
+
+position: absolute;
+width: 169px;
+height: 31px;
+left: 40px;
+top: 14px;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 24px;
+line-height: 28px;
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* ลืมรหัสผ่าน? */
+
+position: absolute;
+width: 200px;
+height: 33px;
+left: 173px;
+top: 481px;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+line-height: 21px;
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #498AD7;
+
+
+
+/* Group 1 */
+
+position: absolute;
+width: 92px;
+height: 56.18px;
+left: 951px;
+top: 985px;
+
+
+
+/* Line 1 */
+
+position: absolute;
+width: 69.96px;
+height: 0px;
+left: 951px;
+top: 988.55px;
+
+border: 8px solid #F2F2F2;
+transform: matrix(0.65, 0.74, -0.8, 0.64, 0, 0);
+
+
+/* Line 2 */
+
+position: absolute;
+width: 69.96px;
+height: 0px;
+left: 1043px;
+top: 985px;
+
+border: 8px solid #F2F2F2;
+transform: matrix(-0.65, 0.74, -0.8, -0.64, 0, 0);
+
+
+/* ฟีเจอร์ที่เรามีไว้ช่วยคุณ */
+
+position: absolute;
+width: 214px;
+height: 28px;
+left: 890px;
+top: 946px;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 24px;
+line-height: 28px;
+display: flex;
+align-items: center;
+
+color: #FFFFFF;
+
