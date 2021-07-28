@@ -1,7 +1,7 @@
 
 .column{
-    display: flex;
-    flex-wrap: nowrap;
+    position: relative;
+    display: flex /* Make the width of box same as image */
 }
 
 .column .LRounded1{
@@ -21,53 +21,54 @@
     position: relative;
 }
   
-.MyAnalytics #Analytics {
+.column .MyAnalytics #Analytics {
     position: absolute;
     z-index: 999;
     text-align: left;
     color: white;
-    left: 5vw;
+    left: 3%;
     right: 0;
-    top: 101vw;       
-    font-size: 6vw;
+    top: 65%;
+    font-size: 95px;   
     font-family: 'Nunito';
 }
 
 
-.MytextAnalytics #textAnalytics {
+.column .MytextAnalytics #textAnalytics {
     position: absolute;
     z-index: 999;
     text-align: left;
     color: white;
-    left: 5vw;
+    left: 3%;
     right: 0;
-    top: 108vw;
-    font-size: 2vw;
+    top: 77.5%;   
+    font-size: 32px;
     font-family: 'Kanit';
     font-weight: 200;
 }
 
-.MyBookmark #Bookmark{
+.column .MyBookmark #Bookmark{
     position: absolute;
     z-index: 999;
     text-align: right;
     color: white;
     left: 0;
-    right: 4vw;
-    top: 67vw;
-    font-size: 6vw;
+    right: 3%;
+    top: 5%;
+    color: white;
+    font-size: 95px;
     font-family: 'Nunito';
 }
 
-.MytextBookmark #textBookmark{
+.column .MytextBookmark #textBookmark{
     position: absolute;
     z-index: 999;
     text-align: right;
     color: white;
     left: 0;
-    right: 4vw;
-    top: 74vw;
-    font-size: 2vw;
+    right: 3%;
+    top: 17.5%;   
+    font-size: 32px;
     font-family: 'Kanit';
     font-weight: 200;
 }
