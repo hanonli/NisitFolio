@@ -5,11 +5,11 @@
 }
 
 .column .LRounded1{
-    border-radius: 28px;
+    border-radius: 1%;
     width: 50vw;
-    height: 1080px;
+    height: 100%;
     
-    padding-left: 1%;
+
     margin-top: 10px;
     margin-left: 10px;
     position: relative;
@@ -17,11 +17,11 @@
 }
 
 .column .LRounded2{
-    border-radius: 28px;
+    border-radius: 1%;
     width: 50vw;
-    height: 1080px;
+    height: 100%;
 
-    padding-left: 1%;
+
     margin-top: 10px;
     margin-left: 10px;
 
@@ -37,7 +37,7 @@
     left: 3%;
     right: 0;
     top: 65%;
-    font-size: 95px;   
+    font-size: 6vw;   
     font-family: 'Nunito';
 }
 
@@ -50,7 +50,7 @@
     left: 3%;
     right: 0;
     top: 77.5%;   
-    font-size: 32px;
+    font-size: 2vw;
     font-family: 'Kanit';
     font-weight: 200;
 }
@@ -64,7 +64,7 @@
     right: 3%;
     top: 5%;
     color: white;
-    font-size: 95px;
+    font-size: 6vw;
     font-family: 'Nunito';
 }
 
@@ -76,7 +76,7 @@
     left: 0;
     right: 3%;
     top: 17.5%;   
-    font-size: 32px;
+    font-size: 2vw;
     font-family: 'Kanit';
     font-weight: 200;
 }

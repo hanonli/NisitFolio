@@ -5,21 +5,22 @@
 }
 .col-lg-12 .LRounded1 {
 
-  margin-left: 10px;
-  margin-top: 10px;
+  margin-left: 2vw;
+  margin-top: 0.5vw;
   width: 100vw;
   height: auto;
 
-  border-radius: 28px;
+  border-radius: 1vw;
 }
 
 .col-lg-12 .LRounded2 {
-  padding-left: 10px;
-  padding-top: 10px;
+  margin-left: 2vw;
+  margin-top: 0.5vw;
+  margin-bottom: 0.5vw;
   width: 100vw;
   height: auto;
 
-  border-radius: 28px;
+  border-radius: 1vw;
 
 }
 
