@@ -7,6 +7,7 @@ import LandingBody from './Components/landingBody';
 import LandingPage1 from './Components/landingPage1';
 import LandingPage2 from './Components/landingPage2';
 import LandingPage3 from './Components/landingPage3';
+import LandingPage4 from './Components/landingPage4';
 import reportWebVitals from './reportWebVitals';
 import { Link } from "react-router-dom";
 
@@ -24,6 +25,7 @@ class Landing extends React.Component {
 				<LandingPage1/>
 				<LandingPage2/>
 				<LandingPage3/>
+				<LandingPage4/>
 			</div>
 		);
 	}
