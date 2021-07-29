@@ -6,18 +6,17 @@
 
 .column .LRounded1{
     border-radius: 28px;
-    padding: 0.5%;
-    width: 750px;
-    height: auto;
+    width: 960px;
+    height: 1080px;
     position: relative;
     
 }
 
 .column .LRounded2{
     border-radius: 28px;
-    padding: 0.9%;
-    width: 750px;
-    height: auto;
+    
+    width: 960px;
+    height: 1080px;
     position: relative;
 }
   
