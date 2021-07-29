@@ -1,62 +1,79 @@
+
+.col-lg-12{
+  position: relative;
+  display: inline-block; /* Make the width of box same as image */
+
+}
 .col-lg-12 .LRounded1 {
 
-  height: 100%;
-  width: 100%;
-  padding-top: 1%;
-  position: relative;
-  border-radius: 28px;
+
+  margin-top: 0.5vw;
+  width: 97vw;
+  height: auto;
+
+  border-radius: 1vw;
 }
 
 .col-lg-12 .LRounded2 {
 
-  height: 100%;
-  width: 100%;
-  padding-top: 1%;
-  position: relative;
+  margin-top: 0.5vw;
+  margin-bottom: 0.5vw;
+  width: 97vw;
+  height: auto;
+
+  border-radius: 1vw;
 
 }
 
-#resume {
+.col-lg-12 #resume{
   position: absolute;
-  color: white;
-  top: 40%;
-  left: 35%;
-  text-align: left;
-  font-size: 95px;
-  font-family: 'Nunito';
-  
-}
-
-#textMyResume1 {
-  position: absolute;
-  color: white;
-  top: 55%;
-  left: 28%;
+  z-index: 999;
   text-align: center;
-  font-size: 32px;
+  color: white;
+  left: 0;
+  right: 0;
+  top: 25%;
+  color: white;
+  font-size: 6vw;
+  font-family: 'Nunito';
+}
+
+.col-lg-12 #textMyResume1 {
+  position: absolute;
+  z-index: 999;
+  text-align: center;
+  color: white;
+  left: 0;
+  right: 0;
+  top: 50%;   
+  font-size: 2vw;
   font-family: 'Kanit';
   font-weight: 200;
 }
 
-
-#portfolio {
-
+.col-lg-12 #portfolio {
   position: absolute;
-  color: white;
-  top: 100%;
-  left: 38%;
+  z-index: 999;
   text-align: center;
-  font-size: 95px;
+  color: white;
+  left: 0;
+  right: 0;
+  top: 28%;   
+  font-size: 6vw;
   font-family: 'Nunito';
+
 }
 
-#textMyPortfolio {
+.col-lg-12 #textMyPortfolio {
   position: absolute;
-  color: white;
-  top: 115%;
-  left: 28%;
+  z-index: 999;
   text-align: center;
-  font-size: 32px;
+  color: white;
+  left: 0;
+  right: 0;
+  top: 53%;   
+  font-size: 2vw;
   font-family: 'Kanit';
   font-weight: 200;
+
 }

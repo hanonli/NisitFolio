@@ -1,0 +1,81 @@
+.landingPage1 {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-position: center; 
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.4)0%, rgba(0, 0, 0, 0.24)100%),url(LandingPage.png);
+    background-repeat: no-repeat;
+    background-size: cover; 
+}
+
+.textOfLandingPage #sloganNisitZaa {
+    position: absolute;
+    width: 1000px;
+    height: 282px;
+    left: 3%;
+    top: 23%;
+
+    font-family: 'Kanit';
+    /*font-style: italic;*/
+    font-weight: 500;
+    font-size: 50px;
+    line-height: 76px;
+    display: flex;
+    align-items: center;
+
+    color: #FFFFFF;
+
+}
+
+.LogoNisitZaa11244 #nisit44Zaa112 {
+    position: absolute;
+    top: 8%;
+    left: 01%;
+}
+
+#fromNahee {
+    position: absolute;
+    top: 52%;
+    right: 63%;
+}
+
+.signInX {
+    position: absolute;
+    top: 9.5%;
+    right: 3%;
+}
+
+#stupidSearch {
+    width: 650px;
+    font-style: normal;
+    font-weight: normal;
+    align-items: center;
+    text-align: center;
+    color: #ADAAAA;
+}
+
+#arrow_down1 {
+    position: absolute;
+    top: 95%;
+    left: 50%;
+    align-items: center;
+}
+
+#textOfArrow {
+    position: absolute;
+    width: 214px;
+
+    text-align: center;
+    top: 90%;
+    left: 47%;
+
+    font-family: 'Kanit';
+    font-weight: 200;
+    font-style: normal;
+    font-size: 23px;
+    line-height: 28px;
+
+
+
+    color: #FFFFFF;
+}
