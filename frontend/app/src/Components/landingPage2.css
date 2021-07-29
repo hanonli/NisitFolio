@@ -2,22 +2,23 @@
 .col-lg-12{
   position: relative;
   display: inline-block; /* Make the width of box same as image */
+
 }
 .col-lg-12 .LRounded1 {
 
-  margin-left: 2vw;
+
   margin-top: 0.5vw;
-  width: 100vw;
+  width: 98vw;
   height: auto;
 
   border-radius: 1vw;
 }
 
 .col-lg-12 .LRounded2 {
-  margin-left: 2vw;
+
   margin-top: 0.5vw;
   margin-bottom: 0.5vw;
-  width: 100vw;
+  width: 98vw;
   height: auto;
 
   border-radius: 1vw;
