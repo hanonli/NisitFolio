@@ -1,4 +1,13 @@
+
+.page4-container{
+    display:inline-block;
+}
+.MySharing{
+    position: relative;
+}
+
 .MySharing .pic-sharing{
+
     width: 98vw;
     height: auto;
     
@@ -6,5 +15,34 @@
     padding-left: 0.5vw;
 
     border-radius: 0.9vw;
-    align-items: center;
+
+}
+
+.MySharing  #sharing{
+    position: absolute;
+    z-index: 999;
+
+    left: 4vw;
+    right: 0;
+    top: 3vw;
+
+
+    color: white;
+    font-size: 6vw;
+    font-family: 'Nunito';
+}
+
+.MySharing  #textsharing{
+    position: absolute;
+    z-index: 999;
+    
+    left: 4vw;
+    right: 0;
+    top: 10vw;
+    width: 35vw;
+
+    color: white;
+    font-size: 2vw ;
+    font-family: 'Nunito';
+    font-weight: 200;
 }
