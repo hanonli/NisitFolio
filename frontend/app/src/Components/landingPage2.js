@@ -8,7 +8,7 @@ class LandingPage2 extends React.Component {
                 <header>    
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
                 </header>
-                <div className="container-fluid text-center">
+                <div className="container-fluid text-center" id="shownav">
                     <div class="d-flex justify-content-center">
                         <div className="row">
                             <div className="col-lg-12" id="div1">
