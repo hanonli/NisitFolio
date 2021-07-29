@@ -6,7 +6,8 @@
     top: 0px;
     background-position: center;
     background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.4)0%, rgba(0, 0, 0, 0.24)100%),url(LandingPage.png);
-  
+    background-repeat: no-repeat;
+    /*background-attachment: fixed;*/
 }
 
 .textOfLandingPage #sloganNisitZaa {
