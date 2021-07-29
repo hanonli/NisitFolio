@@ -1,23 +1,28 @@
 
 .column{
     position: relative;
-    display: flex /* Make the width of box same as image */
+    display:inline-flex;
 }
 
 .column .LRounded1{
-    border-radius: 28px;
-    padding: 0.5%;
-    width: 750px;
-    height: auto;
+    float: left;
+    border-radius: 1vw;
+    width: 48.5vw;
+    height: 100%;
+
+    right: 0.5vw;
+    
     position: relative;
     
 }
 
 .column .LRounded2{
-    border-radius: 28px;
-    padding: 0.9%;
-    width: 750px;
-    height: auto;
+    border-radius: 1vw;
+    width: 48.5vw;
+    height: 100%;
+
+    left: 0.5vw;
+
     position: relative;
 }
   
@@ -29,7 +34,7 @@
     left: 3%;
     right: 0;
     top: 65%;
-    font-size: 95px;   
+    font-size: 6vw;   
     font-family: 'Nunito';
 }
 
@@ -42,7 +47,7 @@
     left: 3%;
     right: 0;
     top: 77.5%;   
-    font-size: 32px;
+    font-size: 2vw;
     font-family: 'Kanit';
     font-weight: 200;
 }
@@ -56,7 +61,7 @@
     right: 3%;
     top: 5%;
     color: white;
-    font-size: 95px;
+    font-size: 6vw;
     font-family: 'Nunito';
 }
 
@@ -68,7 +73,7 @@
     left: 0;
     right: 3%;
     top: 17.5%;   
-    font-size: 32px;
+    font-size: 2vw;
     font-family: 'Kanit';
     font-weight: 200;
 }

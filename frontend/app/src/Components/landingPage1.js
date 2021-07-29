@@ -6,6 +6,7 @@ class LandingPage1 extends React.Component {
     render() {
         return (
             <div className="landingPage1">
+                
                 <div className="LogoNisitZaa11244">
                     <img src="assets/images/nisitfolio_logo_white.png" width="665" id="nisit44Zaa112" />
                 </div>
