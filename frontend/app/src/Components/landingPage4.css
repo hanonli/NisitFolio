@@ -1,0 +1,10 @@
+.MySharing .pic-sharing{
+    width: 98vw;
+    height: auto;
+    
+    padding-top: 0.5vw;
+    padding-left: 0.5vw;
+
+    border-radius: 0.9vw;
+    align-items: center;
+}
