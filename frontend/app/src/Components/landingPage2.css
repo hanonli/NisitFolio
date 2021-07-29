@@ -4,16 +4,19 @@
   display: inline-block; /* Make the width of box same as image */
 }
 .col-lg-12 .LRounded1 {
-  padding: 0.5%;
-  width: 100%;
+
+  margin-left: 10px;
+  margin-top: 10px;
+  width: 100vw;
   height: auto;
 
   border-radius: 28px;
 }
 
 .col-lg-12 .LRounded2 {
-  padding: 0.5%;
-  width: 100%;
+  padding-left: 10px;
+  padding-top: 10px;
+  width: 100vw;
   height: auto;
 
   border-radius: 28px;
@@ -29,7 +32,7 @@
   right: 0;
   top: 25%;
   color: white;
-  font-size: 95px;
+  font-size: 6vw;
   font-family: 'Nunito';
 }
 
@@ -41,7 +44,7 @@
   left: 0;
   right: 0;
   top: 50%;   
-  font-size: 42px;
+  font-size: 2vw;
   font-family: 'Kanit';
   font-weight: 200;
 }
@@ -54,7 +57,7 @@
   left: 0;
   right: 0;
   top: 28%;   
-  font-size: 95px;
+  font-size: 6vw;
   font-family: 'Nunito';
 
 }
@@ -67,7 +70,7 @@
   left: 0;
   right: 0;
   top: 53%;   
-  font-size: 42px;
+  font-size: 2vw;
   font-family: 'Kanit';
   font-weight: 200;
 
