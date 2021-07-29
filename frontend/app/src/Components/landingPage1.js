@@ -7,7 +7,7 @@ class LandingPage1 extends React.Component {
         return (
             <div className="landingPage1">
                 <div className="LogoNisitZaa11244">
-                    <img src="assets/images/nisitfolio_logo2.png" width="665" id="nisit44Zaa112" />
+                    <img src="assets/images/nisitfolio_logo_white.png" width="665" id="nisit44Zaa112" />
                 </div>
                 <div className="textOfLandingPage">
                     <h1 id="sloganNisitZaa">เริ่มต้นชีวิตในรั้วมหาลัยที่ดีกว่า<br />ด้วยระบบจัดเก็บและโชว์ผลงานที่ดีกว่า</h1>
@@ -16,7 +16,7 @@ class LandingPage1 extends React.Component {
                     <form class="d-flex" >
                         <input class="form-control form-control-lg btn-search-box" id="stupidSearch" type="search" placeholder="ค้นหาบุคคลและผลงานคุณภาพได้ที่นี่" aria-label="Search" />
                         <button class="btn btn-lg btn-search yellow" type="submit" >
-                            <img src="assets/images/search.png" alt="" width="65" height="65" />
+                            <img src="assets/images/search.png" alt="" width="40" height="40" />
                         </button>
                     </form>
                 </div>

@@ -4,7 +4,9 @@ import './landingPage3.css';
 class LandingPage3 extends React.Component {
     render() {
         return (
-            <div className="landingPage">
+            
+            <div className="landingPage3">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
                 <span class="lg-view-search mx-auto">
                 <div className="container-fluid">
                         <div class="d-flex justify-content-center">

@@ -1,13 +1,14 @@
 
 .column{
-    display: flex;
+    position: relative;
+    display: flex /* Make the width of box same as image */
 }
 
 .column .LRounded1{
     border-radius: 28px;
     padding: 0.5%;
-    max-width: 750px;
-    height: 100%;
+    width: 750px;
+    height: auto;
     position: relative;
     
 }
@@ -15,57 +16,64 @@
 .column .LRounded2{
     border-radius: 28px;
     padding: 0.9%;
-    max-width: 750px;
-    height: 100%;
+    width: 750px;
+    height: auto;
     position: relative;
 }
   
-.MyAnalytics #Analytics {
+.column .MyAnalytics #Analytics {
     position: absolute;
-    top: 230%;
-    left: 5%;
+    z-index: 999;
+    text-align: left;
     color: white;
-    font-size: 95px;
+    left: 3%;
+    right: 0;
+    top: 65%;
+    font-size: 95px;   
     font-family: 'Nunito';
 }
 
 
-.MytextAnalytics #textAnalytics {
+.column .MytextAnalytics #textAnalytics {
     position: absolute;
-    top: 245%;
-    left: 5%;
+    z-index: 999;
+    text-align: left;
     color: white;
+    left: 3%;
+    right: 0;
+    top: 77.5%;   
     font-size: 32px;
     font-family: 'Kanit';
     font-weight: 200;
 }
 
-.textMyBookmark{
-    text-align: center;
-}
-
-.MyBookmark #Bookmark{
+.column .MyBookmark #Bookmark{
     position: absolute;
-    top: 145%;
-    left: 68%;
+    z-index: 999;
+    text-align: right;
+    color: white;
+    left: 0;
+    right: 3%;
+    top: 5%;
     color: white;
     font-size: 95px;
     font-family: 'Nunito';
 }
 
-.MytextBookmark #textBookmark{
+.column .MytextBookmark #textBookmark{
     position: absolute;
-    top: 159%;
-    left: 30%;
+    z-index: 999;
     text-align: right;
     color: white;
+    left: 0;
+    right: 3%;
+    top: 17.5%;   
     font-size: 32px;
     font-family: 'Kanit';
     font-weight: 200;
 }
 
 .MytextBookmark span{
-    display: block;
-    width: 1000px;
+    display:inline-block
 
 }
