@@ -34,7 +34,7 @@ class Agreement extends React.Component {
                 <div class="full-block">
                     <h2 class="desc-b" contenteditable="true">Not Avaliable,Need text permission here</h2>
                 </div>
-				<Link to="/information1">
+				<Link to="/register">
 					<div class="col block-right">
 						<a class="btn btn-cta-primary-yellow round" href="#" target="_blank">ต่อไป</a>
 					</div>

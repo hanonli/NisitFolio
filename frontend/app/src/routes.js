@@ -8,7 +8,7 @@ import Analytic from './analytic';
 import Bookmark from './bookmark';
 import Data from './data';
 import Agreement from './agreement';
-import Information1 from './information1';
+import Register from './register';
 import LandingPage1 from './Components/landingPage1'; //TEST LandingPage2
 
 const Routes = () => {
@@ -23,7 +23,7 @@ const Routes = () => {
       <Route exact path='/landing' component={Landing}></Route>
       <Route exact path='/data' component={Data}></Route>
       <Route exact path='/agreement' component={Agreement}></Route>
-      <Route exact path='/information1' component={Information1}></Route>
+      <Route exact path='/register' component={Register}></Route>
       <Route exact path='/landingPage1' component={LandingPage1}></Route>
     </Switch>
   );
