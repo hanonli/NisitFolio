@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 class Agreement extends React.Component {
 	render (){
 		return (
-			<div className="Data">
+			<div className="Agreement">
 				<Navbar />
 				<div className="DataHeader">
 					<header class="header-white">
