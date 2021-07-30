@@ -13,7 +13,7 @@
     
     padding-top: 0.5vw;
     padding-bottom: 0.5vw;
-    padding-left: 0.1vw;
+
     padding-right: 0.1vw;
 
     border-radius: 1vw;
@@ -83,7 +83,22 @@
 
  .MySharing #buttontextRegis{
         color: white;
-        font-size: 2.2vw;
-        font-weight: 400;
+        font-size: 2.2vw;       
+        font-weight: 400;       
         font-family: 'Kanit';
  } 
+
+
+ .MySharing #buttonRegisLanding {
+    position: absolute;
+    top: 47vw;
+    left: 78vw;
+
+    width: 18vw;
+    height: 5vw;
+    border-radius: 3vw;
+    background-color:steelblue;
+    padding: 0.1vw 0.2vw;
+    cursor: pointer;
+    display: inline-block;
+  }
