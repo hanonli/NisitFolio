@@ -10,7 +10,7 @@ class Navbar extends React.Component {
 				    <div class="lg-view">
 						<a class="navbar-brand">
 							<Link to="/home">
-								<img src="assets/images/nav-bar-icon.png" alt="" width="135" height="24"/>
+								<img src="assets/images/nav-bar-icon.png" alt="" width="146" height="26"/>
 							</Link>
 						</a>
 					</div>
