@@ -11,25 +11,25 @@ class SignInLand extends React.Component {
                         <h1 id="signIn_h1">เข้าสู่ระบบ</h1>
                         <br />
                         <div className="form-group" id="EmailIn">
-                            <label id="labelText">อีเมล</label>
+                            <label className="distancing112" id="labelText">อีเมล</label>
                             <input type="email" className="form-control" id="inputform1" />
                         </div>
                         <br />
                         <div className="form-group" id="PasswordIn">
-                            <label id="labelText">รหัสผ่าน</label>
+                            <label className="distancing112" id="labelText">รหัสผ่าน</label>
                             <input type="password" className="form-control" id="inputform1" />
                         </div>
                         <br />
                         <br />
                         <br />
-                        <br />
+                       
                         <div id="buttom1125" class="text-center">
-                            <button type="submit" className="btn btn-lg btn-primary yellow btn-block" id="buttonLogIn112">เข้าสู่ระบบ</button>
+                            <button type="submit" className="btn btn-cta-primary-yellow round profile-button" id="buttonLogIn112">เข้าสู่ระบบ</button>
                             <p className="forgot-password text-right" id="forgetText112">
                                 <a href="#" >ลืมรหัสผ่าน?</a>
                             </p>
                             <br />
-                            <br />
+
                             <button type="submit" className="btn btn-lg btn-primary deep-purple btn-block" id="buttonSignIn112">สมัครสมาชิก</button>
                         </div>
                     </form>
