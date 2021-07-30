@@ -38,12 +38,10 @@
 
 }
 
-.row .searchHuaKuay{
-    position: relative;
-    top: 2.5vw;
-    right: 2.5vw;
-    z-index: 999;
-    display: inline-block;
+#searchHuaKuay{
+    position: absolute;
+    top: 28vw;
+    left: 3vw;
 }
 
 #nisit44Zaa112 {
