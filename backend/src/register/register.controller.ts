@@ -1,6 +1,6 @@
 import { Controller } from "@nestjs/common";
 
-@Controller('analytics')
+@Controller('register')
 export class RegisterController {
   
 }

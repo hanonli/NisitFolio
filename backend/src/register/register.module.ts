@@ -8,4 +8,4 @@ import { RegisterService } from './register.service';
   controllers: [RegisterController],
   providers: [RegisterService],
 })
-export class AnalyticsModule {}
+export class RegisterModule {}
