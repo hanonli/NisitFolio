@@ -10,8 +10,8 @@
 
 .landingPage1 {
     position: relative;
-    width: 100vw;
-    height: 100vh;
+    width: 98.6vw;
+    height: 51vw;
     background-position: center; 
     background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.1)50%, rgba(0, 0, 0, 0.90)85%),url(LandingPage.png);
     background-repeat: no-repeat;
@@ -21,7 +21,7 @@
 
 .textOfLandingPage #sloganNisitZaa {
     position: absolute;
-    width: 100vw;
+    width: 50vw;
     height: 28.2vw;
     left: 4.2vw;
     top: 6vw;
