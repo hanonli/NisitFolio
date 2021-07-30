@@ -6,17 +6,18 @@ import InformationHeader from './Components/informationHeader';
 import reportWebVitals from './reportWebVitals';
 import { Link } from "react-router-dom";
 import Tabs from "./Components/Tabs"; 
+import Registab1 from "./Components/registab1";
 
 class Register extends React.Component {
 	render (){
 		return (
-			<div className="Information1">
+			<div className="Register">
 				<Navbar />
 				<InformationHeader />
 				<div>
                     <Tabs class=""> 
                         <div label="ข้อมูลสำคัญ"> 
-                            Nothing to see here, this tab is <em>extinct</em>! 
+                            <Registab1 />
                         </div> 
                         <div label="ข้อมูลเพิ่มเติม"> 
                             Nothing to see here, this tab is <em>extinct</em>! 
@@ -40,7 +41,7 @@ class Register extends React.Component {
                 </div>
                 <Link to="/home">
                     <div class="col block-right">
-                        <a class="btn btn-cta-primary-yellow round" href="#" target="_blank">ยืนยันตัวตน</a>
+                        <a class="btn btn-cta-primary-yellow round profile-button" href="#" target="_blank">ยืนยันตัวตน</a>
                     </div>
                 </Link>
 			</div>

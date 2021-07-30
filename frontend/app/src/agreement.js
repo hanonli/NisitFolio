@@ -36,7 +36,7 @@ class Agreement extends React.Component {
                 </div>
 				<Link to="/register">
 					<div class="col block-right">
-						<a class="btn btn-cta-primary-yellow round" href="#" target="_blank">ต่อไป</a>
+						<a class="btn btn-cta-primary-yellow round profile-button" href="#" target="_blank">ต่อไป</a>
 					</div>
 				</Link>
 			</div>
