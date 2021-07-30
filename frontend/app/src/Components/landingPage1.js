@@ -16,27 +16,23 @@ class LandingPage1 extends React.Component {
                                 <h1 id="sloganNisitZaa">เริ่มต้นชีวิตในรั้วมหาลัยที่ดีกว่า<br />ด้วยระบบจัดเก็บและโชว์ผลงานที่ดีกว่า</h1>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-6" id="searchHuaKuay">
-                        <SearchLanding1 />
-                    </div>
 
-                    <div class="row">
-                        <div class="col-50">
+                        <div class="col-sm-6" id="searchHuaKuay">
+                            <SearchLanding1 />
+                        </div>
+
+                        <div class="col-sm-12">
                             <div className="signInX" >
                                 <SignInLand />
                             </div>
                         </div>
+
+                        <div class="col">
+                            <img src="assets/images/arrow_down1.png" width="110" id="arrow_down1" />
+                            <h1 id="textOfArrow">ฟีเจอร์ที่เรามีไว้ช่วยคุณ</h1>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col">
-                        <img src="assets/images/arrow_down1.png" width="110" id="arrow_down1" />
-                        <h1 id="textOfArrow">ฟีเจอร์ที่เรามีไว้ช่วยคุณ</h1>
-                    </div>
-
-                </div>
-
             </div>
         );
     }

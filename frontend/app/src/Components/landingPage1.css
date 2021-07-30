@@ -13,7 +13,7 @@
     width: 100vw;
     height: 100vh;
     background-position: center; 
-    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0)68%, rgba(0, 0, 0, 0.90)85%),url(LandingPage.png);
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.1)50%, rgba(0, 0, 0, 0.90)85%),url(LandingPage.png);
     background-repeat: no-repeat;
     background-size: cover; 
     /*display: inline-block;*/
@@ -23,13 +23,13 @@
     position: absolute;
     width: 100vw;
     height: 28.2vw;
-    left: 3.8vw;
+    left: 4.2vw;
     top: 6vw;
     display: inline-block;
     font-family: 'Kanit';
     /*font-style: italic;*/
     font-weight: 500;
-    font-size: 3.5vw;
+    font-size: 3.2vw;
     line-height: 5vw;
     display: flex;
     align-items: center;
@@ -46,11 +46,11 @@
 
 #nisit44Zaa112 {
     position: absolute;
-    top: 2.5vw;
-    left: 2.5vw;
+    top: 3.8vw;
+    left: 3vw;
     z-index: 999;
     display: inline-block;
-    width: 38vw;
+    width: 30vw;
     height: auto;
 }
 
@@ -77,20 +77,20 @@
     font-weight: normal;
     /*align-items: center;
     text-align: center;*/
-    color: #ADAAAA;
-    z-index: 999;
-    display: inline-block;
+    color: black;
+    /*z-index: 999;
+    display: inline-block;*/
 }
 
 #btnstupidSearch {
-    width: 3vw; 
-    height: 3vw
+    width: 1.8vw; 
+    height: 1.8vw
 }
 
 #arrow_down1 {
     position: absolute;
-    top: 88%;
-    left: 50%;
+    top: 90%;
+    left: 46.4%;
     align-items: center;
     z-index: 999;
     display: inline-block;
@@ -104,8 +104,8 @@
     width: 16vw;
     justify-content: center;  
     text-align: center;
-    top: 84%;
-    left: 46.4%;
+    top: 85.5%;
+    left: 42.5%;
     text-align: center;
     font-family: 'Kanit';
     font-weight: 200;
