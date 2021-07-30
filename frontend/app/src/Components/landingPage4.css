@@ -12,9 +12,11 @@
     height: auto;
     
     padding-top: 0.5vw;
-    padding-left: 0.5vw;
+    padding-bottom: 0.5vw;
+    padding-left: 0.1vw;
+    padding-right: 0.1vw;
 
-    border-radius: 0.9vw;
+    border-radius: 1vw;
 
 }
 
@@ -39,11 +41,11 @@
     left: 4vw;
     right: 0;
     top: 10vw;
-    width: 15vw;
+    width: 35vw;
 
     color: white;
     font-size: 2vw ;
-    font-family: 'Nunito';
+    font-family: 'Kanit';
     font-weight: 200;
 }
 
@@ -52,13 +54,36 @@
     z-index: 999;
     
     left: 0vw;
-    right: 0;
-    top: 40vw;
+    right: 3vw;
+    top: 35vw;
     text-align: right;
 
 
     color: white;
-    font-size: 2vw ;
-    font-family: 'Nunito';
-    font-weight: 200;
+    font-size: 3vw ;
+    font-family: 'Kanit';
+    font-weight: 400;
 }
+
+
+
+.MySharing #buttonRegisLanding {
+    position: absolute;
+    top: 47vw;
+    left: 78vw;
+
+    width: 18vw;
+    height: 5vw;
+    border-radius: 3vw;
+    background-color:steelblue;
+    padding: 0.1vw 0.2vw;
+    cursor: pointer;
+    display: inline-block;
+  }
+
+ .MySharing #buttontextRegis{
+        color: white;
+        font-size: 2.2vw;
+        font-weight: 400;
+        font-family: 'Kanit';
+ } 
