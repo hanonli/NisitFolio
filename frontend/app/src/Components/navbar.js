@@ -18,7 +18,7 @@ class Navbar extends React.Component {
 							<form class="d-flex">
 								<input class="form-control btn-search-box home" type="search" placeholder="ค้นหา" aria-label="Search"/>
 								<button class="btn btn-search yellow" type="submit">
-									<img src="assets/images/search.png" alt="" width="20" height="20"/>
+									<img src="assets/images/search.png" class="fx" alt="" width="20" height="20"/>
 								</button>
 							</form>
 					</div>
