@@ -7,7 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import { Link } from "react-router-dom";
 import Tabs from "./Components/Tabs"; 
 
-class Information1 extends React.Component {
+class Register extends React.Component {
 	render (){
 		return (
 			<div className="Information1">
@@ -48,4 +48,4 @@ class Information1 extends React.Component {
 	}
 }
 
-export default Information1;
+export default Register;
