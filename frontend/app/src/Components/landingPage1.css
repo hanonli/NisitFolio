@@ -64,9 +64,9 @@
 }
 
 #signInX {
-    position: absolute;
-    top: 3vw;
+    position: relative;
     left: 58vw;
+    top: 3vw;
     z-index: 999;
     display: inline-block;
 }

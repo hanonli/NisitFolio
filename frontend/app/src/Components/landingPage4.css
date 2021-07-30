@@ -8,7 +8,7 @@
 
 .MySharing .pic-sharing{
 
-    width: 98vw;
+    width: 97vw;
     height: auto;
     
     padding-top: 0.5vw;
@@ -30,8 +30,7 @@
 
 
     color: white;
-    font-size: 6vw;
-    font-family: 'Nunito';
+    font-size: 6vw;    font-family: 'Nunito';
 }
 
 .MySharing  #textsharing{
