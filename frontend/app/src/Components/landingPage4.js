@@ -15,6 +15,7 @@ class LandingPage4 extends React.Component {
                                     <img src="assets/images/MySharing.png" className="pic-sharing"/> 
                                     <h1 id='sharing'>Sharing</h1>
                                     <h1 id='textsharing'>แชร์เรซูเม่อันทรงพลังของคุณให้กับเพื่อนๆหรือคนที่สนใจได้อย่างง่ายดายด้วยระบบ QR Code และ PDF ที่เป็นที่นิยม</h1>   
+                                    <h1 id='textinvite'>เริ่มต้น<br/>ชีวิตที่ดีกว่า<br/>เพียงแค่คลิก</h1> 
                                 </div> 
                             
                         </div>
