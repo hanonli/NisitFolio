@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import BookmarkObject from './bookmarkObject';
+import BookmarkObjectGrid from './bookmarkObjectGrid';
+import BookmarkObjectList from './bookmarkObjectList';
 import TabBookmark from "./TabBookmark"; 
 
 class BookmarkTabs extends React.Component {
@@ -12,37 +13,37 @@ class BookmarkTabs extends React.Component {
 							<div class="container-fluid">
 							  <div class="row">
 								<div class="col-md-6">
-									<BookmarkObject />
+									<BookmarkObjectGrid />
 								</div>
 								<div class="col-md-6">
-									<BookmarkObject />
-								</div>
-							  </div>
-							  
-							  <div class="row bookmark-row-top-buffer">
-								<div class="col-md-6">
-									<BookmarkObject />
-								</div>
-								<div class="col-md-6">
-									<BookmarkObject />
+									<BookmarkObjectGrid />
 								</div>
 							  </div>
 							  
 							  <div class="row bookmark-row-top-buffer">
 								<div class="col-md-6">
-									<BookmarkObject />
+									<BookmarkObjectGrid />
 								</div>
 								<div class="col-md-6">
-									<BookmarkObject />
+									<BookmarkObjectGrid />
 								</div>
 							  </div>
 							  
 							  <div class="row bookmark-row-top-buffer">
 								<div class="col-md-6">
-									<BookmarkObject />
+									<BookmarkObjectGrid />
 								</div>
 								<div class="col-md-6">
-									<BookmarkObject />
+									<BookmarkObjectGrid />
+								</div>
+							  </div>
+							  
+							  <div class="row bookmark-row-top-buffer">
+								<div class="col-md-6">
+									<BookmarkObjectGrid />
+								</div>
+								<div class="col-md-6">
+									<BookmarkObjectGrid />
 								</div>
 							  </div>
 
@@ -52,13 +53,13 @@ class BookmarkTabs extends React.Component {
 							<div class="container-fluid">
 							  <div class="row">
 								<div class="col-md-12">
-									<BookmarkObject />
+									<BookmarkObjectList />
 								</div>
 							  </div>
 							  
 							  <div class="row bookmark-row-top-buffer">
 								<div class="col-md-12">
-									<BookmarkObject />
+									<BookmarkObjectList />
 								</div>
 							  </div>
 							</div>
@@ -67,7 +68,7 @@ class BookmarkTabs extends React.Component {
 							<div class="container-fluid">
 							  <div class="row">
 								<div class="col-md-12">
-									<BookmarkObject />
+									<BookmarkObjectList />
 								</div>
 							  </div>
 							</div>
