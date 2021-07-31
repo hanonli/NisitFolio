@@ -21,7 +21,6 @@ class LandingPage2 extends React.Component {
                                 <h1 id="portfolio">Portfolio</h1>
                                 <h1 id="textMyPortfolio">แหล่งจัดเก็บผลงานของคุณตั้งแต่เริ่มใช้งานจนถึงปัจจุบัน</h1>
                             </div>
-
                         </div>
                     </div>
 

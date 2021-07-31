@@ -9,15 +9,13 @@
 
 .MySharing .pic-sharing{
 
-    width: 97.7vw;
-    height: auto;
-    
-    margin-top: 1.5vw;
-    margin-bottom: 0.5vw;
-    padding-left: 0.2vw;
-    border-radius: 1vw;
-    overflow: scroll;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
 
+    width: 98vw;
+    height: 98vh;
+    
+    border-radius: 2vw;
 }
 
 .MySharing  #sharing{
@@ -26,7 +24,7 @@
 
     left: 4vw;
     right: 0;
-    top: 3vw;
+    top: 5vh;
 
 
     color: white;
@@ -39,7 +37,7 @@
     
     left: 4vw;
     right: 0;
-    top: 10vw;
+    top: 18vh;
     width: 35vw;
 
     color: white;
@@ -54,31 +52,20 @@
     
     left: 0vw;
     right: 3vw;
-    top: 35vw;
+    top: 66vh;
     text-align: right;
 
 
     color: white;
-    font-size: 3vw ;
+    font-size: 5vh ;
     font-family: 'Kanit';
     font-weight: 400;
 }
 
-.MySharing .btn{
-    position: absolute;
-    top: 47vw;
-    left: 78vw;
-    
-    width: 18vw;
-    height: 5vw;
-    border-radius: 3vw;
-    background-color:black;
-    padding: 0.1vw 0.2vw;
-  }
 
 .MySharing #buttonRegisLanding {
     position: absolute;
-    top: 47vw;
+    top: 86vh;
     left: 78vw;
 
     width: 18vw;
@@ -90,7 +77,7 @@
   }
   .MySharing #buttonRegisLanding:hover {
     position: absolute;
-    top: 47vw;
+    top: 86vh;
     left: 78vw;
     
     width: 18vw;
@@ -98,7 +85,7 @@
     border-radius: 3vw;
     background-color: rgb(55, 95, 135);
     transition-duration: 0.5s;
-    padding: 0.1vw 0.2vw;
+
 
   }
   
