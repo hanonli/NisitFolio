@@ -1,7 +1,5 @@
-.row{
-  /*display: inline-block;*/ /* Make the width of box same as image */
 
-}
+
 .MyResume{
   position: relative;
 }
@@ -11,24 +9,22 @@
 }
 .MyResume .picMyResume {
  
-  margin-top: 1vh;
-  margin-bottom: 0.5vh;
-
-  width: 98vw;
+  margin-top: 0.5vw;
+  width: 97.5vw;
   height: auto;
 
-  border-radius: 2vw;
+  border-radius: 1vw;
 }
 
 .MyPortfolio .picMyPortfolio{
 
-  margin-top: 0.5vh;
-  margin-bottom: 0vh;
-
-  width: 98vw;
+  margin-top: 0.5vw;
+  margin-bottom: 0.5vw;
+  width: 97.5vw;
+  
   height: auto;
 
-  border-radius: 2vw;
+  border-radius: 1.5vw;
 
 }
 
@@ -39,7 +35,7 @@
   color: white;
   left: 0;
   right: 0;
-  top: 12vh;
+  top: 25%;
   color: white;
   font-size: 6vw;
   font-family: 'Nunito';
@@ -52,7 +48,7 @@
   color: white;
   left: 0;
   right: 0;
-  top: 25vh;   
+  top: 50%;   
   font-size: 2vw;
   font-family: 'Kanit';
   font-weight: 200;
@@ -65,7 +61,7 @@
   color: white;
   left: 0;
   right: 0;
-  top: 14vh;  
+  top: 28%;   
   font-size: 6vw;
   font-family: 'Nunito';
 
@@ -78,7 +74,7 @@
   color: white;
   left: 0;
   right: 0;
-  top: 28vh;   
+  top: 53%;   
   font-size: 2vw;
   font-family: 'Kanit';
   font-weight: 200;

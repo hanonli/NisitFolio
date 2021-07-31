@@ -1,7 +1,6 @@
 .col-lg-12 {
     position: relative;
     display: inline-block;
-    
 }
 
 .col-sm-6 {
@@ -11,12 +10,12 @@
 
 .landingPage1 {
     position: relative;
-    width: 100vw;
-    height: 100vh;
+    width: 98.5vw;
+    height: 51vw;
     background-position: center; 
     background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.1)50%, rgba(0, 0, 0, 0.90)85%),url(LandingPage.png);
     background-repeat: no-repeat;
-    background-size: 100%; 
+    background-size: cover; 
     /*display: inline-block;*/
 }
 
@@ -36,7 +35,7 @@
     align-items: center;
 
     color: #FFFFFF;
-    
+
 }
 
 #searchHuaKuay{
@@ -120,4 +119,3 @@
     display: inline-block;
     color: #FFFFFF;
 }
-
