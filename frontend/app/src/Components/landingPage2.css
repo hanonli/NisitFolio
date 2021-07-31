@@ -1,7 +1,4 @@
-.row{
-  /*display: inline-block;*/ /* Make the width of box same as image */
 
-}
 .MyResume{
   position: relative;
 }
@@ -81,6 +78,7 @@
   top: 28vh;   
   font-size: 2vw;
   font-family: 'Kanit';
+  font-style: bold;
   font-weight: 200;
 
 }

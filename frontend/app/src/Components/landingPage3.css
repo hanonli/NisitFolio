@@ -1,7 +1,7 @@
 
-.column{
+.d-flex .column{
     position: relative;
-    display:inline-flex;
+    display: flex;
 }
 
 .column .LRounded1{
