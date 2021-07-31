@@ -782,7 +782,7 @@ a.btn-search:hover, .btn-search:hover {
 .navAnimation {
 	position: fixed;
 	top: -57px;
-	width: 100%;
+	/*width: 100%;*/
 	height: 57px;
 	/*background-color: #000000;
 	color: #FFFFFF;*/
@@ -792,5 +792,5 @@ a.btn-search:hover, .btn-search:hover {
 }
 
 .ex-pad-landing{
-	margin-left: 0.5%;
+	margin-right: 3%;
 }
