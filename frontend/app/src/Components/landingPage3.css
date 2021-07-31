@@ -67,7 +67,7 @@
     font-family: 'Nunito';
 }
 
-.column .MytextBookmark #textBookmark{
+.column .MytextBookmark #textBookmark{  
     position: absolute;
     z-index: 999;
     text-align: right;
