@@ -4,17 +4,16 @@
 }
 .MySharing{
     position: relative;
-    display:inline-block;
+    /*display:inline-block;*/
 }
 
 .MySharing .pic-sharing{
-
     margin-top: 1vh;
-    margin-bottom: 1vh;
-
+    margin-bottom: 0.5vh;
+  
     width: 98vw;
     height: 98vh;
-    
+  
     border-radius: 2vw;
 }
 
