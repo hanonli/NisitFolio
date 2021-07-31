@@ -5,9 +5,8 @@ class SignInLand extends React.Component {
     render() {
         return (
             <div className="bg_form">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+                <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
                 <div class="container-fluid">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
                     <form id="formSingin">
                         <h1 id="signIn_h1">เข้าสู่ระบบ</h1>
                         <br />

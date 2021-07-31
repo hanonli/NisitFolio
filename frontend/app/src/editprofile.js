@@ -15,7 +15,7 @@ class Editprofile extends React.Component {
 				<header class="header-white">
 					<h1 class="topData2-content name">แก้ไขโปรไฟล์</h1>
 				</header>
-				<div>
+				<div class="tabs-center">
 					<Tabs> 
 						<div label="ข้อมูลสำคัญ"> 
 							<div class="container-fluid">
