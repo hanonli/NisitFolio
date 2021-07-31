@@ -45,6 +45,7 @@ class Tabs extends Component {
                   />
                 );
               })}
+			  
             </ol>
             <div className="tab-content">
               {children.map((child) => {
