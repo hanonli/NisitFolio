@@ -1,10 +1,10 @@
 .bg_form{
-    width: 515px;
-    height: 670px;
+    width: 528px;
+    height: 708px;
     margin: 70px;
     background:white;
     border-radius: 20px;
-    padding: 30px;
+    padding: 44px;
     align-items: center;
 }
 
@@ -12,7 +12,7 @@
     text-align: center;
     font-family: 'Kanit';
     font-weight: 300;
-    font-size: 55px;
+    font-size: 48px;
     color: black;
 }
 
@@ -20,12 +20,13 @@
     border-radius: 30px;
     background-color: #C4C4C4;
     border-color: #ebf0fc;
-    width: 355px;
+    width: 336px;
     height: 46px;
     justify-content: center;
     align-items: center;
     margin: 0 auto;
     padding: 0 20px;
+    color: #000000;
 }
 
 #buttom12 {
@@ -57,9 +58,10 @@
 
 #labelText {
     font-family: 'Kanit';
-    font-weight: 400;
+    font-weight: 300;
     color: black;
-    font-size: 25px;
+    font-size: 24px;
+    line-height: 28px;
 }
 
 #buttom1125 {
@@ -70,10 +72,11 @@
 #forgetText112 a{
     color: #167bff;
     font-weight: 300;
+    font-size: 16.5px; 
     font-family: 'Kanit';
 }
 
 .distancing112 {
     display: block;
-    margin-bottom: 10px; 
+    margin-bottom: 30px; 
 }
