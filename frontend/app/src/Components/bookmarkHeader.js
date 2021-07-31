@@ -10,7 +10,7 @@ class BookmarkHeader extends React.Component {
 						<div class="row">
 							<div class="col">
 								<div class="topDataBk-content">
-									<h1 class="name inline">บุ๊คมาร์ค</h1>
+									<h1 class="name inline">Bookmark</h1>
 									<h1 class="symbol inline">.</h1>
 									<h1 class="name2 inline">"วรเมศ"</h1>
 									<h1></h1>

@@ -1,34 +1,12 @@
-.search_bar {
-    position: relative;
-}
-
 .landingPage1 {
-   /* position: relative;
+    position: relative;
     width: 100vw;
-    height: 50vw;
+    height: 51vw;
     background-position: center; 
     background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.1)50%, rgba(0, 0, 0, 0.90)85%),url(LandingPage.png);
     background-repeat: no-repeat;
-    background-size: cover;*/
-    position: relative;
-    width: 1920px;
-    height: 1080px; 
-    left: 0px;
-    top: 0px;
-}
-
-#bg_landingPage44 {
-    position: relative;
-    width: 1920px;
-    height: 1080px;
-    left: 0px;
-    top: 0px;
-    
-}
-
-.search_bar #searchHuaKuay{
-    
-
+    background-size: cover; 
+    /*display: inline-block;*/
 }
 
 .textOfLandingPage #sloganNisitZaa {
@@ -36,7 +14,7 @@
     width: 50vw;
     height: 28.2vw;
     left: 7.2vw;
-    top: 11.4vh;
+    top: 6.8vh;
     display: inline-block;
     font-family: 'Kanit';
     /*font-style: italic;*/
@@ -52,13 +30,13 @@
 
 #searchHuaKuay{
     position: absolute;
-    top: 47vh;
+    top: 43.8vh;
     left: 6.6vw;
 }
 
 #nisit44Zaa112 {
     position: absolute;
-    top: 7.4vh;
+    top: 3.4vh;
     left: 6.2vw;
     z-index: 999;
     display: inline-block;
@@ -77,17 +55,14 @@
 
 #signInX {
     position: relative;
-    left: 61.4vw;
-    bottom: 93vh;
+    left: 59.6vw;
+    top: 4.8vh;
     z-index: 999;
-    display: inline-block;
-    width: 5vw;
-    height: 4vh;
+    display: flex;
 }
 
 #stupidSearch {
     width: 100vw;
-    height: 7vh;
     font-style: bold;
     font-weight: 300;
     /*align-items: center;
@@ -100,18 +75,14 @@
 }
 
 #btnstupidSearch {
-    width: 1.8vw; 
-    height: 1.8vw;
-}
-
-#width_button {
-    width: 5vw;
+    width: 3.2vw; 
+    height: 6vh;
 }
 
 #arrow_down1 {
     position: absolute;
-    top: 52vw;
-    left: 48.2vw;
+    top: 46vw;
+    left: 46.4vw;
     align-items: center;
     z-index: 999;
     display: inline-block;
@@ -125,8 +96,8 @@
     width: 16vw;
     justify-content: center;  
     text-align: center;
-    top: 50vw;
-    left: 44.3vw;
+    top: 43.2vw;
+    left: 42.5vw;
     text-align: center;
     font-family: 'Kanit';
     font-weight: 200;
