@@ -69,7 +69,7 @@
     left: 59vw;
     top: 2.2vw;
     z-index: 999;
-    display: inline-block;
+    display: flex;
 }
 
 #stupidSearch {
@@ -87,7 +87,7 @@
 
 #btnstupidSearch {
     width: 3.2vw; 
-    height: 3.2vw;
+    height: 3.2vh;
 }
 
 #arrow_down1 {

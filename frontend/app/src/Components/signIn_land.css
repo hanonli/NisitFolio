@@ -1,9 +1,9 @@
 .bg_form{
-    width: 528px;
-    height: 708px;
+    width: 30vw;
+    height: 80vh;
     margin: 70px;
     background:white;
-    border-radius: 20px;
+    border-radius: 2vw;
     padding: 44px;
     align-items: center;
 }
@@ -20,8 +20,8 @@
     border-radius: 30px;
     background-color: #C4C4C4;
     border-color: #ebf0fc;
-    width: 336px;
-    height: 46px;
+    width: 20vw;
+    height: 5vh;
     justify-content: center;
     align-items: center;
     margin: 0 auto;
