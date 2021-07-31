@@ -7,10 +7,10 @@ import reportWebVitals from './reportWebVitals';
 import Tabs from "./Components/Tabs"; 
 
 /* THIS FILE IS FOR DATA-EDITING TEST, CAN'T LINK TO OTHER DATA PAGES*/
-class Data extends React.Component {
+class Editprofile extends React.Component {
 	render (){
 		return (
-			<div className="Data">
+			<div className="Editprofile">
 				<Navbar />
 				<header class="header-white">
 					<h1 class="topData2-content name">แก้ไขโปรไฟล์</h1>
@@ -56,11 +56,11 @@ class Data extends React.Component {
 					</Tabs> 
 				</div>
 				<div class="col block-right">
-					<a class="btn btn-cta-primary-yellow round" href="#" target="_blank">ยืนยันการแก้ไข</a>
+					<a class="btn btn-cta-primary-yellow round profile-button" href="#" target="_blank">ยืนยันการแก้ไข</a>
 				</div>
 			</div>
 		);
 	}
 }
 
-export default Data;
+export default Editprofile;

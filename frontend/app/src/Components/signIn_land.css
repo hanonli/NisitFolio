@@ -1,25 +1,32 @@
 .bg_form{
-    width: 595px;
-    height: 740px;
+    width: 528px;
+    height: 708px;
     margin: 70px;
     background:white;
     border-radius: 20px;
-    padding: 42px;
+    padding: 44px;
     align-items: center;
 }
 
 #signIn_h1 {
     text-align: center;
     font-family: 'Kanit';
-    font-weight: 400;
-    font-size: 45px;
+    font-weight: 300;
+    font-size: 48px;
     color: black;
 }
 
 #inputform1 {
-    border-radius: 20px;
+    border-radius: 30px;
     background-color: #C4C4C4;
     border-color: #ebf0fc;
+    width: 336px;
+    height: 46px;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    padding: 0 20px;
+    color: #000000;
 }
 
 #buttom12 {
@@ -34,20 +41,27 @@
 #buttonLogIn112 {
     border-radius: 30px;
     color: black;
-    width: 250px
+    width: 230px;
+    height: 60px;
+    font-size: 24px;
+    font-weight: 300;
 }
 
 #buttonSignIn112 {
     border-radius: 30px;
     color: white;
-    width: 250px
+    width: 230px;
+    height: 60px;
+    font-size: 24px;
+    font-weight: 300;
 }
 
 #labelText {
     font-family: 'Kanit';
-    font-weight: 400;
+    font-weight: 300;
     color: black;
-    font-size: 25px;
+    font-size: 24px;
+    line-height: 28px;
 }
 
 #buttom1125 {
@@ -57,4 +71,12 @@
 
 #forgetText112 a{
     color: #167bff;
+    font-weight: 300;
+    font-size: 16.5px; 
+    font-family: 'Kanit';
+}
+
+.distancing112 {
+    display: block;
+    margin-bottom: 30px; 
 }

@@ -21,10 +21,8 @@ class LandingPage1 extends React.Component {
                             <SearchLanding1 />
                         </div>
 
-                        <div class="col-sm-12">
-                            <div className="signInX" >
-                                <SignInLand />
-                            </div>
+                        <div id="signInX">
+                            <SignInLand />
                         </div>
 
                         <div class="col">

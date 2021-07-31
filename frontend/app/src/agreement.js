@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 class Agreement extends React.Component {
 	render (){
 		return (
-			<div className="Data">
+			<div className="Agreement">
 				<Navbar />
 				<div className="DataHeader">
 					<header class="header-white">
@@ -34,9 +34,9 @@ class Agreement extends React.Component {
                 <div class="full-block">
                     <h2 class="desc-b" contenteditable="true">Not Avaliable,Need text permission here</h2>
                 </div>
-				<Link to="/information1">
+				<Link to="/register">
 					<div class="col block-right">
-						<a class="btn btn-cta-primary-yellow round" href="#" target="_blank">ต่อไป</a>
+						<a class="btn btn-cta-primary-yellow round profile-button" href="#" target="_blank">ต่อไป</a>
 					</div>
 				</Link>
 			</div>
