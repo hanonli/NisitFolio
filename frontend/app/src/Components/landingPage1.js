@@ -29,6 +29,16 @@ class LandingPage1 extends React.Component {
                             <img src="assets/images/arrow_down1.png" width="110" id="arrow_down1" />
                             <h1 id="textOfArrow">ฟีเจอร์ที่เรามีไว้ช่วยคุณ</h1>
                         </div>
+                        <div class="div1"></div>
+
+                        <div class="div1"></div>
+
+                        <div class="div1"></div>
+
+                        <div class="div1"></div>
+
+                        <div class="div1"></div>
+
                     </div>
                 </div>
             </div>

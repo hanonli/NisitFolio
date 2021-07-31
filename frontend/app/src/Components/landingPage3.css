@@ -5,9 +5,10 @@
 }
 
 .column .LRounded1{
-    float: left;
     border-radius: 1vw;
-    width: 48.5vw;
+    margin-top: 0.5vw;
+    margin-bottom: 0.5vw;
+    width: 48.2vw;
     height: 100%;
 
     right: 0.5vw;
@@ -18,6 +19,9 @@
 
 .column .LRounded2{
     border-radius: 1vw;
+    margin-top: 0.5vw;
+    margin-bottom: 0.5vw;
+
     width: 48vw;
     height: 100%;
 
