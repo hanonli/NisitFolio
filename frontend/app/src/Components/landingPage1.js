@@ -11,7 +11,7 @@ class LandingPage1 extends React.Component {
                 <div class="container-fliud">
                     <div class="row">
                         <div class="col-lg-12" >
-                            <img src="assets/images/nisitfolio_logo_white.png" id="nisit44Zaa112" />
+                            <img src="assets/images/nisitfolio_logo_white2.png" id="nisit44Zaa112" />
                             <div className="textOfLandingPage">
                                 <h1 id="sloganNisitZaa">เริ่มต้นชีวิตในรั้วมหาลัยที่ดีกว่า<br />ด้วยระบบจัดเก็บและโชว์ผลงานที่ดีกว่า</h1>
                             </div>
@@ -29,16 +29,6 @@ class LandingPage1 extends React.Component {
                             <img src="assets/images/arrow_down1.png" width="110" id="arrow_down1" />
                             <h1 id="textOfArrow">ฟีเจอร์ที่เรามีไว้ช่วยคุณ</h1>
                         </div>
-                        <div class="div1"></div>
-
-                        <div class="div1"></div>
-
-                        <div class="div1"></div>
-
-                        <div class="div1"></div>
-
-                        <div class="div1"></div>
-
                     </div>
                 </div>
             </div>
