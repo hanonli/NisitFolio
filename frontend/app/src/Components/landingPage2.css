@@ -9,22 +9,24 @@
 }
 .MyResume .picMyResume {
  
-  margin-top: 0.5vw;
-  width: 97.5vw;
-  height: auto;
+  margin-top: 2vh;
+  margin-bottom: 0vh;
 
-  border-radius: 1vw;
+  width: 98vw;
+  height: 47vh;
+
+  border-radius: 2vw;
 }
 
 .MyPortfolio .picMyPortfolio{
 
-  margin-top: 0.5vw;
-  margin-bottom: 0.5vw;
-  width: 97.5vw;
-  
-  height: auto;
+  margin-top: 2vh;
+  margin-bottom: 0vh;
 
-  border-radius: 1.5vw;
+  width: 98vw;
+  height: 48vh;
+
+  border-radius: 2vw;
 
 }
 
@@ -68,7 +70,7 @@
 }
 
 .MyPortfolio #textMyPortfolio {
-  position: absolute;
+  position: absolute; 
   z-index: 999;
   text-align: center;
   color: white;
