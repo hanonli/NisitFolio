@@ -97,8 +97,8 @@ a.btn-cta-primary-yellow, .btn-cta-primary-yellow {
 }
 
 a.btn-cta-primary-yellow:hover, .btn-cta-primary-yellow:hover {
-  background: #9B870C;
-  border: 1px solid #9B870C;
+  background: #e0c652;
+  border: 1px solid #e0c652;
 }
 
 a.btn-cta-primary, .btn-cta-primary {
@@ -150,6 +150,46 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 	margin-right: 30px;
 	box-shadow: 0px 4px 3px rgba(50, 50, 50, 0.75);
 }
+
+.bookmarkHeader{
+  font-size: 64px;
+}
+
+.bookmark-desc{
+	color: #778492;
+	font-size: 17px;
+}
+
+.bookmark-work-desc{
+	color: #778492;
+	margin-top: 15px;
+	font-size: 17px;
+}
+
+.bookmark-list-column{
+	vertical-align: center;
+}
+
+.bookmark-profile-image {
+	margin-right: 50px;
+	box-shadow: 0px 4px 3px rgba(50, 50, 50, 0.75);
+}
+
+.bookmark-margin {
+	margin-left: 20px;
+}
+
+.bookmark-content{
+	margin-top: 5px;
+}
+
+.bookmark-content .name {
+  color: #49515a;
+  font-size: 40px;
+  margin-bottom: 5px;
+}
+
+.bookmark-row-top-buffer { margin-top: 24px; }
 
 .header .profile-content .name {
   color: #49515a;
@@ -325,8 +365,8 @@ navbar { margin:0; }
 }
 
 .container-search {
-	margin-left: 27%;
-	margin-right: 10%;
+	margin-left: 26vw;
+	margin-right: 10vw;
 	max-width: 30%;
 }
 
@@ -335,6 +375,7 @@ navbar { margin:0; }
 	margin-top: 3px;
 	max-width: 30%;
 }
+
 
 @media screen and (max-width: 990px) { /* mobile screen */
 	.lg-view-search{
@@ -398,7 +439,10 @@ navbar { margin:0; }
     background-image: linear-gradient(180deg,rgba(0,0,0,0.00) 0%,rgba(0,0,0,0.00) 100%);
 }
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> eac802a7992837e7b22db9f5e8042104525937c7
 /* Data Button*/
 .head-white {
   padding: 30px 0;
@@ -430,6 +474,34 @@ navbar { margin:0; }
   font-size: 18px;
   margin-top: 50px;
   margin-right: 10px;
+}
+
+.header-white .topDataBk-content{
+	margin-left: 20px;
+	margin-bottom: 15px;
+}
+
+.header-white .topDataBk-content .name {
+  color: #000 ;
+  font-size: 80px;
+}
+
+.header-white .topDataBk-content .name2 {
+  color: #2560A5;
+  font-weight: lighter;
+  font-size: 56px;
+  vertical-align: bottom;
+  margin-bottom: 20px;
+}
+
+.header-white .topDataBk-content .symbol {
+  color: #2560A5;
+  font-weight: bold;
+  font-size: 72px;
+  margin-right: 50px;
+  margin-left: 50px;
+  margin-bottom: 15px;
+  vertical-align: bottom;
 }
 
 .block-right {
@@ -501,7 +573,44 @@ a.btn-cta-primary-white:hover, .btn-cta-primary-white:hover {
   font-weight: 500;
   font-size: 24px;
   color: #000;
-  padding-left: 0;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.tab-dropdown-pad{
+	margin-left: 12px;
+	margin-right: 12px;
+}
+
+.dropdown-toggle::after {
+   display: inline-block;
+   width: 0;
+   height: 0;
+   margin-left: .3em;
+   vertical-align: middle;
+   content: "";
+   border-top: .5em solid;
+   border-right: .5em solid transparent;
+   border-left: .5em solid transparent;
+}
+
+.obj-icon{
+	float: right;
+	margin-right: 20px;
+	margin-top: 18px;
+}
+
+.tab-clear-content{
+	display: block;
+}
+
+.tabs .btn-cta-primary{
+	font-size: 22px;
+}
+
+.tab-inline{
+	display: inline-block;
+	width: 100%;
 }
 
 .tab-list-item {
@@ -530,6 +639,12 @@ a.btn-cta-primary-white:hover, .btn-cta-primary-white:hover {
 .btn-search-box {
 	background: #f5f5f5;
 	border-radius: 40px 0 0 40px;
+	font-size: 19px;
+}
+
+.fx {
+	margin-bottom: 3px;
+	margin-right: 3px;
 }
 
 .btn-search-box:focus {
@@ -542,13 +657,20 @@ a.btn-cta-primary-white:hover, .btn-cta-primary-white:hover {
 }
 
 a.btn-search:hover, .btn-search:hover {
-  background: #9B870C;
-  border: 1px solid #9B870C;
+  background: #e0c652;
+  border: 1px solid #e0c652;
 }
 
 .form-control:focus { /* remove glow from textbox */
   box-shadow: none;
 }
+
+.form-control.home {
+	padding-left:20px;
+	padding-bottom:8px;
+	padding-top:8px;
+}
+
 
 .form-control.silver {
   background-color: #EAEAEA;
@@ -558,7 +680,7 @@ a.btn-search:hover, .btn-search:hover {
 }
 
 .navbar-brand{
-	margin-left: 5px;
+	margin-left: 15px;
 }
 
 .navbar-brand-sm{
@@ -646,9 +768,9 @@ a.btn-search:hover, .btn-search:hover {
 
 .navAnimation {
 	position: fixed;
-	top: -50px;
+	top: -57px;
 	width: 100%;
-	height: 50px;
+	height: 57px;
 	/*background-color: #000000;
 	color: #FFFFFF;*/
 	@extend .flexboxCenter;

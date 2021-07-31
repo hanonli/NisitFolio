@@ -1,25 +1,26 @@
 .landingPage1 {
     position: relative;
     width: 100vw;
-    height: 100vh;
+    height: 52.5vw;
     background-position: center; 
-    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.4)0%, rgba(0, 0, 0, 0.24)100%),url(LandingPage.png);
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.1)50%, rgba(0, 0, 0, 0.90)85%),url(LandingPage.png);
     background-repeat: no-repeat;
     background-size: cover; 
+    /*display: inline-block;*/
 }
 
 .textOfLandingPage #sloganNisitZaa {
     position: absolute;
-    width: 1000px;
-    height: 282px;
-    left: 3%;
-    top: 23%;
-
+    width: 50vw;
+    height: 28.2vw;
+    left: 7.2vw;
+    top: 6.8vh;
+    display: inline-block;
     font-family: 'Kanit';
     /*font-style: italic;*/
-    font-weight: 500;
-    font-size: 50px;
-    line-height: 76px;
+    font-weight: 300;
+    font-size: 3.2vw;
+    line-height: 7.2vh;
     display: flex;
     align-items: center;
 
@@ -27,55 +28,84 @@
 
 }
 
-.LogoNisitZaa11244 #nisit44Zaa112 {
+#searchHuaKuay{
     position: absolute;
-    top: 8%;
-    left: 01%;
+    top: 43.8vh;
+    left: 6.6vw;
 }
+
+#nisit44Zaa112 {
+    position: absolute;
+    top: 3.4vh;
+    left: 6.2vw;
+    z-index: 999;
+    display: inline-block;
+    width: 32vw;
+    height: auto;
+}
+
 
 #fromNahee {
     position: absolute;
-    top: 52%;
-    right: 63%;
+    top: 52vw;
+    right: 63vw;
+    z-index: 999;
+    display: inline-block;
 }
 
-.signInX {
-    position: absolute;
-    top: 9.5%;
-    right: 3%;
+#signInX {
+    position: relative;
+    left: 59.6vw;
+    top: 4.8vh;
+    z-index: 999;
+    display: inline-block;
 }
 
 #stupidSearch {
-    width: 650px;
-    font-style: normal;
-    font-weight: normal;
-    align-items: center;
-    text-align: center;
-    color: #ADAAAA;
+    width: 100vw;
+    font-style: bold;
+    font-weight: 300;
+    /*align-items: center;
+    text-align: center;*/
+    color: black;
+    padding: 0 3vh;
+    font-size: 1.5vw;
+    /*z-index: 999;
+    display: inline-block;*/
+}
+
+#btnstupidSearch {
+    width: 3.2vw; 
+    height: 6vh;
 }
 
 #arrow_down1 {
     position: absolute;
-    top: 95%;
-    left: 50%;
+    top: 48vw;
+    left: 46.4vw;
     align-items: center;
+    z-index: 999;
+    display: inline-block;
+    width: 8.5vw;
+    height: auto;
+    justify-content: center;  
 }
 
 #textOfArrow {
     position: absolute;
-    width: 214px;
-
+    width: 16vw;
+    justify-content: center;  
     text-align: center;
-    top: 90%;
-    left: 47%;
-
+    top: 45vw;
+    left: 42.6vw;
+    text-align: center;
     font-family: 'Kanit';
     font-weight: 200;
     font-style: normal;
-    font-size: 23px;
-    line-height: 28px;
+    font-size: 1.2vw;
+    line-height: 2vw;
+    z-index: 999;
 
-
-
+    display: inline-block;
     color: #FFFFFF;
 }

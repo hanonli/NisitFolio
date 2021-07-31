@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+
+import './landing.css';
 import NavbarTransparent from './Components/navbarTransparent';
-import LandingHeader from './Components/landingHeader';
-import LandingBody from './Components/landingBody';
 import LandingPage1 from './Components/landingPage1';
 import LandingPage2 from './Components/landingPage2';
 import LandingPage3 from './Components/landingPage3';
@@ -22,10 +21,10 @@ class Landing extends React.Component {
 		return (
 			<div className="Landing">
 				<NavbarTransparent />
-				<LandingPage1/>
-				<LandingPage2/>
-				<LandingPage3/>
-				<LandingPage4/>
+				<LandingPage1 />
+				<LandingPage2 />
+				<LandingPage3 />
+				<LandingPage4 />
 			</div>
 		);
 	}

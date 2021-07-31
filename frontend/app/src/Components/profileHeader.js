@@ -29,7 +29,7 @@ class Header extends React.Component {
 								</div>
 								
 								<div class="sm-view">
-									<Link to="/data">
+									<Link to="/editprofile">
 										<a class="btn btn-cta-primary round profile-button grey margin-right-m" target="_blank">แก้ไขโปรไฟล์</a>
 									</Link>        
 									<a class="btn btn-cta-primary-yellow round profile-button" href="#" target="_blank">เพิ่มกิจกรรมของคุณ</a>

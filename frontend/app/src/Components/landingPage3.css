@@ -1,29 +1,31 @@
 
-.column{
+.d-flex .column{
     position: relative;
-    display:inline-flex;
+    display: flex;
 }
 
 .column .LRounded1{
-    float: left;
-    border-radius: 1vw;
-    width: 48.5vw;
-    height: 100%;
+    
+    margin-top: 2vh;
+    margin-right: 0.5vw;
 
-    right: 0.5vw;
-    
-    position: relative;
-    
+    width: 48.5vw;
+    height: 98vh;
+
+    border-radius: 2vw;
+  
 }
 
 .column .LRounded2{
-    border-radius: 1vw;
+    
+    margin-top: 2vh;
+    margin-left: 0.5vw;
+
     width: 48.5vw;
-    height: 100%;
+    height: 98vh;
 
-    left: 0.5vw;
+    border-radius: 2vw;
 
-    position: relative;
 }
   
 .column .MyAnalytics #Analytics {
@@ -31,9 +33,9 @@
     z-index: 999;
     text-align: left;
     color: white;
-    left: 3%;
+    left: 3vw;
     right: 0;
-    top: 65%;
+    top: 60vh;
     font-size: 6vw;   
     font-family: 'Nunito';
 }
@@ -44,9 +46,9 @@
     z-index: 999;
     text-align: left;
     color: white;
-    left: 3%;
+    left: 3vw;
     right: 0;
-    top: 77.5%;   
+    top: 75vh;   
     font-size: 2vw;
     font-family: 'Kanit';
     font-weight: 200;
@@ -58,21 +60,21 @@
     text-align: right;
     color: white;
     left: 0;
-    right: 3%;
-    top: 5%;
+    right: 3vw;
+    top: 5vh;
     color: white;
     font-size: 6vw;
     font-family: 'Nunito';
 }
 
-.column .MytextBookmark #textBookmark{
+.column .MytextBookmark #textBookmark{  
     position: absolute;
     z-index: 999;
     text-align: right;
     color: white;
     left: 0;
-    right: 3%;
-    top: 17.5%;   
+    right: 3vw;
+    top: 20vh;   
     font-size: 2vw;
     font-family: 'Kanit';
     font-weight: 200;

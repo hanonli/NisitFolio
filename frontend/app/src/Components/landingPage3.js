@@ -25,8 +25,8 @@ class LandingPage3 extends React.Component {
                                         <h1 id="Bookmark">Bookmark</h1> <br/>
                                     </div>
                                     <div className="MytextBookmark">
-                                        <span id="textBookmark">แหล่งรวบรวมผลงานผู้ใช้และผลงาน<br/>ที่คุณชอบ</span>
-                                    </div> <br/>
+                                        <h1 id="textBookmark">แหล่งรวบรวมผลงานผู้ใช้และผลงาน<br/>ที่คุณชอบ</h1>
+                                    </div>
                             </div>
 
                         </div>
