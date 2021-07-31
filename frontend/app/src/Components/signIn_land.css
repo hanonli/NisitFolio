@@ -1,10 +1,10 @@
 .bg_form{
-    width: 30vw;
-    height: 80vh;
-    margin: 70px;
+    width: 27vw;
+    height: 66.5vh;
+    margin: 4vw;
     background:white;
-    border-radius: 2vw;
-    padding: 44px;
+    border-radius: 1.1vw;
+    padding: 2.4vw;
     align-items: center;
 }
 
@@ -12,47 +12,48 @@
     text-align: center;
     font-family: 'Kanit';
     font-weight: 300;
-    font-size: 48px;
+    font-size: 2.5vw;
     color: black;
 }
 
 #inputform1 {
-    border-radius: 30px;
+    border-radius: 1.2vw;
     background-color: #C4C4C4;
     border-color: #ebf0fc;
-    width: 20vw;
-    height: 5vh;
+    width: 18vw;
+    height: 4.8vh;
     justify-content: center;
     align-items: center;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 1.2vw;
     color: #000000;
+    font-size: 1vw;
 }
 
 #buttom12 {
     align-items: center;
-    border-radius: 30px;
+    border-radius: 3vw;
     position: absolute; 
-    top: 55px; 
-    padding: 5px;
-    margin: 0px 55px;
+    top: 6.5vh; 
+    padding: 0.5vw;
+    margin: 0vw 5.5vw;
 }
 
 #buttonLogIn112 {
-    border-radius: 30px;
+    border-radius: 3vw;
     color: black;
-    width: 230px;
-    height: 60px;
-    font-size: 24px;
+    width: 12.5vw;
+    height: 6vh;
+    font-size: 2.5vh;
     font-weight: 300;
 }
 
 #buttonSignIn112 {
-    border-radius: 30px;
+    border-radius: 3vw;
     color: white;
-    width: 230px;
-    height: 60px;
-    font-size: 24px;
+    width: 12.5vw;
+    height: 6vh;
+    font-size: 2.5vh;
     font-weight: 300;
 }
 
@@ -60,8 +61,8 @@
     font-family: 'Kanit';
     font-weight: 300;
     color: black;
-    font-size: 24px;
-    line-height: 28px;
+    font-size: 2.45vh;
+    line-height: 2vh;
 }
 
 #buttom1125 {
@@ -72,11 +73,11 @@
 #forgetText112 a{
     color: #167bff;
     font-weight: 300;
-    font-size: 16.5px; 
+    font-size: 1vw; 
     font-family: 'Kanit';
 }
 
 .distancing112 {
     display: block;
-    margin-bottom: 30px; 
+    margin-bottom: 1.6vw; 
 }
