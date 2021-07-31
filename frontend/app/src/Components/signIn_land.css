@@ -1,6 +1,6 @@
 .bg_form{
     width: 27vw;
-    height: 66.5vh;
+    height: 74vh;
     margin: 4vw;
     background:white;
     border-radius: 1.1vw;
@@ -79,5 +79,6 @@
 
 .distancing112 {
     display: block;
-    margin-bottom: 1.6vw; 
+    margin-bottom: 1vw; 
+    margin-top: 0.5vw;
 }

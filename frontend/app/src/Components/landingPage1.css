@@ -59,10 +59,13 @@
     top: 4.8vh;
     z-index: 999;
     display: inline-block;
+    width: 5vw;
+    height: 4vh;
 }
 
 #stupidSearch {
     width: 100vw;
+    height: 7vh;
     font-style: bold;
     font-weight: 300;
     /*align-items: center;
@@ -75,8 +78,12 @@
 }
 
 #btnstupidSearch {
-    width: 3.2vw; 
-    height: 6vh;
+    width: 1.8vw; 
+    height: 1.8vw;
+}
+
+#width_button {
+    width: 5vw;
 }
 
 #arrow_down1 {
