@@ -151,6 +151,31 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 	box-shadow: 0px 4px 3px rgba(50, 50, 50, 0.75);
 }
 
+.bookmarkHeader{
+  font-size: 64px;
+}
+
+.bookmark-profile-image {
+	margin-right: 50px;
+	box-shadow: 0px 4px 3px rgba(50, 50, 50, 0.75);
+}
+
+.bookmark-margin {
+	margin-left: 20px;
+}
+
+.bookmark-content{
+	margin-top: 5px;
+}
+
+.bookmark-content .name {
+  color: #49515a;
+  font-size: 40px;
+  margin-bottom: 5px;
+}
+
+.bookmark-row-top-buffer { margin-top: 24px; }
+
 .header .profile-content .name {
   color: #49515a;
   font-size: 32px;
@@ -435,6 +460,34 @@ navbar { margin:0; }
   margin-right: 10px;
 }
 
+.header-white .topDataBk-content{
+	margin-left: 20px;
+	margin-bottom: 15px;
+}
+
+.header-white .topDataBk-content .name {
+  color: #000 ;
+  font-size: 80px;
+}
+
+.header-white .topDataBk-content .name2 {
+  color: #2560A5;
+  font-weight: lighter;
+  font-size: 56px;
+  vertical-align: bottom;
+  margin-bottom: 20px;
+}
+
+.header-white .topDataBk-content .symbol {
+  color: #2560A5;
+  font-weight: bold;
+  font-size: 72px;
+  margin-right: 50px;
+  margin-left: 50px;
+  margin-bottom: 15px;
+  vertical-align: bottom;
+}
+
 .block-right {
   display: block;
   text-align: right;
@@ -504,7 +557,44 @@ a.btn-cta-primary-white:hover, .btn-cta-primary-white:hover {
   font-weight: 500;
   font-size: 24px;
   color: #000;
-  padding-left: 0;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.tab-dropdown-pad{
+	margin-left: 12px;
+	margin-right: 12px;
+}
+
+.dropdown-toggle::after {
+   display: inline-block;
+   width: 0;
+   height: 0;
+   margin-left: .3em;
+   vertical-align: middle;
+   content: "";
+   border-top: .5em solid;
+   border-right: .5em solid transparent;
+   border-left: .5em solid transparent;
+}
+
+.obj-icon{
+	float: right;
+	margin-right: 20px;
+	margin-top: 18px;
+}
+
+.tab-clear-content{
+	display: block;
+}
+
+.tabs .btn-cta-primary{
+	font-size: 22px;
+}
+
+.tab-inline{
+	display: inline-block;
+	width: 100%;
 }
 
 .tab-list-item {
