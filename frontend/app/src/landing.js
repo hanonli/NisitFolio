@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+
 import './landing.css';
 import NavbarTransparent from './Components/navbarTransparent';
 import LandingPage1 from './Components/landingPage1';

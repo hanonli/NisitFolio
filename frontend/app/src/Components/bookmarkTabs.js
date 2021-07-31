@@ -64,7 +64,13 @@ class BookmarkTabs extends React.Component {
 							</div>
 						</div> 
 						<div label="ผลงาน"> 
-							<BookmarkObject /><br></br><BookmarkObject /><br></br> <BookmarkObject />
+							<div class="container-fluid">
+							  <div class="row">
+								<div class="col-md-12">
+									<BookmarkObject />
+								</div>
+							  </div>
+							</div>
 						</div> 
 
 					</TabBookmark> 
