@@ -4,7 +4,6 @@ import './index.css';
 import Navbar from './Components/navbar';
 import BookmarkTabs from './Components/bookmarkTabs';
 import BookmarkHeader from './Components/bookmarkHeader';
-import BookmarkContent from './Components/bookmarkContent';
 import reportWebVitals from './reportWebVitals';
 
 class Bookmark extends React.Component {

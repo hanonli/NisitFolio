@@ -158,7 +158,12 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 .bookmark-desc{
 	color: #778492;
 	font-size: 17px;
+}
 
+.bookmark-work-desc{
+	color: #778492;
+	margin-top: 15px;
+	font-size: 17px;
 }
 
 .bookmark-list-column{
