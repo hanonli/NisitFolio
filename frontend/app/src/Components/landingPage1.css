@@ -1,7 +1,7 @@
 .landingPage1 {
     position: relative;
     width: 100vw;
-    height: 51vw;
+    height: 52.5vw;
     background-position: center; 
     background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.1)50%, rgba(0, 0, 0, 0.90)85%),url(LandingPage.png);
     background-repeat: no-repeat;
@@ -81,7 +81,7 @@
 
 #arrow_down1 {
     position: absolute;
-    top: 46vw;
+    top: 48vw;
     left: 46.4vw;
     align-items: center;
     z-index: 999;
@@ -96,8 +96,8 @@
     width: 16vw;
     justify-content: center;  
     text-align: center;
-    top: 43.2vw;
-    left: 42.5vw;
+    top: 45vw;
+    left: 42.6vw;
     text-align: center;
     font-family: 'Kanit';
     font-weight: 200;
