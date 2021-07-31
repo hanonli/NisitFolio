@@ -4,7 +4,6 @@ import './index.css';
 import Navbar from './Components/navbar';
 import BookmarkTabs from './Components/bookmarkTabs';
 import BookmarkHeader from './Components/bookmarkHeader';
-import BookmarkContent from './Components/bookmarkContent';
 import reportWebVitals from './reportWebVitals';
 
 class Bookmark extends React.Component {
@@ -16,8 +15,8 @@ class Bookmark extends React.Component {
 	componentDidMount() {
 		window.addEventListener('load', this.handleLoad);
 		console.log("YEAHXXX!");
-		const script = document.createElement("script");
-		script.src = "assets/js/home.js";
+		const script = document.createElement("link");
+		script.src = "assets/test.css";
 		document.body.appendChild(script);
 		
 	}
@@ -33,9 +32,10 @@ class Bookmark extends React.Component {
 	render (){
 		return (
 			<div className="Home">
-				<Navbar /> <br></br>
-				<BookmarkHeader />
-				<BookmarkTabs />
+			<link rel="stylesheet" href="assets/css/bookmark.css" />
+					<Navbar /> <br></br>
+					<BookmarkHeader />
+					<BookmarkTabs />
 			</div>
 		);
 	}

@@ -31,7 +31,7 @@ class TabBookmark extends Component {
         } = this;
     
         return (
-		<div class="tab-inline">
+		<div class="tab-inline bookmark-tabs-fixed">
 		<div class="container-fluid">
 		<div class="row">
           <div className="tabs">
@@ -66,7 +66,7 @@ class TabBookmark extends Component {
 
 				</ol>
 				</div>
-				<div className="tab-content">
+				<div className="tab-content bookmark-content-scroll">
 				  {children.map((child) => {
 					if (child.props.label !== activeTab) return undefined;
 					return child.props.children;

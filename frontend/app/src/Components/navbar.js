@@ -5,8 +5,8 @@ class Navbar extends React.Component {
 	render (){
 		return (
 			<div className="Navbar">
-				<nav class="navbar navbar-no-vertical-padding navbar-expand-lg navbar-light bg-light">
-				  <div class="container-fluid">
+				<nav class="navbar navbar-no-vertical-padding navbar-expand-lg navbar-light bg-light ">
+				  <div class="container-fluid p-0">
 				    <div class="lg-view">
 						<a class="navbar-brand">
 							<Link to="/home">
@@ -15,18 +15,18 @@ class Navbar extends React.Component {
 						</a>
 					</div>
 					<div class="lg-view-search container-fluid container-search">
-							<form class="d-flex">
-								<input class="form-control btn-search-box home" type="search" placeholder="ค้นหา" aria-label="Search"/>
-								<button class="btn btn-search yellow" type="submit">
-									<img src="assets/images/search.png" class="fx" alt="" width="20" height="20"/>
-								</button>
-							</form>
+						<form class="d-flex">
+							<input class="form-control btn-search-box home" type="search" placeholder="ค้นหา" aria-label="Search"/>
+							<button class="btn btn-search yellow" type="submit">
+								<img src="assets/images/search.png" class="fx" alt="" width="20" height="20"/>
+							</button>
+						</form>
 					</div>
 					
 					<a class="sm-view navbar-brand-sm">
-							<Link to="/home">
-								<img src="assets/images/logo2_noname_square.png" alt="" width="30" height="30"/>
-							</Link>
+						<Link to="/home">
+							<img src="assets/images/logo2_noname_square.png" alt="" width="30" height="30"/>
+						</Link>
 					</a>
 					
 					<span class="sm-view ms-auto">

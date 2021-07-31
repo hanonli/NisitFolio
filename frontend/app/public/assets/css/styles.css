@@ -97,8 +97,8 @@ a.btn-cta-primary-yellow, .btn-cta-primary-yellow {
 }
 
 a.btn-cta-primary-yellow:hover, .btn-cta-primary-yellow:hover {
-  background: #9B870C;
-  border: 1px solid #9B870C;
+  background: #e0c652;
+  border: 1px solid #e0c652;
 }
 
 a.btn-cta-primary, .btn-cta-primary {
@@ -151,6 +151,19 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 	box-shadow: 0px 4px 3px rgba(50, 50, 50, 0.75);
 }
 
+.bookmark-content-scroll{
+	overflow-y: overlay;
+	width:100%; 
+	height:70vh;
+}
+
+.hidden-scroll {
+	 width: 100%;
+    height: 100%;
+  overflow: hidden; /* Hide scrollbars */
+}
+
+
 .bookmarkHeader{
   font-size: 64px;
 }
@@ -158,7 +171,12 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 .bookmark-desc{
 	color: #778492;
 	font-size: 17px;
+}
 
+.bookmark-work-desc{
+	color: #778492;
+	margin-top: 15px;
+	font-size: 17px;
 }
 
 .bookmark-list-column{
@@ -360,8 +378,8 @@ navbar { margin:0; }
 }
 
 .container-search {
-	margin-left: 26%;
-	margin-right: 10%;
+	margin-left: 26vw;
+	margin-right: 10vw;
 	max-width: 30%;
 }
 
@@ -370,6 +388,7 @@ navbar { margin:0; }
 	margin-top: 3px;
 	max-width: 30%;
 }
+
 
 @media screen and (max-width: 990px) { /* mobile screen */
 	.lg-view-search{
@@ -651,8 +670,8 @@ a.btn-cta-primary-white:hover, .btn-cta-primary-white:hover {
 }
 
 a.btn-search:hover, .btn-search:hover {
-  background: #9B870C;
-  border: 1px solid #9B870C;
+  background: #e0c652;
+  border: 1px solid #e0c652;
 }
 
 .form-control:focus { /* remove glow from textbox */
@@ -674,7 +693,7 @@ a.btn-search:hover, .btn-search:hover {
 }
 
 .navbar-brand{
-	margin-left: 5px;
+	margin-left: 15px;
 }
 
 .navbar-brand-sm{
@@ -763,7 +782,7 @@ a.btn-search:hover, .btn-search:hover {
 .navAnimation {
 	position: fixed;
 	top: -57px;
-	width: 100%;
+	/*width: 100%;*/
 	height: 57px;
 	/*background-color: #000000;
 	color: #FFFFFF;*/
@@ -773,5 +792,5 @@ a.btn-search:hover, .btn-search:hover {
 }
 
 .ex-pad-landing{
-	margin-left: 0.5%;
+	margin-right: 3%;
 }

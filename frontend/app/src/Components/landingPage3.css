@@ -6,21 +6,19 @@
 
 .column .LRounded1{
     
-    margin-top: 1vh;
-    margin-bottom: 0vh;
+    margin-top: 2vh;
     margin-right: 0.5vw;
 
     width: 48.5vw;
     height: 98vh;
 
-    border-radius: 2vw;
+    border-radius: 2vw; 
   
 }
 
 .column .LRounded2{
     
-    margin-top: 1vh;
-    margin-bottom: 0vh;
+    margin-top: 2vh;
     margin-left: 0.5vw;
 
     width: 48.5vw;
@@ -37,7 +35,7 @@
     color: white;
     left: 3vw;
     right: 0;
-    top: 65vh;
+    top: 60vh;
     font-size: 6vw;   
     font-family: 'Nunito';
 }
@@ -50,7 +48,7 @@
     color: white;
     left: 3vw;
     right: 0;
-    top: 77vh;   
+    top: 75vh;   
     font-size: 2vw;
     font-family: 'Kanit';
     font-weight: 200;
@@ -63,20 +61,20 @@
     color: white;
     left: 0;
     right: 3vw;
-    top: 4vh;
+    top: 5vh;
     color: white;
     font-size: 6vw;
     font-family: 'Nunito';
 }
 
-.column .MytextBookmark #textBookmark{
+.column .MytextBookmark #textBookmark{  
     position: absolute;
     z-index: 999;
     text-align: right;
     color: white;
     left: 0;
     right: 3vw;
-    top: 16vh;   
+    top: 20vh;   
     font-size: 2vw;
     font-family: 'Kanit';
     font-weight: 200;

@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import BookmarkObjectGrid from './bookmarkObjectGrid';
-import BookmarkObjectList from './bookmarkObjectList';
+import BookmarkProfileGrid from './bookmarkProfileGrid';
+import BookmarkWorkGrid from './bookmarkWorkGrid';
+import BookmarkProfileList from './bookmarkProfileList';
+import BookmarkWorkList from './bookmarkWorkList';
 import TabBookmark from "./TabBookmark"; 
 
 class BookmarkTabs extends React.Component {
@@ -13,37 +15,37 @@ class BookmarkTabs extends React.Component {
 							<div class="container-fluid">
 							  <div class="row">
 								<div class="col-md-6">
-									<BookmarkObjectGrid />
+									<BookmarkProfileGrid />
 								</div>
 								<div class="col-md-6">
-									<BookmarkObjectGrid />
-								</div>
-							  </div>
-							  
-							  <div class="row bookmark-row-top-buffer">
-								<div class="col-md-6">
-									<BookmarkObjectGrid />
-								</div>
-								<div class="col-md-6">
-									<BookmarkObjectGrid />
+									<BookmarkWorkGrid />
 								</div>
 							  </div>
 							  
 							  <div class="row bookmark-row-top-buffer">
 								<div class="col-md-6">
-									<BookmarkObjectGrid />
+									<BookmarkProfileGrid />
 								</div>
 								<div class="col-md-6">
-									<BookmarkObjectGrid />
+									<BookmarkWorkGrid />
 								</div>
 							  </div>
 							  
 							  <div class="row bookmark-row-top-buffer">
 								<div class="col-md-6">
-									<BookmarkObjectGrid />
+									<BookmarkProfileGrid />
 								</div>
 								<div class="col-md-6">
-									<BookmarkObjectGrid />
+									<BookmarkWorkGrid />
+								</div>
+							  </div>
+							  
+							  <div class="row bookmark-row-top-buffer">
+								<div class="col-md-6">
+									<BookmarkProfileGrid />
+								</div>
+								<div class="col-md-6">
+									<BookmarkWorkGrid />
 								</div>
 							  </div>
 
@@ -52,14 +54,20 @@ class BookmarkTabs extends React.Component {
 						<div label="ผู้ใช้"> 
 							<div class="container-fluid">
 							  <div class="row">
-								<div class="col-md-12">
-									<BookmarkObjectList />
+								<div class="col-md-6">
+									<BookmarkProfileGrid />
+								</div>
+								<div class="col-md-6">
+									<BookmarkProfileGrid />
 								</div>
 							  </div>
 							  
 							  <div class="row bookmark-row-top-buffer">
-								<div class="col-md-12">
-									<BookmarkObjectList />
+								<div class="col-md-6">
+									<BookmarkProfileGrid />
+								</div>
+								<div class="col-md-6">
+									<BookmarkProfileGrid />
 								</div>
 							  </div>
 							</div>
@@ -67,8 +75,36 @@ class BookmarkTabs extends React.Component {
 						<div label="ผลงาน"> 
 							<div class="container-fluid">
 							  <div class="row">
+								<div class="col-md-6">
+									<BookmarkWorkGrid />
+								</div>
+								<div class="col-md-6">
+									<BookmarkWorkGrid />
+								</div>
+							  </div>
+							  
+							  <div class="row bookmark-row-top-buffer">
+								<div class="col-md-6">
+									<BookmarkWorkGrid />
+								</div>
+								<div class="col-md-6">
+									<BookmarkWorkGrid />
+								</div>
+							  </div>
+							  
+							</div>
+						</div> 
+						
+						<div label="โซนทดสอบ"> 
+							<div class="container-fluid">
+							  <div class="row">
 								<div class="col-md-12">
-									<BookmarkObjectList />
+									<BookmarkProfileList />
+								</div>
+							  </div>
+							   <div class="row bookmark-row-top-buffer">
+								<div class="col-md-12">
+									<BookmarkWorkList />
 								</div>
 							  </div>
 							</div>

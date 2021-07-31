@@ -8,11 +8,11 @@
 }
 
 .MySharing .pic-sharing{
-    margin-top: 1vh;
-    margin-bottom: 0.5vh;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
   
     width: 98vw;
-    height: 98vh;
+    height: 96vh;
   
     border-radius: 2vw;
 }
@@ -21,9 +21,9 @@
     position: absolute;
     z-index: 999;
 
-    left: 4vw;
+    left: 3vw;
     right: 0;
-    top: 5vh;
+    top: 7vh;
 
 
     color: white;
@@ -34,10 +34,10 @@
     position: absolute;
     z-index: 999;
     
-    left: 4vw;
+    left: 3vw;
     right: 0;
-    top: 18vh;
-    width: 35vw;
+    top: 22vh;
+    width: 33.5vw;
 
     color: white;
     font-size: 2vw ;
@@ -51,12 +51,12 @@
     
     left: 0vw;
     right: 3vw;
-    top: 66vh;
+    top: 62vh;
     text-align: right;
 
 
     color: white;
-    font-size: 5vh ;
+    font-size: 6vh ;
     font-family: 'Kanit';
     font-weight: 400;
 }

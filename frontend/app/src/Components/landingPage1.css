@@ -1,17 +1,7 @@
-.col-lg-12 {
-    position: relative;
-    display: inline-block;
-}
-
-.col-sm-6 {
-    position: relative;
-    display: inline-block;
-}
-
 .landingPage1 {
     position: relative;
-    width: 98.5vw;
-    height: 51vw;
+    width: 100vw;
+    height: 52.5vw;
     background-position: center; 
     background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.1)50%, rgba(0, 0, 0, 0.90)85%),url(LandingPage.png);
     background-repeat: no-repeat;
@@ -23,14 +13,14 @@
     position: absolute;
     width: 50vw;
     height: 28.2vw;
-    left: 7.8vw;
-    top: 2.8vw;
+    left: 7.2vw;
+    top: 6.8vh;
     display: inline-block;
     font-family: 'Kanit';
     /*font-style: italic;*/
     font-weight: 300;
     font-size: 3.2vw;
-    line-height: 3.6vw;
+    line-height: 7.2vh;
     display: flex;
     align-items: center;
 
@@ -40,13 +30,13 @@
 
 #searchHuaKuay{
     position: absolute;
-    top: 23.1vw;
+    top: 43.8vh;
     left: 6.6vw;
 }
 
 #nisit44Zaa112 {
     position: absolute;
-    top: 1.1vw;
+    top: 3.4vh;
     left: 6.2vw;
     z-index: 999;
     display: inline-block;
@@ -57,42 +47,49 @@
 
 #fromNahee {
     position: absolute;
-    top: 52%;
-    right: 63%;
+    top: 52vw;
+    right: 63vw;
     z-index: 999;
     display: inline-block;
 }
 
 #signInX {
     position: relative;
-    left: 59vw;
-    top: 2.2vw;
+    left: 59.6vw;
+    top: 4.8vh;
     z-index: 999;
     display: inline-block;
+    width: 5vw;
+    height: 4vh;
 }
 
 #stupidSearch {
     width: 100vw;
+    height: 7vh;
     font-style: bold;
     font-weight: 300;
     /*align-items: center;
     text-align: center;*/
     color: black;
-    padding: 0 32px;
-    font-size: 30px;
+    padding: 0 3vh;
+    font-size: 1.5vw;
     /*z-index: 999;
     display: inline-block;*/
 }
 
 #btnstupidSearch {
-    width: 3.2vw; 
-    height: 3.2vw;
+    width: 1.8vw; 
+    height: 1.8vw;
+}
+
+#width_button {
+    width: 5vw;
 }
 
 #arrow_down1 {
     position: absolute;
-    top: 90%;
-    left: 46.4%;
+    top: 48vw;
+    left: 46.4vw;
     align-items: center;
     z-index: 999;
     display: inline-block;
@@ -106,8 +103,8 @@
     width: 16vw;
     justify-content: center;  
     text-align: center;
-    top: 85.5%;
-    left: 42.5%;
+    top: 45vw;
+    left: 42.6vw;
     text-align: center;
     font-family: 'Kanit';
     font-weight: 200;

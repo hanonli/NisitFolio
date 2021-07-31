@@ -5,7 +5,7 @@ class BookmarkHeader extends React.Component {
 	render (){
 		return (
 			<div className="BookmarkHeader">
-				<header class="header-white">
+				<header class="header-white bookmark-header-fixed">
 					<div class="container-fluid">     
 						<div class="row">
 							<div class="col">
