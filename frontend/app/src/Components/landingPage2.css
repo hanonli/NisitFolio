@@ -1,77 +1,84 @@
+.row{
+  /*display: inline-block;*/ /* Make the width of box same as image */
 
-.col-lg-12{
+}
+.MyResume{
   position: relative;
-  display: inline-block; /* Make the width of box same as image */
-
 }
-.col-lg-12 .LRounded1 {
 
+.MyPortfolio{
+  position: relative;
+}
+.MyResume .picMyResume {
+ 
+  margin-top: 1vh;
+  margin-bottom: 0.5vh;
 
-  margin-top: 0.5vw;
-  width: 97vw;
+  width: 98vw;
   height: auto;
 
-  border-radius: 1vw;
+  border-radius: 2vw;
 }
 
-.col-lg-12 .LRounded2 {
+.MyPortfolio .picMyPortfolio{
 
-  margin-top: 0.5vw;
-  margin-bottom: 0.5vw;
-  width: 97vw;
+  margin-top: 0.5vh;
+  margin-bottom: 0vh;
+
+  width: 98vw;
   height: auto;
 
-  border-radius: 1vw;
+  border-radius: 2vw;
 
 }
 
-.col-lg-12 #resume{
+.MyResume #resume{
   position: absolute;
   z-index: 999;
   text-align: center;
   color: white;
   left: 0;
   right: 0;
-  top: 25%;
+  top: 12vh;
   color: white;
   font-size: 6vw;
   font-family: 'Nunito';
 }
 
-.col-lg-12 #textMyResume1 {
+.MyResume #textMyResume1 {
   position: absolute;
   z-index: 999;
   text-align: center;
   color: white;
   left: 0;
   right: 0;
-  top: 50%;   
+  top: 25vh;   
   font-size: 2vw;
   font-family: 'Kanit';
   font-weight: 200;
 }
 
-.col-lg-12 #portfolio {
+.MyPortfolio  #portfolio {
   position: absolute;
   z-index: 999;
   text-align: center;
   color: white;
   left: 0;
   right: 0;
-  top: 28%;   
+  top: 14vh;  
   font-size: 6vw;
   font-family: 'Nunito';
 
 }
 
-.col-lg-12 #textMyPortfolio {
+.MyPortfolio #textMyPortfolio {
   position: absolute;
   z-index: 999;
   text-align: center;
   color: white;
   left: 0;
   right: 0;
-  top: 53%;   
+  top: 28vh;   
   font-size: 2vw;
   font-family: 'Kanit';
   font-weight: 200;

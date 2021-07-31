@@ -4,18 +4,18 @@
 }
 .MySharing{
     position: relative;
+    display:inline-block;
 }
 
 .MySharing .pic-sharing{
 
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+
     width: 98vw;
-    height: auto;
+    height: 98vh;
     
-    padding-top: 0.5vw;
-    padding-left: 0.5vw;
-
-    border-radius: 0.9vw;
-
+    border-radius: 2vw;
 }
 
 .MySharing  #sharing{
@@ -24,12 +24,11 @@
 
     left: 4vw;
     right: 0;
-    top: 3vw;
+    top: 5vh;
 
 
     color: white;
-    font-size: 6vw;
-    font-family: 'Nunito';
+    font-size: 6vw;    font-family: 'Nunito';
 }
 
 .MySharing  #textsharing{
@@ -38,12 +37,12 @@
     
     left: 4vw;
     right: 0;
-    top: 10vw;
-    width: 15vw;
+    top: 18vh;
+    width: 35vw;
 
     color: white;
     font-size: 2vw ;
-    font-family: 'Nunito';
+    font-family: 'Kanit';
     font-weight: 200;
 }
 
@@ -52,13 +51,49 @@
     z-index: 999;
     
     left: 0vw;
-    right: 0;
-    top: 40vw;
+    right: 3vw;
+    top: 66vh;
     text-align: right;
 
 
     color: white;
-    font-size: 2vw ;
-    font-family: 'Nunito';
-    font-weight: 200;
+    font-size: 5vh ;
+    font-family: 'Kanit';
+    font-weight: 400;
 }
+
+
+.MySharing #buttonRegisLanding {
+    position: absolute;
+    top: 86vh;
+    left: 78vw;
+
+    width: 18vw;
+    height: 4vw;
+    border-radius: 3vw;
+    background-color:steelblue;
+    padding: 0.1vw 0.2vw;
+
+  }
+  .MySharing #buttonRegisLanding:hover {
+    position: absolute;
+    top: 86vh;
+    left: 78vw;
+    
+    width: 18vw;
+    height: 4vw;
+    border-radius: 3vw;
+    background-color: rgb(55, 95, 135);
+    transition-duration: 0.5s;
+
+
+  }
+  
+
+ .MySharing #buttontextRegis{
+        color: white;
+        font-size: 2.4vw;       
+        font-weight: 400;       
+        font-family: 'Kanit';
+ } 
+
