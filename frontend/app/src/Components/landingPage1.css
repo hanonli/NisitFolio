@@ -18,12 +18,85 @@
 }
 
 #bg_landingPage44 {
-    position: relative;
-    width: 1920px;
-    height: 1080px;
-    left: 0px;
-    top: 0px;
     
+     width: 100vw;
+  height: 110vh;
+  margin-bottom: 2vh;
+
+    
+}
+
+.pic-new{
+    width: 100vw;
+    height: 100vh;
+}
+
+.pic-logo{
+	position: absolute;
+    z-index: 999;
+
+    left: 5vw;
+    right: 0;
+    top: 5vh;
+
+    width: 32vw;
+    height: auto;
+}
+
+.sc1-sub{
+    position: absolute;
+    z-index: 999;
+    
+    left:7vw;
+    right: 0;
+    top: 28vh;
+    width: 50vw;
+
+    color: white;
+    font-family: 'Kanit';
+	
+	font-weight: 300;
+    font-size: 3.2vw;
+}
+
+
+
+.sc1-footer{
+    position: absolute;
+    z-index: 999;
+    
+    left: 47vw;
+    right: 0;
+    top: 92vh;
+    width: 6vw;
+
+    color: white;
+    font-size: 2vw ;
+    font-family: 'Kanit';
+    font-weight: 200;
+}
+
+.text-of-arrow {
+    position: absolute;
+	
+    left: 33.2vw;
+    right: 0;
+    top: 88vh;
+    width: 33.5vw;
+	
+    justify-content: center;  
+    text-align: center;
+    
+    text-align: center;
+    font-family: 'Kanit';
+    font-weight: 200;
+    font-style: normal;
+    font-size: 1.2vw;
+    line-height: 2vw;
+    z-index: 999;
+
+    display: inline-block;
+    color: #FFFFFF;
 }
 
 .search_bar #searchHuaKuay{
@@ -66,19 +139,19 @@
     height: auto;
 }
 
-
+/*
 #fromNahee {
     position: absolute;
     top: 52vw;
     right: 63vw;
     z-index: 999;
     display: inline-block;
-}
+}*/
 
 #signInX {
-    position: relative;
-    left: 61.4vw;
-    bottom: 93vh;
+    position: absolute;
+    left: 59.5vw;
+    bottom: 90vh;
     z-index: 999;
     display: inline-block;
     width: 5vw;
@@ -108,6 +181,7 @@
     width: 5vw;
 }
 
+/*
 #arrow_down1 {
     position: absolute;
     top: 52vw;
@@ -137,4 +211,4 @@
 
     display: inline-block;
     color: #FFFFFF;
-}
+}*/

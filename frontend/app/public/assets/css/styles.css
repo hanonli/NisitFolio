@@ -196,6 +196,16 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 	margin-top: 5px;
 }
 
+.bookmark-content-profile{
+	margin-top: 22px;
+}
+
+.bookmark-content-profile .name {
+  color: #49515a;
+  font-size: 40px;
+  margin-bottom: 5px;
+}
+
 .bookmark-content .name {
   color: #49515a;
   font-size: 40px;
@@ -786,7 +796,9 @@ a.btn-search:hover, .btn-search:hover {
     opacity: 1;
 }
 
-
+.entity-pad{
+	margin-bottom: 50px;
+}
 
 .navAnimation {
 	position: fixed;
