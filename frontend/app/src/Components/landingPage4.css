@@ -23,7 +23,7 @@
 
     left: 4vw;
     right: 0;
-    top: 5vh;
+    top: 7vh;
 
 
     color: white;
@@ -36,7 +36,7 @@
     
     left: 4vw;
     right: 0;
-    top: 18vh;
+    top: 23vh;
     width: 35vw;
 
     color: white;
@@ -51,12 +51,12 @@
     
     left: 0vw;
     right: 3vw;
-    top: 66vh;
+    top: 62vh;
     text-align: right;
 
 
     color: white;
-    font-size: 5vh ;
+    font-size: 6vh ;
     font-family: 'Kanit';
     font-weight: 400;
 }
