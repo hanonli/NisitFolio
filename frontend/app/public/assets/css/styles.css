@@ -97,8 +97,8 @@ a.btn-cta-primary-yellow, .btn-cta-primary-yellow {
 }
 
 a.btn-cta-primary-yellow:hover, .btn-cta-primary-yellow:hover {
-  background: #9B870C;
-  border: 1px solid #9B870C;
+  background: #e0c652;
+  border: 1px solid #e0c652;
 }
 
 a.btn-cta-primary, .btn-cta-primary {
@@ -360,8 +360,8 @@ navbar { margin:0; }
 }
 
 .container-search {
-	margin-left: 26%;
-	margin-right: 10%;
+	margin-left: 26vw;
+	margin-right: 10vw;
 	max-width: 30%;
 }
 
@@ -370,6 +370,7 @@ navbar { margin:0; }
 	margin-top: 3px;
 	max-width: 30%;
 }
+
 
 @media screen and (max-width: 990px) { /* mobile screen */
 	.lg-view-search{
@@ -651,8 +652,8 @@ a.btn-cta-primary-white:hover, .btn-cta-primary-white:hover {
 }
 
 a.btn-search:hover, .btn-search:hover {
-  background: #9B870C;
-  border: 1px solid #9B870C;
+  background: #e0c652;
+  border: 1px solid #e0c652;
 }
 
 .form-control:focus { /* remove glow from textbox */
@@ -674,7 +675,7 @@ a.btn-search:hover, .btn-search:hover {
 }
 
 .navbar-brand{
-	margin-left: 5px;
+	margin-left: 15px;
 }
 
 .navbar-brand-sm{
