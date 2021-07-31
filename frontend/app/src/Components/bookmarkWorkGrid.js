@@ -11,7 +11,7 @@ class BookmarkObject extends React.Component {
 							<div class="col-10">
 								<img class="bookmark-profile-image float-start round" type='button' id="avatar" src="assets/images/work.jpg" alt="profile image" width="225" height="150"/>
 								<div class="bookmark-content">
-									<h1 class="name inline">Edgeworth 4.00 Again!</h1>
+									<h1 class="name inline">Edgeworth</h1>
 									<h2 class="bookmark-work-desc" >Portfolio - 4 รูปภาพ</h2>
 									<h2 class="bookmark-work-desc" >ผลงานของ วรเมศ ผดุงเจริญ</h2>
 								</div>
