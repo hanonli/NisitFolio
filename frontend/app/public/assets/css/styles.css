@@ -365,6 +365,21 @@ navbar { margin:0; }
 	box-shadow: 0px 4px 3px rgba(50, 50, 50, 0.19);
 }
 
+.navbar-2{
+	position: relative;
+	z-index: 1;
+	-webkit-box-shadow: 0px 4px 3px rgba(50, 50, 50, 0.19);
+	-moz-box-shadow: 0px 4px 3px rgba(50, 50, 50, 0.19);
+	box-shadow: 0px 4px 3px rgba(50, 50, 50, 0.19);
+}
+
+.navbar-3{
+	z-index: 1;
+	-webkit-box-shadow: 0px 4px 3px rgba(50, 50, 50, 0.19);
+	-moz-box-shadow: 0px 4px 3px rgba(50, 50, 50, 0.19);
+	box-shadow: 0px 4px 3px rgba(50, 50, 50, 0.19);
+}
+
 .lg-view{
    display:inline-block;
 }
@@ -378,9 +393,7 @@ navbar { margin:0; }
 }
 
 .container-search {
-	margin-left: 26vw;
-	margin-right: 10vw;
-	max-width: 30%;
+	max-width: 75%;
 }
 
 .container-search-no-icons {
@@ -773,11 +786,7 @@ a.btn-search:hover, .btn-search:hover {
     opacity: 1;
 }
 
-.flexboxCenter {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
+
 
 .navAnimation {
 	position: fixed;
@@ -792,5 +801,9 @@ a.btn-search:hover, .btn-search:hover {
 }
 
 .ex-pad-landing{
-	margin-right: 3%;
+	margin-top: 7px;
+}
+
+.logo-pad{
+	margin-left: 30px;
 }
