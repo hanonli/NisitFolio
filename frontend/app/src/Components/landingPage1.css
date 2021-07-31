@@ -1,12 +1,34 @@
-.landingPage1 {
+.search_bar {
     position: relative;
+}
+
+.landingPage1 {
+   /* position: relative;
     width: 100vw;
-    height: 52.5vw;
+    height: 50vw;
     background-position: center; 
     background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.1)50%, rgba(0, 0, 0, 0.90)85%),url(LandingPage.png);
     background-repeat: no-repeat;
-    background-size: cover; 
-    /*display: inline-block;*/
+    background-size: cover;*/
+    position: relative;
+    width: 1920px;
+    height: 1080px; 
+    left: 0px;
+    top: 0px;
+}
+
+#bg_landingPage44 {
+    position: relative;
+    width: 1920px;
+    height: 1080px;
+    left: 0px;
+    top: 0px;
+    
+}
+
+.search_bar #searchHuaKuay{
+    
+
 }
 
 .textOfLandingPage #sloganNisitZaa {
@@ -14,7 +36,7 @@
     width: 50vw;
     height: 28.2vw;
     left: 7.2vw;
-    top: 6.8vh;
+    top: 11.4vh;
     display: inline-block;
     font-family: 'Kanit';
     /*font-style: italic;*/
@@ -30,13 +52,13 @@
 
 #searchHuaKuay{
     position: absolute;
-    top: 43.8vh;
+    top: 47vh;
     left: 6.6vw;
 }
 
 #nisit44Zaa112 {
     position: absolute;
-    top: 3.4vh;
+    top: 7.4vh;
     left: 6.2vw;
     z-index: 999;
     display: inline-block;
@@ -55,8 +77,8 @@
 
 #signInX {
     position: relative;
-    left: 59.6vw;
-    top: 4.8vh;
+    left: 61.4vw;
+    bottom: 93vh;
     z-index: 999;
     display: inline-block;
     width: 5vw;
@@ -88,8 +110,8 @@
 
 #arrow_down1 {
     position: absolute;
-    top: 48vw;
-    left: 46.4vw;
+    top: 52vw;
+    left: 48.2vw;
     align-items: center;
     z-index: 999;
     display: inline-block;
@@ -103,8 +125,8 @@
     width: 16vw;
     justify-content: center;  
     text-align: center;
-    top: 45vw;
-    left: 42.6vw;
+    top: 50vw;
+    left: 44.3vw;
     text-align: center;
     font-family: 'Kanit';
     font-weight: 200;

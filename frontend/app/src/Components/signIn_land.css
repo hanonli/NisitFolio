@@ -1,6 +1,6 @@
 .bg_form{
     width: 27vw;
-    height: 74vh;
+    height: 70vh;
     margin: 4vw;
     background:white;
     border-radius: 1.1vw;
@@ -75,10 +75,11 @@
     font-weight: 300;
     font-size: 1vw; 
     font-family: 'Kanit';
+    padding: 0.5vw;
 }
 
 .distancing112 {
     display: block;
-    margin-bottom: 1vw; 
-    margin-top: 0.5vw;
+    margin-bottom: 1.2vw; 
+    margin-top: 0.3vh;
 }
