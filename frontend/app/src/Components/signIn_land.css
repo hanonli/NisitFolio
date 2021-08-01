@@ -4,7 +4,7 @@
     margin: 4vw;
     background:white;
     border-radius: 1.1vw;
-    padding: 2.4vw;
+    padding: 2.5vw;
     align-items: center;
 }
 
@@ -82,4 +82,17 @@
     display: block;
     margin-bottom: 1.2vw; 
     margin-top: 0.3vh;
+}
+
+#PasswordIn {
+    margin-bottom: 7.5vh;
+}
+
+.fgt {
+    margin-top:0.5vh;
+    margin-bottom: 3vh;
+}
+
+#formSingin {
+    margin-top: 0.5vh;
 }

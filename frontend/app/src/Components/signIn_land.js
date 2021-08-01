@@ -1,5 +1,6 @@
 import React from 'react'
 import './signIn_land.css'
+import { Link } from 'react-router-dom';
 
 class SignInLand extends React.Component {
     render() {
@@ -19,18 +20,17 @@ class SignInLand extends React.Component {
                             <label className="distancing112" id="labelText">รหัสผ่าน</label>
                             <input type="password" className="form-control" id="inputform1" />
                         </div>
-                        <br />
-                        <br />
-                        <br />
-                       
-                        <div id="buttom1125" class="text-center">
-                            <button type="submit" className="btn btn-cta-primary-yellow round profile-button" id="buttonLogIn112">เข้าสู่ระบบ</button>
-                            <p className="forgot-password text-right" id="forgetText112">
+                        <div id="buttom1125" class="text-center fixld">
+                            <Link to="/home">
+                                <button type="submit" className="btn btn-cta-primary-yellow round profile-button" id="buttonLogIn112">เข้าสู่ระบบ</button>
+                            </Link>
+                            <p className="forgot-password text-right fgt" id="forgetText112">
                                 <a href="#" >ลืมรหัสผ่าน?</a>
                             </p>
                             <br />
-
-                            <button type="submit" className="btn btn-lg btn-primary deep-purple btn-block" id="buttonSignIn112">สมัครสมาชิก</button>
+                            <Link to="/agreement">
+                                <button type="submit" className="btn btn-lg btn-primary deep-purple btn-block" id="buttonSignIn112">สมัครสมาชิก</button>
+                            </Link>
                         </div>
                     </form>
                 </div>

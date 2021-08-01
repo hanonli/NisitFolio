@@ -10,7 +10,7 @@ class NavbarTransparent extends React.Component {
 					<div class="row">
 						<div class="col-3 d-flex align-items-center">
 							<a class="navbar-brand logo-pad">
-								<Link to="/home">
+								<Link to="/landing">
 									<img src="assets/images/nav-bar-icon-white.png" alt="" width="135" height="24"/>
 								</Link>
 							</a>

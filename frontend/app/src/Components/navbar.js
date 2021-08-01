@@ -11,7 +11,7 @@ class Navbar extends React.Component {
 						<div class="col-3 d-flex align-items-center">
 							<div class="lg-view">
 								<a class="navbar-brand">
-									<Link to="/home">
+									<Link to="/landing">
 										<img src="assets/images/nav-bar-icon.png" alt="" width="146" height="26"/>
 									</Link>
 								</a>
