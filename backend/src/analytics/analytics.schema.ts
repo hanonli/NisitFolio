@@ -1,6 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Mongoose } from 'mongoose';
 
+import * as mongoose from 'mongoose';
+
 export type AdditionalSkillDocument = AdditionalSkill & Document;
 
 @Schema()
@@ -18,25 +20,29 @@ export class AdditionalSkill {
 export const AdditionalSkillSchema =
   SchemaFactory.createForClass(AdditionalSkill);
 
-// ------------------------------------------------------------
+// -------------------- UserSkill ---------------------------
 
-export type UserSkillDocument = UserSkill & Document;
+export const UserSkillSchema = new mongoose.Schema({
+  userId: {type: String , required: [true, 'UserID is not empty'] },
+  inJobId: {type: String , required: [true, 'JobID is not empty'] },
+  SkillId: {type: String , required: [true, 'SkillID is not empty'] },
+  Score: {type: Number , required: [true, 'Score is not empty'] }
+});
 
-@Schema()
-export class UserSkill {
-  @Prop()
-  userId: number;
-
-  @Prop()
-  inJobId: number;
-
-  @Prop()
-  MainSkillId: number;
-
-  @Prop()
-  Score: number ;
+export interface UserSkill {
+  id: string;
+  userId: string;
+  inJobId: string;
+  SkillId: string;
+  Score: number
 }
 
-export const UserSkillSchema =
-  SchemaFactory.createForClass(UserSkill);
+// -------------------- Skill ---------------------------
 
+export const SkillSchema = new mongoose.Schema({
+  SkillName: { type: String, required: [true, 'Skill Name must not empty'] },
+}) ;
+
+export interface Skill {
+  SkillName: string;
+}
