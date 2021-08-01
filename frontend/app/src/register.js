@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Navbar from './Components/navbar';
+import Navbarlogo from './Components/navbarlogo';
 import InformationHeader from './Components/informationHeader';
 import reportWebVitals from './reportWebVitals';
 import { Link } from "react-router-dom";
@@ -13,7 +13,7 @@ class Register extends React.Component {
 	render (){
 		return (
 			<div className="Register">
-				<Navbar />
+				<Navbarlogo />
 				<InformationHeader />
 				<div>
                     <Tabs class=""> 

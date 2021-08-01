@@ -1,0 +1,22 @@
+/*Agreement page*/
+#agree1 {
+    height: 2vh;
+    weight: 2vw;
+    border-radius: 50%;
+    background-color: #BFF4A6;
+    margin-left: 8vw;
+    margin-right: 0.5vw;
+    padding: auto;
+    padding: 0.8%;
+}
+
+.inlineweight {
+    display: inline-block;
+}
+
+.ttr {
+    margin-left: 0.5%;
+    margin-right: 60%;
+    color: black;
+    font-weight: 400;
+}

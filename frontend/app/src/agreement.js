@@ -1,17 +1,39 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Navbar from './Components/navbar';
+import './register.css'
+import Navbarlogo from './Components/navbarlogo';
 import DataHeader from './Components/dataHeader';
 import reportWebVitals from './reportWebVitals';
 import { Link } from "react-router-dom";
 
 /* NOT AVALIABLE TO TEST RIGHT NOW BC DONT HAVE PATH TO LINK WITH*/
 class Agreement extends React.Component {
+	constructor(props) {
+		super(props);
+		this.handleLoad = this.handleLoad.bind(this);
+	 }
+	
+	componentDidMount() {
+		window.addEventListener('load', this.handleLoad);
+		console.log("YEAHXXX!");
+		const script = document.createElement("script");
+		script.src = "assets/js/register.js";
+		document.body.appendChild(script);
+		
+	}
+	
+	componentWillUnmount() { 
+	   window.removeEventListener('load', this.handleLoad)  
+	}
+	
+	handleLoad() {
+		console.log("YEAH!");
+	 }
 	render (){
 		return (
 			<div className="Agreement">
-				<Navbar />
+				<Navbarlogo />
 				<div className="DataHeader">
 					<header class="header-white">
 						<div class="container">     
@@ -32,13 +54,17 @@ class Agreement extends React.Component {
 					</header>
 				</div>
                 <div class="full-block ">
-                    <h2 class="desc-b" contenteditable="true">Not Avaliable,Need text permission here</h2>
+                    <h2 class="desc-b" contenteditable="true">You can use the overflow property when you want to have better control of the layout. The overflow property specifies what happens if content overflows an element's box. You can use the overflow property when you want to have better control of the layout. The overflow property specifies what happens if content overflows an element's box. You can use the overflow property when you want to have better control of the layout. The overflow property specifies what happens if content overflows an element's box. You can use the overflow property when you want to have better control of the layout. The overflow property specifies what happens if content overflows an element's box. You can use the overflow property when you want to have better control of the layout. The overflow property specifies what happens if content overflows an element's box.</h2>
                 </div>
-				<Link to="/register">
-					<div class="col block-right">
-						<a class="btn btn-cta-primary-yellow round profile-button" href="#" target="_blank">ต่อไป</a>
-					</div>
-				</Link>
+				<div>
+					<a class="btn inlineweight" id="agree1"></a>
+					<h5 class="inlineweight ttr">ข้าพเจ้ายินยอมในข้อตกลงการให้บริการ</h5>
+					<Link to="/register">
+						<div class="inlineweight">
+							<a class="btn btn-cta-primary-yellow round btnregis" href="#" target="_blank" id="continue1">ต่อไป</a>
+						</div>
+					</Link>
+				</div>
 			</div>
 		);
 	}

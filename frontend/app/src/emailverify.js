@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Navbar from './Components/navbar';
+import Navbarlogo from './Components/navbarlogo';
 import DataHeader from './Components/dataHeader';
 import reportWebVitals from './reportWebVitals';
 import { Link } from "react-router-dom";
@@ -11,7 +11,7 @@ class Emailverify extends React.Component {
 	render (){
 		return (
 			<div className="Emailverify">
-				<Navbar />
+				<Navbarlogo />
 				<div className="DataHeader">
 					<header class="header-white">
 						<div class="container">     
