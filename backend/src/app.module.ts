@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { MongooseModule } from '@nestjs/mongoose';
 
 import { AnalyticsModule } from './analytics/analytics.module';
 
@@ -12,11 +13,13 @@ import Register  from "src/entities/register.entity";
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
+    MongooseModule.forRoot(
+      'mongodb+srv://user1234:user1234@cluster0.39z7o.mongodb.net/nisitfolio'
+      ),
+      TypeOrmModule.forRoot({
       type: 'mongodb',
-      host: 'localhost',
-      database: 'nisitfolio',
-      entities: [Register],
+      url: 'mongodb+srv://user1234:user1234@cluster0.39z7o.mongodb.net/nisitfolio',
+      autoLoadEntities: true,
       synchronize: true,
     }),
     TypeOrmModule.forFeature([Register]),
