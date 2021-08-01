@@ -34,7 +34,7 @@ class Emailverify extends React.Component {
 					</div>
 					<Link to="/successregis">
 						<div class="col">
-							<a class="btn btn-cta-primary-yellowwide round profile-button" href="#" target="_blank">ส่งใหม่อีกครั้ง</a>
+							<a class="btn btn-cta-primary-yellowwideE round profile-button" href="#" target="_blank">ส่งใหม่อีกครั้ง</a>
 						</div>
 					</Link>
 				</div>

@@ -56,7 +56,7 @@ class Editprofile extends React.Component {
 					</Tabs> 
 				</div>
 				<div class="col block-right">
-					<a class="btn btn-cta-primary-yellow round profile-button" href="#" target="_blank">ยืนยันการแก้ไข</a>
+					<a class="btn btn-cta-primary-yellowwide round profile-button" href="#" target="_blank">ยืนยันตัวตน</a>
 				</div>
 			</div>
 		);

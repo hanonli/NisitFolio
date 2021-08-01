@@ -25,7 +25,7 @@ class Successregis extends React.Component {
 					</header>
 				</div>
 				<div class="centersuccess">
-					<img class="img-fluid" data-bs-placement="top" title="ยืนยันตัวตนสำเร็จแล้ว" src="assets/images/check-mark.png" alt="" width="150" height="150"/>	
+					<img class="img-fluid successregispic" data-bs-placement="top" title="ยืนยันตัวตนสำเร็จแล้ว" src="assets/images/check-mark.png" alt="" width="150" height="150"/>	
 					<h1 class="successregis-f">ยืนยันตัวตนสำเร็จ</h1>
 				</div>
 			</div>

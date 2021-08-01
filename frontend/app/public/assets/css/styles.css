@@ -542,15 +542,6 @@ navbar { margin:0; }
   margin-left: 80%;
 }
 
-.btnregis {
-  padding-top: 10%;
-  padding-bottom: 10%;
-  font-size: 20px;
-  font-weight: lighter;
-  padding-left: 20%;
-  padding-right: 20%;
-}
-
 }
 .btn-select {
   -webkit-transition: all 0.4s ease-in-out;
@@ -834,15 +825,34 @@ a.btn-search:hover, .btn-search:hover {
 a.btn-cta-primary-yellowwide, .btn-cta-primary-yellowwide {
   color: #000000;
   font-weight: 400;
-  font-size: 2vh;
-  text-transform: uppercase;
+  font-size: 2.2vh;
+  
   border: 1px solid #F9DC5C;
   background: #F9DC5C;
   height: 50px;
   width: 200px;
+  
 }
 
 a.btn-cta-primary-yellowwide:hover, .btn-cta-primary-yellowwide:hover {
+  background: #e0c652;
+  border: 1px solid #e0c652;
+}
+
+
+a.btn-cta-primary-yellowwideE, .btn-cta-primary-yellowwideE {
+  color: #000000;
+  font-weight: 400;
+  font-size: 3vh;
+  border-radius: 36px;
+  border: 1px solid #F9DC5C;
+  background: #F9DC5C;
+  height: 60px;
+  width: 300px;
+  
+}
+
+a.btn-cta-primary-yellowwideE:hover, .btn-cta-primary-yellowwideE:hover {
   background: #e0c652;
   border: 1px solid #e0c652;
 }
