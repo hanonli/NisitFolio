@@ -50,7 +50,7 @@ class TabBookmark extends Component {
 					);
 				  })}
 				<div class="float-end">
-					<img src="assets/images/outline_grid_view_black_48dp 2.png" alt="" width="40" height="40"/>
+					<img class="layout-toggle" src="assets/images/outline_format_list_bulleted_black_48dp 3.png" alt="" width="40" height="40"/>
 					  <button class="btn btn-cta-primary round grey dropdown-toggle tab-dropdown-pad" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
 						เรียงตามล่าสุด
 					  </button>
