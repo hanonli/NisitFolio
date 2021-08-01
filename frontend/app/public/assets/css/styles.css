@@ -580,6 +580,7 @@ a.btn-cta-primary-white:hover, .btn-cta-primary-white:hover {
   margin-bottom: 3%;
   border-radius: 18px;
   background: #b0b7bf;
+  overflow: hidden;
 }
 .content-form-block {
   margin-top: 1%;

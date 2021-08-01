@@ -9,7 +9,8 @@ import Bookmark from './bookmark';
 import Editprofile from './editprofile';
 import Agreement from './agreement';
 import Register from './register';
-import LandingPage1 from './Components/landingPage1'; //TEST LandingPage2
+import Emailverify from './emailverify';
+import Successregis from './successregis';
 
 const Routes = () => {
   return (
@@ -24,6 +25,8 @@ const Routes = () => {
       <Route exact path='/editprofile' component={Editprofile}></Route>
       <Route exact path='/agreement' component={Agreement}></Route>
       <Route exact path='/register' component={Register}></Route>
+      <Route exact path='/emailverify' component={Emailverify}></Route>
+      <Route exact path='/successregis' component={Successregis}></Route>
     </Switch>
   );
 }

@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import { Link } from "react-router-dom";
 import Tabs from "./Components/Tabs"; 
 import Registab1 from "./Components/registab1";
+import Registab2 from "./Components/registab2";
 
 class Register extends React.Component {
 	render (){
@@ -20,7 +21,7 @@ class Register extends React.Component {
                             <Registab1 />
                         </div> 
                         <div label="ข้อมูลเพิ่มเติม"> 
-                            Nothing to see here, this tab is <em>extinct</em>! 
+                            <Registab2 />
                         </div> 
                         <div label="ประวัติการทำงาน"> 
                             Nothing to see here, this tab is <em>extinct</em>! 
@@ -39,7 +40,7 @@ class Register extends React.Component {
                         </div> 
                     </Tabs>
                 </div>
-                <Link to="/home">
+                <Link to="/emailverify">
                     <div class="col block-right">
                         <a class="btn btn-cta-primary-yellow round profile-button" href="#" target="_blank">ยืนยันตัวตน</a>
                     </div>
