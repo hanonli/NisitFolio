@@ -197,12 +197,12 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 }
 
 .bookmark-content-profile{
-	margin-top: 22px;
+	margin-top: 29px;
 }
 
 .bookmark-content-profile .name {
   color: #49515a;
-  font-size: 40px;
+  font-size: 64px;
   margin-bottom: 5px;
 }
 

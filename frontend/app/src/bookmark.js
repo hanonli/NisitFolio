@@ -15,8 +15,8 @@ class Bookmark extends React.Component {
 	componentDidMount() {
 		window.addEventListener('load', this.handleLoad);
 		console.log("YEAHXXX!");
-		const script = document.createElement("link");
-		script.src = "assets/test.css";
+		const script = document.createElement("script");
+		script.src = "assets/js/bookmark.js";
 		document.body.appendChild(script);
 		
 	}
@@ -34,6 +34,14 @@ class Bookmark extends React.Component {
 			<div className="Home">
 			<link rel="stylesheet" href="assets/css/bookmark.css" />
 					<Navbar /> <br></br>
+					<div class="grid">
+					  <h4><strong>Grid headline</strong></h4>
+					  <p>Eng Content</p>
+					</div>
+					<div class="list">
+					  <h4><strong>List headline</strong></h4>
+					  <p>Hindi Content</p>
+					</div>
 					<BookmarkHeader />
 					<BookmarkTabs />
 			</div>
