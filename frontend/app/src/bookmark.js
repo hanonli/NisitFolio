@@ -34,14 +34,6 @@ class Bookmark extends React.Component {
 			<div className="Home">
 			<link rel="stylesheet" href="assets/css/bookmark.css" />
 					<Navbar /> <br></br>
-					<div class="grid">
-					  <h4><strong>Grid headline</strong></h4>
-					  <p>Eng Content</p>
-					</div>
-					<div class="list">
-					  <h4><strong>List headline</strong></h4>
-					  <p>Hindi Content</p>
-					</div>
 					<BookmarkHeader />
 					<BookmarkTabs />
 			</div>
