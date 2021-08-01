@@ -12,11 +12,41 @@
 
 .inlineweight {
     display: inline-block;
+    padding: auto;
 }
 
 .ttr {
     margin-left: 0.5%;
-    margin-right: 60%;
+    margin-right: 56vw;
     color: black;
     font-weight: 400;
+}
+
+/*Emailverify*/
+.centerverify {
+    text-align: center;
+}
+
+.emailpic {
+    padding : 7vh;
+}
+
+.recheck-f {
+    font-size: 4.5vh;
+    font-weight: 300;
+    color: black;
+    margin-top: 3vh;
+}
+
+/*SuccessRegis*/
+.centersuccess {
+    text-align: center;
+    padding: 15vh;
+}
+
+.successregis-f {
+    font-size: 5vh;
+    font-weight: 300;
+    color: black;
+    margin-top: 3vh;
 }

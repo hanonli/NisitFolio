@@ -61,7 +61,7 @@ class Agreement extends React.Component {
 					<h5 class="inlineweight ttr">ข้าพเจ้ายินยอมในข้อตกลงการให้บริการ</h5>
 					<Link to="/register">
 						<div class="inlineweight">
-							<a class="btn btn-cta-primary-yellow round btnregis" href="#" target="_blank" id="continue1">ต่อไป</a>
+							<a class="btn btn-cta-primary-yellowwide round btnregis" href="#" target="_blank" id="continue1">ต่อไป</a>
 						</div>
 					</Link>
 				</div>
