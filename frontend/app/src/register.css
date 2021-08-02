@@ -22,7 +22,7 @@
     font-weight: 400;
 }
 
-/*Emailverify*/
+/*Emailverify page*/
 .centerverify {
     text-align: center;
 }
@@ -38,7 +38,7 @@
     margin-top: 3vh;
 }
 
-/*SuccessRegis*/
+/*SuccessRegis page*/
 .centersuccess {
     text-align: center;
     padding: 15vh;
@@ -50,3 +50,10 @@
     color: black;
     margin-top: 3vh;
 }
+
+/*Registab7*/
+.regis-box-content {
+    height: auto;
+    width: auto;
+}
+
