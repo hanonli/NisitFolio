@@ -4,7 +4,7 @@ class Registab7 extends React.Component {
 	render (){
 		return (
 			<div className="Registab7">
-				<div className="regis-box-content">
+				<div>
 					<h1>"This is Tab7..."</h1>
 				</div>
 			</div>
