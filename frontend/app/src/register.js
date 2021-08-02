@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import Tabs from "./Components/Tabs"; 
 import Registab1 from "./Components/registab1";
 import Registab2 from "./Components/registab2";
+import Registab7 from "./Components/registab7";
 
 class Register extends React.Component {
 	render (){
@@ -36,7 +37,7 @@ class Register extends React.Component {
                             <h1>Pluem kung</h1>
                         </div>
                         <div label="ทักษะเสริม"> 
-                            <h1>Rungry Jang</h1>
+                            <Registab7 />
                         </div>  
                     </Tabs>
                 </div>

@@ -1,6 +1,8 @@
+/*For Javascript Desu*/
+
 /*Zone Agreement*/
 
-//Program to disable or enable a button using javascript
+//Program to disable or enable a button 
 
 let continue1 = document.getElementById('continue1');
 let buttonagree = document.getElementById('agree1');
@@ -16,3 +18,4 @@ function stateHandle() {
         continue1.disabled = false; //button is enabled
     }
 }
+
