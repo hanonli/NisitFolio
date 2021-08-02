@@ -504,7 +504,7 @@ navbar { margin:0; }
 
 .header-white .topData2-content .name {
   color: #000 ;
-  font-size: 80px;
+  font-size: 64px;
   margin-bottom: 40px;
   margin-top: 50px;
   margin-right: 2vw;
@@ -513,14 +513,14 @@ navbar { margin:0; }
 .header-white .topData2-content .name2 {
   color: #AEAEAE ;
   font-weight: lighter;
-  font-size: 24px;
+  font-size: 32px;
   margin-top: 50px;
   margin-right: 10px;
 }
 .header-white .topData2-content .symbol {
   color: #000 ;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 24px;
   margin-top: 50px;
   margin-right: 10px;
 }
@@ -551,13 +551,6 @@ navbar { margin:0; }
   margin-left: 50px;
   margin-bottom: 15px;
   vertical-align: bottom;
-}
-
-.block-right {
-  display: inline-block;
-  text-align: right;
-  margin-right: 10%;
-  margin-left: 80%;
 }
 
 }
@@ -625,8 +618,8 @@ a.btn-cta-primary-white:hover, .btn-cta-primary-white:hover {
   font-weight: 500;
   font-size: 24px;
   color: #000;
-  padding-left: 24px;
-  padding-right: 24px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .tab-dropdown-pad{
@@ -669,8 +662,8 @@ a.btn-cta-primary-white:hover, .btn-cta-primary-white:hover {
   display: inline-block;
   list-style: none;
   margin-bottom: -1px;
-  padding-left: 3%;
-  padding-right: 3%;
+  padding-left: 1.5%;
+  padding-right: 1.5%;
 }
 
 .tab-list-active {
@@ -878,6 +871,65 @@ a.btn-cta-primary-yellowwideE:hover, .btn-cta-primary-yellowwideE:hover {
 .tabs-list {
   text-align: center;
   font-weight: 300;
-  font-size: 24px;
+  font-size: 32px;
   font-family: 'Nunito','Kanit', arial, sans-serif;
+}
+
+.block-right {
+  display: inline-block;
+  text-align: right;
+  margin-left: 78%;
+}
+
+/*Agreement page*/
+#agree1 {
+  height: 2vh;
+  weight: 2vw;
+  border-radius: 50%;
+  background-color: #BFF4A6;
+  margin-left: 8vw;
+  margin-right: 0.5vw;
+  padding: auto;
+  padding: 0.8%;
+}
+
+.inlineweight {
+  display: inline-block;
+  padding: auto;
+}
+
+.ttr {
+  margin-left: 0.5%;
+  margin-right: 55vw;
+  color: black;
+  font-weight: 400;
+}
+
+/*Emailverify page*/
+.centerverify {
+  text-align: center;
+}
+
+.emailpic {
+  padding : 7vh;
+}
+
+.recheck-f {
+  font-size: 4.5vh;
+  font-weight: 300;
+  color: black;
+  margin-top: 3vh;
+}
+
+/*SuccessRegis page*/
+.centersuccess {
+  text-align: center;
+  padding: 15vh;
+}
+
+.successregis-f {
+  font-size: 5vh;
+  font-weight: 300;
+  color: black;
+  margin-top: 3vh;
 }
