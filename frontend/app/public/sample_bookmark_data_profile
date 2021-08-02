@@ -34,22 +34,6 @@
 			"pic": "assets/images/profile.jpg",
 			"desc": "My name is Worames and I'm better than Edgeworth.",
 			"tags": ["Full Stack Developer", "CEO of KU Happy Place", "PE Teacher"]
-		},
-		{
-			"name":"Edgeworth 4.00",
-			"type": "work",
-			"owner": "วรเมศ ผดุงเจริญ",
-			"pic": "assets/images/work.jpg",
-			"desc": "Edgeworth's work is as amazing as ever!",
-			"portCount": 4
-		},
-		{
-			"name":"Edgeworth 5.00",
-			"type": "work",
-			"owner": "วรเมศ ผดุงเจริญ",
-			"pic": "assets/images/work.jpg",
-			"desc": "Edgeworth's work is as amazing as ever!",
-			"portCount": 4
 		}
 	]
 }

@@ -188,6 +188,14 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 	box-shadow: 0px 4px 3px rgba(50, 50, 50, 0.75);
 }
 
+.yahaha{
+	width: 95vw;
+}
+
+.yahaha2{
+	width: 97.5vw;
+}
+
 .bookmark-margin {
 	margin-left: 20px;
 }
@@ -202,7 +210,7 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 
 .bookmark-content-profile .name {
   color: #49515a;
-  font-size: 64px;
+  font-size: 32px;
   margin-bottom: 5px;
 }
 
