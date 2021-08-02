@@ -39,21 +39,8 @@ class BookmarkTabs extends React.Component {
 						   
 						<div class="tab-content bookmark-content-scroll" id="content1"> 
 							<div class="container-fluid yahaha">
-							<header class="header round">
-									<div class="container-fluid d-flex flex-column justify-content-center not-found">
-										<div class="row">
-											<div class="col d-flex flex-column align-items-center">
-												<img class="not-found-icon" src="assets/images/outline_cancel_black_24dp 1.png" alt=""/>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col d-flex flex-column align-items-center">
-												<h1>ขออภัยด้วยแต่เราไม่พบข้อมูลการค้นหาของคุณ</h1>
-											</div>
-										</div>
-									</div>
-								</header>
-								<br></br>
+							
+
 								<div class="grid mixed-grid-container">
 
 								</div>
