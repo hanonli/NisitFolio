@@ -856,3 +856,7 @@ a.btn-cta-primary-yellowwideE:hover, .btn-cta-primary-yellowwideE:hover {
   background: #e0c652;
   border: 1px solid #e0c652;
 }
+
+.tab-list {
+  text-align: center;
+}

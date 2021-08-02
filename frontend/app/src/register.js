@@ -16,7 +16,7 @@ class Register extends React.Component {
 				<Navbarlogo />
 				<InformationHeader />
 				<div>
-                    <Tabs class=""> 
+                    <Tabs> 
                         <div label="ข้อมูลสำคัญ"> 
                             <Registab1 />
                         </div> 

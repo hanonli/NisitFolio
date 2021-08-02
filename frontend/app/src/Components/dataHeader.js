@@ -10,15 +10,8 @@ class DataHeader extends React.Component {
 						<div class="row align-items-end">
 							<div class="col">
 								<div class="topData2-content">
-									<div>
-										<h2 class="btn-select btn-cta-primary-white inline" href="#" target="_blank">ข้อมูลสำคัญ</h2>
-										<h2 class="btn-select btn-cta-primary-white inline" href="#" target="_blank">ข้อมูลเพิ่มเติม</h2>
-										<h2 class="btn-select btn-cta-primary-white inline" href="#" target="_blank">ประวัติการศึกษา</h2>
-										<h2 class="btn-select btn-cta-primary-white inline" href="#" target="_blank">ประวัติการทำงาน</h2>
-										<h2 class="btn-select btn-cta-primary-white inline" href="#" target="_blank">ใบรับรอง</h2>
-										<h2 class="btn-select btn-cta-primary-white inline" href="#" target="_blank">งานที่สนใจ</h2>
-										<h2 class="btn-select btn-cta-primary-white inline" href="#" target="_blank">ทักษะเสริม</h2>
-									</div>
+									<h1 class="name inline">ข้อมูลผู้ใช้</h1>
+									<h1></h1>
 								</div>
 							</div>
 						</div>        
