@@ -1,15 +1,20 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 
-import { AnalyticsModule } from './analytics/analytics.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { RegisterModule } from './register/register.module';
+import Account from './register/account.entity';
+import Userinfo from './register/userinfo.entity';
+
+import { AnalyticsModule } from './analytics/analytics.module';
 import { RegisterController } from './register/register.controller';
 import { RegisterService } from './register/register.service';
-import Register  from "src/entities/register.entity";
+
+import { RegisterModule } from './register/register.module';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -22,10 +27,13 @@ import Register  from "src/entities/register.entity";
       autoLoadEntities: true,
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([Register]),
+
+    RegisterModule,
     AnalyticsModule,
-    RegisterModule],
-  controllers: [AppController,RegisterController],
-  providers: [AppService,RegisterService],
+    AuthModule,
+    UsersModule,
+  ],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
