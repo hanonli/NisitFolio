@@ -325,6 +325,7 @@ function AddWorkGridEntity(data){
 
 
 function DisplayNotFound(){
+	$('#result-count').text('จำนวน 0 รายการ');
 	if(pageName == 'search')
 		$('#content'+current_tab).find(">:first-child").append(not_found_search);
 	else

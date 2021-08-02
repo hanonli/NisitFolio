@@ -27,7 +27,7 @@ class BookmarkTabs extends React.Component {
                                        <li><a class="dropdown-item" href="#">เรียงตามตัวอักษร</a></li>
                                     </ul>
 									<div class="float-end" id="result-count">
-										จำนวน 4 รายการ
+										จำนวน 0 รายการ
 									</div>
                                  </div>
 								 
