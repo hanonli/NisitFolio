@@ -13,14 +13,14 @@ class BookmarkObjectList extends React.Component {
 								<input type="file" class="sr-only" id="input" accept="image/*" name="image" hidden />
 								<div class="bookmark-content-profile">
 									<h1 class="name inline">วรเมศ ผดุงเจริญ</h1><br></br>
-									<a class="btn btn-cta-secondary btn-small round margin-right-s" href="#" target="_blank">Full Stack Developer</a>
-									<a class="btn btn-cta-secondary btn-small round margin-right-s" href="#" target="_blank">CEO of KU Happy Place</a>
-									<a class="btn btn-cta-secondary btn-small round" href="#" target="_blank">PE Teacher</a>
 								</div>
 							</div>
 							<div class="col-5 bookmark-list-column d-flex align-items-center justify-content-center">
 								<div class="bookmark-content">
-									<h2 class="bookmark-desc" >I'm an ordinary ordinary ordinary ordinary ordinary ordinary ordinary ordinary ordinary ordinary ordinary ordinary ordinary ordinary ordinary ordinary ordinary ordinary ordinary ordinary guy who wants to be a great developer. However, one day I met another guy named Fa_ and I realize that he has already achieved my dream. However, one day I met another guy named Fa_ and I realize that he has already achieved my dream.</h2> 
+									<h2 class="bookmark-desc" >I'm an ordinary ordinary guy who wants to be a great developer. However, one day I met another guy named Fa_ and I realize that he has already achieved my dream. However, one day I met another guy named Fa_ and I realize that he has already achieved my dream.</h2> 
+									<a class="btn btn-cta-secondary btn-small round margin-right-s" href="#" target="_blank">Full Stack Developer</a>
+									<a class="btn btn-cta-secondary btn-small round margin-right-s" href="#" target="_blank">CEO of KU Happy Place</a>
+									<a class="btn btn-cta-secondary btn-small round" href="#" target="_blank">PE Teacher</a>
 								</div>
 							</div>
 							<div class="col-2">

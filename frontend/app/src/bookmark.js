@@ -15,8 +15,8 @@ class Bookmark extends React.Component {
 	componentDidMount() {
 		window.addEventListener('load', this.handleLoad);
 		console.log("YEAHXXX!");
-		const script = document.createElement("link");
-		script.src = "assets/test.css";
+		const script = document.createElement("script");
+		script.src = "assets/js/bookmark.js";
 		document.body.appendChild(script);
 		
 	}

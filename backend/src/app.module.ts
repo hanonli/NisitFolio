@@ -1,28 +1,39 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { MongooseModule } from '@nestjs/mongoose';
+
+import { TypeOrmModule } from '@nestjs/typeorm';
+
+import Account from './register/account.entity';
+import Userinfo from './register/userinfo.entity';
 
 import { AnalyticsModule } from './analytics/analytics.module';
-
-import { RegisterModule } from './register/register.module';
 import { RegisterController } from './register/register.controller';
 import { RegisterService } from './register/register.service';
-import Register  from "src/entities/register.entity";
+
+import { RegisterModule } from './register/register.module';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
+    MongooseModule.forRoot(
+      'mongodb+srv://user1234:user1234@cluster0.39z7o.mongodb.net/nisitfolio'
+      ),
+      TypeOrmModule.forRoot({
       type: 'mongodb',
-      host: 'localhost',
-      database: 'nisitfolio',
-      entities: [Register],
+      url: 'mongodb+srv://user1234:user1234@cluster0.39z7o.mongodb.net/nisitfolio',
+      autoLoadEntities: true,
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([Register]),
+
+    RegisterModule,
     AnalyticsModule,
-    RegisterModule],
-  controllers: [AppController,RegisterController],
-  providers: [AppService,RegisterService],
+    AuthModule,
+    UsersModule,
+  ],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
