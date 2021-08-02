@@ -39,7 +39,7 @@ class BookmarkTabs extends React.Component {
 						   
 						<div class="tab-content bookmark-content-scroll" id="content1"> 
 							<div class="container-fluid yahaha">
-								<header class="header round">
+							<header class="header round">
 									<div class="container-fluid d-flex flex-column justify-content-center not-found">
 										<div class="row">
 											<div class="col d-flex flex-column align-items-center">
@@ -53,6 +53,14 @@ class BookmarkTabs extends React.Component {
 										</div>
 									</div>
 								</header>
+								<br></br>
+								<div class="grid mixed-grid-container">
+
+								</div>
+								
+								<div class="list mixed-list-container">
+								
+								</div>
 								
 							</div>
 						</div> 
