@@ -23,21 +23,21 @@ class Register extends React.Component {
                         <div label="ข้อมูลเพิ่มเติม"> 
                             <Registab2 />
                         </div> 
-                        <div label="ประวัติการทำงาน"> 
-                            Nothing to see here, this tab is <em>extinct</em>! 
+                        <div label="ประวัติการทำงาน">
+                            <h1>P kung</h1>
                         </div> 
                         <div label="ประวัติการศึกษา"> 
-                            Nothing to see here, this tab is <em>extinct</em>! 
+                            <h1>P kung</h1>
                         </div> 
                         <div label="ใบรับรอง"> 
-                            Nothing to see here, this tab is <em>extinct</em>! 
+                            <h1>Pluem kung</h1>
                         </div> 
                         <div label="งานที่สนใจ"> 
-                            Nothing to see here, this tab is <em>extinct</em>! 
+                            <h1>Pluem kung</h1>
                         </div>
                         <div label="ทักษะเสริม"> 
-                            Nothing to see here, this tab is <em>extinct</em>! 
-                        </div> 
+                            <h1>Rungry Jang</h1>
+                        </div>  
                     </Tabs>
                 </div>
                 <Link to="/emailverify">

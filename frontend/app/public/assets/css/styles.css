@@ -857,6 +857,9 @@ a.btn-cta-primary-yellowwideE:hover, .btn-cta-primary-yellowwideE:hover {
   border: 1px solid #e0c652;
 }
 
-.tab-list {
+.tabs-list {
   text-align: center;
+  font-weight: 300;
+  font-size: 24px;
+  font-family: 'Nunito','Kanit', arial, sans-serif;
 }

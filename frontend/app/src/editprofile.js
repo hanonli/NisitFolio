@@ -5,6 +5,7 @@ import Navbar from './Components/navbar';
 import DataHeader from './Components/dataHeader';
 import reportWebVitals from './reportWebVitals';
 import Tabs from "./Components/Tabs"; 
+import { Link } from "react-router-dom";
 
 /* THIS FILE IS FOR DATA-EDITING TEST, CAN'T LINK TO OTHER DATA PAGES*/
 class Editprofile extends React.Component {
@@ -30,24 +31,22 @@ class Editprofile extends React.Component {
 						</div>
 					</div> 
 					<div label="ข้อมูลเพิ่มเติม"> 
-						After 'while, <em>Crocodile</em>! 
+						<h1>Rungry Jang</h1>
 					</div> 
 					<div label="ประวัติการทำงาน">
-						<div class="content-form-block">
-							<h1>Nothing to see here</h1>
-						</div>
+						<h1>P kung</h1>
 					</div> 
 					<div label="ประวัติการศึกษา"> 
-						Nothing to see here, this tab is <em>extinct</em>! 
+						<h1>P kung</h1>
 					</div> 
 					<div label="ใบรับรอง"> 
-						Nothing to see here, this tab is <em>extinct</em>! 
+						<h1>Pluem kung</h1>
 					</div> 
 					<div label="งานที่สนใจ"> 
-						Nothing to see here, this tab is <em>extinct</em>! 
+						<h1>Pluem kung</h1>
 					</div>
 					<div label="ทักษะเสริม"> 
-						Nothing to see here, this tab is <em>extinct</em>! 
+						<h1>Rungry Jang</h1>
 					</div> 
 				</Tabs> 
 				<Link to="/home">
