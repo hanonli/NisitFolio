@@ -336,19 +336,19 @@ function DisplayNotFound(){
 function GetBookmarkData(request){
 	var key = pageName
 	if(key == 'search'){
-		key += "_"+Cookies.get('search-entry');
+		key += "_"+Cookies.get('search-entry').toLowerCase();
  	}else{
 		key += "_"+Cookies.get('username');
 	}
 	
-	console.log("Send request to: "+"http://localhost:3000/"+"sample_"+key+"_"+request);
+	console.log("https://nisitfolio.s3.ap-southeast-1.amazonaws.com/"+"sample_"+key+"_"+request);
 
-	fetch("http://localhost:3000/"+"sample_"+key+"_"+request,{
+	fetch("https://nisitfolio.s3.ap-southeast-1.amazonaws.com/"+"sample_"+key+"_"+request,{
         method: "GET",
         headers: {
-			//"Access-Control-Allow-Origin": "*",
-			//"Access-Control-Allow-Methods": "*",
-			//"Access-Control-Allow-Credentials": true,
+			"Access-Control-Allow-Origin": "*",
+			"Access-Control-Allow-Methods": "*",
+			"Access-Control-Allow-Credentials": true,
 			"Content-Type": "application/json"},
     })
 		.then(response => response.json())
