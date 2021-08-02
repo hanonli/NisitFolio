@@ -8,7 +8,7 @@ var profile_grid = '<header class="header round">\
 								<input type="file" class="sr-only" id="input" accept="image/*" name="image" hidden />\
 								<div class="bookmark-content">\
 									<h1 class="name inline">{name}</h1>\
-									<img class="obj-icon" src="assets/images/bin.png" alt="" width="35" height="35"/>\
+									<img class="obj-icon" src="assets/images/bin.png" type="button" alt="" width="35" height="35"/>\
 									<div></div>\
 									<a class="btn btn-cta-secondary btn-small round margin-right-s" href="#" target="_blank">{tag1}</a>\
 									<a class="btn btn-cta-secondary btn-small round margin-right-s" href="#" target="_blank">{tag2}</a>\
@@ -40,7 +40,7 @@ var profile_list = '<div class="col-12">\
 									</div>\
 									<div class="col-2">\
 										<div class="bookmark-content">\
-											<img class="obj-icon" src="assets/images/bin.png" alt="" width="35" height="35"/>\
+											<img class="obj-icon" src="assets/images/bin.png" type="button" alt="" width="35" height="35"/>\
 											<br></br>\
 										</div>\
 									</div>\
@@ -62,7 +62,7 @@ var work_grid = '<header class="header round">\
 							</div>\
 							<div class="col-2">\
 								<div class="bookmark-content">\
-									<img class="obj-icon" src="assets/images/bin.png" alt="" width="35" height="35"/>\
+									<img class="obj-icon" src="assets/images/bin.png" type="button" alt="" width="35" height="35"/>\
 								</div>\
 							</div>\
 						</div>\
@@ -83,7 +83,7 @@ var work_list = '<div class="col-12">\
 							</div>\
 							<div class="col-2">\
 								<div class="bookmark-content">\
-									<img class="obj-icon" src="assets/images/bin.png" alt="" width="35" height="35"/>\
+									<img class="obj-icon" src="assets/images/bin.png" type="button" alt="" width="35" height="35"/>\
 								</div>\
 							</div>\
 						</div>\
