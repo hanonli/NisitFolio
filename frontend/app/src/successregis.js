@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Navbar from './Components/navbar';
+import Navbarlogo from './Components/navbarlogo';
 import reportWebVitals from './reportWebVitals';
 import { Link } from "react-router-dom";
 
@@ -10,7 +10,7 @@ class Successregis extends React.Component {
 	render (){
 		return (
 			<div className="Successregis">
-				<Navbar />
+				<Navbarlogo />
 				<div className="DataHeader">
 					<header class="header-white">
 						<div class="container">     
@@ -24,14 +24,10 @@ class Successregis extends React.Component {
 						</div>
 					</header>
 				</div>
-                <div class="full-block ">
-                    <h2 class="desc-b" contenteditable="true">Not Avaliable,Need text permission here</h2>
-                </div>
-				<Link to="/home">
-					<div class="col block-right">
-						<a class="btn btn-cta-primary-yellow round profile-button" href="#" target="_blank">ต่อไป</a>
-					</div>
-				</Link>
+				<div class="centersuccess">
+					<img class="img-fluid successregispic" data-bs-placement="top" title="ยืนยันตัวตนสำเร็จแล้ว" src="assets/images/check-mark.png" alt="" width="150" height="150"/>	
+					<h1 class="successregis-f">ยืนยันตัวตนสำเร็จ</h1>
+				</div>
 			</div>
 		);
 	}

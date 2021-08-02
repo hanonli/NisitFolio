@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Navbar from './Components/navbar';
+import Navbarlogo from './Components/navbarlogo';
 import InformationHeader from './Components/informationHeader';
 import reportWebVitals from './reportWebVitals';
 import { Link } from "react-router-dom";
@@ -13,36 +13,36 @@ class Register extends React.Component {
 	render (){
 		return (
 			<div className="Register">
-				<Navbar />
+				<Navbarlogo />
 				<InformationHeader />
 				<div>
-                    <Tabs class=""> 
+                    <Tabs> 
                         <div label="ข้อมูลสำคัญ"> 
                             <Registab1 />
                         </div> 
                         <div label="ข้อมูลเพิ่มเติม"> 
                             <Registab2 />
                         </div> 
-                        <div label="ประวัติการทำงาน"> 
-                            Nothing to see here, this tab is <em>extinct</em>! 
+                        <div label="ประวัติการทำงาน">
+                            <h1>P kung</h1>
                         </div> 
                         <div label="ประวัติการศึกษา"> 
-                            Nothing to see here, this tab is <em>extinct</em>! 
+                            <h1>P kung</h1>
                         </div> 
                         <div label="ใบรับรอง"> 
-                            Nothing to see here, this tab is <em>extinct</em>! 
+                            <h1>Pluem kung</h1>
                         </div> 
                         <div label="งานที่สนใจ"> 
-                            Nothing to see here, this tab is <em>extinct</em>! 
+                            <h1>Pluem kung</h1>
                         </div>
                         <div label="ทักษะเสริม"> 
-                            Nothing to see here, this tab is <em>extinct</em>! 
-                        </div> 
+                            <h1>Rungry Jang</h1>
+                        </div>  
                     </Tabs>
                 </div>
                 <Link to="/emailverify">
                     <div class="col block-right">
-                        <a class="btn btn-cta-primary-yellow round profile-button" href="#" target="_blank">ยืนยันตัวตน</a>
+                        <a class="btn btn-cta-primary-yellowwide round profile-button" href="#" target="_blank">ยืนยันตัวตน</a>
                     </div>
                 </Link>
 			</div>
