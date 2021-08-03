@@ -46,3 +46,24 @@ export const SkillSchema = new mongoose.Schema({
 export interface Skill {
   SkillName: string;
 }
+
+//--------------------- Account --------------------------
+export const AccountSchema = new mongoose.Schema({
+  Firstname: String,
+  Lastname: String,
+  Email: String,
+  Password: String,
+  Gender: String,
+  DateofBirth: String,
+  ProfilePic: String,
+}, { collection: 'account'})
+
+export interface Account extends Document {
+  Firstname: string;
+  Lastname: string;
+  Email: string;
+  Password: string;
+  Gender: string;
+  DateofBirth: string;
+  ProfilePic: string;
+}
