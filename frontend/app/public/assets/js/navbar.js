@@ -24,3 +24,24 @@ $(function(){
    });
 
 });
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+  
+  $('.tooltips-item').on('click', function () {
+    $(this).tooltip('hide');
+	console.log("HIDE!");
+	})
+	
+  $('.tooltips-item').on('mouseover', function () {
+    $(this).tooltip('show');
+	console.log("SHOW!");
+	})
+
+})
+
+//Enable tooltips everywhere
+		var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+		var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+		  return new bootstrap.Tooltip(tooltipTriggerEl)
+		})

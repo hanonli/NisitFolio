@@ -73,7 +73,7 @@ class Navbar extends React.Component {
 								
 								<div class="collapse navbar-collapse" id="navbarSupportedContent">
 								  <ul class="navbar-nav ms-auto">
-									<li class="nav-item shadow-box" data-bs-toggle="tooltip" data-bs-placement="bottom" title="บุ๊คมาร์ค">
+									<li class="nav-item tooltips-item shadow-box" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Bookmark">
 									  <Link to="/bookmark">
 										  <a class="nav-link" aria-current="page">
 											<span class="lg-view">
@@ -85,7 +85,7 @@ class Navbar extends React.Component {
 										  </a>
 									  </Link>
 									</li>
-									<li class="nav-item shadow-box" data-bs-toggle="tooltip" data-bs-placement="bottom" title="แฟ้มสะสมงาน">
+									<li class="nav-item tooltips-item shadow-box" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Portfolio">
 									  <Link to="/portfolio">
 										  <a class="nav-link">
 											<span class="lg-view">
@@ -97,7 +97,7 @@ class Navbar extends React.Component {
 										  </a>
 									  </Link>
 									</li>
-									<li class="nav-item shadow-box" data-bs-toggle="tooltip" data-bs-placement="bottom" title="เรซูเม่">
+									<li class="nav-item tooltips-item shadow-box" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Myresume">
 									  <Link to="/myresume">
 										  <a class="nav-link">
 											<span class="lg-view">
@@ -109,7 +109,7 @@ class Navbar extends React.Component {
 										  </a>
 									  </Link>
 									</li>
-									<li class="nav-item shadow-box" data-bs-toggle="tooltip" data-bs-placement="bottom" title="การวิเคราะห์ทางสถิติ">
+									<li class="nav-item tooltips-item shadow-box" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Analytics">
 									  <Link to="/analytic">
 										  <a class="nav-link">
 											<span class="lg-view">
@@ -121,7 +121,7 @@ class Navbar extends React.Component {
 										  </a>
 									  </Link>
 									</li>
-									<li class="nav-item shadow-box" data-bs-toggle="tooltip" data-bs-placement="bottom" title="ออก">
+									<li class="nav-item tooltips-item shadow-box" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Logout">
 									  <Link to="/landing">
 										  <a class="nav-link">
 											<span class="lg-view">

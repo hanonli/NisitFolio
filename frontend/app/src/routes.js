@@ -22,7 +22,7 @@ const Routes = () => {
       <Route exact path='/portfolio' component={Portfolio}></Route>
       <Route exact path='/analytic' component={Analytic}></Route>
       <Route exact path='/bookmark' component={Bookmark}></Route>
-	   <Route exact path='/search' component={Search}></Route>
+	  <Route exact path='/search' component={Search}></Route>
       <Route exact path='/landing' component={Landing}></Route>
       <Route exact path='/editprofile' component={Editprofile}></Route>
       <Route exact path='/agreement' component={Agreement}></Route>

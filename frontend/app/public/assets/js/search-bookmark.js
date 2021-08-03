@@ -10,7 +10,7 @@ var profile_grid = '<header class="header round">\
 								<input type="file" class="sr-only" id="input" accept="image/*" name="image" hidden />\
 								<div class="bookmark-content">\
 									<h1 class="name inline">{name}</h1>\
-									<img class="obj-icon" src="{icon-type}" type="button" alt="" width="35" height="35"/>\
+									<img class="obj-icon tooltips-item" src="{icon-type}" type="button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{tooltip}" alt="" width="35" height="35"/>\
 									<div></div>\
 									<a class="btn btn-cta-secondary btn-small round margin-right-s" href="#" target="_blank">{tag1}</a>\
 									<a class="btn btn-cta-secondary btn-small round margin-right-s" href="#" target="_blank">{tag2}</a>\
@@ -42,7 +42,7 @@ var profile_list = '<div class="col-12">\
 									</div>\
 									<div class="col-2">\
 										<div class="bookmark-content">\
-											<img class="obj-icon" src="{icon-type}" type="button" alt="" width="35" height="35"/>\
+											<img class="obj-icon tooltips-item" src="{icon-type}" type="button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{tooltip}" alt="" width="35" height="35"/>\
 											<br></br>\
 										</div>\
 									</div>\
@@ -64,7 +64,7 @@ var work_grid = '<header class="header round">\
 							</div>\
 							<div class="col-2">\
 								<div class="bookmark-content">\
-									<img class="obj-icon" src="{icon-type}" type="button" alt="" width="35" height="35"/>\
+									<img class="obj-icon tooltips-item" src="{icon-type}" type="button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{tooltip}" alt="" width="35" height="35"/>\
 								</div>\
 							</div>\
 						</div>\
@@ -85,7 +85,7 @@ var work_list = '<div class="col-12">\
 							</div>\
 							<div class="col-2">\
 								<div class="bookmark-content">\
-									<img class="obj-icon" src="{icon-type}" type="button" alt="" width="35" height="35"/>\
+									<img class="obj-icon tooltips-item" src="{icon-type}" type="button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{tooltip}" alt="" width="35" height="35"/>\
 								</div>\
 							</div>\
 						</div>\
@@ -149,10 +149,10 @@ function ResetData(){
 
 function formatIcon(data,dtype) {
   if(pageName == 'search'){
-		if(!data.bookmark) dtype = dtype.replace("{icon-type}","assets/images/bookmark_1.png");
-		else dtype = dtype.replace("{icon-type}","assets/images/bookmark_2.png");
+		if(!data.bookmark) dtype = dtype.replace("{icon-type}","assets/images/bookmark_1.png").replace("{tooltip}","บันทึก");
+		else dtype = dtype.replace("{icon-type}","assets/images/bookmark_2.png").replace("{tooltip}","ยกเลิกการบันทึก");
 	}else{
-		dtype = dtype.replace("{icon-type}","assets/images/bin.png");
+		dtype = dtype.replace("{icon-type}","assets/images/bin.png").replace("{tooltip}","ลบ");;
 	}
 	return dtype;
 }
@@ -323,13 +323,20 @@ function AddWorkGridEntity(data){
 	work_count += 1;
 }
 
-
 function DisplayNotFound(){
 	$('#result-count').text('จำนวน 0 รายการ');
 	if(pageName == 'search')
 		$('#content'+current_tab).find(">:first-child").append(not_found_search);
 	else
 		$('#content'+current_tab).find(">:first-child").append(not_found_bookmark);
+}
+
+function ReinitializeTooltips(){
+	console.log("ReinitializeTooltips!");
+	var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+		var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+		  return new bootstrap.Tooltip(tooltipTriggerEl)
+		})
 }
 
 /*Load data from backend*/
@@ -403,6 +410,7 @@ function GetBookmarkData(request){
 			  ResetData();
 			  DisplayNotFound();
 			});
+		setTimeout(function() { ReinitializeTooltips(); }, 500);
 }
 
 GetBookmarkData("data");
