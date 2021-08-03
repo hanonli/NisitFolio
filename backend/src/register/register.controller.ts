@@ -1,5 +1,6 @@
-import { Controller, Get, Post, Body, HttpException, HttpStatus, Param, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, HttpException, HttpStatus, Param, UseGuards, UploadedFile } from '@nestjs/common';
 import { ObjectId } from 'mongodb';
+import { Express } from 'express'
 
 import Account from './account.entity';
 import Userinfo from './userinfo.entity';
@@ -11,6 +12,8 @@ import { CreateAccountDto } from './dto/create-account.dto';
 import { CreateUserinfoDto } from './dto/create-userinfo.dto';
 import { CreateDto } from './dto/create.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { UseInterceptors } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('register')
 export class RegisterController {
@@ -38,5 +41,11 @@ export class RegisterController {
                      @Body() createUserinfoDto: CreateUserinfoDto) {
     createUserinfoDto.accountD = accountD;
     return this.registerService.createReview(createUserinfoDto);
+  }
+
+  @Post('upload')
+  @UseInterceptors(FileInterceptor('file'))
+  uploadFile(@UploadedFile() file: Express.Multer.File) {
+    console.log(file);
   }
 }
