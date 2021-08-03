@@ -108,7 +108,7 @@ var work_grid = '<header class="header round">\
 							<div class="col-8">\
 								<div class="bookmark-content">\
 									<h1 class="name">{name}</h1>\
-									<h2 class="bookmark-work-desc" >{desc}</h2>\
+									<h2 class="bookmark-work-desc" >Portfolio - {desc} รูปภาพ</h2>\
 									<h2 class="bookmark-work-desc" >ผลงานของ {owner}</h2>\
 								</div>\
 							</div>\
@@ -263,7 +263,7 @@ function AddMixedGridEntity(data){
 		else
 			dtype = profile_grid_no_tag.replace("{name}", data.name).replace("{img}", data.pic);
 	}else{
-		dtype = work_grid.replace("{name}", data.name).replace("{img}", data.pic).replace("{desc}", valid_desc).replace("{owner}", data.owner);
+		dtype = work_grid.replace("{name}", data.name).replace("{img}", data.pic).replace("{desc}", data.port).replace("{owner}", data.owner);
 	}
 	
 	if(row_filled || (index == max)){// add 2 data as new row
@@ -281,8 +281,7 @@ function AddMixedGridEntity(data){
 					else
 						ttype = profile_grid_no_tag.replace("{name}", temp[i].name).replace("{img}", temp[i].pic);
 				}else{
-					var valid_desc_t = FormatEllipsis('desc-grid',temp[i].desc);
-					ttype = work_grid.replace("{name}", temp[i].name).replace("{img}", temp[i].pic).replace("{desc}", valid_desc_t).replace("{owner}", data.owner);
+					ttype = work_grid.replace("{name}", temp[i].name).replace("{img}", temp[i].pic).replace("{desc}", data.port).replace("{owner}", data.owner);
 				}
 				ttype = FormatIcon(temp[i],ttype);
 				raw_html += '<div class="col-md-'+12/max_col+'">' + ttype + '</div>';
@@ -404,13 +403,12 @@ function AddWorkGridEntity(data){
 			raw_html += '<div class="row">'; //first row start
 		if(row_filled){
 			for (let i = 0; i < temp.length; i++) {
-				var valid_desc_t = FormatEllipsis('desc-grid',temp[i].desc);
-				var ttype = work_grid.replace("{name}", temp[i].name).replace("{img}", temp[i].pic).replace("{desc}", valid_desc_t).replace("{owner}", temp[i].owner);
+				var ttype = work_grid.replace("{name}", temp[i].name).replace("{img}", temp[i].pic).replace("{desc}", temp[i].port).replace("{owner}", temp[i].owner);
 				ttype = FormatIcon(temp[i],ttype);
 				raw_html += '<div class="col-md-6">' + ttype +'</div>';
 			}
 		}
-		var dtype = work_grid.replace("{name}", data.name).replace("{img}", data.pic).replace("{desc}", valid_desc).replace("{owner}", data.owner);
+		var dtype = work_grid.replace("{name}", data.name).replace("{img}", data.pic).replace("{desc}", data.port).replace("{owner}", data.owner);
 		dtype = FormatIcon(data,dtype);
 		raw_html += '<div class="col-md-6">' + dtype + '</div>';
 		

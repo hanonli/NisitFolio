@@ -6,7 +6,8 @@
 			"owner": "Sirapop Chayajet",
 			"pic": "assets/images/work.jpg",
 			"desc": "Edgeworth's work is as amazing as ever! He flawlessly scored 100 with his awesome work that would took us 5 years to accomplish!",
-			"bookmark": true
+			"bookmark": true,
+			"port": 4
 		},
 		{
 			"name":"Edgeworth A+",
@@ -14,7 +15,8 @@
 			"owner": "วรเมศ ผดุงเจริญ",
 			"pic": "assets/images/work.jpg",
 			"desc": "Edgeworth somehow got A+ grade on Software Engineering subject?!",
-			"bookmark": false
+			"bookmark": false,
+			"port": 4
 		}
 	]
 }
