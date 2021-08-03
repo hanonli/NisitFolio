@@ -49,4 +49,10 @@ export class RegisterService {
   async createReview(createReviewDto:  CreateUserinfoDto) {
     return this.userinfoRepository.save(createReviewDto);
   }
+  async createOrUpdate(album: Account): Promise<Account> {
+    return await this.accountRepository.save(album);
+  }
+  async findOne(Email: string): Promise<Account> {
+    return await this.accountRepository.findOne({ Email: Email });
+  }
 }
