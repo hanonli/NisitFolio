@@ -5,17 +5,19 @@ console.log('Currently login as: '+Cookies.get('username'));
 var profile_grid = '<header class="header round">\
 					<div class="container-fluid bookmark-margin">\
 						<div class="row">\
-							<div class="col">\
-								<img class="bookmark-profile-image img-fluid float-start rounded-circle" type="button" id="avatar" src="{img}" alt="profile image" />\
-								<input type="file" class="sr-only" id="input" accept="image/*" name="image" hidden />\
+							<div class="col-2">\
+								<img class="bookmark-profile-image img-fluid float-start rounded-circle" type="button" id="avatar" src="{img}" alt="profile image" width="100" height="100" />\
+							</div>\
+							<div class="col-9">\
 								<div class="bookmark-content">\
-									<h1 class="name inline">{name}</h1>\
-									<img class="obj-icon tooltips-item" src="{icon-type}" type="button" data-bs-toggle="tooltip" toggle-type="dynamic" data-bs-placement="bottom" title="{tooltip}" alt="" width="35" height="35"/>\
-									<div></div>\
-									<a class="btn btn-cta-secondary btn-small round margin-right-s" href="#" target="_blank">{tag1}</a>\
-									<a class="btn btn-cta-secondary btn-small round margin-right-s" href="#" target="_blank">{tag2}</a>\
-									<a class="btn btn-cta-secondary btn-small round" href="#" target="_blank">{tag3}</a>\
+									<h1 class="name">{name}</h1>\<div></div>\
+									<a class="btn btn-cta-secondary btn-small round" target="_blank">{tag1}</a>\
+									<a class="btn btn-cta-secondary btn-small round" target="_blank">{tag2}</a>\
+									<a class="btn btn-cta-secondary btn-small round" target="_blank">{tag3}</a>\
 								</div>\
+							</div>\
+							<div class="col-1">\
+								<img class="obj-icon tooltips-item" src="{icon-type}" type="button" data-bs-toggle="tooltip" toggle-type="dynamic" data-bs-placement="bottom" title="{tooltip}" alt="" width="30" height="30"/>\
 							</div>\
 						</div>\
 					</div>\
@@ -25,24 +27,25 @@ var profile_list = '<div class="col-12">\
 							<header class="header round">\
 							<div class="container-fluid bookmark-margin">\
 								<div class="row">\
-									<div class="col-5">\
-										<img class="bookmark-profile-image img-fluid float-start rounded-circle" type="button" id="avatar" src="{img}" alt="profile image" />\
-										<input type="file" class="sr-only" id="input" accept="image/*" name="image" hidden />\
+									<div class="col-1">\
+										<img class="bookmark-profile-image img-fluid float-start rounded-circle" type="button" id="avatar" src="{img}" alt="profile image" width="100" height="100" />\
+									</div>\
+									<div class="col-5 bk-pad">\
 										<div class="bookmark-content">\
-											<h1 class="name inline">{name}</h1><div></div>\
-											<a class="btn btn-cta-secondary btn-small round margin-right-s" href="#" target="_blank">{tag1}</a>\
-											<a class="btn btn-cta-secondary btn-small round margin-right-s" href="#" target="_blank">{tag2}</a>\
-											<a class="btn btn-cta-secondary btn-small round" href="#" target="_blank">{tag3}</a>\
+											<h1 class="name">{name}</h1>\<div></div>\
+											<a class="btn btn-cta-secondary btn-small round" target="_blank">{tag1}</a>\
+											<a class="btn btn-cta-secondary btn-small round" target="_blank">{tag2}</a>\
+											<a class="btn btn-cta-secondary btn-small round" target="_blank">{tag3}</a>\
 										</div>\
 									</div>\
-									<div class="col-5 bookmark-list-column d-flex align-items-center justify-content-center">\
+									<div class="col-4 bookmark-list-column d-flex align-items-center justify-content-center">\
 										<div class="bookmark-content">\
-											<h2 class="bookmark-desc" >I am an ordinary ordinary guy who wants to be a great developer. However, one day I met another guy named Fa_ and I realize that he has already achieved my dream. However, one day I met another guy named Fa_ and I realize that he has already achieved my dream.</h2>\
+											<h2 class="bookmark-desc" >{desc}</h2>\
 										</div>\
 									</div>\
 									<div class="col-2">\
 										<div class="bookmark-content">\
-											<img class="obj-icon tooltips-item" src="{icon-type}" type="button" data-bs-toggle="tooltip" toggle-type="dynamic" data-bs-placement="bottom" title="{tooltip}" alt="" width="35" height="35"/>\
+											<img class="obj-icon tooltips-item" src="{icon-type}" type="button" data-bs-toggle="tooltip" toggle-type="dynamic" data-bs-placement="bottom" title="{tooltip}" alt="" width="30" height="30"/>\
 											<br></br>\
 										</div>\
 									</div>\
@@ -54,17 +57,19 @@ var profile_list = '<div class="col-12">\
 var work_grid = '<header class="header round">\
 					<div class="container-fluid bookmark-margin">\
 						<div class="row">\
-							<div class="col-10">\
-								<img class="bookmark-profile-image float-start round" type="button" id="avatar" src="{img}" alt="profile image" width="225" height="150"/>\
+							<div class="col-3">\
+								<img class="bookmark-profile-image img-fluid float-start round" type="button" id="avatar" src="{img}" alt="profile image" width="150" height="100"/>\
+							</div>\
+							<div class="col-8">\
 								<div class="bookmark-content">\
-									<h1 class="name inline">{name}</h1>\
-									<h2 class="bookmark-work-desc" >Portfolio - 4 รูปภาพ</h2>\
-									<h2 class="bookmark-work-desc" >ผลงานของ วรเมศ ผดุงเจริญ</h2>\
+									<h1 class="name">{name}</h1>\
+									<h2 class="bookmark-work-desc" >{desc}</h2>\
+									<h2 class="bookmark-work-desc" >ผลงานของ {owner}</h2>\
 								</div>\
 							</div>\
-							<div class="col-2">\
+							<div class="col-1">\
 								<div class="bookmark-content">\
-									<img class="obj-icon tooltips-item" src="{icon-type}" type="button" data-bs-toggle="tooltip" toggle-type="dynamic" data-bs-placement="bottom" title="{tooltip}" alt="" width="35" height="35"/>\
+									<img class="obj-icon tooltips-item" src="{icon-type}" type="button" data-bs-toggle="tooltip" toggle-type="dynamic" data-bs-placement="bottom" title="{tooltip}" alt="" width="30" height="30"/>\
 								</div>\
 							</div>\
 						</div>\
@@ -76,11 +81,11 @@ var work_list = '<div class="col-12">\
 					<div class="container-fluid bookmark-margin">\
 						<div class="row">\
 							<div class="col-10">\
-								<img class="bookmark-profile-image float-start round" type="button" id="avatar" src="{img}" alt="profile image" width="225" height="150"/>\
+								<img class="bookmark-profile-image float-start round" type="button" id="avatar" src="{img}" alt="profile image" width="150" height="100"/>\
 								<div class="bookmark-content">\
-									<h1 class="name inline">{name}</h1>\
-									<h2 class="bookmark-work-desc" >Portfolio - 4 รูปภาพ</h2>\
-									<h2 class="bookmark-work-desc" >ผลงานของ วรเมศ ผดุงเจริญ</h2>\
+									<h1 class="name">{name}</h1>\
+									<h2 class="bookmark-work-desc" >{desc}</h2>\
+									<h2 class="bookmark-work-desc" >ผลงานของ {owner}</h2>\
 								</div>\
 							</div>\
 							<div class="col-2">\
@@ -128,7 +133,10 @@ var work_count=0;
 var mixed_count=0;
 var index=0;
 var max=0;
-var temp=null;
+var max_col=2;
+var max_grid_desc_char_count=50;
+var max_list_desc_char_count=130;
+var temp=[];
 var raw_html = "";
 var view_type = "grid";
 var current_tab = 1;
@@ -139,7 +147,7 @@ function ResetData(){
 	work_count=0;
 	mixed_count=0;
 	index=0;
-	temp=null;
+	temp = [];
 	raw_html = "";
 	$('.mixed-grid-container').empty(); $('.mixed-list-container').empty();
 	$('.profile-grid-container').empty(); $('.profile-list-container').empty();
@@ -147,7 +155,7 @@ function ResetData(){
 	$('.remove').remove();
 }
 
-function formatIcon(data,dtype) {
+function FormatIcon(data,dtype) {
   if(pageName == 'search'){
 		if(!data.bookmark) dtype = dtype.replace("{icon-type}","assets/images/bookmark_1.png").replace("{tooltip}","บันทึก");
 		else dtype = dtype.replace("{icon-type}","assets/images/bookmark_2.png").replace("{tooltip}","ยกเลิกการบันทึก");
@@ -155,6 +163,15 @@ function formatIcon(data,dtype) {
 		dtype = dtype.replace("{icon-type}","assets/images/bin.png").replace("{tooltip}","ลบ");;
 	}
 	return dtype;
+}
+
+function FormatEllipsis(type,text){
+	if(type == 'desc-list'){
+		if(text.length > max_list_desc_char_count) text = text.substring(0,max_list_desc_char_count)+'...';
+	}else if(type == 'desc-grid'){
+		if(text.length > max_grid_desc_char_count) text = text.substring(0,max_grid_desc_char_count)+'...';
+	}
+	return text;
 }
 
 function AddMixedListEntity(data){
@@ -165,12 +182,14 @@ function AddMixedListEntity(data){
 			raw_html += '<div class="row">'; //first row start
 		
 	var dtype = "";
+	var valid_desc = FormatEllipsis('desc-list',data.desc);
+	
 	if(data.type == "profile") {
-		dtype = profile_list.replace("{name}", data.name).replace("{img}", data.pic).replace("{tag1}", data.tags[0]).replace("{tag2}", data.tags[1]).replace("{tag3}", data.tags[2]);
+		dtype = profile_list.replace("{name}", data.name).replace("{img}", data.pic).replace("{desc}", valid_desc).replace("{tag1}", data.tags[0]).replace("{tag2}", data.tags[1]).replace("{tag3}", data.tags[2]);
 	}else{
-		dtype = work_list.replace("{name}", data.name).replace("{img}", data.pic);
+		dtype = work_list.replace("{name}", data.name).replace("{img}", data.pic).replace("{desc}", valid_desc).replace("{owner}", data.owner);
 	}
-	dtype = formatIcon(data,dtype);
+	dtype = FormatIcon(data,dtype);
 	
 	raw_html += dtype;
 	raw_html += '</div>'; // row close
@@ -181,46 +200,49 @@ function AddMixedListEntity(data){
 
 function AddMixedGridEntity(data){
 	console.log(data.tags);
-	var even = true;
+	var row_filled = true;
 	
-	if(temp == null){ // store new data
-		temp = data;
-		even = false;
+	if(temp.length < max_col-1){ // store new data
+		temp.push(data);
+		row_filled = false;
 	}
-	
+	var valid_desc = FormatEllipsis('desc-grid',data.desc);
 	var dtype = "";
 	
 	if(data.type == "profile") {
 		dtype = profile_grid.replace("{name}", data.name).replace("{img}", data.pic).replace("{tag1}", data.tags[0]).replace("{tag2}", data.tags[1]).replace("{tag3}", data.tags[2]);
 	}else{
-		dtype = work_grid.replace("{name}", data.name).replace("{img}", data.pic);
+		dtype = work_grid.replace("{name}", data.name).replace("{img}", data.pic).replace("{desc}", valid_desc).replace("{owner}", data.owner);
 	}
 	
-	if(even || (index == max)){// add 2 data as new row
+	if(row_filled || (index == max)){// add 2 data as new row
 		console.log("add new GRID: "+index+" : "+data.name + " max: " + max);
 		raw_html = "";
-		if(mixed_count > 1) 
+		if(mixed_count > max_col-1) 
 			raw_html += '<div class="row bookmark-row-top-buffer">'; //row start
 		else
 			raw_html += '<div class="row">'; //first row start
-		if(even){
-			if(temp.type == "profile") {
-				ttype = profile_grid.replace("{name}", temp.name).replace("{img}", temp.pic).replace("{tag1}", temp.tags[0]).replace("{tag2}", temp.tags[1]).replace("{tag3}", temp.tags[2]);
-			}else{
-				ttype = work_grid.replace("{name}", temp.name).replace("{img}", temp.pic);
+		if(row_filled){
+			for (let i = 0; i < temp.length; i++) {
+				if(temp[i].type == "profile") {
+					ttype = profile_grid.replace("{name}", temp[i].name).replace("{img}", temp[i].pic).replace("{tag1}", temp[i].tags[0]).replace("{tag2}", temp[i].tags[1]).replace("{tag3}", temp[i].tags[2]);
+				}else{
+					var valid_desc_t = FormatEllipsis('desc-grid',temp[i].desc);
+					ttype = work_grid.replace("{name}", temp[i].name).replace("{img}", temp[i].pic).replace("{desc}", valid_desc_t).replace("{owner}", data.owner);
+				}
+				ttype = FormatIcon(temp[i],ttype);
+				raw_html += '<div class="col-md-'+12/max_col+'">' + ttype + '</div>';
 			}
-			ttype = formatIcon(temp,ttype);
-			raw_html += '<div class="col-md-6">' + ttype + '</div>';
 		}
 		
-		dtype = formatIcon(data,dtype);
+		dtype = FormatIcon(data,dtype);
 		
-		raw_html += '<div class="col-md-6">' + dtype + '</div>';
+		raw_html += '<div class="col-md-'+12/max_col+'">' + dtype + '</div>';
 		
 		raw_html += '</div>'; // row close
 		
 		$('.mixed-grid-container').append(raw_html); 
-		temp = null;
+		temp = [];
 		raw_html = "";
 	}
 	mixed_count += 1;
@@ -232,8 +254,9 @@ function AddProfileListEntity(data){
 			raw_html += '<div class="row bookmark-row-top-buffer">'; //row start
 		else
 			raw_html += '<div class="row">'; //first row start
-	var dtype = profile_list.replace("{name}", data.name).replace("{img}", data.pic).replace("{tag1}", data.tags[0]).replace("{tag2}", data.tags[1]).replace("{tag3}", data.tags[2]);
-	dtype = formatIcon(data,dtype);
+	var valid_desc = FormatEllipsis('desc-list',data.desc);
+	var dtype = profile_list.replace("{name}", data.name).replace("{img}", data.pic).replace("{desc}", valid_desc).replace("{tag1}", data.tags[0]).replace("{tag2}", data.tags[1]).replace("{tag3}", data.tags[2]);
+	dtype = FormatIcon(data,dtype);
 	raw_html += dtype;
 	raw_html += '</div>'; // row close
 	$('.profile-list-container').append(raw_html);
@@ -243,33 +266,37 @@ function AddProfileListEntity(data){
 
 function AddProfileGridEntity(data){
 	console.log(data.tags);
-	var even = true;
+	var row_filled = true;
 	
-	if(temp == null){ // store new data
-		temp = data;
-		even = false;
+	if(temp.length < max_col-1){ // store new data
+		temp.push(data);
+		row_filled = false;
 	}
 	
-	if(even || (index == max)){// add 2 data as new row
+	var valid_desc = FormatEllipsis('desc-grid',data.desc);
+	
+	if(row_filled || (index == max)){// add 2 data as new row
 		console.log("add new GRID: "+index+" : "+data.name + " max: " + max);
 		raw_html = "";
 		if(profile_count > 1) 
 			raw_html += '<div class="row bookmark-row-top-buffer">'; //row start
 		else
 			raw_html += '<div class="row">'; //first row start
-		if(even){
-			var ttype = profile_grid.replace("{name}", temp.name).replace("{img}", temp.pic).replace("{tag1}", temp.tags[0]).replace("{tag2}", temp.tags[1]).replace("{tag3}", temp.tags[2]);
-			ttype = formatIcon(temp,ttype);
-			raw_html += '<div class="col-md-6">' + ttype + '</div>';
+		if(row_filled){
+			for (let i = 0; i < temp.length; i++) {
+				var ttype = profile_grid.replace("{name}", temp[i].name).replace("{img}", temp[i].pic).replace("{tag1}", temp[i].tags[0]).replace("{tag2}", temp[i].tags[1]).replace("{tag3}", temp[i].tags[2]);
+				ttype = FormatIcon(temp[i],ttype);
+				raw_html += '<div class="col-md-6">' + ttype + '</div>';
+			}
 		}
 		var dtype =profile_grid.replace("{name}", data.name).replace("{img}", data.pic).replace("{tag1}", data.tags[0]).replace("{tag2}", data.tags[1]).replace("{tag3}", data.tags[2]);
-		dtype = formatIcon(data,dtype);
+		dtype = FormatIcon(data,dtype);
 		raw_html += '<div class="col-md-6">' + dtype + '</div>';
 		
 		raw_html += '</div>'; // row close
 		
 		$('.profile-grid-container').append(raw_html); 
-		temp = null;
+		temp = [];
 		raw_html = "";
 	}
 	profile_count += 1;
@@ -281,8 +308,10 @@ function AddWorkListEntity(data){
 			raw_html += '<div class="row bookmark-row-top-buffer">'; //row start
 		else
 			raw_html += '<div class="row">'; //first row start
-	var dtype = work_list.replace("{name}", data.name).replace("{img}", data.pic);
-	dtype = formatIcon(data,dtype);
+		
+	var valid_desc = FormatEllipsis('desc-list',data.desc);
+	var dtype = work_list.replace("{name}", data.name).replace("{img}", data.pic).replace("{desc}", valid_desc).replace("{owner}", data.owner);
+	dtype = FormatIcon(data,dtype);
 	raw_html += dtype;
 	raw_html += '</div>'; // row close
 	$('.work-list-container').append(raw_html);
@@ -291,33 +320,37 @@ function AddWorkListEntity(data){
 }
 
 function AddWorkGridEntity(data){
-	var even = true;
+	var row_filled = true;
 	
-	if(temp == null){ // store new data
-		temp = data;
-		even = false;
+	if(temp.length < max_col-1){ // store new data
+		temp.push(data);
+		row_filled = false;
 	}
+	var valid_desc = FormatEllipsis('desc-grid',data.desc);
 	
-	if(even || (index == max)){// add 2 data as new row
+	if(row_filled || (index == max)){// add 2 data as new row
 		console.log("add new GRID: "+index+" : "+data.name + " max: " + max);
 		raw_html = "";
 		if(work_count > 1) 
 			raw_html += '<div class="row bookmark-row-top-buffer">'; //row start
 		else
 			raw_html += '<div class="row">'; //first row start
-		if(even){
-			var ttype = work_grid.replace("{name}", temp.name).replace("{img}", temp.pic);
-			ttype = formatIcon(temp,ttype);
-			raw_html += '<div class="col-md-6">' + ttype +'</div>';
+		if(row_filled){
+			for (let i = 0; i < temp.length; i++) {
+				var valid_desc_t = FormatEllipsis('desc-grid',temp[i].desc);
+				var ttype = work_grid.replace("{name}", temp[i].name).replace("{img}", temp[i].pic).replace("{desc}", valid_desc_t).replace("{owner}", temp[i].owner);
+				ttype = FormatIcon(temp[i],ttype);
+				raw_html += '<div class="col-md-6">' + ttype +'</div>';
+			}
 		}
-		var dtype = work_grid.replace("{name}", data.name).replace("{img}", data.pic);
-		dtype = formatIcon(data,dtype);
+		var dtype = work_grid.replace("{name}", data.name).replace("{img}", data.pic).replace("{desc}", valid_desc).replace("{owner}", data.owner);
+		dtype = FormatIcon(data,dtype);
 		raw_html += '<div class="col-md-6">' + dtype + '</div>';
 		
 		raw_html += '</div>'; // row close
 		
 		$('.work-grid-container').append(raw_html); 
-		temp = null;
+		temp = [];
 		raw_html = "";
 	}
 	work_count += 1;

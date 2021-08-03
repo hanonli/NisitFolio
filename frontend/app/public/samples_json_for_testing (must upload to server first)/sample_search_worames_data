@@ -5,7 +5,7 @@
 			"type": "profile",
 			"pic": "assets/images/profile.jpg",
 			"desc": "My name is Worames and I'm better than Edgeworth.",
-			"tags": ["Full Stack Developer", "CEO of KU Happy Place", "PE Teacher"],
+			"tags": ["Google Developer of Northeast X", "Google Developer of Northeast XXX", "Google Developer of Northeast Thailandxx"],
 			"bookmark": true
 		},
 		{
@@ -45,7 +45,7 @@
 			"type": "work",
 			"owner": "วรเมศ ผดุงเจริญ",
 			"pic": "assets/images/work.jpg",
-			"desc": "Edgeworth's work is as amazing as ever!",
+			"desc": "Edgeworth's work is as amazing as ever! Edgeworth's work is as amazing as ever! Edgeworth's work is as amazing as ever! Edgeworth's work is as amazing as ever!",
 			"bookmark": true
 		},
 		{
