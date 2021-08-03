@@ -1,11 +1,15 @@
 import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { AdditionalSkill, AdditionalSkillDocument, Skill, UserSkill } from './analytics.schema';
+import { AdditionalSkill, AdditionalSkillDocument, Skill, UserSkill, Account } from './analytics.schema';
+import * as mongoose from 'mongoose';
 
 @Injectable()
 export class AnalyticsService {
   constructor(
+    @InjectModel('account')
+    private AccountModel: Model<Account>,
+
     @InjectModel('AdditionalSkill')
     private AdditionalSkillModel: Model<AdditionalSkillDocument>,
     
@@ -15,9 +19,12 @@ export class AnalyticsService {
     @InjectModel('Skill')
     private SkillModel: Model<Skill>,
     ) {}
-    
+  
+  async findAllAccount(): Promise<Account[]> {
+    return this.AccountModel.find().exec();
+  }
   async findAddSkill(): Promise<AdditionalSkill[]> {
-    console.log('test');
+    //console.log('test');
     return this.AdditionalSkillModel.find().exec();
   }
 

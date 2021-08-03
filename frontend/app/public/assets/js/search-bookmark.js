@@ -400,6 +400,7 @@ function GetBookmarkData(request){
 			});
         }).catch((error) => {
 			  console.log(error);
+			  ResetData();
 			  DisplayNotFound();
 			});
 }

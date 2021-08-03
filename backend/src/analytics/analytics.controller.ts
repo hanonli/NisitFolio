@@ -1,10 +1,18 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { AdditionalSkill, Skill, UserSkill } from './analytics.schema';
+import { get } from 'http';
+import { AdditionalSkill, Skill, UserSkill, Account } from './analytics.schema';
 import { AnalyticsService } from './analytics.service';
 
 @Controller('analytics')
 export class AnalyticsController {
   constructor(private analyticsService: AnalyticsService) {}
+
+  @Get('/account')
+  async findAccount(): Promise<Account[]> {
+    return this.analyticsService.findAllAccount();
+  }
+
+  // -------------------- AdditionalSkill ---------------------------
 
   @Get('/additional')
   async findAddSkill(): Promise<AdditionalSkill[]> {
