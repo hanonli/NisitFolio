@@ -2,6 +2,28 @@ import React from 'react';
 import { Link } from "react-router-dom";
 
 class Navbar extends React.Component {
+	constructor(props) {
+		super(props);
+		this.handleLoad = this.handleLoad.bind(this);
+	 }
+	
+	componentDidMount() {
+		window.addEventListener('load', this.handleLoad);
+		console.log("Mounted Navbar script!");
+		const script = document.createElement("script");
+		script.src = "assets/js/navbar.js";
+		document.body.appendChild(script);
+		
+	}
+	
+	componentWillUnmount() { 
+	   window.removeEventListener('load', this.handleLoad)  
+	}
+	
+	handleLoad() {
+		console.log("Navbar script loaded!");
+	 }
+	
 	render (){
 		return (
 			<div className="Navbar">
@@ -20,10 +42,12 @@ class Navbar extends React.Component {
 						<div class="col-6 d-flex align-items-center justify-content-center">
 							<div class="lg-view-search container-fluid container-search">
 								<form class="d-flex">
-									<input class="form-control btn-search-box home" type="search" placeholder="ค้นหา" aria-label="Search"/>
+									<input class="form-control btn-search-box home" id="search-input" type="search" placeholder="ค้นหา" aria-label="Search"/>
+									<Link to="/search" class="d-flex">
 									<button class="btn btn-search yellow" type="submit">
 										<img src="assets/images/search.png" class="fx" alt="" width="20" height="20"/>
 									</button>
+									</Link>
 								</form>
 							</div>
 						</div>
@@ -49,19 +73,19 @@ class Navbar extends React.Component {
 								
 								<div class="collapse navbar-collapse" id="navbarSupportedContent">
 								  <ul class="navbar-nav ms-auto">
-									<li class="nav-item shadow-box">
+									<li class="nav-item shadow-box" data-bs-toggle="tooltip" data-bs-placement="bottom" title="บุ๊คมาร์ค">
 									  <Link to="/bookmark">
 										  <a class="nav-link" aria-current="page">
 											<span class="lg-view">
 												<img src="assets/images/bookmark_navigation_bar2.png" alt="" width="70" height="30"/>
 											</span>
 											<span class="sm-view">
-												รายการโปรด
+												bookmark
 											</span>
 										  </a>
 									  </Link>
 									</li>
-									<li class="nav-item shadow-box">
+									<li class="nav-item shadow-box" data-bs-toggle="tooltip" data-bs-placement="bottom" title="แฟ้มสะสมงาน">
 									  <Link to="/portfolio">
 										  <a class="nav-link">
 											<span class="lg-view">
@@ -73,7 +97,7 @@ class Navbar extends React.Component {
 										  </a>
 									  </Link>
 									</li>
-									<li class="nav-item shadow-box">
+									<li class="nav-item shadow-box" data-bs-toggle="tooltip" data-bs-placement="bottom" title="เรซูเม่">
 									  <Link to="/myresume">
 										  <a class="nav-link">
 											<span class="lg-view">
@@ -85,7 +109,7 @@ class Navbar extends React.Component {
 										  </a>
 									  </Link>
 									</li>
-									<li class="nav-item shadow-box">
+									<li class="nav-item shadow-box" data-bs-toggle="tooltip" data-bs-placement="bottom" title="การวิเคราะห์ทางสถิติ">
 									  <Link to="/analytic">
 										  <a class="nav-link">
 											<span class="lg-view">
@@ -97,7 +121,7 @@ class Navbar extends React.Component {
 										  </a>
 									  </Link>
 									</li>
-									<li class="nav-item shadow-box">
+									<li class="nav-item shadow-box" data-bs-toggle="tooltip" data-bs-placement="bottom" title="ออก">
 									  <Link to="/landing">
 										  <a class="nav-link">
 											<span class="lg-view">

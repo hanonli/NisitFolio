@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Navbar from './Components/navbar';
 import BookmarkTabs from './Components/bookmarkTabs';
-import BookmarkHeader from './Components/bookmarkHeader';
+import SearchHeader from './Components/searchHeader';
 import reportWebVitals from './reportWebVitals';
 
-class Bookmark extends React.Component {
+class Search extends React.Component {
 	constructor(props) {
 		super(props);
 		this.handleLoad = this.handleLoad.bind(this);
@@ -34,11 +34,11 @@ class Bookmark extends React.Component {
 			<div className="Home">
 			<link rel="stylesheet" href="assets/css/bookmark.css" />
 					<Navbar /> <br></br>
-					<BookmarkHeader />
+					<SearchHeader />
 					<BookmarkTabs />
 			</div>
 		);
 	}
 }
 
-export default Bookmark;
+export default Search;

@@ -11,8 +11,6 @@ class BookmarkHeader extends React.Component {
 							<div class="col">
 								<div class="topDataBk-content">
 									<h1 class="name inline">Bookmark</h1>
-									<h1 class="symbol inline">.</h1>
-									<h1 class="name2 inline">"กำลังก่อสร้างครับ"</h1>
 									<h1></h1>
 								</div>
 							</div>

@@ -871,14 +871,14 @@ a.btn-cta-primary-yellowwideE:hover, .btn-cta-primary-yellowwideE:hover {
 .tabs-list {
   text-align: center;
   font-weight: 300;
-  font-size: 32px;
+  font-size: 3.34vh;
   font-family: 'Nunito','Kanit', arial, sans-serif;
 }
 
 .block-right {
   display: inline-block;
   text-align: right;
-  margin-left: 78%;
+  margin-left: 79vw;
 }
 
 /*Agreement page*/
