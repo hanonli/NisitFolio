@@ -54,6 +54,51 @@ var profile_list = '<div class="col-12">\
 						</header>\
 					</div>';
 					
+var profile_grid_no_tag = '<header class="header round">\
+					<div class="container-fluid bookmark-margin">\
+						<div class="row">\
+							<div class="col-2">\
+								<img class="bookmark-profile-image img-fluid float-start rounded-circle" type="button" id="avatar" src="{img}" alt="profile image" width="100" height="100" />\
+							</div>\
+							<div class="col-7">\
+								<div class="bookmark-content">\
+									<h1 class="name">{name}</h1>\<div></div>\
+									<h2 class="bookmark-desc">ผู้ใช้นี้ยังไม่มีตำแหน่งงานที่<br>ต้องการ หรือหน้า MyResume</h2>\<div></div>\
+								</div>\
+							</div>\
+							<div class="col-3">\
+								<img class="" src="assets/images/outline_cancel_black_24dp 1.png" alt="" width="100" height="100"/>\
+							</div>\
+						</div>\
+					</div>\
+				</header>';
+				
+var profile_list_no_tag = '<div class="col-12">\
+							<header class="header round">\
+							<div class="container-fluid bookmark-margin">\
+								<div class="row">\
+									<div class="col-1">\
+										<img class="bookmark-profile-image img-fluid float-start rounded-circle" type="button" id="avatar" src="{img}" alt="profile image" width="100" height="100" />\
+									</div>\
+									<div class="col-5 bk-pad">\
+										<div class="bookmark-content">\
+											<h1 class="name">{name}</h1>\<div></div>\
+											<h2 class="bookmark-desc" >{desc}</h2>\
+										</div>\
+									</div>\
+									<div class="col-4 bookmark-list-column d-flex align-items-center justify-content-center">\
+										<img class="" src="assets/images/outline_cancel_black_24dp 1.png" alt="" width="100" height="100"/>\
+										<div class="bookmark-content">\
+											<h2 class="bookmark-desc">ผู้ใช้นี้ยังไม่มีตำแหน่งงานที่<br>ต้องการ หรือหน้า MyResume</h2>\<div></div>\
+										</div>\
+									</div>\
+									<div class="col-2">\
+									</div>\
+								</div>\
+							</div>\
+						</header>\
+					</div>';
+					
 var work_grid = '<header class="header round">\
 					<div class="container-fluid bookmark-margin">\
 						<div class="row">\
@@ -185,7 +230,10 @@ function AddMixedListEntity(data){
 	var valid_desc = FormatEllipsis('desc-list',data.desc);
 	
 	if(data.type == "profile") {
-		dtype = profile_list.replace("{name}", data.name).replace("{img}", data.pic).replace("{desc}", valid_desc).replace("{tag1}", data.tags[0]).replace("{tag2}", data.tags[1]).replace("{tag3}", data.tags[2]);
+		if(data.tags.length > 0)
+			dtype = profile_list.replace("{name}", data.name).replace("{img}", data.pic).replace("{desc}", valid_desc).replace("{tag1}", data.tags[0]).replace("{tag2}", data.tags[1]).replace("{tag3}", data.tags[2]);
+		else
+			dtype = profile_list_no_tag.replace("{name}", data.name).replace("{img}", data.pic).replace("{desc}", valid_desc);
 	}else{
 		dtype = work_list.replace("{name}", data.name).replace("{img}", data.pic).replace("{desc}", valid_desc).replace("{owner}", data.owner);
 	}
@@ -210,7 +258,10 @@ function AddMixedGridEntity(data){
 	var dtype = "";
 	
 	if(data.type == "profile") {
-		dtype = profile_grid.replace("{name}", data.name).replace("{img}", data.pic).replace("{tag1}", data.tags[0]).replace("{tag2}", data.tags[1]).replace("{tag3}", data.tags[2]);
+		if(data.tags.length > 0)
+			dtype = profile_grid.replace("{name}", data.name).replace("{img}", data.pic).replace("{tag1}", data.tags[0]).replace("{tag2}", data.tags[1]).replace("{tag3}", data.tags[2]);
+		else
+			dtype = profile_grid_no_tag.replace("{name}", data.name).replace("{img}", data.pic);
 	}else{
 		dtype = work_grid.replace("{name}", data.name).replace("{img}", data.pic).replace("{desc}", valid_desc).replace("{owner}", data.owner);
 	}
@@ -225,7 +276,10 @@ function AddMixedGridEntity(data){
 		if(row_filled){
 			for (let i = 0; i < temp.length; i++) {
 				if(temp[i].type == "profile") {
-					ttype = profile_grid.replace("{name}", temp[i].name).replace("{img}", temp[i].pic).replace("{tag1}", temp[i].tags[0]).replace("{tag2}", temp[i].tags[1]).replace("{tag3}", temp[i].tags[2]);
+					if(temp[i].tags.length > 0)
+						ttype = profile_grid.replace("{name}", temp[i].name).replace("{img}", temp[i].pic).replace("{tag1}", temp[i].tags[0]).replace("{tag2}", temp[i].tags[1]).replace("{tag3}", temp[i].tags[2]);
+					else
+						ttype = profile_grid_no_tag.replace("{name}", temp[i].name).replace("{img}", temp[i].pic);
 				}else{
 					var valid_desc_t = FormatEllipsis('desc-grid',temp[i].desc);
 					ttype = work_grid.replace("{name}", temp[i].name).replace("{img}", temp[i].pic).replace("{desc}", valid_desc_t).replace("{owner}", data.owner);
@@ -255,7 +309,11 @@ function AddProfileListEntity(data){
 		else
 			raw_html += '<div class="row">'; //first row start
 	var valid_desc = FormatEllipsis('desc-list',data.desc);
-	var dtype = profile_list.replace("{name}", data.name).replace("{img}", data.pic).replace("{desc}", valid_desc).replace("{tag1}", data.tags[0]).replace("{tag2}", data.tags[1]).replace("{tag3}", data.tags[2]);
+	var dtype = null;
+	if(data.tags.length > 0)
+		dtype = profile_list.replace("{name}", data.name).replace("{img}", data.pic).replace("{desc}", valid_desc).replace("{tag1}", data.tags[0]).replace("{tag2}", data.tags[1]).replace("{tag3}", data.tags[2]);
+	else
+		dtype = profile_list_no_tag.replace("{name}", data.name).replace("{img}", data.pic).replace("{desc}", valid_desc);
 	dtype = FormatIcon(data,dtype);
 	raw_html += dtype;
 	raw_html += '</div>'; // row close
@@ -284,12 +342,21 @@ function AddProfileGridEntity(data){
 			raw_html += '<div class="row">'; //first row start
 		if(row_filled){
 			for (let i = 0; i < temp.length; i++) {
-				var ttype = profile_grid.replace("{name}", temp[i].name).replace("{img}", temp[i].pic).replace("{tag1}", temp[i].tags[0]).replace("{tag2}", temp[i].tags[1]).replace("{tag3}", temp[i].tags[2]);
+				var ttype = null;
+				if(temp[i].tags.length > 0)
+						ttype = profile_grid.replace("{name}", temp[i].name).replace("{img}", temp[i].pic).replace("{tag1}", temp[i].tags[0]).replace("{tag2}", temp[i].tags[1]).replace("{tag3}", temp[i].tags[2]);
+					else
+						ttype = profile_grid_no_tag.replace("{name}", temp[i].name).replace("{img}", temp[i].pic);
 				ttype = FormatIcon(temp[i],ttype);
 				raw_html += '<div class="col-md-6">' + ttype + '</div>';
 			}
 		}
-		var dtype =profile_grid.replace("{name}", data.name).replace("{img}", data.pic).replace("{tag1}", data.tags[0]).replace("{tag2}", data.tags[1]).replace("{tag3}", data.tags[2]);
+		var dtype = null;
+		if(data.tags.length > 0)
+			dtype = profile_grid.replace("{name}", data.name).replace("{img}", data.pic).replace("{tag1}", data.tags[0]).replace("{tag2}", data.tags[1]).replace("{tag3}", data.tags[2]);
+		else
+			dtype = profile_grid_no_tag.replace("{name}", data.name).replace("{img}", data.pic);
+		
 		dtype = FormatIcon(data,dtype);
 		raw_html += '<div class="col-md-6">' + dtype + '</div>';
 		
