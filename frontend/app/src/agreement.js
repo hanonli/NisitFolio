@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import './register.css';
 import Navbarlogo from './Components/navbarlogo';
 import DataHeader from './Components/dataHeader';
 import reportWebVitals from './reportWebVitals';

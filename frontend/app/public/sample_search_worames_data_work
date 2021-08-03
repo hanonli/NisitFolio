@@ -6,7 +6,7 @@
 			"owner": "วรเมศ ผดุงเจริญ",
 			"pic": "assets/images/work.jpg",
 			"desc": "Edgeworth's work is as amazing as ever!",
-			"portCount": 4
+			"bookmark": true
 		},
 		{
 			"name":"Edgeworth 5.00",
@@ -14,7 +14,7 @@
 			"owner": "วรเมศ ผดุงเจริญ",
 			"pic": "assets/images/work.jpg",
 			"desc": "Edgeworth's work is as amazing as ever!",
-			"portCount": 4
+			"bookmark": false
 		}
 	]
 }

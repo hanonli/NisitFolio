@@ -2,6 +2,28 @@ import React from 'react';
 import { Link } from "react-router-dom";
 
 class NavbarTransparent extends React.Component {
+	constructor(props) {
+		super(props);
+		this.handleLoad = this.handleLoad.bind(this);
+	 }
+	
+	componentDidMount() {
+		window.addEventListener('load', this.handleLoad);
+		console.log("Mounted Navbar script!");
+		const script = document.createElement("script");
+		script.src = "assets/js/navbar.js";
+		document.body.appendChild(script);
+		
+	}
+	
+	componentWillUnmount() { 
+	   window.removeEventListener('load', this.handleLoad)  
+	}
+	
+	handleLoad() {
+		console.log("Navbar script loaded!");
+	 }
+	
 	render (){
 		return (
 			<div className="NavbarTransparent">
@@ -18,10 +40,12 @@ class NavbarTransparent extends React.Component {
 						<div class="col-6 d-flex align-items-center justify-content-center">
 							<div class="lg-view-search container-fluid container-search">
 								<form class="d-flex">
-									<input class="form-control btn-search-box home" type="search" placeholder="ค้นหา" aria-label="Search"/>
+									<input class="form-control btn-search-box home" id="search-input" type="search" placeholder="ค้นหา" aria-label="Search"/>
+									<Link to="/search" class="d-flex">
 									<button class="btn btn-search yellow" type="submit">
 										<img src="assets/images/search.png" class="fx" alt="" width="20" height="20"/>
 									</button>
+									</Link>
 								</form>
 							</div>
 						</div>
@@ -42,7 +66,7 @@ class NavbarTransparent extends React.Component {
 								</span>
 								
 								<button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-								  <span class="navbar-toggler-icon"></span>
+									<span class="navbar-toggler-icon"></span>
 								</button>
 								
 								<div class="collapse navbar-collapse" id="navbarSupportedContent">

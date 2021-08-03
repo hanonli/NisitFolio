@@ -1,4 +1,6 @@
 console.log("Run bookmark script!");
+Cookies.set('username','worames'); 
+console.log('Currently login as: '+Cookies.get('username'));
 
 var profile_grid = '<header class="header round">\
 					<div class="container-fluid bookmark-margin">\
@@ -8,7 +10,7 @@ var profile_grid = '<header class="header round">\
 								<input type="file" class="sr-only" id="input" accept="image/*" name="image" hidden />\
 								<div class="bookmark-content">\
 									<h1 class="name inline">{name}</h1>\
-									<img class="obj-icon" src="assets/images/bin.png" alt="" width="35" height="35"/>\
+									<img class="obj-icon" src="{icon-type}" type="button" alt="" width="35" height="35"/>\
 									<div></div>\
 									<a class="btn btn-cta-secondary btn-small round margin-right-s" href="#" target="_blank">{tag1}</a>\
 									<a class="btn btn-cta-secondary btn-small round margin-right-s" href="#" target="_blank">{tag2}</a>\
@@ -40,7 +42,7 @@ var profile_list = '<div class="col-12">\
 									</div>\
 									<div class="col-2">\
 										<div class="bookmark-content">\
-											<img class="obj-icon" src="assets/images/bin.png" alt="" width="35" height="35"/>\
+											<img class="obj-icon" src="{icon-type}" type="button" alt="" width="35" height="35"/>\
 											<br></br>\
 										</div>\
 									</div>\
@@ -62,7 +64,7 @@ var work_grid = '<header class="header round">\
 							</div>\
 							<div class="col-2">\
 								<div class="bookmark-content">\
-									<img class="obj-icon" src="assets/images/bin.png" alt="" width="35" height="35"/>\
+									<img class="obj-icon" src="{icon-type}" type="button" alt="" width="35" height="35"/>\
 								</div>\
 							</div>\
 						</div>\
@@ -83,13 +85,43 @@ var work_list = '<div class="col-12">\
 							</div>\
 							<div class="col-2">\
 								<div class="bookmark-content">\
-									<img class="obj-icon" src="assets/images/bin.png" alt="" width="35" height="35"/>\
+									<img class="obj-icon" src="{icon-type}" type="button" alt="" width="35" height="35"/>\
 								</div>\
 							</div>\
 						</div>\
 					</div>\
 				</header>\
 					</div>';
+					
+var not_found_search = '<header class="header round remove">\
+							<div class="container-fluid d-flex flex-column justify-content-center not-found">\
+								<div class="row">\
+									<div class="col d-flex flex-column align-items-center">\
+										<img class="not-found-icon" src="assets/images/outline_cancel_black_24dp 1.png" alt=""/>\
+									</div>\
+								</div>\
+								<div class="row">\
+									<div class="col d-flex flex-column align-items-center">\
+										<h1>ขออภัยด้วยแต่เราไม่พบข้อมูลการค้นหาของคุณ</h1>\
+									</div>\
+								</div>\
+							</div>\
+						</header>'
+
+var not_found_bookmark = '<header class="header round remove">\
+							<div class="container-fluid d-flex flex-column justify-content-center not-found">\
+								<div class="row">\
+									<div class="col d-flex flex-column align-items-center">\
+										<img class="not-found-icon" src="assets/images/outline_cancel_black_24dp 1.png" alt=""/>\
+									</div>\
+								</div>\
+								<div class="row">\
+									<div class="col d-flex flex-column align-items-center">\
+										<h1>ขออภัยด้วยแต่เราไม่พบข้อมูล bookmark ของคุณ</h1>\
+									</div>\
+								</div>\
+							</div>\
+						</header>'
 					
 var profile_count=0;
 var work_count=0;
@@ -100,6 +132,7 @@ var temp=null;
 var raw_html = "";
 var view_type = "grid";
 var current_tab = 1;
+var pageName = location.href.split("/").slice(-1); 
 
 function ResetData(){
 	profile_count=0;
@@ -111,6 +144,17 @@ function ResetData(){
 	$('.mixed-grid-container').empty(); $('.mixed-list-container').empty();
 	$('.profile-grid-container').empty(); $('.profile-list-container').empty();
 	$('.work-grid-container').empty(); $('.work-list-container').empty();
+	$('.remove').remove();
+}
+
+function formatIcon(data,dtype) {
+  if(pageName == 'search'){
+		if(!data.bookmark) dtype = dtype.replace("{icon-type}","assets/images/bookmark_1.png");
+		else dtype = dtype.replace("{icon-type}","assets/images/bookmark_2.png");
+	}else{
+		dtype = dtype.replace("{icon-type}","assets/images/bin.png");
+	}
+	return dtype;
 }
 
 function AddMixedListEntity(data){
@@ -126,6 +170,7 @@ function AddMixedListEntity(data){
 	}else{
 		dtype = work_list.replace("{name}", data.name).replace("{img}", data.pic);
 	}
+	dtype = formatIcon(data,dtype);
 	
 	raw_html += dtype;
 	raw_html += '</div>'; // row close
@@ -164,8 +209,12 @@ function AddMixedGridEntity(data){
 			}else{
 				ttype = work_grid.replace("{name}", temp.name).replace("{img}", temp.pic);
 			}
+			ttype = formatIcon(temp,ttype);
 			raw_html += '<div class="col-md-6">' + ttype + '</div>';
 		}
+		
+		dtype = formatIcon(data,dtype);
+		
 		raw_html += '<div class="col-md-6">' + dtype + '</div>';
 		
 		raw_html += '</div>'; // row close
@@ -183,7 +232,9 @@ function AddProfileListEntity(data){
 			raw_html += '<div class="row bookmark-row-top-buffer">'; //row start
 		else
 			raw_html += '<div class="row">'; //first row start
-	raw_html += profile_list.replace("{name}", data.name).replace("{img}", data.pic).replace("{tag1}", data.tags[0]).replace("{tag2}", data.tags[1]).replace("{tag3}", data.tags[2]);
+	var dtype = profile_list.replace("{name}", data.name).replace("{img}", data.pic).replace("{tag1}", data.tags[0]).replace("{tag2}", data.tags[1]).replace("{tag3}", data.tags[2]);
+	dtype = formatIcon(data,dtype);
+	raw_html += dtype;
 	raw_html += '</div>'; // row close
 	$('.profile-list-container').append(raw_html);
 	profile_count += 1;
@@ -207,13 +258,13 @@ function AddProfileGridEntity(data){
 		else
 			raw_html += '<div class="row">'; //first row start
 		if(even){
-			raw_html += '<div class="col-md-6">' + 
-						profile_grid.replace("{name}", temp.name).replace("{img}", temp.pic).replace("{tag1}", temp.tags[0]).replace("{tag2}", temp.tags[1]).replace("{tag3}", temp.tags[2]) + 
-						'</div>';
+			var ttype = profile_grid.replace("{name}", temp.name).replace("{img}", temp.pic).replace("{tag1}", temp.tags[0]).replace("{tag2}", temp.tags[1]).replace("{tag3}", temp.tags[2]);
+			ttype = formatIcon(temp,ttype);
+			raw_html += '<div class="col-md-6">' + ttype + '</div>';
 		}
-		raw_html += '<div class="col-md-6">' + 
-					profile_grid.replace("{name}", data.name).replace("{img}", data.pic).replace("{tag1}", data.tags[0]).replace("{tag2}", data.tags[1]).replace("{tag3}", data.tags[2]) +
-					'</div>';
+		var dtype =profile_grid.replace("{name}", data.name).replace("{img}", data.pic).replace("{tag1}", data.tags[0]).replace("{tag2}", data.tags[1]).replace("{tag3}", data.tags[2]);
+		dtype = formatIcon(data,dtype);
+		raw_html += '<div class="col-md-6">' + dtype + '</div>';
 		
 		raw_html += '</div>'; // row close
 		
@@ -230,7 +281,9 @@ function AddWorkListEntity(data){
 			raw_html += '<div class="row bookmark-row-top-buffer">'; //row start
 		else
 			raw_html += '<div class="row">'; //first row start
-	raw_html += work_list.replace("{name}", data.name).replace("{img}", data.pic);
+	var dtype = work_list.replace("{name}", data.name).replace("{img}", data.pic);
+	dtype = formatIcon(data,dtype);
+	raw_html += dtype;
 	raw_html += '</div>'; // row close
 	$('.work-list-container').append(raw_html);
 	work_count += 1;
@@ -253,13 +306,13 @@ function AddWorkGridEntity(data){
 		else
 			raw_html += '<div class="row">'; //first row start
 		if(even){
-			raw_html += '<div class="col-md-6">' + 
-						work_grid.replace("{name}", temp.name).replace("{img}", temp.pic) + 
-						'</div>';
+			var ttype = work_grid.replace("{name}", temp.name).replace("{img}", temp.pic);
+			ttype = formatIcon(temp,ttype);
+			raw_html += '<div class="col-md-6">' + ttype +'</div>';
 		}
-		raw_html += '<div class="col-md-6">' + 
-					work_grid.replace("{name}", data.name).replace("{img}", data.pic) +
-					'</div>';
+		var dtype = work_grid.replace("{name}", data.name).replace("{img}", data.pic);
+		dtype = formatIcon(data,dtype);
+		raw_html += '<div class="col-md-6">' + dtype + '</div>';
 		
 		raw_html += '</div>'; // row close
 		
@@ -271,14 +324,31 @@ function AddWorkGridEntity(data){
 }
 
 
+function DisplayNotFound(){
+	$('#result-count').text('จำนวน 0 รายการ');
+	if(pageName == 'search')
+		$('#content'+current_tab).find(">:first-child").append(not_found_search);
+	else
+		$('#content'+current_tab).find(">:first-child").append(not_found_bookmark);
+}
+
 /*Load data from backend*/
-function GetBookmarkData(path){
-	fetch("http://localhost:3000/"+path,{
+function GetBookmarkData(request){
+	var key = pageName
+	if(key == 'search'){
+		key += "_"+Cookies.get('search-entry').toLowerCase();
+ 	}else{
+		key += "_"+Cookies.get('username');
+	}
+	
+	console.log("https://nisitfolio.s3.ap-southeast-1.amazonaws.com/"+"sample_"+key+"_"+request);
+
+	fetch("https://nisitfolio.s3.ap-southeast-1.amazonaws.com/"+"sample_"+key+"_"+request,{
         method: "GET",
-         headers: {
-			//"Access-Control-Allow-Origin": "*",
-			//"Access-Control-Allow-Methods": "*",
-			//"Access-Control-Allow-Credentials": true,
+        headers: {
+			"Access-Control-Allow-Origin": "*",
+			"Access-Control-Allow-Methods": "*",
+			"Access-Control-Allow-Credentials": true,
 			"Content-Type": "application/json"},
     })
 		.then(response => response.json())
@@ -328,10 +398,13 @@ function GetBookmarkData(path){
 					}
 				}
 			});
-        });
+        }).catch((error) => {
+			  console.log(error);
+			  DisplayNotFound();
+			});
 }
 
-GetBookmarkData("sample_bookmark_data");
+GetBookmarkData("data");
 
 $(function(){
    $('.tab-content').hide();
@@ -342,7 +415,7 @@ $(function(){
 	  $('#tab-1').addClass('tab-list-active')
 	  $('#content1').show();
 	  current_tab = 1;
-	  GetBookmarkData("sample_bookmark_data");
+	  GetBookmarkData("data");
   });
   
   $('#tab-2').on('click', function(){
@@ -351,7 +424,7 @@ $(function(){
 	  $('#tab-2').addClass('tab-list-active')
 	  $('#content2').show();
 	  current_tab = 2;
-	  GetBookmarkData("sample_bookmark_data_profile");
+	  GetBookmarkData("data_profile");
   });
   
   $('#tab-3').on('click', function(){
@@ -360,7 +433,7 @@ $(function(){
 	  $('#tab-3').addClass('tab-list-active')
 	  $('#content3').show();
 	  current_tab = 3;
-	  GetBookmarkData("sample_bookmark_data_work");
+	  GetBookmarkData("data_work");
   });
 });
 
@@ -394,10 +467,10 @@ $(function(){
       }
 
 	  if(current_tab == 1)
-			GetBookmarkData("sample_bookmark_data");
+			GetBookmarkData("data");
 		else if(current_tab == 2)
-			GetBookmarkData("sample_bookmark_data_profile");
+			GetBookmarkData("data_profile");
 		else
-			GetBookmarkData("sample_bookmark_data_work");
+			GetBookmarkData("data_work");
   });
 });
