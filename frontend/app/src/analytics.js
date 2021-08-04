@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Navbar from './Components/navbar';
-import ProfileHeader from './Components/profileHeader';
-import AnalyticContent from './Components/analyticContent';
+import AnalyticsHeader from './Components/analyticsHeader';
+import AnalyticsTabs from './Components/analyticsTabs';
 import reportWebVitals from './reportWebVitals';
 
-class Analytic extends React.Component {
-	constructor(props) {
+class Analytics extends React.Component {
+	/*constructor(props) {
 		super(props);
 		this.handleLoad = this.handleLoad.bind(this);
 	 }
@@ -27,17 +27,17 @@ class Analytic extends React.Component {
 	
 	handleLoad() {
 		console.log("YEAH!");
-	 }
+	 }*/
 	
 	render (){
 		return (
-			<div className="Home">
-				<Navbar />
-				<ProfileHeader />
-				<AnalyticContent />
+			<div className="Analytics">
+				<Navbar /> <br></br>
+				<AnalyticsHeader />
+				<AnalyticsTabs />
 			</div>
 		);
 	}
 }
 
-export default Analytic;
+export default Analytics;

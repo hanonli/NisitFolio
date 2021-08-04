@@ -15,19 +15,25 @@ import { RegisterService } from './register/register.service';
 import { RegisterModule } from './register/register.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
+import { MulterModule } from '@nestjs/platform-express';
 
 @Module({
   imports: [
+    
     MongooseModule.forRoot(
       'mongodb+srv://user1234:user1234@cluster0.39z7o.mongodb.net/nisitfolio'
       ),
-      TypeOrmModule.forRoot({
+    TypeOrmModule.forRoot({
       type: 'mongodb',
       url: 'mongodb+srv://user1234:user1234@cluster0.39z7o.mongodb.net/nisitfolio',
       autoLoadEntities: true,
       synchronize: true,
     }),
-
+    MulterModule.registerAsync({
+      useFactory: () => ({
+        dest: './upload',
+      })
+    }),
     RegisterModule,
     AnalyticsModule,
     AuthModule,
