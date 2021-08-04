@@ -1,15 +1,11 @@
 import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-<<<<<<< HEAD
-import { AdditionalSkill, AdditionalSkillDocument, Skill, UserSkill } from './analytics.schema';
-import { ObjectId } from 'mongodb';
+import { AdditionalSkill, AdditionalSkillDocument, Skill, UserSkill, Account, InterestedJob, ClassifySkill, ClassifySkillSchema } from './analytics.schema';
 
-import mainUserSkillAnalys from './Entities/userMainSkill.entity';
-=======
-import { AdditionalSkill, AdditionalSkillDocument, Skill, UserSkill, Account } from './analytics.schema';
+import { ObjectId } from 'mongodb' ;
 import * as mongoose from 'mongoose';
->>>>>>> 7ef4f596ceabffd9d0d93848bce04a8b816484aa
+
 
 @Injectable()
 export class AnalyticsService {
@@ -25,7 +21,13 @@ export class AnalyticsService {
     
     @InjectModel('Skill')
     private SkillModel: Model<Skill>,
-    ) {}
+    
+    @InjectModel('InterestedJob')
+    private JobModel: Model<InterestedJob>,
+
+    @InjectModel('ClassifySkill')
+    private ClassifySkillModel: Model<ClassifySkill>,
+  ) {}
   
   async findAllAccount(): Promise<Account[]> {
     return this.AccountModel.find().exec();
@@ -42,7 +44,7 @@ export class AnalyticsService {
                                                   .select('-_id -userId ')
                                                   .lean().exec();
     const count = await this.AccountModel.count();
-    //console.log(skills);
+    console.log(skills);
     const results = [];
     for (var i=0; i<3; i++) {
       //console.log(skills[i].id);
@@ -51,7 +53,7 @@ export class AnalyticsService {
       results.push({name: skills[i].softSkill,
                    percentage: percentage}); 
     }
-    //console.log(count);
+    console.log(count);
     return results;
   }
 
@@ -66,26 +68,66 @@ export class AnalyticsService {
     return userSkill ;
   }
 
-  async AnalysUserSkill(userId: ObjectId): Promise<any> {
+  async AnalysUserSkill(userId: ObjectId): Promise<any[]> {
     const AllSkill: UserSkill[] = await this.findAllUserSkill() ;
     const userSkill: UserSkill[] = await this.findUserSkill(userId) ;
-    // const SkillA : number = 0 ;
-    // const SkillB : number = 0 ;
-    // const SkillC : number = 0 ;
+    let SkillA : number ;
+    let SkillB : number ;
+    let SkillC : number ;
     let sum: number = 0 ;
+    const array = [] ;
     let size: number = userSkill.length ;
     for (var item of userSkill) {
       console.log(item.Score) ;
       sum = sum + item.Score ;
     }
-    return sum/size ;
+    return [];
   }
-
-  async createUserSkill(userId: ObjectId, inJobId: string, SkillId: ObjectId, Score: number){
+  
+  async createUserSkill(userId: ObjectId, inJobId: ObjectId, SkillId: ObjectId, Score: number){
     const newUserSkill = new this.UserSkillModel({
       userId, inJobId, SkillId, Score
     }) ;
     return await newUserSkill.save() ;
+  }
+
+  // -------------------- ClassifySkill ---------------------------
+  
+  async createClassifySkill(userId: ObjectId, JobTitle: string, SkillName: string, IsMain: number): Promise<ClassifySkill> {
+    const newClassifySkill = new this.ClassifySkillModel({
+      userId, JobTitle, SkillName, IsMain
+    }) ;
+    return await newClassifySkill.save() ;
+  }
+
+  // -------------------- Interseted Job ---------------------------
+  
+  async createInterestedJob(userId: ObjectId, objective: string): Promise<InterestedJob> {
+    const newJob = new this.JobModel({userId, objective}) ;
+    return await newJob.save() ;
+  }
+
+  async InterestedJobPercentage(JobTitle: string, IsMain: number): Promise<any[]> {
+    const size = await (await this.ClassifySkillModel.find({JobTitle: JobTitle, IsMain: IsMain})).length ;
+    const eachSkill = await this.ClassifySkillModel.aggregate([
+                        {
+                          $group:
+                          {
+                            _id: { SkillName: "$SkillName"},
+                            total: { $sum: 1}                        
+                          }
+                        }
+    ])
+    const array = [] ;
+    for (var item of eachSkill) {
+      const per = item.total*100/size ;
+      //console.log(per) ;
+      array.push({name: item._id, percentage: per})
+    }
+    return array;
+    // const size = AllSkill.length ;
+    // mongoose.Aggregate
+    // return AllSkill ;
   }
 
   // -------------------- Skill ---------------------------
