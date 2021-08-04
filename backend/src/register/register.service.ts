@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import Account from './account.entity';
@@ -48,5 +48,14 @@ export class RegisterService {
 
   async createReview(createReviewDto:  CreateUserinfoDto) {
     return this.userinfoRepository.save(createReviewDto);
+  }
+  async createOrUpdate(album: Account): Promise<Account> {
+    return await this.accountRepository.save(album);
+  }
+  async findOne(Email: string): Promise<Account> {
+    return await this.accountRepository.findOne({ Email: Email });
+  }
+  async remove(id: Account): Promise<DeleteResult> {
+    return this.accountRepository.delete(id);
   }
 }

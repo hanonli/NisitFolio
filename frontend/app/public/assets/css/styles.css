@@ -9,7 +9,7 @@ body {
   /*background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/ed8839e8-3dcb-4bf1-b158-30dcd13e9589/dbgk12z-b8175564-549b-4bf6-a9bc-e3cd668811fb.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvZWQ4ODM5ZTgtM2RjYi00YmYxLWIxNTgtMzBkY2QxM2U5NTg5XC9kYmdrMTJ6LWI4MTc1NTY0LTU0OWItNGJmNi1hOWJjLWUzY2Q2Njg4MTFmYi5naWYifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.lJRTgtV562V7g7CmRlvfhZV32_0g-svgnQGqoEkR9Do");*/
 }
 
-h1, h2, h3, h4, h5, h6, input, span, a {
+h1, h2, h3, h4, h5, h6, input, span,label,button, a {
   font-family: 'Nunito','Kanit', arial, sans-serif;
   font-weight: bold;
   /*font-size: 16px;*/
@@ -118,7 +118,8 @@ a.btn-cta-secondary, .btn-cta-secondary {
   background: #FFFFFF;
   border: 2px solid #479FC8;
   color: #879FC8;
-  font-size: 14px;
+  font-size: 12px;
+  margin-top: 5px;
   padding-top: 1px;
   padding-bottom: 1px;
 }
@@ -154,7 +155,7 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 .bookmark-content-scroll{
 	overflow-y: overlay;
 	width:100%; 
-	height:70vh;
+	height:73vh;
 }
 
 .not-found{
@@ -180,13 +181,14 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 
 .bookmark-desc{
 	color: #778492;
-	font-size: 17px;
+	font-size: 16px;
+	margin-top: 10px;
 }
 
 .bookmark-work-desc{
 	color: #778492;
 	margin-top: 15px;
-	font-size: 17px;
+	font-size: 16px;
 }
 
 .bookmark-list-column{
@@ -199,7 +201,7 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 }
 
 .yahaha{
-	width: 95vw;
+	width: 82vw;
 }
 
 .yahaha2{
@@ -211,7 +213,12 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 }
 
 .bookmark-content{
-	margin-top: 5px;
+	/*margin-bottom: 5px;*/
+	margin-left: 15px;
+}
+
+.bk-pad{
+	padding-right: 151px;
 }
 
 .bookmark-content-profile{
@@ -226,11 +233,23 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 
 .bookmark-content .name {
   color: #49515a;
-  font-size: 40px;
+  font-size: 24px;
   margin-bottom: 5px;
 }
 
-.bookmark-row-top-buffer { margin-top: 24px; }
+.bookmark-row-top-buffer { margin-top: 20px; }
+
+.yahaha-alt{
+	padding-bottom: 6vh;
+}
+
+.wrapper{
+	height: 35.5vh;
+}
+
+.space-alt-1{
+	margin-top: 15px;
+}
 
 .header .profile-content .name {
   color: #49515a;
@@ -532,23 +551,23 @@ navbar { margin:0; }
 
 .header-white .topDataBk-content .name {
   color: #000 ;
-  font-size: 80px;
+  font-size: 64px;
 }
 
 .header-white .topDataBk-content .name2 {
   color: #2560A5;
   font-weight: lighter;
-  font-size: 56px;
+  font-size: 48px;
   vertical-align: bottom;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .header-white .topDataBk-content .symbol {
   color: #2560A5;
   font-weight: bold;
-  font-size: 72px;
-  margin-right: 50px;
-  margin-left: 50px;
+  font-size: 48px;
+  margin-right: 30px;
+  margin-left: 30px;
   margin-bottom: 15px;
   vertical-align: bottom;
 }
@@ -615,7 +634,7 @@ a.btn-cta-primary-white:hover, .btn-cta-primary-white:hover {
 /* Tab */
 .tab-list {  /*border-bottom: 1px solid #ccc */;
   font-family: 'Montserrat', 'Kanit', sans-serif;
-  font-weight: 500;
+  font-weight: 300;
   font-size: 24px;
   color: #000;
   padding-left: 10px;
@@ -642,7 +661,6 @@ a.btn-cta-primary-white:hover, .btn-cta-primary-white:hover {
 .obj-icon{
 	float: right;
 	margin-right: 20px;
-	margin-top: 18px;
 }
 
 .tab-clear-content{
@@ -666,7 +684,19 @@ a.btn-cta-primary-white:hover, .btn-cta-primary-white:hover {
   padding-right: 1.5%;
 }
 
+.tab-list-item:hover {
+  background-color: white;
+  border: solid grey;
+  border-width: 0px 0px 7px 0px;
+}
+
 .tab-list-active {
+  background-color: white;
+  border: solid #070707;
+  border-width: 0px 0px 7px 0px;
+}
+
+.tab-list-active:hover {
   background-color: white;
   border: solid #070707;
   border-width: 0px 0px 7px 0px;
@@ -753,18 +783,21 @@ a.btn-search:hover, .btn-search:hover {
 .resume-icon{
 	width: 35vw;
 	height: 31vw;
+
 }
 
 
 .portfolio-icon{
 	width: 20vw;
 	height: 31vw;
+
 }
 
 
 .analytic-icon{
 	width: 26.5vw;
 	height: 15vw;
+
 }
 
 
@@ -773,13 +806,21 @@ a.btn-search:hover, .btn-search:hover {
 	height: 15vw;
 }
 
+
+@media (min-height: 1000px) {
+	.df-f{ margin-top: 5%; }
+	.df-x{ margin-top: 1%; }
+}
+
+@media (max-height: 1000px) {
+	.df-f{ margin-top: 2%; }
+	.df-x{ margin-top: 0%; }
+}
+
 .search-box{
 	margin-left: 30%;
 }
 
-.profile-content{
-	margin-top: 1%;
-}
 
 #cross-fade {
   position:relative;
@@ -850,6 +891,70 @@ a.btn-cta-primary-yellowwide:hover, .btn-cta-primary-yellowwide:hover {
   border: 1px solid #e0c652;
 }
 
+a.btn-cta-primary-yellowshort, .btn-cta-primary-yellowshort {
+  color: #000000;
+  font-weight: 400;
+  font-size: 2.2vh;
+  
+  border: 1px solid #F9DC5C;
+  background: #F9DC5C;
+  height: 50px;
+  width: 160px;
+}
+
+a.btn-cta-primary-yellowshort:hover, .btn-cta-primary-yellowshort:hover {
+  background: #e0c652;
+  border: 1px solid #e0c652;
+}
+
+a.btn-cta-primary-blackshort, .btn-cta-primary-blackshort {
+  color: #FFFFFF;
+  font-weight: 400;
+  font-size: 2.2vh;
+  
+  border: 1px solid #000;
+  background: #000;
+  height: 50px;
+  width: 160px;
+}
+
+a.btn-cta-primary-blackshort:hover, .btn-cta-primary-blackshort:hover {
+  background: #778492;
+  border: 1px solid #778492;
+  color: #000;
+}
+
+a.btn-cta-primary-svshort, .btn-cta-primary-svshort {
+  color: #000000;
+  text-transform: uppercase;
+  height: 50px;
+  width: 160px;
+  font-size: 2.2vh;
+}
+
+a.btn-cta-primary-blackL, .btn-cta-primary-blackL{
+  color: #FFFFFF;
+  font-weight: 400;
+  font-size: 2vh;
+  border: 1px solid #000;
+  background: #000;
+  height: 80px;
+  width: 250px;
+  border-radius: 64px;
+  padding: 5%;
+}
+
+a.btn-cta-primary-blackL:hover, .btn-cta-primary-blackL:hover {
+  background: #778492;
+  border: 1px solid #778492;
+  color: #000;
+}
+
+a.btn-cta-primary-svshort:hover, .btn-cta-primary-svshort:hover {
+  background: #000000;
+  border: 1px solid #000000;
+  color: #fff;
+}
 
 a.btn-cta-primary-yellowwideE, .btn-cta-primary-yellowwideE {
   color: #000000;
@@ -932,4 +1037,8 @@ a.btn-cta-primary-yellowwideE:hover, .btn-cta-primary-yellowwideE:hover {
   font-weight: 300;
   color: black;
   margin-top: 3vh;
+}
+
+.fff {
+  font-family: 'Nunito','Kanit', arial, sans-serif;
 }

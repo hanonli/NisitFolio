@@ -25,4 +25,5 @@ export class Account {
   Privacy: string;
 }
 
+
 export default Account;

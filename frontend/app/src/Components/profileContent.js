@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 class ProfileContent extends React.Component {
 	render (){
 		return (
-				<div className="ProfileContent"><br></br>
+				<div className="ProfileContent">
 							<span class="lg-view-search mx-auto">
-								<div class="container-fluid">
-									<div class="d-flex justify-content-center profile-content">
+								<div class="container-fluid df-f">
+									<div class="d-flex justify-content-center">
 										<div class="row">
 											<div class="col-md-auto">
 												<Link to="/myresume">
@@ -27,7 +27,7 @@ class ProfileContent extends React.Component {
 											</div>
 											<div class="col-md-auto">
 												<div class="col-md-auto profile-sm">
-													<Link to="/analytic">
+													<Link to="/analytics">
 														<div class="transition-component scale-up-s analytic-icon" id="cross-fade">
 															<img class="analytic-icon bottom" src="assets/images/analytics2.png" type='button' id="analytic-home" alt="" />
 															<img class="analytic-icon top" src="assets/images/analytics1.png" type='button' id="analytic-home" alt="" />
