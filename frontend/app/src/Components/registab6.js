@@ -22,7 +22,7 @@ class Registab6 extends React.Component {
 
 					<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog modal-dialog-centered">
-							<div class="modal-content minisize">
+							<div class="modal-content minisize modal-lg" id="popup_JOB">
 
 							</div>
 						</div>
