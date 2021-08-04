@@ -1,7 +1,6 @@
 /*For Javascript Desu*/
 
 /*Tabs New*/
-
 $(function(){
     $('.tab-content').hide();
     $('#registab1-content').show();
@@ -77,3 +76,15 @@ function stateHandle() {
 }
 
 */
+
+/*Tab7*/
+
+$(function() {
+    $('#sideskillop').on('click', function(){
+        $('#sideskilllist').blur();
+  });
+});
+
+$('#datepicker').datepicker();
+var date = $('#datepicker').datepicker({ dateFormat: 'dd-mm-yy' }).val();
+var date = $('#datepicker').datepicker('getDate');

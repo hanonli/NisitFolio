@@ -9,7 +9,7 @@ body {
   /*background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/ed8839e8-3dcb-4bf1-b158-30dcd13e9589/dbgk12z-b8175564-549b-4bf6-a9bc-e3cd668811fb.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvZWQ4ODM5ZTgtM2RjYi00YmYxLWIxNTgtMzBkY2QxM2U5NTg5XC9kYmdrMTJ6LWI4MTc1NTY0LTU0OWItNGJmNi1hOWJjLWUzY2Q2Njg4MTFmYi5naWYifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.lJRTgtV562V7g7CmRlvfhZV32_0g-svgnQGqoEkR9Do");*/
 }
 
-h1, h2, h3, h4, h5, h6, input, span, a {
+h1, h2, h3, h4, h5, h6, input, span,label,button, a {
   font-family: 'Nunito','Kanit', arial, sans-serif;
   font-weight: bold;
   /*font-size: 16px;*/
@@ -813,7 +813,7 @@ a.btn-search:hover, .btn-search:hover {
 
 @media (min-height: 1000px) {
 	.df-f{ margin-top: 5%; }
-	.df-x{ margin-top: 2%; }
+	.df-x{ margin-top: 1%; }
 }
 
 @media (max-height: 1000px) {
@@ -895,6 +895,70 @@ a.btn-cta-primary-yellowwide:hover, .btn-cta-primary-yellowwide:hover {
   border: 1px solid #e0c652;
 }
 
+a.btn-cta-primary-yellowshort, .btn-cta-primary-yellowshort {
+  color: #000000;
+  font-weight: 400;
+  font-size: 2.2vh;
+  
+  border: 1px solid #F9DC5C;
+  background: #F9DC5C;
+  height: 50px;
+  width: 160px;
+}
+
+a.btn-cta-primary-yellowshort:hover, .btn-cta-primary-yellowshort:hover {
+  background: #e0c652;
+  border: 1px solid #e0c652;
+}
+
+a.btn-cta-primary-blackshort, .btn-cta-primary-blackshort {
+  color: #FFFFFF;
+  font-weight: 400;
+  font-size: 2.2vh;
+  
+  border: 1px solid #000;
+  background: #000;
+  height: 50px;
+  width: 160px;
+}
+
+a.btn-cta-primary-blackshort:hover, .btn-cta-primary-blackshort:hover {
+  background: #778492;
+  border: 1px solid #778492;
+  color: #000;
+}
+
+a.btn-cta-primary-svshort, .btn-cta-primary-svshort {
+  color: #000000;
+  text-transform: uppercase;
+  height: 50px;
+  width: 160px;
+  font-size: 2.2vh;
+}
+
+a.btn-cta-primary-blackL, .btn-cta-primary-blackL{
+  color: #FFFFFF;
+  font-weight: 400;
+  font-size: 2vh;
+  border: 1px solid #000;
+  background: #000;
+  height: 80px;
+  width: 250px;
+  border-radius: 64px;
+  padding: 5%;
+}
+
+a.btn-cta-primary-blackL:hover, .btn-cta-primary-blackL:hover {
+  background: #778492;
+  border: 1px solid #778492;
+  color: #000;
+}
+
+a.btn-cta-primary-svshort:hover, .btn-cta-primary-svshort:hover {
+  background: #000000;
+  border: 1px solid #000000;
+  color: #fff;
+}
 
 a.btn-cta-primary-yellowwideE, .btn-cta-primary-yellowwideE {
   color: #000000;
@@ -977,4 +1041,8 @@ a.btn-cta-primary-yellowwideE:hover, .btn-cta-primary-yellowwideE:hover {
   font-weight: 300;
   color: black;
   margin-top: 3vh;
+}
+
+.fff {
+  font-family: 'Nunito','Kanit', arial, sans-serif;
 }
