@@ -154,3 +154,13 @@
 .ordistance {
     margin-right: 30px;
 }
+
+#certi_edit {
+    height: 420px;
+    width: 1250px;
+}
+
+#button_certi {
+    position: absolute;
+    bottom: 15px;
+}
