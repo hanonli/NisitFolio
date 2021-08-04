@@ -195,11 +195,47 @@
 }
 
 #certi_edit {
-    height: 420px;
-    width: 1250px;
+    height: 320px;
+    width: 1450px;
 }
 
 #button_certi {
     position: absolute;
     bottom: 15px;
+}
+
+#input_certi {
+    position: absolute;
+    left: 25px;
+    top: 25px;
+    bottom: 25px;
+}
+
+#input_upload {
+    position: absolute;
+    right: 38px;
+    top: 25px;
+    bottom: 140px;
+    left: 500px
+}
+
+#size_certi_button {
+    width: 10px;
+    bottom: 125px;
+}
+
+.bg_upload {
+    background-color: #e4f7ff;
+    border-radius: 24px;
+    padding: 0px;
+    bottom: 125px;
+}
+
+.up_img img{
+    position: absolute;
+}
+
+.text_up {
+   font-size: 20px;
+   font-weight: 300;
 }
