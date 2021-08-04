@@ -8,7 +8,17 @@
 .regis-box-content {
     height: 55vh;
     width: 80vw;
-    /*background-color: aqua;*/
+    background-color: aqua;
+    margin-left:11vw;
+    margin-top: 1%;
+    margin-bottom: 2%;
+    padding: 1%;
+}
+
+.regis-box-content1 {
+    height: 65vh;
+    width: 80vw;
+    background-color: aqua;
     margin-left:11vw;
     margin-top: 1%;
     margin-bottom: 2%;
@@ -162,3 +172,9 @@
 .ordistance {
     margin-right: 30px;
 }
+
+.ttrbtn {
+    margin-left: 65vw;
+    color: black;
+    font-weight: 400;
+  }

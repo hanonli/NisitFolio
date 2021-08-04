@@ -3,7 +3,7 @@ import React from 'react';
 class Registab1 extends React.Component {
 	render (){
 		return (
-			<div className="Registab1 regis-box-content">
+			<div className="Registab1 regis-box-content1">
 				<div class="container-fluid margin-top1">
 					<form class="row">
 						<div class="col-10">
@@ -68,32 +68,11 @@ class Registab1 extends React.Component {
 							</div>
 						</div>
 						<div class="row">
-							<button class="btn btn-cta-primary-yellowwide round ttr" type="submit">ยืนยันตัวตน</button>
+							<button class="btn btn-cta-primary-yellowwide round ttrbtn" type="submit" id="confirmform1">ยืนยันตัวตน</button>
 						</div>
 					</form>	
 				</div>
-	
-				<div class="container">
-						<div class="alert" role="alert"></div>
-						<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-						  <div class="modal-dialog" role="document">
-							<div class="modal-content">
-							  <div class="modal-header">
-								<h5 class="modal-title" id="modalLabel">ปรับแต่งรูปโปรไฟล์</h5>
-							  </div>
-							  <div class="modal-body">
-								<div class="img-container">
-								  <img id="image" src="https://avatars0.githubusercontent.com/u/3456749" />
-								</div>
-							  </div>
-							  <div class="modal-footer">
-								<a class="btn btn-cta-primary round profile-button grey" data-bs-dismiss="modal">ยกเลิก</a>
-								<a class="btn btn-cta-primary-yellow round profile-button" id="crop">ใช้งานรูปภาพ</a>
-							  </div>
-							</div>
-						  </div>
-						</div>
-				  </div>
+
 			</div>
 		);
 	}
