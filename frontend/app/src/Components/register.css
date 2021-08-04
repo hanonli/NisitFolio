@@ -42,6 +42,24 @@
     background-color: #cdcdcd;
   }
 
+/* Dropdown_year Button */
+.dropbtn_year {
+    background-color: #EAEAEA;
+    color: #000;
+    padding: 10px;
+    font-size: 20px;
+    border: none;
+    /*cursor: pointer;*/
+    border-radius: 24px;
+    padding-left: 30px;
+    width: 22vw;
+  }
+  
+  /* Dropdown button on hover & focus */
+  .dropbtn_year:hover, .dropbtn_year:focus {
+    background-color: #cdcdcd;
+  }
+
   .aboutmee {
     background-color: #EAEAEA;
     color: #000;
@@ -53,12 +71,31 @@
     padding-left: 30px;
     height: 30vh;
   }
-  
+
   /* Dropdown button on hover & focus */
   .aboutmee:hover, .aboutmee:focus {
     background-color: #cdcdcd;
   }
   
+  .certibtn {
+    background-color: #EAEAEA;
+    color: #000;
+    padding: 0px;
+    font-size: 20px;
+    border: none;
+    /*cursor: pointer;*/
+    border-radius: 24px;
+    padding-left: 30px;
+    height: 20vh;
+    width: 22vw;
+    left: 5px;
+  }   
+
+  /* Dropdown button on hover & focus */
+  .certibtn:hover, .certibtn:focus {
+    background-color: #cdcdcd;
+  }
+
   #sideskillop {
     font-size: 20px;
     color: #000;
@@ -100,6 +137,8 @@
   /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
   /*.show {display:block;}*/
 
+
+  
 /*PopUp*/
 .minisize {
     width: 650px;
