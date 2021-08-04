@@ -239,6 +239,18 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 
 .bookmark-row-top-buffer { margin-top: 20px; }
 
+.yahaha-alt{
+	padding-bottom: 6vh;
+}
+
+.wrapper{
+	height: 35.5vh;
+}
+
+.space-alt-1{
+	margin-top: 15px;
+}
+
 .header .profile-content .name {
   color: #49515a;
   font-size: 32px;
@@ -775,18 +787,21 @@ a.btn-search:hover, .btn-search:hover {
 .resume-icon{
 	width: 35vw;
 	height: 31vw;
+
 }
 
 
 .portfolio-icon{
 	width: 20vw;
 	height: 31vw;
+
 }
 
 
 .analytic-icon{
 	width: 26.5vw;
 	height: 15vw;
+
 }
 
 
@@ -795,13 +810,21 @@ a.btn-search:hover, .btn-search:hover {
 	height: 15vw;
 }
 
+
+@media (min-height: 1000px) {
+	.df-f{ margin-top: 5%; }
+	.df-x{ margin-top: 1%; }
+}
+
+@media (max-height: 1000px) {
+	.df-f{ margin-top: 2%; }
+	.df-x{ margin-top: 0%; }
+}
+
 .search-box{
 	margin-left: 30%;
 }
 
-.profile-content{
-	margin-top: 1%;
-}
 
 #cross-fade {
   position:relative;
