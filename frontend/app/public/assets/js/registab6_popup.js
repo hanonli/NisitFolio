@@ -2,21 +2,21 @@
 
 /*Tabs New*/
 $(function () {
-    $('.tab-content-job').hide();
-    $('#tabP1-content-job').show();
+    $('.tab-content').hide();
+    $('#tabP1-content').show();
     console.log("NhaHee!!!!");
-    $('#tab-1-job').on('click', function () {
-        $('.tab-content-job').hide();
-        $('.tab-list-item-job').removeClass('tab-list-active-job');
-        $('#tab-1-job').addClass('tab-list-active-job')
-        $('#tabP1-content-job').show();
+    $('#tab-11').on('click', function () {
+        $('.tab-content').hide();
+        $('.tab-list-item').removeClass('tab-list-active');
+        $('#tab-11').addClass('tab-list-active')
+        $('#tabP1-content').show();
     });
 
-    $('#tab-2-job').on('click', function () {
-        $('.tab-content-job').hide();
-        $('.tab-list-item-job').removeClass('tab-list-active-job');
-        $('#tab-2-job').addClass('tab-list-active-job')
-        $('#tabP2-content-job').show();
+    $('#tab-12').on('click', function () {
+        $('.tab-content').hide();
+        $('.tab-list-item').removeClass('tab-list-active');
+        $('#tab-12').addClass('tab-list-active')
+        $('#tabP2-content').show();
     });
 });
 
