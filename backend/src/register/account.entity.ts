@@ -8,6 +8,12 @@ export class Account {
 
   @Column()
   Email: string;
+
+  @Column({ default: false })
+  isEmailConfirmed: boolean;
+  
+  @Column()
+  Username: string;
   
   @Column()
   Password: string;
