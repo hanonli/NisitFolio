@@ -13,20 +13,25 @@ class Registab5 extends React.Component {
 			<div className="Registab5">
 				<div class="regis-box-content">
 					<div class="row" id="pos_card">
-						<div class="col-md-15">
-							<div class="card_certi">
-								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-									<img src="assets/images/+.png" width="50" height="50"></img>
-								</button>
-							</div>
+						<div class="card_certi">
+							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+								<img src="assets/images/+.png" width="50" height="50"></img>
+							</button>
 						</div>
-						<div class="col-md-25">
-							<div class="card_certi">
-								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-									<img src="assets/images/+.png" width="50" height="50"></img>
-								</button>
-							</div>
+
+						<div class="card_certi">
+							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+								<img src="assets/images/+.png" width="50" height="50"></img>
+							</button>
 						</div>
+					</div>
+					<div class="row" id="pos_card">
+						<div class="card_certi">
+							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+								<img src="assets/images/+.png" width="50" height="50"></img>
+							</button>
+						</div>
+						<div class="dummy"></div>
 					</div>
 
 					<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

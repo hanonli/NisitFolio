@@ -8,7 +8,18 @@
     margin-left: 5px;
     margin-right: 5px;
 }
+.dummy {
+    border: transparent;
+    height: 210px;
+    width: 45%;
+    border-radius: 25px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
 
 #pos_card {
-
+  display: flex;
+  justify-content: center;
 }
