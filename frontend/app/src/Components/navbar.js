@@ -110,7 +110,7 @@ class Navbar extends React.Component {
 									  </Link>
 									</li>
 									<li class="nav-item tooltips-item shadow-box" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Analytics">
-									  <Link to="/analytic">
+									  <Link to="/analytics">
 										  <a class="nav-link">
 											<span class="lg-view">
 												<img src="assets/images/Analytic_navigation_bar2.png" alt="" width="70" height="30"/>

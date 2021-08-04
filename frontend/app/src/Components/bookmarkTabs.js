@@ -36,7 +36,7 @@ class BookmarkTabs extends React.Component {
 						</div>
 					</div>
 				</div>
-						   
+					<div class="df-x">
 						<div class="tab-content bookmark-content-scroll" id="content1"> 
 							<div class="container-fluid yahaha">
 							
@@ -73,6 +73,7 @@ class BookmarkTabs extends React.Component {
 								</div>
 							</div>
 						</div> 
+				</div>
 			</div>
 		);
 	}
