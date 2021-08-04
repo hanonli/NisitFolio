@@ -1,17 +1,18 @@
 import React from 'react';
 import './register.css';
 import './registab6.css';
+import TabsJob from "./Tabs-job";
 
 
 class Registab6 extends React.Component {
 
-	componentDidMount() {
+	/*componentDidMount() {
 		window.addEventListener('load', this.handleLoad);
 		const script = document.createElement("script");
-		console.log("kuay");
+		console.log("kuayPraYut");
 		script.src = "assets/js/registab6_popup.js";
 		document.body.appendChild(script);
-	}
+	}*/
 
 	render() {
 		return (
@@ -33,17 +34,17 @@ class Registab6 extends React.Component {
 					<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog modal-dialog-centered modal-xl">
 							<div class="modal-content minisize" id="popup_JOB">
-
-								<ol class="tabs-list-job">
-									<li class="tab-list-item-job tab-list-active-job" id="tab-1-job" type="button">ข้อมูลสำคัญ</li>
-									<li class="tab-list-item-job" id="tab-2-job" type="button">ข้อมูลเพิ่มเติม</li>
+								<h1>เพิ่มงานที่สนใจ</h1>
+								<ol class="tabs-list2">
+									<li class="tab-list-item tab-list-active" id="tab-11" type="button">ทักษะของฉัน</li>
+									<li class="tab-list-item" id="tab-12" type="button">เป้าหมายในการทำงาน</li>
 								</ol>
 
 								<div>
-									<div class="tab-content-job" id="registab1-content-job">
+									<div class="tab-content" id="tabP1-content">
 
 									</div>
-									<div class="tab-content-job" id="registab2-content-job">
+									<div class="tab-content" id="tabP2-content">
 
 									</div>
 
