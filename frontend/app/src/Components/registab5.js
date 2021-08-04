@@ -14,6 +14,11 @@ class Registab5 extends React.Component {
 					<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
 						<img src="assets/images/+.png"></img>
 					</button>
+					<div class="col-md-5">
+						<div className="card_certi">
+
+						</div>
+					</div>
 					<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog modal-dialog-centered modal-lg">
 							<div class="modal-content minisize" id="certi_edit">
@@ -32,11 +37,11 @@ class Registab5 extends React.Component {
 										<img src="assets/images/upload_file.png" width="70px" height="70px" class="up_img"></img>
 										<h2 className="text_up">อัพโหลดใบรับรองของคุณได้ที่นี่</h2>
 									</div>
+									<h5 className="text_Info1">* ข้อมูลที่จำเป็นต้องกรอก</h5>
 									<div class="col-md-10">
 										<a type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</a>
-										<a type="button" class="btn btn-cta-primary-yellowshort profile-button round">ลบ</a>
+										<a type="button" class="btn btn-cta-primary-yellowshort profile-button round">เพิ่ม</a>
 									</div>
-
 								</div>
 							</div>
 						</div>
