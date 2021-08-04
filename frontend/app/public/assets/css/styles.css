@@ -646,10 +646,6 @@ a.btn-cta-primary-white:hover, .btn-cta-primary-white:hover {
 	margin-right: 12px;
 }
 
-.dropdown-item{
-	/*text-decoration: none;*/
-}
-
 .dropdown-toggle::after {
    display: inline-block;
    width: 0;

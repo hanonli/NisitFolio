@@ -30,7 +30,12 @@ $(function () {
   
   $('.tooltips-item').on('click', function () {
     $(this).tooltip('hide');
-	console.log("HIDE!");
+	console.log("HIDE ON CLICK!");
+	})
+
+	$('.tooltips-item').on('mouseleave', function () {
+    $(this).tooltip('hide');
+	console.log("HIDE ON LEAVE!");
 	})
 	
   $('.tooltips-item').on('mouseover', function () {
