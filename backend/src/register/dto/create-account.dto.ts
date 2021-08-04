@@ -12,6 +12,8 @@ export class CreateAccountDto {
 
     Privacy: string;
 
+    Username: string;
+
  
 }
 
