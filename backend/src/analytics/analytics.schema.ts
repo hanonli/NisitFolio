@@ -2,6 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Mongoose } from 'mongoose';
 
 import * as mongoose from 'mongoose';
+import { ObjectId } from 'mongodb';
 
 export type AdditionalSkillDocument = AdditionalSkill & Document;
 
@@ -23,17 +24,17 @@ export const AdditionalSkillSchema =
 // -------------------- UserSkill ---------------------------
 
 export const UserSkillSchema = new mongoose.Schema({
-  userId: {type: String , required: [true, 'UserID is not empty'] },
+  userId: {type: ObjectId , required: [true, 'UserID is not empty'] },
   inJobId: {type: String , required: [true, 'JobID is not empty'] },
-  SkillId: {type: String , required: [true, 'SkillID is not empty'] },
+  SkillId: {type: ObjectId , required: [true, 'SkillID is not empty'] },
   Score: {type: Number , required: [true, 'Score is not empty'] }
 });
 
 export interface UserSkill {
   id: string;
-  userId: string;
+  userId: ObjectId;
   inJobId: string;
-  SkillId: string;
+  SkillId: ObjectId;
   Score: number
 }
 

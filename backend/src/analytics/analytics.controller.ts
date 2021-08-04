@@ -1,4 +1,6 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { ObjectId } from 'mongodb';
+import { ParseObjectIdPipe } from 'src/common/pipes';
 import { AdditionalSkill, Skill, UserSkill } from './analytics.schema';
 import { AnalyticsService } from './analytics.service';
 
@@ -13,16 +15,26 @@ export class AnalyticsController {
 
   // -------------------- UserSkill ---------------------------
 
-  @Get('/main')
-  async findUserSkill(): Promise<UserSkill[]> {
-    return this.analyticsService.findUserSkill() ;
+  @Get('/main') // Find All User skill
+  async findAllUserSkill(): Promise<UserSkill[]> {
+    return this.analyticsService.findAllUserSkill() ;
+  }
+
+  @Get('/main/:userId/skill')
+  async findUserSkill(@Param('userId', ParseObjectIdPipe) userId: ObjectId): Promise<UserSkill[]> {
+    return this.analyticsService.findUserSkill(userId) ;
+  }
+
+  @Get('/main/:userId/analys')
+  async AnalysUserSkill(@Param('userId', ParseObjectIdPipe) userId: ObjectId) : Promise<any> {
+    return this.analyticsService.AnalysUserSkill(userId) ;
   }
 
   @Post('/main')
   async createUserSkill( 
-    @Body('userId') userId: string,
+    @Body('userId', ParseObjectIdPipe) userId: ObjectId,
     @Body('inJobId') inJobId: string,
-    @Body('SkillId') SkillId: string,
+    @Body('SkillId', ParseObjectIdPipe) SkillId: ObjectId,
     @Body('Score') Score: number
   ) {
     return await this.analyticsService.createUserSkill(userId, inJobId, SkillId, Score);
