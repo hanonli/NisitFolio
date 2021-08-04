@@ -52,6 +52,24 @@
     background-color: #cdcdcd;
   }
 
+/* Dropdown_year Button */
+.dropbtn_year {
+    background-color: #EAEAEA;
+    color: #000;
+    padding: 10px;
+    font-size: 20px;
+    border: none;
+    /*cursor: pointer;*/
+    border-radius: 24px;
+    padding-left: 30px;
+    width: 22vw;
+  }
+  
+  /* Dropdown button on hover & focus */
+  .dropbtn_year:hover, .dropbtn_year:focus {
+    background-color: #cdcdcd;
+  }
+
   .aboutmee {
     background-color: #EAEAEA;
     color: #000;
@@ -63,12 +81,31 @@
     padding-left: 30px;
     height: 30vh;
   }
-  
+
   /* Dropdown button on hover & focus */
   .aboutmee:hover, .aboutmee:focus {
     background-color: #cdcdcd;
   }
   
+  .certibtn {
+    background-color: #EAEAEA;
+    color: #000;
+    padding: 0px;
+    font-size: 20px;
+    border: none;
+    /*cursor: pointer;*/
+    border-radius: 24px;
+    padding-left: 30px;
+    height: 20vh;
+    width: 22vw;
+    left: 5px;
+  }   
+
+  /* Dropdown button on hover & focus */
+  .certibtn:hover, .certibtn:focus {
+    background-color: #cdcdcd;
+  }
+
   #sideskillop {
     font-size: 20px;
     color: #000;
@@ -94,15 +131,7 @@
     display: inline-block;
   }
   
-  /* Dropdown Content (Hidden by Default) */
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f6f6f6;
-    min-width: 230px;
-    border: 1px solid #ddd;
-    z-index: 1;
-  }
+
   
   /* Links inside the dropdown */
   .dropdown-content a {
@@ -116,8 +145,10 @@
   .dropdown-content a:hover {background-color: #f1f1f1}
   
   /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-  .show {display:block;}
+  /*.show {display:block;}*/
 
+
+  
 /*PopUp*/
 .minisize {
     width: 650px;
@@ -178,3 +209,53 @@
     color: black;
     font-weight: 400;
   }
+#certi_edit {
+    height: 320px;
+    width: 1450px;
+}
+
+#button_certi {
+    position: absolute;
+    bottom: 15px;
+}
+
+#input_certi {
+    position: absolute;
+    left: 25px;
+    top: 25px;
+    bottom: 25px;
+}
+
+#input_upload {
+    position: absolute;
+    right: 38px;
+    top: 25px;
+    bottom: 140px;
+    left: 500px
+}
+
+#size_certi_button {
+    width: 10px;
+    bottom: 125px;
+}
+
+.bg_upload {
+    background-color: #e4f7ff;
+    border-radius: 24px;
+    padding: 0px;
+    bottom: 125px;
+}
+
+.up_img img{
+    position: absolute;
+}
+
+.text_up {
+   font-size: 20px;
+   font-weight: 300;
+}
+
+.text_Info1 {
+   font-size: 18px;
+   font-weight: 300;
+}

@@ -8,7 +8,7 @@ export type AdditionalSkillDocument = AdditionalSkill & Document;
 @Schema()
 export class AdditionalSkill {
   @Prop()
-  userId: number;
+  userId: mongoose.Types.ObjectId;
 
   @Prop()
   id: number;

@@ -15,8 +15,8 @@ class BookmarkTabs extends React.Component {
                         <div class="row">
                             <div class="col">
                                 <ol class="tab-list">
-                                 <li class="tab-list-item tab-list-active" id="tab-1" type="button">ทั้งหมด</li>
-                                 <li class="tab-list-item" id="tab-2" type="button">ผู้ใช้</li>
+                                 <li class="tab-list-item tab-list-active" id="tab-1" type="button">ทั้งหมด</li> 
+								 <li class="tab-list-item" id="tab-2" type="button">ผู้ใช้</li>
                                  <li class="tab-list-item" id="tab-3" type="button">ผลงาน</li>
                                  <div class="float-end">
                                     <img class="layout-toggle gridOn" src="assets/images/outline_format_list_bulleted_black_48dp 3.png" alt="" width="40" height="40" type="button" />

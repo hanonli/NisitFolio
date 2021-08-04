@@ -1,5 +1,5 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
-import { get } from 'http';
+import { Body, Controller, Get, Post, Param } from '@nestjs/common';
+import * as mongoose from 'mongoose';
 import { AdditionalSkill, Skill, UserSkill, Account } from './analytics.schema';
 import { AnalyticsService } from './analytics.service';
 
@@ -17,6 +17,12 @@ export class AnalyticsController {
   @Get('/additional')
   async findAddSkill(): Promise<AdditionalSkill[]> {
     return this.analyticsService.findAddSkill();
+  }
+
+  @Get('/additional/:id')
+  async AddSkillPercentage(@Param('id') id: string): Promise<any[]> {
+    const oid = mongoose.Types.ObjectId(id);
+    return this.analyticsService.AddSkillPercentage(oid);
   }
 
   // -------------------- UserSkill ---------------------------
