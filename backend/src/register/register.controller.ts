@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, HttpException, HttpStatus, Param, UseGuards, UploadedFile } from '@nestjs/common';
+import { Controller, Get, Put, Post, Body, HttpException, HttpStatus, Param, UseGuards, UploadedFile } from '@nestjs/common';
 import { ObjectId } from 'mongodb';
 import { Express } from 'express'
 
@@ -47,5 +47,14 @@ export class RegisterController {
   @UseInterceptors(FileInterceptor('file'))
   uploadFile(@UploadedFile() file: Express.Multer.File) {
     console.log(file);
+  }
+
+  @Put(':Email') // PUT /email
+  async update(@Param('Email') Email: string,@Body() createAccountDto: CreateAccountDto,): Promise<Account> {
+    const x = await this.registerService.findOne(Email);
+    x.Password=createAccountDto.Password;
+    x.Privacy=createAccountDto.Privacy;
+    x.ProfilePic=createAccountDto.ProfilePic;
+    return await this.registerService.createOrUpdate(x);
   }
 }

@@ -1,20 +1,22 @@
 {
 	"result": [
 		{
-			"name":"Edgeworth 4.00",
+			"name":"Edgeworth 100/100",
 			"type": "work",
-			"owner": "วรเมศ ผดุงเจริญ",
+			"owner": "Sirapop Chayajet",
 			"pic": "assets/images/work.jpg",
-			"desc": "Edgeworth's work is as amazing as ever!",
-			"bookmark": true
+			"desc": "Edgeworth's work is as amazing as ever! He flawlessly scored 100 with his awesome work that would took us 5 years to accomplish!",
+			"bookmark": true,
+			"port": 4
 		},
 		{
-			"name":"Edgeworth 5.00",
+			"name":"Edgeworth A+",
 			"type": "work",
 			"owner": "วรเมศ ผดุงเจริญ",
 			"pic": "assets/images/work.jpg",
-			"desc": "Edgeworth's work is as amazing as ever!",
-			"bookmark": false
+			"desc": "Edgeworth somehow got A+ grade on Software Engineering subject?!",
+			"bookmark": false,
+			"port": 4
 		}
 	]
 }
