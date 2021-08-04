@@ -23,11 +23,20 @@ class Registab6 extends React.Component {
 							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal2">
 								<img src="assets/images/+.png" width="50" height="50"></img>
 							</button>
+							<div class="layer_icon">
+								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal2" id="img_icon"><img src="assets/images/blackedit.png" width="50" height="50"></img></button>
+								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal2" id="img_icon"><img src="assets/images/bin.png" width="50" height="50"></img></button>
+							</div>
+
 						</div>
 						<div class="frame_job">
 							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal2">
 								<img src="assets/images/+.png" width="50" height="50"></img>
 							</button>
+							<div class="layer_icon">
+								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal2" id="img_icon"><img src="assets/images/blackedit.png" width="50" height="50"></img></button>
+								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal2" id="img_icon"><img src="assets/images/bin.png" width="50" height="50"></img></button>
+							</div>
 						</div>
 					</div>
 
