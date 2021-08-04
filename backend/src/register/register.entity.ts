@@ -1,3 +1,8 @@
+/*
+import { Entity, Column, ObjectIdColumn } from 'typeorm'; 
+import { ObjectId } from 'mongodb';
+
+//----------------------------------------------//*/
 import { Entity, Column, ObjectIdColumn } from 'typeorm'; 
 import { ObjectId, Timestamp } from 'mongodb';
 
@@ -21,7 +26,7 @@ export class PostAccount {
 }
 
 
-//--------------------Account--------------------------//
+//--------------------UserInfo--------------------------//
 @Entity("UserInfo")
 export class PostUserinfo {
   @ObjectIdColumn()
@@ -43,7 +48,6 @@ export class PostUserinfo {
   courseId: ObjectId;*/
 }
 
-
 //--------------------AdditionalSkill--------------------------//
 @Entity("AdditionalSkill")
 export class PostAdditionalSkill {
@@ -51,7 +55,7 @@ export class PostAdditionalSkill {
   id?: ObjectId;
 
   @Column()
-  UserId: number;
+  UserId: string;
   
   @Column()
   SoftSkill: string;
@@ -63,7 +67,7 @@ export class PostBookmark {
   id?: ObjectId;
   
   @Column()
-  userId: number;
+  userId: string;
 
   @Column()
   Link: string;
@@ -79,7 +83,7 @@ export class PostCertificate {
   id?: ObjectId;
   
   @Column()
-  UserId: number;
+  UserId: string;
 
   @Column()
   Pic: string;
@@ -95,7 +99,7 @@ export class PostCity {
   id?: ObjectId;
   
   @Column()
-  UserId: number;
+  UserId: string;
 
   @Column()
   Name: string;
@@ -108,7 +112,7 @@ export class PostCountry {
   id?: ObjectId;
   
   @Column()
-  UserId: number;
+  UserId: string;
 
   @Column()
   Name: string;
@@ -121,7 +125,7 @@ export class PostEducationHistory {
   id?: ObjectId;
   
   @Column()
-  UserId: number;
+  UserId: string;
 
   @Column()
   Degree: string;
@@ -139,10 +143,10 @@ export class PostEducationHistory {
   Grade: string;
   
   @Column()
-  StartTime: Timestamp;   //ยังไม่มั่นใจ
+  Start_Year: Number;
 
   @Column()
-  EndTime: Timestamp;   //ยังไม่มั่นใจ
+  End_Year: Number;
 }
 
 
@@ -153,7 +157,7 @@ export class PostInterestedJob {
   id?: ObjectId;
   
   @Column()
-  UserId: number;
+  UserId: string;
 
   @Column()
   objective: string;
@@ -166,7 +170,7 @@ export class PostJobTitle {
   id?: ObjectId;
   
   @Column()
-  UserId: number;
+  UserId: string;
 
   @Column()
   Name: string;
@@ -179,7 +183,7 @@ export class PostPortfolio {
   id?: ObjectId;
   
   @Column()
-  UserId: number;
+  UserId: string;
 
   @Column()
   Tag: string;
@@ -197,7 +201,7 @@ export class PostPortfolioPicture {
   id?: ObjectId;
   
   @Column()
-  UserId: number;
+  UserId: string;
 
   @Column()
   Pic: string;
@@ -213,9 +217,109 @@ export class PostProvince {
   id?: ObjectId;
   
   @Column()
-  UserId: number;
+  UserId: string;
 
   @Column()
   Name: string;
 }
 
+//--------------------Resume--------------------------//
+@Entity("Resume")
+export class PostResume {
+  @ObjectIdColumn()
+  id?: ObjectId;
+  
+  @Column()
+  UserId: string;
+
+  @Column()
+  Tag: string;
+
+  @Column()
+  Privacy: string;
+
+
+}
+
+//--------------------SalaryType--------------------------//
+@Entity("SalaryType")
+export class PostSalaryType {
+  @ObjectIdColumn()
+  id?: ObjectId;
+  
+  @Column()
+  UserId: string;
+
+  @Column()
+  Name: string;
+
+
+}
+//--------------------Skill--------------------------//
+@Entity("Skill")
+export class PostSkill {
+  @ObjectIdColumn()
+  id?: ObjectId;
+  
+  @Column()
+  UserId: string;
+
+  @Column()
+  Name: string;
+
+
+}
+
+//--------------------UserSkill--------------------------//
+@Entity("UserSkill")
+export class PostUserSkill {
+  @ObjectIdColumn()
+  id?: ObjectId;
+  
+  @Column()
+  UserId: string;
+
+  @Column()
+  Score: Number;
+
+
+}
+
+
+//--------------------WorkHistory--------------------------//
+@Entity("WorkHistory")
+export class PostWorkHistory {
+  @ObjectIdColumn()
+  id?: ObjectId;
+  
+  @Column()
+  UserId: string;
+
+  @Column()
+  JobName: string;
+  
+  @Column()
+  JobType: string;
+  
+  @Column()
+  Company: string;
+  
+  @Column()
+  Start_Month: Number;
+  
+  @Column()
+  End_Month: Number;
+  
+  @Column()
+  Start_Year: Number;
+  
+  @Column()
+  End_Year: Number;
+
+  @Column()
+  Salary: Float32Array;
+
+  @Column()
+  Infomation: string;
+
+}
