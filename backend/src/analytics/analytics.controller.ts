@@ -1,6 +1,8 @@
-import { Body, Controller, Get, Post, Param } from '@nestjs/common';
+import { Body, Controller, Get, Post, Param, HttpException } from '@nestjs/common';
+import { ObjectId } from 'mongodb';
 import * as mongoose from 'mongoose';
-import { AdditionalSkill, Skill, UserSkill, Account } from './analytics.schema';
+import { ParseObjectIdPipe } from 'src/common/pipes';
+import { AdditionalSkill, Skill, UserSkill, Account, ClassifySkill } from './analytics.schema';
 import { AnalyticsService } from './analytics.service';
 
 @Controller('analytics')
@@ -25,21 +27,61 @@ export class AnalyticsController {
     return this.analyticsService.AddSkillPercentage(oid);
   }
 
+  async AddInterestedJobPercentage(
+    @Param('JobTitle') JobTitle: string
+  ): Promise<any[]> {
+    return this.analyticsService.InterestedJobPercentage(JobTitle, 0) ;
+  }
+
   // -------------------- UserSkill ---------------------------
 
-  @Get('/main')
-  async findUserSkill(): Promise<UserSkill[]> {
-    return this.analyticsService.findUserSkill() ;
+  @Get('/main') // Find All User skill
+  async findAllUserSkill(): Promise<UserSkill[]> {
+    return this.analyticsService.findAllUserSkill() ;
+  }
+
+  @Get('/main/:userId')
+  async findUserSkill(@Param('userId', ParseObjectIdPipe) userId: ObjectId): Promise<UserSkill[]> {
+    return this.analyticsService.findUserSkill(userId) ;
   }
 
   @Post('/main')
   async createUserSkill( 
-    @Body('userId') userId: string,
-    @Body('inJobId') inJobId: string,
-    @Body('SkillId') SkillId: string,
+    @Body('userId', ParseObjectIdPipe) userId: ObjectId,
+    @Body('inJobId', ParseObjectIdPipe) inJobId: ObjectId,
+    @Body('SkillId', ParseObjectIdPipe) SkillId: ObjectId,
     @Body('Score') Score: number
-  ) {
+  ): Promise<UserSkill> {
     return await this.analyticsService.createUserSkill(userId, inJobId, SkillId, Score);
+  }
+
+  // -------------------- ClassifySkill ---------------------------
+  
+  @Post('/ClassifySkill/:userId')
+  async createClassifySkill(
+    @Param('userId', ParseObjectIdPipe) userId: ObjectId,
+    @Body('JobTitle') JobTitle: string,
+    @Body('SkillName') SkillName: string,
+    @Body('IsMain') IsMain: number,
+  ): Promise<ClassifySkill> {
+    return this.analyticsService.createClassifySkill(userId, JobTitle, SkillName, IsMain);
+  }
+
+  // -------------------- Interested Job ---------------------------
+
+  @Post('/Interestedjob/:userId')
+  async createInterestedJob(
+    @Param('userId', ParseObjectIdPipe) userId: ObjectId ,
+    @Body('objective') objective: string,
+  ){
+    return this.analyticsService.createInterestedJob(userId, objective) ;
+  }
+
+  @Get('/main/Interestedjob/:JobTitle')
+  async MainInterestedJobPercentage(
+    @Param('JobTitle') JobTitle: string
+  ): Promise<any[]> {
+    return this.analyticsService.InterestedJobPercentage(JobTitle, 1) ;
   }
 
   // -------------------- Skill ---------------------------
