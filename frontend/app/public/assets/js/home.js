@@ -14,8 +14,6 @@
 			// console.log("Click on profile!");
 		});
 
-      $('[data-toggle="tooltip"]').tooltip();
-
       input.addEventListener('change', function (e) {
         var files = e.target.files;
         var done = function (url) {
@@ -122,11 +120,5 @@
 		  $(this).attr('src', $(this).data("src"));
 		});*/
 
-		
-		//Enable tooltips everywhere
-		var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-		var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-		  return new bootstrap.Tooltip(tooltipTriggerEl)
-		})
 
 	  

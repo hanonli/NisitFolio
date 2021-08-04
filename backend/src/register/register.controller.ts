@@ -14,6 +14,7 @@ import { CreateDto } from './dto/create.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { DeleteResult } from 'typeorm';
 
 @Controller('register')
 export class RegisterController {
@@ -56,5 +57,10 @@ export class RegisterController {
     x.Privacy=createAccountDto.Privacy;
     x.ProfilePic=createAccountDto.ProfilePic;
     return await this.registerService.createOrUpdate(x);
+  }
+  @Delete(':id')
+  async remove(@Param('id') id: string): Promise<DeleteResult> {
+    const x = await this.registerService.findOne(id);
+    return this.registerService.remove(x);
   }
 }
