@@ -94,15 +94,3 @@ $('.xxx').click(function () {
   });
 */
 
-$(function(){
-    var valy = $(bdyear).val();
-    if(valy==none){
-        alert("Hello You must fill bd year!");
-    }
-    else if(valy<1900 and valy>2020){
-        alert("Hello You must fill true bd year!");
-    }
-    else{
-        alert("Thank you!");
-    }
-}
