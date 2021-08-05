@@ -75,11 +75,34 @@ function stateHandle() {
 
 /*Tab7*/
 
-//setInterval(function(){ console.log("YahahaHAHAHA!"); $('#sideskilllist').blur(); }, 1000);
+$(document).on('change', 'input', function(){
+    var options = $('datalist')[0].options;
+    var val = $(this).val();
+    for (let i=0;i<options.length;++i){
+       if (options[i].value === val) {
+          console.log("User selected: "+val+" -> Remove focus away.");
+		  $('#sideskilllist').blur();
+          break;
+       }
+    }
+});
 
-$(function() {
-    $('.dropdown-content .option').on('click', function(){
-        console.log("YahahaEArt!");
+/*
+$('.xxx').click(function () {           
+    alert("Hello! I am an alert box!!");
         $('#sideskilllist').blur();
   });
-});
+*/
+
+$(function(){
+    var valy = $(bdyear).val();
+    if(valy==none){
+        alert("Hello You must fill bd year!");
+    }
+    else if(valy<1900 and valy>2020){
+        alert("Hello You must fill true bd year!");
+    }
+    else{
+        alert("Thank you!");
+    }
+}

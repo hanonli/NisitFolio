@@ -1,12 +1,10 @@
-{
-	"result": [
-		{
-			"name":"Edgeworth 100/100",
-			"type": "work",
-			"owner": "Sirapop Chayajet",
-			"pic": "assets/images/work.jpg",
-			"desc": "Edgeworth's work is as amazing as ever! He flawlessly scored 100 with his awesome work that would took us 5 years to accomplish!",
-			"port": 4
-		}
-	]
-}
+[
+	{
+		"name":"Edgeworth 100/100",
+		"type": "work",
+		"owner": "Sirapop Chayajet",
+		"pic": "assets/images/work.jpg",
+		"desc": "Edgeworth's work is as amazing as ever! He flawlessly scored 100 with his awesome work that would took us 5 years to accomplish!",
+		"port": 4
+	}
+]

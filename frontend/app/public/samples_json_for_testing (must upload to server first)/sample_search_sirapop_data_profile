@@ -1,11 +1,9 @@
-{
-	"result": [
-		{
-			"name": "Sirapop Chayajet",
-			"type": "profile",
-			"pic": "assets/images/profile2.jpg",
-			"desc": "My name is Sirapop and I'm much than Edgeworth.",
-			"tags": ["Edgeworth Hunter", "Anti-Edgeworth", "Edgeworth, Please Look at the Map"]
-		}
-	]
-}
+[
+	{
+		"name": "Sirapop Chayajet",
+		"type": "profile",
+		"pic": "assets/images/profile2.jpg",
+		"desc": "My name is Sirapop and I'm much than Edgeworth.",
+		"tags": ["Edgeworth Hunter", "Anti-Edgeworth", "Edgeworth, Please Look at the Map"]
+	}
+]
