@@ -5,7 +5,6 @@ import Navbarlogo from './Components/navbarlogo';
 import InformationHeader from './Components/informationHeader';
 import reportWebVitals from './reportWebVitals';
 import { Link } from "react-router-dom";
-import Tabs from "./Components/Tabs";
 import Registab1 from "./Components/registab1";
 import Registab2 from "./Components/registab2";
 import Registab3 from "./Components/registab3";

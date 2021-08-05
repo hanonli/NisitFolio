@@ -75,12 +75,11 @@ function stateHandle() {
 
 /*Tab7*/
 
+//setInterval(function(){ console.log("YahahaHAHAHA!"); $('#sideskilllist').blur(); }, 1000);
+
 $(function() {
-    $('#sideskillop').on('click', function(){
+    $('.dropdown-content .option').on('click', function(){
+        console.log("YahahaEArt!");
         $('#sideskilllist').blur();
   });
 });
-
-$('#datepicker').datepicker();
-var date = $('#datepicker').datepicker({ dateFormat: 'dd-mm-yy' }).val();
-var date = $('#datepicker').datepicker('getDate');

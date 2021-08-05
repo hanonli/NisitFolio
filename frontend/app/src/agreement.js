@@ -56,8 +56,13 @@ class Agreement extends React.Component {
                     <h2 class="desc-b" contenteditable="true">You can use the overflow property when you want to have better control of the layout. The overflow property specifies what happens if content overflows an element's box. You can use the overflow property when you want to have better control of the layout. The overflow property specifies what happens if content overflows an element's box. You can use the overflow property when you want to have better control of the layout. The overflow property specifies what happens if content overflows an element's box. You can use the overflow property when you want to have better control of the layout. The overflow property specifies what happens if content overflows an element's box. You can use the overflow property when you want to have better control of the layout. The overflow property specifies what happens if content overflows an element's box.</h2>
                 </div>
 				<div class="lineregis">
-					<a class="btn inlineweight" id="agree1"></a>
-					<h5 class="inlineweight ttr">ข้าพเจ้ายินยอมในข้อตกลงการให้บริการ</h5>
+					<div class="form-check inlineweight">
+						<input class="form-check-input" type="radio" name="flexRadioDefault" id="agree1"></input>
+						<label class="form-check-label" for="flexRadioDefault2">
+							ข้าพเจ้ายินยอมในข้อตกลงการให้บริการ
+  						</label>
+					</div>
+					<label class="inlineweight ttr">ข้าพเจ้ายินยอมในข้อตกลงการให้บริการ</label>
 					<Link to="/register">
 						<div class="inlineweight">
 							<a class="btn btn-cta-primary-yellowwide round " href="#" target="_blank" id="continue1">ต่อไป</a>
@@ -70,3 +75,5 @@ class Agreement extends React.Component {
 }
 
 export default Agreement;
+
+//<a class="btn inlineweight" id="agree1"></a>

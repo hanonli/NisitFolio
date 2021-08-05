@@ -46,17 +46,26 @@ class Registab1 extends React.Component {
 										<div class="col-md-2">
 											<label class="sexdistance form-f-sex">วันเกิด*</label>
 										</div>
-										<div class="col-6">
+										<div class="col-md-2">
 											<select class="form-select dropbtn margin-bottom1 fff" id="" required>
-												<option selected disabled value="">วัน/เดือน/ปี</option>
+												<option selected disabled value="">วัน</option>
+												<option>1</option>
+												<option>2</option>
+												<option>3</option>
+												<option>4</option>
+											</select>
+										</div>
+										<div class="col-md-2">
+											<select class="form-select dropbtn margin-bottom1 fff" id="" required>
+												<option selected disabled value="">เดือน</option>
 												<option>ชาย</option>
 												<option>หญิง</option>
 												<option>LGBTQ+</option>
 												<option>ไม่ระบุ</option>
 											</select>
 										</div>
-										<div class="col-md-4">
-											<label class="sexdistance fontsmallhere">* ข้อมูลที่จำเป็นต้องกรอก</label>
+										<div class="col-md-2">
+										<input type="text" class="form-control dropbtn margin-bottom1" id="bdyear" placeholder="ปี" required></input>
 										</div>
 									</div>
 								</div>

@@ -988,14 +988,10 @@ a.btn-cta-primary-yellowwideE:hover, .btn-cta-primary-yellowwideE:hover {
 
 /*Agreement page*/
 #agree1 {
-  height: 2vh;
-  weight: 2vw;
-  border-radius: 50%;
   background-color: #BFF4A6;
   margin-left: 8vw;
   margin-right: 0.5vw;
-  padding: auto;
-  padding: 0.8%;
+  border: none;
 }
 
 .inlineweight {

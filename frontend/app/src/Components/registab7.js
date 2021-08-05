@@ -53,7 +53,7 @@ class Registab7 extends React.Component {
 					<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
 						<img src="assets/images/bin.png"></img>
 					</button>
-					<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal fade" id="Modaltab7" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog modal-dialog-centered">
 							<div class="modal-content minisize">
 								<h4 class="del-b">คุณต้องการลบทักษะเสริม ?</h4>
