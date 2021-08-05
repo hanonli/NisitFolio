@@ -20,9 +20,6 @@ class Registab6 extends React.Component {
 				<div class="regis-box-content">
 					<div class="row" id="pos_card">
 						<div class="frame_job">
-							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal2">
-								<img src="assets/images/+.png" width="50" height="50"></img>
-							</button>
 							<div class="layer_icon">
 								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal2" id="img_icon"><img src="assets/images/blackedit.png" width="50" height="50"></img></button>
 								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal2" id="img_icon"><img src="assets/images/bin.png" width="50" height="50"></img></button>
@@ -30,13 +27,15 @@ class Registab6 extends React.Component {
 
 						</div>
 						<div class="frame_job">
-							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal2">
-								<img src="assets/images/+.png" width="50" height="50"></img>
-							</button>
 							<div class="layer_icon">
 								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal2" id="img_icon"><img src="assets/images/blackedit.png" width="50" height="50"></img></button>
 								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal2" id="img_icon"><img src="assets/images/bin.png" width="50" height="50"></img></button>
 							</div>
+						</div>
+						<div class="frame_job">
+							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+								<img src="assets/images/+.png" width="70" height="70"></img>
+							</button>
 						</div>
 					</div>
 
@@ -53,26 +52,20 @@ class Registab6 extends React.Component {
 										<h2>ควยประยุทธ์</h2>
 										<select class="form-select dropbtn_year margin-bottom1 fff" id="each_skill1" required>
 											<option selected disabled value="">เลือกทักษะของคุณที่เหมาะกับงาน</option>
-											<option >ซิโนแวค</option>
-											<option >แอสตร้า</option>
-											<option >หมอยง</option>
-											<option >ไฟเซอร์</option>
+											<option >ทักษะA</option>
+											<option >ทักษะB</option>
+											<option >ทักษะC</option>
+											<option >ทักษะD</option>
 										</select>
 									</div>
 									<div class="tab-pane_pop" id="tab02">
-										<h2>ควยอนุทิน</h2>
-										<select class="form-select dropbtn_year margin-bottom1 fff" id="each_skill2" required>
-											<option selected disabled value="">เลือกทักษะของคุณที่เหมาะกับงาน</option>
-											<option >ซิโนแวค</option>
-											<option >แอสตร้า</option>
-											<option >หมอยง</option>
-											<option >ไฟเซอร์</option>
-										</select>
+										<h2>space</h2>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+					
 				</div>
 			</div>
 		);
