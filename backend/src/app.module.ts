@@ -13,12 +13,12 @@ import { RegisterController } from './register/register.controller';
 import { RegisterService } from './register/register.service';
 
 import { RegisterModule } from './register/register.module';
-import { AuthModule } from './auth/auth.module';
-import { UsersModule } from './users/users.module';
-import { MulterModule } from '@nestjs/platform-express';
+// import { AuthModule } from './auth/auth.module';
+// import { UsersModule } from './users/users.module';
+// import { MulterModule } from '@nestjs/platform-express';
 
-import { ConfigModule } from '@nestjs/config';
-import * as Joi from '@hapi/joi';
+//import { ConfigModule } from '@nestjs/config';
+//import * as Joi from '@hapi/joi';
 
 @Module({
   imports: [
@@ -32,25 +32,25 @@ import * as Joi from '@hapi/joi';
       autoLoadEntities: true,
       synchronize: true,
     }),
-    MulterModule.registerAsync({
-      useFactory: () => ({
-        dest: './upload',
-      })
-    }),
-    ConfigModule.forRoot({
-      validationSchema: Joi.object({
-        JWT_VERIFICATION_TOKEN_SECRET: Joi.string().required(),
-        JWT_VERIFICATION_TOKEN_EXPIRATION_TIME: Joi.string().required(),
-        EMAIL_CONFIRMATION_URL: Joi.string().required(),
-        EMAIL_SERVICE: Joi.string().required(),
-        EMAIL_USER: Joi.string().required(),
-        EMAIL_PASSWORD: Joi.string().required(),
-      })
-    }),
+    // MulterModule.registerAsync({
+    //   useFactory: () => ({
+    //     dest: './upload',
+    //   })
+    // }),
+    // ConfigModule.forRoot({
+    //   validationSchema: Joi.object({
+    //     JWT_VERIFICATION_TOKEN_SECRET: Joi.string().required(),
+    //     JWT_VERIFICATION_TOKEN_EXPIRATION_TIME: Joi.string().required(),
+    //     EMAIL_CONFIRMATION_URL: Joi.string().required(),
+    //     EMAIL_SERVICE: Joi.string().required(),
+    //     EMAIL_USER: Joi.string().required(),
+    //     EMAIL_PASSWORD: Joi.string().required(),
+    //   })
+    // }),
     RegisterModule,
     AnalyticsModule,
-    AuthModule,
-    UsersModule,
+    //AuthModule,
+    //UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

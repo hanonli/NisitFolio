@@ -8,6 +8,7 @@
     margin-left: 5px;
     margin-right: 5px;
     position: relative;
+    text-align: center;  
 }
 
 #popup_JOB {
@@ -21,16 +22,52 @@
     position: absolute;
     top: 0;
     left: 0;
-    transition: 0.5s;
+    transition: 0.25s;
     border-radius: 25px;
     background: transparent;
-    opacity: 0.5;
+    opacity: 0.65;
+}
+
+.layer_icon button{
+    visibility: hidden;
+    transition: 0.1s;
 }
 
 .frame_job:hover .layer_icon{
   background: #E1E1E1;
+  display:inline-block;
 }
 
-#img_icon button {
-    display: none;
+.layer_icon:hover button{
+    visibility: visible;
+
+}
+
+
+/*------------------tab------------------*/
+
+.tabs_pop {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.tabs_pop li {
+  display: inline-block;
+  padding: 15px 25px;
+  background: none;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.tabs_pop li.current2 {
+  /*background: #e9e9e9;*/
+}
+.tab-contents_pop {
+  /*background: #e9e9e9;
+  padding: 20px;*/
+}
+.tab-pane_pop {
+  display: none;
+}
+.tab-pane_pop.current2 {
+  display: block;
 }
