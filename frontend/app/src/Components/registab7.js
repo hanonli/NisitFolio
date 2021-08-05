@@ -31,7 +31,7 @@ class Registab7 extends React.Component {
 					<h1 class="headerRegis" id="havesideskill">ทักษะเสริม</h1>
 					<input class="form-control dropbtn ssf" list="sideskillop" id="sideskilllist" placeholder="เลือกทักษะเสริมที่ถนัด"></input>
 					<datalist class="dropdown-content" id="sideskillop">
-						<option class="xxx" value="Photoshop"></option>
+						<option value="Photoshop"></option>
 						<option value="Word"></option>
 						<option value="Excel"></option>
 						<option value="Ai"></option>
