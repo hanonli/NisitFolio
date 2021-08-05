@@ -6,26 +6,27 @@ class Registab1 extends React.Component {
 			<div className="Registab1 regis-box-content">
 				<div class="container-fluid margin-top1">
 					<form class="row">
-						<div class="col-10">
+						<div class="col-1"></div>
+						<div class="col-8">
 							<div class="container-fluid">
 								<div class="row">
-									<div class="col-md-5">
+									<div class="col-md-6">
 										<input type="text" class="form-control dropbtn margin-bottom1" id="01" placeholder="ชื่อ*" required></input>
 									</div>
-									<div class="col-md-5">
+									<div class="col-md-6">
 										<input type="text" class="form-control dropbtn margin-bottom1" id="02" placeholder="นามสกุล*" required></input>
 									</div>
 								</div>
-								<div class="col-md-10">
+								<div class="col-md-12">
 									<input type="text" class="form-control dropbtn margin-bottom1" id="03" placeholder="อีเมลล์*" required></input>
 								</div>
-								<div class="col-md-10">
+								<div class="col-md-12">
 									<input type="text" class="form-control dropbtn margin-bottom1" id="05" placeholder="รหัสผ่าน*" required></input>
 								</div>
-								<div class="col-md-10">
+								<div class="col-md-12">
 									<input type="text" class="form-control dropbtn margin-bottom1" id="06" placeholder="ยืนยันรหัสผ่าน*" required></input>
 								</div>
-								<div class="col-md-10">
+								<div class="col-md-12">
 									<div class="row">
 										<div class="col-md-2">
 											<label class="sexdistance form-f-sex">เพศ*</label>
@@ -41,7 +42,7 @@ class Registab1 extends React.Component {
 										</div>
 									</div>
 								</div>
-								<div class="col-md-10">
+								<div class="col-md-12">
 									<div class="row">
 										<div class="col-md-2">
 											<label class="sexdistance form-f-sex">วันเกิด*</label>
@@ -67,12 +68,33 @@ class Registab1 extends React.Component {
 						</div>
 						<div class="col-2">
 							<div class="">
-								<img class="profile-image img-fluid rounded-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="อัพโหลดรูปโปรไฟล์" type='button' id="avatar" src="assets/images/Circleuploadprofile.png" width="250" height="250"/>
+								<img class="profile-image img-fluid rounded-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="อัพโหลดรูปโปรไฟล์" type='button' id="avatar1" src="assets/images/Circleuploadprofile.png" width="250" height="250"/>
+								<input type="file" class="sr-only" id="input" accept="image/*" name="image" hidden />
 							</div>
 						</div>
 					</form>	
 				</div>
-
+				<div class="container">
+						<div class="alert" role="alert"></div>
+						<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+						  <div class="modal-dialog" role="document">
+							<div class="modal-content">
+							  <div class="modal-header">
+								<h5 class="modal-title" id="modalLabel">ปรับแต่งรูปโปรไฟล์</h5>
+							  </div>
+							  <div class="modal-body">
+								<div class="img-container">
+								  <img id="image" src="https://avatars0.githubusercontent.com/u/3456749" />
+								</div>
+							  </div>
+							  <div class="modal-footer">
+								<a class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</a>
+								<a class="btn btn-cta-primary-yellowwide round profile-button" id="crop">ใช้งานรูปภาพ</a>
+							  </div>
+							</div>
+						  </div>
+						</div>
+				  </div>
 			</div>
 		);
 	}
