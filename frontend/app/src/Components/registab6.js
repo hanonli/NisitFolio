@@ -49,8 +49,26 @@ class Registab6 extends React.Component {
 									<li class="tab-link_pop" data-tab1="tab02">เป้าหมายในการทำงาน</li>
 								</ul>
 								<div class="tab-contents_pop">
-									<div class="tab-pane_pop" id="tab01"><h2>ควยประยุทธ์</h2></div>
-									<div class="tab-pane_pop" id="tab02"><h2>ควยโอ</h2></div>
+									<div class="tab-pane_pop" id="tab01">
+										<h2>ควยประยุทธ์</h2>
+										<select class="form-select dropbtn_year margin-bottom1 fff" id="each_skill1" required>
+											<option selected disabled value="">เลือกทักษะของคุณที่เหมาะกับงาน</option>
+											<option >ซิโนแวค</option>
+											<option >แอสตร้า</option>
+											<option >หมอยง</option>
+											<option >ไฟเซอร์</option>
+										</select>
+									</div>
+									<div class="tab-pane_pop" id="tab02">
+										<h2>ควยอนุทิน</h2>
+										<select class="form-select dropbtn_year margin-bottom1 fff" id="each_skill2" required>
+											<option selected disabled value="">เลือกทักษะของคุณที่เหมาะกับงาน</option>
+											<option >ซิโนแวค</option>
+											<option >แอสตร้า</option>
+											<option >หมอยง</option>
+											<option >ไฟเซอร์</option>
+										</select>
+									</div>
 								</div>
 							</div>
 						</div>
