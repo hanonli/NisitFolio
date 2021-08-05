@@ -52,22 +52,21 @@ class Agreement extends React.Component {
 						</div>
 					</header>
 				</div>
-                <div class="full-block ">
-                    <h2 class="desc-b" contenteditable="true">You can use the overflow property when you want to have better control of the layout. The overflow property specifies what happens if content overflows an element's box. You can use the overflow property when you want to have better control of the layout. The overflow property specifies what happens if content overflows an element's box. You can use the overflow property when you want to have better control of the layout. The overflow property specifies what happens if content overflows an element's box. You can use the overflow property when you want to have better control of the layout. The overflow property specifies what happens if content overflows an element's box. You can use the overflow property when you want to have better control of the layout. The overflow property specifies what happens if content overflows an element's box.</h2>
-                </div>
-				<div class="lineregis">
-					<div class="form-check inlineweight">
-						<input class="form-check-input" type="radio" name="flexRadioDefault" id="agree1"></input>
-						<label class="form-check-label" for="flexRadioDefault2">
-							ข้าพเจ้ายินยอมในข้อตกลงการให้บริการ
-  						</label>
-					</div>
-					<label class="inlineweight ttr">ข้าพเจ้ายินยอมในข้อตกลงการให้บริการ</label>
-					<Link to="/register">
-						<div class="inlineweight">
-							<a class="btn btn-cta-primary-yellowwide round " href="#" target="_blank" id="continue1">ต่อไป</a>
+				<div class="container">
+					<div class="row full-block ">
+                    	<h2 class="fontsmallhere" contenteditable="true">You can use the overflow property when you want to have better control of the layout. The overflow property specifies what happens if content overflows an element's box. You can use the overflow property when you want to have better control of the layout. The overflow property specifies what happens if content overflows an element's box. You can use the overflow property when you want to have better control of the layout. The overflow property specifies what happens if content overflows an element's box. You can use the overflow property when you want to have better control of the layout. The overflow property specifies what happens if content overflows an element's box. You can use the overflow property when you want to have better control of the layout. The overflow property specifies what happens if content overflows an element's box.</h2>
+                	</div>
+					<div class="row lineregis">
+						<div class="form-check inlineweight col-md-9">
+							<input class="form-check-input" type="radio" name="flexRadioDefault" id="agree1"></input>
+							<label class="form-check-label fontsmallhere" for="flexRadioDefault2">
+								ข้าพเจ้ายินยอมในข้อตกลงการให้บริการ
+							</label>
 						</div>
-					</Link>
+						<div class="inlineweight col-md-2">
+							<button class="btn btn-cta-primary-yellowwide round" href="/register" target="_self" id="continue1" >ต่อไป</button>
+						</div>
+					</div>
 				</div>
 			</div>
 		);

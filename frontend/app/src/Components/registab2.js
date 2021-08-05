@@ -29,6 +29,7 @@ class Registab2 extends React.Component {
 			<div className="Registab2 regis-box-content">
 				<div class="container-fluid margin-top1">
 					<form class="row">
+						<div class="col-2"></div>
 						<div class="col-10">
 							<div class="container-fluid">
 								<div class="row">

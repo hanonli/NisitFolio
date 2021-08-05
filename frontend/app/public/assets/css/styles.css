@@ -992,16 +992,17 @@ a.btn-cta-primary-yellowwideE:hover, .btn-cta-primary-yellowwideE:hover {
   margin-left: 8vw;
   margin-right: 0.5vw;
   border: none;
+  padding: 1%;
+  margin-top: 15px;
 }
 
 .inlineweight {
   display: inline-block;
-  padding: auto;
 }
 
 .ttr {
   margin-left: 0.5%;
-  margin-right: 55vw;
+  /*margin-right: 55vw;*/
   color: black;
   font-weight: 400;
 }

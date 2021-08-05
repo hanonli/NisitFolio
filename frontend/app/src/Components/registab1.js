@@ -3,7 +3,7 @@ import React from 'react';
 class Registab1 extends React.Component {
 	render (){
 		return (
-			<div className="Registab1 regis-box-content1">
+			<div className="Registab1 regis-box-content">
 				<div class="container-fluid margin-top1">
 					<form class="row">
 						<div class="col-10">
@@ -47,25 +47,19 @@ class Registab1 extends React.Component {
 											<label class="sexdistance form-f-sex">วันเกิด*</label>
 										</div>
 										<div class="col-md-2">
-											<select class="form-select dropbtn margin-bottom1 fff" id="" required>
+											<select class="form-select dropbtn margin-bottom1 fff" id="bdday" required>
 												<option selected disabled value="">วัน</option>
-												<option>1</option>
-												<option>2</option>
-												<option>3</option>
-												<option>4</option>
 											</select>
 										</div>
 										<div class="col-md-2">
-											<select class="form-select dropbtn margin-bottom1 fff" id="" required>
+											<select class="form-select dropbtn margin-bottom1 fff" id="bdmonth" required>
 												<option selected disabled value="">เดือน</option>
-												<option>ชาย</option>
-												<option>หญิง</option>
-												<option>LGBTQ+</option>
-												<option>ไม่ระบุ</option>
 											</select>
 										</div>
 										<div class="col-md-2">
-										<input type="text" class="form-control dropbtn margin-bottom1" id="bdyear" placeholder="ปี" required></input>
+											<select class="form-select dropbtn margin-bottom1 fff" id="bdyear" required>
+												<option selected disabled value="">ปี</option>
+											</select>
 										</div>
 									</div>
 								</div>
@@ -75,9 +69,6 @@ class Registab1 extends React.Component {
 							<div class="">
 								<img class="profile-image img-fluid rounded-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="อัพโหลดรูปโปรไฟล์" type='button' id="avatar" src="assets/images/Circleuploadprofile.png" width="250" height="250"/>
 							</div>
-						</div>
-						<div class="row">
-							<button class="btn btn-cta-primary-yellowwide round ttrbtn" type="submit" id="confirmform1">ยืนยันตัวตน</button>
 						</div>
 					</form>	
 				</div>

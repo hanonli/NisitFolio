@@ -29,29 +29,29 @@ class Registab7 extends React.Component {
 			<div className="Registab7">
 				<div class="regis-box-content" id="yyy">
 					<h1 class="headerRegis" id="havesideskill">ทักษะเสริม</h1>
-					<input class="form-control dropbtn ssf" list="sideskillop" id="sideskilllist" placeholder="เลือกทักษะเสริมที่ถนัด"></input>
-					<datalist class="dropdown-content" id="sideskillop">
-						<option value="Photoshop"></option>
-						<option value="Word"></option>
-						<option value="Excel"></option>
-						<option value="Ai"></option>
-						<option value="Python"></option>
-						<option value="Photoshop"></option>
-						<option value="Word"></option>
-						<option value="Excel"></option>
-						<option value="Ai"></option>
-						<option value="Python"></option>
-						<option value="Photoshop"></option>
-						<option value="Word"></option>
-						<option value="Excel"></option>
-						<option value="Ai"></option>
-						<option value="Python"></option>
-					</datalist>
-					<br></br>
-					<input class="form-control dropbtn ssf" list="sideskillop" id="sideskilllist" placeholder="เลือกทักษะเสริมที่ถนัด"></input>
+					<div class="dropdowntap7">
+						<input class="form-control dropbtn ssf" list="sideskillop" id="sideskilllist" placeholder="เลือกทักษะเสริมที่ถนัด"></input>
+						<datalist class="dropdown-content" id="sideskillop">
+							<option value="Photoshop"></option>
+							<option value="Word"></option>
+							<option value="Excel"></option>
+							<option value="Ai"></option>
+							<option value="Python"></option>
+							<option value="Photoshop"></option>
+							<option value="Word"></option>
+							<option value="Excel"></option>
+							<option value="Ai"></option>
+							<option value="Python"></option>
+							<option value="Photoshop"></option>
+							<option value="Word"></option>
+							<option value="Excel"></option>
+							<option value="Ai"></option>
+							<option value="Python"></option>
+						</datalist>
+					</div>
 					<a>test delete popup</a>
 					<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-						<img src="assets/images/bin.png"></img>
+							<img src="assets/images/bin.png"></img>
 					</button>
 					<div class="modal fade" id="Modaltab7" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog modal-dialog-centered">
