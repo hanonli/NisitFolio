@@ -6,13 +6,13 @@ import TabsJob from "./Tabs-job";
 
 class Registab6 extends React.Component {
 
-	/*componentDidMount() {
+	componentDidMount() {
 		window.addEventListener('load', this.handleLoad);
 		const script = document.createElement("script");
 		console.log("kuayPraYut");
 		script.src = "assets/js/registab6_popup.js";
 		document.body.appendChild(script);
-	}*/
+	}
 
 	render() {
 		return (
@@ -44,21 +44,14 @@ class Registab6 extends React.Component {
 						<div class="modal-dialog modal-dialog-centered modal-xl">
 							<div class="modal-content minisize" id="popup_JOB">
 								<h1>เพิ่มงานที่สนใจ</h1>
-								<ol class="tabs-list2">
-									<li class="tab-list-item tab-list-active" id="tab-11" type="button">ทักษะของฉัน</li>
-									<li class="tab-list-item" id="tab-12" type="button">เป้าหมายในการทำงาน</li>
-								</ol>
-
-								<div>
-									<div class="tab-content" id="tabP1-content">
-
-									</div>
-									<div class="tab-content" id="tabP2-content">
-
-									</div>
-
+								<ul class="tabs_pop">
+									<li class="tab-link_pop current2" data-tab1="tab01">ทักษะของฉัน</li>
+									<li class="tab-link_pop" data-tab1="tab02">เป้าหมายในการทำงาน</li>
+								</ul>
+								<div class="tab-contents_pop">
+									<div class="tab-pane_pop" id="tab01"><h2>ควยประยุทธ์</h2></div>
+									<div class="tab-pane_pop" id="tab02"><h2>ควยโอ</h2></div>
 								</div>
-
 							</div>
 						</div>
 					</div>
