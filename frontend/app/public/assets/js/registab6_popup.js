@@ -3,20 +3,20 @@
 /*Tabs New*/
 $(function () {
     $('.tab-content').hide();
-    $('#registab1-content').show();
-    console.log("Yahaha!");
-    $('#tab-1').on('click', function () {
+    $('#tabP1-content').show();
+    console.log("NhaHee!!!!");
+    $('#tab-11').on('click', function () {
         $('.tab-content').hide();
         $('.tab-list-item').removeClass('tab-list-active');
-        $('#tab-1').addClass('tab-list-active')
-        $('#registab1-content').show();
+        $('#tab-11').addClass('tab-list-active')
+        $('#tabP1-content').show();
     });
 
-    $('#tab-2').on('click', function () {
+    $('#tab-12').on('click', function () {
         $('.tab-content').hide();
         $('.tab-list-item').removeClass('tab-list-active');
-        $('#tab-2').addClass('tab-list-active')
-        $('#registab2-content').show();
+        $('#tab-12').addClass('tab-list-active')
+        $('#tabP2-content').show();
     });
 });
 

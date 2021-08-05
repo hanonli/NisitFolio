@@ -47,9 +47,6 @@ class Registab2 extends React.Component {
 									<div class="col-md-8">
 										<input type="text" class="form-control dropbtn margin-bottom1" id="" placeholder="ประเทศ" ></input>
 									</div>
-									<div class="col-md-2">
-										<label class="sexdistance ordistance form-f-sex">หรือ</label>
-									</div>
 								</div>
 								<div class="col-md-10">
 									<input type="text" class="form-control dropbtn margin-bottom1" id="" placeholder="อีเมลล์ติดต่อเพิ่มเติม" ></input>
@@ -60,12 +57,6 @@ class Registab2 extends React.Component {
 									</div>
 								</div>
 							</div>	
-						</div>
-						<div class="col-2">
-							<div class="col-md-2"></div>
-							<div class="col-md-2">
-								<button class="btn-cta-primary-blackL round">ใช้ที่อยู่ตาม<br></br>ตำแหน่งปัจจุบัน</button>
-							</div>
 						</div>
 					</form>	
 				</div>

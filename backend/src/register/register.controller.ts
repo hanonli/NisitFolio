@@ -1,4 +1,4 @@
-import { Controller, Get, Put, Post, Body, HttpException, HttpStatus, Param, UseGuards, UploadedFile } from '@nestjs/common';
+import { Controller, Get, Put, Post, Body, Delete, HttpException, HttpStatus, Param, UseGuards, UploadedFile } from '@nestjs/common';
 import { ObjectId } from 'mongodb';
 import { Express } from 'express'
 

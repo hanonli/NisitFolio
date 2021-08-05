@@ -7,9 +7,30 @@
     margin-bottom: 5px;
     margin-left: 5px;
     margin-right: 5px;
+    position: relative;
 }
 
 #popup_JOB {
-    max-width: 190%;
+    height: 740px;
+    width: 2950px !important;
 }
 
+.layer_icon {
+    height: 140px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: 0.5s;
+    border-radius: 25px;
+    background: transparent;
+    opacity: 0.5;
+}
+
+.frame_job:hover .layer_icon{
+  background: #E1E1E1;
+}
+
+#img_icon button {
+    display: none;
+}
