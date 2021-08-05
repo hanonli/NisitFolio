@@ -3,32 +3,41 @@ import './register.css';
 import './registab5.css';
 
 class Registab5 extends React.Component {
+
 	componentDidMount() {
 		const script = document.createElement("script");
 		script.src = "assets/js/date.js";
 		document.body.appendChild(script);
 	}
+
 	render() {
 		return (
 			<div className="Registab5">
 				<div class="regis-box-content">
 					<div class="row" id="pos_card">
+						<div class="frame_job">
+								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+									<img src="assets/images/+.png" width="70" height="70"></img>
+								</button>
+						</div>						
+					</div>
+					<div class="row" id="pos_card">
 						<div class="card_certi">
 							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-								<img src="assets/images/+.png" width="50" height="50"></img>
+								
 							</button>
 						</div>
 
 						<div class="card_certi">
 							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-								<img src="assets/images/+.png" width="50" height="50"></img>
+								
 							</button>
 						</div>
 					</div>
 					<div class="row" id="pos_card">
 						<div class="card_certi">
 							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-								<img src="assets/images/+.png" width="50" height="50"></img>
+								
 							</button>
 						</div>
 						<div class="dummy"></div>
