@@ -27,11 +27,11 @@ class Registab7 extends React.Component {
 	render (){
 		return (
 			<div className="Registab7">
-				<div class="regis-box-content">
+				<div class="regis-box-content" id="yyy">
 					<h1 class="headerRegis" id="havesideskill">ทักษะเสริม</h1>
 					<input class="form-control dropbtn ssf" list="sideskillop" id="sideskilllist" placeholder="เลือกทักษะเสริมที่ถนัด"></input>
 					<datalist class="dropdown-content" id="sideskillop">
-						<option value="Photoshop"></option>
+						<option class="xxx" value="Photoshop"></option>
 						<option value="Word"></option>
 						<option value="Excel"></option>
 						<option value="Ai"></option>
