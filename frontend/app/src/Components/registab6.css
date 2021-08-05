@@ -71,3 +71,14 @@
 .tab-pane_pop.current2 {
   display: block;
 }
+
+/*-----slider range-----*/
+#customRange11 input {
+    position: absolute;
+    margin-left: 25px;
+}
+
+#topic_pop {
+    position: relative;
+    left: 10px;
+}
