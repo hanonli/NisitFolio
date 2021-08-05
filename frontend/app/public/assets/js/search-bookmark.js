@@ -457,7 +457,7 @@ function GetBookmarkData(request){
 			"Content-Type": "application/json"},
     })
 		.then(response => response.json())
-		.then(response => response.result)
+		//.then(response => response.result)
 		.then((datas) => {
 			console.log(datas);
 			console.log('BYAAA!!!!');

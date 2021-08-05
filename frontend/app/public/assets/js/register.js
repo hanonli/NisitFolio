@@ -79,11 +79,24 @@ function stateHandle() {
 
 /*Tab7*/
 
-$(function() {
-    $('#sideskillop').on('click', function(){
+$(document).on('change', 'input', function(){
+    var options = $('datalist')[0].options;
+    var val = $(this).val();
+    for (let i=0;i<options.length;++i){
+       if (options[i].value === val) {
+          console.log("User selected: "+val+" -> Remove focus away.");
+		  $('#sideskilllist').blur();
+          break;
+       }
+    }
+});
+
+/*
+$('.xxx').click(function () {           
+    alert("Hello! I am an alert box!!");
         $('#sideskilllist').blur();
   });
-});
+*/
 
 $('#datepicker').datepicker();
 var date = $('#datepicker').datepicker({ dateFormat: 'dd-mm-yy' }).val();
