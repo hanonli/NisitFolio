@@ -16,15 +16,10 @@ export class AnalyticsController {
 
   // -------------------- AdditionalSkill ---------------------------
 
-  @Get('/additional')
-  async findAddSkill(): Promise<AdditionalSkill[]> {
-    return this.analyticsService.findAddSkill();
-  }
-
   @Get('/additional/:id')
-  async AddSkillPercentage(@Param('id') id: string): Promise<any[]> {
+  async findUserAddSkill(@Param('id') id: string): Promise<any[]> {
     const oid = mongoose.Types.ObjectId(id);
-    return this.analyticsService.AddSkillPercentage(oid);
+    return this.analyticsService.findUserAddSkill(oid);
   }
 
   async AddInterestedJobPercentage(
