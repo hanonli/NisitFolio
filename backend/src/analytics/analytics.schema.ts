@@ -1,25 +1,21 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Mongoose } from 'mongoose';
 
 import * as mongoose from 'mongoose';
 import { ObjectId } from 'mongodb';
 
-export type AdditionalSkillDocument = AdditionalSkill & Document;
+// -------------------- UserAdditionalSkill ---------------------------
 
-@Schema()
-export class AdditionalSkill {
-  @Prop()
-  userId: mongoose.Types.ObjectId;
+export const UserAdditionalSkillSchema = new mongoose.Schema({
+  userId: ObjectId,
+  Job: String,
+  SoftSkill: String,
+})
 
-  @Prop()
-  id: number;
-
-  @Prop()
-  softSkill: string;
+export interface UserAddSkill extends Document {
+  userId: ObjectId;
+  Job: String;
+  SoftSkill: String;
 }
-
-export const AdditionalSkillSchema =
-  SchemaFactory.createForClass(AdditionalSkill);
 
 // -------------------- UserSkill ---------------------------
 
@@ -77,26 +73,4 @@ export interface ClassifySkill {
   JobTitle: string;
   SkillName: string;
   IsMain: number ;
-}
-
-//--------------------- Account --------------------------
-
-export const AccountSchema = new mongoose.Schema({
-  Firstname: String,
-  Lastname: String,
-  Email: String,
-  Password: String,
-  Gender: String,
-  DateofBirth: String,
-  ProfilePic: String,
-}, { collection: 'account'})
-
-export interface Account extends Document {
-  Firstname: string;
-  Lastname: string;
-  Email: string;
-  Password: string;
-  Gender: string;
-  DateofBirth: string;
-  ProfilePic: string;
 }

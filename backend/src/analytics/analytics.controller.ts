@@ -2,34 +2,23 @@ import { Body, Controller, Get, Post, Param, HttpException } from '@nestjs/commo
 import { ObjectId } from 'mongodb';
 import * as mongoose from 'mongoose';
 import { ParseObjectIdPipe } from 'src/common/pipes';
-import { AdditionalSkill, Skill, UserSkill, Account, ClassifySkill } from './analytics.schema';
+import { Skill, UserSkill, ClassifySkill } from './analytics.schema';
 import { AnalyticsService } from './analytics.service';
 
 @Controller('analytics')
 export class AnalyticsController {
   constructor(private analyticsService: AnalyticsService) {}
 
-  @Get('/account')
-  async findAccount(): Promise<Account[]> {
-    return this.analyticsService.findAllAccount();
-  }
-
   // -------------------- AdditionalSkill ---------------------------
 
   @Get('/additional/:id')
-  async findUserAddSkill(@Param('id') id: string): Promise<any[]> {
+  async findAddSkillById(@Param('id') id: string): Promise<any[]> {
     const oid = mongoose.Types.ObjectId(id);
-    return this.analyticsService.findUserAddSkill(oid);
-  }
-
-  async AddInterestedJobPercentage(
-    @Param('JobTitle') JobTitle: string
-  ): Promise<any[]> {
-    return this.analyticsService.InterestedJobPercentage(JobTitle, 0) ;
+    return this.analyticsService.findAddSkillById(oid);
   }
 
   // -------------------- UserSkill ---------------------------
-
+  
   @Get('/main') // Find All User skill
   async findAllUserSkill(): Promise<UserSkill[]> {
     return this.analyticsService.findAllUserSkill() ;
@@ -39,15 +28,21 @@ export class AnalyticsController {
   async findUserSkill(@Param('userId', ParseObjectIdPipe) userId: ObjectId): Promise<UserSkill[]> {
     return this.analyticsService.findUserSkill(userId) ;
   }
-
+  
   @Post('/main')
   async createUserSkill( 
     @Body('userId', ParseObjectIdPipe) userId: ObjectId,
     @Body('inJobId', ParseObjectIdPipe) inJobId: ObjectId,
     @Body('SkillId', ParseObjectIdPipe) SkillId: ObjectId,
     @Body('Score') Score: number
-  ): Promise<UserSkill> {
+    ): Promise<UserSkill> {
     return await this.analyticsService.createUserSkill(userId, inJobId, SkillId, Score);
+  }
+
+  async AddInterestedJobPercentage(
+    @Param('JobTitle') JobTitle: string
+  ): Promise<any[]> {
+    return this.analyticsService.InterestedJobPercentage(JobTitle, 0) ;
   }
 
   // -------------------- ClassifySkill ---------------------------

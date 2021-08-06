@@ -1,7 +1,7 @@
 import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { AdditionalSkill, AdditionalSkillDocument, Skill, UserSkill, Account, InterestedJob, ClassifySkill, ClassifySkillSchema } from './analytics.schema';
+import { Skill, UserSkill, InterestedJob, ClassifySkill, ClassifySkillSchema, UserAddSkill } from './analytics.schema';
 
 import { ObjectId } from 'mongodb' ;
 import * as mongoose from 'mongoose';
@@ -10,15 +10,13 @@ import * as mongoose from 'mongoose';
 @Injectable()
 export class AnalyticsService {
   constructor(
-    @InjectModel('account')
-    private AccountModel: Model<Account>,
 
-    @InjectModel('AdditionalSkill')
-    private AdditionalSkillModel: Model<AdditionalSkillDocument>,
-    
+    @InjectModel('UserAdditionalSkill')
+    private UserAddSkill: Model<UserAddSkill>,
+
     @InjectModel('UserSkill')
     private UserSkillModel: Model<UserSkill>,
-    
+
     @InjectModel('Skill')
     private SkillModel: Model<Skill>,
     
@@ -29,18 +27,27 @@ export class AnalyticsService {
     private ClassifySkillModel: Model<ClassifySkill>,
   ) {}
   
-  async findAllAccount(): Promise<Account[]> {
-    return this.AccountModel.find().exec();
-  }
-
   // -------------------- AdditionalSkill ---------------------------
 
-  async findUserAddSkill(id: ObjectId): Promise<any[]> {
-    return this.AdditionalSkillModel.find({userId: id})
-                                    .select('-_id -userId')
-                                    .exec();
-  }
-
+  async findAddSkillById(id: ObjectId): Promise<any[]> {
+    const job = this.UserAddSkill.find({Job: "Software Engineer"});
+    const group = this.UserAddSkill.aggregate([
+                                    {
+                                      $match: { Job: "Software Engineer"}
+                                    },
+                                    {
+                                      
+                                      $group: {
+                                        _id: { SoftSkill: "$SoftSkill"},
+                                        total: { $sum: 1}                        
+                                      }
+                                    },
+                                    { $sort: {total: -1}}
+                                  ]);
+    console.log(group);
+    const skills = this.UserAddSkill.find({userId: id});
+    return group;
+    }
 
   // -------------------- UserSkill ---------------------------
   
