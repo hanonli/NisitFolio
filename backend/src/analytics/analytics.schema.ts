@@ -6,71 +6,33 @@ import { ObjectId } from 'mongodb';
 // -------------------- UserAdditionalSkill ---------------------------
 
 export const UserAdditionalSkillSchema = new mongoose.Schema({
-  userId: ObjectId,
-  Job: String,
-  SoftSkill: String,
+  userId: { type: ObjectId, required: [true, 'userID must not empty'] },
+  Job: { type: String, required: [true, 'Job must not empty'] },
+  SoftSkill: { type: String, required: [true, 'SoftSkill must not empty'] },
 })
 
 export interface UserAddSkill extends Document {
+  id: string;
   userId: ObjectId;
   Job: String;
   SoftSkill: String;
 }
 
-// -------------------- UserSkill ---------------------------
+// -------------------- UserJobSkill ---------------------------
 
-export const UserSkillSchema = new mongoose.Schema({
-  userId: {type: ObjectId , required: [true, 'UserID is not empty'] },
-  inJobId: {type: ObjectId , required: [true, 'JobID is not empty'] },
-  SkillId: {type: ObjectId , required: [true, 'SkillID is not empty'] },
-  Score: {type: Number , required: [true, 'Score is not empty'] }
-});
-
-export interface UserSkill {
-  id: string;
-  userId: ObjectId;
-  inJobId: ObjectId;
-  SkillId: ObjectId;
-  Score: number
-}
-
-// -------------------- Skill ---------------------------
-
-export const SkillSchema = new mongoose.Schema({
-  SkillName: { type: String, required: [true, 'Skill Name must not empty'] },
-}) ;
-
-export interface Skill {
-  id: string;
-  SkillName: string;
-}
-
-// -------------------- InterestJob ---------------------------
-
-export const InterestedJobSchema = new mongoose.Schema({
-  userId: { type: ObjectId, required: [true, 'Id must not empty']},
-  objective: { type: String, required: [true, 'Objective must not empty']},
-})
-
-export interface InterestedJob {
-  id: string;
-  userId: ObjectId;
-  objective: string;
-}
-
-//--------------------- Classify Skill --------------------------
-
-export const ClassifySkillSchema = new mongoose.Schema({
-  userId: { type: ObjectId, required: [true, 'Id must not empty']},
-  JobTitle: { type: String, required: [true, 'JobTitle must not empty']},
+export const UserJobSkillSchema = new mongoose.Schema({
+  userId: { type: ObjectId, required: [true, 'userID must not empty'] },
+  Objective: { type: String, required: [true, 'Objective must not empty'] },
+  Score: { type: Number, required: [true, 'Score must not empty']},
+  JobName: { type: String, required: [true, 'JobName must not empty']},
   SkillName: { type: String, required: [true, 'SkillName must not empty']},
-  IsMain: { type: Number, required: [true, 'IsMain must not empty']},
 })
 
-export interface ClassifySkill {
+export interface UserJobSkill { 
   id: string;
   userId: ObjectId;
-  JobTitle: string;
+  Objective: string;
+  Score: number;
+  JobName: string;
   SkillName: string;
-  IsMain: number ;
 }

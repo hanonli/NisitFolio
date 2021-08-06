@@ -1,30 +1,22 @@
 import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Skill, UserSkill, InterestedJob, ClassifySkill, ClassifySkillSchema, UserAddSkill } from './analytics.schema';
+import { UserAddSkill, UserJobSkill } from './analytics.schema';
 
 import { ObjectId } from 'mongodb' ;
 import * as mongoose from 'mongoose';
+import { any } from '@hapi/joi';
+import { arrayNotContains } from 'class-validator';
 
 
 @Injectable()
 export class AnalyticsService {
   constructor(
-
     @InjectModel('UserAdditionalSkill')
     private UserAddSkill: Model<UserAddSkill>,
+    @InjectModel('UserJobSkill')
+    private UserJobSkillModel: Model<UserJobSkill>,
 
-    @InjectModel('UserSkill')
-    private UserSkillModel: Model<UserSkill>,
-
-    @InjectModel('Skill')
-    private SkillModel: Model<Skill>,
-    
-    @InjectModel('InterestedJob')
-    private JobModel: Model<InterestedJob>,
-
-    @InjectModel('ClassifySkill')
-    private ClassifySkillModel: Model<ClassifySkill>,
   ) {}
   
   // -------------------- AdditionalSkill ---------------------------
@@ -95,87 +87,75 @@ export class AnalyticsService {
     return {results, allUsers};
     }
 
-  // -------------------- UserSkill ---------------------------
-  
-  async findAllUserSkill(): Promise<UserSkill[]> {
-    return this.UserSkillModel.find().exec() ;
-  }
-
-  async findUserSkill(userId: ObjectId): Promise<UserSkill[]> {
-    const userSkill = await this.UserSkillModel.find({userId: userId}).exec() ;
-    return userSkill ;
-  }
-
-  async AnalysUserSkill(userId: ObjectId): Promise<any[]> {
-    const AllSkill: UserSkill[] = await this.findAllUserSkill() ;
-    const userSkill: UserSkill[] = await this.findUserSkill(userId) ;
-    let SkillA : number ;
-    let SkillB : number ;
-    let SkillC : number ;
-    let sum: number = 0 ;
-    const array = [] ;
-    let size: number = userSkill.length ;
-    for (var item of userSkill) {
-      console.log(item.Score) ;
-      sum = sum + item.Score ;
+  async findUserJobSkill(userId: ObjectId): Promise<any> {
+    const findObjective = await this.UserJobSkillModel.aggregate([
+                          { $match: {userId: userId} },
+                          { 
+                            $group: { 
+                              _id: { Objective: "$Objective" } 
+                            }
+                          }
+    ]) ;
+    let array = [] ;
+    for (var obj of findObjective ) {
+      const ObjectName = obj._id.Objective ;
+      const SumSkill = await this.UserJobSkillModel.aggregate([
+                      { $match: { Objective: ObjectName } },
+                      {
+                        $group: {
+                          _id: { SkillName: "$SkillName"}, 
+                          total: { $sum: 1},
+                        }
+                      },
+                      { $sort : {total: -1}},
+      ])
+      let count = 0 ;
+      for (var i of SumSkill){ 
+        // console.log(i) ;
+        const _name = i._id.SkillName ;
+        const _sum = i.total ;
+        // console.log(_name);
+        // console.log(_sum);
+        var temp2 = array.push({ Objective: ObjectName, SkillName: _name, total: _sum}) ;
+        count ++ ;
+        if (count == 3) break ;
+      }
+      console.log(array);
+      //console.log(SumSkill);
     }
-    return [];
+    return array ;
+    //console.log(findObjective);
   }
+  // --------------- find SkillName in UserJobSkill by userId
+  // const findUserSkill = await this.UserJobSkillModel.aggregate([
+  //                   { $match : { userId : userId } },
+  //                   {
+  //                     $group: {
+  //                       _id: { SkillName: "$SkillName"},
+  //                     },
+  //                   }
+  // ]) ;
+  // for (var item of findUserSkill) {
+  //   console.log(item._id.SkillName);
+  // }
   
-  async createUserSkill(userId: ObjectId, inJobId: ObjectId, SkillId: ObjectId, Score: number){
-    const newUserSkill = new this.UserSkillModel({
-      userId, inJobId, SkillId, Score
-    }) ;
-    return await newUserSkill.save() ;
-  }
-
-  // -------------------- ClassifySkill ---------------------------
-  
-  async createClassifySkill(userId: ObjectId, JobTitle: string, SkillName: string, IsMain: number): Promise<ClassifySkill> {
-    const newClassifySkill = new this.ClassifySkillModel({
-      userId, JobTitle, SkillName, IsMain
-    }) ;
-    return await newClassifySkill.save() ;
-  }
-
   // -------------------- Interseted Job ---------------------------
   
-  async createInterestedJob(userId: ObjectId, objective: string): Promise<InterestedJob> {
-    const newJob = new this.JobModel({userId, objective}) ;
-    return await newJob.save() ;
-  }
-
-  async InterestedJobPercentage(JobTitle: string, IsMain: number): Promise<any[]> {
-    const size = await (await this.ClassifySkillModel.find({JobTitle: JobTitle, IsMain: IsMain})).length ;
-    const eachSkill = await this.ClassifySkillModel.aggregate([
-                        {
-                          $group:
-                          {
-                            _id: { SkillName: "$SkillName"},
-                            total: { $sum: 1}                        
-                          }
-                        }
-    ])
-    const array = [] ;
-    for (var item of eachSkill) {
-      const per = item.total*100/size ;
-      //console.log(per) ;
-      array.push({name: item._id, percentage: per})
-    }
-    return array;
-    // const size = AllSkill.length ;
-    // mongoose.Aggregate
-    // return AllSkill ;
-  }
+    // const size = await (await this.ClassifySkillModel.find({JobTitle: JobTitle, IsMain: IsMain})).length ;
+    // const eachSkill = await this.ClassifySkillModel.aggregate([
+    //                     {
+    //                       $group:
+    //                       {
+    //                         _id: { SkillName: "$SkillName"},
+    //                         total: { $sum: 1}                        
+    //                       }
+    //                     }
+    // ])
 
   // -------------------- Skill ---------------------------
 
-  async findAllSkill(): Promise<Skill[]>{
-    return this.SkillModel.find().exec() ;
-  }
-
-  async createSkill(SkillName: string) {
-    const newSkill = new this.SkillModel({SkillName}) ;
-    return await newSkill.save() ;
+  async createUserJobSkill(userId: ObjectId, Objective: string, Score: number, JobName: string, SkillName: string) {
+    const createUserJobSkill =  new this.UserJobSkillModel({userId, Objective, Score, JobName, SkillName}) ;
+    return createUserJobSkill.save() ;
   }
 }
