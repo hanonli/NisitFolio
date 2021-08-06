@@ -1,5 +1,6 @@
 import React from 'react';
 import './registab3.css'
+import './register.css'
 
 class Registab3_addHigher extends React.Component {
 	render (){
@@ -7,7 +8,7 @@ class Registab3_addHigher extends React.Component {
 			<div className="Registab3_addHigher ">
 				
                 <form class='was-validated' id='HigherForm'>
-                    <div class='col-5' >
+                    <div class='col-3' >
                         <div class="selectDropdown">
                             <select class="form-select form-select-lg dropbtn margin-bottom1 fff" id='selectDropdown1' aria-labelledby="select1" required>
                                 <option selected disabled value=''>เลือกวุฒิการศึกษา</option>
@@ -43,13 +44,11 @@ class Registab3_addHigher extends React.Component {
                             </div>
                         </div>
                     </div>
+                    
                     <div class='col-3' >
                         <div class="selectDropdown">
-                            <select class="form-select form-select-lg dropbtn margin-bottom1 is-valid" id='ValidationGraduateYearFeedback' aria-labelledby="select1" required>
+                            <select class="form-select form-select-lg dropbtn_year margin-bottom1 is-valid" id='yearpicker1' aria-labelledby="select1" required>
                                 <option selected disabled value=''>ปีที่จบการศึกษา</option>
-                                <option >กำลังศึกษา</option>    
-                                <option >กำลังจะไปไหน</option>
-                                <option >กำลังจะต่อยหน้ามึงอะ</option>
                             </select>
                             <br/>
                         </div>               
