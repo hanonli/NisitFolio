@@ -1,5 +1,7 @@
 import React from 'react';
-import './registertab3.css'
+import Registab3_addHigher from './registab3_addHigher';
+import Registab3_addSecondary from './registab3_addSecondary';
+import './registtab3.css'
 
 class Registab3 extends React.Component {
 	render (){
@@ -9,14 +11,13 @@ class Registab3 extends React.Component {
 					
 						<div className='textbox'>
 							<h1>อุดมศึกษา</h1>
-
-							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#registabModal1">
 								<img id='icon-plus-circle'  src="assets/images/+.png"></img>
 							</button>
-							<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+							<div class="modal fade" id="registabModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
                         		<div class="modal-dialog modal-dialog-centered">
                             		<div class="modal-content minisize">
-                                		<h4 class="del-b">คุณต้องการลบทักษะเสริม ?</h4>
+                                		<Registab3_addHigher/>
                                 		<div class="centerverify">
                                         	<a type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</a>
                                         	<a type="button" class="btn btn-cta-primary-yellowshort profile-button round">ลบ</a>
@@ -28,9 +29,20 @@ class Registab3 extends React.Component {
 
 						<div className='textbox'>
 							<h1>มัธยมศึกษา</h1>
-							<button type="button" class="btn item-align-center" >
+							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#registabModal2">
 								<img id='icon-plus-circle'  src="assets/images/+.png"></img>
 							</button>
+							<div class="modal fade" id="registabModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                        		<div class="modal-dialog modal-dialog-centered">
+                            		<div class="modal-content maxsize">
+                                		<Registab3_addSecondary/>
+                                		<div class="centerverify">
+                                        	<a type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</a>
+                                        	<a type="button" class="btn btn-cta-primary-yellowshort profile-button round">ลบ</a>
+                                		</div>
+                            		</div>
+                        		</div>
+                    		</div>
 						</div>
 
 				</div>
