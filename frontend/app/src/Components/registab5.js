@@ -16,28 +16,28 @@ class Registab5 extends React.Component {
 				<div class="regis-box-content">
 					<div class="row" id="pos_card">
 						<div class="frame_job">
-								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-									<img src="assets/images/+.png" width="70" height="70"></img>
-								</button>
-						</div>						
+							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+								<img src="assets/images/+.png" width="70" height="70"></img>
+							</button>
+						</div>
 					</div>
 					<div class="row" id="pos_card">
 						<div class="card_certi">
 							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-								
+
 							</button>
 						</div>
 
 						<div class="card_certi">
 							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-								
+
 							</button>
 						</div>
 					</div>
 					<div class="row" id="pos_card">
 						<div class="card_certi">
 							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-								
+
 							</button>
 						</div>
 						<div class="dummy"></div>
@@ -48,10 +48,10 @@ class Registab5 extends React.Component {
 							<div class="modal-content minisize" id="certi_edit">
 								<div class="row" id="input_certi">
 									<div class="col-md-5">
-										<input type="text" class="form-control certibtn margin-bottom1" placeholder="พิมพ์ชื่อใบรับรอง/เกียรติบัตร*" required></input>
+										<textarea type="text" class="form-control certibtn margin-bottom1" placeholder="พิมพ์ชื่อใบรับรอง/เกียรติบัตร*" required></textarea>
 									</div>
 									<div class="col-md-10">
-										<select class="form-select dropbtn_year margin-bottom1 fff" id="yearpicker" required>
+										<select class="form-select dropbtn_year margin-bottom1 fff" id="yearpicker1" required>
 											<option selected disabled value="">ปี*</option>
 										</select>
 									</div>
