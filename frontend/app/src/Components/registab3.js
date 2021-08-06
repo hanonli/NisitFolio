@@ -11,14 +11,15 @@ class Registab3 extends React.Component {
 					
 						<div className='textbox'>
 							<h1>อุดมศึกษา</h1>
-							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#registabModal1">
+							<button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#registabModal1">
 								<img id='icon-plus-circle'  src="assets/images/+.png"></img>
 							</button>
 							<div class="modal fade" id="registabModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
-                        		<div class="modal-dialog modal-dialog-centered modal-lg">
+                        		<div class="modal-dialog modal-dialog-centered modal-xl">
                             		<div class="modal-content " >
 										<div class='modal-header'>
 											<h1 class='modal-title' id='regisModallabel1' >เพิ่มประวัติการศึกษา</h1>
+											<button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
 										</div>
 										<div class='modal-body'>
 											<Registab3_addHigher/>

@@ -32,28 +32,19 @@
 
 }
 
-/* Modal */
-.modal{
-    height: 50vw;
-}
-
-/* Modal */
 
 /*
     This is for registab3_addHigher
     Add Code Below
 */
-.selectDropdown #selectDropdown1{
-    position: relative;
-    border-radius: 25px;
-    font-size: 22px;
-    font-style: bold;
 
-    
+
+#textGrade{ 
+    margin-top: 14px;
+    text-align: right;
+
 }
-option{
-    padding-left: 50px;
-}
+
 
 /*
     This is for registab3_addHigher
