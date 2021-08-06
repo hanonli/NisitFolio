@@ -1,5 +1,5 @@
 import React from 'react';
-import './registtab3.css'
+import './registab3.css'
 
 class Registab3_addHigher extends React.Component {
 	render (){
@@ -22,7 +22,7 @@ class Registab3_addHigher extends React.Component {
                     </div>
                     <div class='row'>
                         <div class="col-6 ">
-                            <input type="text" class="form-control dropbtn margin-bottom1 " id="ValidationSchoolFeedback" placeholder="สถานศึกษา*" required></input>
+                            <input type="text" class="form-control dropbtn margin-bottom1 " id="ValidationUniversityFeedback" placeholder="สถานศึกษา*" required></input>
                         </div>
                         <div class="col-6">
                             <input type="text" class="form-control dropbtn margin-bottom1 " id="ValidationFacultyFeedback" placeholder="คณะ*" required></input>
