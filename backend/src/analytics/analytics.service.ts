@@ -53,7 +53,7 @@ export class AnalyticsService {
         },
         { $sort: {total: -1}}
       ]).exec();
-      console.log(res);
+      //console.log(res);
       results[i] = res;
     }
 
@@ -67,13 +67,13 @@ export class AnalyticsService {
       { $group: { _id: { userId: "$userId", SoftSkill: "$SoftSkill" } } }
       ]).exec();
 
-    console.log(queryAll);
+    //console.log(queryAll);
     
     for ( var j of queryAll ) {
-      console.log(j);
+      //console.log(j);
       let skillName = j["_id"].SoftSkill;
       if( all.hasOwnProperty(skillName) ){
-        console.log("yay");
+        //console.log("yay");
         all[skillName] += 1;
       }
       else {
@@ -83,15 +83,15 @@ export class AnalyticsService {
 
     let sorted = Object.keys(all).sort(function(a,b) {return all[b]-all[a]} )
 
-    console.log(sorted);
+    //console.log(sorted);
     
     let allUsers = {};
     for( var skill of sorted ){
       allUsers[skill] = all[skill];
     }
 
-    
-    
+
+    // for test -> http://localhost:3000/analytics/additional/610d3832ca49ebf4cdfed02e
     return {results, allUsers};
     }
 
