@@ -33,3 +33,11 @@
 #to_upload112 {
     cursor: pointer;
 }
+
+.button_popup_certi {
+    margin-top: 20.2px;
+}
+
+.button_popup_certi a{
+    width: 120.01px;
+}

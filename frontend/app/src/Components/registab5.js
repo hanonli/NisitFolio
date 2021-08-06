@@ -60,14 +60,17 @@ class Registab5 extends React.Component {
 								<div class="row" id="input_upload">
 									<input id="image-upload112" class="hidden" type="file"></input>
 									<div className="bg_upload" id="to_upload112">
-										<img src="assets/images/upload_file.png" width="70px" height="70px" class="up_img"></img>
-										<h2 className="text_up">อัพโหลดใบรับรองของคุณได้ที่นี่</h2>
+										<div className="for_upload112">
+											<img src="assets/images/upload_file.png" width="85px" height="85px" class="up_img"></img>
+											<h2 className="text_up">อัพโหลดใบรับรองของคุณได้ที่นี่</h2>
+										</div>
+
 									</div>
-									<h5 className="text_Info1">* ข้อมูลที่จำเป็นต้องกรอก</h5>
-									<div class="col-md-10">
+									<div className="button_popup_certi">
 										<a type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</a>
 										<a type="button" class="btn btn-cta-primary-yellowshort profile-button round">เพิ่ม</a>
 									</div>
+
 								</div>
 							</div>
 						</div>
