@@ -12,7 +12,7 @@ export class AnalyticsController {
   // -------------------- AdditionalSkill ---------------------------
 
   @Get('/additional/:id')
-  async findAddSkillById(@Param('id') id: string): Promise<any[]> {
+  async findAddSkillById(@Param('id') id: string): Promise<any> {
     const oid = mongoose.Types.ObjectId(id);
     return this.analyticsService.findAddSkillById(oid);
   }

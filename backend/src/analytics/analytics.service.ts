@@ -29,24 +29,70 @@ export class AnalyticsService {
   
   // -------------------- AdditionalSkill ---------------------------
 
-  async findAddSkillById(id: ObjectId): Promise<any[]> {
-    const job = this.UserAddSkill.find({Job: "Software Engineer"});
-    const group = this.UserAddSkill.aggregate([
-                                    {
-                                      $match: { Job: "Software Engineer"}
-                                    },
-                                    {
-                                      
-                                      $group: {
-                                        _id: { SoftSkill: "$SoftSkill"},
-                                        total: { $sum: 1}                        
-                                      }
-                                    },
-                                    { $sort: {total: -1}}
-                                  ]);
-    console.log(group);
-    const skills = this.UserAddSkill.find({userId: id});
-    return group;
+  async findAddSkillById(id: ObjectId): Promise<any> {
+    
+    // not yey developed
+    // get job from interested job
+    let job = ["Software Engineer", "Data Scientist"]; // test
+    let results = {};
+
+
+    //-----------------------------------------------
+    //--------------- for each job ------------------
+    //-----------------------------------------------
+    for (var i of job){
+      const res = await this.UserAddSkill.aggregate([
+        {
+          $match: { Job: i }
+        },
+        {  
+          $group: {
+            _id: { SoftSkill: "$SoftSkill"},
+            total: { $sum: 1}                        
+          }
+        },
+        { $sort: {total: -1}}
+      ]).exec();
+      console.log(res);
+      results[i] = res;
+    }
+
+
+    //-----------------------------------------------
+    //--------------- for all jobs ------------------
+    //-----------------------------------------------
+    let all = {};
+
+    const queryAll = await this.UserAddSkill.aggregate([
+      { $group: { _id: { userId: "$userId", SoftSkill: "$SoftSkill" } } }
+      ]).exec();
+
+    console.log(queryAll);
+    
+    for ( var j of queryAll ) {
+      console.log(j);
+      let skillName = j["_id"].SoftSkill;
+      if( all.hasOwnProperty(skillName) ){
+        console.log("yay");
+        all[skillName] += 1;
+      }
+      else {
+        all[skillName] = 1;
+      }
+    }
+
+    let sorted = Object.keys(all).sort(function(a,b) {return all[b]-all[a]} )
+
+    console.log(sorted);
+    
+    let allUsers = {};
+    for( var skill of sorted ){
+      allUsers[skill] = all[skill];
+    }
+
+    
+    
+    return {results, allUsers};
     }
 
   // -------------------- UserSkill ---------------------------
