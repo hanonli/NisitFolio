@@ -6,9 +6,19 @@
 
 /*Registab7*/
 .regis-box-content {
-    height: 55vh;
+    height: 53vh;
     width: 80vw;
     /*background-color: aqua;*/
+    margin-left:11vw;
+    margin-top: 1%;
+    margin-bottom: 2%;
+    padding: 1%;
+}
+
+.regis-box-content1 {
+    height: 65vh;
+    width: 80vw;
+    background-color: aqua;
     margin-left:11vw;
     margin-top: 1%;
     margin-bottom: 2%;
@@ -24,7 +34,13 @@
 
 .ssf {
     padding-bottom: 20px;
+    margin-bottom: 20px;
 }
+
+.validborder {
+    border-color: rgb(255, 0, 0);
+}
+
 /* Dropdown Button */
 .dropbtn {
     background-color: #EAEAEA;
@@ -41,6 +57,7 @@
   .dropbtn:hover, .dropbtn:focus {
     background-color: #cdcdcd;
   }
+
 
 /* Dropdown_year Button */
 .dropbtn_year {
@@ -69,10 +86,9 @@
     /*cursor: pointer;*/
     border-radius: 24px;
     padding-left: 30px;
-    height: 30vh;
+    height: 27vh;
   }
 
-  /* Dropdown button on hover & focus */
   .aboutmee:hover, .aboutmee:focus {
     background-color: #cdcdcd;
   }
@@ -80,7 +96,7 @@
   .certibtn {
     background-color: #EAEAEA;
     color: #000;
-    padding: 0px;
+    padding: 10px;
     font-size: 20px;
     border: none;
     /*cursor: pointer;*/
@@ -129,6 +145,8 @@
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+    height: 30vh;
+    width: 30vw;
   }
   
   /* Change color of dropdown links on hover */
@@ -194,6 +212,11 @@
     margin-right: 30px;
 }
 
+.ttrbtn {
+    margin-left: 65vw;
+    color: black;
+    font-weight: 400;
+  }
 #certi_edit {
     height: 320px;
     width: 1450px;
@@ -229,18 +252,27 @@
     border-radius: 24px;
     padding: 0px;
     bottom: 125px;
+    height: 20vh;
 }
 
-.up_img img{
-    position: absolute;
+.for_upload112 img{
+    /*position: absolute;*/
+    margin-top: 42px;
 }
 
 .text_up {
    font-size: 20px;
    font-weight: 300;
+   top: 60px;
+   color: black;
 }
 
 .text_Info1 {
    font-size: 18px;
    font-weight: 300;
+}
+
+datalist {
+    height: 50vh;
+    width: 50vh;
 }

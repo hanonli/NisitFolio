@@ -9,7 +9,7 @@ body {
   /*background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/ed8839e8-3dcb-4bf1-b158-30dcd13e9589/dbgk12z-b8175564-549b-4bf6-a9bc-e3cd668811fb.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvZWQ4ODM5ZTgtM2RjYi00YmYxLWIxNTgtMzBkY2QxM2U5NTg5XC9kYmdrMTJ6LWI4MTc1NTY0LTU0OWItNGJmNi1hOWJjLWUzY2Q2Njg4MTFmYi5naWYifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.lJRTgtV562V7g7CmRlvfhZV32_0g-svgnQGqoEkR9Do");*/
 }
 
-h1, h2, h3, h4, h5, h6, input, span,label,button, a {
+h1, h2, h3, h4, h5, h6, input, span,label,button,textarea, a {
   font-family: 'Nunito','Kanit', arial, sans-serif;
   font-weight: bold;
   /*font-size: 16px;*/
@@ -976,36 +976,33 @@ a.btn-cta-primary-yellowwideE:hover, .btn-cta-primary-yellowwideE:hover {
 .tabs-list {
   text-align: center;
   font-weight: 300;
-  font-size: 3.34vh;
+  font-size: 2.4vh;
   font-family: 'Nunito','Kanit', arial, sans-serif;
 }
 
 .block-right {
   display: inline-block;
   text-align: right;
-  margin-left: 79vw;
+  margin-left: 72vw;
 }
 
 /*Agreement page*/
 #agree1 {
-  height: 2vh;
-  weight: 2vw;
-  border-radius: 50%;
   background-color: #BFF4A6;
   margin-left: 8vw;
   margin-right: 0.5vw;
-  padding: auto;
-  padding: 0.8%;
+  border: none;
+  padding: 1%;
+  margin-top: 15px;
 }
 
 .inlineweight {
   display: inline-block;
-  padding: auto;
 }
 
 .ttr {
   margin-left: 0.5%;
-  margin-right: 55vw;
+  /*margin-right: 55vw;*/
   color: black;
   font-weight: 400;
 }

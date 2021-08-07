@@ -1,23 +1,20 @@
+
 import { Entity, Column, ObjectIdColumn } from 'typeorm'; 
 import { ObjectId } from 'mongodb';
 
-@Entity("Account")
-export class Account {
+@Entity("PortfolioPicture")
+export class PortfolioPicture {
   @ObjectIdColumn()
   id?: ObjectId;
-
-  @Column()
-  Email: string;
   
   @Column()
-  Password: string;
+  UserId: string;
 
   @Column()
-  ProfilePic: string;
-
+  Pic: string;
+  
   @Column()
-  Privacy: string;
+  Desciption: string;
 }
 
-export default Account;
-
+export default PortfolioPicture;

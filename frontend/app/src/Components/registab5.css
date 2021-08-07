@@ -23,3 +23,21 @@
   display: flex;
   justify-content: center;
 }
+
+#input_upload input.hidden {
+    position: absolute;
+    visibility: hidden;
+    cursor: pointer;
+}
+
+#to_upload112 {
+    cursor: pointer;
+}
+
+.button_popup_certi {
+    margin-top: 20.2px;
+}
+
+.button_popup_certi a{
+    width: 120.01px;
+}

@@ -5,7 +5,6 @@ import Navbarlogo from './Components/navbarlogo';
 import InformationHeader from './Components/informationHeader';
 import reportWebVitals from './reportWebVitals';
 import { Link } from "react-router-dom";
-import Tabs from "./Components/Tabs";
 import Registab1 from "./Components/registab1";
 import Registab2 from "./Components/registab2";
 import Registab3 from "./Components/registab3";
@@ -64,7 +63,7 @@ class Register extends React.Component {
 				</div>
 				<Link to="/emailverify">
 					<div class="col block-right">
-						<a class="btn btn-cta-primary-yellowwide round profile-button" href="#" target="_blank" type="submit">ยืนยันตัวตน</a>
+						<button class="btn btn-cta-primary-yellowwide round profile-button" href="#" target="_blank" type="submit" id="continue2">ยืนยันตัวตน</button>
 					</div>
 				</Link>
 			</div>
