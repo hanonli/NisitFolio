@@ -6,19 +6,32 @@
 }
 
 
-.textbox {
+.Registab3 .textbox {
     background-color: rgb(236, 236, 236);
     border-style: solid;
     border-color: black;
     border-radius: 1vw;
 
     
-    width: 40vw;
     height: fit-content;
     padding-left: 1vw;
     margin-left: 0.5vw;
     margin-right: 0.5vw;
 }
+
+.Registab4 .textbox {
+    background-color: lightblue;
+    border-style: solid;
+    border-color: black;
+    border-radius: 1vw;
+
+    
+    height: fit-content;
+    padding-left: 1vw;
+    margin-left: 0.5vw;
+    margin-right: 0.5vw;
+}
+
 
 
 

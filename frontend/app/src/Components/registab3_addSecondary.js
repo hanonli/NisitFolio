@@ -44,7 +44,7 @@ class Registab3_addSecondary extends React.Component {
 
                     <div class='col-3' >
                         <div class="selectDropdown">
-                            <select class="form-select form-select-lg dropbtn_year margin-bottom1 is-valid" id='yearpicker1' aria-labelledby="select1" required>
+                            <select class="form-select form-select-lg dropbtn_year margin-bottom1 is-valid fff" id='yearpicker1' aria-labelledby="select1" required>
                                 <option selected disabled value=''>ปีที่จบการศึกษา</option>
                             </select>
                             <br/>
