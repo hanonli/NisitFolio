@@ -64,8 +64,8 @@ class Registab6 extends React.Component {
 									<option >นักแปลภาษา</option>
 								</select>
 								<ul class="tabs_pop">
-									<li class="tab-link_pop current2" data-tab1="tab01">ทักษะของฉัน</li>
-									<li class="tab-link_pop" data-tab1="tab02">เป้าหมายในการทำงาน</li>
+									<li class="tab-link_pop current2" data-tab1="tab01" type="button">ทักษะของฉัน</li>
+									<li class="tab-link_pop" data-tab1="tab02" type="button">เป้าหมายในการทำงาน</li>
 								</ul>
 								<div class="tab-contents_pop">
 									<div class="tab-pane_pop current2" id="tab01">
@@ -116,13 +116,13 @@ class Registab6 extends React.Component {
 									</div>
 									<div class="tab-pane_pop" id="tab02">
 										<div class="col-md-lg">
-											<input type="text" class="form-control dropbtn margin-bottom1" id="02" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></input>
+											<textarea type="text" class="form-control dropbtn margin-bottom1" id="02" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
 										</div>
 										<div class="col-md-lg">
-											<input type="text" class="form-control dropbtn margin-bottom1" id="02" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></input>
+											<textarea type="text" class="form-control dropbtn margin-bottom1" id="02" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
 										</div>
 										<div class="col-md-lg">
-											<input type="text" class="form-control dropbtn margin-bottom1" id="02" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></input>
+											<textarea type="text" class="form-control dropbtn margin-bottom1" id="02" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
 										</div>
 									</div>
 								</div>

@@ -27,7 +27,6 @@
 
 .button_add_job_interest button {
     margin-top: 0.22%;
-    
 }
 
 #popup_JOB {
@@ -52,6 +51,7 @@
     transition: 0.1s;
     padding-left: 55px;
     padding-right: 55px;
+    margin-top: 0.8%;
 }
 
 .frame_job:hover .layer_icon{

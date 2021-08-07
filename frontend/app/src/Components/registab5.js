@@ -16,8 +16,8 @@ class Registab5 extends React.Component {
 			<div className="Registab5">
 				<div class="regis-box-content">
 					<div class="row" id="pos_card">
-						<div class="frame_add_job_interest">
-							<div className="button_add_job_interest">
+						<div class="frame_add_certi">
+							<div className="button_add_certi">
 								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal1">
 									<img src="assets/images/+.png" width="115" height="115"></img>
 								</button>
