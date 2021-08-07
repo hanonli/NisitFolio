@@ -11,6 +11,25 @@
     text-align: center;  
 }
 
+.frame_add_job_interest {
+    background-color: #b6deea;
+    border: 1px solid black;
+    height: 140px;
+    width: 96.5%;
+    border-radius: 25px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    position: relative;
+    text-align: center;  
+}
+
+.button_add_job_interest button {
+    margin-top: 0.22%;
+    
+}
+
 #popup_JOB {
     height: 740px;
     width: 2950px !important;
@@ -31,6 +50,8 @@
 .layer_icon button{
     visibility: hidden;
     transition: 0.1s;
+    padding-left: 55px;
+    padding-right: 55px;
 }
 
 .frame_job:hover .layer_icon{

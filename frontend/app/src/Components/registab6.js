@@ -21,20 +21,22 @@ class Registab6 extends React.Component {
 					<div class="row" id="pos_card">
 						<div class="frame_job">
 							<div class="layer_icon">
-								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal22" id="img_icon"><img src="assets/images/blackedit.png" width="50" height="50"></img></button>
-								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal_remove_job" id="img_icon"><img src="assets/images/bin.png" width="50" height="50"></img></button>
+								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal22" id="img_icon"><img src="assets/images/blackedit.png" width="75" height="75"></img></button>
+								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal_remove_job" id="img_icon"><img src="assets/images/bin.png" width="95" height="95"></img></button>
 							</div>
 						</div>
 						<div class="frame_job">
 							<div class="layer_icon">
-								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal22" id="img_icon"><img src="assets/images/blackedit.png" width="50" height="50"></img></button>
-								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal_remove_job" id="img_icon"><img src="assets/images/bin.png" width="50" height="50"></img></button>
+								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal22" id="img_icon"><img src="assets/images/blackedit.png" width="75" height="75"></img></button>
+								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal_remove_job" id="img_icon"><img src="assets/images/bin.png" width="95" height="95"></img></button>
 							</div>
 						</div>
-						<div class="frame_job">
-							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal22">
-								<img src="assets/images/+.png" width="70" height="70"></img>
-							</button>
+						<div class="frame_add_job_interest">
+							<div className="button_add_job_interest">
+								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal22">
+									<img src="assets/images/+.png" width="115" height="115"></img>
+								</button>
+							</div>
 						</div>
 					</div>
 
