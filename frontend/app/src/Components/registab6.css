@@ -32,6 +32,7 @@
 #popup_JOB {
     height: 740px;
     width: 2950px !important;
+    margin-block: 2px;
 }
 
 .layer_icon {
@@ -99,7 +100,42 @@
     margin-left: 25px;
 }
 
-#topic_pop {
+.popup_JOB {
     position: relative;
-    left: 10px;
+    width: 1750px;
+    height: 620px;
+    border-radius: 25px;
+}
+
+#topic_pop {
+
+}
+
+.contentOfModalJop {
+    position: relative;
+    margin-top: 20px;
+    margin-left: 85px;
+    margin-right: 85px;
+}
+
+.tabPOP {
+  justify-content: center;
+  cursor: pointer;
+  margin-bottom: 12.5px;
+}
+
+.tabPOP ul{
+    text-align: center;
+}
+
+.tabPOP li {
+  /*padding: 4px;*/
+}
+
+.tabPOP li:hover {
+      border-bottom: 7px solid #435157 ;
+}
+
+.tabPOP li.active {
+      border-bottom: 7px solid #435157;
 }
