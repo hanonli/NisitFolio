@@ -55,14 +55,23 @@ class Registab6 extends React.Component {
 					<div class="modal fade" id="exampleModal22" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog modal-dialog-centered modal-xl">
 							<div class="modal-content popup_JOB" >
-								<h1 id="topic_pop">เพิ่มงานที่สนใจ</h1>
-								<select class="form-select dropbtn_year margin-bottom1 fff" id="each_skill1" required>
-									<option selected disabled value="">เลือกตำแหน่งงานหรืองานที่คุณสนใจ *</option>
-									<option >โปรแกรมเมอร์</option>
-									<option >บาร์เทนเนอร์</option>
-									<option >ดีไซน์เนอร์</option>
-									<option >นักแปลภาษา</option>
-								</select>
+
+								<div class="row head_modal_job">
+									<div class="col-5">
+										<h1 id="topic_pop">เพิ่มงานที่สนใจ</h1>
+									</div>
+									<div class="col-10">
+										<select class="form-select dropbtn_year margin-bottom1 fff" id="each_skill1" required>
+											<option selected disabled value="">เลือกตำแหน่งงานหรืองานที่คุณสนใจ *</option>
+											<option >โปรแกรมเมอร์</option>
+											<option >บาร์เทนเนอร์</option>
+											<option >ดีไซน์เนอร์</option>
+											<option >นักแปลภาษา</option>
+											<option >สลิ่ม</option>
+											<option >สามกีบ</option>
+										</select>
+									</div>
+								</div>
 
 								<div className="tabPOP">
 									<ul class="tabs_pop">
@@ -74,7 +83,8 @@ class Registab6 extends React.Component {
 								<div className="contentOfModalJop">
 									<div class="tab-contents_pop">
 										<div class="tab-pane_pop current2" id="tab01">
-											<div class="row">
+
+											<div class="row list-job-skill1">
 												<div class="col-md-5">
 													<select class="form-select dropbtn_year margin-bottom1 fff" id="each_skill1" required>
 														<option selected disabled value="">เลือกทักษะของคุณที่เหมาะกับงาน</option>
@@ -85,11 +95,13 @@ class Registab6 extends React.Component {
 													</select>
 												</div>
 												<div class="col-md-5">
-													<input type="range" class="form-control-range" min="0" max="10" id="customRange11" />
+													<div className="range-slider-job">
+														<input type="range" class="form-control-range" min="0" max="10" id="customRange11" />
+													</div>
 												</div>
 											</div>
 
-											<div class="row">
+											<div class="row list-job-skill1">
 												<div class="col-md-5">
 													<select class="form-select dropbtn_year margin-bottom1 fff" id="each_skill1" required>
 														<option selected disabled value="">เลือกทักษะของคุณที่เหมาะกับงาน</option>
@@ -100,11 +112,13 @@ class Registab6 extends React.Component {
 													</select>
 												</div>
 												<div class="col-md-5">
-													<input type="range" class="form-control-range" min="0" max="10" id="customRange11" />
+													<div className="range-slider-job">
+														<input type="range" class="form-control-range" min="0" max="10" id="customRange11" />
+													</div>
 												</div>
 											</div>
 
-											<div class="row">
+											<div class="row list-job-skill1">
 												<div class="col-md-5">
 													<select class="form-select dropbtn_year margin-bottom1 fff" id="each_skill1" required>
 														<option selected disabled value="">เลือกทักษะของคุณที่เหมาะกับงาน</option>
@@ -115,7 +129,9 @@ class Registab6 extends React.Component {
 													</select>
 												</div>
 												<div class="col-md-5">
-													<input type="range" class="form-control-range" min="0" max="10" id="customRange11" />
+													<div className="range-slider-job">
+														<input type="range" class="form-control-range" min="0" max="10" id="customRange11" />
+													</div>
 												</div>
 											</div>
 										</div>
@@ -133,9 +149,11 @@ class Registab6 extends React.Component {
 									</div>
 								</div>
 
-								<div class="col-md-10">
-									<a type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</a>
-									<a type="button" class="btn btn-cta-primary-yellowshort profile-button round">เพิ่ม</a>
+								<div class="row">
+									<div className="button-add-job1">
+										<a type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</a>
+										<a type="button" class="btn btn-cta-primary-yellowshort profile-button round submit">เพิ่ม</a>
+									</div>
 								</div>
 							</div>
 						</div>
