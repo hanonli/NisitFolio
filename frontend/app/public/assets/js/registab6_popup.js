@@ -1,5 +1,5 @@
-$(function () {
-    
+$(document).ready(function () {
+
     $('.tabs_pop li').on('click', function () {
         var tabId = $(this).attr('data-tab1')
         $('.tabs_pop li').removeClass('current2')
@@ -7,4 +7,4 @@ $(function () {
         $(this).addClass('current2')
         $('#' + tabId).addClass('current2')
     })
-})
+});
