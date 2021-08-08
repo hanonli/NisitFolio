@@ -57,11 +57,11 @@ class Registab6 extends React.Component {
 							<div class="modal-content popup_JOB" >
 
 								<div class="row head_modal_job">
-									<div class="col-5">
+									<div class="col-md-5">
 										<h1 id="topic_pop">เพิ่มงานที่สนใจ</h1>
 									</div>
-									<div class="col-10">
-										<select class="form-select dropbtn_year margin-bottom1 fff" id="each_skill1" required>
+									<div class="col-md-5 select-job4">
+										<select class="form-select dropbtn-job4 margin-bottom-job4 fff" required>
 											<option selected disabled value="">เลือกตำแหน่งงานหรืองานที่คุณสนใจ *</option>
 											<option >โปรแกรมเมอร์</option>
 											<option >บาร์เทนเนอร์</option>
@@ -135,6 +135,7 @@ class Registab6 extends React.Component {
 												</div>
 											</div>
 										</div>
+
 										<div class="tab-pane_pop" id="tab02">
 											<div class="col-md-lg">
 												<textarea type="text" class="form-control dropbtn margin-bottom1" id="03" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
@@ -146,15 +147,15 @@ class Registab6 extends React.Component {
 												<textarea type="text" class="form-control dropbtn margin-bottom1" id="03" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
 											</div>
 										</div>
+
 									</div>
 								</div>
 
-								<div class="row">
-									<div className="button-add-job1">
-										<a type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</a>
-										<a type="button" class="btn btn-cta-primary-yellowshort profile-button round submit">เพิ่ม</a>
-									</div>
+								<div className="button-add-job1">
+									<a type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</a>
+									<a type="button" class="btn btn-cta-primary-yellowshort profile-button round submit">เพิ่ม</a>
 								</div>
+
 							</div>
 						</div>
 					</div>

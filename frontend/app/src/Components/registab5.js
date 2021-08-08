@@ -68,6 +68,7 @@ class Registab5 extends React.Component {
 										</div>
 
 									</div>
+
 									<div className="button_popup_certi">
 										<a type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</a>
 										<a type="button" class="btn btn-cta-primary-yellowshort profile-button round">เพิ่ม</a>
