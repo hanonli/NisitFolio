@@ -64,7 +64,7 @@ class Agreement extends React.Component {
 							</label>
 						</div>
 						<div class="inlineweight col-md-2">
-							<button class="btn btn-cta-primary-yellowwide round" href="/register" target="_self" id="continue1" >ต่อไป</button>
+							<button class="btn btn-cta-primary-yellowwide round" href="/register" target="_self" id="continue1" disabled>ต่อไป</button>
 						</div>
 					</div>
 				</div>

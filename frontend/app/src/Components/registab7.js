@@ -48,6 +48,7 @@ class Registab7 extends React.Component {
 							<option value="Ai"></option>
 							<option value="Python"></option>
 						</datalist>
+						<a class="dropbtn-box form-f">Excel</a>
 					</div>
 					<a>test delete-dropdown popup</a>
 					<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#Modaltab7">

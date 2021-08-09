@@ -58,6 +58,22 @@
     background-color: #cdcdcd;
   }
 
+  .dropbtn-box {
+    background-color: #EAEAEA;
+    color: #000;
+    padding: 10px;
+    font-size: 20px;
+    border: none;
+    /*cursor: pointer;*/
+    border-radius: 24px;
+    padding-left: 30px;
+    display: block;
+  }
+  
+  /* Dropdown button on hover & focus */
+  .dropbtn-box:hover, .dropbtn-box:focus {
+    background-color: #cdcdcd;
+  }
 
 /* Dropdown_year Button */
 .dropbtn_year {

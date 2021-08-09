@@ -59,8 +59,8 @@ $(function(){
 /*Zone Agreement*/
 
 //Program to disable or enable a button 
-$('#continue1').prop('disabled', true);
-$('#continue2').prop('disabled', true);
+//$('#continue1').prop('disabled', true);
+//$('#continue2').prop('disabled', true);
 
 $('#agree1').click(function () {           
     $('#continue1').prop('disabled', false);
@@ -191,9 +191,11 @@ for (k = startD; k < MaxD; k++) {
       });
 
 /*Tab7*/
-var sideskilldropdown1 = '<input class="form-control dropbtn ssf" list="sideskillop" id="sideskilllist" placeholder="เลือกทักษะเสริมที่ถนัด"></input>'
+var sideskilldropdown1 = '<input class="form-control dropbtn ssf" list="sideskillop" id="sideskilllist'
+var sideskilldropdown2 = '" placeholder="เลือกทักษะเสริมที่ถนัด"></input>'
 var sideskill_count=0;
 var max_sideskill=3;
+var sumsideskill='';
 
 $(document).on('change', 'input', function(){
     var options = $('datalist')[0].options;
@@ -205,7 +207,9 @@ $(document).on('change', 'input', function(){
           sideskill_count += 1;
           console.log(val)
           if(sideskill_count < max_sideskill){
-            $('.dropdowntap7').append(sideskilldropdown);
+            sumsideskill = sideskilldropdown1 + sideskill_count + sideskilldropdown2;
+            console.log(sumsideskill);
+            $('.dropdowntap7').append(sumsideskill); /*Append dropdown1,2*/
             break;
           }
           break;
