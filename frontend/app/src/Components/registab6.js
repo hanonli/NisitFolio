@@ -96,7 +96,7 @@ class Registab6 extends React.Component {
 												</div>
 												<div class="col-md-5">
 													<div className="range-slider-job">
-														<input type="range" class="form-control-range" min="0" max="10" id="customRange11" />
+														<input type="range" class="form-control-range" min="0" max="10" defaultValue="5" id="customRange11" />
 													</div>
 												</div>
 											</div>
@@ -113,7 +113,7 @@ class Registab6 extends React.Component {
 												</div>
 												<div class="col-md-5">
 													<div className="range-slider-job">
-														<input type="range" class="form-control-range" min="0" max="10" id="customRange11" />
+														<input type="range" class="form-control-range" min="0" max="10" defaultValue="5" id="customRange11" />
 													</div>
 												</div>
 											</div>
@@ -130,7 +130,13 @@ class Registab6 extends React.Component {
 												</div>
 												<div class="col-md-5">
 													<div className="range-slider-job">
-														<input type="range" class="form-control-range" min="0" max="10" id="customRange11" />
+														<input type="range" class="slider" min="0" max="10" step="0.1" defaultValue="5" id="customRange11" list='tickmarks1'/>
+														<div id="tickmarks1">
+															<p>ไม่ได้</p>
+															<p>พอได้เล็กน้อย</p>
+															<p>ดี</p>
+															<p>ยอดเยี่ยม</p>
+														</div>
 													</div>
 												</div>
 											</div>
