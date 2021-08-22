@@ -7,6 +7,9 @@ export class Userinfo {
   id?: ObjectId;
 
   @Column()
+  UserId: string;
+
+  @Column()
   Firstname: string;
   
   @Column()
@@ -16,7 +19,15 @@ export class Userinfo {
   Birthday: string;
 
   @Column()
+  AboutMe: string;
+
+  @Column()
+  EmailBusiness: string;
+
+  @Column()
   Gender: string;
+
+  
 
   /*@Column()
   courseId: ObjectId;*/

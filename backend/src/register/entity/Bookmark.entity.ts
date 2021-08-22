@@ -1,23 +1,19 @@
 import { Entity, Column, ObjectIdColumn } from 'typeorm'; 
 import { ObjectId } from 'mongodb';
 
-@Entity("Account")
-export class Account {
+@Entity("Bookmark")
+export class Bookmark {
   @ObjectIdColumn()
   id?: ObjectId;
-
-  @Column()
-  Email: string;
   
   @Column()
-  Password: string;
+  userId: string;
 
   @Column()
-  ProfilePic: string;
-
+  Link: string;
+  
   @Column()
-  Privacy: string;
+  Type: string;
 }
 
-export default Account;
-
+export default Bookmark;

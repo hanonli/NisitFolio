@@ -112,7 +112,7 @@
   .certibtn {
     background-color: #EAEAEA;
     color: #000;
-    padding: 0px;
+    padding: 10px;
     font-size: 20px;
     border: none;
     /*cursor: pointer;*/
@@ -268,15 +268,19 @@
     border-radius: 24px;
     padding: 0px;
     bottom: 125px;
+    height: 20vh;
 }
 
-.up_img img{
-    position: absolute;
+.for_upload112 img{
+    /*position: absolute;*/
+    margin-top: 42px;
 }
 
 .text_up {
    font-size: 20px;
    font-weight: 300;
+   top: 60px;
+   color: black;
 }
 
 .text_Info1 {
@@ -287,4 +291,4 @@
 datalist {
     height: 50vh;
     width: 50vh;
-  }
+}

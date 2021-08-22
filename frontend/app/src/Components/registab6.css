@@ -11,9 +11,22 @@
     text-align: center;  
 }
 
-#popup_JOB {
-    height: 740px;
-    width: 2950px !important;
+.frame_add_job_interest {
+    background-color: #b6deea;
+    border: 1px solid black;
+    height: 140px;
+    width: 96.5%;
+    border-radius: 25px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    position: relative;
+    text-align: center;  
+}
+
+.button_add_job_interest button {
+    margin-top: 0.22%;
 }
 
 .layer_icon {
@@ -31,6 +44,9 @@
 .layer_icon button{
     visibility: hidden;
     transition: 0.1s;
+    padding-left: 55px;
+    padding-right: 55px;
+    margin-top: 0.8%;
 }
 
 .frame_job:hover .layer_icon{
@@ -73,12 +89,104 @@
 }
 
 /*-----slider range-----*/
-#customRange11 input {
+.range-slider-job input {
     position: absolute;
-    margin-left: 25px;
+    margin-left: 50px;
+    margin-top: 16px;
+    width: 480px;
+}
+
+
+
+.popup_JOB {
+    position: relative;
+    width: 1750px;
+    height: 680px;
+    border-radius: 25px;
+}
+
+.head_modal_job {
+    position: relative;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.head_modal_job h1{
+    position: relative;
+    padding-left: 10px;
+}
+
+.contentOfModalJop {
+    position: relative;
+    margin-top: 20px;
+    margin-left: 85px;
+    margin-right: 85px;
+}
+
+.tabPOP {
+  position: relative;
+  justify-content: center;
+  cursor: pointer;
+  margin-bottom: 12.5px;
+}
+
+.tabPOP ul{
+    text-align: center;
+}
+
+.tabPOP li {
+    /*padding: 4px;*/
+    width: 45%;
+    font-family: 'Kanit';
+    font-weight: 300;
+    font-size: 25px;
+    color: #435157;
+}
+
+.tabPOP li:hover:after {
+    border-bottom: 7px solid #435157;
+    width: 45%;
+}
+
+.tabPOP li:active {
+    border-bottom: 7px solid #435157;
+}
+
+.list-job-skill1 {
+    position: relative;
+    margin-bottom: 60px;
+}
+
+.button-add-job1 {
+    position: absolute;
+    margin-left: 760px;
+    margin-bottom: 15px;
+    margin-top: 600px;
+}
+
+.head_modal_job select{
+    left: 100px;
 }
 
 #topic_pop {
-    position: relative;
-    left: 10px;
+    font-size: 55px;
+    font-family: 'Kanit';
+    font-weight: 500;
+    color: black;
+}
+
+.dropbtn-job4 {
+    background-color: #EAEAEA;
+    color: #000;
+    padding: 10px;
+    font-size: 20px;
+    border: none;
+    /*cursor: pointer;*/
+    border-radius: 24px;
+    padding-left: 30px;
+    width: 30vw;
+}
+
+.select-job4 {
+    margin-top: 6.5px;
 }
