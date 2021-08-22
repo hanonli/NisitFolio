@@ -6,9 +6,14 @@ import { AuthService } from './auth.service';
 import { LocalStrategy } from './local.strategy';
 import { jwtConstants } from './constants'
 import { JwtStrategy } from './jwt.strategy';
+import { AuthenticationController } from './auth.controller';
+import { RegisterModule } from 'src/register/register.module';
+import { EmailConfirmationModule } from 'src/emailconfirmation/emailConfirmation.module';
 
 @Module({
   imports: [
+    EmailConfirmationModule,
+    RegisterModule,
     UsersModule, 
     PassportModule,
     JwtModule.register({
@@ -16,6 +21,7 @@ import { JwtStrategy } from './jwt.strategy';
       signOptions: { expiresIn: '60m' },
     })
   ],
+  controllers: [ AuthenticationController],
   providers: [AuthService, LocalStrategy, JwtStrategy],
   exports: [AuthService],
 })
