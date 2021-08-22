@@ -41,3 +41,21 @@
 .button_popup_certi a{
     width: 120.01px;
 }
+
+.frame_add_certi {
+    background-color: #b6deea;
+    border: 1px solid black;
+    height: 210px;
+    width: 96.5%;
+    border-radius: 25px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    position: relative;
+    text-align: center;  
+}
+
+.button_add_certi button {
+    margin-top: 2.55%;
+}
