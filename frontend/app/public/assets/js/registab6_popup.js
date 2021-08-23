@@ -10,7 +10,7 @@ $(document).ready(function () {
 
 });
 
-/*---control slider range---*/
+/*----control slider range----*/
 var value1, value2, value3;
 
 document.getElementById("customRange11").oninput = function () {
