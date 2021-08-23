@@ -23,24 +23,25 @@ class Registab5 extends React.Component {
 						</div>
 					</div>
 
-					<h1 id="year-of-certi">2021</h1>
+					<h1 id="each-year-of-certi">2021</h1>
 					<div class="content-certi1" id="pos_card">
 
 						<div class="card_certi">
-							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-
-							</button>
+							<h1 id="name-of-certi">จิตอาสาพระราชทาน</h1>
+							<h1 id="year-of-certi">2021</h1>
+							<div class="pos-pic-of-certi">
+								<img src="assets/images/certi_ex2.jpeg" height="160" id="pic-of-certi"></img>
+							</div>
 						</div>
+
 						<div class="card_certi">
-							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-
-							</button>
+							<h1 id="name-of-certi">จิตอาสาพระราชทาน</h1>
+							<h1 id="year-of-certi">2021</h1>
+							<div class="pos-pic-of-certi">
+								<img src="assets/images/certi_ex2.jpeg" height="160" id="pic-of-certi"></img>
+							</div>
 						</div>
-						<div class="card_certi">
-							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal1">
 
-							</button>
-						</div>
 
 					</div>
 
@@ -64,7 +65,6 @@ class Registab5 extends React.Component {
 											<img src="assets/images/upload_file.png" width="85px" height="85px" class="up_img"></img>
 											<h2 className="text_up">อัพโหลดใบรับรองของคุณได้ที่นี่</h2>
 										</div>
-
 									</div>
 
 									<div className="button_popup_certi">
