@@ -1,0 +1,107 @@
+
+
+.textbox-container{
+    display : flex;
+
+}
+
+.Registab3 .textbox {
+
+    background-color: rgb(236, 236, 236);
+    border-style: solid;
+    border-color: black;
+    border-radius: 1vw;
+
+    
+    height: fit-content;
+    padding-left: 1vw;
+    margin-left: 0.5vw;
+    margin-right: 0.5vw;
+
+    justify-content: center;
+}
+
+.Registab3 .textbox .registab4_btnplus{
+    text-align: center;
+}
+
+.Registab3 .textbox #icon-plus-circle {
+    position: relative;
+
+    width: 50px;
+    height: 50px;
+
+}
+
+
+.Registab4 .textbox {
+    background-color: lightblue;
+    border-style: solid;
+    border-color: black;
+    border-radius: 1vw;
+
+    
+    height: fit-content;
+    padding-left: 1vw;
+    margin-left: 0.5vw;
+    margin-right: 0.5vw;
+
+}
+
+.Registab4 .textbox .registab4_btnplus{
+    text-align: center;
+}
+    
+
+.Registab4 .textbox #icon-plus-circle {
+    position: relative;
+
+    width: 100px;
+    height: 100px;
+
+
+}
+
+
+/*
+    This is for registab3_addHigher
+*/
+
+
+#registab4_textGrade{ 
+    margin-top: 14px;
+    text-align: right;
+
+}
+
+
+/*
+    This is for registab3_addSecondary
+
+*/
+
+/*
+    This is for registab4_addWorkHistory
+*/
+
+
+#registab4_textOr{ 
+    margin-top: 14px;
+
+}
+
+#registab4_radiocheck {
+    margin-top: 10px;
+    font-size: 20px;
+}
+  
+#registab4_Radios1 {
+    margin-top: 7px;
+
+}
+
+
+/*
+    This is for registab3_addWorkHistory
+
+*/

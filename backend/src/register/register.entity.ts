@@ -1,20 +1,21 @@
-/*
-import { Entity, Column, ObjectIdColumn } from 'typeorm'; 
-import { ObjectId } from 'mongodb';
-
-//----------------------------------------------//*/
 import { Entity, Column, ObjectIdColumn } from 'typeorm'; 
 import { ObjectId, Timestamp } from 'mongodb';
 
 //--------------------Account--------------------------//
 @Entity("Account")
 export class PostAccount {
+
+  //UserId: string;
+
   @ObjectIdColumn()
   id?: ObjectId;
 
   @Column()
   Email: string;
   
+  @Column()
+  isEmailConfirmed: boolean;
+
   @Column()
   Password: string;
 
@@ -29,8 +30,14 @@ export class PostAccount {
 //--------------------UserInfo--------------------------//
 @Entity("UserInfo")
 export class PostUserinfo {
+
+  //UserId: string;
+
   @ObjectIdColumn()
   id?: ObjectId;
+
+  @Column()
+  UserId: string;
 
   @Column()
   Firstname: string;
@@ -40,6 +47,12 @@ export class PostUserinfo {
 
   @Column()
   Birthday: string;
+
+  @Column()
+  AboutMe: string;
+
+  @Column()
+  EmailBusiness: string;
 
   @Column()
   Gender: string;
@@ -143,10 +156,10 @@ export class PostEducationHistory {
   Grade: string;
   
   @Column()
-  Start_Year: Number;
+  Start_Year: Number;   //ยังไม่มั่นใจ
 
   @Column()
-  End_Year: Number;
+  End_Year: Number;   //ยังไม่มั่นใจ
 }
 
 
@@ -323,3 +336,26 @@ export class PostWorkHistory {
   Infomation: string;
 
 }
+
+@Entity("userjobskill")
+export class PostUserJobSkill {
+
+  @ObjectIdColumn()
+  id?: ObjectId;
+  
+  @Column()
+  UserId: string;
+
+  @Column()
+  Objective: string;
+
+  @Column()
+  Score: Number;
+
+  @Column()
+  JobName: string;
+
+  @Column()
+  SkillName: string;
+}
+

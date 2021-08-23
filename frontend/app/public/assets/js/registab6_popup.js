@@ -1,54 +1,32 @@
-/*For Javascript Desu*/
+$(document).ready(function () {
 
-/*Tabs New*/
-$(function () {
-    $('.tab-content').hide();
-    $('#tabP1-content').show();
-    console.log("NhaHee!!!!");
-    $('#tab-11').on('click', function () {
-        $('.tab-content').hide();
-        $('.tab-list-item').removeClass('tab-list-active');
-        $('#tab-11').addClass('tab-list-active')
-        $('#tabP1-content').show();
-    });
+    $('.tabs_pop li').on('click', function () {
+        var tabId = $(this).attr('data-tab1');
+        $('.tabs_pop li').removeClass('current2');
+        $('.tab-pane_pop').removeClass('current2');
+        $(this).addClass('current2');
+        $('#' + tabId).addClass('current2');
+    })
 
-    $('#tab-12').on('click', function () {
-        $('.tab-content').hide();
-        $('.tab-list-item').removeClass('tab-list-active');
-        $('#tab-12').addClass('tab-list-active')
-        $('#tabP2-content').show();
-    });
 });
 
-/*Zone Agreement*/
+/*----control slider range----*/
+var value1, value2, value3;
 
-//Program to disable or enable a button 
+document.getElementById("customRange11").oninput = function () {
+    value1 = (this.value - this.min) / (this.max - this.min) * 100;
+    this.style.background = 'linear-gradient(to right, #f0a143 0%, #f0a143 ' + value1 + '%, #c4c4c4 ' + value1 + '%, #c4c4c4 100%)';
+    console.log(`skill1: ` + value1);
+};
 
-/*let continue1 = document.getElementById('continue1');
-let buttonagree = document.getElementById('agree1');
+document.getElementById("customRange12").oninput = function () {
+    value2 = (this.value - this.min) / (this.max - this.min) * 100;
+    this.style.background = 'linear-gradient(to right, #0fe17c 0%, #0fe17c ' + value2 + '%, #c4c4c4 ' + value2 + '%, #c4c4c4 100%)';
+    console.log(`skill2: ` + value2);
+};
 
-continue1.disabled = true; //setting button state to disabled
-
-buttonagree.addEventListener("click", stateHandle);
-
-function stateHandle() {
-    if (document.querySelector("#continue1").value === "") {
-        continue1.disabled = true; //button remains disabled
-    } else {
-        continue1.disabled = false; //button is enabled
-    }
-}
-
-*/
-
-/*Tab7*/
-
-$(function () {
-    $('#sideskillop').on('click', function () {
-        $('#sideskilllist').blur();
-    });
-});
-
-$('#datepicker').datepicker();
-var date = $('#datepicker').datepicker({ dateFormat: 'dd-mm-yy' }).val();
-var date = $('#datepicker').datepicker('getDate');
+document.getElementById("customRange13").oninput = function () {
+    value3 = (this.value - this.min) / (this.max - this.min) * 100;
+    this.style.background = 'linear-gradient(to right, #c98a11 0%, #c98a11 ' + value3 + '%, #c4c4c4 ' + value3 + '%, #c4c4c4 100%)';
+    console.log(`skill3: ` + value3);
+};

@@ -1,28 +1,9 @@
-/*
 import { IsNotEmpty, IsNumberString } from 'class-validator';
+//import { ObjectId } from 'mongodb';
 
 export class CreateAccountDto {
 
-    @IsNotEmpty()
-    Email: string;
-
-    @IsNotEmpty()
-    Password: string;
-
-    ProfilePic: string;
-
-    Privacy: string;
-
-    Username: string;
-
- 
-}
-
-///--------------------------*/
-import { IsNotEmpty, IsNumberString } from 'class-validator';
-import { ObjectId } from 'mongodb';
-
-export class CreateAccountDto {
+    UserId: string;
 
     @IsNotEmpty()
     Email: string;
@@ -39,6 +20,9 @@ export class CreateAccountDto {
 
 
 export class CreateUserinfoDto {
+
+    UserId: string;
+
     @IsNotEmpty()
     Firstname: string;
     
@@ -48,16 +32,17 @@ export class CreateUserinfoDto {
     @IsNotEmpty()
     Birthday: string;
   
-    @IsNotEmpty()
-    Gender: string;
+    AboutMe: string;
+
+    EmailBusiness: string;
   
-    accountD?: ObjectId;
+    //accountD?: ObjectId;
   }
 
   //--------------------AdditionalSkill--------------------------//
 export class CreateAdditionalSkill {
 
-  id?: ObjectId;
+  //id?: ObjectId;
 
   UserId: string;
   
@@ -67,7 +52,7 @@ export class CreateAdditionalSkill {
 
 export class CreateBookmark {
 
-  id?: ObjectId;
+  //id?: ObjectId;
   
   userId: string;
 
@@ -80,7 +65,7 @@ export class CreateBookmark {
 
 export class CreateCertificate {
 
-  id?: ObjectId;
+  //id?: ObjectId;
   
   UserId: string;
 
@@ -95,7 +80,7 @@ export class CreateCertificate {
 
 export class CreateCity {
 
-  id?: ObjectId;
+  //id?: ObjectId;
   
   UserId: string;
 
@@ -105,7 +90,7 @@ export class CreateCity {
 //--------------------Country--------------------------//
 export class CreateCountry {
 
-  id?: ObjectId;
+  //id?: ObjectId;
   
   UserId: string;
 
@@ -115,7 +100,7 @@ export class CreateCountry {
 //--------------------EducationHistory--------------------------//
 export class CreateEducationHistory {
 
-  id?: ObjectId;
+  //id?: ObjectId;
   
   UserId: string;
 
@@ -142,7 +127,7 @@ export class CreateEducationHistory {
 //--------------------InterestedJob--------------------------//
 export class CreateInterestedJob {
 
-  id?: ObjectId;
+  //id?: ObjectId;
   
   UserId: string;
 
@@ -152,7 +137,7 @@ export class CreateInterestedJob {
 //--------------------JobTitle--------------------------//
 export class CreateJobTitle {
 
-  id?: ObjectId;
+  //id?: ObjectId;
   
   UserId: string;
 
@@ -163,7 +148,7 @@ export class CreateJobTitle {
 //--------------------Portfolio--------------------------//
 export class CreatePortfolio {
 
-  id?: ObjectId;
+  //id?: ObjectId;
   
   UserId: string;
 
@@ -177,7 +162,7 @@ export class CreatePortfolio {
 //--------------------PortfolioPicture--------------------------//
 export class CreatePortfolioPicture {
 
-  id?: ObjectId;
+  //id?: ObjectId;
 
   UserId: string;
 
@@ -189,7 +174,7 @@ export class CreatePortfolioPicture {
 //--------------------Province--------------------------//
 export class CreateProvince {
 
-  id?: ObjectId;
+  //id?: ObjectId;
   
   UserId: string;
 
@@ -199,7 +184,7 @@ export class CreateProvince {
 //--------------------Resume--------------------------//
 export class CreateResume {
 
-  id?: ObjectId;
+  //id?: ObjectId;
   
   UserId: string;
 
@@ -215,7 +200,7 @@ export class CreateResume {
 
 export class CreateSalaryType {
 
-  id?: ObjectId;
+  //id?: ObjectId;
   
   UserId: string;
 
@@ -226,7 +211,7 @@ export class CreateSalaryType {
 //--------------------Skill--------------------------//
 export class CreateSkill {
 
-  id?: ObjectId;
+  //id?: ObjectId;
   
   UserId: string;
 
@@ -238,7 +223,7 @@ export class CreateSkill {
 //--------------------UserSkill--------------------------//
 export class CreateUserSkill {
 
-  id?: ObjectId;
+  //id?: ObjectId;
 
   UserId: string;
 
@@ -251,7 +236,7 @@ export class CreateUserSkill {
 //--------------------WorkHistory--------------------------//
 export class CreateWorkHistory {
 
-  id?: ObjectId;
+  //id?: ObjectId;
   
   UserId: string;
 
@@ -275,6 +260,23 @@ export class CreateWorkHistory {
 
   Salary: Float32Array;
 
-  Infomation: string;
+  Information: string;
 
 }
+
+export class CreateUserJobSkill {
+
+  //id?: ObjectId;
+  
+  UserId: string;
+
+  Objective: string;
+
+  Score: Number;
+
+  JobName: string;
+
+  SkillName: string;
+}
+
+
