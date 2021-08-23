@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { EmailConfirmationService } from './emailConfirmation.service';
+import { EmailConfirmationController } from './emailConfirmation.controller';
 import { ConfigModule } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from '../auth/constants'
@@ -16,7 +17,7 @@ import { UsersModule } from 'src/users/users.module';
         signOptions: { expiresIn: '60m' },
       })
     ],
-  controllers: [],
+  controllers: [EmailConfirmationController],
   providers: [EmailConfirmationService],
   exports: [EmailConfirmationService]
 })

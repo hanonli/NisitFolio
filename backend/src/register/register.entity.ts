@@ -14,6 +14,9 @@ export class PostAccount {
   Email: string;
   
   @Column()
+  isEmailConfirmed: boolean;
+
+  @Column()
   Password: string;
 
   @Column()

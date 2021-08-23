@@ -63,6 +63,7 @@ export class RegisterService {
     account.Password = createDto.Password;
     account.ProfilePic = createDto.ProfilePic;
     account.Privacy = createDto.Privacy;
+    account.isEmailConfirmed = createDto.isEmailConfirmed;
 
     const userinfo = new PostUserinfo();
     userinfo.Firstname = createDto.Firstname;
