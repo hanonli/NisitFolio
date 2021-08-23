@@ -20,17 +20,53 @@ class Registab6 extends React.Component {
 				<div class="regis-box-content">
 					<div class="row" id="pos_card">
 						<div class="frame_job">
+							<div className="content-job-interest">
+
+								<div class="job-column-1">
+									<h1 id="job-position">ตำแหน่งงานที่ 1</h1>
+									<h1 id="job-name">สามกีบ</h1>
+								</div>
+
+								<div class="my-skill-content">
+									<h1 id="mySkil-job">ทักษะของฉัน</h1>
+									<div class="each-skill-job">
+										<p id="skill1-job">ทักษะที่ 1</p>
+										<p id="skill2-job">ทักษะที่ 2</p>
+										<p id="skill3-job">ทักษะที่ 3</p>
+									</div>
+								</div>
+							</div>
+
 							<div class="layer_icon">
-								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal22" id="img_icon"><img src="assets/images/blackedit.png" width="75" height="75"></img></button>
-								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal_remove_job" id="img_icon"><img src="assets/images/bin.png" width="95" height="95"></img></button>
+								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal22" id="img_icon"><img src="assets/images/blackedit.png" width="65" height="65"></img></button>
+								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal_remove_job" id="img_icon"><img src="assets/images/bin.png" width="90" height="90"></img></button>
 							</div>
 						</div>
+
 						<div class="frame_job">
+							<div className="content-job-interest">
+
+								<div class="job-column-1">
+									<h1 id="job-position">ตำแหน่งงานที่ 2</h1>
+									<h1 id="job-name">สลิ่ม</h1>
+								</div>
+
+								<div class="my-skill-content">
+									<h1 id="mySkil-job">ทักษะของฉัน</h1>
+									<div class="each-skill-job">
+										<p id="skill1-job">ทักษะที่ 1</p>
+										<p id="skill2-job">ทักษะที่ 2</p>
+										<p id="skill3-job">ทักษะที่ 3</p>
+									</div>
+								</div>
+							</div>
+
 							<div class="layer_icon">
-								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal22" id="img_icon"><img src="assets/images/blackedit.png" width="75" height="75"></img></button>
-								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal_remove_job" id="img_icon"><img src="assets/images/bin.png" width="95" height="95"></img></button>
+								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal22" id="img_icon"><img src="assets/images/blackedit.png" width="65" height="65"></img></button>
+								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal_remove_job" id="img_icon"><img src="assets/images/bin.png" width="90" height="90"></img></button>
 							</div>
 						</div>
+
 						<div class="frame_add_job_interest">
 							<div className="button_add_job_interest">
 								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal22">
@@ -96,7 +132,7 @@ class Registab6 extends React.Component {
 												</div>
 												<div class="col-md-5">
 													<div className="range-slider-job">
-														<input type="range" class="slider x1" min="0" max="100" step="1" defaultValue="50" id="customRange11"/>
+														<input type="range" class="slider x1" min="0" max="100" step="1" defaultValue="50" id="customRange11" />
 													</div>
 												</div>
 											</div>
@@ -113,7 +149,7 @@ class Registab6 extends React.Component {
 												</div>
 												<div class="col-md-5">
 													<div className="range-slider-job">
-														<input type="range" class="slider x2" min="0" max="100" step="1" defaultValue="50" id="customRange12"/>
+														<input type="range" class="slider x2" min="0" max="100" step="1" defaultValue="50" id="customRange12" />
 													</div>
 												</div>
 											</div>
@@ -130,7 +166,7 @@ class Registab6 extends React.Component {
 												</div>
 												<div class="col-md-5">
 													<div className="range-slider-job">
-														<input type="range" class="slider x3" min="0" max="100" step="1" defaultValue="50" id="customRange13"/>
+														<input type="range" class="slider x3" min="0" max="100" step="1" defaultValue="50" id="customRange13" />
 														<div className="mark3">
 															<label>ไม่ได้</label>
 															<label>พอได้เล็กน้อย</label>

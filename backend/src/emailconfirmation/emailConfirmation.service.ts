@@ -5,6 +5,7 @@ import VerificationTokenPayload from './verificationTokenPayload.interface';
 import EmailService from '../email/email.service';
 import { UsersService } from '../users/users.service';
 import { ObjectId } from 'mongodb';
+
  
 @Injectable()
 export class EmailConfirmationService {
@@ -22,9 +23,9 @@ export class EmailConfirmationService {
       expiresIn: `${this.configService.get('JWT_VERIFICATION_TOKEN_EXPIRATION_TIME')}s`
     });
  
-    const url = `${this.configService.get('EMAIL_CONFIRMATION_URL')}?token=${token}`;
- 
-    const text = `Welcome to the application. To confirm the email address, click here: ${url}`;
+    const url = `${this.configService.get('EMAIL_CONFIRMATION_URL')}/${token}`;
+    
+    const text = `ขอขอบคุณที่สมัครใช้บริการ Nisitfolio เพื่อที่จะใช้งาน appication กรุณากดยืนยันตัวตนในลิ้งค์ที่แนบให้ ภายใน 1 ชั่วโมง \n ${url}`;
  
     return this.emailService.sendMail({
       to: email,

@@ -13,6 +13,8 @@ export class CreateDto {
 
     Privacy: string;
 
+    isEmailConfirmed: boolean;
+
     @IsNotEmpty()
     Firstname: string;
     

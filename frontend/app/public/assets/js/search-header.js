@@ -2,6 +2,6 @@ console.log("Stored search cookies: "+Cookies.get('search-entry')); //debug cook
 
 $(function(){
    
-   $('.name2').text(Cookies.get('search-entry'));
+   $('.name2').text('"'+Cookies.get('search-entry')+'"');
 
 });

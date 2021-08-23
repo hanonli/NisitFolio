@@ -12,6 +12,7 @@ import { AnalyticsModule } from './analytics/analytics.module';
 import { RegisterController } from './register/register.controller';
 import { RegisterService } from './register/register.service';
 
+import { EmailConfirmationModule } from './emailconfirmation/emailConfirmation.module';
 import { RegisterModule } from './register/register.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
@@ -49,6 +50,7 @@ import * as Joi from 'joi';
         dest: './upload',
       })
     }),
+    EmailConfirmationModule,
     RegisterModule,
     AnalyticsModule,
     AuthModule,

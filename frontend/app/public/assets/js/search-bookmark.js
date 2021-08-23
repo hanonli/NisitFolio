@@ -5,19 +5,19 @@ console.log('Currently login as: '+Cookies.get('username'));
 var profile_grid = '<header class="header round">\
 					<div class="container-fluid bookmark-margin">\
 						<div class="row">\
-							<div class="col-2">\
-								<img class="bookmark-profile-image img-fluid float-start rounded-circle" type="button" id="avatar" src="{img}" alt="profile image" width="100" height="100" />\
+							<div class="col-2 d-flex align-items-center">\
+								<img class="bookmark-profile-image float-start rounded-circle" type="button" id="avatar" src="{img}" alt="profile image" width="120" height="120" />\
 							</div>\
-							<div class="col-9">\
+							<div class="col-9 d-flex align-items-center">\
 								<div class="bookmark-content">\
 									<h1 class="name">{name}</h1>\<div></div>\
-									<a class="btn btn-cta-secondary btn-small round" target="_blank">{tag1}</a>\
-									<a class="btn btn-cta-secondary btn-small round" target="_blank">{tag2}</a>\
-									<a class="btn btn-cta-secondary btn-small round" target="_blank">{tag3}</a>\
+									<a class="btn btn-cta-secondary btn-small round tag" target="_blank">{tag1}</a>\
+									<a class="btn btn-cta-secondary btn-small round tag" target="_blank">{tag2}</a>\
+									<a class="btn btn-cta-secondary btn-small round tag" target="_blank">{tag3}</a>\
 								</div>\
 							</div>\
 							<div class="col-1">\
-								<img class="obj-icon tooltips-item" src="{icon-type}" type="button" data-bs-toggle="tooltip" toggle-type="dynamic" data-bs-placement="bottom" title="{tooltip}" alt="" width="30" height="30"/>\
+								<img class="obj-icon tooltips-item" src="{icon-type}" id="{status}" type="button" data-bs-toggle="tooltip" toggle-type="dynamic" data-bs-placement="bottom" title="{tooltip}" alt="" width="30" height="30"/>\
 							</div>\
 						</div>\
 					</div>\
@@ -27,15 +27,17 @@ var profile_list = '<div class="col-12">\
 							<header class="header round">\
 							<div class="container-fluid bookmark-margin">\
 								<div class="row">\
-									<div class="col-1">\
-										<img class="bookmark-profile-image img-fluid float-start rounded-circle" type="button" id="avatar" src="{img}" alt="profile image" width="100" height="100" />\
+									<div class="col-1 d-flex align-items-center">\
+										<img class="bookmark-profile-image float-start rounded-circle" type="button" id="avatar" src="{img}" alt="profile image" width="120" height="120" />\
 									</div>\
-									<div class="col-5 bk-pad">\
+									<div class="col-5 bk-pad d-flex align-items-center">\
 										<div class="bookmark-content">\
 											<h1 class="name">{name}</h1>\<div></div>\
-											<a class="btn btn-cta-secondary btn-small round" target="_blank">{tag1}</a>\
-											<a class="btn btn-cta-secondary btn-small round" target="_blank">{tag2}</a>\
-											<a class="btn btn-cta-secondary btn-small round" target="_blank">{tag3}</a>\
+											<Link to="/search">\
+												<a class="btn btn-cta-secondary btn-small round tag" target="_blank">{tag1}</a>\
+												<a class="btn btn-cta-secondary btn-small round tag" target="_blank">{tag2}</a>\
+												<a class="btn btn-cta-secondary btn-small round tag" target="_blank">{tag3}</a>\
+											</Link>\
 										</div>\
 									</div>\
 									<div class="col-4 bookmark-list-column d-flex align-items-center justify-content-center">\
@@ -45,7 +47,7 @@ var profile_list = '<div class="col-12">\
 									</div>\
 									<div class="col-2">\
 										<div class="bookmark-content">\
-											<img class="obj-icon tooltips-item" src="{icon-type}" type="button" data-bs-toggle="tooltip" toggle-type="dynamic" data-bs-placement="bottom" title="{tooltip}" alt="" width="30" height="30"/>\
+											<img class="obj-icon tooltips-item" src="{icon-type}" id="{status}" type="button" data-bs-toggle="tooltip" toggle-type="dynamic" data-bs-placement="bottom" title="{tooltip}" alt="" width="30" height="30"/>\
 											<br></br>\
 										</div>\
 									</div>\
@@ -57,17 +59,16 @@ var profile_list = '<div class="col-12">\
 var profile_grid_no_tag = '<header class="header round">\
 					<div class="container-fluid bookmark-margin">\
 						<div class="row">\
-							<div class="col-2">\
-								<img class="bookmark-profile-image img-fluid float-start rounded-circle" type="button" id="avatar" src="{img}" alt="profile image" width="100" height="100" />\
+							<div class="col-2 d-flex align-items-center">\
+								<img class="bookmark-profile-image float-start rounded-circle" type="button" id="avatar" src="{img}" alt="profile image" width="120" height="120" />\
 							</div>\
-							<div class="col-7">\
+							<div class="col-8 d-flex align-items-center">\
 								<div class="bookmark-content">\
 									<h1 class="name">{name}</h1>\<div></div>\
 									<h2 class="bookmark-desc">ผู้ใช้นี้ยังไม่มีตำแหน่งงานที่<br>ต้องการ หรือหน้า MyResume</h2>\<div></div>\
 								</div>\
 							</div>\
-							<div class="col-3">\
-								<img class="" src="assets/images/outline_cancel_black_24dp 1.png" alt="" width="100" height="100"/>\
+							<div class="col-2">\
 							</div>\
 						</div>\
 					</div>\
@@ -77,19 +78,18 @@ var profile_list_no_tag = '<div class="col-12">\
 							<header class="header round">\
 							<div class="container-fluid bookmark-margin">\
 								<div class="row">\
-									<div class="col-1">\
-										<img class="bookmark-profile-image img-fluid float-start rounded-circle" type="button" id="avatar" src="{img}" alt="profile image" width="100" height="100" />\
+									<div class="col-1 d-flex align-items-center">\
+										<img class="bookmark-profile-image float-start rounded-circle" type="button" id="avatar" src="{img}" alt="profile image" width="120" height="120" />\
 									</div>\
-									<div class="col-5 bk-pad">\
+									<div class="col-5 bk-pad d-flex align-items-center">\
 										<div class="bookmark-content">\
 											<h1 class="name">{name}</h1>\<div></div>\
-											<h2 class="bookmark-desc" >{desc}</h2>\
+											<h2 class="bookmark-desc">ผู้ใช้นี้ยังไม่มีตำแหน่งงานที่ต้องการ หรือหน้า MyResume</h2>\<div></div>\
 										</div>\
 									</div>\
 									<div class="col-4 bookmark-list-column d-flex align-items-center justify-content-center">\
-										<img class="" src="assets/images/outline_cancel_black_24dp 1.png" alt="" width="100" height="100"/>\
 										<div class="bookmark-content">\
-											<h2 class="bookmark-desc">ผู้ใช้นี้ยังไม่มีตำแหน่งงานที่<br>ต้องการ หรือหน้า MyResume</h2>\<div></div>\
+											<h2 class="bookmark-desc" >{desc}</h2>\
 										</div>\
 									</div>\
 									<div class="col-2">\
@@ -102,19 +102,20 @@ var profile_list_no_tag = '<div class="col-12">\
 var work_grid = '<header class="header round">\
 					<div class="container-fluid bookmark-margin">\
 						<div class="row">\
-							<div class="col-3">\
-								<img class="bookmark-profile-image img-fluid float-start round" type="button" id="avatar" src="{img}" alt="profile image" width="150" height="100"/>\
+							<div class="col-3 d-flex align-items-center">\
+								<img class="bookmark-profile-image float-start round" type="button" id="avatar" src="{img}" alt="profile image" width="180" height="120"/>\
 							</div>\
-							<div class="col-8">\
+							<div class="col-8 d-flex align-items-center">\
 								<div class="bookmark-content">\
 									<h1 class="name">{name}</h1>\
 									<h2 class="bookmark-work-desc" >Portfolio - {desc} รูปภาพ</h2>\
-									<h2 class="bookmark-work-desc" >ผลงานของ {owner}</h2>\
+									<hb class="bookmark-work-desc" >ผลงานของ </hb>\
+									<hw class="bookmark-work-desc" >{owner}</hw>\
 								</div>\
 							</div>\
 							<div class="col-1">\
 								<div class="bookmark-content">\
-									<img class="obj-icon tooltips-item" src="{icon-type}" type="button" data-bs-toggle="tooltip" toggle-type="dynamic" data-bs-placement="bottom" title="{tooltip}" alt="" width="30" height="30"/>\
+									<img class="obj-icon tooltips-item" src="{icon-type}" id="{status}" type="button" data-bs-toggle="tooltip" toggle-type="dynamic" data-bs-placement="bottom" title="{tooltip}" alt="" width="30" height="30"/>\
 								</div>\
 							</div>\
 						</div>\
@@ -125,17 +126,20 @@ var work_list = '<div class="col-12">\
 							<header class="header round">\
 					<div class="container-fluid bookmark-margin">\
 						<div class="row">\
-							<div class="col-10">\
-								<img class="bookmark-profile-image float-start round" type="button" id="avatar" src="{img}" alt="profile image" width="150" height="100"/>\
-								<div class="bookmark-content">\
+							<div class="col-2 d-flex align-items-center">\
+								<img class="bookmark-profile-image float-start round" type="button" id="avatar" src="{img}" alt="profile image" width="180" height="120"/>\
+							</div>\
+							<div class="col-8 d-flex align-items-center">\
+								<div class="bookmark-content bcw">\
 									<h1 class="name">{name}</h1>\
 									<h2 class="bookmark-work-desc" >{desc}</h2>\
-									<h2 class="bookmark-work-desc" >ผลงานของ {owner}</h2>\
+									<hb class="bookmark-work-desc" >ผลงานของ </hb>\
+									<hw class="bookmark-work-desc" >{owner}</hw>\
 								</div>\
 							</div>\
 							<div class="col-2">\
 								<div class="bookmark-content">\
-									<img class="obj-icon tooltips-item" src="{icon-type}" type="button" data-bs-toggle="tooltip" toggle-type="dynamic" data-bs-placement="bottom" title="{tooltip}" alt="" width="35" height="35"/>\
+									<img class="obj-icon tooltips-item" src="{icon-type}" id="{status}" type="button" data-bs-toggle="tooltip" toggle-type="dynamic" data-bs-placement="bottom" title="{tooltip}" alt="" width="35" height="35"/>\
 								</div>\
 							</div>\
 						</div>\
@@ -143,31 +147,31 @@ var work_list = '<div class="col-12">\
 				</header>\
 					</div>';
 					
-var not_found_search = '<header class="header round remove">\
+var not_found_search = '<header class="remove">\
 							<div class="container-fluid d-flex flex-column justify-content-center not-found">\
 								<div class="row">\
 									<div class="col d-flex flex-column align-items-center">\
-										<img class="not-found-icon" src="assets/images/outline_cancel_black_24dp 1.png" alt=""/>\
+										<img class="not-found-icon" src="assets/images/outline_cancel_grey_24dp 1.png" alt=""/>\
 									</div>\
 								</div>\
 								<div class="row">\
 									<div class="col d-flex flex-column align-items-center">\
-										<h1>ขออภัยด้วยแต่เราไม่พบข้อมูลการค้นหาของคุณ</h1>\
+										<nf>ขออภัยด้วยแต่เราไม่พบข้อมูลการค้นหาของคุณ</nf>\
 									</div>\
 								</div>\
 							</div>\
 						</header>'
 
-var not_found_bookmark = '<header class="header round remove">\
+var not_found_bookmark = '<header class="remove">\
 							<div class="container-fluid d-flex flex-column justify-content-center not-found">\
 								<div class="row">\
 									<div class="col d-flex flex-column align-items-center">\
-										<img class="not-found-icon" src="assets/images/outline_cancel_black_24dp 1.png" alt=""/>\
+										<img class="not-found-icon" src="assets/images/outline_cancel_grey_24dp 1.png" alt=""/>\
 									</div>\
 								</div>\
 								<div class="row">\
 									<div class="col d-flex flex-column align-items-center">\
-										<h1>ขออภัยด้วยแต่เราไม่พบข้อมูล bookmark ของคุณ</h1>\
+										<nf>ขออภัยด้วยแต่เราไม่พบข้อมูล bookmark ของคุณ</nf>\
 									</div>\
 								</div>\
 							</div>\
@@ -180,6 +184,7 @@ var index=0;
 var max=0;
 var max_col=2;
 var max_grid_desc_char_count=50;
+var max_grid_name_char_count=30;
 var max_list_desc_char_count=130;
 var temp=[];
 var raw_html = "";
@@ -202,10 +207,13 @@ function ResetData(){
 
 function FormatIcon(data,dtype) {
   if(pageName == 'search'){
-		if(!data.bookmark) dtype = dtype.replace("{icon-type}","assets/images/bookmark_1.png").replace("{tooltip}","บันทึก");
-		else dtype = dtype.replace("{icon-type}","assets/images/bookmark_2.png").replace("{tooltip}","ยกเลิกการบันทึก");
+		if(!data.bookmark){
+			dtype = dtype.replace("{icon-type}","assets/images/bookmark_1.png").replace("{tooltip}","บันทึก").replace("{status}","false");
+		}else{ 
+			dtype = dtype.replace("{icon-type}","assets/images/bookmark_2.png").replace("{tooltip}","ยกเลิกการบันทึก").replace("{status}","true");
+		}
 	}else{
-		dtype = dtype.replace("{icon-type}","assets/images/bin.png").replace("{tooltip}","ลบ");;
+		dtype = dtype.replace("{icon-type}","assets/images/bin.png").replace("{tooltip}","ลบ").replace("{status}","none");
 	}
 	return dtype;
 }
@@ -215,6 +223,8 @@ function FormatEllipsis(type,text){
 		if(text.length > max_list_desc_char_count) text = text.substring(0,max_list_desc_char_count)+'...';
 	}else if(type == 'desc-grid'){
 		if(text.length > max_grid_desc_char_count) text = text.substring(0,max_grid_desc_char_count)+'...';
+	}else if(type == 'name-grid'){
+		if(text.length > max_grid_name_char_count) text = text.substring(0,max_grid_name_char_count)+'...';
 	}
 	return text;
 }
@@ -254,7 +264,8 @@ function AddMixedGridEntity(data){
 		temp.push(data);
 		row_filled = false;
 	}
-	var valid_desc = FormatEllipsis('desc-grid',data.desc);
+	//var valid_desc = FormatEllipsis('desc-grid',data.desc);
+	var valid_name = FormatEllipsis('name-grid',data.name);
 	var dtype = "";
 	
 	if(data.type == "profile") {
@@ -263,7 +274,8 @@ function AddMixedGridEntity(data){
 		else
 			dtype = profile_grid_no_tag.replace("{name}", data.name).replace("{img}", data.pic);
 	}else{
-		dtype = work_grid.replace("{name}", data.name).replace("{img}", data.pic).replace("{desc}", data.port).replace("{owner}", data.owner);
+		var valid_name = FormatEllipsis('name-grid',data.name);
+		dtype = work_grid.replace("{name}", valid_name).replace("{img}", data.pic).replace("{desc}", data.port).replace("{owner}", data.owner);
 	}
 	
 	if(row_filled || (index == max)){// add 2 data as new row
@@ -281,6 +293,7 @@ function AddMixedGridEntity(data){
 					else
 						ttype = profile_grid_no_tag.replace("{name}", temp[i].name).replace("{img}", temp[i].pic);
 				}else{
+					var valid_namet = FormatEllipsis('name-grid',temp[i].name);
 					ttype = work_grid.replace("{name}", temp[i].name).replace("{img}", temp[i].pic).replace("{desc}", data.port).replace("{owner}", data.owner);
 				}
 				ttype = FormatIcon(temp[i],ttype);
@@ -393,6 +406,7 @@ function AddWorkGridEntity(data){
 		row_filled = false;
 	}
 	var valid_desc = FormatEllipsis('desc-grid',data.desc);
+	var valid_name = FormatEllipsis('name-grid',data.name);
 	
 	if(row_filled || (index == max)){// add 2 data as new row
 		console.log("add new GRID: "+index+" : "+data.name + " max: " + max);
@@ -403,12 +417,13 @@ function AddWorkGridEntity(data){
 			raw_html += '<div class="row">'; //first row start
 		if(row_filled){
 			for (let i = 0; i < temp.length; i++) {
-				var ttype = work_grid.replace("{name}", temp[i].name).replace("{img}", temp[i].pic).replace("{desc}", temp[i].port).replace("{owner}", temp[i].owner);
+				var valid_namet = FormatEllipsis('name-grid',temp[i].name);
+				var ttype = work_grid.replace("{name}", valid_namet).replace("{img}", temp[i].pic).replace("{desc}", temp[i].port).replace("{owner}", temp[i].owner);
 				ttype = FormatIcon(temp[i],ttype);
 				raw_html += '<div class="col-md-6">' + ttype +'</div>';
 			}
 		}
-		var dtype = work_grid.replace("{name}", data.name).replace("{img}", data.pic).replace("{desc}", data.port).replace("{owner}", data.owner);
+		var dtype = work_grid.replace("{name}", valid_name).replace("{img}", data.pic).replace("{desc}", data.port).replace("{owner}", data.owner);
 		dtype = FormatIcon(data,dtype);
 		raw_html += '<div class="col-md-6">' + dtype + '</div>';
 		
@@ -447,8 +462,9 @@ function GetBookmarkData(request){
 	}
 	
 	console.log("https://nisitfolio.s3.ap-southeast-1.amazonaws.com/"+"sample_"+key+"_"+request);
-
-	fetch("https://nisitfolio.s3.ap-southeast-1.amazonaws.com/"+"sample_"+key+"_"+request,{
+	//http://localhost:3000/samples_json_for_testing (must upload to server first)/
+	
+	fetch("http://localhost:3000/samples_json_for_testing (must upload to server first)/"+"sample_"+key+"_"+request,{
         method: "GET",
         headers: {
 			"Access-Control-Allow-Origin": "*",
@@ -508,7 +524,10 @@ function GetBookmarkData(request){
 			  ResetData();
 			  DisplayNotFound();
 			});
-		setTimeout(function() { ReinitializeTooltips(); }, 500);
+		
+		setTimeout(function() { ReinitializeTooltips(); },500);
+		setTimeout(function() { AddListenerToDynamicComponents(); }, 500);
+		
 }
 
 GetBookmarkData("data");
@@ -581,3 +600,39 @@ $(function(){
 			GetBookmarkData("data_work");
   });
 });
+
+function AddListenerToDynamicComponents(){
+	$('.tag').on('click', function(){
+       //alert(event.target.text);
+	   SearchByTag(event.target.text);
+   });
+   
+   $(".obj-icon").unbind('click');
+   $('.obj-icon').click(function() {  
+		console.log("change icon--!!!");
+	  //alert(this.id);
+	  if (this.id == 'true') {
+        $(this).attr('src', 'assets/images/bookmark_1.png');
+		$(this).attr('data-bs-original-title', 'บันทึก');
+		$(this).attr('id', 'false');
+		console.log("Remove bookmark!");
+      }else if(this.id == 'false'){
+		$(this).attr('src', 'assets/images/bookmark_2.png');
+		$(this).attr('data-bs-original-title', 'ยกเลิกการบันทึก');
+		$(this).attr('id', 'true');
+		console.log("Add bookmark!");
+	  }
+	  $(this).tooltip('hide');
+	  //setTimeout(function() { ReinitializeTooltips();  }, 500);
+	  //$(this).tooltip('show'); });
+
+});
+}
+
+
+function SearchByTag(text){
+	console.log("tag clicked!");
+	Cookies.set('search-entry', text);
+	console.log("saved user's input: "+Cookies.get('search-entry')+"as cookies!");
+	window.location.assign("/search");
+}

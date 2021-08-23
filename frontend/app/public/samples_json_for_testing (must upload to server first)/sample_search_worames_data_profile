@@ -45,7 +45,8 @@
 		"pic": "assets/images/profile.jpg",
 		"desc": "My name is Worames and I'm better than Edgeworth.",
 		"tags": ["Full Stack Developer", "CEO of KU Happy Place", "PE Teacher"],
-		"bookmark": true
+			"name": "วรเมขา ผดุงเจริญ หมายเลข6",
+	"bookmark": true
 	},{
 		"name": "วรเมขา ผดุงเจริญ หมายเลข3",
 		"type": "profile",
@@ -61,20 +62,14 @@
 		"desc": "My name is Worames and I'm better than Edgeworth.",
 		"tags": ["Full Stack Developer", "CEO of KU Happy Place", "PE Teacher"],
 		"bookmark": true
-	},	"name": "วรเมขา ผดุงเจริญ หมายเลข5",
-		"type": "profile",
-		"pic": "assets/images/profile.jpg",
-		{
-	"desc": "My name is Worames and I'm a lot better than Edgeworth.",
-		"tags": ["CEO of All Organizations", "Hotel Manager", "Modeling"],
-		"bookmark": false
 	},
 	{
-		"name": "วรเมขา ผดุงเจริญ หมายเลข6",
-		"type": "profile",
-		"pic": "assets/images/profile.jpg",
-		"desc": "My name is Worames and I'm better than Edgeworth.",
-		"tags": ["Full Stack Developer", "CEO of KU Happy Place", "PE Teacher"],
-		"bookmark": true
+		"name":"Edgeworth A+",
+		"type": "work",
+		"owner": "วรเมศ ผดุงเจริญ",
+		"pic": "assets/images/work.jpg",
+		"desc": "Edgeworth somehow got A+ grade on Software Engineering subject?!",
+		"bookmark": false,
+		"port": 4
 	}
 ]
