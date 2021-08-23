@@ -69,11 +69,7 @@ var profile_grid_no_tag = '<header class="header round">\
 								</div>\
 							</div>\
 							<div class="col-2">\
-										<div class="bookmark-content">\
-											<img class="obj-icon tooltips-item" src="{icon-type}" id="{status}" type="button" data-bs-toggle="tooltip" toggle-type="dynamic" data-bs-placement="bottom" title="{tooltip}" alt="" width="30" height="30"/>\
-											<br></br>\
-										</div>\
-									</div>\
+							</div>\
 						</div>\
 					</div>\
 				</header>';
@@ -97,10 +93,6 @@ var profile_list_no_tag = '<div class="col-12">\
 										</div>\
 									</div>\
 									<div class="col-2">\
-										<div class="bookmark-content">\
-											<img class="obj-icon tooltips-item" src="{icon-type}" id="{status}" type="button" data-bs-toggle="tooltip" toggle-type="dynamic" data-bs-placement="bottom" title="{tooltip}" alt="" width="30" height="30"/>\
-											<br></br>\
-										</div>\
 									</div>\
 								</div>\
 							</div>\
