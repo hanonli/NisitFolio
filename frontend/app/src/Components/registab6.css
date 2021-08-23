@@ -87,7 +87,7 @@
 
 #job-name {
     font-size: 38px;
-    font-weight: 200;
+    font-weight: 300;
     color: black;
     padding-left: 21px;
     margin-top: 46.4px;
@@ -114,8 +114,9 @@
 
 #skill1-job {
     color: black;
-    font-size: 18px;
-    font-weight: 200;
+    font-size: 19px;
+    font-weight: 300;
+    font-family: 'Kanit';
     border: 2px solid #FFC045;
     border-radius: 10px;
     width: 125px;
@@ -124,8 +125,9 @@
 
 #skill2-job {
     color: black;
-    font-size: 18px;
-    font-weight: 200;
+    font-size: 19px;
+    font-weight: 300;
+    font-family: 'Kanit';
     border: 2px solid #79CE23;
     border-radius: 10px;
     width: 125px;
@@ -134,8 +136,9 @@
 
 #skill3-job {
     color: black;
-    font-size: 18px;
-    font-weight: 200;
+    font-size: 19px;
+    font-weight: 300;
+    font-family: 'Kanit';
     border: 2px solid #C98A11;
     border-radius: 10px;
     width: 125px;

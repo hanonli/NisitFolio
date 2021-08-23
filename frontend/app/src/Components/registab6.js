@@ -42,6 +42,7 @@ class Registab6 extends React.Component {
 								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal_remove_job" id="img_icon"><img src="assets/images/bin.png" width="90" height="90"></img></button>
 							</div>
 						</div>
+
 						<div class="frame_job">
 							<div className="content-job-interest">
 
@@ -65,6 +66,7 @@ class Registab6 extends React.Component {
 								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal_remove_job" id="img_icon"><img src="assets/images/bin.png" width="90" height="90"></img></button>
 							</div>
 						</div>
+
 						<div class="frame_add_job_interest">
 							<div className="button_add_job_interest">
 								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal22">
