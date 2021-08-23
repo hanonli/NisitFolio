@@ -36,18 +36,17 @@
     position: absolute;
     top: 0;
     left: 0;
-    transition: 0.25s;
+    transition: 0.2s;
     border-radius: 25px;
     background: transparent;
 }
 
 .layer_icon button{
     visibility: hidden;
-    transition: 0.1s;
     padding-left: 55px;
     padding-right: 55px;
     margin-top: 0.8%;
-    
+    transition: 0.1s;
 }
 
 .layer_icon:hover{
@@ -245,6 +244,9 @@
     height: 44px;
     line-height: 110px;
 }
+
+/*----- end -----*/
+
 
 .popup_JOB {
     position: relative;

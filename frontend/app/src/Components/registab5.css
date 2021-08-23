@@ -51,7 +51,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    transition: 0.25s;
+    transition: 0.2s;
     border-radius: 25px;
     background: transparent;
 }
@@ -64,15 +64,18 @@
 
 .layer-button-certi button{
     visibility: hidden;
-    transition: 0.1s;
     margin-top: 6.5%;
     margin-left: 170px;
+    transition: 0.1s;
 }
 
 .layer-button-certi:hover button{
     visibility: visible;
-    opacity: 2;
+   
 }
+
+
+
 
 #input_upload input.hidden {
     position: absolute;
