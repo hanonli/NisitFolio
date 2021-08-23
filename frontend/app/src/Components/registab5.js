@@ -28,14 +28,10 @@ class Registab5 extends React.Component {
 
 						<div class="card_certi">
 							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-
+								<h1 id="name-of-certi">จิตอาสาพระราชทาน</h1>
 							</button>
 						</div>
-						<div class="card_certi">
-							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal1">
 
-							</button>
-						</div>
 						<div class="card_certi">
 							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal1">
 

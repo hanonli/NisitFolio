@@ -1,3 +1,4 @@
+/*---list name certi---*/
 .content-certi1 {
     display: grid;
     grid-template-columns: repeat(2,1fr);
@@ -5,8 +6,8 @@
 
 .card_certi {
     border: 1px solid black;
-    height: 210px;
-    width: 700px;
+    height: 220px;
+    width: 725px;
     border-radius: 25px;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -15,6 +16,11 @@
 #pos_card {
   justify-content: center;
 }
+
+#name-of-certi {
+    
+}
+
 
 #input_upload input.hidden {
     position: absolute;
@@ -37,7 +43,7 @@
 .frame_add_certi {
     background-color: #b6deea;
     border: 1px solid black;
-    height: 210px;
+    height: 140px;
     width: 96.5%;
     border-radius: 25px;
     margin-top: 5px;
@@ -46,8 +52,9 @@
     margin-right: 5px;
     position: relative;
     text-align: center;  
+    justify-content: center;
 }
 
 .button_add_certi button {
-    margin-top: 2.55%;
+    margin-top: 0.42%;
 }
