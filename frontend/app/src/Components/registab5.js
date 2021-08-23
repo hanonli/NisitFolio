@@ -15,35 +15,33 @@ class Registab5 extends React.Component {
 		return (
 			<div className="Registab5">
 				<div class="regis-box-content">
-					<div class="row" id="pos_card">
-						<div class="frame_add_certi">
-							<div className="button_add_certi">
-								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-									<img src="assets/images/+.png" width="115" height="115"></img>
-								</button>
-							</div>
-						</div>
-					</div>
-					<div class="row" id="pos_card">
-						<div class="card_certi">
+					<div class="frame_add_certi">
+						<div className="button_add_certi">
 							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-
-							</button>
-						</div>
-
-						<div class="card_certi">
-							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-
+								<img src="assets/images/+.png" width="115" height="115"></img>
 							</button>
 						</div>
 					</div>
-					<div class="row" id="pos_card">
+
+					<h1 id="year-of-certi">2021</h1>
+					<div class="content-certi1" id="pos_card">
+
 						<div class="card_certi">
 							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal1">
 
 							</button>
 						</div>
-						<div class="dummy"></div>
+						<div class="card_certi">
+							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+
+							</button>
+						</div>
+						<div class="card_certi">
+							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+
+							</button>
+						</div>
+
 					</div>
 
 					<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
