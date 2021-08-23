@@ -1,3 +1,4 @@
+/*-----list-JOB-----*/
 .frame_job {
     border: 1px solid black;
     height: 140px;
@@ -30,7 +31,7 @@
 }
 
 .layer_icon {
-    height: 140px;
+    height: 138px;
     width: 100%;
     position: absolute;
     top: 0;
@@ -38,7 +39,7 @@
     transition: 0.25s;
     border-radius: 25px;
     background: transparent;
-    opacity: 0.65;
+    
 }
 
 .layer_icon button{
@@ -47,17 +48,76 @@
     padding-left: 55px;
     padding-right: 55px;
     margin-top: 0.8%;
+    
 }
 
-.frame_job:hover .layer_icon{
-  background: #E1E1E1;
-  display:inline-block;
+.layer_icon:hover{
+    background: #E1E1E1;
+    display:inline-block;
+    opacity: 0.7;
 }
 
 .layer_icon:hover button{
     visibility: visible;
-
+    opacity: 2;
 }
+
+.content-job-interest {
+    position: absolute;
+    
+}
+
+.job-column-1 {
+    position: relative;
+    display: flex; 
+    justify-content: flex-start;
+    left: 10px;
+}
+
+#job-position {
+    font-size: 38px;
+    color: black;
+    /*margin-left: 10px;
+    margin-top: 45px;*/
+    border-right: 1.2px solid black;
+    line-height: 118px;
+    padding-right: 25px;
+    margin-top: 12px;
+}
+
+#job-name {
+    font-size: 38px;
+    font-weight: 200;
+    color: black;
+    padding-left: 25px;
+    margin-top: 46.4px;
+}
+
+#mySkil-job {
+    color: black;
+    font-size: 20px;
+    top: 1.4px;
+    margin-left: 540px;
+    margin-top: 24px;
+}
+
+.each-skill-job{
+    display: flex; 
+    justify-content: flex-start;
+}
+
+#skill1-job {
+    color: black;
+    font-size: 18px;
+    font-weight: 200;
+    border: 2px solid #C98A11;
+    border-radius: 20px;
+    width: 105px;
+}
+
+
+
+
 
 
 /*------------------tab------------------*/
