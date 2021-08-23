@@ -32,6 +32,10 @@ class Registab5 extends React.Component {
 							<div class="pos-pic-of-certi">
 								<img src="assets/images/certi_ex2.jpeg" height="160" id="pic-of-certi"></img>
 							</div>
+							<div class="layer-button-certi">
+								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal11112" id="img_icon"><img src="assets/images/blackedit.png" width="80" height="80"></img></button>
+								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal_remove_certi" id="img_icon"><img src="assets/images/bin.png" width="120" height="120"></img></button>
+							</div>
 						</div>
 
 						<div class="card_certi">
@@ -40,12 +44,28 @@ class Registab5 extends React.Component {
 							<div class="pos-pic-of-certi">
 								<img src="assets/images/certi_ex2.jpeg" height="160" id="pic-of-certi"></img>
 							</div>
+							<div class="layer-button-certi">
+								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal11112" id="img_icon"><img src="assets/images/blackedit.png" width="80" height="80"></img></button>
+								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal_remove_certi" id="img_icon"><img src="assets/images/bin.png" width="120" height="120"></img></button>
+							</div>
 						</div>
 
 
 					</div>
 
-					<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal fade" id="exampleModal_remove_certi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered">
+							<div class="modal-content minisize">
+								<h4 class="del-b">คุณต้องการลบใบรับรองนี้ ?</h4>
+								<div class="centerverify">
+									<a type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</a>
+									<a type="button" class="btn btn-cta-primary-yellowshort profile-button round">ลบ</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="modal fade" id="exampleModal11112" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog modal-dialog-centered modal-lg">
 							<div class="modal-content minisize" id="certi_edit">
 								<div class="row" id="input_certi">
