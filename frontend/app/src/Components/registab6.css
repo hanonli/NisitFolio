@@ -1,3 +1,4 @@
+/*-----list-JOB-----*/
 .frame_job {
     border: 1px solid black;
     height: 140px;
@@ -30,7 +31,7 @@
 }
 
 .layer_icon {
-    height: 140px;
+    height: 138px;
     width: 100%;
     position: absolute;
     top: 0;
@@ -38,7 +39,7 @@
     transition: 0.25s;
     border-radius: 25px;
     background: transparent;
-    opacity: 0.65;
+    
 }
 
 .layer_icon button{
@@ -47,16 +48,98 @@
     padding-left: 55px;
     padding-right: 55px;
     margin-top: 0.8%;
+    
 }
 
-.frame_job:hover .layer_icon{
-  background: #E1E1E1;
-  display:inline-block;
+.layer_icon:hover{
+    background: #E1E1E1;
+    display:inline-block;
+    opacity: 0.7;
 }
 
 .layer_icon:hover button{
     visibility: visible;
+    opacity: 2;
+}
 
+.content-job-interest {
+    position: absolute;
+    
+}
+
+.job-column-1 {
+    position: absolute;
+    display: flex; 
+    justify-content: flex-start;
+    left: 10px;
+}
+
+#job-position {
+    font-size: 38px;
+    color: black;
+    /*margin-left: 10px;
+    margin-top: 45px;*/
+    border-right: 1.2px solid black;
+    line-height: 118px;
+    padding-right: 21px;
+    margin-top: 12px;
+}
+
+#job-name {
+    font-size: 38px;
+    font-weight: 200;
+    color: black;
+    padding-left: 21px;
+    margin-top: 46.4px;
+}
+
+.my-skill-content {
+    left: 1000px;
+}
+
+#mySkil-job {
+    color: black;
+    font-size: 20px;
+    top: 1.4px;
+    margin-left: 980px;
+    margin-top: 35px;
+}
+
+.each-skill-job {
+    position: absolute;
+    display: inline-flex; 
+    left: 980px;
+    
+}
+
+#skill1-job {
+    color: black;
+    font-size: 18px;
+    font-weight: 200;
+    border: 2px solid #FFC045;
+    border-radius: 10px;
+    width: 125px;
+    margin-right: 20px;
+}
+
+#skill2-job {
+    color: black;
+    font-size: 18px;
+    font-weight: 200;
+    border: 2px solid #79CE23;
+    border-radius: 10px;
+    width: 125px;
+    margin-right: 20px;
+}
+
+#skill3-job {
+    color: black;
+    font-size: 18px;
+    font-weight: 200;
+    border: 2px solid #C98A11;
+    border-radius: 10px;
+    width: 125px;
+    margin-right: 20px;
 }
 
 
