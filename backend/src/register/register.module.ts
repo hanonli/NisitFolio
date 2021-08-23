@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { MulterModule } from '@nestjs/platform-express';
 
 import { RegisterController } from './register.controller';
 import { RegisterService } from './register.service';
@@ -18,7 +19,10 @@ import userjobskill from './entity/UserJobSkill.entity';
 import AdditionalSkill from './entity/AdditionalSkill.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Account, Userinfo,City,Country,Province,EducationHistory,WorkHistory,SalaryType,Resume,Certificate,userjobskill,AdditionalSkill])],
+  imports: [TypeOrmModule.forFeature([Account, Userinfo,City,Country,Province,EducationHistory,WorkHistory,SalaryType,Resume,Certificate,userjobskill,AdditionalSkill])
+           ,MulterModule.register({
+            dest: './upload',
+          })],
   controllers: [RegisterController],
   providers: [RegisterService],
   exports: [RegisterService],

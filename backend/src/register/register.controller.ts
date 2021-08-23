@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Put, Post, Body, HttpException, HttpStatus, Param, UseGuards, UploadedFile } from '@nestjs/common';
+import { Controller, Delete, Get, Put, Post, Body, HttpException, HttpStatus, Param, UseGuards, UploadedFile, UploadedFiles } from '@nestjs/common';
 import { ObjectId } from 'mongodb';
 import { Express } from 'express'
 
@@ -13,6 +13,7 @@ import { CreateUserinfoDto } from './dto/create-userinfo.dto';
 import { CreateDto1,CreateDto2,CreateDto3,CreateDto4,CreateDto5,CreateDto6,CreateDto7 } from './dto/create.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { UseInterceptors } from '@nestjs/common';
+import { AnyFilesInterceptor } from '@nestjs/platform-express';
 import { FileInterceptor } from '@nestjs/platform-express';
 
 import { DeleteResult } from 'typeorm';
@@ -43,6 +44,7 @@ export class RegisterController {
   uploadFile(@UploadedFile() file: Express.Multer.File) {
     console.log(file);
   }
+  
 
   //-----------------------Account---------------------------------//
   @Put(':Email/Account') // PUT /email/Account
