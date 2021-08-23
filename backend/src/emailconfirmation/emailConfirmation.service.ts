@@ -4,6 +4,7 @@ import { ConfigService } from '@nestjs/config';
 import VerificationTokenPayload from './verificationTokenPayload.interface';
 import EmailService from '../email/email.service';
 import { UsersService } from '../users/users.service';
+import { ObjectId } from 'mongodb';
  
 @Injectable()
 export class EmailConfirmationService {
@@ -58,11 +59,11 @@ export class EmailConfirmationService {
     }
   }
 
-  public async resendConfirmationLink(userId: number) {
+  public async resendConfirmationLink(userId: ObjectId) {
     const user = await this.usersService.getById(userId);
     if (user.isEmailConfirmed) {
       throw new BadRequestException('Email already confirmed');
     }
-    await this.sendVerificationLink(user.email);
+    await this.sendVerificationLink(user.Email);
   }
 }

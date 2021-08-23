@@ -1,5 +1,5 @@
 import { Controller,ClassSerializerInterceptor,UseInterceptors,Post,Body,UseGuards,Req,} from '@nestjs/common';
-import ConfirmEmailDto from './confirmEmail.dto';
+import ConfirmEmailDto from './oconfirmEmail.dto';
 import { EmailConfirmationService } from './emailConfirmation.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import RequestWithUser from '../auth/requestWithUser.interface';

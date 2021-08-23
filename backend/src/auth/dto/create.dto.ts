@@ -4,7 +4,7 @@ import { ObjectId } from 'mongodb';
 export class CreateDto {
 
     @IsNotEmpty()
-    email: string;
+    Email: string;
 
     @IsNotEmpty()
     Password: string;

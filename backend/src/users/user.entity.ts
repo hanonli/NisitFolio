@@ -1,18 +1,25 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
- 
-@Entity()
+import { Entity, Column, ObjectIdColumn } from 'typeorm'; 
+import { ObjectId } from 'mongodb';
+
+@Entity("Account")
 class User {
-  @PrimaryGeneratedColumn()
-  public id?: number;
+  @ObjectIdColumn()
+  id?: ObjectId;
  
   @Column({ unique: true })
-  public email: string;
- 
+  public Email: string;
+
+  /*@Column({ unique: true })
+  public username: string;*/
+  
   @Column()
-  public name: string;
- 
+  public Password: string;
+
   @Column()
-  public password: string;
+  public ProfilePic: string;
+
+  @Column()
+  public Privacy: string;
 
   @Column()
   public isEmailConfirmed: boolean;

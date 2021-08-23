@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import User from './user.entity';
+import { ObjectId } from 'mongodb';
 
 @Injectable()
   export class UsersService {
@@ -10,16 +11,20 @@ import User from './user.entity';
     private usersRepository: Repository<User>,
   ) {}
 
-  async markEmailAsConfirmed(email: string) {
-    return this.usersRepository.update({ email }, {
+  async markEmailAsConfirmed(Email: string) {
+    return this.usersRepository.update({ Email }, {
       isEmailConfirmed: true
     });
   }
   async getByEmail(Email: string) {
-    return await this.usersRepository.findOne({ email: Email });
+    return await this.usersRepository.findOne({ Email: Email });
   }
 
-  async getById(Id: number) {
+  async findOne(Email: string) {
+    return await this.usersRepository.findOne({ Email: Email });
+  }
+
+  async getById(Id: ObjectId) {
     return await this.usersRepository.findOne({ id: Id });
   }
 }

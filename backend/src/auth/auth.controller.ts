@@ -19,7 +19,7 @@ constructor(
 async register(@Body() registrationData: CreateDto) {
     //const user = await this.authenticationService.register(registrationData);
     const user = await this.registerService.create(registrationData)
-    await this.emailConfirmationService.sendVerificationLink(registrationData.email);
+    await this.emailConfirmationService.sendVerificationLink(registrationData.Email);
     return user;
 }
     
