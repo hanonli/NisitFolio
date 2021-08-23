@@ -1,7 +1,7 @@
 import { IsNotEmpty, IsNumberString } from 'class-validator';
 import { ObjectId } from 'mongodb';
 
-export class CreateDto {
+export class CreateDto1 {
 
     @IsNotEmpty()
     Email: string;
@@ -27,7 +27,7 @@ export class CreateDto {
 
     accountD?: ObjectId;
 }
-export class CreateDtoSe {
+export class CreateDto2 {
 
     //id?: ObjectId;
     
