@@ -97,7 +97,7 @@ class Registab6 extends React.Component {
 										<h1 id="topic_pop">เพิ่มงานที่สนใจ</h1>
 									</div>
 									<div class="col-md-5 select-job4">
-										<select class="form-select dropbtn-job4 margin-bottom-job4 fff" required>
+										<select id="nm_job" class="form-select dropbtn-job4 margin-bottom-job4 fff" required>
 											<option selected disabled value="">เลือกตำแหน่งงานหรืองานที่คุณสนใจ *</option>
 											<option >โปรแกรมเมอร์</option>
 											<option >บาร์เทนเนอร์</option>
@@ -139,7 +139,7 @@ class Registab6 extends React.Component {
 
 											<div class="row list-job-skill1">
 												<div class="col-md-5">
-													<select class="form-select dropbtn_year margin-bottom1 fff" id="each_skill1" required>
+													<select class="form-select dropbtn_year margin-bottom1 fff" id="each_skill2" required>
 														<option selected disabled value="">เลือกทักษะของคุณที่เหมาะกับงาน</option>
 														<option >ทักษะA</option>
 														<option >ทักษะB</option>
@@ -149,14 +149,14 @@ class Registab6 extends React.Component {
 												</div>
 												<div class="col-md-5">
 													<div className="range-slider-job">
-														<input type="range" class="slider x2" min="0" max="100" step="1" defaultValue="50" id="customRange12" />
+														<input type="range" class="slider x2" min="0" max="10" step="1" defaultValue="50" id="customRange12" />
 													</div>
 												</div>
 											</div>
 
 											<div class="row list-job-skill1">
 												<div class="col-md-5">
-													<select class="form-select dropbtn_year margin-bottom1 fff" id="each_skill1" required>
+													<select class="form-select dropbtn_year margin-bottom1 fff" id="each_skill3" required>
 														<option selected disabled value="">เลือกทักษะของคุณที่เหมาะกับงาน</option>
 														<option >ทักษะA</option>
 														<option >ทักษะB</option>
@@ -166,7 +166,7 @@ class Registab6 extends React.Component {
 												</div>
 												<div class="col-md-5">
 													<div className="range-slider-job">
-														<input type="range" class="slider x3" min="0" max="100" step="1" defaultValue="50" id="customRange13" />
+														<input type="range" class="slider x3" min="0" max="10" step="0.1" defaultValue="50" id="customRange13" />
 														<div className="mark3">
 															<label>ไม่ได้</label>
 															<label>พอได้เล็กน้อย</label>
@@ -180,13 +180,13 @@ class Registab6 extends React.Component {
 
 										<div class="tab-pane_pop" id="tab02">
 											<div class="col-md-lg">
-												<textarea type="text" class="form-control dropbtn margin-bottom1" id="03" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
+												<textarea type="text" class="form-control dropbtn margin-bottom1" id="obj-job-01" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
 											</div>
 											<div class="col-md-lg">
-												<textarea type="text" class="form-control dropbtn margin-bottom1" id="03" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
+												<textarea type="text" class="form-control dropbtn margin-bottom1" id="obj-job-02" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
 											</div>
 											<div class="col-md-lg">
-												<textarea type="text" class="form-control dropbtn margin-bottom1" id="03" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
+												<textarea type="text" class="form-control dropbtn margin-bottom1" id="obj-job-03" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
 											</div>
 										</div>
 
@@ -195,7 +195,7 @@ class Registab6 extends React.Component {
 
 								<div className="button-add-job1">
 									<a type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</a>
-									<a type="button" class="btn btn-cta-primary-yellowshort profile-button round submit">เพิ่ม</a>
+									<a type="button" id="submit-job" class="btn btn-cta-primary-yellowshort profile-button round" data-bs-dismiss="modal">เพิ่ม</a>
 								</div>
 
 							</div>

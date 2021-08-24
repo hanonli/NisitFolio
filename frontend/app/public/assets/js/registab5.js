@@ -23,3 +23,25 @@ $(document).ready(function () {
     var moda_tab5 = document.getElementById("exampleModal1");
     console.log(modal_tab5);
 });
+
+/*function submitValueTab5() {
+    console.log(`nhahee`);
+    var name_certi, year_certi, pic_certi;
+    name_certi = document.getElementById("nm_certi");
+    year_certi = document.getElementByTagName("select");
+    pic_certi = document.getElementById("image-upload112");
+    console.log(`name: {name_certi}`);
+    console.log(`year: {year_certi}`);
+    console.log(`pic: {pic_certi}`);
+}*/
+
+document.getElementById("submit-certi").addEventListener("click", function () {
+    //console.log(`nhahee`);
+    var name_certi, year_certi;
+    name_certi = document.getElementById("nm_certi").value;
+    year_certi = document.getElementById("yearpicker_111").value;
+    var file_pic_certi = document.getElementById("image-upload112");
+    console.log(`name: `, name_certi);
+    console.log(`year: `, year_certi);
+    console.log('pic: ', file_pic_certi.files[0]);
+});
