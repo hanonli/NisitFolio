@@ -16,9 +16,14 @@ import Resume from './entity/Resume.entity';
 import Certificate from './entity/Certificate.entity';
 import userjobskill from './entity/UserJobSkill.entity';
 import AdditionalSkill from './entity/AdditionalSkill.entity';
+import DDC from './entity/DDC.entity';
+import DDP from './entity/DDP.entity';
+import DDCity from './entity/DDCity.entity';
+import DDHS from './entity/DDCity.entity';
+import DDJS from './entity/DDJS.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Account, Userinfo,City,Country,Province,EducationHistory,WorkHistory,SalaryType,Resume,Certificate,userjobskill,AdditionalSkill])],
+  imports: [TypeOrmModule.forFeature([DDJS,DDHS,DDCity,DDP,DDC, Account, Userinfo,City,Country,Province,EducationHistory,WorkHistory,SalaryType,Resume,Certificate,userjobskill,AdditionalSkill])],
   controllers: [RegisterController],
   providers: [RegisterService],
   exports: [RegisterService],

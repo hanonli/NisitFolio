@@ -10,7 +10,7 @@ import { ParseObjectIdPipe } from '../common/pipes';
 
 import { CreateAccountDto } from './dto/create-account.dto';
 import { CreateUserinfoDto } from './dto/create-userinfo.dto';
-import { CreateDto1,CreateDto2,CreateDto3,CreateDto4,CreateDto5,CreateDto6,CreateDto7 } from './dto/create.dto';
+import { CreateDto1,CreateDto2,CreateDto3,CreateDto4,CreateDto5,CreateDto6,CreateDto7, CreateDtoTRUE } from './dto/create.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -27,16 +27,47 @@ import AdditionalSkill  from './entity/AdditionalSkill.entity';
 export class RegisterController {
   constructor(private registerService: RegisterService) {}
 
+  //-------------------------------TRUE
+  @Post()
+  async TRUECREATE(@Body() CreateDto: CreateDtoTRUE) {
+    return this.registerService.createTRUE(CreateDto);
+  }
+  //----------------------------ENDTRUE
+  //-----------------------------subfindAllDDC
+  @Get('DDC')
+  async findAllDDC(){
+    return this.registerService.findAllDDC();
+  }
+  @Get(':C/DDP')
+  async findAllDDP(@Param('Email') C: string){
+    return this.registerService.findAllDDP(C);
+  }
+  @Get(':P/DDCity')
+  async findAllDDCity(@Param('Email') P: string){
+    return this.registerService.findAllDDCity(P);
+  }
+  @Get('/DDHS')
+  async findAllDDHS(){
+    return this.registerService.findAllDDHS();
+  }
+  @Get(':JS/DDJS')
+  async findAllJS(@Param('JS') JS: string){
+    return this.registerService.findAllDDJS(JS);
+  }
+  //------------------------------endsub
+
   @Get()
   async findAll(): Promise<Account[]> {
     return this.registerService.findAll();
   }
 
   //@UseGuards(JwtAuthGuard)
+  /*
   @Post()
   async create(@Body() createDto: CreateDto1) {
     return this.registerService.create(createDto);
   }
+  */
   
   @Post('upload')
   @UseInterceptors(FileInterceptor('file'))
