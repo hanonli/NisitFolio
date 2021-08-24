@@ -1,28 +1,81 @@
+/*---list name certi---*/
+.content-certi1 {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    
+}
+
 .card_certi {
     border: 1px solid black;
-    height: 210px;
-    width: 48%;
+    height: 220px;
+    width: 725px;
     border-radius: 25px;
     margin-top: 5px;
     margin-bottom: 5px;
-    margin-left: 5px;
-    margin-right: 5px;
-}
-.dummy {
-    border: transparent;
-    height: 210px;
-    width: 48%;
-    border-radius: 25px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    margin-left: 5px;
-    margin-right: 5px;
+    position: relative;
 }
 
 #pos_card {
-  display: flex;
-  justify-content: center;
+    justify-content: center;
 }
+
+#name-of-certi {
+    color: black;
+    margin-left: 30px;
+    margin-top: 38px;
+    font-size: 35px;
+}
+
+#year-of-certi {
+    margin-left: 30px;
+    margin-top: 38px;
+    font-size: 35px;
+}
+
+.pos-pic-of-certi {
+    position: absolute;
+    left: 480px;
+    top: 30px
+}
+
+#pic-of-certi {
+    border-radius: 16px;
+    
+}
+
+/*---layer function of list name certi---*/
+
+.layer-button-certi {
+    height: 219px;
+    width: 724px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: 0.2s;
+    border-radius: 25px;
+    background: transparent;
+}
+
+.layer-button-certi:hover {
+    background: #E1E1E1;
+    display:inline-block;
+    opacity: 0.7;
+}
+
+.layer-button-certi button{
+    visibility: hidden;
+    margin-top: 6.5%;
+    margin-left: 170px;
+    transition: 0.1s;
+}
+
+.layer-button-certi:hover button{
+    visibility: visible;
+   
+}
+
+
+
 
 #input_upload input.hidden {
     position: absolute;
@@ -45,8 +98,8 @@
 .frame_add_certi {
     background-color: #b6deea;
     border: 1px solid black;
-    height: 210px;
-    width: 96.5%;
+    height: 140px;
+    width: 98%;
     border-radius: 25px;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -54,8 +107,9 @@
     margin-right: 5px;
     position: relative;
     text-align: center;  
+    justify-content: center;
 }
 
 .button_add_certi button {
-    margin-top: 2.55%;
+    margin-top: 0.42%;
 }
