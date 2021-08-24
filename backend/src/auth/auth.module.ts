@@ -9,9 +9,11 @@ import { JwtStrategy } from './jwt.strategy';
 import { AuthenticationController } from './auth.controller';
 import { RegisterModule } from 'src/register/register.module';
 import { EmailConfirmationModule } from 'src/emailconfirmation/emailConfirmation.module';
+import { EmailModule } from 'src/email/email.module';
 
 @Module({
   imports: [
+    EmailModule,
     EmailConfirmationModule,
     RegisterModule,
     UsersModule, 

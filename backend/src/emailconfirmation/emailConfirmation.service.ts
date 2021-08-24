@@ -5,6 +5,7 @@ import VerificationTokenPayload from './verificationTokenPayload.interface';
 import EmailService from '../email/email.service';
 import { UsersService } from '../users/users.service';
 import { ObjectId } from 'mongodb';
+import { MailerService } from '@nestjs-modules/mailer';
 
  
 @Injectable()
@@ -14,6 +15,7 @@ export class EmailConfirmationService {
     private readonly configService: ConfigService,
     private readonly emailService: EmailService,
     private readonly usersService: UsersService,
+    private mailerService: MailerService,
   ) {}
  
   public sendVerificationLink(email: string) {
@@ -27,10 +29,14 @@ export class EmailConfirmationService {
     
     const text = `ขอขอบคุณที่สมัครใช้บริการ Nisitfolio เพื่อที่จะใช้งาน appication กรุณากดยืนยันตัวตนในลิ้งค์ที่แนบให้ ภายใน 1 ชั่วโมง \n ${url}`;
  
-    return this.emailService.sendMail({
+    return this.mailerService.sendMail({
       to: email,
-      subject: 'Email confirmation',
-      text,
+      subject: 'Nisitfolio,Please Email confirmation ',
+      template: 'src/email/templates/comfirmation.hbs', 
+      context: { 
+        url,
+      },
+      
     })
   }
 
