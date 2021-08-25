@@ -163,14 +163,14 @@ export class RegisterService {
     UJS.Score=createDto.Score;
     UJS.SkillName=createDto.SkillName;
     UJS.UserId=Email;
-
+    
     const ADS = new AdditionalSkill();
     ADS.SoftSkill=createDto.SoftSkill;
     ADS.UserId=Email;
 
 
     return (this.CityRepository.save(City),this.CountryRepository.save(Country),this.ProvinceRepository.save(Province),this.EDRepository.save(ED),this.WHRepository.save(WH),this.SLRepository.save(ST),this.ResumeRepository.save(RE),this.CertificateRepository.save(CF),this.accountRepository.save(account),this.userinfoRepository.save(userinfo),this.AdditionalSkillRepository.save(ADS),this.userjobskillRepository.save(UJS));
-
+    
     //return this.AdditionalSkillRepository.save(ADS);
     //return this.userjobskillRepository.save(UJS);
     //return (this.ResumeRepository.save(RE),this.CertificateRepository.save(CF));
