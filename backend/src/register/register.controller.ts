@@ -20,6 +20,10 @@ import { Account, Userinfo, AdditionalSkill, Certificate, EducationHistory, Inte
 @Controller('register')
 export class RegisterController {
   constructor(private registerService: RegisterService) {}
+  /*@Post('otest')
+  async otest(@Body() otest: otest) {
+    return this.registerService.otest(otest);
+  }*/
   
 
   //-------------------------------TRUE
@@ -35,6 +39,7 @@ export class RegisterController {
   async findAllDDC(){
     return this.registerService.findAllDDC();
   }
+  
   @Get(':C/DDP')
   async findAllDDP(@Param('Email') C: string){
     return this.registerService.findAllDDP(C);
@@ -43,22 +48,20 @@ export class RegisterController {
   async findAllDDCity(@Param('Email') P: string){
     return this.registerService.findAllDDCity(P);
   }
+  
   @Get('/DDHS')
   async findAllDDHS(){
     return this.registerService.findAllDDHS();
   }
+  
   @Get(':JS/DDJS')
   async findAllJS(@Param('JS') JS: string){
     return this.registerService.findAllDDJS(JS);
   }*/
   
-  //------------------------------endsub
   
-  /*@Post('otest')
-  async otest(@Body() otest: otest) {
-    return this.registerService.otest(otest);
-  }
-
+  //------------------------------endsub
+  /*
   @Get()
   async findAll(): Promise<Account[]> {
     return this.registerService.findAll();

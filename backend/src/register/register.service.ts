@@ -16,6 +16,7 @@ export class RegisterService {
     private userinfoRepository: Repository<Userinfo>,
     @InjectRepository(AdditionalSkill)
     private AdditionalSkillRepository: Repository<AdditionalSkill>,
+<<<<<<< HEAD
     @InjectRepository(Certificate)
     private CertificateRepository: Repository<Certificate>,
     @InjectRepository(EducationHistory)
@@ -26,6 +27,25 @@ export class RegisterService {
     private InterestedJobRepository: Repository<InterestedJob>,
     private readonly emailConfirmationService: EmailConfirmationService
 
+=======
+    
+    @InjectRepository(DDC)
+    private DDCRepository: Repository<DDC>,
+    
+    @InjectRepository(DDP)
+    private DDPRepository: Repository<DDP>,
+    @InjectRepository(DDCity)
+    private DDCityRepository: Repository<DDCity>,
+    @InjectRepository(DDHS)
+    private DDHSRepository: Repository<DDHS>,
+    
+    @InjectRepository(DDJS)
+    private DDJSRepository: Repository<DDJS>,
+    //*/
+    @InjectRepository(otest)
+    private otestRepository: Repository<otest>,
+    
+>>>>>>> 286637a521e1d2471ac8141c7d6651cafc14af48
   ) {}
   async createRegis(createDto: CreateRegisDto)
   {
@@ -213,6 +233,7 @@ export class RegisterService {
   async findAllDDC(){
     return this.DDCRepository.find();
   }
+  
   async findAllDDP(C: string){
     return this.DDPRepository.find({NameCountry: C});
   }
@@ -222,9 +243,14 @@ export class RegisterService {
   async findAllDDHS(){
     return this.DDHSRepository.find();
   }
+<<<<<<< HEAD
+=======
+  //*/
+>>>>>>> 286637a521e1d2471ac8141c7d6651cafc14af48
   async findAllDDJS(JS: string){
     return this.DDJSRepository.find({NameProvince: JS});
   }
+  //*/
   //-------------------------------endsub
   async findAll() {
     return this.accountRepository.find();
