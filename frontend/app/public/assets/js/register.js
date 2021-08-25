@@ -53,7 +53,22 @@ $(function(){
         $('.tab-list-item').removeClass('tab-list-active');
         $('#tab-7').addClass('tab-list-active')
         $('#registab7-content').show();
+        if(sideskill_count == 0){
+          $('#sideskilllist2').hide();
+          $('#sideskilllist3').hide();
+        }
+        else if(sideskill_count == 1){
+          $('#sideskilllist2').show();
+          $('#sideskilllist3').hide();
+        }
+        else if(sideskill_count == 2){
+          $('#sideskilllist2').show();
+          $('#sideskilllist3').show();
+        }
     });
+
+   
+
  });
 
 /*Zone Agreement*/
@@ -191,11 +206,49 @@ for (k = startD; k < MaxD; k++) {
       });
 
 /*Tab7*/
-var sideskilldropdown1 = '<input class="form-control dropbtn ssf" list="sideskillop" id="sideskilllist'
-var sideskilldropdown2 = '" placeholder="เลือกทักษะเสริมที่ถนัด"></input>'
+var sskdd1 = '<div class="col-2">\
+                <div class="bookmark-content">\
+                <img class="obj-icon tooltips-item" src="assets/images/bin.png" type="button" data-bs-toggle="modal" toggle-type="dynamic"data-bs-target="#Modaltab7" id="valss1" alt="" width="30" height="30"/>\
+                </div>\
+              </div>\
+              </div>\
+              ';
+var sskdd2 = '<div class="col-2">\
+                <div class="bookmark-content">\
+                <img class="obj-icon tooltips-item" src="assets/images/bin.png" type="button" data-bs-toggle="modal" toggle-type="dynamic"data-bs-target="#Modaltab7" id="valss2" alt="" width="30" height="30"/>\
+                </div>\
+              </div>\
+              </div>\
+              ';
+var sskdd3 = '<div class="col-2">\
+              <div class="bookmark-content">\
+              <img class="obj-icon tooltips-item" src="assets/images/bin.png" type="button" data-bs-toggle="modal" toggle-type="dynamic"data-bs-target="#Modaltab7" id="valss3" alt="" width="30" height="30"/>\
+              </div>\
+            </div>\
+            </div>\
+            ';
+var sideskilldropdown1_1 = '<div class="container-fluid dropbtn-box form-f margin-bottom1" id="ssl_1">\
+                              <div class="row">\
+                                <div class="col-10">\
+                                  <a>\
+                                  ';
+var sideskilldropdown1_2 = '<div class="container-fluid dropbtn-box form-f margin-bottom1" id="ssl_2">\
+                                  <div class="row">\
+                                    <div class="col-10">\
+                                      <a>\
+                                      ';
+var sideskilldropdown1_3 = '<div class="container-fluid dropbtn-box form-f margin-bottom1" id="ssl_3">\
+                              <div class="row">\
+                                <div class="col-10">\
+                                  <a>\
+                                  ';
+var sideskilldropdown2 = '</a>\
+                          </div>\
+                          ';
 var sideskill_count=0;
 var max_sideskill=3;
 var sumsideskill='';
+var valss_now='';
 
 $(document).on('change', 'input', function(){
     var options = $('datalist')[0].options;
@@ -206,11 +259,34 @@ $(document).on('change', 'input', function(){
 		  $('#sideskilllist').blur();
           sideskill_count += 1;
           console.log(val)
-          if(sideskill_count < max_sideskill){
-            sumsideskill = sideskilldropdown1 + sideskill_count + sideskilldropdown2;
+          if(sideskill_count == 1){
+            $('#sideskilllist1').hide();          
+            valss_now = $('#sideskilllist1').val();
+            console.log(valss_now);
+            sumsideskill = sideskilldropdown1_1 + valss_now + sideskilldropdown2 + sskdd1;
             console.log(sumsideskill);
-            $('.dropdowntap7').append(sumsideskill); /*Append dropdown1,2*/
-            break;
+            $('.dropdowntap7_1').append(sumsideskill);
+            sumsideskill = '';
+            $('#sideskilllist2').show();
+          }
+          else if(sideskill_count == 2){
+            $('#sideskilllist2').hide(); 
+            $('#sideskilllist3').show();
+            valss_now = $('#sideskilllist2').val();
+            console.log(valss_now);
+            sumsideskill = sideskilldropdown1_2 + valss_now + sideskilldropdown2 + sskdd2;
+            console.log(sumsideskill);
+            $('.dropdowntap7_2').append(sumsideskill);
+            sumsideskill = '';
+          }
+          else if(sideskill_count == 3){
+            $('#sideskilllist3').hide(); 
+            valss_now = $('#sideskilllist3').val();
+            console.log(valss_now);
+            sumsideskill = sideskilldropdown1_3 + valss_now + sideskilldropdown2 + sskdd3;
+            console.log(sumsideskill);
+            $('.dropdowntap7_3').append(sumsideskill);
+            sumsideskill = '';
           }
           break;
        }
@@ -224,6 +300,36 @@ $('.xxx').click(function () {
   });
 */
 
-$('#del_sideskill').click(function() {
-    $('.dropdowntap7').remove();
+/*$('#del_sideskill').click(function() {
+  var valss = $(this).val();
+  if(valss == $('#valss1').val()){
+    $('.dropdowntap7_1').remove();
+  }
+  else if(valss == $('#valss2').val()){
+    $('.dropdowntap7_2').remove();
+  }
+  else if(valss == $('#valss3').val()){
+    $('.dropdowntap7_3').remove();
+  }
+    
 })
+
+ $('#valss1').on('click', function(){
+      $('#del_sideskill').on('click', function(){
+        $('#ssl_1').remove();
+        sideskill_count -= 1;
+    }});
+    
+    $('#valss2').on('click', function(){
+        $('#del_sideskill').on('click', function(){
+          $('#ssl_2').remove();
+          sideskill_count -= 1;
+    }});
+    
+    $('#valss3').on('click', function(){
+          $('#del_sideskill').on('click', function(){
+            $('#ssl_3').remove();
+            sideskill_count -= 1;
+    }});
+    
+*/

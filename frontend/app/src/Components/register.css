@@ -25,6 +25,16 @@
     padding: 1%;
 }
 
+.regis-box-content7 {
+  height: 53vh;
+  width: 60vw;
+  /*background-color: aqua;*/
+  margin-left:21vw;
+  margin-top: 1%;
+  margin-bottom: 2%;
+  padding: 1%;
+}
+
 .headerRegis {
     color: #000;
     font-size: 48px;
