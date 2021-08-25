@@ -16,7 +16,7 @@ class Editprofile extends React.Component {
 				<DataHeader />
 				<Link to="/home">
 					<div class="col block-right">
-						<a class="btn btn-cta-primary-yellowwide round profile-button" href="#" target="_blank">ยืนยันตัวตน</a>
+						<a class="btn btn-cta-primary-yellowwide round profile-button" href="#" target="_blank">ยืนยัน</a>
 					</div>
 				</Link>
 			</div>

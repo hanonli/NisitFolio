@@ -63,7 +63,7 @@ class Register extends React.Component {
 				</div>
 				<Link to="/emailverify">
 					<div class="col block-right">
-						<button class="btn btn-cta-primary-yellowwide round profile-button" href="#" target="_blank" type="submit" id="continue2" disabled>ยืนยันตัวตน</button>
+						<button class="btn btn-cta-primary-yellowwide round profile-button" href="#" target="_blank" type="submit" id="continue2" disabled>ยืนยัน</button>
 					</div>
 				</Link>
 			</div>

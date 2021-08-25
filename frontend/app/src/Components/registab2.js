@@ -37,10 +37,7 @@ class Registab2 extends React.Component {
 										<label class="sexdistance form-f-sex">ที่อยู่ปัจจุบัน</label>
 									</div>
 									<div class="col-md-7">
-										<select class="form-select dropbtn margin-bottom1 fff" id="country">
-											<option selected disabled value="">ประเทศ</option>
-											<option>ไทย</option>
-										</select>
+										<h4 class="form-control dropbtn margin-bottom1 fff">ประเทศไทย</h4>
 									</div>
 								</div>
 								<div class="row">
@@ -57,7 +54,7 @@ class Registab2 extends React.Component {
 									</div>
 								</div>
 								<div class="col-md-9">
-									<input type="text" class="form-control dropbtn margin-bottom1" id="" placeholder="อีเมลล์สำรอง" ></input>
+									<input type="text" class="form-control dropbtn margin-bottom1" id="" placeholder="อีเมลสำรอง" ></input>
 								</div>
 								<div class="row-3">
 									<div class="col-md-9">
