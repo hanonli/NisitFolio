@@ -17,7 +17,7 @@ $(document).ready(function () {
     document.getElementById("customRange11").oninput = function () {
         value1 = (this.value - this.min) / (this.max - this.min) * 100;
         this.style.background = 'linear-gradient(to right, #f0a143 0%, #f0a143 ' + value1 + '%, #c4c4c4 ' + value1 + '%, #c4c4c4 100%)';
-        console.log(`skill1: ` + value1 / 10);
+        console.log(`skill1: ${value1 / 10}`);
     };
 
     document.getElementById("customRange12").oninput = function () {
@@ -58,66 +58,63 @@ $(document).ready(function () {
     });
 });
 
+var name_job, skill_job_1, score_skill_job_1, skill_job_2, score_skill_job_2, skill_job_3, score_skill_job_3, obj_job_1, obj_job_2, obj_job_3;
 
+    /*----submit for add job----*/
+$(document).ready(function () { 
+    $("#add-job").click(function () {
+        console.log('Oh nha hee1');
+        $("#exampleModalJob")[0].reset();
+    });
 
-/*----submit for add job----*/
+    /*----submit for edit job----*/
 
-document.getElementById("submit-job").addEventListener("click", function () {
-    console.log('Oh nha hee');
-    var name_job, skill_job_1, score_skill_job_1, skill_job_2, score_skill_job_2, skill_job_3, score_skill_job_3, obj_job_1, obj_job_2, obj_job_3;
-    name_job = document.getElementById("nm_job").value;
-    skill_job_1 = document.getElementById("each_skill1").value;
-    score_skill_job_1 = document.getElementById("customRange11").value;
-    //score_skill_job_1 = value1;
-    skill_job_2 = document.getElementById("each_skill2").value;
-    score_skill_job_2 = document.getElementById("customRange12").value;
-    //score_skill_job_2 = value2;
-    skill_job_3 = document.getElementById("each_skill3").value;
-    score_skill_job_3 = document.getElementById("customRange13").value;
-    //score_skill_job_3 = value3;
-    obj_job_1 = document.getElementById("obj-job-01").value;
-    obj_job_2 = document.getElementById("obj-job-02").value;
-    obj_job_3 = document.getElementById("obj-job-03").value;
-    console.log(`name job: `, name_job);
-    console.log(`skill_job_1: `, skill_job_1);
-    console.log(`score_skill_job_1: `, score_skill_job_1);
-    console.log(`skill_job_2: `, skill_job_2);
-    console.log(`score_skill_job_2: `, score_skill_job_2);
-    console.log(`skill_job_3: `, skill_job_3);
-    console.log(`score_skill_job_3: `, score_skill_job_3);
-    console.log(`obj_job_1: `, obj_job_1);
-    console.log(`obj_job_2: `, obj_job_2);
-    console.log(`obj_job_3: `, obj_job_3);
-});
+    /*document.getElementById("edit-job").addEventListener("click", function () {
+        console.log('Oh nha hee2');
+        
+        name_job = document.getElementById("nm_job").value;
+        skill_job_1 = document.getElementById("each_skill1").value;
+        score_skill_job_1 = document.getElementById("customRange11").value;
+        //score_skill_job_1 = value1;
+        skill_job_2 = document.getElementById("each_skill2").value;
+        score_skill_job_2 = document.getElementById("customRange12").value;
+        //score_skill_job_2 = value2;
+        skill_job_3 = document.getElementById("each_skill3").value;
+        score_skill_job_3 = document.getElementById("customRange13").value;
+        //score_skill_job_3 = value3;
+        obj_job_1 = document.getElementById("obj-job-01").value;
+        obj_job_2 = document.getElementById("obj-job-02").value;
+        obj_job_3 = document.getElementById("obj-job-03").value;
 
-/*----submit for edit job----*/
+    });*/
 
-document.getElementById("edit-job").addEventListener("click", function () {
-    console.log('Oh nha hee');
-    var name_job, skill_job_1, score_skill_job_1, skill_job_2, score_skill_job_2, skill_job_3, score_skill_job_3, obj_job_1, obj_job_2, obj_job_3;
-    name_job = document.getElementById("nm_job").value;
-    skill_job_1 = document.getElementById("each_skill1").value;
-    score_skill_job_1 = document.getElementById("customRange11").value;
-    //score_skill_job_1 = value1;
-    skill_job_2 = document.getElementById("each_skill2").value;
-    score_skill_job_2 = document.getElementById("customRange12").value;
-    //score_skill_job_2 = value2;
-    skill_job_3 = document.getElementById("each_skill3").value;
-    score_skill_job_3 = document.getElementById("customRange13").value;
-    //score_skill_job_3 = value3;
-    obj_job_1 = document.getElementById("obj-job-01").value;
-    obj_job_2 = document.getElementById("obj-job-02").value;
-    obj_job_3 = document.getElementById("obj-job-03").value;
-    console.log(`name job: `, name_job);
-    console.log(`skill_job_1: `, skill_job_1);
-    console.log(`score_skill_job_1: `, score_skill_job_1);
-    console.log(`skill_job_2: `, skill_job_2);
-    console.log(`score_skill_job_2: `, score_skill_job_2);
-    console.log(`skill_job_3: `, skill_job_3);
-    console.log(`score_skill_job_3: `, score_skill_job_3);
-    console.log(`obj_job_1: `, obj_job_1);
-    console.log(`obj_job_2: `, obj_job_2);
-    console.log(`obj_job_3: `, obj_job_3);
+    /*----submit data job----*/
+    document.getElementById("submit-job11").addEventListener("click", function () {
+        name_job = document.getElementById("nm_job").value;
+        skill_job_1 = document.getElementById("each_skill1").value;
+        score_skill_job_1 = document.getElementById("customRange11").value;
+        //score_skill_job_1 = value1;
+        skill_job_2 = document.getElementById("each_skill2").value;
+        score_skill_job_2 = document.getElementById("customRange12").value;
+        //score_skill_job_2 = value2;
+        skill_job_3 = document.getElementById("each_skill3").value;
+        score_skill_job_3 = document.getElementById("customRange13").value;
+        //score_skill_job_3 = value3;
+        obj_job_1 = document.getElementById("obj-job-01").value;
+        obj_job_2 = document.getElementById("obj-job-02").value;
+        obj_job_3 = document.getElementById("obj-job-03").value;
+        console.log(`name job: `, name_job);
+        console.log(`skill_job_1: `, skill_job_1);
+        console.log(`score_skill_job_1: `, score_skill_job_1);
+        console.log(`skill_job_2: `, skill_job_2);
+        console.log(`score_skill_job_2: `, score_skill_job_2);
+        console.log(`skill_job_3: `, skill_job_3);
+        console.log(`score_skill_job_3: `, score_skill_job_3);
+        console.log(`obj_job_1: `, obj_job_1);
+        console.log(`obj_job_2: `, obj_job_2);
+        console.log(`obj_job_3: `, obj_job_3);
+    });
+
 });
 
 /*----remove job----*/
