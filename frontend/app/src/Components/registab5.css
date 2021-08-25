@@ -2,7 +2,7 @@
 .content-certi1 {
     display: grid;
     grid-template-columns: repeat(2,1fr);
-    
+    gap: 3.5px;
 }
 
 .card_certi {
@@ -112,4 +112,8 @@
 
 .button_add_certi button {
     margin-top: 0.42%;
+}
+
+.height-job {
+    height: 115px;
 }

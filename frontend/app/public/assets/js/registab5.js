@@ -45,3 +45,14 @@ document.getElementById("submit-certi").addEventListener("click", function () {
     console.log(`year: `, year_certi);
     console.log('pic: ', file_pic_certi.files[0]);
 });
+
+document.getElementById("edit-certi").addEventListener("click", function () {
+    //console.log(`nhahee`);
+    var name_certi, year_certi;
+    name_certi = document.getElementById("nm_certi").value;
+    year_certi = document.getElementById("yearpicker_111").value;
+    var file_pic_certi = document.getElementById("image-upload112");
+    console.log(`name: `, name_certi);
+    console.log(`year: `, year_certi);
+    console.log('pic: ', file_pic_certi.files[0]);
+});
