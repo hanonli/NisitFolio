@@ -83,7 +83,7 @@ export class RegisterController {
   @Post('upload')
   @UseInterceptors(FileInterceptor('file'))
   uploadFile(@UploadedFile() file: Express.Multer.File) {
-    console.log(file);
+    console.log(file.originalname);
   }
   
 
