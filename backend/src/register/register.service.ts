@@ -59,17 +59,17 @@ export class RegisterService {
     
     @InjectRepository(DDC)
     private DDCRepository: Repository<DDC>,
+    
     @InjectRepository(DDP)
     private DDPRepository: Repository<DDP>,
-    
+    @InjectRepository(DDCity)
+    private DDCityRepository: Repository<DDCity>,
     @InjectRepository(DDHS)
     private DDHSRepository: Repository<DDHS>,
     
     @InjectRepository(DDJS)
     private DDJSRepository: Repository<DDJS>,
-    @InjectRepository(DDCity)
-    private DDCityRepository: Repository<DDCity>,
-    
+    //*/
     @InjectRepository(otest)
     private otestRepository: Repository<otest>,
     
@@ -187,6 +187,7 @@ export class RegisterService {
   async findAllDDC(){
     return this.DDCRepository.find();
   }
+  
   async findAllDDP(C: string){
     return this.DDPRepository.find({NameCountry: C});
   }
@@ -197,10 +198,11 @@ export class RegisterService {
   async findAllDDHS(){
     return this.DDHSRepository.find();
   }
-  //
+  //*/
   async findAllDDJS(JS: string){
     return this.DDJSRepository.find({Namejob: JS});
   }
+  //*/
   //-------------------------------endsub
   //*/
   async findAll() {

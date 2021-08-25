@@ -20,7 +20,7 @@ import AdditionalSkill from './entity/AdditionalSkill.entity';
 import DDC from './entity/DDC.entity';
 import DDP from './entity/DDP.entity';
 import DDCity from './entity/DDCity.entity';
-import DDHS from './entity/DDCity.entity';
+import DDHS from './entity/DDHS.entity';
 import DDJS from './entity/DDJS.entity';
 import otest from './entity/0test.entity';
 

@@ -8,7 +8,8 @@ export class otest {
   @ObjectIdColumn()
   id?: ObjectId;
   
-  @OneToMany(type => itest, photo => photo.list)
+  //@OneToMany(type => itest, itest => itest.list)
+  @Column()
   list: itest[];
 
 }
