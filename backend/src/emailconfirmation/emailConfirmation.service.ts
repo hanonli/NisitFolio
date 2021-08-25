@@ -6,7 +6,7 @@ import EmailService from '../email/email.service';
 import { UsersService } from '../users/users.service';
 import { ObjectId } from 'mongodb';
 import { MailerService } from '@nestjs-modules/mailer';
-
+import { CreateRegisDto } from '../register/dto/create-register.dto';
  
 @Injectable()
 export class EmailConfirmationService {

@@ -1,6 +1,6 @@
 import {Body,Controller,Post,ClassSerializerInterceptor,UseInterceptors,} from '@nestjs/common';
 import { AuthService } from './auth.service'
-import { CreateDto } from './dto/create.dto';
+import { CreateRegisDto } from '../register/dto/create-register.dto';
 import { UsersService } from '../users/users.service';
 import { EmailConfirmationService } from '../emailConfirmation/emailConfirmation.service';
 import { RegisterService } from '../register/register.service';
@@ -16,9 +16,9 @@ constructor(
 ) {}
    
 @Post('register')
-async register(@Body() registrationData: CreateDto) {
+async register(@Body() registrationData: CreateRegisDto) {
     //const user = await this.authenticationService.register(registrationData);
-    const user = await this.registerService.create(registrationData)
+    const user = await this.registerService.createRegis(registrationData)
     await this.emailConfirmationService.sendVerificationLink(registrationData.Email);
     return user;
 }

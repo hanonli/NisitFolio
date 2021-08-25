@@ -1,29 +1,21 @@
 import { Controller, Delete, Get, Put, Post, Body, HttpException, HttpStatus, Param, UseGuards, UploadedFile, UploadedFiles } from '@nestjs/common';
 import { ObjectId } from 'mongodb';
 import { Express } from 'express'
-
-import Account from './account.entity';
-import Userinfo from './userinfo.entity';
-
-import { RegisterService } from './register.service';
 import { ParseObjectIdPipe } from '../common/pipes';
-
-import { CreateAccountDto } from './dto/create-account.dto';
-import { CreateUserinfoDto } from './dto/create-userinfo.dto';
-import { CreateDto1,CreateDto2,CreateDto3,CreateDto4,CreateDto5,CreateDto6,CreateDto7, CreateDtoTRUE } from './dto/create.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { UseInterceptors } from '@nestjs/common';
 import { AnyFilesInterceptor } from '@nestjs/platform-express';
 import { FileInterceptor } from '@nestjs/platform-express';
-
 import { DeleteResult } from 'typeorm';
-import { PostAccount, PostUserinfo } from './register.entity';
 
-import EducationHistory from './entity/EducationHistory.entity';
-import WorkHistory from './entity/WorkHistory.entity';
-import userjobskills  from './entity/UserJobSkill.entity';
-import AdditionalSkill  from './entity/AdditionalSkill.entity';
-import otest from './entity/0test.entity';
+import { RegisterService } from './register.service';
+import { CreateRegisDto } from './dto/create-register.dto';
+import { Account, Userinfo, AdditionalSkill, Certificate, EducationHistory, InterestedJob, WorkHistory} from './entity/Register.entity'
+
+
+
+
+
 
 @Controller('register')
 export class RegisterController {
@@ -32,14 +24,14 @@ export class RegisterController {
 
   //-------------------------------TRUE
   @Post()
-  async TRUECREATE(@Body() CreateDto: CreateDtoTRUE) {
-    return this.registerService.createTRUE(CreateDto);
+  async CreateRegister(@Body() CreateDto: CreateRegisDto ) {
+    return this.registerService.createRegis(CreateDto);
   }
   ///*
   //----------------------------ENDTRUE
   //-----------------------------subfindAllDDC
   
-  @Get('DDC')
+  /*@Get('DDC')
   async findAllDDC(){
     return this.registerService.findAllDDC();
   }
@@ -58,11 +50,11 @@ export class RegisterController {
   @Get(':JS/DDJS')
   async findAllJS(@Param('JS') JS: string){
     return this.registerService.findAllDDJS(JS);
-  }
+  }*/
   
   //------------------------------endsub
   
-  @Post('otest')
+  /*@Post('otest')
   async otest(@Body() otest: otest) {
     return this.registerService.otest(otest);
   }
@@ -70,7 +62,7 @@ export class RegisterController {
   @Get()
   async findAll(): Promise<Account[]> {
     return this.registerService.findAll();
-  }
+  }*/
 
   //@UseGuards(JwtAuthGuard)
   /*
@@ -87,7 +79,7 @@ export class RegisterController {
   }
   
 
-  //-----------------------Account---------------------------------//
+  /*//-----------------------Account---------------------------------//
   @Put(':Email/Account') // PUT /email/Account
   async updatee(@Param('Email') Email: string,@Body() createAccountDto: CreateAccountDto,): Promise<Account> {
     const x = await this.registerService.findOne(Email);
@@ -220,6 +212,6 @@ export class RegisterController {
   @Get(':Email/userInfo')
   async findOneSeet(@Param('Email') Email: string): Promise<CreateDto2> {
     return this.registerService.findOne2(Email);
-  }
+  }*/
 
 }

@@ -5,7 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import Account from './register/account.entity';
+import Account from './register/entity/Account.entity';
 import Userinfo from './register/userinfo.entity';
 
 import { AnalyticsModule } from './analytics/analytics.module';
