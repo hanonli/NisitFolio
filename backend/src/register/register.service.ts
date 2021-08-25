@@ -6,6 +6,14 @@ import { Account, Userinfo, AdditionalSkill, Certificate, EducationHistory, Inte
 import { CreateRegisDto } from './dto/create-register.dto';
 import { EmailConfirmationService } from '../emailConfirmation/emailConfirmation.service';
 import { ObjectID } from 'mongodb';
+import { StringSchema } from '@hapi/joi';
+
+
+import { Country } from 'src/register/entity/Country.entity'
+import { City } from 'src/register/entity/City.entity'
+import { Province } from 'src/register/entity/Province.entity'
+import { JobTitle } from 'src/register/entity/JobTitle.entrity'
+import { Skill } from 'src/register/entity/Skill.entrity'
 
 @Injectable()
 export class RegisterService {
@@ -24,6 +32,16 @@ export class RegisterService {
     private WorkHistoryRepository: Repository<WorkHistory>,
     @InjectRepository(InterestedJob)
     private InterestedJobRepository: Repository<InterestedJob>,
+    @InjectRepository(City)
+    private CityRepository: Repository<City>,
+    @InjectRepository(Country)
+    private CountryRepository: Repository<Country>,
+    @InjectRepository(Province)
+    private ProvinceRepository: Repository<Province>,
+    @InjectRepository(JobTitle)
+    private JobTitleRepository: Repository<JobTitle>,
+    @InjectRepository(Skill)
+    private SkillRepository: Repository<Skill>,
     private readonly emailConfirmationService: EmailConfirmationService
 
   ) {}
@@ -110,6 +128,35 @@ export class RegisterService {
     return (this.userinfoRepository.save(userinfo));
 
   }
+
+  async findCountry()
+  {
+    return this.CountryRepository.find();
+  }
+
+  async findProvince(country:string)
+  {
+    return this.ProvinceRepository.find({where:{ Country: country }});
+  }
+
+  async findCity(province:string)
+  {
+    return this.CityRepository.find({where:{ Province: province }});
+  }
+
+  async findJobTitle()
+  {
+    return this.JobTitleRepository.find();
+  }
+
+  async findSkill(JobTitle:string)
+  {
+    return this.SkillRepository.find({where:{ JobTitle: JobTitle }});
+  }
+
+ 
+  
+
   //------------------------------START TRUE
   /*
   async createTRUE(createDto: CreateDtoTRUE) {

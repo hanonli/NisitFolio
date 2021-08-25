@@ -1,19 +1,16 @@
 import { Entity, Column, ObjectIdColumn } from 'typeorm'; 
 import { ObjectId } from 'mongodb';
 
-@Entity("City")
-export class City {
+@Entity("Skill")
+export class Skill {
   @ObjectIdColumn()
   id?: ObjectId;
   
   @Column()
-  Country: string;
-  
-  @Column()
-  Province: string;
+  JobTitle: string;
 
   @Column()
   Name: string;
 }
 
-export default City;
+export default Skill;

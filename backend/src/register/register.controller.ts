@@ -35,6 +35,37 @@ export class RegisterController {
   //----------------------------ENDTRUE
   //-----------------------------subfindAllDDC
   
+  @Get('/country')
+  async findCountry()
+  {
+    return this.registerService.findCountry();
+  }
+
+  @Get(':country/province')
+  async findProvince(@Param('country') country: string)
+  {
+    return this.registerService.findProvince(country);
+  }
+  
+  @Get(':province/city')
+  async findCity(@Param('province') province: string)
+  {
+    return this.registerService.findCity(province);
+  }
+
+  @Get('/jobtitle')
+  async findJobTitle()
+  {
+    return this.registerService.findJobTitle();
+  }
+
+  @Get(':jobtitle/skill')
+  async findSkill(@Param('jobtitle') jobtitle: string)
+  {
+    return this.registerService.findSkill(jobtitle);
+  }
+
+
   /*@Get('DDC')
   async findAllDDC(){
     return this.registerService.findAllDDC();
