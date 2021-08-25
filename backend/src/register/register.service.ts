@@ -27,6 +27,7 @@ import { CreateUserinfoDto } from './dto/create-userinfo.dto';
 import { CreateDto1,CreateDto2,CreateDto3,CreateDto4,CreateDto5,CreateDto6,CreateDto7, CreateDtoTRUE, CreateDtoDDSCountry } from './dto/create.dto';
 
 import { ObjectID } from 'mongodb';
+import { otest } from './entity/0test.entity';
 
 @Injectable()
 export class RegisterService {
@@ -55,17 +56,30 @@ export class RegisterService {
     private userjobskillRepository: Repository<userjobskills>,
     @InjectRepository(AdditionalSkill)
     private AdditionalSkillRepository: Repository<AdditionalSkill>,
+    
     @InjectRepository(DDC)
     private DDCRepository: Repository<DDC>,
     @InjectRepository(DDP)
     private DDPRepository: Repository<DDP>,
+    
     @InjectRepository(DDHS)
     private DDHSRepository: Repository<DDHS>,
+    
     @InjectRepository(DDJS)
     private DDJSRepository: Repository<DDJS>,
     @InjectRepository(DDCity)
     private DDCityRepository: Repository<DDCity>,
+    
+    @InjectRepository(otest)
+    private otestRepository: Repository<otest>,
+    
   ) {}
+  
+  async otest(otest){
+    return await this.otestRepository.save(otest);
+  }
+  
+  ///*
   //------------------------------START TRUE
 
   async createTRUE(createDto: CreateDtoTRUE) {
@@ -91,6 +105,7 @@ export class RegisterService {
     const City = new PostCity();
     City.UserId = Email;
     City.Name = createDto.NameCity;
+    //this.CityRepository.save(City)
 
     const Country = new PostCountry();
     Country.UserId = Email;
@@ -164,8 +179,11 @@ export class RegisterService {
     //return (this.CityRepository.save(City),this.CountryRepository.save(Country),this.ProvinceRepository.save(Province),this.userinfoRepository.save(x));
     //return (this.accountRepository.save(account),this.userinfoRepository.save(userinfo));
   }
+  
   //-------------------------------ENDTRUE
   //--------------------------------sub
+  
+  
   async findAllDDC(){
     return this.DDCRepository.find();
   }
@@ -175,13 +193,16 @@ export class RegisterService {
   async findAllDDCity(P: string){
     return this.DDCityRepository.find({NameProvince: P});
   }
+  
   async findAllDDHS(){
     return this.DDHSRepository.find();
   }
+  //
   async findAllDDJS(JS: string){
-    return this.DDJSRepository.find({NameProvince: JS});
+    return this.DDJSRepository.find({Namejob: JS});
   }
   //-------------------------------endsub
+  //*/
   async findAll() {
     return this.accountRepository.find();
   }

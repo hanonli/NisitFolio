@@ -23,18 +23,22 @@ import EducationHistory from './entity/EducationHistory.entity';
 import WorkHistory from './entity/WorkHistory.entity';
 import userjobskills  from './entity/UserJobSkill.entity';
 import AdditionalSkill  from './entity/AdditionalSkill.entity';
+import otest from './entity/0test.entity';
 
 @Controller('register')
 export class RegisterController {
   constructor(private registerService: RegisterService) {}
+  
 
   //-------------------------------TRUE
   @Post()
   async TRUECREATE(@Body() CreateDto: CreateDtoTRUE) {
     return this.registerService.createTRUE(CreateDto);
   }
+  ///*
   //----------------------------ENDTRUE
   //-----------------------------subfindAllDDC
+  
   @Get('DDC')
   async findAllDDC(){
     return this.registerService.findAllDDC();
@@ -55,7 +59,13 @@ export class RegisterController {
   async findAllJS(@Param('JS') JS: string){
     return this.registerService.findAllDDJS(JS);
   }
+  
   //------------------------------endsub
+  
+  @Post('otest')
+  async otest(@Body() otest: otest) {
+    return this.registerService.otest(otest);
+  }
 
   @Get()
   async findAll(): Promise<Account[]> {
