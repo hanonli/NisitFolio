@@ -313,23 +313,25 @@ $('.xxx').click(function () {
   }
     
 })
+*/
+
 
  $('#valss1').on('click', function(){
+      console.log('EiEi this is Bin1');
       $('#del_sideskill').on('click', function(){
+        console.log('EiEi this is Del1');
         $('#ssl_1').remove();
         sideskill_count -= 1;
-    }});
+})});
     
-    $('#valss2').on('click', function(){
+$('#valss2').on('click', function(){
         $('#del_sideskill').on('click', function(){
           $('#ssl_2').remove();
           sideskill_count -= 1;
-    }});
+    })});
     
     $('#valss3').on('click', function(){
           $('#del_sideskill').on('click', function(){
             $('#ssl_3').remove();
             sideskill_count -= 1;
-    }});
-    
-*/
+    })});
