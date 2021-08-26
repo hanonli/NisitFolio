@@ -67,8 +67,6 @@ $(function(){
         }
     });
 
-   
-
  });
 
 /*Zone Agreement*/
@@ -80,8 +78,15 @@ $(function(){
 $('#agree1').click(function () {           
     $('#continue1').prop('disabled', false);
   });
+$('#continue1').click(function () {           
+    window.location.pathname = '/register'
+  });
 
 /*Tab1*/
+$('#continue2').click(function () {           
+  window.location.pathname = '/emailverify'
+});
+
 let startYear = 1950;
 let endYear = new Date().getFullYear();
 for (i = endYear; i > startYear; i--) {
@@ -549,6 +554,8 @@ $(function(){
   $('#del_sideskill3').on('click', function(){
     console.log('EiEi this is Del3');
     $('#ssl_3').remove();
+    $('#sideskilllist3').show(); 
     sideskill_count -= 1;
   });
 });
+
