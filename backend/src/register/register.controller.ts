@@ -1,20 +1,19 @@
 import { Controller, Delete, Get, Put, Post, Body, HttpException, HttpStatus, Param, UseGuards, UploadedFile } from '@nestjs/common';
 import { ObjectId } from 'mongodb';
 import { Express } from 'express'
-
-import Account from './account.entity';
-import Userinfo from './userinfo.entity';
-
-import { RegisterService } from './register.service';
 import { ParseObjectIdPipe } from '../common/pipes';
+<<<<<<< HEAD
 
 import './dto/create-account.dto';
 import { CreateUserinfoDto } from './dto/create-userinfo.dto';
 import { CreateDto, CreateDtoSe,CreateDto4,CreateDto5 } from './dto/create.dto';
+=======
+>>>>>>> cc62a96d4c1d2ba5aa7be0f0560291ce4085979b
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { DeleteResult } from 'typeorm';
+<<<<<<< HEAD
 import { CreateAccountDto } from './dto/create-account.dto';
 import { PostAccount, PostUserinfo } from './register.entity';
 import EducationHistory from './entity/EducationHistory.entity';
@@ -23,15 +22,102 @@ import { userjobskills } from './entity/UserJobSkill.entity';
 import { AdditionalSkill } from './entity/AdditionalSkill.entity';
 
 //--------------------------------------no1
+=======
+
+import { RegisterService } from './register.service';
+import { CreateRegisDto } from './dto/create-register.dto';
+import { Account, Userinfo, AdditionalSkill, Certificate, EducationHistory, InterestedJob, WorkHistory} from './entity/Register.entity'
+
+
+
+
+
+>>>>>>> cc62a96d4c1d2ba5aa7be0f0560291ce4085979b
 
 @Controller('register')
 export class RegisterController {
   constructor(private registerService: RegisterService) {}
+<<<<<<< HEAD
 
+=======
+  /*@Post('otest')
+  async otest(@Body() otest: otest) {
+    return this.registerService.otest(otest);
+  }*/
+  
+
+  //-------------------------------TRUE
+  @Post()
+  async CreateRegister(@Body() CreateDto: CreateRegisDto ) {
+    return this.registerService.createRegis(CreateDto);
+  }
+  ///*
+  //----------------------------ENDTRUE
+  //-----------------------------subfindAllDDC
+  
+  @Get('/country')
+  async findCountry()
+  {
+    return this.registerService.findCountry();
+  }
+
+  @Get(':country/province')
+  async findProvince(@Param('country') country: string)
+  {
+    return this.registerService.findProvince(country);
+  }
+  
+  @Get(':province/city')
+  async findCity(@Param('province') province: string)
+  {
+    return this.registerService.findCity(province);
+  }
+
+  @Get('/jobtitle')
+  async findJobTitle()
+  {
+    return this.registerService.findJobTitle();
+  }
+
+  @Get(':jobtitle/skill')
+  async findSkill(@Param('jobtitle') jobtitle: string)
+  {
+    return this.registerService.findSkill(jobtitle);
+  }
+
+
+  /*@Get('DDC')
+  async findAllDDC(){
+    return this.registerService.findAllDDC();
+  }
+  
+  @Get(':C/DDP')
+  async findAllDDP(@Param('Email') C: string){
+    return this.registerService.findAllDDP(C);
+  }
+  @Get(':P/DDCity')
+  async findAllDDCity(@Param('Email') P: string){
+    return this.registerService.findAllDDCity(P);
+  }
+  
+  @Get('/DDHS')
+  async findAllDDHS(){
+    return this.registerService.findAllDDHS();
+  }
+  
+  @Get(':JS/DDJS')
+  async findAllJS(@Param('JS') JS: string){
+    return this.registerService.findAllDDJS(JS);
+  }*/
+  
+  
+  //------------------------------endsub
+  /*
+>>>>>>> cc62a96d4c1d2ba5aa7be0f0560291ce4085979b
   @Get()
   async findAll(): Promise<Account[]> {
     return this.registerService.findAll();
-  }
+  }*/
 
   //@UseGuards(JwtAuthGuard)
   /*
@@ -59,6 +145,10 @@ export class RegisterController {
     console.log(file);
   }
 
+<<<<<<< HEAD
+=======
+  /*//-----------------------Account---------------------------------//
+>>>>>>> cc62a96d4c1d2ba5aa7be0f0560291ce4085979b
   @Put(':Email/Account') // PUT /email/Account
   async updatee(@Param('Email') Email: string,@Body() createAccountDto: CreateAccountDto,): Promise<Account> {
     const x = await this.registerService.findOne(Email);
@@ -188,7 +278,14 @@ export class RegisterController {
   }
   //------------------------------error
   @Get(':Email/userInfo')
+<<<<<<< HEAD
   async findOneSeet(@Param('Email') Email: string): Promise<CreateDtoSe> {
     return this.registerService.findOneSee(Email);
   }
+=======
+  async findOneSeet(@Param('Email') Email: string): Promise<CreateDto2> {
+    return this.registerService.findOne2(Email);
+  }*/
+
+>>>>>>> cc62a96d4c1d2ba5aa7be0f0560291ce4085979b
 }

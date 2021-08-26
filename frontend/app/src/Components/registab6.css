@@ -1,7 +1,7 @@
 .frame_job {
     border: 1px solid black;
     height: 140px;
-    width: 96.5%;
+    width: 1450px;
     border-radius: 25px;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -9,13 +9,14 @@
     margin-right: 5px;
     position: relative;
     text-align: center;  
+    align-items: center;
 }
 
 .frame_add_job_interest {
     background-color: #b6deea;
     border: 1px solid black;
     height: 140px;
-    width: 96.5%;
+    width: 1450px;
     border-radius: 25px;
     margin-top: 5px;
     margin-bottom: 5px;

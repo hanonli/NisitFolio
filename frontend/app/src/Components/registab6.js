@@ -18,6 +18,7 @@ class Registab6 extends React.Component {
 		return (
 			<div className="Registab6">
 				<div class="regis-box-content">
+<<<<<<< HEAD
 					<div class="row" id="pos_card">
 						<div class="frame_job">
 							<div class="layer_icon">
@@ -37,8 +38,36 @@ class Registab6 extends React.Component {
 									<img src="assets/images/+.png" width="115" height="115"></img>
 								</button>
 							</div>
+=======
+					
+					<div class="frame_job" id="no-1">
+						<div class="job-column-1">
+							<h1 id="job-position">ตำแหน่งงานที่ 1</h1>
+							<h1 id="job-name">สามกีบ</h1>
+						</div>
+						<div class="my-skill-content">
+							<h1 id="mySkil-job">ทักษะของฉัน</h1>
+							<div class="each-skill-job">
+								<p id="skill1-job">ทักษะที่ 1</p>
+								<p id="skill2-job">ทักษะที่ 2</p>
+								<p id="skill3-job">ทักษะที่ 3</p>
+							</div>
+						</div>
+						<div class="layer_icon">
+							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModalJob" id="edit-job"><img src="assets/images/blackedit.png" width="65" height="65"></img></button>
+							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal_remove_job" id="del-job"><img src="assets/images/bin.png" width="90" height="90"></img></button>
 						</div>
 					</div>
+	
+
+					<div class="frame_add_job_interest">
+						<div className="button_add_job_interest">
+							<button id="add-job" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModalJob">
+								<img src="assets/images/+.png" width="115" height="115"></img>
+							</button>
+>>>>>>> cc62a96d4c1d2ba5aa7be0f0560291ce4085979b
+						</div>
+					</div>						
 
 					<div class="modal fade" id="exampleModal_remove_job" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog modal-dialog-centered">
@@ -52,7 +81,7 @@ class Registab6 extends React.Component {
 						</div>
 					</div>
 
-					<div class="modal fade" id="exampleModal22" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal fade" id="exampleModalJob" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog modal-dialog-centered modal-xl">
 							<div class="modal-content popup_JOB" >
 
@@ -147,7 +176,12 @@ class Registab6 extends React.Component {
 												<textarea type="text" class="form-control dropbtn margin-bottom1" id="03" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
 											</div>
 											<div class="col-md-lg">
-												<textarea type="text" class="form-control dropbtn margin-bottom1" id="03" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
+												<div class="contend-of-obj">
+													<div class="pos-del-obj-button">
+														<button type="button" class="btn del-obj-icon"><img src="assets/images/bin.png" width="25" height="25"></img></button>
+													</div>
+													<textarea type="text" class="form-control dropbtn margin-bottom1 height-job" id="obj-job-02" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
+												</div>
 											</div>
 											<div class="col-md-lg">
 												<textarea type="text" class="form-control dropbtn margin-bottom1" id="03" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
@@ -159,7 +193,7 @@ class Registab6 extends React.Component {
 
 								<div className="button-add-job1">
 									<a type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</a>
-									<a type="button" class="btn btn-cta-primary-yellowshort profile-button round submit">เพิ่ม</a>
+									<button type="submit" id="submit-job11" class="btn btn-cta-primary-yellowshort profile-button round" data-bs-dismiss="modal">เพิ่ม</button>
 								</div>
 
 							</div>

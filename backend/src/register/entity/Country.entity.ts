@@ -5,9 +5,6 @@ import { ObjectId } from 'mongodb';
 export class Country {
   @ObjectIdColumn()
   id?: ObjectId;
-  
-  @Column()
-  UserId: string;
 
   @Column()
   Name: string;

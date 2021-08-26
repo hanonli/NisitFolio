@@ -17,6 +17,9 @@ export class Account {
 
   @Column()
   Privacy: string;
+
+  @Column()
+  isEmailConfirmed: string;
 }
 
 export default Account;
