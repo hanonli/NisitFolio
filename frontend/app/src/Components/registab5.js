@@ -56,17 +56,24 @@ class Registab5 extends React.Component {
 
 
 
-							</button>
+					<div class="modal fade" id="exampleModal_remove_certi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered">
+							<div class="modal-content minisize">
+								<h4 class="del-b">คุณต้องการลบใบรับรองนี้ ?</h4>
+								<div class="centerverify">
+									<a type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</a>
+									<a type="button" class="btn btn-cta-primary-yellowshort profile-button round">ลบ</a>
+								</div>
+							</div>
 						</div>
-						<div class="dummy"></div>
 					</div>
 
-					<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal fade" id="exampleModal11112" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog modal-dialog-centered modal-lg">
 							<div class="modal-content minisize" id="certi_edit">
 								<div class="row" id="input_certi">
 									<div class="col-md-5">
-										<textarea type="text" class="form-control certibtn margin-bottom1" placeholder="พิมพ์ชื่อใบรับรอง/เกียรติบัตร*" required></textarea>
+										<textarea id="nm_certi" type="text" class="form-control certibtn margin-bottom1" placeholder="พิมพ์ชื่อใบรับรอง/เกียรติบัตร*" required></textarea>
 									</div>
 									<div class="col-md-10">
 										<select class="form-select dropbtn_year margin-bottom1 fff" id="yearpicker_111" required>
@@ -75,18 +82,17 @@ class Registab5 extends React.Component {
 									</div>
 								</div>
 								<div class="row" id="input_upload">
-									<input id="image-upload112" class="hidden" type="file"></input>
+									<input id="image-upload112" accept="images/pic_Of_Certi/*" class="hidden" type="file"></input>
 									<div className="bg_upload" id="to_upload112">
 										<div className="for_upload112">
 											<img src="assets/images/upload_file.png" width="85px" height="85px" class="up_img"></img>
 											<h2 className="text_up">อัพโหลดใบรับรองของคุณได้ที่นี่</h2>
 										</div>
-
 									</div>
 
 									<div className="button_popup_certi">
-										<a type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</a>
-										<a type="button" class="btn btn-cta-primary-yellowshort profile-button round">เพิ่ม</a>
+										<a type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal" >ยกเลิก</a>
+										<a type="button" id="submit-certi" class="btn btn-cta-primary-yellowshort profile-button round" data-bs-dismiss="modal">เพิ่ม</a>
 									</div>
 
 								</div>
