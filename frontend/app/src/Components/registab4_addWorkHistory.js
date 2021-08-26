@@ -2,6 +2,27 @@ import React from 'react';
 import './registab3.css'
 
 class Registab4_addWorkHistory extends React.Component {
+    constructor(props) {
+		super(props);
+		this.handleLoad = this.handleLoad.bind(this);
+	 }
+	
+	componentDidMount() {
+		window.addEventListener('load', this.handleLoad);
+		const script = document.createElement("script");
+		script.src = "assets/js/register.js";
+		document.body.appendChild(script);
+		
+	}
+	
+	componentWillUnmount() { 
+	   window.removeEventListener('load', this.handleLoad)  
+	}
+	
+    handleLoad() {
+		console.log("YEAH!");
+	 }
+
 	render (){
 		return (
 			<div className="Registab4_addWorkHistory">
@@ -76,7 +97,7 @@ class Registab4_addWorkHistory extends React.Component {
                             <div class='col-5'>
                                 <div class='col-8'>
                                     <div class="selectDropdown">
-                                        <select class="form-select form-select-lg dropbtn margin-bottom1 fff"  aria-labelledby="select1" required>
+                                        <select class="form-select form-select-lg dropbtn margin-bottom1 fff"  aria-labelledby="select1" id='year_endjob'required>
                                             <option selected disabled value=''>ปีที่ออกจากงาน</option>
                                             <option >ปีนี้</option>    
                                             <option >ปีหน้า</option>

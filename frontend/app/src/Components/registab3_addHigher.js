@@ -3,14 +3,35 @@ import './registab3.css'
 import './register.css'
 
 class Registab3_addHigher extends React.Component {
+    constructor(props) {
+		super(props);
+		this.handleLoad = this.handleLoad.bind(this);
+	 }
+	
+	componentDidMount() {
+		window.addEventListener('load', this.handleLoad);
+		const script = document.createElement("script");
+		script.src = "assets/js/register.js";
+		document.body.appendChild(script);
+		
+	}
+	
+	componentWillUnmount() { 
+	   window.removeEventListener('load', this.handleLoad)  
+	}
+	
+    handleLoad() {
+		console.log("YEAH!");
+	 }
+
 	render (){
 		return (
 			<div className="Registab3_addHigher ">
 				
-                <form class='was-validated' id='HigherForm'>
+                <form  id='HigherForm'>
                     <div class='col-3' >
                         <div class="selectDropdown">
-                            <select class="form-select form-select-lg dropbtn margin-bottom1 fff" id='selectDropdown1' aria-labelledby="select1" required>
+                            <select class="form-select form-select-lg dropbtn margin-bottom1 fff" id='regis3_selectdropdown1' aria-labelledby="select1" required>
                                 <option selected disabled value=''>เลือกวุฒิการศึกษา</option>
                                 <option >ปริญญาเอก</option>    
                                 <option >ปริญญาโท</option>
@@ -31,7 +52,7 @@ class Registab3_addHigher extends React.Component {
                     </div>
                     <div class='row'>
                         <div class="col-6   ">
-                            <input type="text" class="form-control dropbtn margin-bottom1 " id="ValidationAreaFeedback"  placeholder='สาขาวิชา' required></input>
+                            <input type="text" class="form-control dropbtn margin-bottom1 " id="ValidationAreaFeedback"  placeholder='สาขาวิชา*' required></input>
                         </div>
                         <div class="col-6">
                             <div class='row'>
@@ -47,7 +68,7 @@ class Registab3_addHigher extends React.Component {
                     
                     <div class='col-3' >
                         <div class="selectDropdown">
-                            <select class="form-select form-select-lg dropbtn_year margin-bottom1 fff" id='yearpicker_111' aria-labelledby="select1" required>
+                            <select class="form-select form-select-lg dropbtn_year margin-bottom1 fff" id='year_higher' aria-labelledby="select1" required>
                                 <option selected disabled value=''>ปีที่จบการศึกษา</option>
                             </select>
                             <br/>
