@@ -7,7 +7,10 @@ export class City {
   id?: ObjectId;
   
   @Column()
-  UserId: string;
+  Country: string;
+  
+  @Column()
+  Province: string;
 
   @Column()
   Name: string;

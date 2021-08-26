@@ -25,6 +25,16 @@
     padding: 1%;
 }
 
+.regis-box-content7 {
+  height: 53vh;
+  width: 60vw;
+  /*background-color: aqua;*/
+  margin-left:21vw;
+  margin-top: 1%;
+  margin-bottom: 2%;
+  padding: 1%;
+}
+
 .headerRegis {
     color: #000;
     font-size: 48px;
@@ -58,6 +68,22 @@
     background-color: #cdcdcd;
   }
 
+  .dropbtn-box {
+    background-color: #EAEAEA;
+    color: #000;
+    padding: 10px;
+    font-size: 20px;
+    border: none;
+    /*cursor: pointer;*/
+    border-radius: 24px;
+    padding-left: 30px;
+    display: block;
+  }
+  
+  /* Dropdown button on hover & focus */
+  .dropbtn-box:hover, .dropbtn-box:focus {
+    background-color: #cdcdcd;
+  }
 
 /* Dropdown_year Button */
 .dropbtn_year {
@@ -275,4 +301,8 @@
 datalist {
     height: 50vh;
     width: 50vh;
+}
+
+.red_markEp1 {
+  color: red;
 }

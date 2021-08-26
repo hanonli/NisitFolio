@@ -16,6 +16,7 @@ class Registab5 extends React.Component {
 		return (
 			<div className="Registab5">
 				<div class="regis-box-content">
+
 					<div class="frame_add_certi">
 						<div className="button_add_certi">
 							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal11112">
@@ -23,7 +24,6 @@ class Registab5 extends React.Component {
 							</button>
 						</div>
 					</div>
-
 					<h1 id="each-year-of-certi">2021</h1>
 					<div class="content-certi1" id="pos_card">
 
@@ -52,6 +52,9 @@ class Registab5 extends React.Component {
 						</div>
 
 					</div>
+
+
+
 
 					<div class="modal fade" id="exampleModal_remove_certi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog modal-dialog-centered">

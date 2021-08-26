@@ -6,8 +6,8 @@ export class Bookmark {
   @ObjectIdColumn()
   id?: ObjectId;
   
-  @Column()
-  userId: string;
+  @ObjectIdColumn()
+  UserId: ObjectId;
 
   @Column()
   Link: string;
