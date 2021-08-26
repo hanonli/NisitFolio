@@ -86,7 +86,13 @@ let startYear = 1950;
 let endYear = new Date().getFullYear();
 for (i = endYear; i > startYear; i--) {
     $('#bdyear').append($('<option />').val(i).html(i));
+    $('#year_enjob').append($('<option />').val(i).html(i));
+    $('#year_higher').append($('<option />').val(i).html(i));
+    $('#year_secondary').append($('<option />').val(i).html(i));
 }
+
+
+
 
 let MaxM = 13;
 let startM = 1;
@@ -338,6 +344,52 @@ $('.aboutmee').on('change', 'input', function(){
   console.log('L : ' + abme_count);
   
 });
+
+/*Tab3*/
+regis3_dropdwn = document.getElementById('regis3_selectdropdown1');                   
+regis3_dropdwn.addEventListener('change', function(){
+    var regis3_dropdwn1selected = $('#regis3_selectdropdown1').val();
+  if(regis3_dropdwn1selected != ''){
+    $('#regis3_selectdropdown1').addClass('is-valid');
+  }});
+  
+ValidationUniversity = document.getElementById('ValidationUniversityFeedback');                   
+ValidationUniversity.addEventListener('keyup', function(){
+    var regis3_universityval = $('#ValidationUniversityFeedback').val();
+    if(regis3_universityval == ''){
+      $('#ValidationUniversityFeedback').removeClass('is-valid');
+      $('#ValidationUniversityFeedback').addClass('is-invalid');
+    }
+    else {
+      $('#ValidationUniversityFeedback').removeClass('is-invalid');
+      $('#ValidationUniversityFeedback').addClass('is-valid');
+    }});
+
+ValidationFaculty = document.getElementById('ValidationFacultyFeedback');                   
+ValidationFaculty.addEventListener('keyup', function(){
+    var regis3_facultyval = $('#ValidationFacultyFeedback').val();
+    if(regis3_facultyval == ''){
+      $('#ValidationFacultyFeedback').removeClass('is-valid');
+      $('#ValidationFacultyFeedback').addClass('is-invalid');
+    }
+    else {
+      $('#ValidationFacultyFeedback').removeClass('is-invalid');
+      $('#ValidationFacultyFeedback').addClass('is-valid');
+    }});
+
+ValidationArea = document.getElementById('ValidationAreaFeedback');                   
+ValidationArea.addEventListener('keyup', function(){
+    var regis3_areaval = $('#ValidationAreaFeedback').val();
+    if(regis3_areaval == ''){
+      $('#ValidationAreaFeedback').removeClass('is-valid');
+      $('#ValidationAreaFeedback').addClass('is-invalid');
+    }
+    else {
+      $('#ValidationAreaFeedback').removeClass('is-invalid');
+      $('#ValidationAreaFeedback').addClass('is-valid');
+    }});
+
+
 
 
 /*Tab7*/
