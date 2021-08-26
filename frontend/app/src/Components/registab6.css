@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*-----list-JOB-----*/
 .frame_job {
     border: 1px solid black;
@@ -348,3 +349,355 @@
     position: relative;
 }
 
+=======
+/*-----list-JOB-----*/
+.frame_job {
+    border: 1px solid black;
+    height: 140px;
+    width: 1450px;
+    border-radius: 25px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    position: relative;
+    text-align: center;  
+    align-items: center;
+}
+
+.frame_add_job_interest {
+    background-color: #b6deea;
+    border: 1px solid black;
+    height: 140px;
+    width: 1450px;
+    border-radius: 25px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    position: relative;
+    text-align: center;  
+    justify-content: center;
+}
+
+.button_add_job_interest button {
+    margin-top: 0.22%;
+}
+
+.layer_icon {
+    height: 138px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: 0.2s;
+    border-radius: 25px;
+    background: transparent;
+}
+
+.layer_icon button{
+    visibility: hidden;
+    padding-left: 55px;
+    padding-right: 55px;
+    margin-top: 0.8%;
+    transition: 0.1s;
+}
+
+.layer_icon:hover{
+    background: #E1E1E1;
+    display:inline-block;
+    opacity: 0.7;
+}
+
+.layer_icon:hover button{
+    visibility: visible;
+    opacity: 2;
+}
+
+.job-column-1 {
+    position: absolute;
+    display: flex; 
+    justify-content: flex-start;
+    left: 10px;
+}
+
+#job-position {
+    font-size: 38px;
+    color: black;
+    /*margin-left: 10px;
+    margin-top: 45px;*/
+    border-right: 1.2px solid black;
+    line-height: 118px;
+    padding-right: 21px;
+    margin-top: 12px;
+}
+
+#job-name {
+    font-size: 38px;
+    font-weight: 300;
+    color: black;
+    padding-left: 21px;
+    margin-top: 46.4px;
+}
+
+.my-skill-content {
+    position: absolute;
+    left: 1040px;
+    top: 30px;
+}
+
+#mySkil-job {
+    color: black;
+    font-size: 20px;
+    margin-left: -288px;
+}
+
+.each-skill-job {
+    display: flex;
+    gap: 10px;
+    /*justify-content: space-between;*/ 
+}
+
+#skill1-job {
+    color: black;
+    font-size: 19px;
+    font-weight: 300;
+    font-family: 'Kanit';
+    border: 2px solid #FFC045;
+    border-radius: 10px;
+    width: 125px;
+}
+
+#skill2-job {
+    color: black;
+    font-size: 19px;
+    font-weight: 300;
+    font-family: 'Kanit';
+    border: 2px solid #79CE23;
+    border-radius: 10px;
+    width: 125px;
+}
+
+#skill3-job {
+    color: black;
+    font-size: 19px;
+    font-weight: 300;
+    font-family: 'Kanit';
+    border: 2px solid #C98A11;
+    border-radius: 10px;
+    width: 125px;
+}
+
+
+/*------------------tab------------------*/
+
+.tabs_pop {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.tabs_pop li {
+  display: inline-block;
+  padding: 15px 25px;
+  background: none;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.tabs_pop li.current2 {
+  /*background: #e9e9e9;*/
+}
+.tab-contents_pop {
+  /*background: #e9e9e9;
+  padding: 20px;*/
+}
+.tab-pane_pop {
+  display: none;
+}
+.tab-pane_pop.current2 {
+  display: block;
+}
+
+/*-----slider range-----*/
+.range-slider-job input {
+    position: absolute;
+    margin-left: 50px;
+    margin-top: 16px;
+    width: 480px;
+}
+
+.range-slider-job .slider {
+    -webkit-appearance: none;
+    height: 12px;
+    border-radius: 1px;
+    outline: none;
+    border-radius: 5px;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.x1{
+    background: linear-gradient(to right,#f0a143 0%,#f0a143 50%, #c4c4c4 50%, #c4c4c4 100%);
+}
+
+.x2{
+    background: linear-gradient(to right,#0fe17c 0%,#0fe17c 50%, #c4c4c4 50%, #c4c4c4 100%);
+}
+
+.x3{
+    background: linear-gradient(to right,#c98a11 0%,#c98a11 50%, #c4c4c4 50%, #c4c4c4 100%);
+}
+
+.range-slider-job .slider:hover {
+    opacity: 1;
+}
+
+.range-slider-job .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: white;
+    box-shadow: 0px 4px 4px rgba(0,0,0,0.6);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.range-slider-job .slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: white;
+    box-shadow: 0px 4px 4px rgba(0,0,0,0.6);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.mark3 {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 50px;
+    margin-right: -142px;
+}
+
+.mark3 label {
+    /*position: relative;*/
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    width: 0.5px;
+    background: #D3D3D3;
+    height: 44px;
+    line-height: 110px;
+}
+
+/*----- end -----*/
+
+
+.popup_JOB {
+    position: relative;
+    width: 1750px;
+    height: 680px;
+    border-radius: 25px;
+}
+
+.head_modal_job {
+    position: relative;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.head_modal_job h1{
+    position: relative;
+    padding-left: 10px;
+}
+
+.contentOfModalJop {
+    position: relative;
+    margin-top: 20px;
+    margin-left: 85px;
+    margin-right: 85px;
+}
+
+.tabPOP {
+  position: relative;
+  justify-content: center;
+  cursor: pointer;
+  margin-bottom: 12.5px;
+}
+
+.tabPOP ul{
+    text-align: center;
+}
+
+.tabPOP li {
+    /*padding: 4px;*/
+    width: 45%;
+    font-family: 'Kanit';
+    font-weight: 300;
+    font-size: 25px;
+    color: #435157;
+}
+
+.tabPOP li:hover:after {
+    border-bottom: 7px solid #435157;
+    width: 45%;
+}
+
+.tabPOP li:active {
+    border-bottom: 7px solid #435157;
+}
+
+.list-job-skill1 {
+    position: relative;
+    margin-bottom: 60px;
+}
+
+.button-add-job1 {
+    position: absolute;
+    margin-left: 760px;
+    margin-bottom: 15px;
+    margin-top: 600px;
+}
+
+.head_modal_job select{
+    left: 100px;
+}
+
+#topic_pop {
+    font-size: 55px;
+    font-family: 'Kanit';
+    font-weight: 500;
+    color: black;
+}
+
+.dropbtn-job4 {
+    background-color: #EAEAEA;
+    color: #000;
+    padding: 10px;
+    font-size: 20px;
+    border: none;
+    /*cursor: pointer;*/
+    border-radius: 24px;
+    padding-left: 30px;
+    width: 30vw;
+}
+
+.select-job4 {
+    margin-top: 6.5px;
+}
+
+.pos-del-obj-button {
+    position: absolute;
+    left: 910px;
+    top: 6px;
+}
+
+.del-obj-icon {
+    left: 80px;
+}
+
+.contend-of-obj {
+    position: relative;
+}
+
+>>>>>>> 286637a521e1d2471ac8141c7d6651cafc14af48
