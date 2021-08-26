@@ -40,11 +40,11 @@ class Agreement extends React.Component {
 								<div class="col">
 									<div class="topData2-content">
 										<h1 class="name inline">ข้อตกลงการให้บริการ</h1>
-										<h1 class="symbol inline"></h1>
+										<h1 class="symbol inline">></h1>
 										<h1 class="name2 inline">ข้อมูลผู้ใช้</h1>
-										<h1 class="symbol inline"></h1>
+										<h1 class="symbol inline">></h1>
 										<h1 class="name2 inline">ยืนยันตัวตน</h1>
-										<h1 class="symbol inline"></h1>
+										<h1 class="symbol inline">></h1>
 										<h1 class="name2 inline">เสร็จสิ้น</h1>
 									</div>
 								</div>
@@ -64,7 +64,7 @@ class Agreement extends React.Component {
 							</label>
 						</div>
 						<div class="inlineweight col-md-2">
-							<button class="btn btn-cta-primary-yellowwide round" href="/register" target="_self" id="continue1" disabled>ต่อไป</button>
+							<button class="btn btn-cta-primary-yellowwide round" href="/register.js" target="_self" id="continue1" disabled>ต่อไป</button>
 						</div>
 					</div>
 				</div>
