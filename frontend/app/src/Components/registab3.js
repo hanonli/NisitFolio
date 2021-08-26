@@ -32,7 +32,7 @@ class Registab3 extends React.Component {
 												<div class='modal-footer'>
 													<div class="centerverify">
 														<button type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</button>
-														<button type="button" class="btn btn-cta-primary-yellowshort profile-button round" data-bs-dismiss='modal'>ตกลง</button>
+														<button type="button" class="btn btn-cta-primary-yellowshort profile-button round" data-bs-dismiss='modal' id='regis3_HigherConfirm'>ตกลง</button>
 													</div>
 												</div>
 

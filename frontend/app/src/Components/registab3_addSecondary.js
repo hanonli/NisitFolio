@@ -7,7 +7,7 @@ class Registab3_addSecondary extends React.Component {
 		return (
 			<div className="Registab3_addSecondary">
 				
-                <form class='was-validated' id='SecondaryForm'>
+                <form  id='SecondaryForm'>
                     <div class='col-5' >
                         <div class="selectDropdown">
                             <select class="form-select form-select-lg dropbtn margin-bottom1 fff" id='regis3_selectdropdown2' aria-labelledby="select1" required>
@@ -44,7 +44,7 @@ class Registab3_addSecondary extends React.Component {
 
                     <div class='col-3' >
                         <div class="selectDropdown">
-                            <select class="form-select form-select-lg dropbtn_year margin-bottom1 is-valid fff" id='year_secondary' aria-labelledby="select1" required>
+                            <select class="form-select form-select-lg dropbtn_year margin-bottom1 fff" id='year_secondary' aria-labelledby="select1" required>
                                 <option selected disabled value=''>ปีที่จบการศึกษา</option>
                                 <option>กำลังศึกษา</option>
                             </select>

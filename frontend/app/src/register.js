@@ -23,6 +23,7 @@ class Register extends React.Component {
 		document.body.appendChild(script);
 
 	}
+	
 
 	render() {
 		return (
