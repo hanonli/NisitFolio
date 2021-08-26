@@ -2,68 +2,176 @@ import { Injectable } from '@nestjs/common';
 import { DeleteResult,Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 
-import Account from './account.entity';
-import Userinfo from './userinfo.entity';
-import City from './entity/City.entity';
-import Country from './entity/Country.entity';
-import Province from './entity/Province.entity';
-import WorkHistory from './entity/WorkHistory.entity';
-import EducationHistory from './entity/EducationHistory.entity';
-import SalaryType from './entity/SalaryType.entity';
-import Resume from './entity/Resume.entity';
-import Certificate from './entity/Certificate.entity';
-import userjobskills from './entity/UserJobSkill.entity';
-import AdditionalSkill from './entity/AdditionalSkill.entity';
-import {PostAccount,PostCity,PostCountry,PostProvince,PostUserinfo,PostWorkHistory} from './register.entity';
-
-
-import { CreateAccountDto } from './dto/create-account.dto';
-import { CreateUserinfoDto } from './dto/create-userinfo.dto';
-import { CreateDto1,CreateDto2,CreateDto3,CreateDto4,CreateDto5,CreateDto6,CreateDto7 } from './dto/create.dto';
-
+import { Account, Userinfo, AdditionalSkill, Certificate, EducationHistory, InterestedJob, WorkHistory} from './entity/Register.entity'
+import { CreateRegisDto } from './dto/create-register.dto';
+import { EmailConfirmationService } from '../emailConfirmation/emailConfirmation.service';
 import { ObjectID } from 'mongodb';
+import { StringSchema } from '@hapi/joi';
+
+
+import { Country } from 'src/register/entity/Country.entity'
+import { City } from 'src/register/entity/City.entity'
+import { Province } from 'src/register/entity/Province.entity'
+import { JobTitle } from 'src/register/entity/JobTitle.entrity'
+import { Skill } from 'src/register/entity/Skill.entrity'
 
 @Injectable()
 export class RegisterService {
   constructor(
     @InjectRepository(Account)
-    private accountRepository: Repository<PostAccount>,
+    private accountRepository: Repository<Account>,
     @InjectRepository(Userinfo)
-    private userinfoRepository: Repository<PostUserinfo>,
-    @InjectRepository(City)
-    private CityRepository: Repository<PostCity>,
-    @InjectRepository(Province)
-    private ProvinceRepository: Repository<Province>,
-    @InjectRepository(Country)
-    private CountryRepository: Repository<Country>,
-    @InjectRepository(EducationHistory)
-    private EDRepository: Repository<EducationHistory>,
-    @InjectRepository(WorkHistory)
-    private WHRepository: Repository<WorkHistory>,
-    @InjectRepository(SalaryType)
-    private SLRepository: Repository<SalaryType>,
-    @InjectRepository(Resume)
-    private ResumeRepository: Repository<Resume>,
-    @InjectRepository(Certificate)
-    private CertificateRepository: Repository<Certificate>,
-    @InjectRepository(userjobskills)
-    private userjobskillRepository: Repository<userjobskills>,
+    private userinfoRepository: Repository<Userinfo>,
     @InjectRepository(AdditionalSkill)
     private AdditionalSkillRepository: Repository<AdditionalSkill>,
-  ) {}
+    @InjectRepository(Certificate)
+    private CertificateRepository: Repository<Certificate>,
+    @InjectRepository(EducationHistory)
+    private EducationHistoryRepository: Repository<EducationHistory>,
+    @InjectRepository(WorkHistory)
+    private WorkHistoryRepository: Repository<WorkHistory>,
+    @InjectRepository(InterestedJob)
+    private InterestedJobRepository: Repository<InterestedJob>,
+    @InjectRepository(City)
+    private CityRepository: Repository<City>,
+    @InjectRepository(Country)
+    private CountryRepository: Repository<Country>,
+    @InjectRepository(Province)
+    private ProvinceRepository: Repository<Province>,
+    @InjectRepository(JobTitle)
+    private JobTitleRepository: Repository<JobTitle>,
+    @InjectRepository(Skill)
+    private SkillRepository: Repository<Skill>,
+    private readonly emailConfirmationService: EmailConfirmationService
 
-  async findAll(): Promise<Account[]> {
-    return this.accountRepository.find();
+  ) {}
+  async createRegis(createDto: CreateRegisDto)
+  {
+    const account = new Account(); 
+    account.Email = createDto.Email;
+    account.Password = createDto.Password;
+    account.ProfilePic = account.ProfilePic;
+    account.Privacy = "Public";
+    account.isEmailConfirmed = false;
+
+    const accountid = (await this.accountRepository.save(account)).id
+    const userinfo = new Userinfo();
+    userinfo.UserId = accountid;
+    userinfo.Firstname = createDto.Firstname;
+    userinfo.Lastname = createDto.Lastname;
+    userinfo.Birthday = createDto.Birthday;
+    userinfo.Gender = createDto.Gender;
+    userinfo.AboutMe = createDto.AboutMe;
+    userinfo.EmailBusiness = createDto.EmailBusiness;
+    userinfo.Country = createDto.Country;
+    userinfo.Province = createDto.Province;
+    userinfo.City = createDto.City;
+
+    for (var _i = 0; _i < createDto.SoftSkill.length; _i++) {
+      const additionalskill = new AdditionalSkill();
+      additionalskill.UserId = accountid;
+      additionalskill.SoftSkill  = createDto.SoftSkill[_i]; 
+      await this.AdditionalSkillRepository.save(additionalskill);
+    }
+    
+    for (var _i = 0; _i < createDto.CertName.length; _i++) {
+      const certificate = new Certificate();
+      certificate.UserId = accountid;
+      certificate.ResumeId = null;
+      certificate.CertName = createDto.CertName[_i]
+      certificate.CertPic = createDto.CertPic[_i]
+      certificate.CertYear = createDto.CertYear[_i]
+      await this.CertificateRepository.save(certificate);
+    }
+
+    for (var _i = 0; _i < createDto.Degree.length; _i++) {
+      const educationHistory = new EducationHistory();
+      educationHistory.UserId = accountid;
+      educationHistory.Degree = createDto.Degree[_i];
+      educationHistory.Facalty = createDto.Facalty[_i];
+      educationHistory.Find_of_study = createDto.Find_of_study[_i];
+      educationHistory.Academy = createDto.Academy[_i];
+      educationHistory.Grade = createDto.Grade[_i];
+      educationHistory.Education_Start_Year = createDto.Education_Start_Year[_i];
+      educationHistory.Education_End_Year = createDto.Education_End_Year[_i];
+      await this.EducationHistoryRepository.save(educationHistory);
+    }
+
+    for (var _i = 0; _i < createDto.Work_JobName.length; _i++) {
+      const workHistory = new WorkHistory();
+      workHistory.UserId = accountid;
+      workHistory.Work_JobName = createDto.Work_JobName[_i];
+      workHistory.Work_JobType = createDto.Work_JobType[_i];
+      workHistory.Company = createDto.Company[_i];
+      workHistory.Work_Start_Month = createDto.Work_Start_Month[_i];
+      workHistory.Work_End_Month = createDto.Work_End_Month[_i];
+      workHistory.Work_Start_Year = createDto.Work_Start_Year[_i];
+      workHistory.Work_End_Year = createDto.Work_End_Year[_i];
+      workHistory.Salary = createDto.Salary[_i]; 
+      workHistory.Infomation = createDto.Infomation[_i]; 
+      await this.WorkHistoryRepository.save(workHistory);
+    }
+
+    for (var _i = 0; _i < createDto.Job_JobName.length; _i++) {
+      const interestedJob = new InterestedJob();
+      interestedJob.UserId = accountid;
+      interestedJob.Job_Objective = createDto.Job_Objective[_i];
+      interestedJob.Job_Score = createDto.Job_Score[_i];
+      interestedJob.Job_JobName = createDto.Job_JobName[_i];
+      interestedJob.Job_SkillName = createDto.Job_SkillName[_i];
+      await this.InterestedJobRepository.save(interestedJob);
+    }
+
+
+    await this.emailConfirmationService.sendVerificationLink(createDto.Email);
+
+    return (this.userinfoRepository.save(userinfo));
+
   }
 
-  async create(createDto: CreateDto1) {
+  async findCountry()
+  {
+    return this.CountryRepository.find();
+  }
+
+  async findProvince(country:string)
+  {
+    return this.ProvinceRepository.find({where:{ Country: country }});
+  }
+
+  async findCity(province:string)
+  {
+    return this.CityRepository.find({where:{ Province: province }});
+  }
+
+  async findJobTitle()
+  {
+    return this.JobTitleRepository.find();
+  }
+
+  async findSkill(JobTitle:string)
+  {
+    return this.SkillRepository.find({where:{ JobTitle: JobTitle }});
+  }
+
+ 
+  
+
+  //------------------------------START TRUE
+  /*
+  async createTRUE(createDto: CreateDtoTRUE) {
+
+    const Email=createDto.Email;
 
     const account = new PostAccount();
     account.Email = createDto.Email;
     account.Password = createDto.Password;
     account.ProfilePic = createDto.ProfilePic;
-    account.Privacy = createDto.Privacy;
-    account.isEmailConfirmed = createDto.isEmailConfirmed;
+    if (createDto.Privacy==''){
+      account.Privacy = "Public";
+    }else{
+      account.Privacy = createDto.Privacy;
+    }
 
     const userinfo = new PostUserinfo();
     userinfo.Firstname = createDto.Firstname;
@@ -71,9 +179,125 @@ export class RegisterService {
     userinfo.Birthday = createDto.Birthday;
     userinfo.Gender = createDto.Gender;
 
-    return (this.accountRepository.save(account),this.userinfoRepository.save(userinfo));
-  }
+    const City = new PostCity();
+    City.UserId = Email;
+    City.Name = createDto.NameCity;
 
+    const Country = new PostCountry();
+    Country.UserId = Email;
+    Country.Name = createDto.NameCountry;
+
+    const Province = new PostProvince();
+    Province.UserId = Email;
+    Province.Name = createDto.NameProvince;
+
+    const ED = new EducationHistory();
+    ED.Academy=createDto.Academy;
+    ED.Degree=createDto.Degree;
+    ED.End_Year=createDto.End_Year;
+    ED.Facalty=createDto.Facalty;
+    ED.Find_of_study=createDto.Find_of_study;
+    ED.Grade=createDto.Grade;
+    ED.Start_Year=createDto.Start_Year;
+    ED.UserId=Email;
+
+    const WH = new WorkHistory();
+    WH.Company=createDto.Company;
+    WH.End_Month=createDto.End_Month;
+    WH.End_Year=createDto.End_Year_WH;
+    WH.Information=createDto.Information;
+    WH.JobName=createDto.JobName_WH;
+    WH.JobType=createDto.JobType;
+    WH.Salary=createDto.Salary;
+    WH.Start_Month=createDto.Start_Month;
+    WH.Start_Year=createDto.Start_Year_WH;
+    WH.UserId=Email;
+
+    const ST = new SalaryType();
+    ST.Name=createDto.NameSalary;
+    ST.UserId=Email;
+
+    const RE = new Resume();
+    if (createDto.PrivacyFOl==''){
+      RE.Privacy = "Public";
+    }else{
+      RE.Privacy = createDto.PrivacyFOl;
+    }
+    //RE.Privacy=createDto.PrivacyFOl;
+    RE.Tag=createDto.Tag;
+    RE.UserId=Email;
+
+
+    const CF = new Certificate();
+    CF.Year=createDto.Year;
+    CF.Pic=createDto.Pic;
+    CF.UserId=Email;
+
+    const UJS = new userjobskills();
+    UJS.JobName=createDto.JobName;
+    UJS.Objective=createDto.Objective;
+    UJS.Score=createDto.Score;
+    UJS.SkillName=createDto.SkillName;
+    UJS.UserId=Email;
+    
+    const ADS = new AdditionalSkill();
+    ADS.SoftSkill=createDto.SoftSkill;
+    ADS.UserId=Email;
+
+
+    return (this.CityRepository.save(City),this.CountryRepository.save(Country),this.ProvinceRepository.save(Province),this.EDRepository.save(ED),this.WHRepository.save(WH),this.SLRepository.save(ST),this.ResumeRepository.save(RE),this.CertificateRepository.save(CF),this.accountRepository.save(account),this.userinfoRepository.save(userinfo),this.AdditionalSkillRepository.save(ADS),this.userjobskillRepository.save(UJS));
+    
+    //return this.AdditionalSkillRepository.save(ADS);
+    //return this.userjobskillRepository.save(UJS);
+    //return (this.ResumeRepository.save(RE),this.CertificateRepository.save(CF));
+    //return (this.WHRepository.save(WH),this.SLRepository.save(ST));
+    //return this.EDRepository.save(ED);
+    //return (this.CityRepository.save(City),this.CountryRepository.save(Country),this.ProvinceRepository.save(Province),this.userinfoRepository.save(x));
+    //return (this.accountRepository.save(account),this.userinfoRepository.save(userinfo));
+  }
+  //-------------------------------ENDTRUE
+  //--------------------------------sub
+  async findAllDDC(){
+    return this.DDCRepository.find();
+  }
+  
+  async findAllDDP(C: string){
+    return this.DDPRepository.find({NameCountry: C});
+  }
+  async findAllDDCity(P: string){
+    return this.DDCityRepository.find({NameProvince: P});
+  }
+  async findAllDDHS(){
+    return this.DDHSRepository.find();
+  }
+  async findAllDDJS(JS: string){
+    return this.DDJSRepository.find({NameProvince: JS});
+  }
+  //*/
+  //-------------------------------endsub
+  /*async findAll() {
+    return this.accountRepository.find();
+  }*/
+
+  /*async create(createDto: CreateRegisDto) {
+
+    const account = new Account();
+    account.Email = createDto.Email;
+    account.Password = createDto.Password;
+    account.ProfilePic = createDto.ProfilePic;
+    account.Privacy = createDto.Privacy;
+    account.isEmailConfirmed = createDto.isEmailConfirmed;
+
+    const userinfo = new Userinfo();
+    userinfo.Firstname = createDto.Firstname;
+    userinfo.Lastname = createDto.Lastname;
+    userinfo.Birthday = createDto.Birthday;
+    userinfo.Gender = createDto.Gender;
+
+
+    return (this.accountRepository.save(account),this.userinfoRepository.save(userinfo));
+  }*/
+  /*
   async createOrUpdate(album: Account): Promise<Account> {
     return await this.accountRepository.save(album);
   }
@@ -86,19 +310,20 @@ export class RegisterService {
   async findOneUserinfo(Email: string): Promise<PostUserinfo> {
     return await this.userinfoRepository.findOne({ UserId: Email });
   }
-
+  
   async create2(Email: string,CreateDto2: CreateDto2) {
 
     const City = new PostCity();
     City.UserId = Email;
     City.Name = CreateDto2.NameCity;
+  */
     //this.ProvinceRepository.save(City);
     /*
     account.Password = CreateDtoSe.Password;
     account.ProfilePic = CreateDtoSe.ProfilePic;
     account.Privacy = CreateDtoSe.Privacy;
     */
-
+   /*
     const Country = new PostCountry();
     Country.UserId = Email;
     Country.Name = CreateDto2.NameCountry;
@@ -133,14 +358,14 @@ export class RegisterService {
   async createOrUpdate2(Email: string,CreateDtoSe: CreateDto2) {
 
     const City = await this.CityRepository.findOne({ UserId: Email });
-    City.Name = CreateDtoSe.NameCity;
+    City.Name = CreateDtoSe.NameCity;*/
     //this.ProvinceRepository.save(City);
     /*
     account.Password = CreateDtoSe.Password;
     account.ProfilePic = CreateDtoSe.ProfilePic;
     account.Privacy = CreateDtoSe.Privacy;
     */
-
+    /*
     const Country = await this.CountryRepository.findOne({ UserId: Email });
     Country.Name = CreateDtoSe.NameCountry;
     //this.CountryRepository.save(Country);

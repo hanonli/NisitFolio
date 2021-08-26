@@ -7,7 +7,7 @@ export class Province {
   id?: ObjectId;
   
   @Column()
-  UserId: string;
+  Country: string;
 
   @Column()
   Name: string;

@@ -1,0 +1,95 @@
+
+//--------------------Portfolio--------------------------//
+@Entity("Portfolio")
+export class Portfolio {
+  @ObjectIdColumn()
+  id?: ObjectId;
+  
+  @ObjectIdColumn()
+  UserId: ObjectId;
+
+  @Column()
+  PortTag: string;
+  
+  @Column()
+  PortPrivacy: string;
+}
+
+
+
+//--------------------PortfolioPicture--------------------------//
+@Entity("PortfolioPicture")
+export class PortfolioPicture {
+  @ObjectIdColumn()
+  id?: ObjectId;
+  
+  @ObjectIdColumn()
+  PortfolioId: ObjectId;
+
+  @Column()
+  PortPic: string;
+  
+  @Column()
+  Desciption: string;
+}
+
+//--------------------Resume--------------------------//
+@Entity("Resume")
+export class Resume {
+  @ObjectIdColumn()
+  id?: ObjectId;
+  
+  @ObjectIdColumn()
+  UserId: ObjectId;
+
+  @Column()
+  ResumeTag: string;
+
+  @Column()
+  ResumePrivacy: string;
+
+
+}
+
+//--------------------UserSkill--------------------------//
+@Entity("UserSkill")
+export class UserSkill {
+  @ObjectIdColumn()
+  id?: ObjectId;
+  
+  @ObjectIdColumn()
+  UserId: ObjectId;
+
+  @Column()
+  Score: Number;
+
+
+}
+
+@Entity("userjobskill")
+export class UserJobSkill {
+
+  @ObjectIdColumn()
+  id?: ObjectId;
+  
+  @ObjectIdColumn()
+  UserId: ObjectId;
+
+  @Column()
+  Objective: string;
+
+  @Column()
+  Score: Number;
+
+  @Column()
+  JobName: string;
+
+  @Column()
+  SkillName: string;
+}
+
+const additionalskill = new AdditionalSkill();
+const certificate = new Certificate();
+const educationHistory = new EducationHistory();
+const interestedJob = new InterestedJob();
+const workHistory = new WorkHistory();

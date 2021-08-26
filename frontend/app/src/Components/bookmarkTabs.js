@@ -11,7 +11,7 @@ class BookmarkTabs extends React.Component {
 		return (
 			<div className="BookmarkTabs">
 				<div class="tab-inline bookmark-tabs-fixed">
-                    <div class="container-fluid yahaha3">
+                    <div class="container-fluid yahaha2">
                         <div class="row">
                             <div class="col">
                                 <ol class="tab-list">
@@ -22,9 +22,9 @@ class BookmarkTabs extends React.Component {
                                     <img class="layout-toggle gridOn" src="assets/images/outline_format_list_bulleted_black_48dp 3.png" alt="" width="40" height="40" type="button" />
 									<button class="btn btn-cta-primary round grey dropdown-toggle tab-dropdown-pad" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">เรียงตามความนิยม</button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                       <li><div class="dropdown-item">เรียงตามความนิยม</div></li>
-                                       <li><div class="dropdown-item">เรียงตามล่าสุด</div></li>
-                                       <li><div class="dropdown-item">เรียงตามตัวอักษร</div></li>
+                                       <li><a class="dropdown-item">เรียงตามความนิยม</a></li>
+                                       <li><a class="dropdown-item">เรียงตามล่าสุด</a></li>
+                                       <li><a class="dropdown-item">เรียงตามตัวอักษร</a></li>
                                     </ul>
 									<div class="float-end" id="result-count">
 										จำนวน 0 รายการ

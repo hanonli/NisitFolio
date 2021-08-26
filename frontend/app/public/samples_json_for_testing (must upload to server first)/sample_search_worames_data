@@ -62,14 +62,20 @@
 		"desc": "My name is Worames and I'm better than Edgeworth.",
 		"tags": ["Full Stack Developer", "CEO of KU Happy Place", "PE Teacher"],
 		"bookmark": true
-	},
-	{
+	},{
 		"name": "วรเมขา ผดุงเจริญ หมายเลข5",
 		"type": "profile",
 		"pic": "assets/images/profile.jpg",
 		"desc": "My name is Worames and I'm a lot better than Edgeworth.",
 		"tags": ["CEO of All Organizations", "Hotel Manager", "Modeling"],
 		"bookmark": false
+	},
+	{
+		"type": "profile",
+		"pic": "assets/images/profile.jpg",
+		"desc": "My name is Worames and I'm better than Edgeworth.",
+		"tags": ["Full Stack Developer", "CEO of KU Happy Place", "PE Teacher"],
+		"bookmark": true
 	},
 	{
 		"name":"Edgeworth A+",

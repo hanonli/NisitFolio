@@ -27,10 +27,10 @@ class Registab7 extends React.Component {
 	render (){
 		return (
 			<div className="Registab7">
-				<div class="regis-box-content" id="yyy">
+				<div class="regis-box-content7 " id="yyy">
 					<h1 class="headerRegis" id="havesideskill">ทักษะเสริม</h1>
-					<div class="dropdowntap7">
-						<input class="form-control dropbtn ssf" list="sideskillop" id="sideskilllist" placeholder="เลือกทักษะเสริมที่ถนัด"></input>
+					<div class="dropdowntap7_1">
+						<input class="form-control dropbtn ssf" list="sideskillop" id="sideskilllist1" placeholder="เลือกทักษะเสริมที่ถนัด"></input>
 						<datalist class="dropdown-content" id="sideskillop">
 							<option value="Photoshop"></option>
 							<option value="Word"></option>
@@ -47,12 +47,14 @@ class Registab7 extends React.Component {
 							<option value="Excel"></option>
 							<option value="Ai"></option>
 							<option value="Python"></option>
-						</datalist>
+						</datalist>	
 					</div>
-					<a>test delete-dropdown popup</a>
-					<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#Modaltab7">
-							<img src="assets/images/bin.png"></img>
-					</button>
+					<div class="dropdowntap7_2">
+						<input class="form-control dropbtn ssf" list="sideskillop" id="sideskilllist2"  placeholder="เลือกทักษะเสริมที่ถนัด"></input>
+					</div>
+					<div class="dropdowntap7_3">
+						<input class="form-control dropbtn ssf" list="sideskillop" id="sideskilllist3"  placeholder="เลือกทักษะเสริมที่ถนัด"></input>
+					</div>
 					<div class="modal fade" id="Modaltab7" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog modal-dialog-centered">
 							<div class="modal-content minisize">

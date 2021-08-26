@@ -16,11 +16,6 @@ h1, h2, h3, h4, h5, h6, input, span,label,button,textarea, a {
   color: #778492;
 }
 
-nf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 32px; font-weight: 200;  color: #939393; }
-
-hw{ font-family: 'Nunito','Kanit', arial, sans-serif; font-weight: 400;  color: #778492; }
-hb{ font-family: 'Nunito','Kanit', arial, sans-serif; font-weight: 600;  color: #778492; }
-
 .nobr { white-space: nowrap }
 
 .inline {
@@ -205,7 +200,7 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 	box-shadow: 0px 4px 3px rgba(50, 50, 50, 0.75);
 }
 
-.yahaha {
+.yahaha{
 	width: 82vw;
 }
 
@@ -213,28 +208,17 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 	width: 97.5vw;
 }
 
-.yahaha3 {
-	width: 82vw;
-}
-
 .bookmark-margin {
 	margin-left: 20px;
-	margin-top: -10px;
-	margin-bottom: -10px;
 }
 
 .bookmark-content{
 	/*margin-bottom: 5px;*/
-	margin-left: 32px;
-}
-
-.bcw{
-	/*margin-bottom: 5px;*/
-	margin-left: -32px !important;
+	margin-left: 15px;
 }
 
 .bk-pad{
-	margin-left: -4px;
+	padding-right: 151px;
 }
 
 .bookmark-content-profile{
@@ -585,7 +569,6 @@ navbar { margin:0; }
   margin-right: 30px;
   margin-left: 30px;
   margin-bottom: 15px;
-  padding-bottom: 12px;
   vertical-align: bottom;
 }
 
@@ -673,11 +656,6 @@ a.btn-cta-primary-white:hover, .btn-cta-primary-white:hover {
    border-top: .5em solid;
    border-right: .5em solid transparent;
    border-left: .5em solid transparent;
-}
-
-.dropdown-menu > li > div:hover, .dropdown-menu > li > div:focus, .dropdown-menu > li > div:active {
-    background-image: none;
-    background-color: #C7C7C7; 
 }
 
 .obj-icon{
