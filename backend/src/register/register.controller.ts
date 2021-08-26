@@ -1,28 +1,12 @@
-import { Controller, Delete, Get, Put, Post, Body, HttpException, HttpStatus, Param, UseGuards, UploadedFile } from '@nestjs/common';
+import { Controller, Delete, Get, Put, Post, Body, HttpException, HttpStatus, Param, UseGuards, UploadedFile, UploadedFiles } from '@nestjs/common';
 import { ObjectId } from 'mongodb';
 import { Express } from 'express'
 import { ParseObjectIdPipe } from '../common/pipes';
-<<<<<<< HEAD
-
-import './dto/create-account.dto';
-import { CreateUserinfoDto } from './dto/create-userinfo.dto';
-import { CreateDto, CreateDtoSe,CreateDto4,CreateDto5 } from './dto/create.dto';
-=======
->>>>>>> cc62a96d4c1d2ba5aa7be0f0560291ce4085979b
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { UseInterceptors } from '@nestjs/common';
+import { AnyFilesInterceptor } from '@nestjs/platform-express';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { DeleteResult } from 'typeorm';
-<<<<<<< HEAD
-import { CreateAccountDto } from './dto/create-account.dto';
-import { PostAccount, PostUserinfo } from './register.entity';
-import EducationHistory from './entity/EducationHistory.entity';
-import WorkHistory from './entity/WorkHistory.entity';
-import { userjobskills } from './entity/UserJobSkill.entity';
-import { AdditionalSkill } from './entity/AdditionalSkill.entity';
-
-//--------------------------------------no1
-=======
 
 import { RegisterService } from './register.service';
 import { CreateRegisDto } from './dto/create-register.dto';
@@ -32,14 +16,10 @@ import { Account, Userinfo, AdditionalSkill, Certificate, EducationHistory, Inte
 
 
 
->>>>>>> cc62a96d4c1d2ba5aa7be0f0560291ce4085979b
 
 @Controller('register')
 export class RegisterController {
   constructor(private registerService: RegisterService) {}
-<<<<<<< HEAD
-
-=======
   /*@Post('otest')
   async otest(@Body() otest: otest) {
     return this.registerService.otest(otest);
@@ -113,7 +93,6 @@ export class RegisterController {
   
   //------------------------------endsub
   /*
->>>>>>> cc62a96d4c1d2ba5aa7be0f0560291ce4085979b
   @Get()
   async findAll(): Promise<Account[]> {
     return this.registerService.findAll();
@@ -122,33 +101,19 @@ export class RegisterController {
   //@UseGuards(JwtAuthGuard)
   /*
   @Post()
-  async create(@Body() createDto: CreateDto) {
+  async create(@Body() createDto: CreateDto1) {
     return this.registerService.create(createDto);
-  }//*/
-
-  @Get(':accountD/reviews')
-  async findAllReviews(@Param('accountD', ParseObjectIdPipe) accountD: ObjectId): Promise<CreateUserinfoDto[]> {
-    return this.registerService.findAllReviews(accountD);
   }
-
-  //@UseGuards(JwtAuthGuard)
-  @Post(':accountD/reviews')
-  async createReview(@Param('accountD', ParseObjectIdPipe) accountD: ObjectId,
-                     @Body() createUserinfoDto: CreateUserinfoDto) {
-    createUserinfoDto.accountD = accountD;
-    return this.registerService.createReview(createUserinfoDto);
-  }
-
+  */
+  
   @Post('upload')
   @UseInterceptors(FileInterceptor('file'))
   uploadFile(@UploadedFile() file: Express.Multer.File) {
-    console.log(file);
+    console.log(file.originalname);
   }
+  
 
-<<<<<<< HEAD
-=======
   /*//-----------------------Account---------------------------------//
->>>>>>> cc62a96d4c1d2ba5aa7be0f0560291ce4085979b
   @Put(':Email/Account') // PUT /email/Account
   async updatee(@Param('Email') Email: string,@Body() createAccountDto: CreateAccountDto,): Promise<Account> {
     const x = await this.registerService.findOne(Email);
@@ -165,28 +130,25 @@ export class RegisterController {
   @Get(':Email')
   async findOnetest(@Param('Email') Email: string) {
     return (await this.registerService.findOneUserinfo(Email));
-    /*
-    return (await this.registerService.findOneUserinfo(Email)).Firstname,(await this.registerService.findOneUserinfo(Email)).Lastname;
-    */
   }
-  ///no2///
-  
+
+  //-----------------------userInfo---------------------------------//
   @Post(':Email/userInfo')
-  async createuserInfo(@Param('Email') Email: string,@Body() CreateDtoSe: CreateDtoSe) {
-    return this.registerService.createSe(Email,CreateDtoSe);
+  async createuserInfo(@Param('Email') Email: string,@Body() CreateDto2: CreateDto2) {
+    return this.registerService.create2(Email,CreateDto2);
   }
   
   @Get(':Email/userInfo')
-  async findOneSee(@Param('Email') Email: string): Promise<CreateDtoSe> {
-    return this.registerService.findOneSee(Email);
+  async findOneSee(@Param('Email') Email: string): Promise<CreateDto2> {
+    return this.registerService.findOne2(Email);
   }
   
-  @Put(':Email/userInfo') // PUT /email/Account
-  async updateSe(@Param('Email') Email: string,@Body() CreateDtoSe: CreateDtoSe) {
-    return await this.registerService.createOrUpdate2(Email,CreateDtoSe);
+  @Put(':Email/userInfo') 
+  async updateSe(@Param('Email') Email: string,@Body() CreateDto2: CreateDto2) {
+    return await this.registerService.createOrUpdate2(Email,CreateDto2);
   }
-  //*/
-  //-----------------------no3---------------------------------//
+
+  //-----------------------Education---------------------------------//
   @Post(':Email/ED')
   async createuser3(@Param('Email') Email: string,@Body() CreateDto3: EducationHistory) {
     return this.registerService.create3(Email,CreateDto3);
@@ -197,26 +159,28 @@ export class RegisterController {
     return this.registerService.findOne3(Email);
   }
   
-  @Put(':Email/ED') // PUT /email/Account
+  @Put(':Email/ED') 
   async update3(@Param('Email') Email: string,@Body() CreateDto3: EducationHistory) {
     return await this.registerService.createOrUpdate3(Email,CreateDto3);
   }
-  //-----------------------no4---------------------------------//
+
+  //-----------------------workhistory---------------------------------//
   @Post(':Email/WH')
   async createuser4(@Param('Email') Email: string,@Body() CreateDto4: CreateDto4) {
     return this.registerService.create4(Email,CreateDto4);
   }
-  
+
   @Get(':Email/WH')
   async findOne4(@Param('Email') Email: string): Promise<CreateDto4> {
     return this.registerService.findOne4(Email);
   }
-  
-  @Put(':Email/WH') // PUT /email/Account
+
+  @Put(':Email/WH') 
   async update4(@Param('Email') Email: string,@Body() CreateDto4: CreateDto4) {
     return await this.registerService.createOrUpdate4(Email,CreateDto4);
   }
-  //-----------------------no5---------------------------------//
+
+  //-----------------------Resume---------------------------------//
   @Post(':Email/RE')
   async createuser5(@Param('Email') Email: string,@Body() CreateDto5: CreateDto5) {
     return this.registerService.create5(Email,CreateDto5);
@@ -227,11 +191,12 @@ export class RegisterController {
     return this.registerService.findOne5(Email);
   }
   
-  @Put(':Email/RE') // PUT /email/Account
+  @Put(':Email/RE')
   async update5(@Param('Email') Email: string,@Body() CreateDto5: CreateDto5) {
     return await this.registerService.createOrUpdate5(Email,CreateDto5);
   }
-  //-----------------------no6---------------------------------//
+
+  //-----------------------userjobskills---------------------------------//
   @Post(':Email/UJF')
   async createuser6(@Param('Email') Email: string,@Body() CreateDto6: userjobskills) {
     return this.registerService.create6(Email,CreateDto6);
@@ -242,11 +207,12 @@ export class RegisterController {
     return this.registerService.findOne6(Email);
   }
   
-  @Put(':Email/UJF') // PUT /email/Account
+  @Put(':Email/UJF') 
   async update6(@Param('Email') Email: string,@Body() CreateDto6: userjobskills) {
     return await this.registerService.createOrUpdate6(Email,CreateDto6);
   }
-  //-----------------------no7---------------------------------//
+
+  //-----------------------AdditionalSkill---------------------------------//
   @Post(':Email/ADS')
   async createuser7(@Param('Email') Email: string,@Body() CreateDto6: AdditionalSkill) {
     return this.registerService.create7(Email,CreateDto6);
@@ -257,35 +223,29 @@ export class RegisterController {
     return this.registerService.findOne7(Email);
   }
   
-  @Put(':Email/ADS') // PUT /email/Account
+  @Put(':Email/ADS') 
   async update7(@Param('Email') Email: string,@Body() CreateDto6: AdditionalSkill) {
     return await this.registerService.createOrUpdate7(Email,CreateDto6);
   }
   //----------------------no12------------------//
   @Post('/uf1')
-  async createuser12(@Param('Email') Email: string,@Body() CreateDto: CreateDto) {
+  async createuser12(@Param('Email') Email: string,@Body() CreateDto: CreateDto1) {
     return this.registerService.create12(CreateDto);
   }
   
   @Get(':Email/uf1')
-  async findOne12(@Param('Email') Email: string): Promise<CreateDto> {
+  async findOne12(@Param('Email') Email: string): Promise<CreateDto1> {
     return this.registerService.findOne12(Email);
   }
   
-  @Put(':Email/uf1') // PUT /email/Account
-  async update12(@Param('Email') Email: string,@Body() CreateDto: CreateDto) {
+  @Put(':Email/uf1') 
+  async update12(@Param('Email') Email: string,@Body() CreateDto: CreateDto1) {
     return await this.registerService.createOrUpdate12(Email,CreateDto);
   }
   //------------------------------error
   @Get(':Email/userInfo')
-<<<<<<< HEAD
-  async findOneSeet(@Param('Email') Email: string): Promise<CreateDtoSe> {
-    return this.registerService.findOneSee(Email);
-  }
-=======
   async findOneSeet(@Param('Email') Email: string): Promise<CreateDto2> {
     return this.registerService.findOne2(Email);
   }*/
 
->>>>>>> cc62a96d4c1d2ba5aa7be0f0560291ce4085979b
 }

@@ -1,31 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { DeleteResult, Repository } from 'typeorm';
+import { DeleteResult,Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 
-<<<<<<< HEAD
-import Account from './account.entity';
-import Userinfo from './userinfo.entity';
-import {City} from './entity/City.entity';
-import {Country} from './entity/Country.entity';
-import {Province} from './entity/Province.entity';
-import {PostAccount,PostCity,PostCountry,PostProvince,PostUserinfo,PostWorkHistory} from './register.entity';
-
-import { CreateAccountDto } from './dto/create-account.dto';
-import { CreateUserinfoDto } from './dto/create-userinfo.dto';
-import { CreateDto,CreateDtoSe,CreateDto4,CreateDto5 } from './dto/create.dto';
-
-import { ObjectID } from 'mongodb';
-import WorkHistory from './entity/WorkHistory.entity';
-import EducationHistory from './entity/EducationHistory.entity';
-import SalaryType from './entity/SalaryType.entity';
-import Resume from './entity/Resume.entity';
-import Certificate from './entity/Certificate.entity';
-import { userjobskills } from './entity/UserJobSkill.entity';
-import { AdditionalSkill } from './entity/AdditionalSkill.entity';
-
-
-//----------------------------------no1
-=======
 import { Account, Userinfo, AdditionalSkill, Certificate, EducationHistory, InterestedJob, WorkHistory} from './entity/Register.entity'
 import { CreateRegisDto } from './dto/create-register.dto';
 import { EmailConfirmationService } from '../emailConfirmation/emailConfirmation.service';
@@ -38,7 +14,6 @@ import { City } from 'src/register/entity/City.entity'
 import { Province } from 'src/register/entity/Province.entity'
 import { JobTitle } from 'src/register/entity/JobTitle.entrity'
 import { Skill } from 'src/register/entity/Skill.entrity'
->>>>>>> cc62a96d4c1d2ba5aa7be0f0560291ce4085979b
 
 @Injectable()
 export class RegisterService {
@@ -61,25 +36,6 @@ export class RegisterService {
     private CityRepository: Repository<City>,
     @InjectRepository(Country)
     private CountryRepository: Repository<Country>,
-<<<<<<< HEAD
-    @InjectRepository(EducationHistory)
-    private EDRepository: Repository<EducationHistory>,
-    @InjectRepository(WorkHistory)
-    private WHRepository: Repository<WorkHistory>,
-    @InjectRepository(SalaryType)
-    private SLRepository: Repository<SalaryType>,
-    @InjectRepository(Resume)
-    private ResumeRepository: Repository<Resume>,
-    @InjectRepository(Certificate)
-    private CertificateRepository: Repository<Certificate>,
-    @InjectRepository(userjobskills)
-    private userjobskillRepository: Repository<userjobskills>,
-    @InjectRepository(AdditionalSkill)
-    private AdditionalSkillRepository: Repository<AdditionalSkill>,
-  ) {}
-
-  async findAll(): Promise<Account[]> {
-=======
     @InjectRepository(Province)
     private ProvinceRepository: Repository<Province>,
     @InjectRepository(JobTitle)
@@ -320,21 +276,9 @@ export class RegisterService {
   //*/
   //-------------------------------endsub
   /*async findAll() {
->>>>>>> cc62a96d4c1d2ba5aa7be0f0560291ce4085979b
     return this.accountRepository.find();
   }*/
 
-<<<<<<< HEAD
-  Y
-
-  async findAllReviews(courseId: ObjectID): Promise<Userinfo[]> {
-    return this.userinfoRepository.find({where:{ courseId: courseId }});
-  }
-
-  async createReview(createReviewDto:  CreateUserinfoDto) {
-    return this.userinfoRepository.save(createReviewDto);
-  }
-=======
   /*async create(createDto: CreateRegisDto) {
 
     const account = new Account();
@@ -354,7 +298,6 @@ export class RegisterService {
     return (this.accountRepository.save(account),this.userinfoRepository.save(userinfo));
   }*/
   /*
->>>>>>> cc62a96d4c1d2ba5aa7be0f0560291ce4085979b
   async createOrUpdate(album: Account): Promise<Account> {
     return await this.accountRepository.save(album);
   }
@@ -367,14 +310,6 @@ export class RegisterService {
   async findOneUserinfo(Email: string): Promise<PostUserinfo> {
     return await this.userinfoRepository.findOne({ UserId: Email });
   }
-<<<<<<< HEAD
-  //no2
-  async createSe(Email: string,CreateDtoSe: CreateDtoSe) {
-
-    const City = new PostCity();
-    City.UserId = Email;
-    City.Name = CreateDtoSe.NameCity;
-=======
   
   async create2(Email: string,CreateDto2: CreateDto2) {
 
@@ -382,7 +317,6 @@ export class RegisterService {
     City.UserId = Email;
     City.Name = CreateDto2.NameCity;
   */
->>>>>>> cc62a96d4c1d2ba5aa7be0f0560291ce4085979b
     //this.ProvinceRepository.save(City);
     /*
     account.Password = CreateDtoSe.Password;
@@ -392,12 +326,12 @@ export class RegisterService {
    /*
     const Country = new PostCountry();
     Country.UserId = Email;
-    Country.Name = CreateDtoSe.NameCountry;
+    Country.Name = CreateDto2.NameCountry;
     //this.CountryRepository.save(Country);
 
     const Province = new PostProvince();
     Province.UserId = Email;
-    Province.Name = CreateDtoSe.NameProvince;
+    Province.Name = CreateDto2.NameProvince;
     //this.ProvinceRepository.save(Province);
 
     //const text = new PostUserinfo();
@@ -406,13 +340,13 @@ export class RegisterService {
     x.Firstname =(await this.userinfoRepository.findOne({ UserId: Email })).Firstname;
     x.Lastname=(await this.userinfoRepository.findOne({ UserId: Email })).Lastname;
     x.Gender=(await this.userinfoRepository.findOne({ UserId: Email })).Gender;
-    x.AboutMe = CreateDtoSe.AboutMe;
-    x.EmailBusiness = CreateDtoSe.EmailBusiness;
+    x.AboutMe = CreateDto2.AboutMe;
+    x.EmailBusiness = CreateDto2.EmailBusiness;
 
     return (this.CityRepository.save(City),this.CountryRepository.save(Country),this.ProvinceRepository.save(Province),this.userinfoRepository.save(x));
   }
-  async findOneSee(Email: string): Promise<CreateDtoSe> {
-    const x = new CreateDtoSe;
+  async findOne2(Email: string): Promise<CreateDto2> {
+    const x = new CreateDto2;
     x.UserId = Email;
     x.NameCountry =(await this.CountryRepository.findOne({ UserId: Email })).Name;
     x.NameProvince=(await this.ProvinceRepository.findOne({ UserId: Email })).Name;
@@ -421,7 +355,7 @@ export class RegisterService {
     x.EmailBusiness = (await this.userinfoRepository.findOne({ UserId: Email })).EmailBusiness;
     return x;
   }
-  async createOrUpdate2(Email: string,CreateDtoSe: CreateDtoSe) {
+  async createOrUpdate2(Email: string,CreateDtoSe: CreateDto2) {
 
     const City = await this.CityRepository.findOne({ UserId: Email });
     City.Name = CreateDtoSe.NameCity;*/
@@ -623,7 +557,7 @@ export class RegisterService {
     return this.AdditionalSkillRepository.save(ADS);
   }
   //------------------------------------------------no12
-  async create12(createDto: CreateDto) {
+  async create12(createDto: CreateDto1) {
 
     const account = new PostAccount();
     account.Email = createDto.Email;
@@ -644,7 +578,7 @@ export class RegisterService {
     return (this.accountRepository.save(account),this.userinfoRepository.save(userinfo));
   }
   async findOne12(Email: string) {
-    const x = new CreateDto;
+    const x = new CreateDto1;
     x.Email = Email;
     x.Password= (await this.accountRepository.findOne({ Email: Email })).Password;
     x.ProfilePic=(await this.accountRepository.findOne({ Email: Email })).ProfilePic;
@@ -655,7 +589,7 @@ export class RegisterService {
     x.Gender=(await this.userinfoRepository.findOne({ UserId: Email })).Gender;
     return x;
   }
-  async createOrUpdate12(Email: string,createDto: CreateDto) {
+  async createOrUpdate12(Email: string,createDto: CreateDto1) {
 
     const ADS = await this.AdditionalSkillRepository.findOne({ UserId: Email });
     const account =  await this.accountRepository.findOne({ Email: Email });
@@ -689,4 +623,5 @@ export class RegisterService {
     return x;
   }
   //*/
+  
 }

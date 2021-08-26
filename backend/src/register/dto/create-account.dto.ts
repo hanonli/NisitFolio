@@ -279,3 +279,4 @@ export class CreateUserJobSkill {
   SkillName: string;
 }
 
+
