@@ -23,4 +23,3 @@ export class Account {
 }
 
 export default Account;
-

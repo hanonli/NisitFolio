@@ -1,36 +1,63 @@
-import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import Account from '../register/account.entity';
-import { CreateAccountDto } from 'src/register/dto/create-account.dto';
+import User from './user.entity';
+import { ObjectId } from 'mongodb';
 
-export type User = any;
+@Injectable()
+  export class UsersService {
+  constructor(
+    @InjectRepository(User)
+    private usersRepository: Repository<User>,
+  ) {}
+
+  async markEmailAsConfirmed(Email: string) {
+    return this.usersRepository.update({ Email }, {
+      isEmailConfirmed: true
+    });
+  }
+  async getByEmail(Email: string) {
+    return await this.usersRepository.findOne({ Email: Email });
+  }
+
+  async findOne(Email: string) {
+    return await this.usersRepository.findOne({ Email: Email });
+  }
+
+  async getById(Id: ObjectId) {
+    return await this.usersRepository.findOne({ id: Id });
+  }
+}
+
+/*export type User = any;
 
 @Injectable()
 export class UsersService {
-  private readonly users: Account[];
+  private readonly users: User[];
 
-  constructor(
-    @InjectRepository(Account)
-    private usersRepository: Repository<Account>
-  ) { } 
-
-  async findOne(username: string): Promise<Account | undefined> {
-    return this.users.find(user => user.Username === username); 
+  constructor() {
+    this.users = [
+      {
+        id: '1',
+        username: 'john',
+        password: 'testme',
+        email: 'sirapopjpt@gmail.com',
+        isEmailConfirmed: false,
+      },
+      {
+        id: '2',
+        username: 'mary',
+        password: 'ishappy',
+      },
+      {
+        id: '10',
+        username: 'bob',
+        password: 'hungry',
+      }
+    ]
   }
 
-  async getByEmail(email: string) {
-    const user = await this.usersRepository.findOne(email);
-    if (user) {
-      return user;
-    }
-    throw new HttpException('User with this email does not exist', HttpStatus.NOT_FOUND);
+  async findOne(username: string): Promise<User | undefined> {
+    return this.users.find(user => user.username === username);
   }
- 
-  async create(userData: CreateAccountDto) {
-    const newUser = await this.usersRepository.create(userData);
-    await this.usersRepository.save(newUser);
-    return newUser;
-  }
-
-}
+}*/
