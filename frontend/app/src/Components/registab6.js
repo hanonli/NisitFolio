@@ -152,24 +152,24 @@ class Registab6 extends React.Component {
 
 										<div class="tab-pane_pop" id="tab02">
 											<div class="col-md-lg">
-												<div class="contend-of-obj">
-													<div class="pos-del-obj-button">
+												<div class="contend-of-obj" >
+													<div class="pos-del-obj-button" id="pos-del-obj-button1">
 														<button type="button" class="btn del-obj-icon"><img src="assets/images/bin.png" width="25" height="25"></img></button>
 													</div>
 													<textarea type="text" class="form-control dropbtn margin-bottom1 height-job" id="obj-job-01" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
 												</div>
 											</div>
 											<div class="col-md-lg">
-												<div class="contend-of-obj">
-													<div class="pos-del-obj-button">
+												<div class="contend-of-obj" >
+													<div class="pos-del-obj-button" id="pos-del-obj-button2">
 														<button type="button" class="btn del-obj-icon"><img src="assets/images/bin.png" width="25" height="25"></img></button>
 													</div>
 													<textarea type="text" class="form-control dropbtn margin-bottom1 height-job" id="obj-job-02" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
 												</div>
 											</div>
 											<div class="col-md-lg">
-												<div class="contend-of-obj">
-													<div class="pos-del-obj-button">
+												<div class="contend-of-obj" >
+													<div class="pos-del-obj-button" id="pos-del-obj-button3">
 														<button type="button" class="btn del-obj-icon"><img src="assets/images/bin.png" width="25" height="25"></img></button>
 													</div>
 													<textarea type="text" class="form-control dropbtn margin-bottom1 height-job" id="obj-job-03" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
@@ -182,8 +182,8 @@ class Registab6 extends React.Component {
 								</div>
 
 								<div className="button-add-job1">
-									<a type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</a>
-									<button type="submit" id="submit-job11" class="btn btn-cta-primary-yellowshort profile-button round" data-bs-dismiss="modal">เพิ่ม</button>
+									<a id="hide-modal-tab6" type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</a>
+									<button id="submit-job11" type="submit" class="btn btn-cta-primary-yellowshort profile-button round" data-bs-dismiss="modal">เพิ่ม</button>
 								</div>
 
 							</div>
