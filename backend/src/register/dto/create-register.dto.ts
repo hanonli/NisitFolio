@@ -30,7 +30,7 @@ export class CreateRegisDto {
 
   AboutMe: string;
 
-  EmailBusiness: string;
+  Email2nd: string;
 
   @IsNotEmpty()
   Gender: string;
@@ -41,19 +41,22 @@ export class CreateRegisDto {
 
   City: string;
 
+  @IsNotEmpty()
   SoftSkill: string[];
 
+  @IsNotEmpty()
   CertName: string[];
 
   CertPic: string[];
 
   CertYear: number[];
 
+  @IsNotEmpty()
   Degree: string[];
 
   Facalty: string[];
 
-  Find_of_study: string[];
+  Field_of_study: string[];
 
   Academy: string[];
 
@@ -63,6 +66,7 @@ export class CreateRegisDto {
 
   Education_End_Year: number[];   
 
+  @IsNotEmpty()
   Work_JobName: string[];
 
   Work_JobType: string[];
@@ -85,6 +89,7 @@ export class CreateRegisDto {
 
   Job_Score: Float32Array[];
 
+  @IsNotEmpty()
   Job_JobName: string[];
 
   Job_SkillName: string[];

@@ -62,7 +62,7 @@ export class RegisterService {
     userinfo.Birthday = createDto.Birthday;
     userinfo.Gender = createDto.Gender;
     userinfo.AboutMe = createDto.AboutMe;
-    userinfo.EmailBusiness = createDto.EmailBusiness;
+    userinfo.Email2nd = createDto.Email2nd;
     userinfo.Country = createDto.Country;
     userinfo.Province = createDto.Province;
     userinfo.City = createDto.City;
@@ -89,7 +89,7 @@ export class RegisterService {
       educationHistory.UserId = accountid;
       educationHistory.Degree = createDto.Degree[_i];
       educationHistory.Facalty = createDto.Facalty[_i];
-      educationHistory.Find_of_study = createDto.Find_of_study[_i];
+      educationHistory.Field_of_study = createDto.Field_of_study[_i];
       educationHistory.Academy = createDto.Academy[_i];
       educationHistory.Grade = createDto.Grade[_i];
       educationHistory.Education_Start_Year = createDto.Education_Start_Year[_i];
