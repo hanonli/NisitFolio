@@ -37,18 +37,20 @@
 
 
 .Registab4 .textbox {
-    background-color: lightblue;
+    background-color: #b6deea;
     border: 1px solid black;
     border-radius: 25px;
 
     height: 140px;
-    width: 98%;
+    width: 1450px;
 
     margin-top: 5px;
     margin-bottom: 5px;
     margin-left: 5px;
     margin-right: 5px;
-
+    position: relative;
+    text-align: center;  
+    justify-content: center;
 
 
 }
