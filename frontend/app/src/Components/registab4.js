@@ -6,14 +6,12 @@ class Registab4 extends React.Component {
 	render (){
 		return (
 			<div className="Registab4 regis-box-content">
-				<div class="container ">
-					
-					<div class='row justify-content-center margin-top1'>
+		
 						<div className='textbox col-12' >
 								
 								<div class='registab4_btnplus'>
 									<button type="button" class="btn justify-content-center" data-bs-toggle="modal" data-bs-target="#registab4Modal">
-											<img id='icon-plus-circle'  src="assets/images/+.png"></img>
+											<img id='icon-plus-circle'  src="assets/images/+.png" width="115" height="115" ></img>
 									</button>
 								</div>
 								<div class="modal fade" id="registab4Modal" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
@@ -35,8 +33,7 @@ class Registab4 extends React.Component {
 										</div>
 									</div>
 								</div>			
-						</div>
-					</div>
+		
 
 				</div>
 			</div>
