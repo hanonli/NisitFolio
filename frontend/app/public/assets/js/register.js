@@ -399,6 +399,29 @@ ValidationArea.addEventListener('keyup', function(){
      $('#regis3_selectdropdown2').addClass('is-valid');
    }});
 
+ValidationSchool = document.getElementById('ValidationSchoolFeedback');                   
+ValidationSchool.addEventListener('keyup', function(){
+    var regis3_schoolval = $('#ValidationSchoolFeedback').val();
+    if(regis3_schoolval == ''){
+      $('#ValidationSchoolFeedback').removeClass('is-valid');
+      $('#ValidationSchoolFeedback').addClass('is-invalid');
+    }
+    else {
+      $('#ValidationSchoolFeedback').removeClass('is-invalid');
+      $('#ValidationSchoolFeedback').addClass('is-valid');
+    }});
+
+ValidationCourse = document.getElementById('ValidationCourseFeedback');                   
+ValidationCourse.addEventListener('keyup', function(){
+    var regis3_courseval = $('#ValidationCourseFeedback').val();
+    if(regis3_courseval == ''){
+      $('#ValidationCourseFeedback').removeClass('is-valid');
+      $('#ValidationCourseFeedback').addClass('is-invalid');
+    }
+    else {
+      $('#ValidationCourseFeedback').removeClass('is-invalid');
+      $('#ValidationCourseFeedback').addClass('is-valid');
+    }});
 
 /*Tab7*/
 var sskdd1 = '<div class="col-2">\
