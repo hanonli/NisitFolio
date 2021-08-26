@@ -378,18 +378,16 @@ ValidationFaculty.addEventListener('keyup', function(){
       $('#ValidationFacultyFeedback').removeClass('is-invalid');
       $('#ValidationFacultyFeedback').addClass('is-valid');
     }});
-
-ValidationArea = document.getElementById('ValidationAreaFeedback');                   
-ValidationArea.addEventListener('keyup', function(){
-    var regis3_areaval = $('#ValidationAreaFeedback').val();
-    if(regis3_areaval == ''){
-      $('#ValidationAreaFeedback').removeClass('is-valid');
-      $('#ValidationAreaFeedback').addClass('is-invalid');
-    }
-    else {
-      $('#ValidationAreaFeedback').removeClass('is-invalid');
-      $('#ValidationAreaFeedback').addClass('is-valid');
-    }});
+/*
+let regis3_HigherConfirm = document.getElementById('regis3_HigherConfirm');
+var regis3_dropdwn1selected = $('#regis3_selectdropdown1').val();
+var regis3_universityval = $('#ValidationUniversityFeedback').val();
+console.log(11 + regis3_dropdwn1selected + regis3_universityval + 22)
+if( regis3_dropdwn1selected != '' && regis3_universityval != '')
+  regis3_HigherConfirm.disabled = true;
+else
+  regis3_HigherConfirm.disabled = false;
+*/
 
  /*Lower*/
  regis3Secondary_dropdwn1 = document.getElementById('regis3_selectdropdown2');                   
@@ -409,18 +407,6 @@ ValidationSchool.addEventListener('keyup', function(){
     else {
       $('#ValidationSchoolFeedback').removeClass('is-invalid');
       $('#ValidationSchoolFeedback').addClass('is-valid');
-    }});
-
-ValidationCourse = document.getElementById('ValidationCourseFeedback');                   
-ValidationCourse.addEventListener('keyup', function(){
-    var regis3_courseval = $('#ValidationCourseFeedback').val();
-    if(regis3_courseval == ''){
-      $('#ValidationCourseFeedback').removeClass('is-valid');
-      $('#ValidationCourseFeedback').addClass('is-invalid');
-    }
-    else {
-      $('#ValidationCourseFeedback').removeClass('is-invalid');
-      $('#ValidationCourseFeedback').addClass('is-valid');
     }});
 
 /*Tab7*/
