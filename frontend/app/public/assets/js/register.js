@@ -205,24 +205,159 @@ for (k = startD; k < MaxD; k++) {
         }
       });
 
+ret1 = document.getElementById('re01');                   
+ret1.addEventListener('keyup', function(){
+    var valt1 = $('#re01').val();
+    console.log('Name : ' + valt1);
+  if(valt1 == ''){
+    $('#re01').removeClass('is-valid');
+    $('#re01').addClass('is-invalid');
+  }
+  else {
+    $('#re01').removeClass('is-invalid');
+    $('#re01').addClass('is-valid');
+  }});
+ret2 = document.getElementById('re02');                   
+ret2.addEventListener('keyup', function(){
+  var valt1 = $('#re02').val();
+  console.log('Surname : ' + valt1);
+  if(valt1 == ''){
+    $('#re02').removeClass('is-valid');
+    $('#re02').addClass('is-invalid');
+  }
+  else {
+    $('#re02').removeClass('is-invalid');
+    $('#re02').addClass('is-valid');
+  }});
+ret3 = document.getElementById('re03');                   
+ret3.addEventListener('keyup', function(){
+  var valt1 = $('#re03').val();
+  console.log('Email : ' + valt1);
+  if(valt1 == ''){
+    $('#re03').removeClass('is-valid');
+    $('#re03').addClass('is-invalid');
+  }
+  else {
+    $('#re03').removeClass('is-invalid');
+    $('#re03').addClass('is-valid');
+  }});
+
+var passw = 0;
+var min_pass_count = 8;
+var max_pass_count = 20;
+function checkPass(e) {                                    
+  var textEntered1, textEntered2, checknow, result1;      
+  textEntered1 = document.getElementById('pass05').value;    
+  textEntered2 = document.getElementById('pass06').value;
+  checknow = textEntered1.length;
+  if(textEntered2 == '') {
+    console.log('Password Typing...');
+    console.log('Length : ' + checknow);
+    if(checknow < min_pass_count){
+      $('#pass05').removeClass('is-valid');
+      $('#pass05').addClass('is-invalid');
+    }
+    else if(checknow > max_pass_count){
+      $('#pass05').removeClass('is-valid');
+      $('#pass05').addClass('is-invalid');
+    }
+    else{
+      $('#pass05').removeClass('is-invalid');
+      $('#pass05').addClass('is-valid');
+    }
+  }
+  else if(textEntered1 == textEntered2) {
+    console.log('Password TRUE');
+    if(checknow < min_pass_count){
+      $('#pass05').removeClass('is-valid');
+      $('#pass05').addClass('is-invalid');
+    }
+    else if(checknow > max_pass_count){
+      $('#pass05').removeClass('is-valid');
+      $('#pass05').addClass('is-invalid');
+      $('#pass06').removeClass('is-valid');
+      $('#pass06').addClass('is-invalid');
+    }
+    else{
+      $('#pass05').removeClass('is-invalid');
+      $('#pass05').addClass('is-valid');
+      $('#pass06').removeClass('is-invalid');
+      $('#pass06').addClass('is-valid');
+    }
+  }
+  else {
+    console.log('Password FALSE');
+    /*$('#pass06').addClass('red_markEp2');*/
+    console.log('Length false : ' + checknow);
+    if(checknow < min_pass_count){
+      $('#pass05').removeClass('is-valid');
+      $('#pass05').addClass('is-invalid');
+    }
+    else if(checknow > max_pass_count){
+      $('#pass05').removeClass('is-valid');
+      $('#pass05').addClass('is-invalid');
+    }
+    else{
+      $('#pass05').removeClass('is-invalid');
+      $('#pass05').addClass('is-valid');
+    }
+    $('#pass06').removeClass('is-valid');
+    $('#pass06').addClass('is-invalid');
+  }
+}
+pa1 = document.getElementById('pass05'); 
+pa2 = document.getElementById('pass06');                   
+pa1.addEventListener('keyup', checkPass, false);
+pa2.addEventListener('keyup', checkPass, false);
+
+/*Tab2*/
+var min_abme_count = 0;
+var el;
+
+function countCharactersAbme(e) {                                    
+  var textEntered, countRemaining, counter;          
+  textEntered = document.getElementById('aboutme2').value;  
+  counter = (180 - (textEntered.length));
+  countRemaining = document.getElementById('charactersRemaining'); 
+  console.log('Char left : ' + counter);
+  countRemaining.textContent = counter;
+  if(counter <= min_abme_count) {
+    console.log('Warning!');
+    $('.aboutmee').addClass('is-invalid');
+  }
+  else {
+    $('.aboutmee').removeClass('is-invalid');
+  }       
+}
+el = document.getElementById('aboutme2');                   
+el.addEventListener('keyup', countCharactersAbme, false);
+
+$('.aboutmee').on('change', 'input', function(){
+  var abme = $('.aboutmee').val();
+  var abme_count = abme.length;
+  console.log('L : ' + abme_count);
+  
+});
+
+
 /*Tab7*/
 var sskdd1 = '<div class="col-2">\
                 <div class="bookmark-content">\
-                <img class="obj-icon tooltips-item" src="assets/images/bin.png" type="button" data-bs-toggle="modal" toggle-type="dynamic"data-bs-target="#Modaltab7" id="valss1" alt="" width="30" height="30"/>\
+                <img class="obj-icon tooltips-item" src="assets/images/bin.png" type="button" data-bs-toggle="modal" toggle-type="dynamic"data-bs-target="#Modaltab7-1" id="valss1" alt="" width="30" height="30"/>\
                 </div>\
               </div>\
               </div>\
               ';
 var sskdd2 = '<div class="col-2">\
                 <div class="bookmark-content">\
-                <img class="obj-icon tooltips-item" src="assets/images/bin.png" type="button" data-bs-toggle="modal" toggle-type="dynamic"data-bs-target="#Modaltab7" id="valss2" alt="" width="30" height="30"/>\
+                <img class="obj-icon tooltips-item" src="assets/images/bin.png" type="button" data-bs-toggle="modal" toggle-type="dynamic"data-bs-target="#Modaltab7-2" id="valss2" alt="" width="30" height="30"/>\
                 </div>\
               </div>\
               </div>\
               ';
 var sskdd3 = '<div class="col-2">\
               <div class="bookmark-content">\
-              <img class="obj-icon tooltips-item" src="assets/images/bin.png" type="button" data-bs-toggle="modal" toggle-type="dynamic"data-bs-target="#Modaltab7" id="valss3" alt="" width="30" height="30"/>\
+              <img class="obj-icon tooltips-item" src="assets/images/bin.png" type="button" data-bs-toggle="modal" toggle-type="dynamic"data-bs-target="#Modaltab7-3" id="valss3" alt="" width="30" height="30"/>\
               </div>\
             </div>\
             </div>\
@@ -256,7 +391,7 @@ $(document).on('change', 'input', function(){
     for (let i=0;i<options.length;++i){
        if (options[i].value === val) {
           console.log("User selected: "+val+" -> Remove focus away.");
-		  $('#sideskilllist').blur();
+		      $('#sideskilllist').blur();
           sideskill_count += 1;
           console.log(val)
           if(sideskill_count == 1){
@@ -273,7 +408,9 @@ $(document).on('change', 'input', function(){
             $('#sideskilllist2').hide(); 
             $('#sideskilllist3').show();
             valss_now = $('#sideskilllist2').val();
+            vvv = valss_now.length;
             console.log(valss_now);
+            console.log('Length : ' + vvv);
             sumsideskill = sideskilldropdown1_2 + valss_now + sideskilldropdown2 + sskdd2;
             console.log(sumsideskill);
             $('.dropdowntap7_2').append(sumsideskill);
@@ -299,7 +436,6 @@ $('.xxx').click(function () {
         $('#sideskilllist').blur();
   });
 */
-
 /*$('#del_sideskill').click(function() {
   var valss = $(this).val();
   if(valss == $('#valss1').val()){
@@ -316,22 +452,43 @@ $('.xxx').click(function () {
 */
 
 
- $('#valss1').on('click', function(){
+/* $('#valss1').on('click', function(){
       console.log('EiEi this is Bin1');
-      $('#del_sideskill').on('click', function(){
+      $('#del_sideskill1').on('click', function(){
         console.log('EiEi this is Del1');
         $('#ssl_1').remove();
         sideskill_count -= 1;
 })});
     
 $('#valss2').on('click', function(){
-        $('#del_sideskill').on('click', function(){
+        $('#del_sideskill2').on('click', function(){
           $('#ssl_2').remove();
           sideskill_count -= 1;
     })});
     
     $('#valss3').on('click', function(){
-          $('#del_sideskill').on('click', function(){
+          $('#del_sideskill3').on('click', function(){
             $('#ssl_3').remove();
             sideskill_count -= 1;
     })});
+*/
+$(function(){
+  $('#del_sideskill1').on('click', function(){
+    console.log('EiEi this is Del1');
+    console.log(valt7_1);
+    console.log(valt7_2);
+    console.log(valt7_3);
+    $('#ssl_1').remove();
+    sideskill_count -= 1;
+  });
+  $('#del_sideskill2').on('click', function(){
+    console.log('EiEi this is Del2');
+    $('#ssl_2').remove();
+    sideskill_count -= 1;
+  });
+  $('#del_sideskill3').on('click', function(){
+    console.log('EiEi this is Del3');
+    $('#ssl_3').remove();
+    sideskill_count -= 1;
+  });
+});
