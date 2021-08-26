@@ -6,7 +6,7 @@ class Registab4_addWorkHistory extends React.Component {
 		return (
 			<div className="Registab4_addWorkHistory">
  
-                    <form class='was-validated' id='WorkHistoryForm'>
+                    <form class='' id='WorkHistoryForm'>
                         <div class='col-4'>
                             <div class="selectDropdown">
                                 <select class="form-select form-select-lg dropbtn margin-bottom1 fff"  aria-labelledby="select1" required>
@@ -21,7 +21,7 @@ class Registab4_addWorkHistory extends React.Component {
                             <div class='col-6'>
                                 <input type="text" class="form-control dropbtn margin-bottom1 " id="ValidationPositionFeedback" placeholder="ตำแหน่งงาน" required></input>
                             </div>
-                            <div class='col-6'>
+                            <div class='col-6 was-validated'>
                                 <input type="text" class="form-control dropbtn margin-bottom1 " id="ValidationCompanyFeedback" placeholder="สังกัด/บริษัท"></input>
                             </div>
                         </div>

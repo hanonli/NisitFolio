@@ -15,17 +15,17 @@ class Registab1 extends React.Component {
 									</div>
 									<div class="col-md-2"></div>
 									<div class="col-md-5">
-										<input type="text" class="form-control dropbtn margin-bottom1" id="re02" placeholder="นามสกุล*" required></input>
+										<input type="text" class="form-control dropbtn margin-bottom1 " id="re02" placeholder="นามสกุล*" required></input>
 									</div>
 								</div>
 								<div class="col-md-12">
-									<input type="text" class="form-control dropbtn margin-bottom1" id="re03" placeholder="อีเมล*" required></input>
+									<input type="text" class="form-control dropbtn margin-bottom1 " id="re03" placeholder="อีเมล*" required></input>
 								</div>
 								<div class="col-md-12">
-									<input type="password" class="form-control dropbtn margin-bottom1" id="re05" placeholder="รหัสผ่าน*" aria-describedby="passwordHelpInline" required></input>
+									<input type="password" class="form-control dropbtn margin-bottom1 " id="pass05" placeholder="รหัสผ่าน*" aria-describedby="passwordHelpInline" required></input>
 								</div>
-								<div class="col-md-12">
-									<input type="password" class="form-control dropbtn margin-bottom1" id="re06" placeholder="ยืนยันรหัสผ่าน*" required></input>
+								<div class="col-md-12 triggerRed1">
+									<input type="password" class="form-control dropbtn margin-bottom1 " id="pass06" placeholder="ยืนยันรหัสผ่าน*" required></input>
 								</div>
 								<div class="col-md-12">
 									<div class="row">
@@ -37,7 +37,6 @@ class Registab1 extends React.Component {
 												<option selected disabled value="">เลือกเพศ</option>
 												<option>ชาย</option>
 												<option>หญิง</option>
-												<option>LGBTQ+</option>
 												<option>ไม่ระบุ</option>
 											</select>
 										</div>
@@ -46,7 +45,7 @@ class Registab1 extends React.Component {
 								<div class="col-md-12">
 									<div class="row">
 										<div class="col-md-2">
-											<label class="sexdistance form-f-sex">วันเกิด<a class="red_markEp1">*</a></label>
+											<label class="sexdistance form-f-sex ">วันเกิด<a class="red_markEp1">*</a></label>
 										</div>
 										<div class="col-md-2">
 											<select class="form-select dropbtn margin-bottom1 fff" id="bdday" required>
