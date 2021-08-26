@@ -50,7 +50,7 @@ import * as Joi from 'joi';
         dest: './upload',
       })
     }),
-    EmailConfirmationModule,
+    //EmailConfirmationModule,
     RegisterModule,
     AnalyticsModule,
     AuthModule,
