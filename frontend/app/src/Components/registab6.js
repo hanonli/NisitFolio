@@ -18,7 +18,7 @@ class Registab6 extends React.Component {
 		return (
 			<div className="Registab6">
 				<div class="regis-box-content">
-					
+
 					<div class="frame_job" id="no-1">
 						<div class="job-column-1">
 							<h1 id="job-position">ตำแหน่งงานที่ 1</h1>
@@ -154,7 +154,7 @@ class Registab6 extends React.Component {
 										<div class="tab-pane_pop" id="tab02">
 											<div class="col-md-lg">
 												<div class="contend-of-obj">
-													<div class="pos-del-obj-button">
+													<div class="pos-del-obj-button " id="pos-del-obj-button1">
 														<button type="button" class="btn del-obj-icon"><img src="assets/images/bin.png" width="25" height="25"></img></button>
 													</div>
 													<textarea type="text" class="form-control dropbtn margin-bottom1 height-job" id="obj-job-01" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
@@ -162,7 +162,7 @@ class Registab6 extends React.Component {
 											</div>
 											<div class="col-md-lg">
 												<div class="contend-of-obj">
-													<div class="pos-del-obj-button">
+													<div class="pos-del-obj-button" id="pos-del-obj-button2">
 														<button type="button" class="btn del-obj-icon"><img src="assets/images/bin.png" width="25" height="25"></img></button>
 													</div>
 													<textarea type="text" class="form-control dropbtn margin-bottom1 height-job" id="obj-job-02" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
@@ -170,7 +170,7 @@ class Registab6 extends React.Component {
 											</div>
 											<div class="col-md-lg">
 												<div class="contend-of-obj">
-													<div class="pos-del-obj-button">
+													<div class="pos-del-obj-button" id="pos-del-obj-button3">
 														<button type="button" class="btn del-obj-icon"><img src="assets/images/bin.png" width="25" height="25"></img></button>
 													</div>
 													<textarea type="text" class="form-control dropbtn margin-bottom1 height-job" id="obj-job-03" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
