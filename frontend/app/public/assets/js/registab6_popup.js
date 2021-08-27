@@ -63,7 +63,7 @@ function post_Data() {
         },
     })
         .then((response) => response.json())
-        .then((json) => completeModal(json["podname"], json["podkey"], json["secretkey"]));*/
+        .then((json) => completeModal());*/
 }
 
 
@@ -127,6 +127,7 @@ $(document).ready(function () {
         grid_job = grid_job.replace("{name_job}", ele["Job_JobName"][0]);
         listOfskill = ele["Job_SkillName"];
         for (var i = 0; i < length.listOfskill; i++) {
+            console
             console.log("index2: ", i + 1);
             grid_job = grid_job.replace(`{skill` + $(i + 1) + `}`, listOfskill[i]);
             console.log(`{skill` + $(i + 1) + `}`);
@@ -136,6 +137,7 @@ $(document).ready(function () {
     });
 });
 
+//get and post data
 $(document).ready(function () {
     var choose_function = -1; //default
     $("#edit-job").click(function () {
