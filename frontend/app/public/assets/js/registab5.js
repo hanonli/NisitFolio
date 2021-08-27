@@ -24,35 +24,42 @@ $(document).ready(function () {
     console.log(modal_tab5);
 });
 
-/*function submitValueTab5() {
-    console.log(`nhahee`);
-    var name_certi, year_certi, pic_certi;
-    name_certi = document.getElementById("nm_certi");
-    year_certi = document.getElementByTagName("select");
-    pic_certi = document.getElementById("image-upload112");
-    console.log(`name: {name_certi}`);
-    console.log(`year: {year_certi}`);
-    console.log(`pic: {pic_certi}`);
-}*/
+$(document).ready(function () {
+    var choose_function = -1; //default
+    $("#edit-certi").click(function () {
+        choose_function = 1;
+        console.log(`chosoe: ${choose_function}`);
+        $('#exampleModal11112').modal('show');
+        document.querySelector('#submit-certi').innerText = 'ยืนยัน';
+    });
 
-document.getElementById("submit-certi").addEventListener("click", function () {
-    //console.log(`nhahee`);
-    var name_certi, year_certi;
-    name_certi = document.getElementById("nm_certi").value;
-    year_certi = document.getElementById("yearpicker_111").value;
-    var file_pic_certi = document.getElementById("image-upload112");
-    console.log(`name: `, name_certi);
-    console.log(`year: `, year_certi);
-    console.log('pic: ', file_pic_certi.files[0]);
-});
+    $("#add-certi").click(function () {
+        choose_function = 2;
+        console.log(`chosoe: ${choose_function}`);
+        $('#exampleModal11112').modal('show');
+        document.querySelector('#submit-certi').innerText = 'เพิ่ม';
+    });
+    document.getElementById("submit-certi").addEventListener("click", function () {
+        if (choose_function == 2) {
+            console.log("add!!!!!!");
+            name_certi = document.getElementById("nm_certi").value;
+            year_certi = document.getElementById("yearpicker_111").value;
+            file_pic_certi = document.getElementById("image-upload112");
+            console.log(`name: `, name_certi);
+            console.log(`year: `, year_certi);
+            console.log('pic: ', file_pic_certi.files[0]);
+        }
+        else if (choose_function == 1) {
+            console.log("edit!!!!!!");
+            name_certi = document.getElementById("nm_certi").value;
+            year_certi = document.getElementById("yearpicker_111").value;
+            file_pic_certi = document.getElementById("image-upload112");
+            console.log(`name: `, name_certi);
+            console.log(`year: `, year_certi);
+            console.log('pic: ', file_pic_certi.files[0]);
+        }
 
-document.getElementById("edit-certi").addEventListener("click", function () {
-    //console.log(`nhahee`);
-    var name_certi, year_certi;
-    name_certi = document.getElementById("nm_certi").value;
-    year_certi = document.getElementById("yearpicker_111").value;
-    var file_pic_certi = document.getElementById("image-upload112");
-    console.log(`name: `, name_certi);
-    console.log(`year: `, year_certi);
-    console.log('pic: ', file_pic_certi.files[0]);
+        $("#nm_certi").val("");
+        $("#yearpicker_111").prop('selectedIndex', 0);
+    });
 });

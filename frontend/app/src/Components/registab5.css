@@ -99,7 +99,7 @@
     background-color: #b6deea;
     border: 1px solid black;
     height: 140px;
-    width: 1448px;
+    width: 1470px;
     border-radius: 25px;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -111,7 +111,7 @@
 }
 
 .button_add_certi button {
-    margin-top: 0.42%;
+    margin-top: 2px;
 }
 
 .height-job {

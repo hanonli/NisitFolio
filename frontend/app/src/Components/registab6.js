@@ -18,7 +18,7 @@ class Registab6 extends React.Component {
 		return (
 			<div className="Registab6">
 				<div class="regis-box-content">
-					
+
 					<div class="frame_job" id="no-1">
 						<div class="job-column-1">
 							<h1 id="job-position">ตำแหน่งงานที่ 1</h1>
@@ -37,7 +37,7 @@ class Registab6 extends React.Component {
 							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal_remove_job" id="del-job"><img src="assets/images/bin.png" width="90" height="90"></img></button>
 						</div>
 					</div>
-	
+
 
 					<div class="frame_add_job_interest">
 						<div className="button_add_job_interest">
@@ -45,7 +45,7 @@ class Registab6 extends React.Component {
 								<img src="assets/images/+.png" width="115" height="115"></img>
 							</button>
 						</div>
-					</div>						
+					</div>
 
 
 					<div class="modal fade" id="exampleModal_remove_job" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

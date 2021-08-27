@@ -18,7 +18,7 @@ class Registab5 extends React.Component {
 
 					<div class="frame_add_certi">
 						<div className="button_add_certi">
-							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal11112">
+							<button id="add-certi" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal11112">
 								<img src="assets/images/+.png" width="115" height="115"></img>
 							</button>
 						</div>
@@ -91,7 +91,7 @@ class Registab5 extends React.Component {
 
 									<div className="button_popup_certi">
 										<a type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal" >ยกเลิก</a>
-										<a type="button" id="submit-certi" class="btn btn-cta-primary-yellowshort profile-button round" data-bs-dismiss="modal">เพิ่ม</a>
+										<a id="submit-certi" type="submit" id="submit-certi" class="btn btn-cta-primary-yellowshort profile-button round" data-bs-dismiss="modal">เพิ่ม</a>
 									</div>
 
 								</div>
