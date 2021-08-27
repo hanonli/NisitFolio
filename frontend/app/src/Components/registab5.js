@@ -83,9 +83,9 @@ class Registab5 extends React.Component {
 								<div class="row" id="input_upload">
 									<input id="image-upload112" accept="images/pic_Of_Certi/*" class="hidden" type="file"></input>
 									<div className="bg_upload" id="to_upload112">
-										<div className="for_upload112">
-											<img src="assets/images/upload_file.png" width="85px" height="85px" class="up_img"></img>
-											<h2 className="text_up">อัพโหลดใบรับรองของคุณได้ที่นี่</h2>
+										<div className="for_upload112" id="to_upload116">
+											<img id="icon-upload-112" src="assets/images/upload_file.png" width="85px" height="85px" class="up_img"></img>
+											<h2 className="text_up" id="text-upload-112">อัพโหลดใบรับรองของคุณได้ที่นี่</h2>
 										</div>
 									</div>
 

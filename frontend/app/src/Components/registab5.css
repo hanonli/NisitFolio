@@ -75,7 +75,10 @@
 }
 
 
-
+#preview_before_upload {
+    margin-top: 25px;
+    margin-left: 10px;
+}
 
 #input_upload input.hidden {
     position: absolute;
