@@ -18,26 +18,26 @@ class Registab6 extends React.Component {
 		return (
 			<div className="Registab6">
 				<div class="regis-box-content">
-
-					<div class="frame_job" id="no-1">
-						<div class="job-column-1">
-							<h1 id="job-position">ตำแหน่งงานที่ 1</h1>
-							<h1 id="job-name">สามกีบ</h1>
-						</div>
-						<div class="my-skill-content">
-							<h1 id="mySkil-job">ทักษะของฉัน</h1>
-							<div class="each-skill-job">
-								<p id="skill1-job">ทักษะที่ 1</p>
-								<p id="skill2-job">ทักษะที่ 2</p>
-								<p id="skill3-job">ทักษะที่ 3</p>
+					<div class="list-of-job">
+						<div class="frame_job" id="no-1">
+							<div class="job-column-1">
+								<h1 id="job-position">ตำแหน่งงานที่ 1</h1>
+								<h1 id="job-name">สามกีบ</h1>
+							</div>
+							<div class="my-skill-content">
+								<h1 id="mySkil-job">ทักษะของฉัน</h1>
+								<div class="each-skill-job">
+									<p id="skill1-job">ทักษะที่ 1</p>
+									<p id="skill2-job">ทักษะที่ 2</p>
+									<p id="skill3-job">ทักษะที่ 3</p>
+								</div>
+							</div>
+							<div class="layer_icon">
+								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModalJob" id="edit-job"><img src="assets/images/blackedit.png" width="65" height="65"></img></button>
+								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal_remove_job" id="del-job"><img src="assets/images/bin.png" width="90" height="90"></img></button>
 							</div>
 						</div>
-						<div class="layer_icon">
-							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModalJob" id="edit-job"><img src="assets/images/blackedit.png" width="65" height="65"></img></button>
-							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal_remove_job" id="del-job"><img src="assets/images/bin.png" width="90" height="90"></img></button>
-						</div>
 					</div>
-
 
 					<div class="frame_add_job_interest">
 						<div className="button_add_job_interest">

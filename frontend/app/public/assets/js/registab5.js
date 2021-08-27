@@ -37,6 +37,20 @@ function readURL(input) {
     }
 }
 
+function post_Data() {
+    /*fetch("http://localhost:2000/register/", {
+        method: 'POST',
+        body: JSON.stringify({
+
+        }),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+    })
+        .then((response) => response.json())
+        .then((json) => completeModal(json["podname"], json["podkey"], json["secretkey"]));*/
+}
+
 $(document).ready(function () {
 
     var choose_function = -1; //default
