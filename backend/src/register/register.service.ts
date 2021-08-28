@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { DeleteResult,Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
+import {Md5} from 'ts-md5/dist/md5';
 
 import { Account, Userinfo, AdditionalSkill, Certificate, EducationHistory, InterestedJob, WorkHistory} from './entity/Register.entity'
 import { CreateRegisDto } from './dto/create-register.dto';
@@ -47,9 +48,9 @@ export class RegisterService {
   ) {}
   async createRegis(createDto: CreateRegisDto)
   {
-    const account = new Account(); 
+    /*const account = new Account(); 
     account.Email = createDto.Email;
-    account.Password = createDto.Password;
+    account.Password = Md5.hashStr(createDto.Password);
     account.ProfilePic = account.ProfilePic;
     account.Privacy = "Public";
     account.isEmailConfirmed = false;
@@ -119,12 +120,13 @@ export class RegisterService {
       interestedJob.Job_JobName = createDto.Job_JobName[_i];
       interestedJob.Job_SkillName = createDto.Job_SkillName[_i];
       await this.InterestedJobRepository.save(interestedJob);
-    }
+    }*/
 
 
+    
     await this.emailConfirmationService.sendVerificationLink(createDto.Email);
 
-    return (this.userinfoRepository.save(userinfo));
+    //return (this.userinfoRepository.save(userinfo));
 
   }
 
