@@ -150,9 +150,9 @@ export class RegisterService {
     return this.JobTitleRepository.find();
   }
 
-  async findSkill(JobTitle:string)
+  async findSkill(jobTitle:string)
   {
-    return this.SkillRepository.find({where:{ JobTitle: JobTitle }});
+    return this.SkillRepository.find({where:{ jobTitle: jobTitle }});
   }
 
  

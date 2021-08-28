@@ -7,10 +7,10 @@ export class Skill {
   id?: ObjectId;
   
   @Column()
-  JobTitle: string;
+  jobTitle: string;
 
   @Column()
-  Name: string;
+  skill: string;
 }
 
 export default Skill;
