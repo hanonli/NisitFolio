@@ -35,7 +35,7 @@ export class RegisterController {
   //----------------------------ENDTRUE
   //-----------------------------subfindAllDDC
   
-  @Get('/country')
+  /*@Get('/country')
   async findCountry()
   {
     return this.registerService.findCountry();
@@ -51,7 +51,7 @@ export class RegisterController {
   async findCity(@Param('province') province: string)
   {
     return this.registerService.findCity(province);
-  }
+  }*/
 
   @Get('/jobtitle')
   async findJobTitle()

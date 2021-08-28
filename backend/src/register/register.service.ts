@@ -32,12 +32,12 @@ export class RegisterService {
     private WorkHistoryRepository: Repository<WorkHistory>,
     @InjectRepository(InterestedJob)
     private InterestedJobRepository: Repository<InterestedJob>,
-    @InjectRepository(City)
+    /*@InjectRepository(City)
     private CityRepository: Repository<City>,
     @InjectRepository(Country)
     private CountryRepository: Repository<Country>,
     @InjectRepository(Province)
-    private ProvinceRepository: Repository<Province>,
+    private ProvinceRepository: Repository<Province>,*/
     @InjectRepository(JobTitle)
     private JobTitleRepository: Repository<JobTitle>,
     @InjectRepository(Skill)
@@ -92,7 +92,6 @@ export class RegisterService {
       educationHistory.Field_of_study = createDto.Field_of_study[_i];
       educationHistory.Academy = createDto.Academy[_i];
       educationHistory.Grade = createDto.Grade[_i];
-      educationHistory.Education_Start_Year = createDto.Education_Start_Year[_i];
       educationHistory.Education_End_Year = createDto.Education_End_Year[_i];
       await this.EducationHistoryRepository.save(educationHistory);
     }
@@ -129,7 +128,7 @@ export class RegisterService {
 
   }
 
-  async findCountry()
+  /*async findCountry()
   {
     return this.CountryRepository.find();
   }
@@ -142,7 +141,7 @@ export class RegisterService {
   async findCity(province:string)
   {
     return this.CityRepository.find({where:{ Province: province }});
-  }
+  }*/
 
   async findJobTitle()
   {
