@@ -48,7 +48,7 @@ export class RegisterService {
   ) {}
   async createRegis(createDto: CreateRegisDto)
   {
-    /*const account = new Account(); 
+    const account = new Account(); 
     account.Email = createDto.Email;
     account.Password = Md5.hashStr(createDto.Password);
     account.ProfilePic = account.ProfilePic;
@@ -120,13 +120,13 @@ export class RegisterService {
       interestedJob.Job_JobName = createDto.Job_JobName[_i];
       interestedJob.Job_SkillName = createDto.Job_SkillName[_i];
       await this.InterestedJobRepository.save(interestedJob);
-    }*/
+    }
 
 
     
     await this.emailConfirmationService.sendVerificationLink(createDto.Email);
 
-    //return (this.userinfoRepository.save(userinfo));
+    return (this.userinfoRepository.save(userinfo));
 
   }
 

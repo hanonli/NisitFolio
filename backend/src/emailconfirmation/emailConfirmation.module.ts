@@ -21,8 +21,8 @@ import { join } from 'path';
             host: 'smtp.gmail.com',
             secure: false,
             auth: {
-              user: 'nisitfolio@gmail.com',
-              pass: '#10019am',
+              user: 'nisitfoliocorp@gmail.com',
+              pass: 'yhd1248ds',
             },
           },
           defaults: {
