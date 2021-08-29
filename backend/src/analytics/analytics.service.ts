@@ -7,6 +7,7 @@ import { ObjectId } from 'mongodb' ;
 import * as mongoose from 'mongoose';
 import { any } from '@hapi/joi';
 import { arrayNotContains } from 'class-validator';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
 
 @Injectable()
@@ -109,16 +110,20 @@ export class AnalyticsService {
                       },
                       { $sort : {total: -1}},
       ])
-      let count = 0 ;
+      let n = 0 ;
+      for (var i of SumSkill) {
+        n += i.total ;
+      }
+      // let count = 0 ;
       for (var i of SumSkill){ 
         // console.log(i) ;
         const _name = i._id.SkillName ;
         const _sum = i.total ;
         // console.log(_name);
         // console.log(_sum);
-        var temp2 = array.push({ Objective: ObjectName, SkillName: _name, total: _sum}) ;
-        count ++ ;
-        if (count == 3) break ;
+        var temp2 = array.push({Objective: ObjectName, SkillName: _name, total: _sum, percentage: _sum/n}) ;
+        // count ++ ;
+        // if (count == 3) break ;
       }
       console.log(array);
       //console.log(SumSkill);
@@ -126,6 +131,72 @@ export class AnalyticsService {
     return array ;
     //console.log(findObjective);
   }
+
+  async findAUserSkill(SkillName: string, userId: ObjectId): Promise<any[]> {
+    const AllUser = await this.UserJobSkillModel.find({SkillName: SkillName}) ; 
+    const size = AllUser.length ;
+    const Skill = await this.UserJobSkillModel.aggregate([
+                  { $match: { SkillName: SkillName} },
+                  { $group: {
+                      _id: { SkillName: "$SkillName" },
+                      Score: { $sum: "$Score" } ,
+                    }
+                  },
+                  { $sort : {total: -1} },
+    ]) ;
+
+    // ------- All UserSkill ---------
+    let AllScore = [] ;
+    for (var i of AllUser) {
+      AllScore.push(i.Score) ;
+    }
+
+    // ------- Find Mode ---------
+    const Mode = await this.UserJobSkillModel.aggregate([
+                  { $match: { SkillName: SkillName }} ,
+                  { $group: 
+                    {
+                    _id: {Score: "$Score"},
+                    total: {$sum: 1},
+                    }
+                  },
+                  { $sort: {total: -1} },
+    ])
+    let Mode_Array = [] ;
+    const Max = Mode[0]._id.total ;
+    let check = 0 ;
+    if (Mode.length > 3) {
+      const fourth = Mode[3]._id.total ;
+      if (Max == fourth) check = 1 ;
+    }
+    let count = 0 ;
+    for (var index in Mode) {
+      const isMode = Mode[index]._id.Score ;
+      if (index == "0") {
+        Mode_Array.push(isMode) ;
+      }
+      else {
+        const Now = Mode[index]._id.total ;
+        if (Now == Max) {
+          Mode_Array.push(isMode) ;
+        } else break ;
+      }
+      count ++ ;
+      if (count == 3) break ;
+    }
+
+    // ------- Find Mean ---------
+    const mean = Skill[0].Score/size ;
+    
+    // ------- User Score ---------
+    const UserScore = await this.UserJobSkillModel.find({userId: userId, SkillName: SkillName}) ;
+    
+    // ------- Return Result ---------
+    let array = [] ;
+    array.push( { AllUserScore: AllScore ,SkillName: SkillName, n: size, Mean: mean, UserScore: UserScore[0].Score, Mode: Mode_Array })
+    return array ;
+  }
+
   // --------------- find SkillName in UserJobSkill by userId
   // const findUserSkill = await this.UserJobSkillModel.aggregate([
   //                   { $match : { userId : userId } },
@@ -139,7 +210,7 @@ export class AnalyticsService {
   //   console.log(item._id.SkillName);
   // }
   
-  // -------------------- Interseted Job ---------------------------
+  // -------------------- Interested Job ---------------------------
   
     // const size = await (await this.ClassifySkillModel.find({JobTitle: JobTitle, IsMain: IsMain})).length ;
     // const eachSkill = await this.ClassifySkillModel.aggregate([
