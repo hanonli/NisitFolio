@@ -20,23 +20,41 @@ export class AnalyticsService {
 
   ) {}
   
-  // -------------------- AdditionalSkill ---------------------------
+  /*
+  * FindAdditionSkillById
+  * parameters: id
+  * return results (type: {})
+  */
 
   async findAddSkillById(id: ObjectId): Promise<any> {
     
-    // not yey developed
-    // get job from interested job
-    let job = ["Software Engineer", "Data Scientist"]; // test
+    //const oid = mongoose.Types.ObjectId('610d3832ca49ebf4cdfed02f');
+    //const InterestedJobs = await this.UserJobSkillModel.find({ userId: id }).select({ JobName: 1 , _id: 0 }).distinct('JobName');
+    //console.log(InterestedJobs);
+
     let results = {};
+    const InterestedJobs = ["Software Engineer", "Data Scientist"]; // test
+    results['InterestedJobs'] = InterestedJobs;
 
+    /*
+    * First find people who interest in the same job(s).
+    * then count a number of them grouped by SoftSkill.
+    */
 
-    //-----------------------------------------------
-    //--------------- for each job ------------------
-    //-----------------------------------------------
-    for (var i of job){
-      const res = await this.UserAddSkill.aggregate([
+    for (var job of InterestedJobs) {
+      /*
+      * Count number of users who interest in this job.
+      */
+      
+      const users = await this.UserAddSkill.find( { Job: job }).select( { userId:1 }).distinct('userId').exec();
+      const numberOfUsers = users.length;
+      results[job] = { numberOfUsers: numberOfUsers };
+      //console.log(numberOfUsers);
+      
+      // Match the job, group by SoftSkill, count, sort
+      const rawResult = await this.UserAddSkill.aggregate([
         {
-          $match: { Job: i }
+          $match: { Job: job }
         },
         {  
           $group: {
@@ -46,47 +64,56 @@ export class AnalyticsService {
         },
         { $sort: {total: -1}}
       ]).exec();
-      //console.log(res);
-      results[i] = res;
-    }
 
+      /*
+      * rawResult is in the form of [ { _id: { SoftSkill: 'XXXXX' }, total: X }, ]
+      * Need to rearrange to a simpler form.
+      */
 
-    //-----------------------------------------------
-    //--------------- for all jobs ------------------
-    //-----------------------------------------------
-    let all = {};
-
-    const queryAll = await this.UserAddSkill.aggregate([
-      { $group: { _id: { userId: "$userId", SoftSkill: "$SoftSkill" } } }
-      ]).exec();
-
-    //console.log(queryAll);
-    
-    for ( var j of queryAll ) {
-      //console.log(j);
-      let skillName = j["_id"].SoftSkill;
-      if( all.hasOwnProperty(skillName) ){
-        //console.log("yay");
-        all[skillName] += 1;
+      let ArrangedResult = [];
+      for (var result of rawResult) {
+        ArrangedResult.push({ SoftSkill: result['_id'].SoftSkill,
+                              total: result.total,
+                              percentage: result.total/numberOfUsers * 100
+                            })
       }
-      else {
-        all[skillName] = 1;
-      }
+
+      results[job]["List"] = ArrangedResult;
     }
 
-    let sorted = Object.keys(all).sort(function(a,b) {return all[b]-all[a]} )
-
-    //console.log(sorted);
+    /*
+    * Now we look at the "Overview" considering all users.
+    */
     
-    let allUsers = {};
-    for( var skill of sorted ){
-      allUsers[skill] = all[skill];
+    const users = await this.UserAddSkill.find( { Job: job }).select( { userId:1 }).distinct('userId').exec();
+    const numberOfUsers = users.length;
+
+    results["Overview"] = { numberOfUsers: numberOfUsers };
+    const queryResults = await this.UserAddSkill.aggregate([
+      {
+        $group: {
+          _id: { SoftSkill: "$SoftSkill"},
+          total: { $sum: 1 }    
+        },  
+      },
+      { $sort: { total: -1 } }
+    ]).exec();
+
+    let finalResults = []
+    for ( var res of queryResults ) {
+      finalResults.push({ SoftSkill: result['_id'].SoftSkill,
+                          total: result.total,
+                          percentage: result.total/numberOfUsers * 100
+                        });
     }
 
+    results["Overview"]["List"] = finalResults;
 
-    // for test -> http://localhost:3000/analytics/additional/610d3832ca49ebf4cdfed02e
-    return {results, allUsers};
+    // test -> http://localhost:2000/analytics/additional/610d3832ca49ebf4cdfed02e
+    return results;
     }
+
+  /*********************************************************************************************************************************************/
 
   async findUserJobSkill(userId: ObjectId): Promise<any> {
     const findObjective = await this.UserJobSkillModel.aggregate([
