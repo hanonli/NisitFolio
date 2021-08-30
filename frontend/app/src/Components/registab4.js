@@ -41,7 +41,7 @@ class Registab4 extends React.Component {
 									<div class="modal-dialog modal-dialog-centered modal-xl">
 										<div class="modal-content " >
 											<div class='modal-header'>
-												<h1 class='modal-title' id='regisModallabel1' >เพิ่มประวัติการศึกษา</h1>
+												<h1 class='modal-title' id='regisModallabel1' >เพิ่มประวัติการทำงาน</h1>
 												<button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
 											</div>
 											<div class='modal-body'>

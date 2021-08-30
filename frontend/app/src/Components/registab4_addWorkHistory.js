@@ -135,8 +135,11 @@ class Registab4_addWorkHistory extends React.Component {
                                 </div>
                             </div>
 
-                        </div>                        
+                        </div>
+                        <textarea type="text" rows='5' class="form-control dropbtn margin-bottom1 " id="registab4_textbox"  placeholder='เพิ่มรายละเอียด(ถ้ามี)'>
+                            
 
+                        </textarea>
 
 
                     </form>
