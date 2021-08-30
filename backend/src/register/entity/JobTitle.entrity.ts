@@ -8,6 +8,9 @@ export class JobTitle {
   
   @Column()
   Name: string;
+
+  @Column()
+  THName: string;
 }
 
 export default JobTitle;

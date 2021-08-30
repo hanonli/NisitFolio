@@ -16,12 +16,21 @@ export class AnalyticsController {
     return this.analyticsService.findAddSkillById(oid);
   }
 
-  // -------------------- AdditionalSkill ---------------------------
+  // -------------------- MainSkill ---------------------------
 
   @Get('/main/:id')
   async findUserJobSkill(@Param('id') id: string): Promise<any> {
     const oid = mongoose.Types.ObjectId(id);
     return this.analyticsService.findUserJobSkill(oid);
+  }
+
+  @Get('/main/skill/:id/:SkillName')
+  async findAUserSkill(
+    @Param('id') id: string,
+    @Param('SkillName') SkillName: string,
+  ): Promise<any> {
+    const oid = mongoose.Types.ObjectId(id);
+    return this.analyticsService.findAUserSkill(SkillName, oid);
   }
 
   @Post('main/UserJobSkill')
@@ -35,4 +44,6 @@ export class AnalyticsController {
     const oid = mongoose.Types.ObjectId(userId) ;
     return this.analyticsService.createUserJobSkill(oid, Objective, Score, JobName, SkillName) ;
   }
+
+
 }

@@ -31,6 +31,42 @@ $(document).ready(function () {
     };
 });
 
+var sample1 = [
+    {
+        "id": 1,
+        "Job_Objective": ["อยากรวย"],
+        "Job_Score": [7.88],
+        "Job_JobName": ["ล้างรถที่ junkyardz"],
+        "Job_SkillName": ["เต้นเซ็กซี่", "โชว์กล้าม"]
+    },
+    {
+        "id": 2,
+        "Job_Objective": ["อยากรวย"],
+        "Job_Score": [7.88],
+        "Job_JobName": ["นายกรัฐมนตรี"],
+        "Job_SkillName": ["เต้นเซ็กซี่"]
+    }
+];
+
+function get_Data() {
+    var test;
+}
+
+function post_Data() {
+    /*fetch("http://localhost:2000/register/", {
+        method: 'POST',
+        body: JSON.stringify({
+
+        }),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+    })
+        .then((response) => response.json())
+        .then((json) => completeModal());*/
+}
+
+
 /*----disable slider range----*/
 $(document).ready(function () {
     document.getElementById("customRange11").disabled = true;
@@ -56,9 +92,52 @@ $(document).ready(function () {
     });
 });
 
-//var name_job, skill_job_1, score_skill_job_1, skill_job_2, score_skill_job_2, skill_job_3, score_skill_job_3, obj_job_1, obj_job_2, obj_job_3;
+/*---- list item job interest ----*/
+var no_job;
 
 
+$(document).ready(function () {
+    console.log("kuaytu!!!");
+    console.log(sample1);
+    sample1.forEach((ele, index) => {
+        var grid_job = `<div class="frame_job" id="{no_list}">\
+                        <div class="job-column-1" >\
+							<h1 id="job-position">ตำแหน่งงานที่ {no_job}</h1>\
+							<h1 id="job-name">{name_job}</h1>\
+							</div >\
+							<div class="my-skill-content">\
+								<h1 id="mySkil-job">ทักษะของฉัน</h1>\
+								<div class="each-skill-job">\
+									<p id="skill1-job">{skill1}</p>\
+									<p id="skill2-job">{skill2}</p>\
+									<p id="skill3-job">{skill3}</p>\
+								</div>\
+							</div>\
+							<div class="layer_icon">\
+								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModalJob" id="edit-job"><img src="assets/images/blackedit.png" width="65" height="65"></img></button>\
+								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal_remove_job" id="del-job"><img src="assets/images/bin.png" width="90" height="90"></img></button>\
+							</div>\
+						</div>\
+                    </div>`;
+        console.log("ele: ", ele);
+        console.log("index: ", index + 1);
+        console.log("name job:", ele["Job_JobName"][0]);
+        grid_job = grid_job.replace("{no_list}", index + 1);
+        grid_job = grid_job.replace("{no_job}", index + 1);
+        grid_job = grid_job.replace("{name_job}", ele["Job_JobName"][0]);
+        listOfskill = ele["Job_SkillName"];
+        for (var i = 0; i < length.listOfskill; i++) {
+            console
+            console.log("index2: ", i + 1);
+            grid_job = grid_job.replace(`{skill` + $(i + 1) + `}`, listOfskill[i]);
+            console.log(`{skill` + $(i + 1) + `}`);
+        };
+        console.log(ele["Job_SkillName"]);
+        $(".list-of-job").append(grid_job);
+    });
+});
+
+//get and post data
 $(document).ready(function () {
     var choose_function = -1; //default
     $("#edit-job").click(function () {
@@ -87,6 +166,15 @@ $(document).ready(function () {
             obj_job_1 = document.getElementById("obj-job-01").value;
             obj_job_2 = document.getElementById("obj-job-02").value;
             obj_job_3 = document.getElementById("obj-job-03").value;
+            list_obj = [];
+            list_score_job = [];
+            job_nm = [name_job];
+            list_obj.append(obj_job_1);
+            list_obj.append(obj_job_2);
+            list_obj.append(obj_job_3);
+            list_score_job.append(score_skill_job_1.toFixed(2));
+            list_score_job.append(score_skill_job_2.toFixed(2));
+            list_score_job.append(score_skill_job_3.toFixed(2));
             console.log(`name job: `, name_job);
             console.log(`skill_job_1: `, skill_job_1);
             console.log(`score_skill_job_1: `, score_skill_job_1);
@@ -110,16 +198,15 @@ $(document).ready(function () {
             obj_job_1 = document.getElementById("obj-job-01").value;
             obj_job_2 = document.getElementById("obj-job-02").value;
             obj_job_3 = document.getElementById("obj-job-03").value;
-            console.log(`name job: `, name_job);
-            console.log(`skill_job_1: `, skill_job_1);
-            console.log(`score_skill_job_1: `, score_skill_job_1);
-            console.log(`skill_job_2: `, skill_job_2);
-            console.log(`score_skill_job_2: `, score_skill_job_2);
-            console.log(`skill_job_3: `, skill_job_3);
-            console.log(`score_skill_job_3: `, score_skill_job_3);
-            console.log(`obj_job_1: `, obj_job_1);
-            console.log(`obj_job_2: `, obj_job_2);
-            console.log(`obj_job_3: `, obj_job_3);
+            list_obj = [];
+            list_score_job = [];
+            job_nm = [name_job];
+            list_obj.append(obj_job_1);
+            list_obj.append(obj_job_2);
+            list_obj.append(obj_job_3);
+            list_score_job.append(score_skill_job_1.toFixed(2));
+            list_score_job.append(score_skill_job_2.toFixed(2));
+            list_score_job.append(score_skill_job_3.toFixed(2));
         }
 
         $('#nm_job').prop('selectedIndex', 0);

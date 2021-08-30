@@ -37,6 +37,59 @@ function readURL(input) {
     }
 }
 
+function post_Data() {
+    /*fetch("http://localhost:2000/register/", {
+        method: 'POST',
+        body: JSON.stringify({
+
+        }),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+    })
+        .then((response) => response.json())
+        .then((json) => completeModal());*/
+}
+
+
+var grid_certi = `<div class="card_certi" id="{no_certi}">
+					<h1 id="name-of-certi">{name-certi}</h1>
+					<h1 id="year-of-certi">{year-certi}</h1>
+					<div class="pos-pic-of-certi">
+						<img src="{path-pic-certi}" height="160" id="pic-of-certi"></img>
+					</div>
+					<div class="layer-button-certi">
+						<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal11112" id="edit-certi"><img src="assets/images/blackedit.png" width="80" height="80"></img></button>
+						<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal_remove_certi" id="del-certi"><img src="assets/images/bin.png" width="120" height="120"></img></button>
+					</div>
+				</div>`;
+
+//var sample1 = [
+//    {},
+//    {}
+//]
+
+$(document).ready(function () {
+    console.log("kuaytu!!!");
+    console.log(sample1);
+    sample1.forEach((ele, index) => {
+        var grid_certi = `<div class="card_certi" id="{no_certi}">
+					<h1 id="name-of-certi">{name-certi}</h1>
+					<h1 id="year-of-certi">{year-certi}</h1>
+					<div class="pos-pic-of-certi">
+						<img src="{path-pic-certi}" height="160" id="pic-of-certi"></img>
+					</div>
+					<div class="layer-button-certi">
+						<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal11112" id="edit-certi"><img src="assets/images/blackedit.png" width="80" height="80"></img></button>
+						<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal_remove_certi" id="del-certi"><img src="assets/images/bin.png" width="120" height="120"></img></button>
+					</div>
+				</div>`;
+        //to be continue
+        //$(".content-certi1").append(grid_certi);
+    });
+});
+
+//get and post data
 $(document).ready(function () {
 
     var choose_function = -1; //default

@@ -1,6 +1,7 @@
 import React from 'react';
 import Registab4_addWorkHistory from './registab4_addWorkHistory';
 import './registab3.css'
+import './register.css'
 
 class Registab4 extends React.Component {
 	constructor(props) {
