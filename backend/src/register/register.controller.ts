@@ -26,4 +26,10 @@ export class RegisterController {
     return this.registerService.findSkill(jobtitle);
   }
 
+  @Get('/hardskill')
+  async findHardSkill()
+  {
+    return this.registerService.findHardSkill();
+  }
+
 }
