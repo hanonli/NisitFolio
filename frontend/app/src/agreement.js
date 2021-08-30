@@ -6,7 +6,6 @@ import DataHeader from './Components/dataHeader';
 import reportWebVitals from './reportWebVitals';
 import { Link } from "react-router-dom";
 
-/* NOT AVALIABLE TO TEST RIGHT NOW BC DONT HAVE PATH TO LINK WITH*/
 class Agreement extends React.Component {
 	constructor(props) {
 		super(props);
@@ -17,7 +16,7 @@ class Agreement extends React.Component {
 		window.addEventListener('load', this.handleLoad);
 		console.log("YEAHXXX!");
 		const script = document.createElement("script");
-		script.src = "assets/js/register.js";
+		script.src = "assets/js/register2.js";
 		document.body.appendChild(script);
 		
 	}

@@ -1,5 +1,5 @@
 /*For Javascript Desu*/
-
+console.log("Artty!");
 /*Tabs New*/
 $(function(){
     $('.tab-content').hide();
@@ -69,28 +69,6 @@ $(function(){
 
  });
 
-/*Zone Agreement*/
-
-//Program to disable or enable a button 
-//$('#continue1').prop('disabled', true);
-//$('#continue2').prop('disabled', true);
-
-$('#agree1').click(function () {
-    console.log('I am Agree!');  
-    /*$('#continue1').prop('disabled', false);*/
-    $('#continue1').disabled = false;
-  });
-AAA = document.getElementById('agree1');
-AAAbt = document.getElementById('continue1');
-AAA.addEventListener('change', function(){
-  console.log('I am Agreeeeeeeeeeee!');  
-  /*$('#continue1').prop('disabled', false);*/
-  AAAbt.disabled = false;
-});
-$('#continue1').click(function () {           
-    window.location.pathname = '/register'
-  });
-
 /*Tab1*/
 $('#continue2').click(function () {           
   window.location.pathname = '/emailverify'
@@ -104,9 +82,6 @@ for (i = endYear; i > startYear; i--) {
     $('#year_higher').append($('<option />').val(i).html(i));
     $('#year_secondary').append($('<option />').val(i).html(i));
 }
-
-
-
 
 let MaxM = 13;
 let startM = 1;
@@ -334,7 +309,7 @@ pa2.addEventListener('keyup', checkPass, false);
 var min_abme_count = 0;
 var el;
 
-function countCharactersAbme(e) {                                    
+function countCharactersAbme() {                                    
   var textEntered, countRemaining, counter;          
   textEntered = document.getElementById('aboutme2').value;  
   counter = (180 - (textEntered.length));
@@ -480,6 +455,7 @@ $(document).on('change', 'input', function(){
           if(sideskill_count == 1){
             $('#sideskilllist1').hide();          
             valss_now = $('#sideskilllist1').val();
+            var valt7_1 = valss_now;
             console.log(valss_now);
             sumsideskill = sideskilldropdown1_1 + valss_now + sideskilldropdown2 + sskdd1;
             console.log(sumsideskill);
@@ -491,6 +467,7 @@ $(document).on('change', 'input', function(){
             $('#sideskilllist2').hide(); 
             $('#sideskilllist3').show();
             valss_now = $('#sideskilllist2').val();
+            var valt7_2 = valss_now;
             vvv = valss_now.length;
             console.log(valss_now);
             console.log('Length : ' + vvv);
@@ -502,6 +479,7 @@ $(document).on('change', 'input', function(){
           else if(sideskill_count == 3){
             $('#sideskilllist3').hide(); 
             valss_now = $('#sideskilllist3').val();
+            var valt7_3 = valss_now;
             console.log(valss_now);
             sumsideskill = sideskilldropdown1_3 + valss_now + sideskilldropdown2 + sskdd3;
             console.log(sumsideskill);
@@ -513,48 +491,6 @@ $(document).on('change', 'input', function(){
     }
 });
 
-/*
-$('.xxx').click(function () {           
-    alert("Hello! I am an alert box!!");
-        $('#sideskilllist').blur();
-  });
-*/
-/*$('#del_sideskill').click(function() {
-  var valss = $(this).val();
-  if(valss == $('#valss1').val()){
-    $('.dropdowntap7_1').remove();
-  }
-  else if(valss == $('#valss2').val()){
-    $('.dropdowntap7_2').remove();
-  }
-  else if(valss == $('#valss3').val()){
-    $('.dropdowntap7_3').remove();
-  }
-    
-})
-*/
-
-
-/* $('#valss1').on('click', function(){
-      console.log('EiEi this is Bin1');
-      $('#del_sideskill1').on('click', function(){
-        console.log('EiEi this is Del1');
-        $('#ssl_1').remove();
-        sideskill_count -= 1;
-})});
-    
-$('#valss2').on('click', function(){
-        $('#del_sideskill2').on('click', function(){
-          $('#ssl_2').remove();
-          sideskill_count -= 1;
-    })});
-    
-    $('#valss3').on('click', function(){
-          $('#del_sideskill3').on('click', function(){
-            $('#ssl_3').remove();
-            sideskill_count -= 1;
-    })});
-*/
 $(function(){
   $('#del_sideskill1').on('click', function(){
     console.log('EiEi this is Del1');
