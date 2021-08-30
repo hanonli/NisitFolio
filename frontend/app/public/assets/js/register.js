@@ -70,8 +70,18 @@ $(function(){
  });
 
 /*Tab1*/
-$('#continue2').click(function () {           
-  window.location.pathname = '/emailverify'
+$('#continue2').click(function () {    
+  if(RequireCount_pass==1){     
+    console.log('You Pass!');  
+    window.location.pathname = '/emailverify'
+  }
+  else{
+    console.log('You Wrong!');
+    $('.tab-content').hide();
+    $('.tab-list-item').removeClass('tab-list-active');
+    $('#tab-1').addClass('tab-list-active')
+    $('#registab1-content').show();
+  }
 });
 
 let startYear = 1950;
@@ -240,6 +250,7 @@ ret3.addEventListener('keyup', function(){
 var passw = 0;
 var min_pass_count = 8;
 var max_pass_count = 20;
+var RequireCount_pass = 0;
 function checkPass(e) {                                    
   var textEntered1, textEntered2, checknow, result1;      
   textEntered1 = document.getElementById('pass05').value;    
@@ -266,18 +277,21 @@ function checkPass(e) {
     if(checknow < min_pass_count){
       $('#pass05').removeClass('is-valid');
       $('#pass05').addClass('is-invalid');
+      RequireCount_pass = 0;
     }
     else if(checknow > max_pass_count){
       $('#pass05').removeClass('is-valid');
       $('#pass05').addClass('is-invalid');
       $('#pass06').removeClass('is-valid');
       $('#pass06').addClass('is-invalid');
+      RequireCount_pass = 0;
     }
     else{
       $('#pass05').removeClass('is-invalid');
       $('#pass05').addClass('is-valid');
       $('#pass06').removeClass('is-invalid');
       $('#pass06').addClass('is-valid');
+      RequireCount_pass = 1;
     }
   }
   else {
@@ -458,7 +472,7 @@ $(document).on('change', 'input', function(){
             var valt7_1 = valss_now;
             console.log(valss_now);
             sumsideskill = sideskilldropdown1_1 + valss_now + sideskilldropdown2 + sskdd1;
-            console.log(sumsideskill);
+            /*console.log(sumsideskill);*/
             $('.dropdowntap7_1').append(sumsideskill);
             sumsideskill = '';
             $('#sideskilllist2').show();
@@ -472,7 +486,7 @@ $(document).on('change', 'input', function(){
             console.log(valss_now);
             console.log('Length : ' + vvv);
             sumsideskill = sideskilldropdown1_2 + valss_now + sideskilldropdown2 + sskdd2;
-            console.log(sumsideskill);
+            /*console.log(sumsideskill);*/
             $('.dropdowntap7_2').append(sumsideskill);
             sumsideskill = '';
           }
@@ -482,7 +496,7 @@ $(document).on('change', 'input', function(){
             var valt7_3 = valss_now;
             console.log(valss_now);
             sumsideskill = sideskilldropdown1_3 + valss_now + sideskilldropdown2 + sskdd3;
-            console.log(sumsideskill);
+            /*console.log(sumsideskill);*/
             $('.dropdowntap7_3').append(sumsideskill);
             sumsideskill = '';
           }

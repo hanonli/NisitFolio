@@ -5,7 +5,7 @@ class Registab1 extends React.Component {
 		return (
 			<div className="Registab1 regis-box-content">
 				<div class="container-fluid margin-top1">
-					<form class="row">
+					<div class="row">
 						<div class="col-1"></div>
 						<div class="col-8">
 							<div class="container-fluid">
@@ -72,7 +72,7 @@ class Registab1 extends React.Component {
 								<input type="file" class="sr-only" id="input" accept="image/*" name="image" hidden />
 							</div>
 						</div>
-					</form>	
+					</div>	
 				</div>
 				<div class="container">
 						<div class="alert" role="alert"></div>

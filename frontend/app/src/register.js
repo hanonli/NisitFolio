@@ -39,6 +39,7 @@ class Register extends React.Component {
 					<li class="tab-list-item" id="tab-6" type="button">งานที่สนใจ</li>
 					<li class="tab-list-item" id="tab-7" type="button">ทักษะเสริม</li>
 				</ol>
+				<form class="needs-validation" novalidate>
 				<div>
 					<div class="tab-content" id="registab1-content">
 						<Registab1 />
@@ -62,11 +63,10 @@ class Register extends React.Component {
 						<Registab7 />
 					</div>
 				</div>
-				<Link to="/emailverify">
-					<div class="col block-right">
-						<button class="btn btn-cta-primary-yellowwide round profile-button" href="#" target="_blank" type="submit" id="continue2" disabled>ยืนยัน</button>
-					</div>
-				</Link>
+				<div class="col block-right">
+					<button class="btn btn-cta-primary-yellowwide round profile-button" href="#" target="_blank" type="submit" id="continue2">ยืนยัน</button>
+				</div>
+				</form>
 			</div>
 		);
 	}
