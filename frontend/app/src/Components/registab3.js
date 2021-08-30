@@ -12,9 +12,9 @@ class Registab3 extends React.Component {
 				<div class='container-fluid'>
 					<div class='col-16'>
 						<div class='row justify-content-center'>
-								<div className='textbox col-5'>
+								<div className='registab3_formbox col-5'>
 									<h1>อุดมศึกษา</h1>
-									<div className='registab4_btnplus'>
+									<div className='registab3_btnplus'>
 										<button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#registab3Modal1">
 											<img id='icon-plus-circle'  src="assets/images/+.png"></img>
 										</button>
@@ -23,12 +23,12 @@ class Registab3 extends React.Component {
 									<div class="modal fade" id="registab3Modal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
 										<div class="modal-dialog modal-dialog-centered modal-xl">
 											<div class="modal-content " >
-												<div class='modal-header'>
-													<h1 class='modal-title' id='regisModallabel1' >เพิ่มประวัติการศึกษา</h1>
-													<button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
-												</div>
 												<div class='modal-body'>
-													<Registab3_addHigher/>
+													<button type="button" class="btn-close" id='registab3_btnclose' aria-label="Close" data-bs-dismiss="modal"></button>
+													<h1 class='modal-title' id='regisModallabel1' >เพิ่มประวัติการศึกษา</h1>
+													<div className='addHigher'>
+														<Registab3_addHigher/>
+													</div>													
 												</div>
 												<div class='modal-footer'>
 													<div class="centerverify">
@@ -42,9 +42,9 @@ class Registab3 extends React.Component {
 									</div>
 								</div>
 
-								<div className='textbox col-5'>
+								<div className='registab3_formbox col-5'>
 									<h1>มัธยมศึกษา</h1>
-									<div className='registab4_btnplus'>						
+									<div className='registab3_btnplus'>						
 										<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#registab3Modal2">
 											<img id='icon-plus-circle'  src="assets/images/+.png"></img>
 										</button>
@@ -52,12 +52,12 @@ class Registab3 extends React.Component {
 									<div class="modal fade" id="registab3Modal2" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
 										<div class="modal-dialog modal-dialog-centered modal-xl">
 											<div class="modal-content " >
-												<div class='modal-header'>
-													<h1 class='modal-title' id='regisModallabel2' >เพิ่มประวัติการศึกษา</h1>
-													<button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
-												</div>
 												<div class='modal-body'>
-													<Registab3_addSecondary/>
+													<button type="button" class="btn-close" id='registab3_btnclose' aria-label="Close" data-bs-dismiss="modal"></button>
+													<h1 class='modal-title' id='regisModallabel2' >เพิ่มประวัติการศึกษา</h1>
+													<div className='addSecondary'>
+														<Registab3_addSecondary/>
+													</div>													
 												</div>
 												<div class='modal-footer'>
 													<div class="centerverify">

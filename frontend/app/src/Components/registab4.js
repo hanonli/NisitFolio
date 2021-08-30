@@ -30,7 +30,7 @@ class Registab4 extends React.Component {
 		return (
 			<div className="Registab4 regis-box-content">
 		
-						<div className='textbox col-12' >
+						<div className='registab4_formbox col-12' >
 								
 								<div class='registab4_btnplus'>
 									<button type="button" class="btn justify-content-center" data-bs-toggle="modal" data-bs-target="#registab4Modal">
@@ -40,12 +40,12 @@ class Registab4 extends React.Component {
 								<div class="modal fade" id="registab4Modal" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
 									<div class="modal-dialog modal-dialog-centered modal-xl">
 										<div class="modal-content " >
-											<div class='modal-header'>
-												<h1 class='modal-title' id='regisModallabel1' >เพิ่มประวัติการทำงาน</h1>
-												<button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
-											</div>
 											<div class='modal-body'>
-												<Registab4_addWorkHistory/>
+												<button type="button" class="btn-close" id='registab3_btnclose' aria-label="Close" data-bs-dismiss="modal"></button>
+												<h1 class='modal-title' id='regisModallabel1' >เพิ่มประวัติการทำงาน</h1>			
+												<div className='addWorkHistory'>
+													<Registab4_addWorkHistory/>
+												</div>								
 											</div>
 											<div class='modal-footer'>
 												<div class="centerverify">

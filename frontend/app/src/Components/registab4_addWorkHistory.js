@@ -42,7 +42,7 @@ class Registab4_addWorkHistory extends React.Component {
                             <div class='col-6'>
                                 <input type="text" class="form-control dropbtn margin-bottom1 " id="ValidationPositionFeedback" placeholder="ตำแหน่งงาน" required></input>
                             </div>
-                            <div class='col-6 was-validated'>
+                            <div class='col-6'>
                                 <input type="text" class="form-control dropbtn margin-bottom1 " id="ValidationCompanyFeedback" placeholder="สังกัด/บริษัท"></input>
                             </div>
                         </div>
