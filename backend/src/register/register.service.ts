@@ -10,6 +10,7 @@ import { EmailConfirmationService } from '../emailConfirmation/emailConfirmation
 
 import { JobTitle } from 'src/register/entity/JobTitle.entrity'
 import { Skill } from 'src/register/entity/Skill.entrity'
+import { HardSkill} from 'src/register/entity/HardSkill.entrity'
 
 @Injectable()
 export class RegisterService {
@@ -32,6 +33,9 @@ export class RegisterService {
     private JobTitleRepository: Repository<JobTitle>,
     @InjectRepository(Skill)
     private SkillRepository: Repository<Skill>,
+    @InjectRepository(HardSkill)
+    private HardSkillRepository: Repository<Skill>,
+    
     private readonly emailConfirmationService: EmailConfirmationService
 
   ) {}
@@ -125,6 +129,11 @@ export class RegisterService {
   async findSkill(jobTitle:string)
   {
     return this.SkillRepository.find({where:{ jobTitle: jobTitle }});
+  }
+
+  async findHardSkill()
+  {
+    return this.HardSkillRepository.find();
   }
   
 }
