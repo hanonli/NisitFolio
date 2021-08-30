@@ -131,9 +131,9 @@ export class RegisterService {
     return this.SkillRepository.find({where:{ jobTitle: jobTitle }});
   }
 
-  async findHardSkill()
+  async findHardSkill(Type:string)
   {
-    return this.HardSkillRepository.find();
+    return this.HardSkillRepository.find({where:{ Type: Type }});
   }
   
 }
