@@ -20,6 +20,7 @@ import { MulterModule } from '@nestjs/platform-express';
 
 //--------------------------------------------------------------------------------------------------------------//
 import { ConfigModule } from '@nestjs/config';
+import { BookmarkModule } from './bookmark/bookmark.module';
 import * as Joi from 'joi';
 //--------------------------------------------------------------------------------------------------------------//
 @Module({
@@ -55,6 +56,7 @@ import * as Joi from 'joi';
     AnalyticsModule,
     AuthModule,
     UsersModule,
+    BookmarkModule,
   ],
   controllers: [AppController],
   providers: [AppService],
