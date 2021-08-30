@@ -11,6 +11,9 @@ export class Skill {
 
   @Column()
   skill: string;
+
+  @Column()
+  THSkill: string;
 }
 
 export default Skill;
