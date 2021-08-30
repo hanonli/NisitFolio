@@ -2,6 +2,7 @@ import React from 'react';
 import Registab3_addHigher from './registab3_addHigher';
 import Registab3_addSecondary from './registab3_addSecondary';
 import './registab3.css'
+import './registab3_script'
 import './register.css'
 
 class Registab3 extends React.Component {
