@@ -1,28 +1,20 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+
 import { MongooseModule } from '@nestjs/mongoose';
-
 import { TypeOrmModule } from '@nestjs/typeorm';
-
-import Account from './register/entity/Account.entity';
-import Userinfo from './register/userinfo.entity';
-
 import { AnalyticsModule } from './analytics/analytics.module';
-import { RegisterController } from './register/register.controller';
-import { RegisterService } from './register/register.service';
-
 import { EmailConfirmationModule } from './emailconfirmation/emailConfirmation.module';
 import { RegisterModule } from './register/register.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { MulterModule } from '@nestjs/platform-express';
-
-//--------------------------------------------------------------------------------------------------------------//
 import { ConfigModule } from '@nestjs/config';
 import { BookmarkModule } from './bookmark/bookmark.module';
+
 import * as Joi from 'joi';
-//--------------------------------------------------------------------------------------------------------------//
+
 @Module({
   imports: [
     
@@ -35,6 +27,7 @@ import * as Joi from 'joi';
         EMAIL_SERVICE: Joi.string().required(),
         EMAIL_USER: Joi.string().required(),
         EMAIL_PASSWORD: Joi.string().required(),
+        URL_Mongodb: Joi.string().required(),
       })
     }),
     MongooseModule.forRoot(
