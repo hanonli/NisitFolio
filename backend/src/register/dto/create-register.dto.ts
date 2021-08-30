@@ -1,8 +1,9 @@
-import { IsNotEmpty, IsNumberString } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsNumberString } from 'class-validator';
 
 export class CreateRegisDto {
 
   @IsNotEmpty()
+  @IsEmail()
   Email: string;
 
   @IsNotEmpty()
@@ -55,9 +56,7 @@ export class CreateRegisDto {
 
   Academy: string[];
 
-  Grade: Float32Array[];
-
-  Education_Start_Year: number[];  
+  Grade: Float32Array[]; 
 
   Education_End_Year: number[];   
 

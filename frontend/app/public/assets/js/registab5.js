@@ -23,7 +23,7 @@ $(document).ready(function () {
 /*-----value of modal-----*/
 
 $(document).ready(function () {
-    var moda_tab5 = document.getElementById("exampleModal1");
+    var modal_tab5 = document.getElementById("exampleModal1");
     console.log(modal_tab5);
 });
 
