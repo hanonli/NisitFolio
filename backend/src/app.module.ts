@@ -37,11 +37,11 @@ import * as Joi from 'joi';
       })
     }),
     MongooseModule.forRoot(
-      'mongodb+srv://user1234:user1234@cluster0.39z7o.mongodb.net/nisitfolio'
+      'mongodb+srv://backend:VQfKYfFePGMdMSdd@cluster0.39z7o.mongodb.net/nisitfolio'
       ),
     TypeOrmModule.forRoot({
       type: 'mongodb',
-      url: 'mongodb+srv://user1234:user1234@cluster0.39z7o.mongodb.net/nisitfolio',
+      url: 'mongodb+srv://backend:VQfKYfFePGMdMSdd@cluster0.39z7o.mongodb.net/nisitfolio',
       autoLoadEntities: true,
       synchronize: true,
     }),
