@@ -6,14 +6,12 @@ import EmailService from '../email/email.service';
 import { UsersService } from '../users/users.service';
 import { ObjectId } from 'mongodb';
 import { MailerService } from '@nestjs-modules/mailer';
-import { CreateRegisDto } from '../register/dto/create-register.dto';
  
 @Injectable()
 export class EmailConfirmationService {
   constructor(
     private readonly jwtService: JwtService,
     private readonly configService: ConfigService,
-    private readonly emailService: EmailService,
     private readonly usersService: UsersService,
     private mailerService: MailerService,
   ) {}
