@@ -1,10 +1,9 @@
 import { Date, Model } from "mongoose";
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-import { Bookmark } from "./bookmarks.schema";
 
 import { ObjectId } from "mongodb";
-import { TotalBookmark } from "./bookmarks.shema";
+import { Bookmark, TotalBookmark } from "./bookmarks.schema";
 
 @Injectable()
 export class BookmarkService {
