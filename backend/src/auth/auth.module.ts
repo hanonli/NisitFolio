@@ -10,6 +10,8 @@ import { AuthenticationController } from './auth.controller';
 import { RegisterModule } from 'src/register/register.module';
 import { EmailConfirmationModule } from 'src/emailconfirmation/emailConfirmation.module';
 import { EmailModule } from 'src/email/email.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import  UserReq   from "src/users/user.entity"; 
 
 @Module({
   imports: [
@@ -18,10 +20,12 @@ import { EmailModule } from 'src/email/email.module';
     RegisterModule,
     UsersModule, 
     PassportModule,
+    TypeOrmModule.forFeature([UserReq ]),
     JwtModule.register({
       secret: jwtConstants.secret,
       signOptions: { expiresIn: '60m' },
     })
+    
   ],
   controllers: [ AuthenticationController],
   providers: [AuthService, LocalStrategy, JwtStrategy],

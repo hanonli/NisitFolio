@@ -1,16 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import User from './user.entity';
+import UserReq  from './user.entity';
 import { ObjectId } from 'mongodb';
+import { UserDto } from './dto/user.dto';
+
+//export type User = any;
+
 
 @Injectable()
   export class UsersService {
   constructor(
-    @InjectRepository(User)
-    private usersRepository: Repository<User>,
+    @InjectRepository(UserReq )
+    private readonly usersRepository: Repository<UserReq>,
   ) {}
 
+    //private readonly user = this.usersRepository.find();
   async markEmailAsConfirmed(Email: string) {
     return this.usersRepository.update({ Email }, {
       isEmailConfirmed: true
@@ -21,13 +26,24 @@ import { ObjectId } from 'mongodb';
   }
 
   async findOne(Email: string) {
-    return await this.usersRepository.findOne({ Email: Email });
+    const toUserDto = (data: UserReq): UserDto => {  
+    const { id, Email, Password } = data;
+    let userDto: UserDto = { id, Email, Password  };
+    return userDto;};
+
+    const user = await this.usersRepository.findOne({ Email: Email })
+    return toUserDto(user)
   }
 
   async getById(Id: ObjectId) {
     return await this.usersRepository.findOne({ id: Id });
   }
-}
+
+  
+};
+
+  
+  
 
 /*export type User = any;
 
