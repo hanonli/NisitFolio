@@ -4,10 +4,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { UserAddSkill, UserJobSkill } from './analytics.schema';
 
 import { ObjectId } from 'mongodb' ;
-import * as mongoose from 'mongoose';
-import { any } from '@hapi/joi';
-import { arrayNotContains } from 'class-validator';
-import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
+
 
 
 @Injectable()
