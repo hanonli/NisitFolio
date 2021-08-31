@@ -43,5 +43,4 @@ export class AnalyticsController {
     return this.analyticsService.createUserJobSkill(oid, Objective, Score, JobName, SkillName) ;
   }
 
-
 }
