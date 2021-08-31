@@ -28,4 +28,13 @@ export class BookmarkController {
     const oid2 = mongoose.Types.ObjectId(detail.thatUserId);
     return await this.bookmarkService.DeleteBookmark(oid1, detail.link, detail.type, oid2, detail.projectName) ;
   }
+
+  // ---------------------------- Find All Bookmark ---------------------------
+  @Get('find/:id')
+  async findBookmark(@Param('id') id:string): Promise<any[]> {
+    const oid = mongoose.Types.ObjectId(id) ;
+    console.log(oid); 
+    return await this.bookmarkService.findBookmark(oid) ;
+  }
+
 }
