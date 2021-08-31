@@ -68,4 +68,12 @@ export class BookmarkService {
       }
     ) ;
   }
+
+  // ---------------------------- Find All Bookmark ---------------------------
+
+  async findBookmark(userId: ObjectId) : Promise<any[]> {
+    const All = await this.BookmarkModel.find({userId: userId}).sort({updatedAt: -1}) ;
+    console.log(All) ;
+    return All ;
+  }
 }

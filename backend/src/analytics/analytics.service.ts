@@ -247,7 +247,7 @@ export class AnalyticsService {
     //                     }
     // ])
 
-  // -------------------- Skill ---------------------------
+  // -------------------- Skill ---------------------------[]
 
   async createUserJobSkill(userId: ObjectId, Objective: string, Score: number, JobName: string, SkillName: string) {
     const createUserJobSkill =  new this.UserJobSkillModel({userId, Objective, Score, JobName, SkillName}) ;
