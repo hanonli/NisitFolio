@@ -49,7 +49,7 @@ export class Userinfo {
   AboutMe: string;
 
   @Column()
-  EmailBusiness: string;
+  Email2nd: string;
 
   @Column()
   Gender: string;
@@ -123,16 +123,14 @@ export class EducationHistory {
   Facalty: string;
   
   @Column()
-  Find_of_study: string;
+  Field_of_study: string;
   
   @Column()
   Academy: string;
   
   @Column()
   Grade: Float32Array;
-  
-  @Column()
-  Education_Start_Year: number;   
+   
 
   @Column()
   Education_End_Year: number;   

@@ -57,7 +57,8 @@
     color: #000;
     padding: 10px;
     font-size: 20px;
-    border: none;
+    /*border: none;*/
+    border-color: #EAEAEA;
     /*cursor: pointer;*/
     border-radius: 24px;
     padding-left: 30px;
@@ -66,6 +67,7 @@
   /* Dropdown button on hover & focus */
   .dropbtn:hover, .dropbtn:focus {
     background-color: #cdcdcd;
+    border-color: #cdcdcd;
   }
 
   .dropbtn-box {
@@ -73,7 +75,8 @@
     color: #000;
     padding: 10px;
     font-size: 20px;
-    border: none;
+    /*border: none;*/
+    border-color: #EAEAEA;
     /*cursor: pointer;*/
     border-radius: 24px;
     padding-left: 30px;
@@ -83,6 +86,7 @@
   /* Dropdown button on hover & focus */
   .dropbtn-box:hover, .dropbtn-box:focus {
     background-color: #cdcdcd;
+    border-color: #cdcdcd;
   }
 
 /* Dropdown_year Button */
@@ -106,7 +110,7 @@
   .aboutmee {
     background-color: #EAEAEA;
     color: #000;
-    padding: 10px;
+    padding: 30px;
     font-size: 20px;
     border: none;
     /*cursor: pointer;*/
@@ -305,4 +309,22 @@ datalist {
 
 .red_markEp1 {
   color: red;
+}
+
+.red_markEp2 {
+  border-color : #fe9e8c;
+}
+.red_markEp2:hover, .red_markEp2:focus {
+  background-color: #cdcdcd;
+  border-color : red;
+  border-style: 1px;
+}
+
+.is-valid {
+  background-image: none;
+  padding-right: 0%;
+}
+
+.is-invalid {
+  background-image: none;
 }

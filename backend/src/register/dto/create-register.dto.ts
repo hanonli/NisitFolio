@@ -1,13 +1,9 @@
-import { IsNotEmpty, IsNumberString } from 'class-validator';
-import { ObjectId } from 'mongodb';
-import { type } from 'os';
-import { OneToMany } from 'typeorm';
-import EducationHistory from '../entity/EducationHistory.entity';
-import { CreateDto3 } from './create.dto';
+import { IsEmail, IsNotEmpty, IsNumberString } from 'class-validator';
 
 export class CreateRegisDto {
 
   @IsNotEmpty()
+  @IsEmail()
   Email: string;
 
   @IsNotEmpty()
@@ -30,7 +26,7 @@ export class CreateRegisDto {
 
   AboutMe: string;
 
-  EmailBusiness: string;
+  Email2nd: string;
 
   @IsNotEmpty()
   Gender: string;
@@ -41,28 +37,30 @@ export class CreateRegisDto {
 
   City: string;
 
+  @IsNotEmpty()
   SoftSkill: string[];
 
+  @IsNotEmpty()
   CertName: string[];
 
   CertPic: string[];
 
   CertYear: number[];
 
+  @IsNotEmpty()
   Degree: string[];
 
   Facalty: string[];
 
-  Find_of_study: string[];
+  Field_of_study: string[];
 
   Academy: string[];
 
-  Grade: Float32Array[];
-
-  Education_Start_Year: number[];  
+  Grade: Float32Array[]; 
 
   Education_End_Year: number[];   
 
+  @IsNotEmpty()
   Work_JobName: string[];
 
   Work_JobType: string[];
@@ -85,6 +83,7 @@ export class CreateRegisDto {
 
   Job_Score: Float32Array[];
 
+  @IsNotEmpty()
   Job_JobName: string[];
 
   Job_SkillName: string[];

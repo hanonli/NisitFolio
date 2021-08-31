@@ -1,30 +1,51 @@
 import React from 'react';
 import Registab4_addWorkHistory from './registab4_addWorkHistory';
 import './registab3.css'
+import './register.css'
 
 class Registab4 extends React.Component {
+	constructor(props) {
+		super(props);
+		this.handleLoad = this.handleLoad.bind(this);
+	 }
+	
+	componentDidMount() {
+		window.addEventListener('load', this.handleLoad);
+		console.log("YEAHXXX!");
+		const script = document.createElement("script");
+		script.src = "assets/js/register.js";
+		document.body.appendChild(script);
+		
+	}
+	
+	componentWillUnmount() { 
+	   window.removeEventListener('load', this.handleLoad)  
+	}
+	
+	handleLoad() {
+		console.log("YEAH!");
+	 }
+	 
 	render (){
 		return (
 			<div className="Registab4 regis-box-content">
-				<div class="container ">
-					
-					<div class='row justify-content-center margin-top1'>
-						<div className='textbox col-12' >
+		
+						<div className='registab4_formbox col-12' >
 								
 								<div class='registab4_btnplus'>
 									<button type="button" class="btn justify-content-center" data-bs-toggle="modal" data-bs-target="#registab4Modal">
-											<img id='icon-plus-circle'  src="assets/images/+.png"></img>
+											<img id='icon-plus-circle'  src="assets/images/+.png" width="115" height="115" ></img>
 									</button>
 								</div>
 								<div class="modal fade" id="registab4Modal" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
 									<div class="modal-dialog modal-dialog-centered modal-xl">
 										<div class="modal-content " >
-											<div class='modal-header'>
-												<h1 class='modal-title' id='regisModallabel1' >เพิ่มประวัติการศึกษา</h1>
-												<button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
-											</div>
 											<div class='modal-body'>
-												<Registab4_addWorkHistory/>
+												<button type="button" class="btn-close" id='registab3_btnclose' aria-label="Close" data-bs-dismiss="modal"></button>
+												<h1 class='modal-title' id='regisModallabel1' >เพิ่มประวัติการทำงาน</h1>			
+												<div className='addWorkHistory'>
+													<Registab4_addWorkHistory/>
+												</div>								
 											</div>
 											<div class='modal-footer'>
 												<div class="centerverify">
@@ -35,8 +56,7 @@ class Registab4 extends React.Component {
 										</div>
 									</div>
 								</div>			
-						</div>
-					</div>
+		
 
 				</div>
 			</div>

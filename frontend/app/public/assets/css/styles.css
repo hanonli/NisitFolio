@@ -9,7 +9,7 @@ body {
   /*background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/ed8839e8-3dcb-4bf1-b158-30dcd13e9589/dbgk12z-b8175564-549b-4bf6-a9bc-e3cd668811fb.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvZWQ4ODM5ZTgtM2RjYi00YmYxLWIxNTgtMzBkY2QxM2U5NTg5XC9kYmdrMTJ6LWI4MTc1NTY0LTU0OWItNGJmNi1hOWJjLWUzY2Q2Njg4MTFmYi5naWYifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.lJRTgtV562V7g7CmRlvfhZV32_0g-svgnQGqoEkR9Do");*/
 }
 
-h1, h2, h3, h4, h5, h6, input, span,label,button,textarea, a {
+h1, h2, h3, h4, h5, h6, input, span,label,button,textarea, a, div {
   font-family: 'Nunito','Kanit', arial, sans-serif;
   font-weight: bold;
   /*font-size: 16px;*/

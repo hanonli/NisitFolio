@@ -7,11 +7,11 @@ class Registab3_addHigher extends React.Component {
 		return (
 			<div className="Registab3_addHigher ">
 				
-                <form class='was-validated' id='HigherForm'>
+                <form  id='HigherForm'>
                     <div class='col-3' >
                         <div class="selectDropdown">
-                            <select class="form-select form-select-lg dropbtn margin-bottom1 fff" id='selectDropdown1' aria-labelledby="select1" required>
-                                <option selected disabled value=''>เลือกวุฒิการศึกษา</option>
+                            <select class="form-select form-select-lg dropbtn margin-bottom1 fff" id='regis3_selectdropdown1' aria-labelledby="select1" required>
+                                <option selected disabled value=''>เลือกวุฒิการศึกษา*</option>
                                 <option >ปริญญาเอก</option>    
                                 <option >ปริญญาโท</option>
                                 <option >ปริญญาตรี</option>
@@ -36,7 +36,7 @@ class Registab3_addHigher extends React.Component {
                         <div class="col-6">
                             <div class='row'>
                                 <div class='col'> 
-                                    <h5 id='registab4_textGrade'>เกรดเฉลี่ยรวม</h5>
+                                    <h5 id='registab4_textGrade' type='number' >เกรดเฉลี่ยรวม*</h5>
                                 </div>
                                 <div class='col-4 ms-auto'> 
                                     <input type="text" class="form-control dropbtn margin-bottom1 " id="ValidationGradeFeedback" placeholder="XX.X" required></input>
@@ -47,8 +47,9 @@ class Registab3_addHigher extends React.Component {
                     
                     <div class='col-3' >
                         <div class="selectDropdown">
-                            <select class="form-select form-select-lg dropbtn_year margin-bottom1 fff" id='yearpicker1' aria-labelledby="select1" required>
+                            <select class="form-select form-select-lg dropbtn_year margin-bottom1 fff" id='year_higher' aria-labelledby="select1" required>
                                 <option selected disabled value=''>ปีที่จบการศึกษา</option>
+                                <option>กำลังศึกษา</option>
                             </select>
                             <br/>
                         </div>               
