@@ -4,10 +4,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { UserAddSkill, UserJobSkill } from './analytics.schema';
 
 import { ObjectId } from 'mongodb' ;
-import * as mongoose from 'mongoose';
-import { any } from '@hapi/joi';
-import { arrayNotContains } from 'class-validator';
-import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
+
 
 
 @Injectable()
@@ -85,25 +82,52 @@ export class AnalyticsService {
     * Now we look at the "Overview" considering all users.
     */
     
-    const users = await this.UserAddSkill.find( { Job: job }).select( { userId:1 }).distinct('userId').exec();
+    const users = await this.UserAddSkill.find().select( { userId:1 } ).distinct('userId').exec();
     const numberOfUsers = users.length;
 
     results["Overview"] = { numberOfUsers: numberOfUsers };
+
+    /*
+    * Note that there are duplicates of one's skill sets, because we store at most 3 documents per job per user.
+    * So we are going to drop those duplicates.
+    */
+
     const queryResults = await this.UserAddSkill.aggregate([
-      {
-        $group: {
-          _id: { SoftSkill: "$SoftSkill"},
-          total: { $sum: 1 }    
-        },  
+      {  
+        $group: { _id: { userId: "$userId", SoftSkill: "$SoftSkill"} }
       },
-      { $sort: { total: -1 } }
     ]).exec();
 
-    let finalResults = []
-    for ( var res of queryResults ) {
-      finalResults.push({ SoftSkill: result['_id'].SoftSkill,
-                          total: result.total,
-                          percentage: result.total/numberOfUsers * 100
+    console.log(queryResults);
+
+    let skillCounts = {};
+
+    for ( result of queryResults ) {
+      const skill = result._id["SoftSkill"];
+      if ( skillCounts.hasOwnProperty(skill) ) {
+        skillCounts[skill] += 1;
+      }
+      else {
+        skillCounts[skill] = 1;
+      }
+    }
+
+    /*
+    * Sort object by values in descending order. This is a little tricky.
+    * We will get a list of keys.
+    */
+
+    const keysSorted = Object.keys(skillCounts).sort(function(a,b) {return skillCounts[b]-skillCounts[a]});
+
+    /*
+    * Finally for each key in that list. we add desired fields to it.
+    * Then map the final result to "Overview".
+    */
+    let finalResults = [];
+    for ( var key of keysSorted ) {
+      finalResults.push({ SoftSkill: key,
+                          total: skillCounts[key],
+                          percentage: skillCounts[key]/numberOfUsers * 100
                         });
     }
 
@@ -250,7 +274,7 @@ export class AnalyticsService {
     //                     }
     // ])
 
-  // -------------------- Skill ---------------------------
+  // -------------------- Skill ---------------------------[]
 
   async createUserJobSkill(userId: ObjectId, Objective: string, Score: number, JobName: string, SkillName: string) {
     const createUserJobSkill =  new this.UserJobSkillModel({userId, Objective, Score, JobName, SkillName}) ;
