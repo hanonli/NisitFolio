@@ -42,10 +42,8 @@ export class BookmarkService {
 
       // if not found
       else {
-        console.log("add");
-        console.log(type);
         bookmark = new this.TotalBookmarkModel({ type: type, userId: userId, projectName: projectName, totalBookmarks: 1});
-        console.log(bookmark);
+        //console.log(bookmark);
       }
 
       // save the change
