@@ -19,7 +19,8 @@ export class BookmarkService {
     /*
     * Update total number in TotalBookmark table.
     * method: "add" (total++) or "delete" (total--)
-    * If total = 0 then delete that document.
+    * add:    If that document is not found then create a new one.
+    * delete: If total = 0 then delete that document.
     */
 
     let bookmark;
@@ -41,7 +42,10 @@ export class BookmarkService {
 
       // if not found
       else {
+        console.log("add");
+        console.log(type);
         bookmark = new this.TotalBookmarkModel({ type: type, userId: userId, projectName: projectName, totalBookmarks: 1});
+        console.log(bookmark);
       }
 
       // save the change
@@ -68,7 +72,8 @@ export class BookmarkService {
   async SaveBookmark(userId: ObjectId, link: string, type: string, 
     thatUserId: ObjectId,projectName?: string): Promise<any> {
     const createBookmark = new this.BookmarkModel({userId, link, type, thatUserId, projectName}) ;
-    await this.updateTotalBookmark("add", type, userId, projectName);
+    //console.log({userId, link, type, thatUserId, projectName});
+    await this.updateTotalBookmark("add", type, thatUserId, projectName);
     return await createBookmark.save() ;
   }
 
@@ -76,7 +81,7 @@ export class BookmarkService {
   
   async DeleteBookmark(userId: ObjectId, link: string, type: string, 
     thatUserId: ObjectId,projectName?: string): Promise<any> {
-    await this.updateTotalBookmark("delete", type, userId, projectName);
+    await this.updateTotalBookmark("delete", type, thatUserId, projectName);
     return await this.BookmarkModel.deleteMany( { userId: userId, link: link, type: type, thatUserId: thatUserId, projectName: projectName}, 
       function (err) {
         if(err) console.log(err);
