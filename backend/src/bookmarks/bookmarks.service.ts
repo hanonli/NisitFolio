@@ -4,7 +4,7 @@ import { InjectModel } from "@nestjs/mongoose";
 import { Bookmark } from "./bookmarks.schema";
 
 import { ObjectId } from "mongodb";
-import { TotalBookmark } from "./bookmarks.shema";
+import { TotalBookmark } from "./bookmarks.schema";
 
 @Injectable()
 export class BookmarkService {
@@ -16,23 +16,24 @@ export class BookmarkService {
     private TotalBookmarkModel: Model<TotalBookmark>,
   ) {}
 
-  
-  async updateTotalBookmark(method: String, type: String, userId: ObjectId, projectName: String): Promise<void> {
+  async updateTotalBookmark( method: String, type: String, userId: ObjectId, projectName: String ): Promise<void> {
     /*
     * Update total number in TotalBookmark table.
     * method: "add" (total++) or "delete" (total--)
     * If total = 0 then delete that document.
     */
-    if (method == "add") {
 
-      let bookmark;
-      
-      if (type == "user") {
-        bookmark = await this.TotalBookmarkModel.findOne({ type: type, userId: userId });
-      }
-      else if (type == "project") {
-        bookmark = await this.TotalBookmarkModel.findOne({ type: type, userId: userId, projectName: projectName});
-      }
+    let bookmark;
+   
+    if (type == "user") {
+      bookmark = await this.TotalBookmarkModel.findOne({ type: type, userId: userId });
+    }
+    else if (type == "project") {
+      bookmark = await this.TotalBookmarkModel.findOne({ type: type, userId: userId, projectName: projectName});
+    }
+
+    // If bookmark is added.
+    if (method == "add") {
 
       // found
       if ( bookmark != null) {
@@ -41,13 +42,26 @@ export class BookmarkService {
 
       // if not found
       else {
-
+        bookmark = new this.TotalBookmarkModel({ type: type, userId: userId, projectName: projectName, totalBookmarks: 1});
       }
 
+      // save the change
+      await bookmark.save();
     }
 
+    // If bookmark is deleted.
     else if (method == "delete") {
 
+      // If this is the last one.
+      if ( bookmark.totalBookmarks == 1 ) {
+        await this.TotalBookmarkModel.deleteOne(bookmark);
+      }
+
+      // if total > 1
+      else {
+        bookmark.totalBookmarks -= 1;
+        await bookmark.save();
+      }
     }
   }
   // ---------------------------- Save Bookmark ---------------------------
@@ -55,6 +69,7 @@ export class BookmarkService {
   async SaveBookmark(userId: ObjectId, link: string, type: string, 
     thatUserId: ObjectId,projectName?: string): Promise<any> {
     const createBookmark = new this.BookmarkModel({userId, link, type, thatUserId, projectName}) ;
+    await this.updateTotalBookmark("add", type, userId, projectName);
     return await createBookmark.save() ;
   }
 
@@ -62,6 +77,7 @@ export class BookmarkService {
   
   async DeleteBookmark(userId: ObjectId, link: string, type: string, 
     thatUserId: ObjectId,projectName?: string): Promise<any> {
+    await this.updateTotalBookmark("delete", type, userId, projectName);
     return await this.BookmarkModel.deleteMany( { userId: userId, link: link, type: type, thatUserId: thatUserId, projectName: projectName}, 
       function (err) {
         if(err) console.log(err);
