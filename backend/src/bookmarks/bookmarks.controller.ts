@@ -1,6 +1,6 @@
 import { Get, Post, Controller, Body, Param, Delete } from "@nestjs/common";
 import * as mongoose from 'mongoose';
-import { Bookmark } from "./bookmarks.schema";
+import { Bookmark } from './bookmarks.schema'
 import { BookmarkService } from "./bookmarks.service";
 
 @Controller('bookmark')

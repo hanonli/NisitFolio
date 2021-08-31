@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { BookmarkController } from './bookmarks.controller';
 import { BookmarkService } from './bookmarks.service';
-import { BookmarkSchema, TotalBookmarkSchema } from './bookmarks.shema';
+import { BookmarkSchema, TotalBookmarkSchema } from './bookmarks.schema';
 
 
 @Module({
