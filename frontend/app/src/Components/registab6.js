@@ -18,14 +18,16 @@ class Registab6 extends React.Component {
 		return (
 			<div className="Registab6">
 				<div class="regis-box-content">
-					<div class="list-of-job">
+					<div class="list-of-job" id="in-list-of-job">
 						<div class="frame_job" id="no-1">
 							<div class="job-column-1">
 								<h1 id="job-position">ตำแหน่งงานที่ 1</h1>
 								<h1 id="job-name">สามกีบ</h1>
 							</div>
-							<div class="my-skill-content">
+							<div class="head-skill">
 								<h1 id="mySkil-job">ทักษะของฉัน</h1>
+							</div>
+							<div class="my-skill-content">
 								<div class="each-skill-job">
 									<p id="skill1-job">ทักษะที่ 1</p>
 									<p id="skill2-job">ทักษะที่ 2</p>
@@ -54,7 +56,7 @@ class Registab6 extends React.Component {
 								<h4 class="del-b">คุณต้องการลบเป้าหมายในการทำงานนี้ ?</h4>
 								<div class="centerverify">
 									<a type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</a>
-									<a type="button" class="btn btn-cta-primary-yellowshort profile-button round" data-bs-dismiss="modal">ลบ</a>
+									<a id="summit-to-delete" type="button" class="btn btn-cta-primary-yellowshort profile-button round" data-bs-dismiss="modal">ลบ</a>
 								</div>
 							</div>
 						</div>
@@ -181,14 +183,16 @@ class Registab6 extends React.Component {
 									</div>
 								</div>
 
+
 								<div className="button-add-job1">
 									<a id="hide-modal-tab6" type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</a>
-									<button id="submit-job11" type="submit" class="btn btn-cta-primary-yellowshort profile-button round" data-bs-dismiss="modal">เพิ่ม</button>
+									<button id="submit-job11" type="submit" class="btn btn-cta-primary-yellowshort profile-button round" data-bs-dismiss="modal"></button>
 								</div>
 
 							</div>
 						</div>
 					</div>
+
 
 				</div>
 			</div >
