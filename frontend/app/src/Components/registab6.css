@@ -190,7 +190,7 @@
     transition: opacity .2s;
 }
 
-/*.x1{
+.x1{
     background: linear-gradient(to right,#f0a143 0%,#f0a143 50%, #c4c4c4 50%, #c4c4c4 100%);
 }
 
@@ -200,7 +200,7 @@
 
 .x3{
     background: linear-gradient(to right,#c98a11 0%,#c98a11 50%, #c4c4c4 50%, #c4c4c4 100%);
-}*/
+}
 
 .range-slider-job .slider:hover {
     opacity: 1;

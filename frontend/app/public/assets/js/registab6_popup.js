@@ -152,8 +152,14 @@ $(document).on("click", "#add-job", function () {
     choose_function = 2;
     $('#exampleModalJob').modal('toggle');
     $('#submit-job11').text('เพิ่ม');
+    $("#customRange11").val("5");
+    //document.getElementsByClassName("x1").style.background = "background: linear-gradient(to right,#f0a143 0%,#f0a143 50%, #c4c4c4 50%, #c4c4c4 100%)";
+    $("#customRange12").val("5");
+    //document.getElementsByClassName("x2").style.background = "background: linear-gradient(to right,#0fe17c 0%,#0fe17c 50%, #c4c4c4 50%, #c4c4c4 100%)";
+    $("#customRange13").val("5");
+    //document.getElementsByClassName("x3").style.background = "background: linear-gradient(to right,#c98a11 0%,#f0a143 50%, #c98a11 50%, #c4c4c4 100%)";
 });
-
+var for_edit;
 $(document).on("click", "#edit-job", function () {
     id_list_job = $(this).parents().attr('id');
     console.log(`edit:`, id_list_job);
@@ -161,7 +167,7 @@ $(document).on("click", "#edit-job", function () {
     $('#exampleModalJob').modal('toggle');
     $('#submit-job11').text('ยืนยัน');
     console.log(`chosoe: ${choose_function}`);
-    var for_edit = list_of_job.find(function (post, index_del) {
+    for_edit = list_of_job.find(function (post, index_del) {
         if (post.id == id_list_job)
             return true;
     });
@@ -204,13 +210,13 @@ $(document).on('click', "#hide-modal-tab6", function () {
 
     $("#each_skill1_select").prop('selectedIndex', "0");
     $("#customRange11").val("5");
-
+    //document.getElementsByClassName("x1").style.background = "background: linear-gradient(to right,#f0a143 0%,#f0a143 50%, #c4c4c4 50%, #c4c4c4 100%)";
     $("#each_skill2_select").prop('selectedIndex', "0");
     $("#customRange12").val("5");
-
+    //document.getElementsByClassName("x2").style.background = "background: linear-gradient(to right,#0fe17c 0%,#0fe17c 50%, #c4c4c4 50%, #c4c4c4 100%)";
     $("#each_skill3_select").prop('selectedIndex', "0");
     $("#customRange13").val("5");
-
+    //document.getElementsByClassName("x3").style.background = "background: linear-gradient(to right,#c98a11 0%,#f0a143 50%, #c98a11 50%, #c4c4c4 100%)";
     $("#obj-job-01").val("");
     $("#obj-job-02").val("");
     $("#obj-job-03").val("");
@@ -231,6 +237,21 @@ document.getElementById("submit-job11").addEventListener("click", function () {
         obj_job_1 = document.getElementById("obj-job-01").value;
         obj_job_2 = document.getElementById("obj-job-02").value;
         obj_job_3 = document.getElementById("obj-job-03").value;
+
+        for_edit["name_job"] = name_job;
+        for_edit["name_job_select"] = $("#nm_job").prop('selectedIndex');
+        for_edit["skill1"] = skill_job_1;
+        for_edit["skill1_select"] = $("#each_skill1").prop('selectedIndex');
+        for_edit["score_skill1"] = score_skill_job_1;
+        for_edit["skill2"] = skill_job_2;
+        for_edit["skill2_select"] = $("#each_skill2").prop('selectedIndex');
+        for_edit["score_skill2"] = score_skill_job_2;
+        for_edit["skill3"] = skill_job_3;
+        for_edit["skill3_select"] = $("#each_skill3").prop('selectedIndex');
+        for_edit["score_skill3"] = score_skill_job_3;
+        for_edit["obj1"] = obj_job_1;
+        for_edit["obj2"] = obj_job_2;
+        for_edit["obj3"] = obj_job_3;
     }
     else if (choose_function == 2) { //add job in list
         name_job = document.getElementById("nm_job").value;
@@ -281,13 +302,13 @@ document.getElementById("submit-job11").addEventListener("click", function () {
 
     $("#each_skill1").prop('selectedIndex', 0);
     $("#customRange11").val("5");
-
+    //document.getElementsByClassName("x1").style.background = "background: linear-gradient(to right,#f0a143 0%,#f0a143 50%, #c4c4c4 50%, #c4c4c4 100%)";
     $("#each_skill2").prop('selectedIndex', 0);
     $("#customRange12").val("5");
-
+    //document.getElementsByClassName("x2").style.background = "background: linear-gradient(to right,#0fe17c 0%,#0fe17c 50%, #c4c4c4 50%, #c4c4c4 100%)";
     $("#each_skill3").prop('selectedIndex', 0);
     $("#customRange13").val("5");
-
+    //document.getElementsByClassName("x3").style.background = "background: linear-gradient(to right,#c98a11 0%,#f0a143 50%, #c98a11 50%, #c4c4c4 100%)";
     $("#obj-job-01").val("");
     $("#obj-job-02").val("");
     $("#obj-job-03").val("");
