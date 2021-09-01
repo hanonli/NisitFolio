@@ -171,6 +171,7 @@ for (k = startD; k < MaxD; k++) {
           });
           initialAvatarURL = avatar1.src;
           avatar1.src = canvas.toDataURL();
+          console.log(avatar1.src);
           $alert.removeClass('alert-success alert-warning');
           canvas.toBlob(function (blob) {
             var formData = new FormData();
@@ -456,6 +457,9 @@ var sideskill_count=0;
 var max_sideskill=3;
 var sumsideskill='';
 var valss_now='';
+var valt7_1 = '';
+var valt7_2 = '';
+var valt7_3 = '';
 
 $(document).on('change', 'input', function(){
     var options = $('datalist')[0].options;
@@ -469,7 +473,7 @@ $(document).on('change', 'input', function(){
           if(sideskill_count == 1){
             $('#sideskilllist1').hide();          
             valss_now = $('#sideskilllist1').val();
-            var valt7_1 = valss_now;
+            valt7_1 = valss_now;
             console.log(valss_now);
             sumsideskill = sideskilldropdown1_1 + valss_now + sideskilldropdown2 + sskdd1;
             /*console.log(sumsideskill);*/
@@ -481,7 +485,7 @@ $(document).on('change', 'input', function(){
             $('#sideskilllist2').hide(); 
             $('#sideskilllist3').show();
             valss_now = $('#sideskilllist2').val();
-            var valt7_2 = valss_now;
+            valt7_2 = valss_now;
             vvv = valss_now.length;
             console.log(valss_now);
             console.log('Length : ' + vvv);
@@ -493,7 +497,7 @@ $(document).on('change', 'input', function(){
           else if(sideskill_count == 3){
             $('#sideskilllist3').hide(); 
             valss_now = $('#sideskilllist3').val();
-            var valt7_3 = valss_now;
+            valt7_3 = valss_now;
             console.log(valss_now);
             sumsideskill = sideskilldropdown1_3 + valss_now + sideskilldropdown2 + sskdd3;
             /*console.log(sumsideskill);*/
@@ -522,8 +526,25 @@ $(function(){
   $('#del_sideskill3').on('click', function(){
     console.log('EiEi this is Del3');
     $('#ssl_3').remove();
-    $('#sideskilllist3').show(); 
+    $('#sideskilllist3').show();
     sideskill_count -= 1;
   });
 });
+
+function GetPro() {
+  fetch(" https://thaiaddressapi-thaikub.herokuapp.com/v1/thailand/provinces",{
+          method: "GET",
+          headers: {
+              "Content-Type": "application/json"},
+      })
+          .then(response => response.json())
+          .then(response => response.result)
+          .then((data) => {
+            console.log(data)
+            let i=0;
+            data.forEach((data) => {
+                console.log(data.province);
+          })})};
+
+/*GetPro();*/
 

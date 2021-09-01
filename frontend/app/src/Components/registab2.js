@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react'
+import Select from 'react-select'
+import CustomSelect from './customSelect';
 
 class Registab2 extends React.Component {
 
@@ -46,6 +48,7 @@ class Registab2 extends React.Component {
 										<select class="form-select dropbtn margin-bottom1 fff" id="province">
 											<option selected disabled value="">จังหวัด</option>
 										</select>
+										<CustomSelect />
 									</div>
 									<div class="col-md-3">
 										<select class="form-select dropbtn margin-bottom1 fff" id="town">

@@ -23,6 +23,7 @@ class Registab7 extends React.Component {
 	handleLoad() {
 		console.log("YEAH!");
 	 }
+	 
 
 	render (){
 		return (
@@ -32,21 +33,15 @@ class Registab7 extends React.Component {
 					<div class="dropdowntap7_1">
 						<input class="form-control dropbtn ssf" list="sideskillop" id="sideskilllist1" placeholder="เลือกทักษะเสริมที่ถนัด"></input>
 						<datalist class="dropdown-content" id="sideskillop">
-							<option value="Photoshop"></option>
-							<option value="Word"></option>
-							<option value="Excel"></option>
-							<option value="Ai"></option>
-							<option value="Python"></option>
-							<option value="Photoshop"></option>
-							<option value="Word"></option>
-							<option value="Excel"></option>
-							<option value="Ai"></option>
-							<option value="Python"></option>
-							<option value="Photoshop"></option>
-							<option value="Word"></option>
-							<option value="Excel"></option>
-							<option value="Ai"></option>
-							<option value="Python"></option>
+							<option value="Technical"></option>
+							<option value="Computer"></option>
+							<option value="Analytical"></option>
+							<option value="Marketing"></option>
+							<option value="Presentation"></option>
+							<option value="Management"></option>
+							<option value="Writing"></option>
+							<option value="Language"></option>
+							<option value="Design"></option>
 						</datalist>	
 					</div>
 					<div class="dropdowntap7_2">
