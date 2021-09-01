@@ -15,6 +15,7 @@ export class Userinfo {
   
   @Column()
   Lastname: string;
+  
 
   @Column()
   Birthday: string;
@@ -61,3 +62,26 @@ export class InterestedJob {
   @Column()
   Job_SkillName: string;
 }
+
+@Entity("Account")
+export class Account {
+  @ObjectIdColumn()
+  id?: ObjectId;
+
+  @Column()
+  Email: string;
+  
+  @Column()
+  Password: string;
+
+  @Column()
+  ProfilePic: string;
+
+  @Column()
+  Privacy: string;
+
+  @Column()
+  isEmailConfirmed: boolean;
+}
+
+export default Account;

@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
 import { HomeService } from './home.service';
 import { HomeController } from './home.controller';
-import { Userinfo, InterestedJob} from './entity/homepage.entity'
+import { Account , Userinfo, InterestedJob} from './entity/homepage.entity'
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Userinfo,InterestedJob])
+    TypeOrmModule.forFeature([Userinfo,InterestedJob,Account])
     
   ],
   controllers: [HomeController],

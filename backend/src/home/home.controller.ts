@@ -1,6 +1,7 @@
 import { Controller, Get, Post, Request, UseGuards } from '@nestjs/common';
 import { LocalAuthGuard } from '../auth/local-auth.guard';
 import { HomeService } from './home.service';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller()
 export class HomeController {
@@ -8,11 +9,11 @@ export class HomeController {
     private readonly homeService: HomeService
   ) {}
 
-  @UseGuards(LocalAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get('/homepage')
-  async getinformation()
+  async getinformation(@Request() req)
   {
-    return this.homeService.getinformation();
+    return this.homeService.getinformation(req.id);
   }
 
 
