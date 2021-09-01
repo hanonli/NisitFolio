@@ -8,6 +8,7 @@ export class HomeController {
     private readonly homeService: HomeService
   ) {}
 
+  @UseGuards(LocalAuthGuard)
   @Get('/homepage')
   async getinformation()
   {
