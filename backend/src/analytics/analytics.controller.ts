@@ -1,7 +1,5 @@
 import { Body, Controller, Get, Post, Param, HttpException } from '@nestjs/common';
-import { ObjectId } from 'mongodb';
 import * as mongoose from 'mongoose';
-import { ParseObjectIdPipe } from 'src/common/pipes';
 import { AnalyticsService } from './analytics.service';
 
 @Controller('analytics')
@@ -44,6 +42,5 @@ export class AnalyticsController {
     const oid = mongoose.Types.ObjectId(userId) ;
     return this.analyticsService.createUserJobSkill(oid, Objective, Score, JobName, SkillName) ;
   }
-
 
 }

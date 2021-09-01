@@ -2,7 +2,7 @@ import { Entity, Column, ObjectIdColumn } from 'typeorm';
 import { ObjectId } from 'mongodb';
 
 @Entity("Account")
-class User {
+class UserReq {
   @ObjectIdColumn()
   id?: ObjectId;
  
@@ -25,4 +25,4 @@ class User {
   public isEmailConfirmed: boolean;
 }
  
-export default User;
+export default UserReq ;

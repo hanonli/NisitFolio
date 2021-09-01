@@ -1,11 +1,15 @@
+#registab3_btnclose{
+    position: absolute;
+    left: 96%;
 
+}
 
 .textbox-container{
     display : flex;
 
 }
 
-.Registab3 .textbox {
+.Registab3 .registab3_formbox {
 
     background-color: rgb(236, 236, 236);
     border: 1px solid black;
@@ -23,11 +27,11 @@
     justify-content: center;
 }
 
-.Registab3 .textbox .registab4_btnplus{
+.Registab3 .registab3_formbox .registab3_btnplus{
     text-align: center;
 }
 
-.Registab3 .textbox #icon-plus-circle {
+.Registab3 .registab3_formbox #icon-plus-circle {
     position: relative;
 
     width: 50px;
@@ -35,8 +39,21 @@
 
 }
 
+.Registab3 .registab3_formbox .modal-title{
+    color:black;
+    font-size: 50px;
+    padding-left: 40px;
+    padding-bottom: 10px;
+}
 
-.Registab4 .textbox {
+.Registab3 .registab3_formbox .addHigher{
+    padding-left: 40px;
+}
+.Registab3 .registab3_formbox .addSecondary{
+    padding-left: 40px;
+}
+
+.Registab4 .registab4_formbox {
     background-color: #b6deea;
     border: 1px solid black;
     border-radius: 25px;
@@ -49,29 +66,34 @@
     margin-left: 5px;
     margin-right: 5px;
     position: relative;
-    text-align: center;  
     justify-content: center;
 
 
 }
 
-.Registab4 .textbox .registab4_btnplus{
+.Registab4 .registab4_formbox .registab4_btnplus{
     margin-top: 0.42%;
     justify-content: center;
     text-align: center;
 }
     
 
-.Registab4 .textbox #icon-plus-circle {
+.Registab4 .registab4_formbox #icon-plus-circle {
     position: relative;
-
     width: 115px;
     height: 115px;
-
-
 }
 
+.Registab4 .registab4_formbox .modal-title{
+    color:black;
+    font-size: 50px;
+    padding-left: 40px;
+    padding-bottom: 10px;
+}
 
+.Registab4 .registab4_formbox .addWorkHistory{
+    padding-left: 40px;
+}
 /*
     This is for registab3_addHigher
 */
@@ -109,6 +131,9 @@
 
 }
 
+#registab4_textbox{
+    text-align: left;
+}
 
 /*
     This is for registab3_addWorkHistory

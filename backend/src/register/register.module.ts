@@ -10,10 +10,11 @@ import { Account, Userinfo, AdditionalSkill, Certificate, EducationHistory, Inte
 
 import { JobTitle } from 'src/register/entity/JobTitle.entrity'
 import { Skill } from 'src/register/entity/Skill.entrity'
+import { HardSkill} from 'src/register/entity/HardSkill.entrity'
 
 @Module({
 
-  imports: [TypeOrmModule.forFeature([Account, Userinfo,EducationHistory,WorkHistory,Certificate,AdditionalSkill,InterestedJob,JobTitle,Skill])
+  imports: [TypeOrmModule.forFeature([Account, Userinfo,EducationHistory,WorkHistory,Certificate,AdditionalSkill,InterestedJob,HardSkill,JobTitle,Skill])
            ,MulterModule.register({
             dest: './upload',
           }),
