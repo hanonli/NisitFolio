@@ -36,72 +36,30 @@ document.getElementById("customRange13").oninput = function () {
 
 /*---------------- disable slider range ----------------*/
 
-document.getElementById("customRange11").disabled = true;
-document.getElementById("customRange12").disabled = true;
-document.getElementById("customRange13").disabled = true;
+//document.getElementById("customRange11").disabled = true;
+//document.getElementById("customRange12").disabled = true;
+//document.getElementById("customRange13").disabled = true;
 
 document.getElementById("each_skill1").addEventListener("click", function () {
     var skill_job_1 = document.getElementById("each_skill1").value;
     //console.log(`click skill_job_1: `, skill_job_1);
-    if (skill_job_1 != null || skill_job_1 == 'เลือกทักษะของคุณที่เหมาะกับงาน') document.getElementById("customRange11").disabled = false;
+    //if (skill_job_1 != null || skill_job_1 == 'เลือกทักษะของคุณที่เหมาะกับงาน') document.getElementById("customRange11").disabled = false;
 });
 
 document.getElementById("each_skill2").addEventListener("click", function () {
     var skill_job_2 = document.getElementById("each_skill2").value;
     //console.log(`click skill_job_2: `, skill_job_2);
-    if (skill_job_2 != null || skill_job_2 == 'เลือกทักษะของคุณที่เหมาะกับงาน') document.getElementById("customRange12").disabled = false;
+    //if (skill_job_2 != null || skill_job_2 == 'เลือกทักษะของคุณที่เหมาะกับงาน') document.getElementById("customRange12").disabled = false;
 });
 
 document.getElementById("each_skill3").addEventListener("click", function () {
     var skill_job_3 = document.getElementById("each_skill3").value;
     //console.log(`click skill_job_3: `, skill_job_3);
-    if (skill_job_3 != null || skill_job_3 == 'เลือกทักษะของคุณที่เหมาะกับงาน') document.getElementById("customRange13").disabled = false;
+    //if (skill_job_3 != null || skill_job_3 == 'เลือกทักษะของคุณที่เหมาะกับงาน') document.getElementById("customRange13").disabled = false;
 });
 
 
 /*---------------- list item job interest ----------------*/
-/*var no_job;
-
-$(document).ready(function () {
-    console.log("kuaytu!!!");
-    console.log(sample1);
-    sample1.forEach((ele, index) => {
-        var grid_job = `<div class="frame_job" id="{no_list}">\
-                        <div class="job-column-1" >\
-                            <h1 id="job-position">ตำแหน่งงานที่ {no_job}</h1>\
-                            <h1 id="job-name">{name_job}</h1>\
-                            </div >\
-                            <div class="my-skill-content">\
-                                <h1 id="mySkil-job">ทักษะของฉัน</h1>\
-                                <div class="each-skill-job">\
-                                    <p id="skill1-job">{skill1}</p>\
-                                    <p id="skill2-job">{skill2}</p>\
-                                    <p id="skill3-job">{skill3}</p>\
-                                </div>\
-                            </div>\
-                            <div class="layer_icon">\
-                                <button class="btn" id="edit-job"><img src="assets/images/blackedit.png" width="65" height="65"></img></button>\
-                                <button class="btn" data-bs-target="#exampleModal_remove_job" id="del-job"><img src="assets/images/bin.png" width="90" height="90"></img></button>\
-                            </div>\
-                        </div>\
-                    </div>`;
-        console.log("ele: ", ele);
-        console.log("index: ", index + 1);
-        console.log("name job:", ele["Job_JobName"][0]);
-        grid_job = grid_job.replace("{no_list}", index + 1);
-        grid_job = grid_job.replace("{no_job}", index + 1);
-        grid_job = grid_job.replace("{name_job}", ele["Job_JobName"][0]);
-        listOfskill = ele["Job_SkillName"];
-        for (var i = 0; i < length.listOfskill; i++) {
-            console
-            console.log("index2: ", i + 1);
-            grid_job = grid_job.replace(`{skill` + $(i + 1) + `}`, listOfskill[i]);
-            console.log(`{skill` + $(i + 1) + `}`);
-        };
-        console.log(ele["Job_SkillName"]);
-        $(".list-of-job").append(grid_job);
-    });
-});*/
 
 var list_of_job = []; //list of job
 
@@ -129,9 +87,6 @@ function create_UUID() {
 
 var choose_function = -1; //default
 var id_list_job;
-
-
-
 
 
 
@@ -193,60 +148,34 @@ function show_all_job() {
     });
 }
 
-
-/*$('#exampleModalJob').on('shown.bs.modal', function (e) {
-    const buttonId = e.relatedTarget.id;
-    id_list_job = $(this).closest('.layer_icon').attr('id');
-    console.log(`edit:`, id_list_job);
-    if (buttonId == "edit-job") {
-        $('#submit-job11').text('ยืนยัน');
-        choose_function = 1;
-        console.log(`chosoe: ${choose_function}`);
-        var for_edit = list_of_job.find(x => { return x.id === id_list_job });
-        console.log(`for_edit:`, for_edit);
-        $('#nm_job').prop('selectedIndex', for_edit["name_job"]);
-        $("#each_skill1").prop('selectedIndex', for_edit["skill1"]);
-        $("#customRange11").val(for_edit["score_skill1"]);
-        $("#each_skill2").prop('selectedIndex', for_edit["skill2"]);
-        $("#customRange12").val(for_edit["score_skill2"]);
-        $("#each_skill3").prop('selectedIndex', for_edit["skill3"]);
-        $("#customRange13").val(for_edit["score_skill3"]);
-        $("#obj-job-01").val(for_edit["obj1"]);
-        $("#obj-job-02").val(for_edit["obj2"]);
-        $("#obj-job-03").val(for_edit["obj3"]);
-    }
-    else if (buttonId == "add-job") {
-        choose_function = 2;
-        console.log(`chosoe: ${choose_function}`);
-        $('#submit-job11').text('เพิ่ม');
-    }
-});*/
-
-
-
-/*$('#exampleModal_remove_job').on('shown.bs.modal', function (e) {
-    var buttonId = e.relatedTarget.id;
-    if (buttonId == "del-job") {
-        id_list_job = $("#" + buttonId).closest(".layer_icon").attr("id");
-        console.log("id_list_job111:", id_list_job);
-    }
-});*/
-
 $(document).on("click", "#add-job", function () {
-    id_list_job = $('.frame_job').attr('id');
-    console.log("id_list_job111:", id_list_job);
     choose_function = 2;
     $('#exampleModalJob').modal('toggle');
     $('#submit-job11').text('เพิ่ม');
-
 });
 
 $(document).on("click", "#edit-job", function () {
-    id_list_job = $(this).closest().attr('id');
+    id_list_job = $(this).parents().attr('id');
     console.log(`edit:`, id_list_job);
     choose_function = 1;
     $('#exampleModalJob').modal('toggle');
     $('#submit-job11').text('ยืนยัน');
+    console.log(`chosoe: ${choose_function}`);
+    var for_edit = list_of_job.find(function (post, index_del) {
+        if (post.id == id_list_job)
+            return true;
+    });
+    console.log(`for_edit:`, for_edit);
+    document.getElementById("nm_job").selectedIndex = for_edit["name_job_select"];
+    document.getElementById("each_skill1").selectedIndex = for_edit["skill1_select"];
+    $("#customRange11").val(for_edit["score_skill1"]);
+    document.getElementById("each_skill2").selectedIndex = for_edit["skill2_select"];
+    $("#customRange12").val(for_edit["score_skill2"]);
+    document.getElementById("each_skill3").selectedIndex = for_edit["skill3_select"];
+    $("#customRange13").val(for_edit["score_skill3"]);
+    $("#obj-job-01").val(for_edit["obj1"]);
+    $("#obj-job-02").val(for_edit["obj2"]);
+    $("#obj-job-03").val(for_edit["obj3"]);
 });
 
 $(document).on("click", "#del-job", function () {
@@ -255,7 +184,7 @@ $(document).on("click", "#del-job", function () {
     $('#exampleModal_remove_job').modal('toggle');
 });
 
-$("#summit-to-delete").on('click', 'button', function () {
+$(document).on('click', "#summit-to-delete", function () {
     var removeIndex = list_of_job.findIndex(function (post, index_del) {
         if (post.id == id_list_job)
             return true;
@@ -270,16 +199,16 @@ $("#summit-to-delete").on('click', 'button', function () {
     show_all_job()
 });
 
-$("#hide-modal-tab6").on('click', 'button', function () {
-    $('#nm_job').prop('selectedIndex', 0);
+$(document).on('click', "#hide-modal-tab6", function () {
+    $('#nm_job_select').prop('selectedIndex', 0);
 
-    $("#each_skill1").prop('selectedIndex', 0);
+    $("#each_skill1_select").prop('selectedIndex', "0");
     $("#customRange11").val("5");
 
-    $("#each_skill2").prop('selectedIndex', 0);
+    $("#each_skill2_select").prop('selectedIndex', "0");
     $("#customRange12").val("5");
 
-    $("#each_skill3").prop('selectedIndex', 0);
+    $("#each_skill3_select").prop('selectedIndex', "0");
     $("#customRange13").val("5");
 
     $("#obj-job-01").val("");
@@ -330,11 +259,15 @@ document.getElementById("submit-job11").addEventListener("click", function () {
             id: create_UUID(),
             job_pos: 0,
             name_job: name_job,
+            name_job_select: $("#nm_job").prop('selectedIndex'),
             skill1: skill_job_1,
+            skill1_select: $("#each_skill1").prop('selectedIndex'),
             score_skill1: score_skill_job_1,
             skill2: skill_job_2,
+            skill2_select: $("#each_skill2").prop('selectedIndex'),
             score_skill2: score_skill_job_2,
             skill3: skill_job_3,
+            skill3_select: $("#each_skill3").prop('selectedIndex'),
             score_skill3: score_skill_job_3,
             obj1: obj_job_1,
             obj2: obj_job_2,
