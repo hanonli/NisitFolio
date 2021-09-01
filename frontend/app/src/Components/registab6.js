@@ -35,8 +35,8 @@ class Registab6 extends React.Component {
 								</div>
 							</div>
 							<div class="layer_icon">
-								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModalJob" id="edit-job"><img src="assets/images/blackedit.png" width="65" height="65"></img></button>
-								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal_remove_job" id="del-job"><img src="assets/images/bin.png" width="90" height="90"></img></button>
+								<button class="btn" id="edit-job"><img src="assets/images/blackedit.png" width="65" height="65"></img></button>
+								<button class="btn" id="del-job"><img src="assets/images/bin.png" width="90" height="90"></img></button>
 							</div>
 						</div>
 					</div>

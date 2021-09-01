@@ -80,8 +80,8 @@ $(document).ready(function () {
                                 </div>\
                             </div>\
                             <div class="layer_icon">\
-                                <button type="button" class="btn" data-bs-toggle="modal" id="edit-job"><img src="assets/images/blackedit.png" width="65" height="65"></img></button>\
-                                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal_remove_job" id="del-job"><img src="assets/images/bin.png" width="90" height="90"></img></button>\
+                                <button class="btn" id="edit-job"><img src="assets/images/blackedit.png" width="65" height="65"></img></button>\
+                                <button class="btn" data-bs-target="#exampleModal_remove_job" id="del-job"><img src="assets/images/bin.png" width="90" height="90"></img></button>\
                             </div>\
                         </div>\
                     </div>`;
@@ -108,20 +108,37 @@ var list_of_job = []; //list of job
 function get_job_id(list_of_job, x) {
     //var x = 1;
     list_of_job.forEach(ele => {
-        ele["id"] = x;
+        ele["job_pos"] = x;
         console.log("x:", x);
         x++;
     });
     return list_of_job;
 }
 
+function create_UUID() {
+    var dt = new Date().getTime();
+    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        var r = (dt + Math.random() * 16) % 16 | 0;
+        dt = Math.floor(dt / 16);
+        return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+    });
+    return uuid;
+}
 
 //add edit delete job list
+
+var choose_function = -1; //default
+var id_list_job;
+
+
+
+
+
 
 function show_all_job() {
 
     list_of_job.forEach(ele => {
-        var grid_Job1 = `<div class="frame_job" id="{no_list}">\
+        var grid_Job1 = `<div class="frame_job" >\
                             <div class="job-column-1" >\
                                 <h1 id="job-position">ตำแหน่งงานที่ {no_job}</h1>\
                                 <h1 id="job-name">{name_job}</h1>\
@@ -140,14 +157,14 @@ function show_all_job() {
 
         var grid_Job2 = `				</div>\
                                 </div>\
-                                <div class="layer_icon">\
-								    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModalJob" id="edit-job"><img src="assets/images/blackedit.png" width="65" height="65"></img></button>\
-								    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal_remove_job" id="del-job"><img src="assets/images/bin.png" width="90" height="90"></img></button>\
+                                <div class="layer_icon" id="{no_list}">\
+								    <button type="button" class="btn" id="edit-job"><img src="assets/images/blackedit.png" width="65" height="65"></img></button>\
+								    <button type="button" class="btn" id="del-job"><img src="assets/images/bin.png" width="90" height="90"></img></button>\
                                 </div>\
                             </div>\
                         </div>`;
-        grid_Job1 = grid_Job1.replace("{no_list}", ele["id"]);
-        grid_Job1 = grid_Job1.replace("{no_job}", ele["id"]);
+        grid_Job2 = grid_Job2.replace("{no_list}", ele["id"]);
+        grid_Job1 = grid_Job1.replace("{no_job}", ele["job_pos"]);
         grid_Job1 = grid_Job1.replace("{name_job}", ele["name_job"]);
         if (ele["skill1"] == "" && ele["skill2"] == "" && ele["skill3"] == "") {
             grid_Job1 = grid_Job1.replace(`<h1 id="mySkil-job">ทักษะของฉัน</h1>`, "");
@@ -176,55 +193,105 @@ function show_all_job() {
     });
 }
 
-var choose_function = -1; //default
 
-$('#exampleModalJob').on('shown.bs.modal', function (e) {
+/*$('#exampleModalJob').on('shown.bs.modal', function (e) {
     const buttonId = e.relatedTarget.id;
-    console.log(`butt:`, buttonId);
+    id_list_job = $(this).closest('.layer_icon').attr('id');
+    console.log(`edit:`, id_list_job);
     if (buttonId == "edit-job") {
         $('#submit-job11').text('ยืนยัน');
         choose_function = 1;
         console.log(`chosoe: ${choose_function}`);
+        var for_edit = list_of_job.find(x => { return x.id === id_list_job });
+        console.log(`for_edit:`, for_edit);
+        $('#nm_job').prop('selectedIndex', for_edit["name_job"]);
+        $("#each_skill1").prop('selectedIndex', for_edit["skill1"]);
+        $("#customRange11").val(for_edit["score_skill1"]);
+        $("#each_skill2").prop('selectedIndex', for_edit["skill2"]);
+        $("#customRange12").val(for_edit["score_skill2"]);
+        $("#each_skill3").prop('selectedIndex', for_edit["skill3"]);
+        $("#customRange13").val(for_edit["score_skill3"]);
+        $("#obj-job-01").val(for_edit["obj1"]);
+        $("#obj-job-02").val(for_edit["obj2"]);
+        $("#obj-job-03").val(for_edit["obj3"]);
     }
     else if (buttonId == "add-job") {
         choose_function = 2;
         console.log(`chosoe: ${choose_function}`);
         $('#submit-job11').text('เพิ่ม');
     }
-});
-
-/*$("#edit-job").click(function () {
-
-    $('#exampleModalJob_edit').modal('show');
-    document.querySelector('#submit-job11').innerText = 'ยืนยัน';
-});
-
-$("#add-job").click(function () {
-
-    $('#exampleModalJob').modal('show');
-    document.querySelector('#submit-job11').innerText = 'เพิ่ม';
 });*/
 
-$("#del-job").click(function () {
-    $('#exampleModal_remove_job').modal('show');
+
+
+/*$('#exampleModal_remove_job').on('shown.bs.modal', function (e) {
+    var buttonId = e.relatedTarget.id;
+    if (buttonId == "del-job") {
+        id_list_job = $("#" + buttonId).closest(".layer_icon").attr("id");
+        console.log("id_list_job111:", id_list_job);
+    }
+});*/
+
+$(document).on("click", "#add-job", function () {
+    id_list_job = $('.frame_job').attr('id');
+    console.log("id_list_job111:", id_list_job);
+    choose_function = 2;
+    $('#exampleModalJob').modal('toggle');
+    $('#submit-job11').text('เพิ่ม');
+
 });
 
-$("#summit-to-delete").click(function () {
-    var id_list_job = $('.frame_job').attr('id');
-    const removeIndex = list_of_job.findIndex(item => item.id === id_list_job);
+$(document).on("click", "#edit-job", function () {
+    id_list_job = $(this).closest().attr('id');
+    console.log(`edit:`, id_list_job);
+    choose_function = 1;
+    $('#exampleModalJob').modal('toggle');
+    $('#submit-job11').text('ยืนยัน');
+});
+
+$(document).on("click", "#del-job", function () {
+    id_list_job = $(this).parents().attr('id');
+    console.log("id_list_job111:", id_list_job);
+    $('#exampleModal_remove_job').modal('toggle');
+});
+
+$("#summit-to-delete").on('click', 'button', function () {
+    var removeIndex = list_of_job.findIndex(function (post, index_del) {
+        if (post.id == id_list_job)
+            return true;
+    });
+    console.log("id_list_job:", id_list_job);
     list_of_job.splice(removeIndex, 1);
-    console.log(`delete job id:`, id_list_job);
-    $(`#` + id_list_job).remove();
-    $("#in-list-of-job").empty();
+    console.log(`delete job id:`, removeIndex);
+    //$(`#` + removeIndex).remove();
+    $(".list-of-job").empty();
+    console.log(list_of_job);
+    get_job_id(list_of_job, 1);
     show_all_job()
 });
+
+$("#hide-modal-tab6").on('click', 'button', function () {
+    $('#nm_job').prop('selectedIndex', 0);
+
+    $("#each_skill1").prop('selectedIndex', 0);
+    $("#customRange11").val("5");
+
+    $("#each_skill2").prop('selectedIndex', 0);
+    $("#customRange12").val("5");
+
+    $("#each_skill3").prop('selectedIndex', 0);
+    $("#customRange13").val("5");
+
+    $("#obj-job-01").val("");
+    $("#obj-job-02").val("");
+    $("#obj-job-03").val("");
+});
+
+
 
 document.getElementById("submit-job11").addEventListener("click", function () {
     if (choose_function == 1) { //edit job after add
         console.log("edit!!!!!!");
-        var id_list_job = $('.frame_job').attr('id');
-        console.log(`edit:`, id_list_job);
-        list_of_job.findIndex(x => x.id === '45');
         name_job = document.getElementById("nm_job").value;
         skill_job_1 = document.getElementById("each_skill1").value;
         score_skill_job_1 = document.getElementById("customRange11").value;
@@ -235,7 +302,6 @@ document.getElementById("submit-job11").addEventListener("click", function () {
         obj_job_1 = document.getElementById("obj-job-01").value;
         obj_job_2 = document.getElementById("obj-job-02").value;
         obj_job_3 = document.getElementById("obj-job-03").value;
-
     }
     else if (choose_function == 2) { //add job in list
         name_job = document.getElementById("nm_job").value;
@@ -261,21 +327,21 @@ document.getElementById("submit-job11").addEventListener("click", function () {
         }
 
         list_of_job.push({
-            "id": 1,
-            "name_job": name_job,
-            "skill1": skill_job_1,
-            "score_skill1": score_skill_job_1,
-            "skill2": skill_job_2,
-            "score_skill2": score_skill_job_2,
-            "skill3": skill_job_3,
-            "score_skill3": score_skill_job_3,
-            "obj1": obj_job_1,
-            "obj2": obj_job_2,
-            "obj3": obj_job_3
+            id: create_UUID(),
+            job_pos: 0,
+            name_job: name_job,
+            skill1: skill_job_1,
+            score_skill1: score_skill_job_1,
+            skill2: skill_job_2,
+            score_skill2: score_skill_job_2,
+            skill3: skill_job_3,
+            score_skill3: score_skill_job_3,
+            obj1: obj_job_1,
+            obj2: obj_job_2,
+            obj3: obj_job_3
         });
         get_job_id(list_of_job, 1);
         console.log(list_of_job);
-
     }
 
     $('#nm_job').prop('selectedIndex', 0);
@@ -293,14 +359,9 @@ document.getElementById("submit-job11").addEventListener("click", function () {
     $("#obj-job-02").val("");
     $("#obj-job-03").val("");
 
-    $("#in-list-of-job").empty();
+    $(".list-of-job").empty();
     show_all_job()
 });
-
-
-
-
-
 
 /*--- textarea obj ----*/
 
