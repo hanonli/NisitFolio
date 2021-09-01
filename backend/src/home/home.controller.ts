@@ -15,10 +15,10 @@ export class HomeController {
   {
     return this.homeService.getinformation(req.id);
   }
-  @Get("")
+  /*@Get("")
   async infohomepage(){
     return this.homeService.getinformation2();
-  }
+  }*/
 
 
   /*@UseGuards(LocalAuthGuard)
