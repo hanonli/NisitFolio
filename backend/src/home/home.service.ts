@@ -12,7 +12,7 @@ export class HomeService {
     @InjectRepository(InterestedJob)
     private InterestedJobRepository: Repository<InterestedJob>,
     ){}
-    async test() {
+    async getinformation2() {
       const x = "x";
       const z =await this.InterestedJobRepository.find({Job_Objective:x});
       const y = new HomePage;
@@ -25,15 +25,7 @@ export class HomeService {
       y.AboutMe=(await this.userinfoRepository.findOne({Gender:x})).AboutMe;
       y.UserId=(await this.userinfoRepository.findOne({Gender:x})).UserId;
       y.Job_JobName=a;
-      //const y=[];
-      /*
-      for (var _i = 0; _i < z.length; _i++) {
-        y[i]=z.
-      }
-      //*/
       return y;
-  
-      /*x.Job_JobName=(await (this.InterestedJobRepository.find({UserId:Userid})));*/
     }
     getinformation(): string {
     return 'Nisitfolio';

@@ -14,9 +14,9 @@ export class HomeController {
   {
     return this.homeService.getinformation();
   }
-  @Get("/test")
-  async testt(){
-    return this.homeService.test();
+  @Get("")
+  async infohomepage(){
+    return this.homeService.getinformation2();
   }
 
 
