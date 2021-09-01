@@ -15,7 +15,7 @@ import { BookmarkModule } from './bookmarks/bookmarks.module';
 import { HomeModule } from './home/home.module';
 
 import * as Joi from 'joi';
-import { HomeModule } from './home/home.module';
+
 
 @Module({
   imports: [

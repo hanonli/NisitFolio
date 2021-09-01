@@ -10,7 +10,7 @@ export class HomeController {
   ) {}
 
   @UseGuards(JwtAuthGuard)
-  @Get('/homepage')
+  @Get("")
   async getinformation(@Request() req)
   {
     return this.homeService.getinformation(req.id);
