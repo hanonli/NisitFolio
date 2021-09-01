@@ -14,6 +14,7 @@ import { ConfigModule } from '@nestjs/config';
 import { BookmarkModule } from './bookmarks/bookmarks.module';
 
 import * as Joi from 'joi';
+import { HomeModule } from './home/home.module';
 
 @Module({
   imports: [
@@ -50,6 +51,7 @@ import * as Joi from 'joi';
     AuthModule,
     UsersModule,
     BookmarkModule,
+    HomeModule,
   ],
   controllers: [AppController],
   providers: [AppService],

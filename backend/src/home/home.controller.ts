@@ -2,7 +2,7 @@ import { Controller, Get, Post, Request, UseGuards } from '@nestjs/common';
 import { LocalAuthGuard } from '../auth/local-auth.guard';
 import { HomeService } from './home.service';
 
-@Controller()
+@Controller("homepage")
 export class HomeController {
   constructor(
     private readonly homeService: HomeService
@@ -12,6 +12,10 @@ export class HomeController {
   async getinformation()
   {
     return this.homeService.getinformation();
+  }
+  @Get("/test")
+  async testt(){
+    return this.homeService.test();
   }
 
 

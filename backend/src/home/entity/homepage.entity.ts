@@ -61,3 +61,24 @@ export class InterestedJob {
   @Column()
   Job_SkillName: string;
 }
+
+@Entity("HomePage")
+export class HomePage {
+  @ObjectIdColumn()
+  id?: ObjectId;
+  
+  @ObjectIdColumn()
+  UserId: ObjectId;
+
+  @Column()
+  Firstname: string;
+
+  @Column()
+  Lastname: string;
+
+  @Column()
+  Job_JobName: string[];
+
+  @Column()
+  AboutMe: string;
+}
