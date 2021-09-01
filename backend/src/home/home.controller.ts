@@ -3,7 +3,7 @@ import { LocalAuthGuard } from '../auth/local-auth.guard';
 import { HomeService } from './home.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
-@Controller()
+@Controller("homepage")
 export class HomeController {
   constructor(
     private readonly homeService: HomeService
@@ -14,6 +14,10 @@ export class HomeController {
   async getinformation(@Request() req)
   {
     return this.homeService.getinformation(req.id);
+  }
+  @Get("")
+  async infohomepage(){
+    return this.homeService.getinformation2();
   }
 
 
