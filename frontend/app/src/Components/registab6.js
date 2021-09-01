@@ -64,7 +64,7 @@ class Registab6 extends React.Component {
 
 								<div className="tabPOP">
 									<ul class="tabs_pop">
-										<li class="tab-link_pop current2" data-tab1="tab01" type="button">ทักษะของฉัน</li>
+										<li class="tab-link_pop current2" data-toggle="tab" data-tab1="tab01" type="button">ทักษะของฉัน</li>
 										<li class="tab-link_pop" data-tab1="tab02" type="button">เป้าหมายในการทำงาน</li>
 									</ul>
 								</div>
@@ -122,7 +122,7 @@ class Registab6 extends React.Component {
 														<input type="range" class="slider x3" min="0" max="10" step="0.1" defaultValue="5" id="customRange13" />
 														<div className="mark3">
 															<label>ไม่ได้</label>
-															<label>พอได้เล็กน้อย</label>
+															<label>พื้นฐาน</label>
 															<label>ดี</label>
 															<label>ยอดเยี่ยม</label>
 														</div>
