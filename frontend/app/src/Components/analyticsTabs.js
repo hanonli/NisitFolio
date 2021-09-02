@@ -1516,6 +1516,7 @@ class BookmarkTabs extends React.Component {
 			  $('#tab-2').addClass('tab-list-active')
 			  $('#content2').show();
 			  current_tab = 2;
+			  $('#jobHeader').text('งานที่ 1');
 			  $('.fag').addClass("animate-fag");
 			  //jobChart.destroy();
 			  setTimeout(function(){ $('.fat').addClass("animate-fat"); }, 10);
@@ -1529,6 +1530,7 @@ class BookmarkTabs extends React.Component {
 			  $('#tab-3').addClass('tab-list-active')
 			  $('#content2').show();
 			  current_tab = 3;
+			  $('#jobHeader').text('งานที่ 2');
 			  $('.fag').addClass("animate-fag");
 			  setTimeout(function(){ $('.fat').addClass("animate-fat"); }, 10);
 			  setTimeout(function(){ $('.fac').addClass("animate-fac"); }, 10);
@@ -1541,6 +1543,7 @@ class BookmarkTabs extends React.Component {
 			  $('#tab-4').addClass('tab-list-active')
 			  $('#content2').show();
 			  current_tab = 4;
+			  $('#jobHeader').text('งานที่ 3');
 			  $('.fag').addClass("animate-fag");
 			  setTimeout(function(){ $('.fat').addClass("animate-fat"); }, 10);
 			  setTimeout(function(){ $('.fac').addClass("animate-fac"); }, 10);
@@ -1620,6 +1623,7 @@ class BookmarkTabs extends React.Component {
 		  });
 		  
 		  $('#hard1').on('click', function(){
+			    $('#hardHeader1').text('งานที่ 1'); $('#hardHeader2').text('งานที่ 1');
 				$('.hard-lv1').addClass("animate-hard-lv1");
 				hardChart2.destroy();
 				setTimeout(function() { $('.hard-lv1').css('display', 'none'); $('.hard-lv2').css('display', 'block'); }, 200);
@@ -1630,6 +1634,7 @@ class BookmarkTabs extends React.Component {
 		  });
 		  
 		  $('#hard2').on('click', function(){
+			    $('#hardHeader1').text('งานที่ 2'); $('#hardHeader2').text('งานที่ 2');
 				$('.hard-lv1').addClass("animate-hard-lv1");
 				hardChart2.destroy();
 				setTimeout(function() { $('.hard-lv1').css('display', 'none'); $('.hard-lv2').css('display', 'block'); }, 200);
@@ -1640,6 +1645,7 @@ class BookmarkTabs extends React.Component {
 		  });
 		  
 		  $('#hard3').on('click', function(){
+			    $('#hardHeader1').text('งานที่ 3'); $('#hardHeader2').text('งานที่ 3');
 				$('.hard-lv1').addClass("animate-hard-lv1");
 				hardChart2.destroy();
 				setTimeout(function() { $('.hard-lv1').css('display', 'none'); $('.hard-lv2').css('display', 'block'); }, 200);
@@ -1689,7 +1695,7 @@ class BookmarkTabs extends React.Component {
 						<div class="row">
 							<div class="col">
 								<div class="topDataBk-content">
-									<h1 class="name inline">Analytics</h1>
+									<h1 class="name inline">Analytics (WIP)</h1>
 								</div>
 							</div>
 						</div>        
@@ -1851,7 +1857,9 @@ class BookmarkTabs extends React.Component {
 										<div class="yahaha16 container-fluid">
 											<div class="text-extra">
 												<div class="yahaha17">
-													<hhf><br/>เทรนด์ทักษะเฉพาะใน<br/>ผู้ที่สนใจงานที่ 1<br/></hhf>
+													<hhf><br/>เทรนด์ทักษะเฉพาะใน<br/>ผู้ที่สนใจ</hhf>
+													<hhf id="jobHeader">ผู้ที่สนใจงานที่ 1</hhf>
+													<br></br>
 												</div>
 												<br></br>
 												<nnf>จากทั้งหมด xxx คน</nnf>
@@ -1931,7 +1939,7 @@ class BookmarkTabs extends React.Component {
 							<div class="col-4 text-center justify-content-center">
 								<div class="header round analytics-clickable yahaha26" id="hard1">
 									<div>
-										<hf class="name">เทรนด์เสริมใน<br/>ผู้ที่สนใจงานที่ 1<br/></hf>
+										<hf class="name">เทรนด์ทักษะเสริมใน<br/>ผู้ที่สนใจงานที่ 1<br/></hf>
 										<br></br><br></br>
 									</div>
 									<div class="container-fluid">
@@ -1944,7 +1952,7 @@ class BookmarkTabs extends React.Component {
 							<div class="col-4 text-center justify-content-center">
 								<div class="header round analytics-clickable yahaha27" id="hard2">
 									<div>
-										<hf class="name">เทรนด์เสริมใน<br/>ผู้ที่สนใจงานที่ 2<br/></hf>
+										<hf class="name">เทรนด์ทักษะเสริมใน<br/>ผู้ที่สนใจงานที่ 2<br/></hf>
 										<br></br><br></br>
 									</div>
 									<div class="container-fluid">
@@ -1957,7 +1965,7 @@ class BookmarkTabs extends React.Component {
 							<div class="col-4 text-center justify-content-center">
 								<div class="header round analytics-clickable yahaha28" id="hard3">
 									<div>
-										<hf class="name">เทรนด์เสริมใน<br/>ผู้ที่สนใจงานที่ 3<br/></hf>
+										<hf class="name">เทรนด์ทักษะเสริมใน<br/>ผู้ที่สนใจงานที่ 3<br/></hf>
 										<br></br><br></br>
 									</div>
 									<div class="container-fluid">
@@ -1972,8 +1980,9 @@ class BookmarkTabs extends React.Component {
 						<div class="p-0 container-fluid header round align-self-end yahaha23 yahaha25 hard-lv2">
 								<div class="container-fluid align-self-end yahaha3">
 									<div class="row wrapper2">
-										<div class="yahaha14 container-fluid align-self-end yahaha7">
-											<hf class="yahaha32"><br/>เทรนด์ทักษะเฉพาะในผู้ที่สนใจงานที่ 1</hf>
+										<div class="yahaha14 container-fluid align-self-end text-center yahaha7">
+											<hf class="yahaha32"><br/>เทรนด์ทักษะเสริมในผู้ที่สนใจ</hf>
+											<hf class="yahaha32" id="hardHeader2">งานที่ 1</hf>
 											<br></br><br></br><br></br><br></br><br></br><br></br><br></br>
 											<div class="yahaha5 yahaha18">
 												<canvas id="hardChart2" width="100" height="450"></canvas>
@@ -1994,7 +2003,8 @@ class BookmarkTabs extends React.Component {
 														<div class="float-end yahaha6 yahaha33">
 															<a class="btn-close profile-button" id="alv-close-button3" target="_blank"></a> 
 														</div>
-														<hhf><br/>เทรนด์ทักษะเฉพาะใน<br/>ผู้ที่สนใจงานที่ 1<br/></hhf>
+														<hhf><br/>เทรนด์ทักษะเสริมใน<br/>ผู้ที่สนใจ</hhf>
+														<hhf id="hardHeader1">งานที่ 1</hhf>
 													</div>
 													<br></br>
 													<nnf>จากทั้งหมด xxx คน</nnf>
