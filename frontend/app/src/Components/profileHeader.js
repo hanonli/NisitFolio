@@ -20,7 +20,6 @@ class Header extends React.Component {
 								</div>
 							</div>
 							<div class="col-md-5">
-							
 								 <div class="lg-view float-end">
 									<Link to="/editprofile">
 										<a class="btn btn-cta-primary round profile-button grey margin-right-m" target="_blank">แก้ไขโปรไฟล์</a>
