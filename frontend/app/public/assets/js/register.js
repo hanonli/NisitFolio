@@ -84,8 +84,8 @@ $('#continue2').click(function () {
   }
 });
 
-let startYear = 1950;
-let endYear = new Date().getFullYear();
+var startYear = 1950;
+var endYear = new Date().getFullYear();
 for (i = endYear; i > startYear; i--) {
     $('#bdyear').append($('<option />').val(i).html(i));
     $('#year_enjob').append($('<option />').val(i).html(i));
@@ -93,15 +93,15 @@ for (i = endYear; i > startYear; i--) {
     $('#year_secondary').append($('<option />').val(i).html(i));
 }
 
-let MaxM = 13;
-let startM = 1;
+var MaxM = 13;
+var startM = 1;
 for (j = startM; j < MaxM; j++) {
     $('#bdmonth').append($('<option />').val(j).html(j));
 }
 
 
-let MaxD = 32;
-let startD = 1;
+var MaxD = 32;
+var startD = 1;
 for (k = startD; k < MaxD; k++) {
     $('#bdday').append($('<option />').val(k).html(k));
 }
@@ -122,7 +122,7 @@ for (k = startD; k < MaxD; k++) {
 			// console.log("Click on profile!");
 		});
 
-      input.addEventListener('change', function (e) {
+      input.addEventListener('change', function () {
         var files = e.target.files;
         var done = function (url) {
           input.value = '';
@@ -141,7 +141,7 @@ for (k = startD; k < MaxD; k++) {
             done(URL.createObjectURL(file));
           } else if (FileReader) {
             reader = new FileReader();
-            reader.onload = function (e) {
+            reader.onload = function () {
               done(reader.result);
             };
             reader.readAsDataURL(file);
@@ -252,7 +252,7 @@ var passw = 0;
 var min_pass_count = 8;
 var max_pass_count = 20;
 var RequireCount_pass = 0;
-function checkPass(e) {                                    
+function checkPass() {                                    
   var textEntered1, textEntered2, checknow, result1;      
   textEntered1 = document.getElementById('pass05').value;    
   textEntered2 = document.getElementById('pass06').value;
@@ -531,20 +531,44 @@ $(function(){
   });
 });
 
-function GetPro() {
-  fetch(" https://thaiaddressapi-thaikub.herokuapp.com/v1/thailand/provinces",{
-          method: "GET",
-          headers: {
-              "Content-Type": "application/json"},
-      })
-          .then(response => response.json())
-          .then(response => response.result)
-          .then((data) => {
-            console.log(data)
-            let i=0;
-            data.forEach((data) => {
-                console.log(data.province);
-          })})};
+function GetProvince(){
+	fetch("https://thaiaddressapi-thaikub.herokuapp.com/v1/thailand/provinces",
+		{ method: "GET", })
+		.then(response => response.json())
+		//.then(response => response.result)
+		.then((raw) => {
+			/*console.log(raw);*/
+			raw.data.forEach((entry) => {
+				/*console.log(entry.province);*/
+        var pro_now = entry.province;
+        $('#province').append($('<option />').val(pro_now).html(pro_now));
+			});
 
-/*GetPro();*/
+        }).catch((error) => {
+			  console.log(error);
+			});
+		
+}
 
+GetProvince();
+
+function GetDistrict(){
+	fetch("https://thaiaddressapi-thaikub.herokuapp.com/v1/thailand/provinces/" + "กรุงเทพ",
+		{ method: "GET", })
+		.then(response => response.json())
+		//.then(response => response.result)
+		.then((raws) => {
+			/*console.log(raws);*/
+			raws.data.forEach((entry) => {
+				console.log(entry.district);
+        var dis_now = entry.district;
+        $('#town').append($('<option />').val(dis_now).html(dis_now));
+			});
+
+        }).catch((error) => {
+			  console.log(error);
+			});
+		
+}
+
+GetDistrict();

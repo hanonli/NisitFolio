@@ -21,7 +21,6 @@ class Register extends React.Component {
 		const script = document.createElement("script");
 		script.src = "assets/js/register.js";
 		document.body.appendChild(script);
-
 	}
 	
 

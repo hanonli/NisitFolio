@@ -48,7 +48,9 @@ class Registab2 extends React.Component {
 										<select class="form-select dropbtn margin-bottom1 fff" id="province">
 											<option selected disabled value="">จังหวัด</option>
 										</select>
-										<CustomSelect />
+										<div class="margin-bottom1 fff">
+											<CustomSelect />
+										</div>
 									</div>
 									<div class="col-md-3">
 										<select class="form-select dropbtn margin-bottom1 fff" id="town">
