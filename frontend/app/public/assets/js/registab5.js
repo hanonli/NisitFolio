@@ -71,17 +71,29 @@ function show_certi(input2pic) {
     return grid_certi;
 }
 
+$(document).on('change', "#image-upload112", function () {
+    $("#icon-upload-112").remove();
+    $("#text-upload-112").remove();
+    readURL(document.getElementById("image-upload112"), 'preview_before_upload');
+    $(".for_upload112").append('<img id="preview_before_upload" height="135"></img>');
+});
+
 var choose_function = -1; //default
 var for_edit;
+
 //open modal to edit certi
 $(document).on("click", "#edit-certi", function () {
     choose_function = 1;
     console.log(`chosoe: ${choose_function}`);
-    id_list_certi = $(this).parents().parents().attr('id');
+    id_list_certi_edit = $(this).parents().parents().attr('id');
+    $("#icon-upload-112").remove();
+    $("#text-upload-112").remove();
+    $(".for_upload112").append(`<img id="pic_` + id_list_certi_edit + `" height="120"></img>`);
+    console.log("id_list_certi111:", id_list_certi_edit);
     $('#exampleModal11112').modal('toggle');
     document.querySelector('#submit-certi').innerText = 'ยืนยัน';
     for_edit = list_of_certi.find(function (post, index_del) {
-        if (post.id == id_list_certi)
+        if (post.id == id_list_certi_edit)
             return true;
     });
     console.log(`for_edit:`, for_edit);
@@ -95,42 +107,32 @@ $(document).on("click", "#add-certi", function () {
     console.log(`chosoe: ${choose_function}`);
     $('#exampleModal11112').modal('toggle');
     $('#submit-certi').text('เพิ่ม');
-
     document.querySelector('#submit-certi').innerText = 'เพิ่ม';
 });
 
 //open modal to delete certi (uncomplete!!!!!!!!!!!!!!!!!!!)
 $(document).on("click", "#del-certi", function () {
-    id_list_certi = $(this).parents().parents().attr('id');
-    //console.log("id_list_certi111:", id_list_certi);
+    id_list_certi_del = $(this).parents().parents().attr('id');
+    console.log("id_list_certi111:", id_list_certi_del);
     $('#exampleModal_remove_certi').modal('toggle');
 });
 
 $(document).on('click', "#summit-to-delete-certi", function () {
     var removeIndex = list_of_certi.findIndex(function (post, index_del) {
-        if (post.id == id_list_certi)
+        if (post.id == id_list_certi_del)
             return true;
     });
     //console.log("id_list_certi:", id_list_certi);
     list_of_certi.splice(removeIndex, 1);
     //console.log(`delete _certi id:`, removeIndex);
-    $(`#` + id_list_certi).remove();
+    $(`#` + id_list_certi_del).remove();
     console.log(`list_of_certi:`, list_of_certi);
 });
 
-$(document).on('change', "#image-upload112", function () {
-    $("#icon-upload-112").remove();
-    $("#text-upload-112").remove();
-    readURL(document.getElementById("image-upload112"), 'preview_before_upload');
-    $(".for_upload112").append('<img id="preview_before_upload" height="135"></img>');
-});
 
 $(document).on('click', "#submit-certi", function () {
     if (choose_function == 1) {
         console.log("edit!!!!!!");
-        $("#icon-upload-112").remove();
-        $("#text-upload-112").remove();
-        //$(".for_upload112").append('<img id="preview_before_upload" height="120"></img>'); //unconplete
         name_certi = document.getElementById("nm_certi").value;
         year_certi = document.getElementById("yearpicker_111").value;
         file_pic_certi = document.getElementById("image-upload112");
@@ -141,8 +143,14 @@ $(document).on('click', "#submit-certi", function () {
         for_edit["name_certi"] = name_certi;
         for_edit["year_certi"] = year_certi;
         for_edit["year_certi_select"] = $("#yearpicker_111").prop('selectedIndex');
-        document.querySelector('#name-of-certi').innerText = name_certi;
-        document.querySelector('#year-of-certi').innerText = year_certi;
+        //list_edit = document.querySelector('#id_list_certi_edit')
+        //document.querySelector('#name-of-certi').innerText = name_certi;
+        //document.querySelector('#year-of-certi').innerText = year_certi;
+        var list_edit11 = document.getElementById(id_list_certi_edit);
+        console.log("id_list_certi_edit:", id_list_certi_edit);
+        //console.log("ilist_edit11.childNodes:", list_edit11.childNodes);
+        list_edit11.childNodes[1].innerText = name_certi;
+        list_edit11.childNodes[3].innerText = year_certi;
     }
     else if (choose_function == 2) {
         //console.log("add!!!!!!")
