@@ -51,7 +51,7 @@ class Registab6 extends React.Component {
 									</div>
 									<div class="col-md-5 select-job4">
 										<select id="nm_job" class="form-select dropbtn-job4 margin-bottom-job4 fff" required>
-											<option selected disabled value="">เลือกตำแหน่งงานหรืองานที่คุณสนใจ *</option>
+											<option >เลือกตำแหน่งงานหรืองานที่คุณสนใจ *</option>
 											<option >โปรแกรมเมอร์</option>
 											<option >บาร์เทนเนอร์</option>
 											<option >ดีไซน์เนอร์</option>
@@ -76,7 +76,7 @@ class Registab6 extends React.Component {
 											<div class="row list-job-skill1">
 												<div class="col-md-5">
 													<select class="form-select dropbtn_year margin-bottom1 fff" id="each_skill1" required>
-														<option selected disabled value="">เลือกทักษะของคุณที่เหมาะกับงาน</option>
+														<option >เลือกทักษะของคุณที่เหมาะกับงาน</option>
 														<option >ทักษะA</option>
 														<option >ทักษะB</option>
 														<option >ทักษะC</option>
@@ -93,7 +93,7 @@ class Registab6 extends React.Component {
 											<div class="row list-job-skill1">
 												<div class="col-md-5">
 													<select class="form-select dropbtn_year margin-bottom1 fff" id="each_skill2" required>
-														<option selected disabled value="">เลือกทักษะของคุณที่เหมาะกับงาน</option>
+														<option >เลือกทักษะของคุณที่เหมาะกับงาน</option>
 														<option >ทักษะA</option>
 														<option >ทักษะB</option>
 														<option >ทักษะC</option>
@@ -110,7 +110,7 @@ class Registab6 extends React.Component {
 											<div class="row list-job-skill1">
 												<div class="col-md-5">
 													<select class="form-select dropbtn_year margin-bottom1 fff" id="each_skill3" required>
-														<option selected disabled value="">เลือกทักษะของคุณที่เหมาะกับงาน</option>
+														<option >เลือกทักษะของคุณที่เหมาะกับงาน</option>
 														<option >ทักษะA</option>
 														<option >ทักษะB</option>
 														<option >ทักษะC</option>
