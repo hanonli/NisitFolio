@@ -146,24 +146,17 @@
 /*------------------tab------------------*/
 
 .tabs_pop {
-  list-style: none;
   margin: 0;
   padding: 0;
 }
 .tabs_pop li {
   display: inline-block;
   padding: 15px 25px;
-  background: none;
-  text-transform: uppercase;
-  cursor: pointer;
 }
 .tabs_pop li.current2 {
-  /*background: #e9e9e9;*/
+    border-bottom: 6.5px solid black;
 }
-.tab-contents_pop {
-  /*background: #e9e9e9;
-  padding: 20px;*/
-}
+
 .tab-pane_pop {
   display: none;
 }
@@ -190,7 +183,7 @@
     transition: opacity .2s;
 }
 
-/*.x1{
+.x1{
     background: linear-gradient(to right,#f0a143 0%,#f0a143 50%, #c4c4c4 50%, #c4c4c4 100%);
 }
 
@@ -200,7 +193,7 @@
 
 .x3{
     background: linear-gradient(to right,#c98a11 0%,#c98a11 50%, #c4c4c4 50%, #c4c4c4 100%);
-}*/
+}
 
 .range-slider-job .slider:hover {
     opacity: 1;

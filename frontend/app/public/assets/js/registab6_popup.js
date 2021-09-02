@@ -1,4 +1,4 @@
-/*------------------------ REGISTER TAB 7 ------------------------*/
+/*------------------------ REGISTER TAB 6 ------------------------*/
 
 /*---------------- TAB IN MODAL ---------------*/
 
@@ -12,7 +12,6 @@ $('.tabs_pop li').on('click', function () {
 
 
 /*---------------- control slider range ----------------*/
-
 
 var value1, value2, value3;
 document.getElementById("customRange11").oninput = function () {
@@ -43,19 +42,19 @@ document.getElementById("customRange13").oninput = function () {
 document.getElementById("each_skill1").addEventListener("click", function () {
     var skill_job_1 = document.getElementById("each_skill1").value;
     //console.log(`click skill_job_1: `, skill_job_1);
-    //if (skill_job_1 != null || skill_job_1 == 'เลือกทักษะของคุณที่เหมาะกับงาน') document.getElementById("customRange11").disabled = false;
+    if (skill_job_1 != null || skill_job_1 == 'เลือกทักษะของคุณที่เหมาะกับงาน') document.getElementById("customRange11").disabled = false;
 });
 
 document.getElementById("each_skill2").addEventListener("click", function () {
     var skill_job_2 = document.getElementById("each_skill2").value;
     //console.log(`click skill_job_2: `, skill_job_2);
-    //if (skill_job_2 != null || skill_job_2 == 'เลือกทักษะของคุณที่เหมาะกับงาน') document.getElementById("customRange12").disabled = false;
+    if (skill_job_2 != null || skill_job_2 == 'เลือกทักษะของคุณที่เหมาะกับงาน') document.getElementById("customRange12").disabled = false;
 });
 
 document.getElementById("each_skill3").addEventListener("click", function () {
     var skill_job_3 = document.getElementById("each_skill3").value;
     //console.log(`click skill_job_3: `, skill_job_3);
-    //if (skill_job_3 != null || skill_job_3 == 'เลือกทักษะของคุณที่เหมาะกับงาน') document.getElementById("customRange13").disabled = false;
+    if (skill_job_3 != null || skill_job_3 == 'เลือกทักษะของคุณที่เหมาะกับงาน') document.getElementById("customRange13").disabled = false;
 });
 
 
@@ -151,9 +150,18 @@ function show_all_job() {
 $(document).on("click", "#add-job", function () {
     choose_function = 2;
     $('#exampleModalJob').modal('toggle');
+    document.getElementById("customRange11").disabled = true;
+    document.getElementById("customRange12").disabled = true;
+    document.getElementById("customRange13").disabled = true;
     $('#submit-job11').text('เพิ่ม');
+    $("#customRange11").val("5");
+    document.getElementsByClassName("x1").style.background = "linear-gradient(to right,#f0a143 0%,#f0a143 50%, #c4c4c4 50%, #c4c4c4 100%)";
+    $("#customRange12").val("5");
+    document.getElementsByClassName("x2").style.background = "linear-gradient(to right,#0fe17c 0%,#0fe17c 50%, #c4c4c4 50%, #c4c4c4 100%)";
+    $("#customRange13").val("5");
+    document.getElementsByClassName("x3").style.background = "linear-gradient(to right,#c98a11 0%,#f0a143 50%, #c98a11 50%, #c4c4c4 100%)";
 });
-
+var for_edit;
 $(document).on("click", "#edit-job", function () {
     id_list_job = $(this).parents().attr('id');
     console.log(`edit:`, id_list_job);
@@ -161,10 +169,19 @@ $(document).on("click", "#edit-job", function () {
     $('#exampleModalJob').modal('toggle');
     $('#submit-job11').text('ยืนยัน');
     console.log(`chosoe: ${choose_function}`);
-    var for_edit = list_of_job.find(function (post, index_del) {
+    for_edit = list_of_job.find(function (post, index_del) {
         if (post.id == id_list_job)
             return true;
     });
+    if (for_edit["skill1"] == "") {
+        document.getElementById("customRange11").disabled = true;
+    }
+    if (for_edit["skill2"] == "") {
+        document.getElementById("customRange12").disabled = true;
+    }
+    if (for_edit["skill3"] == "") {
+        document.getElementById("customRange13").disabled = true;
+    }
     console.log(`for_edit:`, for_edit);
     document.getElementById("nm_job").selectedIndex = for_edit["name_job_select"];
     document.getElementById("each_skill1").selectedIndex = for_edit["skill1_select"];
@@ -200,20 +217,22 @@ $(document).on('click', "#summit-to-delete", function () {
 });
 
 $(document).on('click', "#hide-modal-tab6", function () {
-    $('#nm_job_select').prop('selectedIndex', 0);
-
-    $("#each_skill1_select").prop('selectedIndex', "0");
-    $("#customRange11").val("5");
-
-    $("#each_skill2_select").prop('selectedIndex', "0");
-    $("#customRange12").val("5");
-
-    $("#each_skill3_select").prop('selectedIndex', "0");
-    $("#customRange13").val("5");
-
+    $('#nm_job').prop('selectedIndex', 0);
+    $("#each_skill1").prop('selectedIndex', 0);
+    $("#customRange11").val(5);
+    document.getElementsByClassName("x1").style.background = "linear-gradient(to right,#f0a143 0%,#f0a143 50%, #c4c4c4 50%, #c4c4c4 100%)";
+    $("#each_skill2").prop('selectedIndex', 0);
+    $("#customRange12").val(5);
+    document.getElementsByClassName("x2").style.background = "linear-gradient(to right,#0fe17c 0%,#0fe17c 50%, #c4c4c4 50%, #c4c4c4 100%)";
+    $("#each_skill3").prop('selectedIndex', 0);
+    $("#customRange13").val(5);
+    document.getElementsByClassName("x3").style.background = "linear-gradient(to right,#c98a11 0%,#f0a143 50%, #c98a11 50%, #c4c4c4 100%)";
     $("#obj-job-01").val("");
     $("#obj-job-02").val("");
     $("#obj-job-03").val("");
+    document.getElementById("customRange11").disabled = true;
+    document.getElementById("customRange12").disabled = true;
+    document.getElementById("customRange13").disabled = true;
 });
 
 
@@ -231,6 +250,46 @@ document.getElementById("submit-job11").addEventListener("click", function () {
         obj_job_1 = document.getElementById("obj-job-01").value;
         obj_job_2 = document.getElementById("obj-job-02").value;
         obj_job_3 = document.getElementById("obj-job-03").value;
+
+        if (name_job == 'เลือกตำแหน่งงานหรืองานที่คุณสนใจ *') {
+            name_job = "";
+        }
+        if (skill_job_1 == 'เลือกทักษะของคุณที่เหมาะกับงาน') {
+            skill_job_1 = "";
+        }
+        if (skill_job_2 == 'เลือกทักษะของคุณที่เหมาะกับงาน') {
+            skill_job_2 = "";
+        }
+        if (skill_job_3 == 'เลือกทักษะของคุณที่เหมาะกับงาน') {
+            skill_job_3 = "";
+        }
+
+        if (skill_job_1 == "") {
+            score_skill_job_1 = "";
+        }
+
+        if (skill_job_2 == "") {
+            score_skill_job_2 = "";
+        }
+
+        if (skill_job_3 == "") {
+            score_skill_job_3 = "";
+        }
+
+        for_edit["name_job"] = name_job;
+        for_edit["name_job_select"] = $("#nm_job").prop('selectedIndex');
+        for_edit["skill1"] = skill_job_1;
+        for_edit["skill1_select"] = $("#each_skill1").prop('selectedIndex');
+        for_edit["score_skill1"] = score_skill_job_1;
+        for_edit["skill2"] = skill_job_2;
+        for_edit["skill2_select"] = $("#each_skill2").prop('selectedIndex');
+        for_edit["score_skill2"] = score_skill_job_2;
+        for_edit["skill3"] = skill_job_3;
+        for_edit["skill3_select"] = $("#each_skill3").prop('selectedIndex');
+        for_edit["score_skill3"] = score_skill_job_3;
+        for_edit["obj1"] = obj_job_1;
+        for_edit["obj2"] = obj_job_2;
+        for_edit["obj3"] = obj_job_3;
     }
     else if (choose_function == 2) { //add job in list
         name_job = document.getElementById("nm_job").value;
@@ -243,6 +302,17 @@ document.getElementById("submit-job11").addEventListener("click", function () {
         obj_job_1 = document.getElementById("obj-job-01").value;
         obj_job_2 = document.getElementById("obj-job-02").value;
         obj_job_3 = document.getElementById("obj-job-03").value;
+
+        if (skill_job_1 == 'เลือกทักษะของคุณที่เหมาะกับงาน') {
+            skill_job_1 = "";
+        }
+        if (skill_job_2 == 'เลือกทักษะของคุณที่เหมาะกับงาน') {
+            skill_job_2 = "";
+        }
+        if (skill_job_3 == 'เลือกทักษะของคุณที่เหมาะกับงาน') {
+            skill_job_3 = "";
+        }
+
         if (skill_job_1 == "") {
             score_skill_job_1 = "";
         }
@@ -281,13 +351,13 @@ document.getElementById("submit-job11").addEventListener("click", function () {
 
     $("#each_skill1").prop('selectedIndex', 0);
     $("#customRange11").val("5");
-
+    //document.getElementsByClassName("x1").style.background = "background: linear-gradient(to right,#f0a143 0%,#f0a143 50%, #c4c4c4 50%, #c4c4c4 100%)";
     $("#each_skill2").prop('selectedIndex', 0);
     $("#customRange12").val("5");
-
+    //document.getElementsByClassName("x2").style.background = "background: linear-gradient(to right,#0fe17c 0%,#0fe17c 50%, #c4c4c4 50%, #c4c4c4 100%)";
     $("#each_skill3").prop('selectedIndex', 0);
     $("#customRange13").val("5");
-
+    //document.getElementsByClassName("x3").style.background = "background: linear-gradient(to right,#c98a11 0%,#f0a143 50%, #c98a11 50%, #c4c4c4 100%)";
     $("#obj-job-01").val("");
     $("#obj-job-02").val("");
     $("#obj-job-03").val("");

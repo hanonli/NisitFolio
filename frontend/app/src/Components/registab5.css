@@ -22,8 +22,8 @@
 #name-of-certi {
     color: black;
     margin-left: 30px;
-    margin-top: 38px;
-    font-size: 35px;
+    margin-top: 45px;
+    font-size: 32px;
 }
 
 #year-of-certi {
@@ -34,13 +34,16 @@
 
 .pos-pic-of-certi {
     position: absolute;
-    left: 480px;
+    right: 20px;;
     top: 30px
 }
 
 #pic-of-certi {
     border-radius: 16px;
-    
+}
+
+.border-pic-certi {
+    border-radius: 16px;
 }
 
 /*---layer function of list name certi---*/
