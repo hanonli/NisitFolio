@@ -54,16 +54,16 @@ $(function(){
         $('#tab-7').addClass('tab-list-active')
         $('#registab7-content').show();
         if(sideskill_count == 0){
-          $('#sideskilllist2').hide();
-          $('#sideskilllist3').hide();
+          $('.ddt7_2').hide();
+          $('.ddt7_3').hide();
         }
         else if(sideskill_count == 1){
-          $('#sideskilllist2').show();
-          $('#sideskilllist3').hide();
+          $('.ddt7_2').show();
+          $('.ddt7_3').hide();
         }
         else if(sideskill_count == 2){
-          $('#sideskilllist2').show();
-          $('#sideskilllist3').show();
+          $('.ddt7_2').show();
+          $('.ddt7_3').show();
         }
     });
 
@@ -73,7 +73,9 @@ $(function(){
 $('#continue2').click(function () {    
   if(RequireCount_pass==1){     
     console.log('You Pass!');  
-    window.location.pathname = '/emailverify'
+    PostRegis();
+    //window.location.pathname = '/emailverify'
+
   }
   else{
     console.log('You Wrong!');
@@ -435,17 +437,17 @@ var sskdd3 = '<div class="col-2">\
             </div>\
             </div>\
             ';
-var sideskilldropdown1_1 = '<div class="container-fluid dropbtn-box form-f margin-bottom1" id="ssl_1">\
+var sideskilldropdown1_1 = '<div class="container-fluid dropbtn-box form-f " id="ssl_1">\
                               <div class="row">\
                                 <div class="col-10">\
                                   <a>\
                                   ';
-var sideskilldropdown1_2 = '<div class="container-fluid dropbtn-box form-f margin-bottom1" id="ssl_2">\
+var sideskilldropdown1_2 = '<div class="container-fluid dropbtn-box form-f " id="ssl_2">\
                                   <div class="row">\
                                     <div class="col-10">\
                                       <a>\
                                       ';
-var sideskilldropdown1_3 = '<div class="container-fluid dropbtn-box form-f margin-bottom1" id="ssl_3">\
+var sideskilldropdown1_3 = '<div class="container-fluid dropbtn-box form-f " id="ssl_3">\
                               <div class="row">\
                                 <div class="col-10">\
                                   <a>\
@@ -461,7 +463,7 @@ var valt7_1 = '';
 var valt7_2 = '';
 var valt7_3 = '';
 
-$(document).on('change', 'input', function(){
+/*$(document).on('change', 'input', function(){
     var options = $('datalist')[0].options;
     var val = $(this).val();
     for (let i=0;i<options.length;++i){
@@ -476,7 +478,7 @@ $(document).on('change', 'input', function(){
             valt7_1 = valss_now;
             console.log(valss_now);
             sumsideskill = sideskilldropdown1_1 + valss_now + sideskilldropdown2 + sskdd1;
-            /*console.log(sumsideskill);*/
+            console.log(sumsideskill);
             $('.dropdowntap7_1').append(sumsideskill);
             sumsideskill = '';
             $('#sideskilllist2').show();
@@ -490,7 +492,7 @@ $(document).on('change', 'input', function(){
             console.log(valss_now);
             console.log('Length : ' + vvv);
             sumsideskill = sideskilldropdown1_2 + valss_now + sideskilldropdown2 + sskdd2;
-            /*console.log(sumsideskill);*/
+            console.log(sumsideskill);
             $('.dropdowntap7_2').append(sumsideskill);
             sumsideskill = '';
           }
@@ -500,22 +502,109 @@ $(document).on('change', 'input', function(){
             valt7_3 = valss_now;
             console.log(valss_now);
             sumsideskill = sideskilldropdown1_3 + valss_now + sideskilldropdown2 + sskdd3;
-            /*console.log(sumsideskill);*/
+            console.log(sumsideskill);
             $('.dropdowntap7_3').append(sumsideskill);
             sumsideskill = '';
           }
           break;
        }
     }
-});
+});*/
+var Dropdownsideskill1 = '<div class="row ddt7_1">\
+<div class="col-md-6">\
+  <select class="form-select dropbtn fff" id="ch1">\
+    <option selected disabled value="">เลือกหมวดทักษะเสริมที่ถนัด</option>\
+    <option value="Technical">Technical</option>\
+    <option value="Computer">Computer</option>\
+    <option value="Analytical">Analytical</option>\
+    <option value="Marketing">Marketing</option>\
+    <option value="Presentation">Presentation</option>\
+    <option value="Management">Management</option>\
+    <option value="Writing">Writing</option>\
+    <option value="Language">Language</option>\
+    <option value="Design">Design</option>\
+  </select>\
+</div>\
+<div class="col-md-6">\
+  <select class="form-select dropbtn" id="sideskilllist1">\
+    <option selected disabled value="">เลือกทักษะเสริมที่ถนัด</option>\
+  </select>\
+</div>\
+</div>\
+';
+
+var Dropdownsideskill2 = '<div class="row ddt7_2">\
+<div class="col-md-6">\
+  <select class="form-select dropbtn fff" id="ch2">\
+    <option selected disabled value="">เลือกหมวดทักษะเสริมที่ถนัด</option>\
+    <option value="Technical">Technical</option>\
+    <option value="Computer">Computer</option>\
+    <option value="Analytical">Analytical</option>\
+    <option value="Marketing">Marketing</option>\
+    <option value="Presentation">Presentation</option>\
+    <option value="Management">Management</option>\
+    <option value="Writing">Writing</option>\
+    <option value="Language">Language</option>\
+    <option value="Design">Design</option>\
+  </select>\
+</div>\
+<div class="col-md-6">\
+  <select class="form-select dropbtn" id="sideskilllist2">\
+    <option selected disabled value="">เลือกทักษะเสริมที่ถนัด</option>\
+  </select>\
+</div>\
+</div>\
+';
+
+var Dropdownsideskill3 = '<div class="row ddt7_3">\
+<div class="col-md-6">\
+  <select class="form-select dropbtn fff" id="ch3">\
+    <option selected disabled value="">เลือกหมวดทักษะเสริมที่ถนัด</option>\
+    <option value="Technical">Technical</option>\
+    <option value="Computer">Computer</option>\
+    <option value="Analytical">Analytical</option>\
+    <option value="Marketing">Marketing</option>\
+    <option value="Presentation">Presentation</option>\
+    <option value="Management">Management</option>\
+    <option value="Writing">Writing</option>\
+    <option value="Language">Language</option>\
+    <option value="Design">Design</option>\
+  </select>\
+</div>\
+<div class="col-md-6">\
+  <select class="form-select dropbtn" id="sideskilllist3">\
+    <option selected disabled value="">เลือกทักษะเสริมที่ถนัด</option>\
+  </select>\
+</div>\
+</div>\
+';
 
 $(function(){
   $('#del_sideskill1').on('click', function(){
     console.log('EiEi this is Del1');
-    console.log(valt7_1);
-    console.log(valt7_2);
-    console.log(valt7_3);
+    console.log('SSK1 :' + valt7_1);
+    console.log('SSK2 :' + valt7_2);
+    console.log('SSK3 :' + valt7_3);
     $('#ssl_1').remove();
+    $('.ddt7_1').remove();
+    console.log('Sum SSK :' + sideskill_count + '!!!');
+    if(sideskill_count==1){
+      sumsideskill = Dropdownsideskill1;
+      $('.dropdowntap7_1').append(sumsideskill);
+      sumsideskill = '';
+      $('.ddt7_2').hide();
+    }
+    else if(sideskill_count==2){
+      $('.ddt7_2').remove();
+      sumsideskill = sideskilldropdown1_1 + valt7_2 + sideskilldropdown2 + sskdd1;
+      $('.dropdowntap7_1').append(sumsideskill);
+      $('#ssl_2').remove();
+      sumsideskill = Dropdownsideskill2;
+      $('.dropdowntap7_2').append(sumsideskill);
+      sumsideskill = '';
+      $('.ddt7_3').hide();
+
+    }
     sideskill_count -= 1;
   });
   $('#del_sideskill2').on('click', function(){
@@ -531,38 +620,83 @@ $(function(){
   });
 });
 
+$(function(){
+  $('#sideskilllist1').on('change', function(){
+    console.log('EiEi this is Sel1');
+    valss_now = $('#sideskilllist1').val();
+    valt7_1 = valss_now;
+    //console.log(valss_now);
+    sumsideskill = sideskilldropdown1_1 + valss_now + sideskilldropdown2 + sskdd1;
+    $('.dropdowntap7_1').append(sumsideskill);
+    sumsideskill = '';
+    $('.ddt7_1').hide();
+    $('.ddt7_2').show();
+    sideskill_count += 1;
+    console.log('Sum SSK ++:' + sideskill_count + '!');
+  });
+  $('#sideskilllist2').on('change', function(){
+    console.log('EiEi this is Sel2');
+    valss_now = $('#sideskilllist2').val();
+    valt7_2 = valss_now;
+    console.log(valss_now);
+    sumsideskill = sideskilldropdown1_2 + valss_now + sideskilldropdown2 + sskdd2;
+    $('.dropdowntap7_2').append(sumsideskill);
+    sumsideskill = '';
+    $('.ddt7_2').hide();
+    $('.ddt7_3').show();
+    sideskill_count += 1;
+    console.log('Sum SSK ++:' + sideskill_count + '!!');
+  });
+  $('#sideskilllist3').on('change', function(){
+    console.log('EiEi this is Sel3');
+    valss_now = $('#sideskilllist3').val();
+    valt7_1 = valss_now;
+    console.log(valss_now);
+    sumsideskill = sideskilldropdown1_3 + valss_now + sideskilldropdown2 + sskdd3;
+    $('.dropdowntap7_3').append(sumsideskill);
+    sumsideskill = '';
+    $('.ddt7_3').hide();
+    sideskill_count += 1;
+    console.log('Sum SSK ++:' + sideskill_count + '!!!');
+  });
+});
+
 function GetProvince(){
 	fetch("https://thaiaddressapi-thaikub.herokuapp.com/v1/thailand/provinces",
 		{ method: "GET", })
 		.then(response => response.json())
 		//.then(response => response.result)
 		.then((raw) => {
-			/*console.log(raw);*/
+			//console.log(raw);
 			raw.data.forEach((entry) => {
-				/*console.log(entry.province);*/
+				//console.log(entry.province);
         var pro_now = entry.province;
         $('#province').append($('<option />').val(pro_now).html(pro_now));
 			});
-
         }).catch((error) => {
 			  console.log(error);
 			});
 		
 }
-
 GetProvince();
 
-function GetDistrict(){
-	fetch("https://thaiaddressapi-thaikub.herokuapp.com/v1/thailand/provinces/" + "กรุงเทพ",
+$('#province').change(function () {
+  var selectedText1 = $(this).find("option:selected").text();
+  console.log(selectedText1);
+  GetDistrict(selectedText1);
+});
+
+function GetDistrict(text){
+	fetch("https://thaiaddressapi-thaikub.herokuapp.com/v1/thailand/provinces/" + text +'/district',
 		{ method: "GET", })
 		.then(response => response.json())
 		//.then(response => response.result)
 		.then((raws) => {
 			/*console.log(raws);*/
-			raws.data.forEach((entry) => {
-				console.log(entry.district);
-        var dis_now = entry.district;
-        $('#town').append($('<option />').val(dis_now).html(dis_now));
+			raws.data.forEach((entrys) => {
+				//console.log(entrys);
+        var dis_now = entrys;
+        $('#townny').append($('<option />').val(dis_now).html(dis_now));
 			});
 
         }).catch((error) => {
@@ -571,4 +705,106 @@ function GetDistrict(){
 		
 }
 
-GetDistrict();
+function PostRegis(){
+  fetch("http://localhost:2000/register",
+		{ method: "POST",
+		  body: JSON.stringify({
+          Email:"nattayaporn.k@ku.th",
+          Password:"nattayaporn123",
+          ProfilePic:"",
+          Privacy: "Private",
+          isEmailConfirmed: false,
+          Firstname:"Nattayaporn",
+          Lastname:"Koonwattanapong",
+          Birthday:"19/4/2001",
+          Gender:"หญิง",
+          AboutMe:"ลองpostปลอมๆนะครับผม อย่าได้นำพา งานยังไม่เสด2",
+          Email2nd:"",
+          Country:"ประเทศไทย",
+          Province:"สุรินทร์",
+          City:"ในเมือง",
+          SoftSkill:["Photoshop","Drawing","Python"],
+          CertName:["ชนะเลิศการแข่งขันคิดเลขเร็วแห่งชาติ","รองชนะเลิศการแข่งขันกระโดดเชือกหมู่"],
+          CertPic:["pic1","pic2"],
+          CertYear:[2008,2012],
+          Degree:["ปริญญาตรี"],
+          Facalty:["วิศวกรรมศาสตร์"],
+          Field_of_study:["คอมพิวเตอร์"],
+          Academy:["มหาวิทยาลัยเกษตรศาสตร์"],
+          Grade:[2.50],
+          Education_Start_Year:[2018],
+          Education_End_Year:[],
+          Work_JobName:[],
+          Work_JobType:[],
+          Company:[],
+          Work_Start_Month:[],
+          Work_End_Month:[],
+          Work_Start_Year:[],
+          Work_End_Year:[],
+          Salary:[],
+          Infomation:[],
+          Job_Objective:["อยากเกิดเป็นแมวคนรวย"],
+          Job_Score:[],
+          Job_JobName:[],
+          Job_SkillName:[]
+      })}
+  )
+    .then(function (response) {
+        window.location.pathname = '/emailverify'
+        return response.json();
+    })
+    .then(function (result) {
+        alert(result);
+    })
+    .catch((error) => {
+      res.status(500)
+      .json({
+          message:error
+      })
+  })
+  }
+
+  var DropdownsideskillChoice = {'Technical': ['CAD',
+    'Lean manufacturing',
+    'Multivariate analysis',
+    'Linear regression',
+    'Prototyping',
+    'Workflow development',
+    'STEM skills',
+    'Web: HTML, CSS, Javascript',
+    'Payment processing',
+    'Automated Billing Systems',
+    'CRM Platforms',
+    'Research',
+    'Troubleshooting'], Computer: ['Python','C']};
+
+    $(function(){
+      $('#ch1').on('change', function(){
+        console.log('Checkkaaaa');
+        var chss_now = $('#ch1').val();
+        cht7_1 = chss_now;
+        console.log('I am :' + chss_now);
+        //console.log(DropdownsideskillChoice[chss_now]);
+        DropdownsideskillChoice[chss_now].forEach((entryc1) => {
+          var ch_now1 = entryc1;
+          //console.log('I am Choice:' + ch_now1);
+          $('#sideskilllist1').append($('<option />').val(ch_now1).html(ch_now1));
+        })
+      });
+      $('#ch2').on('change', function(){
+        var chss_now = $('#ch2').val();
+        cht7_2 = chss_now;
+        DropdownsideskillChoice[chss_now].forEach((entryc2) => {
+          var ch_now2 = entryc2;
+          $('#sideskilllist2').append($('<option />').val(ch_now2).html(ch_now2));
+        })
+      });
+      $('#ch3').on('change', function(){
+        var chss_now = $('#ch3').val();
+        cht7_3 = chss_now;
+        DropdownsideskillChoice[chss_now].forEach((entryc3) => {
+          var ch_now3 = entryc3;
+          $('#sideskilllist3').append($('<option />').val(ch_now3).html(ch_now3));
+        })
+      });
+    });

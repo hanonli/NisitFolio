@@ -2,27 +2,7 @@ import React from 'react';
 import './registab3.css'
 
 class Registab4_addWorkHistory extends React.Component {
-    constructor(props) {
-		super(props);
-		this.handleLoad = this.handleLoad.bind(this);
-	 }
-	
-	componentDidMount() {
-		window.addEventListener('load', this.handleLoad);
-		const script = document.createElement("script");
-		script.src = "assets/js/register.js";
-		document.body.appendChild(script);
-		
-	}
-	
-	componentWillUnmount() { 
-	   window.removeEventListener('load', this.handleLoad)  
-	}
-	
-    handleLoad() {
-		console.log("YEAH!");
-	 }
-
+    
 	render (){
 		return (
 			<div className="Registab4_addWorkHistory">

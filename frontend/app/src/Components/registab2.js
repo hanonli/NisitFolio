@@ -1,30 +1,6 @@
 import React, { Component } from 'react'
-import Select from 'react-select'
-import CustomSelect from './customSelect';
 
 class Registab2 extends React.Component {
-
-	constructor(props) {
-		super(props);
-		this.handleLoad = this.handleLoad.bind(this);
-	 }
-	
-	componentDidMount() {
-		window.addEventListener('load', this.handleLoad);
-		console.log("YEAHXXX!");
-		const script = document.createElement("script");
-		script.src = "assets/js/register.js";
-		document.body.appendChild(script);
-		
-	}
-	
-	componentWillUnmount() { 
-	   window.removeEventListener('load', this.handleLoad)  
-	}
-	
-	handleLoad() {
-		console.log("YEAH!");
-	 }
 
 	render (){
 		return (
@@ -48,12 +24,9 @@ class Registab2 extends React.Component {
 										<select class="form-select dropbtn margin-bottom1 fff" id="province">
 											<option selected disabled value="">จังหวัด</option>
 										</select>
-										<div class="margin-bottom1 fff">
-											<CustomSelect />
-										</div>
 									</div>
 									<div class="col-md-3">
-										<select class="form-select dropbtn margin-bottom1 fff" id="town">
+										<select class="form-select dropbtn margin-bottom1 fff" id="townny">
 											<option selected disabled value="">เมือง</option>
 										</select>
 									</div>

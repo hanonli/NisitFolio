@@ -3,15 +3,15 @@ import Select, { NonceProvider } from 'react-select'
 import AsyncSelect from 'react-select-async-paginate'
 
 const options = [
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' },
-  { value: 'chocolate1', label: 'Chocolate1' },
-  { value: 'strawberry1', label: 'Strawberry1' },
-  { value: 'vanilla1', label: 'Vanilla1' },
-  { value: 'chocolate2', label: 'Chocolate2' },
-  { value: 'strawberry2', label: 'Strawberry2' },
-  { value: 'vanilla2', label: 'Vanilla2' }
+  { value: 'Technical', label: 'Technical' },
+  { value: 'Computer', label: 'Computer' },
+  { value: 'Analytical', label: 'Analytical' },
+  { value: 'Marketing', label: 'Marketing' },
+  { value: 'Presentation', label: 'Presentation' },
+  { value: 'Management', label: 'Management' },
+  { value: 'Writing', label: 'Writing' },
+  { value: 'Language', label: 'Language' },
+  { value: 'Design', label: 'Design' }
 ]
 
 const customStyles = {
@@ -19,8 +19,10 @@ const customStyles = {
         ...provided,
         borderBottom: '1px dotted pink',
         color: state.isSelected ? 'black' : 'black',
-        padding: 10,
+        /*padding: 10,*/
         borderColor: 'transparent',
+        fontSize: 20,
+        backgroundColor: state.isSelected ? 'rgba(249,220,92,1)' : 'transparent'
       }),
 
     menu: (provided, state) => ({
@@ -37,17 +39,26 @@ const customStyles = {
         ...provided,
         borderColor: 'transparent',
     }),
-
+    indicatorSeparator : base => ({ ...base, display: 'none' }),
+    dropdownIndicator: base => ({ 
+        ...base, 
+            color: 'rgba(78, 82, 100,1)',
+    }),
+    placeholder: base => ({ ...base, fontWeight: '400' }),
+    valueContainer: base => ({ ...base, borderRadius: 0,}),
     control: (provided, state) => ({
         ...provided,
-      width: 400,
-      height: 50,
       padding: 5,
       paddingLeft: 20,
       fontSize: 20,
       backgroundColor: 'rgba(234,234,234,1)',
       borderRadius: '24px',
       borderColor: 'transparent',
+      boxShadow: "none",
+      ':hover': {
+        borderColor: 'transparent',
+        backgroundColor: 'rgba(205,205,205,1)',
+      }
     }),
   
     singleValue: (provided, state) => {
@@ -61,15 +72,7 @@ const customStyles = {
 
 function CustomSelect(props){
 	return <div>
-		<Select styles={customStyles} options={options} placeholder="จังหวัด" theme={theme => ({
-      ...theme,
-      borderRadius: 0,
-      colors: {
-        ...theme.colors,
-        primary25: 'rgba(205,205,205,1)',
-        primary: 'rgba(249,220,92,1)',
-      },
-    })}/>
+		<Select styles={customStyles} options={options} placeholder="เลือกทักษะเสริมที่ถนัด"/>
 	</div>
 }
 
