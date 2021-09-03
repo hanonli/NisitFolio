@@ -18,28 +18,7 @@ class Registab6 extends React.Component {
 		return (
 			<div className="Registab6">
 				<div class="regis-box-content">
-					<div class="list-of-job" id="in-list-of-job">
-						<div class="frame_job" id="no-1">
-							<div class="job-column-1">
-								<h1 id="job-position">ตำแหน่งงานที่ 1</h1>
-								<h1 id="job-name">สามกีบ</h1>
-							</div>
-							<div class="head-skill">
-								<h1 id="mySkil-job">ทักษะของฉัน</h1>
-							</div>
-							<div class="my-skill-content">
-								<div class="each-skill-job">
-									<p id="skill1-job">ทักษะที่ 1</p>
-									<p id="skill2-job">ทักษะที่ 2</p>
-									<p id="skill3-job">ทักษะที่ 3</p>
-								</div>
-							</div>
-							<div class="layer_icon">
-								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModalJob" id="edit-job"><img src="assets/images/blackedit.png" width="65" height="65"></img></button>
-								<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal_remove_job" id="del-job"><img src="assets/images/bin.png" width="90" height="90"></img></button>
-							</div>
-						</div>
-					</div>
+					<div class="list-of-job" id="in-list-of-job"></div>
 
 					<div class="frame_add_job_interest">
 						<div className="button_add_job_interest">
@@ -55,8 +34,8 @@ class Registab6 extends React.Component {
 							<div class="modal-content minisize">
 								<h4 class="del-b">คุณต้องการลบเป้าหมายในการทำงานนี้ ?</h4>
 								<div class="centerverify">
-									<a type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</a>
-									<a id="summit-to-delete" type="button" class="btn btn-cta-primary-yellowshort profile-button round" data-bs-dismiss="modal">ลบ</a>
+									<a type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" >ยกเลิก</a>
+									<a id="summit-to-delete" type="button" class="btn btn-cta-primary-yellowshort profile-button round" >ลบ</a>
 								</div>
 							</div>
 						</div>
@@ -85,7 +64,7 @@ class Registab6 extends React.Component {
 
 								<div className="tabPOP">
 									<ul class="tabs_pop">
-										<li class="tab-link_pop current2" data-tab1="tab01" type="button">ทักษะของฉัน</li>
+										<li class="tab-link_pop current2" data-toggle="tab" data-tab1="tab01" type="button">ทักษะของฉัน</li>
 										<li class="tab-link_pop" data-tab1="tab02" type="button">เป้าหมายในการทำงาน</li>
 									</ul>
 								</div>
@@ -97,7 +76,7 @@ class Registab6 extends React.Component {
 											<div class="row list-job-skill1">
 												<div class="col-md-5">
 													<select class="form-select dropbtn_year margin-bottom1 fff" id="each_skill1" required>
-														<option selected disabled value="">เลือกทักษะของคุณที่เหมาะกับงาน</option>
+														<option >เลือกทักษะของคุณที่เหมาะกับงาน</option>
 														<option >ทักษะA</option>
 														<option >ทักษะB</option>
 														<option >ทักษะC</option>
@@ -114,7 +93,7 @@ class Registab6 extends React.Component {
 											<div class="row list-job-skill1">
 												<div class="col-md-5">
 													<select class="form-select dropbtn_year margin-bottom1 fff" id="each_skill2" required>
-														<option selected disabled value="">เลือกทักษะของคุณที่เหมาะกับงาน</option>
+														<option >เลือกทักษะของคุณที่เหมาะกับงาน</option>
 														<option >ทักษะA</option>
 														<option >ทักษะB</option>
 														<option >ทักษะC</option>
@@ -131,7 +110,7 @@ class Registab6 extends React.Component {
 											<div class="row list-job-skill1">
 												<div class="col-md-5">
 													<select class="form-select dropbtn_year margin-bottom1 fff" id="each_skill3" required>
-														<option selected disabled value="">เลือกทักษะของคุณที่เหมาะกับงาน</option>
+														<option >เลือกทักษะของคุณที่เหมาะกับงาน</option>
 														<option >ทักษะA</option>
 														<option >ทักษะB</option>
 														<option >ทักษะC</option>
@@ -143,7 +122,7 @@ class Registab6 extends React.Component {
 														<input type="range" class="slider x3" min="0" max="10" step="0.1" defaultValue="5" id="customRange13" />
 														<div className="mark3">
 															<label>ไม่ได้</label>
-															<label>พอได้เล็กน้อย</label>
+															<label>พื้นฐาน</label>
 															<label>ดี</label>
 															<label>ยอดเยี่ยม</label>
 														</div>
@@ -185,8 +164,8 @@ class Registab6 extends React.Component {
 
 
 								<div className="button-add-job1">
-									<a id="hide-modal-tab6" type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</a>
-									<button id="submit-job11" type="submit" class="btn btn-cta-primary-yellowshort profile-button round" data-bs-dismiss="modal"></button>
+									<button id="hide-modal-tab6" type="submit" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" >ยกเลิก</button>
+									<button id="submit-job11" type="submit" class="btn btn-cta-primary-yellowshort profile-button round" ></button>
 								</div>
 
 							</div>
