@@ -123,3 +123,8 @@
 .height-job {
     height: 115px;
 }
+
+/*---- red border when ----*/
+.error_select_certi{
+    border: 1px solid red;
+}
