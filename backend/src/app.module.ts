@@ -12,8 +12,10 @@ import { UsersModule } from './users/users.module';
 import { MulterModule } from '@nestjs/platform-express';
 import { ConfigModule } from '@nestjs/config';
 import { BookmarkModule } from './bookmarks/bookmarks.module';
+import { HomeModule } from './home/home.module';
 
 import * as Joi from 'joi';
+
 
 @Module({
   imports: [
@@ -50,6 +52,7 @@ import * as Joi from 'joi';
     AuthModule,
     UsersModule,
     BookmarkModule,
+    HomeModule,
   ],
   controllers: [AppController],
   providers: [AppService],

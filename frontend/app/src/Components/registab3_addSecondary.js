@@ -10,14 +10,14 @@ class Registab3_addSecondary extends React.Component {
                 <form  id='SecondaryForm'>
                     <div class='col-5' >
                         <div class="selectDropdown">
-                            <select class="form-select form-select-lg dropbtn margin-bottom1 fff" id='regis3_selectdropdown2' aria-labelledby="select1" required>
-                                <option selected disabled value=''>เลือกวุฒิการศึกษา</option>
-                                <option >มัธยมศึกษาปีที่ 1</option>    
-                                <option >มัธยมศึกษาปีที่ 2</option>
-                                <option >มัธยมศึกษาปีที่ 3</option>
-                                <option >มัธยมศึกษาปีที่ 4</option>
-                                <option >มัธยมศึกษาปีที่ 5</option>
-                                <option >มัธยมศึกษาปีที่ 6</option>
+                            <select class="form-select form-select-lg dropbtn margin-bottom1 fff" id='regis3_selectdropdown2' aria-labelledby="select1"  value='' required>
+                                <option selected disabled value='เลือกวุฒิการศึกษา<'>เลือกวุฒิการศึกษา</option>
+                                <option value='มัธยมศึกษาปีที่ 1' >มัธยมศึกษาปีที่ 1</option>    
+                                <option value='มัธยมศึกษาปีที่ 2' >มัธยมศึกษาปีที่ 2</option>
+                                <option value='มัธยมศึกษาปีที่ 3' >มัธยมศึกษาปีที่ 3</option>
+                                <option value='มัธยมศึกษาปีที่ 4' >มัธยมศึกษาปีที่ 4</option>
+                                <option value='มัธยมศึกษาปีที่ 5' >มัธยมศึกษาปีที่ 5</option>
+                                <option value='มัธยมศึกษาปีที่ 6' >มัธยมศึกษาปีที่ 6</option>
                             </select>
                         </div>
                     </div>
