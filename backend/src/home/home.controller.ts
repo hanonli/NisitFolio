@@ -13,7 +13,7 @@ export class HomeController {
   @Get("")
   async getinformation(@Request() req)
   {
-    return this.homeService.getinformation(req.id);
+    return this.homeService.getinformation(req.user.userId);
   }
   /*@Get("")
   async infohomepage(){
