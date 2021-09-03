@@ -1,40 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './registab3.css'
 
 class Registab4_addWorkHistory extends React.Component {
-    constructor(props) {
-		super(props);
-		this.handleLoad = this.handleLoad.bind(this);
-	 }
-	
-	componentDidMount() {
-		window.addEventListener('load', this.handleLoad);
-		const script = document.createElement("script");
-		script.src = "assets/js/register.js";
-		document.body.appendChild(script);
-		
-	}
-	
-	componentWillUnmount() { 
-	   window.removeEventListener('load', this.handleLoad)  
-	}
-	
-    handleLoad() {
-		console.log("YEAH!");
-	 }
+ 
 
 	render (){
+        
+        const Regis4_work  = '';
+
 		return (
 			<div className="Registab4_addWorkHistory">
- 
                     <form class='' id='WorkHistoryForm'>
                         <div class='col-4'>
                             <div class="selectDropdown">
-                                <select class="form-select form-select-lg dropbtn margin-bottom1 fff"  aria-labelledby="select1" required>
+                                <select class="form-select form-select-lg dropbtn margin-bottom1 fff"  aria-labelledby="select1"  required>
                                     <option selected disabled value=''>ประเภทงาน</option>
-                                    <option >ระเบิดมหาลัย</option>    
-                                    <option >เผาบ้าน</option>
-                                    <option >ขูดรถ</option>
+                                    <option value='ระเบิดบ้าน' >ระเบิดมหาลัย</option>    
+                                    <option value='เผาบ้าน' >เผาบ้าน</option>
+                                    <option value='ขูดรถ' >ขูดรถ</option>
                                 </select>
                             </div>
                         </div>
