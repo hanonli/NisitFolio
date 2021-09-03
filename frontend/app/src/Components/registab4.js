@@ -30,8 +30,21 @@ class Registab4 extends React.Component {
 	 
 	render (){
 
+		let Regis4_form = {
+			Work_JobName : 'เปาบ้าน',
+			Work_JobType : 'ประเภทงาน',
+			Company : '',
+			Work_Start_Month : 0,
+			Work_End_Month : 0,
+			Work_Start_Year: 0,
+			Work_End_Year : 0,
+			Salary : 0 ,
+			Infomation : "-" ,
+
+		}
+
 		const handleSubmit = () => {
-			alert('You just submit form')
+			alert(`You jus submit form `)
 		 }
 
 		return (
@@ -49,7 +62,7 @@ class Registab4 extends React.Component {
 										<div class="modal-content " >
 											<div class='modal-body'>
 												<button type="button" class="btn-close" id='registab3_btnclose' aria-label="Close" data-bs-dismiss="modal"></button>
-												<h1 class='modal-title' id='regisModallabel1' value={Regis4_work}>เพิ่มประวัติการทำงาน</h1>			
+												<h1 class='modal-title' id='regisModallabel1'>เพิ่มประวัติการทำงาน</h1>			
 												<div className='addWorkHistory'>
 													<Registab4_addWorkHistory/>
 												</div>								
