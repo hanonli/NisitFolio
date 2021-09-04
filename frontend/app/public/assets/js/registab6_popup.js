@@ -415,3 +415,23 @@ $(document).on("click", "#pos-del-obj-button3", function () {
     $("#pos-del-obj-button3").hide();
 });
 
+function GetJob(text){
+	fetch("http://localhost:2000/register/jobtitle",
+		{ method: "GET", })
+		.then(response => response.json())
+		//.then(response => response.result)
+		.then((raws) => {
+			console.log(raws);
+            for(var i=0;i<165;i++){
+                var job_now = raws[i].THName;
+                console.log(job_now);
+                $('#nm_job').append($('<option />').val(job_now).html(job_now));
+            };
+
+        }).catch((error) => {
+			  console.log(error);
+			});
+		
+}
+
+GetJob();

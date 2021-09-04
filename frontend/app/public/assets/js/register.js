@@ -220,6 +220,7 @@ ret1.addEventListener('keyup', function(){
   if(valt1 == ''){
     $('#re01').removeClass('is-valid');
     $('#re01').addClass('is-invalid');
+    console.log(FormRegis);
   }
   else {
     $('#re01').removeClass('is-invalid');
@@ -632,7 +633,6 @@ $(function(){
     $('.ddt7_2').show();
     sideskill_count += 1;
     console.log('Sum SSK ++:' + sideskill_count + '!');
-    console.log(list_of_certi);
   });
   $('#sideskilllist2').on('change', function(){
     console.log('EiEi this is Sel2');
@@ -692,7 +692,7 @@ function GetDistrict(text){
 		.then(response => response.json())
 		//.then(response => response.result)
 		.then((raws) => {
-			/*console.log(raws);*/
+			console.log(raws);
 			raws.data.forEach((entrys) => {
 				//console.log(entrys);
         var dis_now = entrys;
@@ -708,46 +708,7 @@ function GetDistrict(text){
 function PostRegis(){
   fetch("http://localhost:2000/register",
 		{ method: "POST",
-		  body: JSON.stringify({
-          Email:"nattayaporn.k@ku.th",
-          Password:"nattayaporn123",
-          ProfilePic:"",
-          Privacy: "Private",
-          isEmailConfirmed: false,
-          Firstname:"Nattayaporn",
-          Lastname:"Koonwattanapong",
-          Birthday:"19/4/2001",
-          Gender:"หญิง",
-          AboutMe:"ลองpostปลอมๆนะครับผม อย่าได้นำพา งานยังไม่เสด2",
-          Email2nd:"",
-          Country:"ประเทศไทย",
-          Province:"สุรินทร์",
-          City:"ในเมือง",
-          SoftSkill:["Photoshop","Drawing","Python"],
-          CertName:["ชนะเลิศการแข่งขันคิดเลขเร็วแห่งชาติ","รองชนะเลิศการแข่งขันกระโดดเชือกหมู่"],
-          CertPic:["pic1","pic2"],
-          CertYear:[2008,2012],
-          Degree:["ปริญญาตรี"],
-          Facalty:["วิศวกรรมศาสตร์"],
-          Field_of_study:["คอมพิวเตอร์"],
-          Academy:["มหาวิทยาลัยเกษตรศาสตร์"],
-          Grade:[2.50],
-          Education_Start_Year:[2018],
-          Education_End_Year:[],
-          Work_JobName:[],
-          Work_JobType:[],
-          Company:[],
-          Work_Start_Month:[],
-          Work_End_Month:[],
-          Work_Start_Year:[],
-          Work_End_Year:[],
-          Salary:[],
-          Infomation:[],
-          Job_Objective:["อยากเกิดเป็นแมวคนรวย"],
-          Job_Score:[],
-          Job_JobName:[],
-          Job_SkillName:[]
-      })}
+		  body: JSON.stringify(FormRegis)}
   )
     .then(function (response) {
         window.location.pathname = '/emailverify'
@@ -808,3 +769,18 @@ function PostRegis(){
         })
       });
     });
+    
+    const FormRegis = {
+        Email:"rungnattayaporn40@gmail.com",
+        Password:"nattayaporn1234",
+        Firstname:"Natty",
+        Lastname:"Koonwatty",
+        Birthday:"23/10/2000",
+        Gender:"หญิง",
+        SoftSkill:[],
+        CertName:[],
+        Degree:[],
+        Work_JobName: [],
+        Job_JobName: []
+    }
+    

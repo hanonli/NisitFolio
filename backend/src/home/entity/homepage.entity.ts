@@ -1,14 +1,15 @@
 import { Entity, Column, ObjectIdColumn, OneToMany, ManyToOne } from 'typeorm'; 
 import { ObjectId, Timestamp } from 'mongodb';
+import { ObjectID as ObjectIDType} from 'typeorm'
 
 @Entity("UserInfo")
 export class Userinfo {
 
   @ObjectIdColumn()
-  id?: ObjectId;
+  _id?: ObjectIDType;
 
   @ObjectIdColumn()
-  UserId: ObjectId;
+  UserId: ObjectIDType;
 
   @Column()
   Firstname: string;
@@ -45,10 +46,10 @@ export class Userinfo {
 @Entity("InterestedJob")
 export class InterestedJob {
   @ObjectIdColumn()
-  id?: ObjectId;
+  _id?: ObjectIDType;
   
   @ObjectIdColumn()
-  UserId: ObjectId;
+  UserId: ObjectIDType;
 
   @Column()
   Job_Objective: string;
@@ -66,7 +67,7 @@ export class InterestedJob {
 @Entity("Account")
 export class Account {
   @ObjectIdColumn()
-  id?: ObjectId;
+  _id?: ObjectIDType;
 
   @Column()
   Email: string;

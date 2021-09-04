@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import './registab3.css'
 
-class Registab4_addWorkHistory extends React.Component {
-     
+class Registab4_addWorkHistory extends React.Component {    
+    
+    
+    
 	render (){
-        let Regis4_form = {
+        const Regis4_form = {
 			Work_JobName : '',
 			Work_JobType : '',
 			Company : '',
