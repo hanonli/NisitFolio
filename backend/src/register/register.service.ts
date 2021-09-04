@@ -61,14 +61,14 @@ export class RegisterService {
     userinfo.Province = createDto.Province;
     userinfo.City = createDto.City;
 
-    for (var _i = 0; _i < createDto.SoftSkill.length; _i++) {
+    /*for (var _i = 0; _i < createDto.SoftSkill.length; _i++) {
       const additionalskill = new AdditionalSkill();
       additionalskill.UserId = accountid;
       additionalskill.SoftSkill  = createDto.SoftSkill[_i]; 
       await this.AdditionalSkillRepository.save(additionalskill);
-    }
+    }*/
     
-    for (var _i = 0; _i < createDto.CertName.length; _i++) {
+    /*for (var _i = 0; _i < createDto.CertName.length; _i++) {
       const certificate = new Certificate();
       certificate.UserId = accountid;
       certificate.ResumeId = null;
@@ -76,9 +76,9 @@ export class RegisterService {
       certificate.CertPic = createDto.CertPic[_i]
       certificate.CertYear = createDto.CertYear[_i]
       await this.CertificateRepository.save(certificate);
-    }
+    }*/
 
-    for (var _i = 0; _i < createDto.Degree.length; _i++) {
+    /*for (var _i = 0; _i < createDto.Degree.length; _i++) {
       const educationHistory = new EducationHistory();
       educationHistory.UserId = accountid;
       educationHistory.Degree = createDto.Degree[_i];
@@ -88,9 +88,9 @@ export class RegisterService {
       educationHistory.Grade = createDto.Grade[_i];
       educationHistory.Education_End_Year = createDto.Education_End_Year[_i];
       await this.EducationHistoryRepository.save(educationHistory);
-    }
+    }*/
 
-    for (var _i = 0; _i < createDto.Work_JobName.length; _i++) {
+    /*for (var _i = 0; _i < createDto.Work_JobName.length; _i++) {
       const workHistory = new WorkHistory();
       workHistory.UserId = accountid;
       workHistory.Work_JobName = createDto.Work_JobName[_i];
@@ -103,9 +103,9 @@ export class RegisterService {
       workHistory.Salary = createDto.Salary[_i]; 
       workHistory.Infomation = createDto.Infomation[_i]; 
       await this.WorkHistoryRepository.save(workHistory);
-    }
+    }*/
 
-    for (var _i = 0; _i < createDto.Job_JobName.length; _i++) {
+    /*for (var _i = 0; _i < createDto.Job_JobName.length; _i++) {
       const interestedJob = new InterestedJob();
       interestedJob.UserId = accountid;
       interestedJob.Job_Objective = createDto.Job_Objective[_i];
@@ -113,9 +113,9 @@ export class RegisterService {
       interestedJob.Job_JobName = createDto.Job_JobName[_i];
       interestedJob.Job_SkillName = createDto.Job_SkillName[_i];
       await this.InterestedJobRepository.save(interestedJob);
-    }
+    }*/
     
-    await this.emailConfirmationService.sendVerificationLink(createDto.Email);
+    //await this.emailConfirmationService.sendVerificationLink(createDto.Email);
 
     return (this.userinfoRepository.save(userinfo));
 

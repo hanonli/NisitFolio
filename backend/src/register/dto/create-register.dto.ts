@@ -2,11 +2,11 @@ import { IsEmail, IsNotEmpty, IsNumberString } from 'class-validator';
 
 export class CreateRegisDto {
 
-  @IsNotEmpty()
-  @IsEmail()
+  //@IsNotEmpty()
+  //@IsEmail()
   Email: string;
 
-  @IsNotEmpty()
+  //@IsNotEmpty()
   Password: string;
 
   ProfilePic: string;
@@ -15,20 +15,20 @@ export class CreateRegisDto {
 
   isEmailConfirmed: boolean;
 
-  @IsNotEmpty()
+  //@IsNotEmpty()
   Firstname: string;
   
-  @IsNotEmpty()
+  //@IsNotEmpty()
   Lastname: string;
   
-  @IsNotEmpty()
+  //@IsNotEmpty()
   Birthday: string;
 
   AboutMe: string;
 
   Email2nd: string;
 
-  @IsNotEmpty()
+  //@IsNotEmpty()
   Gender: string;
 
   Country: string;
@@ -37,17 +37,17 @@ export class CreateRegisDto {
 
   City: string;
 
-  @IsNotEmpty()
+  //@IsNotEmpty()
   SoftSkill: string[];
 
-  @IsNotEmpty()
+  //@IsNotEmpty()
   CertName: string[];
 
   CertPic: string[];
 
   CertYear: number[];
 
-  @IsNotEmpty()
+  //@IsNotEmpty()
   Degree: string[];
 
   Facalty: string[];
@@ -60,7 +60,7 @@ export class CreateRegisDto {
 
   Education_End_Year: number[];   
 
-  @IsNotEmpty()
+  //@IsNotEmpty()
   Work_JobName: string[];
 
   Work_JobType: string[];
@@ -83,7 +83,7 @@ export class CreateRegisDto {
 
   Job_Score: Float32Array[];
 
-  @IsNotEmpty()
+  //@IsNotEmpty()
   Job_JobName: string[];
 
   Job_SkillName: string[];
