@@ -10,7 +10,7 @@ const Registab4 = () => {
 			e.preventDefault();
 			const newForm = { JobName , JobType , Company , Salary ,StartMonth , StartYear , EndMonth , EndYear , Information } ;
 
-			fetch('http://localhost:2000/register',{
+			fetch('http://localhost:2000/workhistory',{
 				method: 'Post',
 				headers: {"Content-Type" : "application/json"},
 				body: JSON.stringify(newForm)
