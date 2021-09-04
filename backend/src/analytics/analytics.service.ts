@@ -74,7 +74,6 @@ export class AnalyticsService {
                               percentage: result.total/numberOfUsers * 100
                             })
       }
-
       results[job]["List"] = ArrangedResult;
     }
 
@@ -148,11 +147,17 @@ export class AnalyticsService {
                             }
                           }
     ]) ;
-    let array = [] ;
+    let array = {} ;
+    let InterestedJobs = [] ;
+
     for (var obj of findObjective ) {
-      const ObjectName = obj._id.Objective ;
+      InterestedJobs.push(obj._id.Objective) ;  
+    }
+    array['InterestedJobs'] = InterestedJobs ;
+
+    for (var job of InterestedJobs ) {
       const SumSkill = await this.UserJobSkillModel.aggregate([
-                      { $match: { Objective: ObjectName } },
+                      { $match: { Objective: job } },
                       {
                         $group: {
                           _id: { SkillName: "$SkillName"}, 
@@ -165,17 +170,22 @@ export class AnalyticsService {
       for (var i of SumSkill) {
         n += i.total ;
       }
+      array[job] = {numberOfUsers: n} ;
       // let count = 0 ;
+      // results[job] = { numberOfUsers: numberOfUsers };
+      // results[job]["List"] = ArrangedResult;
+      let temp = [] ;
       for (var i of SumSkill){ 
         // console.log(i) ;
         const _name = i._id.SkillName ;
         const _sum = i.total ;
         // console.log(_name);
         // console.log(_sum);
-        var temp2 = array.push({Objective: ObjectName, SkillName: _name, total: _sum, percentage: _sum/n}) ;
+        temp.push({SkillName: _name, total: _sum, percentage: _sum/n}) ;
         // count ++ ;
         // if (count == 3) break ;
       }
+      array[job]['List'] = temp ;
       console.log(array);
       //console.log(SumSkill);
     }
@@ -183,7 +193,7 @@ export class AnalyticsService {
     //console.log(findObjective);
   }
 
-  async findAUserSkill(SkillName: string, userId: ObjectId): Promise<any[]> {
+  async findAUserSkill(SkillName: string, userId: ObjectId): Promise<any> {
     const AllUser = await this.UserJobSkillModel.find({SkillName: SkillName}) ; 
     const size = AllUser.length ;
     const Skill = await this.UserJobSkillModel.aggregate([
@@ -243,8 +253,8 @@ export class AnalyticsService {
     const UserScore = await this.UserJobSkillModel.find({userId: userId, SkillName: SkillName}) ;
     
     // ------- Return Result ---------
-    let array = [] ;
-    array.push( { AllUserScore: AllScore ,SkillName: SkillName, n: size, Mean: mean, UserScore: UserScore[0].Score, Mode: Mode_Array })
+    let array = {} ;
+    array = { "AllUserScore": AllScore ,"SkillName": SkillName, "n": size, "Mean": mean, "UserScore": UserScore[0].Score, "Mode": Mode_Array }; 
     return array ;
   }
 
