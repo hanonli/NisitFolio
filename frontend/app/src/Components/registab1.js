@@ -35,9 +35,9 @@ class Registab1 extends React.Component {
 										<div class="col-6">
 											<select class="form-select dropbtn margin-bottom1 fff" required>
 												<option selected disabled value="">เลือกเพศ</option>
-												<option>ชาย</option>
-												<option>หญิง</option>
-												<option>ไม่ระบุ</option>
+												<option value="ชาย">ชาย</option>
+												<option value="หญิง">หญิง</option>
+												<option value="ไม่ระบุ">ไม่ระบุ</option>
 											</select>
 										</div>
 									</div>

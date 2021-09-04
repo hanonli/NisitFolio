@@ -4,8 +4,25 @@ import './registab3.css'
 import './register.css'
 
 class Registab4 extends React.Component {
-
 	render (){
+
+		let Regis4_form = {
+			Work_JobName : 'เปาบ้าน',
+			Work_JobType : 'ประเภทงาน',
+			Company : '',
+			Work_Start_Month : 0,
+			Work_End_Month : 0,
+			Work_Start_Year: 0,
+			Work_End_Year : 0,
+			Salary : 0 ,
+			Infomation : "-" ,
+
+		}
+
+		const handleSubmit = () => {
+			alert(`You jus submit form `)
+		 }
+
 		return (
 			<div className="Registab4 regis-box-content">
 		
@@ -21,14 +38,15 @@ class Registab4 extends React.Component {
 										<div class="modal-content " >
 											<div class='modal-body'>
 												<button type="button" class="btn-close" id='registab3_btnclose' aria-label="Close" data-bs-dismiss="modal"></button>
-												<h1 class='modal-title' id='regisModallabel1' >เพิ่มประวัติการทำงาน</h1>			
+												<h1 class='modal-title' id='regisModallabel1'>เพิ่มประวัติการทำงาน</h1>			
 												<div className='addWorkHistory'>
 													<Registab4_addWorkHistory/>
 												</div>								
 											</div>
 											<div class='modal-footer'>
 												<div class="centerverify">
-													<button type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</button>												<button type="button" class="btn btn-cta-primary-yellowshort profile-button round" data-bs-dismiss='modal'>ตกลง</button>
+													<button type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</button>												
+													<button type="button" class="btn btn-cta-primary-yellowshort profile-button round" onClick={handleSubmit} >ตกลง</button>
 												</div>
 											</div>
 

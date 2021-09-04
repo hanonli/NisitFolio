@@ -124,7 +124,7 @@ for (k = startD; k < MaxD; k++) {
 			// console.log("Click on profile!");
 		});
 
-      input.addEventListener('change', function () {
+      input.addEventListener('change', function (e) {
         var files = e.target.files;
         var done = function (url) {
           input.value = '';
@@ -249,7 +249,6 @@ ret3.addEventListener('keyup', function(){
     $('#re03').removeClass('is-invalid');
     $('#re03').addClass('is-valid');
   }});
-
 var passw = 0;
 var min_pass_count = 8;
 var max_pass_count = 20;
@@ -633,6 +632,7 @@ $(function(){
     $('.ddt7_2').show();
     sideskill_count += 1;
     console.log('Sum SSK ++:' + sideskill_count + '!');
+    console.log(list_of_certi);
   });
   $('#sideskilllist2').on('change', function(){
     console.log('EiEi this is Sel2');

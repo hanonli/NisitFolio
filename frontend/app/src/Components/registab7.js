@@ -12,7 +12,7 @@ class Registab7 extends React.Component {
 					<div class="dropdowntap7_1 ssf">
 						<div class="row ddt7_1">
 							<div class="col-md-6">
-								<select class="form-select dropbtn fff " id="ch1">
+								<select class="form-select dropbtn fff" id="ch1">
 									<option selected disabled value="">เลือกหมวดทักษะเสริมที่ถนัด</option>
 									<option value= 'Technical'>Technical</option>
 									<option value='Computer'>Computer</option>
@@ -34,7 +34,7 @@ class Registab7 extends React.Component {
 					</div>
 					<div class="dropdowntap7_2 ssf">
 					<div class="row ddt7_2">
-							<div class="col-md-6">
+							<div class="col-md-6 chh2">
 								<select class="form-select dropbtn fff" id="ch2">
 									<option selected disabled value="">เลือกหมวดทักษะเสริมที่ถนัด</option>
 									<option value= 'Technical'>Technical</option>

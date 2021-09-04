@@ -46,7 +46,7 @@ class Registab5 extends React.Component {
 									</div>
 									<div class="col-md-10">
 										<select class="form-select dropbtn_year margin-bottom1 fff" id="yearpicker_111" required>
-											<option selected disabled value="">ปี*</option>
+											<option selected disabled value="0">ปี*</option>
 										</select>
 									</div>
 								</div>
@@ -60,8 +60,8 @@ class Registab5 extends React.Component {
 									</div>
 
 									<div className="button_popup_certi">
-										<a type="button" id="hide-modal-certi" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal" >ยกเลิก</a>
-										<a id="submit-certi" type="submit" id="submit-certi" class="btn btn-cta-primary-yellowshort profile-button round" data-bs-dismiss="modal">เพิ่ม</a>
+										<a type="button" id="hide-modal-certi" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" >ยกเลิก</a>
+										<a id="submit-certi" type="submit" id="submit-certi" class="btn btn-cta-primary-yellowshort profile-button round" >เพิ่ม</a>
 									</div>
 
 								</div>
@@ -69,7 +69,7 @@ class Registab5 extends React.Component {
 						</div>
 					</div>
 				</div>
-			</div>
+			</div >
 		);
 	}
 }

@@ -347,3 +347,7 @@
     position: relative;
 }
 
+/*---- red border when ----*/
+.error_select_job{
+    border: 1px solid red;
+}

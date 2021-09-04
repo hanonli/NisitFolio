@@ -34,8 +34,8 @@ class Registab6 extends React.Component {
 							<div class="modal-content minisize">
 								<h4 class="del-b">คุณต้องการลบเป้าหมายในการทำงานนี้ ?</h4>
 								<div class="centerverify">
-									<a type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</a>
-									<a id="summit-to-delete" type="button" class="btn btn-cta-primary-yellowshort profile-button round" data-bs-dismiss="modal">ลบ</a>
+									<a type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" >ยกเลิก</a>
+									<a id="summit-to-delete" type="button" class="btn btn-cta-primary-yellowshort profile-button round" >ลบ</a>
 								</div>
 							</div>
 						</div>
@@ -51,7 +51,7 @@ class Registab6 extends React.Component {
 									</div>
 									<div class="col-md-5 select-job4">
 										<select id="nm_job" class="form-select dropbtn-job4 margin-bottom-job4 fff" required>
-											<option >เลือกตำแหน่งงานหรืองานที่คุณสนใจ *</option>
+											<option selected disabled value="">เลือกตำแหน่งงานหรืองานที่คุณสนใจ *</option>
 											<option >โปรแกรมเมอร์</option>
 											<option >บาร์เทนเนอร์</option>
 											<option >ดีไซน์เนอร์</option>
@@ -164,8 +164,8 @@ class Registab6 extends React.Component {
 
 
 								<div className="button-add-job1">
-									<a id="hide-modal-tab6" type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</a>
-									<button id="submit-job11" type="submit" class="btn btn-cta-primary-yellowshort profile-button round" data-bs-dismiss="modal"></button>
+									<button id="hide-modal-tab6" type="submit" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" >ยกเลิก</button>
+									<button id="submit-job11" type="submit" class="btn btn-cta-primary-yellowshort profile-button round" ></button>
 								</div>
 
 							</div>
