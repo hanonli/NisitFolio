@@ -36,7 +36,7 @@ const Registab3 = () => {
             e.preventDefault();
 			const FormSecondary = {SecondaryAcademy , SecondaryDegree , SecondaryEndYear , SecondaryFaculty , SecondaryFieldofStudy , SecondaryGrade}
 
-			fetch('http://localhost:2000/saveeducationhistory',{
+			fetch('http://localhost:2000/educationhistory',{
 				method: 'Post',
 				headers: {"Content-Type" : "application/json"},
 				body: JSON.stringify(FormSecondary)
