@@ -37,4 +37,12 @@ export class BookmarkController {
     return await this.bookmarkService.findBookmark(oid) ;
   }
 
+  @Get()
+  async getThisUserBookmarks(
+    @Body() detail: { userId: string, sort: string }
+  ): Promise<any[]> {
+    const oid = mongoose.Types.ObjectId(detail.userId);
+    return this.bookmarkService.userBookmark(oid, detail.sort);
+  }
+
 }
