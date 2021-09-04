@@ -43,7 +43,7 @@ const Registab3 = () => {
 		const handleSubmitHigher = (e) => {
 			e.preventdefault();
 			
-			fetch('http://localhost:2000/saveeducationhistory',{
+			fetch('http://localhost:2000/educationhistory',{
 				method: 'Post',
 				headers: {"Content-Type" : "application/json"},
 				body: JSON.stringify(Regis3_form)
@@ -88,7 +88,7 @@ const Registab3 = () => {
 		const handleSubmitSecondary = (e) => {
 			e.preventdefault();
 			
-			fetch('http://localhost:2000/saveeducationhistory',{
+			fetch('http://localhost:2000/educationhistory',{
 				method: 'Post',
 				headers: {"Content-Type" : "application/json"},
 				body: JSON.stringify(Regis3_form2)
