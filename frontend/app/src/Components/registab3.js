@@ -24,7 +24,7 @@ const Registab3 = () => {
 
 		}
 
-        const [HigherDegree , setHigherDegree] = useState('');
+        const [HigherDegree , setHigherDegree] = useState();
         const [HigherAcademy, setHigherAcademy] = useState('');
         const [HigherFaculty , setHigherFaculty] = useState('');
         const [HigherFieldofStudy , setHigherFieldofStudy] = useState('');
