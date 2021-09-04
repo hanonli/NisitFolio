@@ -1,9 +1,13 @@
-import { Date, Model } from "mongoose";
+import { Date, Model, Mongoose } from "mongoose";
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 
 import { ObjectId } from "mongodb";
-import { Bookmark, TotalBookmark } from "./bookmarks.schema";
+import { Bookmark, TotalBookmark, UserInfo } from "./bookmarks.schema";
+import * as mongoose from "mongoose";
+import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from "constants";
+
+import { UserJobSkill } from "src/analytics/analytics.schema";
 
 @Injectable()
 export class BookmarkService {
@@ -13,6 +17,13 @@ export class BookmarkService {
 
     @InjectModel('TotalBookmark')
     private TotalBookmarkModel: Model<TotalBookmark>,
+
+    @InjectModel('UserJobSkill')
+    private UserJobSkillModel: Model<UserJobSkill>,
+
+    @InjectModel('UserInfo')
+    private UserInfoModel: Model<UserInfo>,
+
   ) {}
 
   async updateTotalBookmark( method: String, type: String, userId: ObjectId, projectName: String ): Promise<void> {
@@ -94,5 +105,53 @@ export class BookmarkService {
     const All = await this.BookmarkModel.find({userId: userId}).sort({updatedAt: -1}) ;
     console.log(All) ;
     return All ;
+  }
+
+  async userBookmark(userId: ObjectId, sort: String): Promise<any> {
+    const bookmarks = await this.BookmarkModel.find( { userId: userId }).exec();
+    //console.log(bookmarks);
+    let res = {};
+    let i=0;
+    for ( var bookmark of bookmarks) {
+
+      const query = await this.TotalBookmarkModel.findOne( { type: bookmark.type, userId: bookmark.thatUserId , projectName: bookmark.projectName}).exec();
+      const total = query.totalBookmarks;
+
+      if ( bookmark.type == 'user' ) {
+        //console.log(bookmark);
+        const jobs = await this.UserJobSkillModel.find( { userId: bookmark.thatUserId }).select("JobName -_id").distinct('JobName').exec();
+        const details = await this.UserInfoModel.findOne({ UserId: bookmark.thatUserId }).select("-_id Firstname Lastname AboutMe").exec();
+        console.log(details);
+        res[i] = {  link: bookmark.link,
+                    type: bookmark.type,
+                    thatUserId: bookmark.thatUserId,
+                    name: details.Firstname + " " + details.Lastname,
+                    profilePic: "",
+                    jobs: jobs,
+                    about: details.AboutMe,
+                    timeUpdated: bookmark.updatedAt,
+                    totalBookmarks: total 
+                  };
+      }
+      i++;
+    }
+    // if (sort == 'time'){
+    //   const keysSorted = Object.keys(res).sort(function(a,b) {return res[b].time-res[a].time});
+    // }
+    let keysSorted;
+
+    if (sort == 'time'){
+      keysSorted = Object.keys(res).sort(function(a,b) {return res[b].timeUpdated-res[a].timeUpdated});
+    }
+    else {
+      keysSorted = Object.keys(res).sort(function(a,b) {return res[b].totalBookmarks-res[a].totalBookmarks});
+    }
+
+    let final = [];
+    for ( var key of keysSorted ) {
+      final.push(res[key]);
+    }
+    console.log(final);
+    return final;
   }
 }
