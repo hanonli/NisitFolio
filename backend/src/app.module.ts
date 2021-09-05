@@ -15,6 +15,7 @@ import { BookmarkModule } from './bookmarks/bookmarks.module';
 import { HomeModule } from './home/home.module';
 
 import * as Joi from 'joi';
+import { ResumeModule } from './resume/resume.module';
 
 
 @Module({
@@ -53,6 +54,7 @@ import * as Joi from 'joi';
     UsersModule,
     BookmarkModule,
     HomeModule,
+    ResumeModule,
   ],
   controllers: [AppController],
   providers: [AppService],
