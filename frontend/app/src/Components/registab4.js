@@ -17,7 +17,6 @@ const Registab4 = () => {
 			}).then(() => {
 				console.log('newWorkHistoryForm added')
 			})
-            alert(`newWorkHistoryForm added`)
 			alert(`You just submit form \nform = ${JSON.stringify(newForm)} `)
 		}
 
@@ -54,7 +53,7 @@ const Registab4 = () => {
                         <div class='col-4'>
                             <div class="selectDropdown">
                                 <select class="form-select form-select-lg dropbtn margin-bottom1 fff"  aria-labelledby="select1" value={JobType} onChange={(e) => setJobType(e.target.value)}required>
-                                    <option selected disabled value=''>ประเภทงาน</option>
+                                    <option selected disabled value=''>ประเภทงาน*</option>
                                     <option value='ระเบิดบ้าน' >ระเบิดมหาลัย</option>    
                                     <option value='เผาบ้าน' >เผาบ้าน</option>
                                     <option value='ขูดรถ' >ขูดรถ</option>
@@ -63,7 +62,7 @@ const Registab4 = () => {
                         </div>
                         <div class='row'>
                             <div class='col-6'>
-                                <input type="text" class="form-control dropbtn margin-bottom1 " id="ValidationPositionFeedback" placeholder="ตำแหน่งงาน"value={JobName} onChange={ (e) => setJobName(e.target.value)} required></input>
+                                <input type="text" class="form-control dropbtn margin-bottom1 " id="ValidationPositionFeedback" placeholder="ตำแหน่งงาน*"value={JobName} onChange={ (e) => setJobName(e.target.value)} required></input>
                             </div>
                             <div class='col-6'>
                                 <input type="text" class="form-control dropbtn margin-bottom1 " id="ValidationCompanyFeedback" placeholder="สังกัด/บริษัท" value={Company} onChange={ (e) => setCompany(e.target.value)}></input>
@@ -95,7 +94,7 @@ const Registab4 = () => {
                                 <div class='col-8'>
                                     <div class="selectDropdown">
                                         <select class="form-select form-select-lg dropbtn margin-bottom1 fff"  aria-labelledby="select1" value={StartYear} onChange={ (e) => setStartYear(e.target.value)} required>
-                                            <option selected disabled value=''>ปีที่เข้าทำงาน</option>
+                                            <option selected disabled value=''>ปีที่เข้าทำงาน*</option>
                                             <option >ปีนี้</option>    
                                             <option >ปีหน้า</option>
                                             <option >ปีไหนก็ไม่เข้าหรอก</option>
@@ -107,7 +106,7 @@ const Registab4 = () => {
                                 <div class='col-8'>
                                     <div class="selectDropdown">
                                         <select class="form-select form-select-lg dropbtn margin-bottom1 fff"  aria-labelledby="select1" value={StartMonth} onChange={(e) => setStartMonth(e.target.value)} required>
-                                            <option selected disabled value=''>เดือนที่เข้าทำงาน</option>
+                                            <option selected disabled value=''>เดือนที่เข้าทำงาน*</option>
                                             <option >เดือนนี้</option>    
                                             <option >เดือนหน้า</option>
                                         </select>
