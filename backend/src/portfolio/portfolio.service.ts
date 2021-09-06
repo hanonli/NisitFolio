@@ -3,6 +3,7 @@ import { CreatePortfolioDto } from './dto/portfolio.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Account, Userinfo, AdditionalSkill, Certificate, EducationHistory, InterestedJob, WorkHistory,Portfolio,PortfolioPicture} from './entity/portfolio.entity'
+import { ObjectID } from 'mongodb';
 
 @Injectable()
 export class PortService {
@@ -14,7 +15,12 @@ export class PortService {
 
   ) {}
   async getPort(portId:string ){
-    return 'Nisitfolio';
+    const id = new ObjectID(portId);
+    return this.portRepository.findOne({where:{ _id: id }});
+  }
+
+  async getPortbyUser(userId:string ){
+    return this.portRepository.find({where:{ UserId: userId }});
   }
 
   async createPort(CreateDto: CreatePortfolioDto ){
@@ -36,5 +42,11 @@ export class PortService {
     
     return await this.portfolioPictureRepository.save(portpic);
   }
+  
+  async GetOwnPort(userId:string){
+    const port = this.portRepository.find({where:{ UserId: userId }})
+    return port;
+  }
+
 
 }
