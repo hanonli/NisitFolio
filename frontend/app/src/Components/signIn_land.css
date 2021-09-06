@@ -30,6 +30,21 @@
     font-size: 1vw;
 }
 
+#inputform2_error {
+    border-radius: 1.2vw;
+    background-color: #C4C4C4;
+    border-color: #ebf0fc;
+    width: 18vw;
+    height: 4.8vh;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    padding: 0 1.2vw;
+    color: #000000;
+    font-size: 1vw;
+    border: 1px solid red;
+}
+
 #buttom12 {
     align-items: center;
     border-radius: 3vw;
