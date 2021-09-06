@@ -3,15 +3,20 @@ import './signIn_land.css'
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
+/*SignInLand.propTypes = {
+    setToken: PropTypes.func.isRequired
+};*/
+
 async function loginUser(credentials) {
-    /*return fetch('http://localhost:2000/login', {
+    console.log(`credentials: ${credentials["Email"]}`);
+    return fetch('http://localhost:2000/auth/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(credentials)
     })
-        .then(data => data.json())*/
+        .then(data => data.json())
 }
 
 function SignInLand() {
@@ -20,12 +25,12 @@ function SignInLand() {
 
     const handleSubmit = async e => {
         e.preventDefault();
-        //const token = await loginUser({
-        //    user,
-        //    password
-        //});
+        const token = await loginUser({
+            Email: user,
+            Password: password
+        });
         //setToken(token);
-        //console.log(`token: ${token}`);
+        console.log(`token: ${token}`);
         console.log(`email: ${user}`);
         console.log(`password: ${password}`);
     }
@@ -63,8 +68,6 @@ function SignInLand() {
     );
 }
 
-/*SignInLand.propTypes = {
-    setToken: PropTypes.func.isRequired
-};*/
+
 
 export default SignInLand;
