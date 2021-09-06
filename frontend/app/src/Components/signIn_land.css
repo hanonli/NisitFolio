@@ -96,3 +96,8 @@
 #formSingin {
     margin-top: 0.5vh;
 }
+
+/*---- red border when ----*/
+.error_login{
+    border: 1px solid red;
+}
