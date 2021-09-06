@@ -51,14 +51,29 @@ export class PortService {
   async removePort(portId:string, userId:string){
     const portid = new ObjectID(portId);
     const port =  await this.portRepository.findOne({where:{ _id: portid }});
-    console.log(userId)
-    console.log(port)
+  
     if (port && port.UserId === userId) {
       return await this.portRepository.remove(port);
     }
     
     return "can not delete other's data";
   }
+
+  async updatePort(CreateDto: CreatePortfolioDto,portId:string, userId:string){
+    const portid = new ObjectID(portId);
+    const port =  await this.portRepository.findOne({where:{ _id: portid }});
+  
+    if (port && port.UserId === userId) {
+      if (CreateDto.Port_Tag != null)
+        port.Port_Tag = CreateDto.Port_Tag;
+      if (CreateDto.Port_Privacy != null)
+        port.Port_Privacy = CreateDto.Port_Privacy;
+      return await this.portRepository.save(port);
+    }
+    
+    return "can not update other's data";
+  }
+
 
 
 }

@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Request, UseGuards , Body,Param, Delete} from '@nestjs/common';
+import { Controller, Get, Post, Request, UseGuards , Body,Param, Delete ,Patch} from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { PortService } from "./portfolio.service";
 import { CreatePortfolioDto } from './dto/portfolio.dto';
@@ -37,6 +37,13 @@ export class PortController {
   @Delete(":portfolioId")
     async removePort(@Param('portfolioId') portfolioId: string,@Request() req ) {
       return this.portService.removePort(portfolioId,req.user.userId);
+
+    }
+
+  @UseGuards(JwtAuthGuard)
+  @Patch(":portfolioId")
+    async updatePort(@Body() CreateDto: CreatePortfolioDto ,@Param('portfolioId') portfolioId: string,@Request() req ) {
+      return this.portService.updatePort(CreateDto,portfolioId,req.user.userId);
 
     }
 }
