@@ -2,7 +2,7 @@ import { IsEmail, IsNotEmpty, IsNumberString } from 'class-validator';
 import { ObjectId } from 'mongodb';
 export class CreatePortfolioDto {
 
-    UserId: ObjectId;
+    UserId: string;
 
     Port_Tag: string;
  

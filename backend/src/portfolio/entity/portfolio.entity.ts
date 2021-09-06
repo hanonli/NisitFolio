@@ -201,8 +201,8 @@ export class Portfolio {
   @ObjectIdColumn()
   id?: ObjectId;
   
-  @ObjectIdColumn()
-  UserId: ObjectId;
+  @Column()
+  UserId: string;
 
   @Column()
   Port_Tag: string;

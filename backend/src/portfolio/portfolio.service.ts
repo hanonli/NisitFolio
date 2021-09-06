@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreatePortfolioDto } from './dto/portfolio.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, SimpleConsoleLogger } from 'typeorm';
 import { Account, Userinfo, AdditionalSkill, Certificate, EducationHistory, InterestedJob, WorkHistory,Portfolio,PortfolioPicture} from './entity/portfolio.entity'
 import { ObjectID } from 'mongodb';
 
@@ -46,6 +46,18 @@ export class PortService {
   async GetOwnPort(userId:string){
     const port = this.portRepository.find({where:{ UserId: userId }})
     return port;
+  }
+
+  async removePort(portId:string, userId:string){
+    const portid = new ObjectID(portId);
+    const port =  await this.portRepository.findOne({where:{ _id: portid }});
+    console.log(userId)
+    console.log(port)
+    if (port && port.UserId === userId) {
+      return await this.portRepository.remove(port);
+    }
+    
+    return "can not delete other's data";
   }
 
 
