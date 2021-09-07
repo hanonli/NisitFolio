@@ -13,8 +13,10 @@ import { MulterModule } from '@nestjs/platform-express';
 import { ConfigModule } from '@nestjs/config';
 import { BookmarkModule } from './bookmarks/bookmarks.module';
 import { HomeModule } from './home/home.module';
+import { PortModule } from './portfolio/portfolio.module';
 
 import * as Joi from 'joi';
+import { ResumeModule } from './resume/resume.module';
 
 
 @Module({
@@ -53,6 +55,8 @@ import * as Joi from 'joi';
     UsersModule,
     BookmarkModule,
     HomeModule,
+    PortModule,
+    ResumeModule,
   ],
   controllers: [AppController],
   providers: [AppService],

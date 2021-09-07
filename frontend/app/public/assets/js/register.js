@@ -384,6 +384,17 @@ ValidationFaculty.addEventListener('keyup', function(){
       $('#ValidationFacultyFeedback').removeClass('is-invalid');
       $('#ValidationFacultyFeedback').addClass('is-valid');
     }});
+ValidationGrade = document.getElementById('ValidationGradeFeedback');                   
+ValidationGrade.addEventListener('keyup', function(){
+    var regis3_gradeval = $('#ValidationGradeFeed').val();
+    if(regis3_gradeval == ''){
+      $('#ValidationGradeFeedback').removeClass('is-valid');
+      $('#ValidationGradeFeedback').addClass('is-invalid');
+    }
+    else {
+      $('#ValidationGradeFeedback').removeClass('is-invalid');
+      $('#ValidationGradeFeedback').addClass('is-valid');
+    }});
 /*
 let regis3_HigherConfirm = document.getElementById('regis3_HigherConfirm');
 var regis3_dropdwn1selected = $('#regis3_selectdropdown1').val();
