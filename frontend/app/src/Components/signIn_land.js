@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './signIn_land.css'
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import cookie from 'react-cookies'
 
 /*SignInLand.propTypes = {
     setToken: PropTypes.func.isRequired
@@ -46,7 +47,8 @@ class SignInLand extends React.Component {
         console.log(`password: ${this.state.password}`);
         if ('accessToken' in result) {
             console.log(`token: ${result["accessToken"]}`);
-            Cookies.set('login-token',result["accessToken"]);
+            //Cookies.set('login-token',result["accessToken"]);
+			cookie.save('login-token', result["accessToken"], { path: '/' })
             /*var req = new XMLHttpRequest();
             req.open('get','http://localhost:3000/home',true);
             req.setRequestHeader('Authorization','Bearer '+result["accessToken"]);
