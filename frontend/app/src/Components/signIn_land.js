@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 class SignInLand extends React.Component {
     constructor() {
         super();
-        this.state = { user: "", password: "", id_form: "inputform1", myToken: "" };
+        this.state = { user: "", password: "", id_form: "inputform1"};
     }
 
     myChangeHandler_email = (event) => {
@@ -31,7 +31,7 @@ class SignInLand extends React.Component {
             body: JSON.stringify(credentials)
         })
             .then(data => data.json())
-    }
+    }  
 
     handleSubmit = async e => {
         e.preventDefault();
@@ -44,8 +44,12 @@ class SignInLand extends React.Component {
         console.log(`email: ${this.state.user}`);
         console.log(`password: ${this.state.password}`);
         if ('accessToken' in result) {
-            this.setState({myToken: result["accessToken"]});
-            console.log(`token: ${this.state.myToken}`);
+            console.log(`token: ${result["accessToken"]}`);
+            var req = new XMLHttpRequest();
+            req.open('get','http://localhost:3000/home',true);
+            req.setRequestHeader('Authorization','Bearer '+result["accessToken"]);
+            req.send();            
+            window.location.href = "/home";
         }
         else {
             console.log(`nha hee`);
@@ -53,15 +57,8 @@ class SignInLand extends React.Component {
         }
     }
 
-    /*componentDidMount() {
-        var url = ''
-        var token = this.state.myToken
-        var xhr = new XMLHttpRequest()
-        xhr.open('GET', url)
-        xhr.setRequestHeader('Authorization', 'token ' + token)
-        xhr.send(null)
-    }*/
 
+    
     render() {
         return (
             <div className="bg_form">
@@ -80,8 +77,9 @@ class SignInLand extends React.Component {
                             <input type="password" onChange={this.myChangeHandler_password} class="form-control effect1" id={this.state.id_form} />
                         </div>
                         <div id="buttom1125" class="text-center fixld">
-                            <button type="submit" class="btn btn-cta-primary-yellow round profile-button" id="buttonLogIn112">เข้าสู่ระบบ</button>
-
+                            
+                                <button type="submit" className="btn btn-cta-primary-yellow round profile-button" id="buttonLogIn112">เข้าสู่ระบบ</button>
+                            
                             <p class="forgot-password text-right fgt" id="forgetText112">
                                 <a href="#" >ลืมรหัสผ่าน?</a>
                             </p>
