@@ -1,4 +1,4 @@
-"use strict";
+	"use strict";
 	console.log("HELLO LV3!");
 
 		console.log("HELLO LV4!");
@@ -179,36 +179,7 @@
 	DeleteBookmarkData();*/
 	//var testt = ['ABC','DEF','GHI'];
 	
-	function GetHomepageData(){
-		var token = Cookies.get('login-token'); 
-		fetch("http://localhost:2000/homepage/",{
-			method: "GET",
-			headers: {
-				'Authorization': 'Bearer '+token,
-				"Access-Control-Allow-Origin": "*",
-				"Access-Control-Allow-Methods": "*",
-				"Access-Control-Allow-Credentials": true,
-				"Content-Type": "application/json"
-			},
-		})
-			.then(response => response.json())
-			.then((datas) => {
-				//console.log(datas);
-				console.log(datas.Firstname);
-				console.log(datas.Lastname);
-				console.log(datas.AboutMe);
-				console.log(datas.ProfilePic);
-				console.log(datas.Job_JobName);
-				$('#fetch-name').text(datas.Firstname+' '+datas.Lastname);
-				$('#fetch-desc').text(datas.AboutMe);
-				$('#avatar').attr("src", datas.ProfilePic);
-				datas.Job_JobName.forEach((entry) => {
-					console.log('HHHH');
-					$('#tags-container').append('<a class="btn btn-cta-secondary btn-small round margin-right-s" href="#" target="_blank">'+entry+'</a>');
-				});
-			});
-	}
-	GetHomepageData();
+	
 	
 	/*function GetBookmarkData(request){
 	fetch("https://thaiaddressapi-thaikub.herokuapp.com/v1/thailand/provinces",
