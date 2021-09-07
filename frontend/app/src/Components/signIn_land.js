@@ -45,10 +45,11 @@ class SignInLand extends React.Component {
         console.log(`password: ${this.state.password}`);
         if ('accessToken' in result) {
             console.log(`token: ${result["accessToken"]}`);
-            var req = new XMLHttpRequest();
+            Cookies.set('login-token',result["accessToken"]);
+            /*var req = new XMLHttpRequest();
             req.open('get','http://localhost:3000/home',true);
             req.setRequestHeader('Authorization','Bearer '+result["accessToken"]);
-            req.send();            
+            req.send();*/            
             window.location.href = "/home";
         }
         else {
