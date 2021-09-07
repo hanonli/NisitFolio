@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 class SignInLand extends React.Component {
     constructor() {
         super();
-        this.state = { user: "", password: "", id_form: "inputform1" };
+        this.state = { user: "", password: "", id_form: "inputform1", myToken: "" };
     }
 
     myChangeHandler_email = (event) => {
@@ -36,19 +36,18 @@ class SignInLand extends React.Component {
     handleSubmit = async e => {
         e.preventDefault();
         const result = await this.loginUser({
-            Email: this.state.user,
-            Password: this.state.password
+            username: this.state.user,
+            password: this.state.password
         });
         //setToken(token);
         console.log(`token: ${result["message"]}`);
         console.log(`email: ${this.state.user}`);
         console.log(`password: ${this.state.password}`);
         if ('accessToken' in result) {
-            console.log(`token: ${result["accessToken"]}`);
+            this.setState({myToken: result["accessToken"]});
+            console.log(`token: ${this.state.myToken}`);
         }
         else {
-            var pre_edit_email = this.state.user;
-            var pre_edit_password = this.state.password;
             console.log(`nha hee`);
             this.setState({ id_form: "inputform2_error" });
         }
@@ -56,7 +55,7 @@ class SignInLand extends React.Component {
 
     /*componentDidMount() {
         var url = ''
-        var token = ''
+        var token = this.state.myToken
         var xhr = new XMLHttpRequest()
         xhr.open('GET', url)
         xhr.setRequestHeader('Authorization', 'token ' + token)
