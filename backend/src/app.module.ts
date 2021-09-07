@@ -14,6 +14,7 @@ import { ConfigModule } from '@nestjs/config';
 import { BookmarkModule } from './bookmarks/bookmarks.module';
 import { HomeModule } from './home/home.module';
 import { PortModule } from './portfolio/portfolio.module';
+import { MyResumeModule } from './myresume/myresume.module';
 
 import * as Joi from 'joi';
 import { ResumeModule } from './resume/resume.module';
@@ -57,6 +58,7 @@ import { ResumeModule } from './resume/resume.module';
     HomeModule,
     PortModule,
     ResumeModule,
+    MyResumeModule,
   ],
   controllers: [AppController],
   providers: [AppService],
