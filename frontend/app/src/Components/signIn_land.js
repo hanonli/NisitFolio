@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 class SignInLand extends React.Component {
     constructor() {
         super();
-        this.state = { user: "", password: "", id_form: "inputform1" };
+        this.state = { user: "", password: "", id_form: "inputform1"};
     }
 
     myChangeHandler_email = (event) => {
@@ -31,16 +31,14 @@ class SignInLand extends React.Component {
             },
             body: JSON.stringify(credentials)
         })
-        .then(function (response) {
-            return response.json();
-        })
-    }
+            .then(data => data.json())
+    }  
 
     handleSubmit = async e => {
         e.preventDefault();
         const result = await this.loginUser({
-            Email: this.state.user,
-            Password: this.state.password
+            username: this.state.user,
+            password: this.state.password
         });
         //setToken(token);
         console.log(`token: ${result["message"]}`);
@@ -48,24 +46,21 @@ class SignInLand extends React.Component {
         console.log(`password: ${this.state.password}`);
         if ('accessToken' in result) {
             console.log(`token: ${result["accessToken"]}`);
+            Cookies.set('login-token',result["accessToken"]);
+            /*var req = new XMLHttpRequest();
+            req.open('get','http://localhost:3000/home',true);
+            req.setRequestHeader('Authorization','Bearer '+result["accessToken"]);
+            req.send();*/            
+            window.location.href = "/home";
         }
         else {
-            var pre_edit_email = this.state.user;
-            var pre_edit_password = this.state.password;
             console.log(`nha hee`);
             this.setState({ id_form: "inputform2_error" });
         }
     }
 
-    /*componentDidMount() {
-        var url = ''
-        var token = ''
-        var xhr = new XMLHttpRequest()
-        xhr.open('GET', url)
-        xhr.setRequestHeader('Authorization', 'token ' + token)
-        xhr.send(null)
-    }*/
 
+    
     render() {
         return (
             <div className="bg_form">
@@ -84,8 +79,9 @@ class SignInLand extends React.Component {
                             <input type="password" onChange={this.myChangeHandler_password} class="form-control effect1" id={this.state.id_form} />
                         </div>
                         <div id="buttom1125" class="text-center fixld">
-                            <button type="submit" class="btn btn-cta-primary-yellow round profile-button" id="buttonLogIn112">เข้าสู่ระบบ</button>
-
+                            
+                                <button type="submit" className="btn btn-cta-primary-yellow round profile-button" id="buttonLogIn112">เข้าสู่ระบบ</button>
+                            
                             <p class="forgot-password text-right fgt" id="forgetText112">
                                 <a href="#" >ลืมรหัสผ่าน?</a>
                             </p>
