@@ -18,6 +18,7 @@ import { MyResumeModule } from './myresume/myresume.module';
 
 import * as Joi from 'joi';
 import { ResumeModule } from './resume/resume.module';
+import { EditProfileModule } from './editprofile/editprofile.module';
 
 
 @Module({
@@ -58,7 +59,10 @@ import { ResumeModule } from './resume/resume.module';
     HomeModule,
     PortModule,
     ResumeModule,
+    
     MyResumeModule,
+    EditProfileModule,
+    
   ],
   controllers: [AppController],
   providers: [AppService],
