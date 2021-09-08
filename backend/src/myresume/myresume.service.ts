@@ -7,6 +7,7 @@ import { ObjectID } from 'mongodb';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Resume2 , ResumeDocument} from './entity/myresume.schema';
+import { Portfolio2, PortfolioDocument} from '../portfolio/entity/portfolio.schema';
 
 @Injectable()
 export class MyResumeService {
@@ -31,8 +32,10 @@ export class MyResumeService {
     private portfolioPictureRepository: Repository<PortfolioPicture>,
     @InjectRepository(Resume)
     private resumePictureRepository: Repository<Resume>,
-    @InjectModel("Resume2") 
-    private resumeModel: Model<ResumeDocument>
+    @InjectModel(Resume2.name) 
+    private resumeModel: Model<ResumeDocument>,
+    @InjectModel(Portfolio2.name) 
+    private portModel: Model<PortfolioDocument>,
 
   ) {}
   
@@ -85,7 +88,7 @@ export class MyResumeService {
     var port_arr = [];
     for (var _i = 0; _i < CreateDto.PortID.length; _i++) {
       const portid = new ObjectID(CreateDto.PortID[_i]);
-      const portfolio = await this.portRepository.findOne({where:{ _id: portid }});
+      const portfolio = await this.portModel.findOne({ _id: portid });
       port_arr.push(portfolio);
     }
     resume.portfolios = port_arr;
@@ -100,7 +103,7 @@ export class MyResumeService {
   }
 
   async getResumebyUser(userId:string ){
-    return this.resumeModel.findOne({UserId : userId});
+    return this.resumeModel.find({UserId : userId});
   }
 
 
@@ -162,7 +165,7 @@ export class MyResumeService {
         var port_arr = [];
         for (var _i = 0; _i < CreateDto.PortID.length; _i++) {
           const portid = new ObjectID(CreateDto.PortID[_i]);
-          const portfolio = await this.portRepository.findOne({where:{ _id: portid }});
+          const portfolio = await this.portModel.findOne({ _id: portid });
           port_arr.push(portfolio);
         }
         resume.portfolios = port_arr;
