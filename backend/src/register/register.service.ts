@@ -141,7 +141,7 @@ export class RegisterService {
   {
     const userid = new ObjectID(UserId);
     const acc =  await this.accountRepository.findOne({where:{ _id: userid }});
-  
+    
     if (acc && acc.id === userid) {
       if (createDto.Password != null)
         acc.Password = Md5.hashStr(createDto.Password);
@@ -153,8 +153,9 @@ export class RegisterService {
       await this.accountRepository.save(acc);
     }
 
-    const userinfo =  await this.userinfoRepository.findOne({where:{ _id: userid }});
-  
+    const userinfo =  await this.userinfoRepository.findOne({where:{ UserId: userid }});
+    userinfo.UserId = userid;
+    
     if (userinfo && userinfo.id === userid) {
       if (createDto.Firstname != null)
         userinfo.Firstname = createDto.Firstname;
@@ -175,17 +176,6 @@ export class RegisterService {
       if (createDto.City != null)
         userinfo.City = createDto.City;
     }
-
-    //const userinfo = new Userinfo();
-    userinfo.Firstname = createDto.Firstname;
-    userinfo.Lastname = createDto.Lastname;
-    userinfo.Birthday = createDto.Birthday;
-    userinfo.Gender = createDto.Gender;
-    userinfo.AboutMe = createDto.AboutMe;
-    userinfo.Email2nd = createDto.Email2nd;
-    userinfo.Country = createDto.Country;
-    userinfo.Province = createDto.Province;
-    userinfo.City = createDto.City;
 
     const additionalskill = await this.AdditionalSkillRepository.find({where:{ _id: userid }});
     const certificate = await this.CertificateRepository.find({where:{ _id: userid }});
@@ -241,6 +231,127 @@ export class RegisterService {
     
     return (this.userinfoRepository.save(userinfo));
 
+  }
+
+  async GetInfo(UserId:string) {
+    const result = new CreateRegisDto;
+    const userid = new ObjectID(UserId);
+    const account=await this.accountRepository.findOne({where:{_id:userid}});
+    const userinfo=await this.userinfoRepository.findOne({where:{UserId:userid}});
+
+    result.Email=account.Email;
+    result.Password=account.Password;
+    result.ProfilePic=account.ProfilePic;
+    result.Privacy=account.Privacy;
+
+    result.Firstname=userinfo.Firstname;
+    result.Lastname=userinfo.Lastname;
+    result.Birthday=userinfo.Birthday;
+    result.Gender=userinfo.Gender;
+    result.AboutMe=userinfo.AboutMe;
+    result.Email2nd=userinfo.Email2nd;
+    result.Country=userinfo.Country;
+    result.Province=userinfo.Province;
+    result.City=userinfo.City;
+
+    const softskill_arr=[];
+    const additionalskill=await this.AdditionalSkillRepository.find({where:{UserId:userid}});
+    for (var _i = 0; _i < additionalskill.length; _i++) {
+      softskill_arr.push(additionalskill[_i].SoftSkill);
+    }
+    result.SoftSkill=softskill_arr;
+   
+
+    const CertName_arr=[];
+    const CertPic_arr=[];
+    const CertYear_arr=[];
+    const Certificate=await this.CertificateRepository.find({where:{UserId:userid}});
+    for (var _i = 0; _i < Certificate.length; _i++) {
+      CertName_arr.push(Certificate[_i].CertName);
+      CertPic_arr.push(Certificate[_i].CertPic);
+      CertYear_arr.push(Certificate[_i].CertYear);
+
+    }
+    result.CertName=CertName_arr;
+    result.CertPic=CertPic_arr;
+    result.CertYear=CertYear_arr;
+
+
+    const Degree_arr=[];
+    const Facalty_arr=[];
+    const Field_of_study_arr=[];
+    const Academy_arr=[];
+    const Grade_arr=[];
+    const Education_End_Year_arr=[];
+    const educationHistory=await this.EducationHistoryRepository.find({where:{UserId:userid}});
+    for (var _i = 0; _i < educationHistory.length; _i++) {
+      Degree_arr.push(educationHistory[_i].Degree);
+      Facalty_arr.push(educationHistory[_i].Facalty);
+      Field_of_study_arr.push(educationHistory[_i].Field_of_study);
+      Academy_arr.push(educationHistory[_i].Academy);
+      Grade_arr.push(educationHistory[_i].Grade);
+      Education_End_Year_arr.push(educationHistory[_i].Education_End_Year);
+    }
+    result.Degree=Degree_arr;
+    result.Facalty=Facalty_arr;
+    result.Field_of_study=Field_of_study_arr;
+    result.Academy=Academy_arr;
+    result.Grade=Grade_arr;
+    result.Education_End_Year=Education_End_Year_arr;
+    
+    
+
+    const Work_JobName_arr=[];
+    const Work_JobType_arr=[];
+    const Company_arr=[];
+    const Work_Start_Month_arr=[];
+    const Work_End_Month_arr=[];
+    const Work_Start_Year_arr=[];
+    const Work_End_Year_arr=[];
+    const Salary_arr=[];
+    const Infomation_arr=[];
+    const workHistory =await this.WorkHistoryRepository.find({where:{UserId:userid}});
+    for (var _i = 0; _i < workHistory.length; _i++) {
+      Work_JobName_arr.push(workHistory[_i].Work_JobName);
+      Work_JobType_arr.push(workHistory[_i].Work_JobType);
+      Company_arr.push(workHistory[_i].Company);
+      Work_Start_Month_arr.push(workHistory[_i].Work_Start_Month);
+      Work_End_Month_arr.push(workHistory[_i].Work_End_Month);
+      Work_Start_Year_arr.push(workHistory[_i].Work_Start_Year);
+      Work_End_Year_arr.push(workHistory[_i].Work_End_Year);
+      Salary_arr.push(workHistory[_i].Salary);
+      Infomation_arr.push(workHistory[_i].Infomation);
+    }
+    result.Work_JobName=Work_JobName_arr;
+    result.Work_JobType=Work_JobType_arr;
+    result.Company=Company_arr;
+    result.Work_Start_Month=Work_Start_Month_arr;
+    result.Work_End_Month=Work_End_Month_arr;
+    result.Work_Start_Year=Work_Start_Year_arr;
+    result.Work_End_Year=Work_End_Year_arr;
+    result.Salary=Salary_arr;
+    result.Infomation=Infomation_arr;
+
+    const Job_Objective_arr=[];
+    const Job_Score_arr=[];
+    const Job_JobName_arr=[];
+    const Job_SkillName_arr=[];
+    const IJ=await this.InterestedJobRepository.find({where:{UserId:userid}});
+    for (var _i = 0; _i < IJ.length; _i++) {
+      Job_Objective_arr.push(IJ[_i].Job_Objective);
+      Job_Score_arr.push(IJ[_i].Job_Score);
+      Job_JobName_arr.push(IJ[_i].Job_JobName);
+      Job_SkillName_arr.push(IJ[_i].Job_SkillName);
+
+    }
+
+    result.Job_Objective=Job_Objective_arr;
+    result.Job_Score=Job_Score_arr;
+    result.Job_JobName=Job_JobName_arr;
+    result.Job_SkillName=Job_SkillName_arr;
+    
+    return result;
+    
   }
   
 }

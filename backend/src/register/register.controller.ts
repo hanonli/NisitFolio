@@ -38,4 +38,11 @@ export class RegisterController {
     return this.registerService.findHardSkill(type);
   }
 
+  @UseGuards(JwtAuthGuard)
+  @Get()
+  async GetInfo(@Request() req)
+  {
+    return this.registerService.GetInfo(req.user.userId);
+  }
+
 }
