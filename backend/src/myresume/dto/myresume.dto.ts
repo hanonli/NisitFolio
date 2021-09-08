@@ -21,5 +21,13 @@ export class CreateResumeDto {
 
   //--------------------InterestedJob--------------------------//
   JobID: string;
- 
+
+  /*Privacy:string;
+
+  InterestedJob: {
+    Job_Objective:string;
+    Job__Score: string;
+    Job__JobName: string;
+    Job__SkillName: string;
+  }*/
 }
