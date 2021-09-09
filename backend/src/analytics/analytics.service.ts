@@ -26,11 +26,18 @@ export class AnalyticsService {
   async findAddSkillById(id: ObjectId): Promise<any> {
     
     const InterestedJobs = await this.UserJobSkillModel.find({ userId: id }).select({ JobName: 1 , _id: 0 }).distinct('JobName');
-    console.log(InterestedJobs);
+    //console.log(InterestedJobs);
 
     let results = {};
     // const InterestedJobs = ["Software Engineer", "Data Scientist"]; // test
     results['InterestedJobs'] = InterestedJobs;
+    
+    /*
+    * Find This user's additional skills.
+    */
+    const mySkills = await this.UserAddSkill.find({ userId: id }).select({ AdditionalSkill: 1 , _id: 0 }).distinct('AdditionalSkill');
+    //console.log(mySkills);
+    results['mySkills'] = mySkills;
 
     /*
     * First find people who interest in the same job(s).
@@ -97,7 +104,7 @@ export class AnalyticsService {
       },
     ]).exec();
 
-    console.log(queryResults);
+    //console.log(queryResults);
 
     let skillCounts = {};
 
