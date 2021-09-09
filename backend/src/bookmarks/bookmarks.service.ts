@@ -102,7 +102,7 @@ export class BookmarkService {
   // ---------------------------- Find All Bookmark ---------------------------
 
   async findBookmark(userId: ObjectId) : Promise<any[]> {
-    const All = await this.BookmarkModel.find({userId: userId}).sort({updatedAt: -1}) ;
+    const All = await this.BookmarkModel.find({userId: userId}).select(['userId','link', 'thatUserId']).sort({updatedAt: -1}).exec() ;
     console.log(All) ;
     return All ;
   }
