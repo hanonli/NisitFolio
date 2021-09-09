@@ -8,14 +8,14 @@ import { ObjectId } from 'mongodb';
 export const UserAdditionalSkillSchema = new mongoose.Schema({
   userId: { type: ObjectId, required: [true, 'userID must not empty'] },
   Job: { type: String, required: [true, 'Job must not empty'] },
-  SoftSkill: { type: String, required: [true, 'SoftSkill must not empty'] },
+  AdditionalSkill: { type: String, required: [true, 'AdditionalSkill must not empty'] },
 })
 
 export interface UserAddSkill extends Document {
   id: string;
   userId: ObjectId;
   Job: String;
-  SoftSkill: String;
+  AdditionalSkill: String;
 }
 
 // -------------------- UserJobSkill ---------------------------
