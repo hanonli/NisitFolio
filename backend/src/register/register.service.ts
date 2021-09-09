@@ -385,6 +385,10 @@ export class RegisterService {
     userinfo.Country = createDto.Country;
     userinfo.Province = createDto.Province;
     userinfo.City = createDto.City;
+
+    await this.userinfoRepository.save(userinfo);
+    const old_userinfo = await this.userinfoRepository.findOne({UserId:UserID2});
+    await this.userinfoRepository.remove(old_userinfo);
     
     const old_additionalskill = await this.AdditionalSkillRepository.find({UserId:UserID2});
     for (var _i = 0; _i < old_additionalskill.length; _i++) {
@@ -462,7 +466,7 @@ export class RegisterService {
     }
     
 
-    return (this.userinfoRepository.save(userinfo),this.accountRepository.save(account));
+    return (this.accountRepository.save(account));
     
 
   }
