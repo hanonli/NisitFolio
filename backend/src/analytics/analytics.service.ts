@@ -142,7 +142,7 @@ export class AnalyticsService {
                           { $match: {userId: userId} },
                           { 
                             $group: { 
-                              _id: { Objective: "$Objective" } 
+                              _id: { JobName: "$JobName" } 
                             }
                           }
     ]) ;
@@ -150,13 +150,13 @@ export class AnalyticsService {
     let InterestedJobs = [] ;
 
     for (var obj of findObjective ) {
-      InterestedJobs.push(obj._id.Objective) ;  
+      InterestedJobs.push(obj._id.JobName) ;  
     }
     array['InterestedJobs'] = InterestedJobs ;
 
     for (var job of InterestedJobs ) {
       const SumSkill = await this.UserJobSkillModel.aggregate([
-                      { $match: { Objective: job } },
+                      { $match: { JobName: job } },
                       {
                         $group: {
                           _id: { SkillName: "$SkillName"}, 
@@ -196,7 +196,7 @@ export class AnalyticsService {
     const AllUser = await this.UserJobSkillModel.find({SkillName: SkillName}) ; 
     const size = AllUser.length ;
     const Skill = await this.UserJobSkillModel.aggregate([
-                  { $match: { SkillName: SkillName} },
+                  { $match: { SkillName: SkillName } },
                   { $group: {
                       _id: { SkillName: "$SkillName" },
                       Score: { $sum: "$Score" } ,
