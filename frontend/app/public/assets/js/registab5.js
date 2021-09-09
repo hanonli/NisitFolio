@@ -37,45 +37,59 @@ function create_UUID() {
 });*/
 
 //preview img before upload
-function readURL(input, target2) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            $(`#` + target2).attr('src', e.target.result);
-        };
-        reader.readAsDataURL(input.files[0]);
-    }
-}
+/*function readURL(input) {
+    var pic;
+    var reader = new FileReader();
+    reader.readAsDataURL(input.files[0]);
+    reader.onload = function (e) {
+        //$(`#` + target2).attr('src', e.target.result);
+        pic = reader.result;
+        console.log(`img: ${pic}`);
+        return pic;
+    };
+}*/
 
 // show list certi
 
 var list_of_certi = []; //list of certi 
 
-function show_certi(input2pic) {
-    let grid_certi = `<div class="card_certi" id="{no_certi}">
-                            <h1 id="name-of-certi">{name-certi}</h1>
-                            <h1 id="year-of-certi">{year-certi}</h1>
-                            <div class="pos-pic-of-certi">
-                                <img height="160" id="{pic-of-certi}"></img>
-                            </div>
-                            <div class="layer-button-certi" >
-                                <button type="button" class="btn" id="edit-certi"><img src="assets/images/blackedit.png" width="80" height="80"></img></button>
-                                <button type="button" class="btn" id="del-certi"><img src="assets/images/bin.png" width="120" height="120"></img></button>
-                            </div>
-                        </div>`;
-    grid_certi = grid_certi.replace("{no_certi}", input2pic["id"]);
-    grid_certi = grid_certi.replace("{name-certi}", input2pic["name_certi"]);
-    grid_certi = grid_certi.replace("{year-certi}", input2pic["year_certi"]);
-    grid_certi = grid_certi.replace("{pic-of-certi}", input2pic["id_preview_pic"]);
-    //$(".content-certi1").append(grid_certi);
-    return grid_certi;
+function show_certi() {
+    list_of_certi.forEach(ele => {
+        let grid_certi = `<div class="card_certi" id="{no_certi}">
+                                <h1 id="name-of-certi">{name-certi}</h1>
+                                <h1 id="year-of-certi">{year-certi}</h1>
+                                <div class="pos-pic-of-certi">
+                                    <img height="160" src="{pic-of-certi}" id="border_certi"></img>
+                                </div>
+                                <div class="layer-button-certi">
+                                    <button type="button" class="btn" id="edit-certi"><img src="assets/images/blackedit.png" width="80" height="80"></img></button>
+                                    <button type="button" class="btn" id="del-certi"><img src="assets/images/bin.png" width="120" height="120"></img></button>
+                                </div>
+                            </div>`;
+        grid_certi = grid_certi.replace("{no_certi}", ele["id"]);
+        grid_certi = grid_certi.replace("{name-certi}", ele["name_certi"]);
+        grid_certi = grid_certi.replace("{year-certi}", ele["year_certi"]);
+        grid_certi = grid_certi.replace("{pic-of-certi}", ele["path_file_certi"]);
+        $(".content-certi1").append(grid_certi);
+    });
 }
 
+var picOfCerti;
+
 $(document).on('change', "#image-upload112", function () {
+    var path_img = document.getElementById("image-upload112");
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        //$("#preview_before_upload").remove();
+        picOfCerti = e.target.result;
+        $("#preview_before_upload").attr('src', e.target.result);
+    };
+    reader.readAsDataURL(path_img.files[0]);
+    //picOfCerti = readURL(document.getElementById("image-upload112"));
+    console.log("picOfCerti:", picOfCerti);
     $("#icon-upload-112").remove();
     $("#text-upload-112").remove();
-    readURL(document.getElementById("image-upload112"), 'preview_before_upload');
-    $(".for_upload112").append('<img id="preview_before_upload" height="135"></img>');
+    $(".for_upload112").append('<img id="preview_before_upload" height="145"></img>');
 });
 
 var choose_function = -1; //default
@@ -83,16 +97,16 @@ var for_edit;
 
 //open modal to edit certi
 $(document).on("click", "#edit-certi", function () {
-    $("#nm_certi").removeClass("error_select_certi");
-    $("#yearpicker_111").removeClass("error_select_certi");
     choose_function = 1;
     console.log(`chosoe: ${choose_function}`);
     id_list_certi_edit = $(this).parents().parents().attr('id');
-    $("#icon-upload-112").remove();
-    $("#text-upload-112").remove();
-    $(".for_upload112").append(`<img id="pic_` + id_list_certi_edit + `" height="120"></img>`);
     console.log("id_list_certi111:", id_list_certi_edit);
     $('#exampleModal11112').modal('toggle');
+    $("#nm_certi").removeClass("error_select_certi");
+    $("#yearpicker_111").removeClass("error_select_certi");
+    $("#preview_before_upload").remove();
+    $("#icon-upload-112").remove();
+    $("#text-upload-112").remove();
     document.querySelector('#submit-certi').innerText = 'ยืนยัน';
     for_edit = list_of_certi.find(function (post, index_del) {
         if (post.id == id_list_certi_edit)
@@ -101,15 +115,19 @@ $(document).on("click", "#edit-certi", function () {
     console.log(`for_edit:`, for_edit);
     document.getElementById("nm_certi").value = for_edit["name_certi"];
     document.getElementById("yearpicker_111").selectedIndex = for_edit["year_certi_select"];
+    $(".for_upload112").append(`<img src="` + for_edit["path_file_certi"] + `" id="preview_before_upload" height="145"></img>`);
 });
 
 //open modal to add certi
 $(document).on("click", "#add-certi", function () {
-    $("#nm_certi").removeClass("error_select_certi");
-    $("#yearpicker_111").removeClass("error_select_certi");
     choose_function = 2;
     console.log(`chosoe: ${choose_function}`);
     $('#exampleModal11112').modal('toggle');
+    $("#preview_before_upload").remove();
+    $("#nm_certi").removeClass("error_select_certi");
+    $("#yearpicker_111").removeClass("error_select_certi");
+    $('.for_upload112').append(`<img id="icon-upload-112" src="assets/images/upload_file.png" width="85px" height="85px" class="up_img"></img>`);
+    $('.for_upload112').append(`<h2 class="text_up" id="text-upload-112">อัพโหลดใบรับรองของคุณได้ที่นี่</h2>`);
     $('#submit-certi').text('เพิ่ม');
     document.querySelector('#submit-certi').innerText = 'เพิ่ม';
 });
@@ -149,13 +167,18 @@ $(document).on("change", "#yearpicker_111", function () {
 $(document).on('click', "#submit-certi", function () {
     name_certi = document.getElementById("nm_certi").value;
     year_certi = document.getElementById("yearpicker_111").value;
-    file_pic_certi = document.getElementById("image-upload112");
-    if (document.getElementById("nm_certi").value == "") {
-        //alert("error!!!!");
+    //file_pic_certi = document.getElementById("image-upload112");
+    if (document.getElementById("nm_certi").value == "" && year_certi == 0) {
         $("#nm_certi").addClass("error_select_certi");
+        $("#yearpicker_111").addClass("error_select_certi");
     }
+
     else if (year_certi == 0) {
         $("#yearpicker_111").addClass("error_select_certi");
+    }
+    else if (document.getElementById("nm_certi").value == "") {
+        //alert("error!!!!");
+        $("#nm_certi").addClass("error_select_certi");
     }
     else {
         if (choose_function == 1) {
@@ -166,15 +189,10 @@ $(document).on('click', "#submit-certi", function () {
             console.log(`list_of_certi:`, list_of_certi);
             for_edit["name_certi"] = name_certi;
             for_edit["year_certi"] = year_certi;
+            for_edit["path_file_certi"] = picOfCerti;
             for_edit["year_certi_select"] = $("#yearpicker_111").prop('selectedIndex');
-            //list_edit = document.querySelector('#id_list_certi_edit')
-            //document.querySelector('#name-of-certi').innerText = name_certi;
-            //document.querySelector('#year-of-certi').innerText = year_certi;
             var list_edit11 = document.getElementById(id_list_certi_edit);
             console.log("id_list_certi_edit:", id_list_certi_edit);
-            //console.log("ilist_edit11.childNodes:", list_edit11.childNodes);
-            list_edit11.childNodes[1].innerText = name_certi;
-            list_edit11.childNodes[3].innerText = year_certi;
         }
         else if (choose_function == 2) {
             //console.log("add!!!!!!")
@@ -182,35 +200,37 @@ $(document).on('click', "#submit-certi", function () {
             //console.log(`name: `, name_certi);
             //console.log(`year: `, year_certi);
             //console.log('pic: ', file_pic_certi.files[0]);
-            id_preview_pic = `pic_` + id_of_certi;
-            readURL(document.getElementById("image-upload112"), id_preview_pic);
-            keepInList = {
+            //console.log(`pic_certi: ${pic_certi}`);
+            list_of_certi.push({
                 id: id_of_certi,
                 name_certi: name_certi,
                 year_certi: year_certi,
                 year_certi_select: $("#yearpicker_111").prop('selectedIndex'),
-                path_file_certi: `path/pic/` + file_pic_certi.name,
-                id_preview_pic: id_preview_pic
-            };
-            gridListCerti = show_certi(keepInList);
-            list_of_certi.push(keepInList);
-            $(".content-certi1").append(gridListCerti);
-            document.getElementById(id_preview_pic).style.borderRadius = "16px";
-            console.log(`list_of_certi:`, list_of_certi);
+                path_file_certi: picOfCerti
+            });
+            //list_of_certi.push(keepInList);
+            //$(".content-certi1").append(gridListCerti);
+            //document.getElementById(id_preview_pic).style.borderRadius = "16px";
+            //console.log(`list_of_certi:`, list_of_certi);
         }
         $("#nm_certi").val("");
         $("#yearpicker_111").prop('selectedIndex', 0);
-        $("#preview_before_upload").remove();
-        $(".for_upload112").append('<img id="icon-upload-112" src="assets/images/upload_file.png" width="85px" height="85px" class="up_img"></img>');
-        $(".for_upload112").append('<h2 class="text_up" id="text-upload-112">อัพโหลดใบรับรองของคุณได้ที่นี่</h2>');
         $("#exampleModal11112").modal("hide");
+        $(".content-certi1").empty();
+        console.log(`list_of_certi:`, list_of_certi);
+        show_certi();
     }
-
+    $("#preview_before_upload").remove();
+    $("#icon-upload-112").remove();
+    $("#text-upload-112").remove();
 });
 
 $(document).on('click', "#hide-modal-certi", function () {
     $('#yearpicker_111').prop('selectedIndex', 0);
     $("#nm_certi").val("");
+    $("#preview_before_upload").remove();
+    $("#icon-upload-112").remove();
+    $("#text-upload-112").remove();
     $("#exampleModal11112").modal("hide");
     /*if (list_of_certi.length == 0) {
         $("#preview_before_upload").remove();

@@ -25,17 +25,16 @@ export class AnalyticsService {
 
   async findAddSkillById(id: ObjectId): Promise<any> {
     
-    //const oid = mongoose.Types.ObjectId('610d3832ca49ebf4cdfed02f');
-    //const InterestedJobs = await this.UserJobSkillModel.find({ userId: id }).select({ JobName: 1 , _id: 0 }).distinct('JobName');
-    //console.log(InterestedJobs);
+    const InterestedJobs = await this.UserJobSkillModel.find({ userId: id }).select({ JobName: 1 , _id: 0 }).distinct('JobName');
+    console.log(InterestedJobs);
 
     let results = {};
-    const InterestedJobs = ["Software Engineer", "Data Scientist"]; // test
+    // const InterestedJobs = ["Software Engineer", "Data Scientist"]; // test
     results['InterestedJobs'] = InterestedJobs;
 
     /*
     * First find people who interest in the same job(s).
-    * then count a number of them grouped by SoftSkill.
+    * then count a number of them grouped by AdditionalSkill.
     */
 
     for (var job of InterestedJobs) {
@@ -48,14 +47,14 @@ export class AnalyticsService {
       results[job] = { numberOfUsers: numberOfUsers };
       //console.log(numberOfUsers);
       
-      // Match the job, group by SoftSkill, count, sort
+      // Match the job, group by AdditionalSkill, count, sort
       const rawResult = await this.UserAddSkill.aggregate([
         {
           $match: { Job: job }
         },
         {  
           $group: {
-            _id: { SoftSkill: "$SoftSkill"},
+            _id: { AdditionalSkill: "$AdditionalSkill"},
             total: { $sum: 1}                        
           }
         },
@@ -63,13 +62,13 @@ export class AnalyticsService {
       ]).exec();
 
       /*
-      * rawResult is in the form of [ { _id: { SoftSkill: 'XXXXX' }, total: X }, ]
+      * rawResult is in the form of [ { _id: { AdditionalSkill: 'XXXXX' }, total: X }, ]
       * Need to rearrange to a simpler form.
       */
 
       let ArrangedResult = [];
       for (var result of rawResult) {
-        ArrangedResult.push({ SoftSkill: result['_id'].SoftSkill,
+        ArrangedResult.push({ AdditionalSkill: result['_id'].AdditionalSkill,
                               total: result.total,
                               percentage: result.total/numberOfUsers * 100
                             })
@@ -93,7 +92,7 @@ export class AnalyticsService {
 
     const queryResults = await this.UserAddSkill.aggregate([
       {  
-        $group: { _id: { userId: "$userId", SoftSkill: "$SoftSkill"} }
+        $group: { _id: { userId: "$userId", AdditionalSkill: "$AdditionalSkill"} }
       },
     ]).exec();
 
@@ -102,7 +101,7 @@ export class AnalyticsService {
     let skillCounts = {};
 
     for ( result of queryResults ) {
-      const skill = result._id["SoftSkill"];
+      const skill = result._id["AdditionalSkill"];
       if ( skillCounts.hasOwnProperty(skill) ) {
         skillCounts[skill] += 1;
       }
@@ -124,7 +123,7 @@ export class AnalyticsService {
     */
     let finalResults = [];
     for ( var key of keysSorted ) {
-      finalResults.push({ SoftSkill: key,
+      finalResults.push({ AdditionalSkill: key,
                           total: skillCounts[key],
                           percentage: skillCounts[key]/numberOfUsers * 100
                         });

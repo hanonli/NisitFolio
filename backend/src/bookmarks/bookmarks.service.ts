@@ -3,7 +3,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 
 import { ObjectId } from "mongodb";
-import { Bookmark, TotalBookmark, userBookmarkSchema, UserInfo, UserInfoModel } from "./bookmarks.schema";
+import { Bookmark, TotalBookmark, UserInfo } from "./bookmarks.schema";
 import * as mongoose from "mongoose";
 import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from "constants";
 

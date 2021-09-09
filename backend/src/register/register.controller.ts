@@ -1,8 +1,8 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Request, Patch, UseGuards } from '@nestjs/common';
 
 import { RegisterService } from './register.service';
 import { CreateRegisDto } from './dto/create-register.dto';
-
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 
 @Controller('register')
@@ -12,6 +12,12 @@ export class RegisterController {
   @Post()
   async CreateRegister(@Body() CreateDto: CreateRegisDto ) {
     return this.registerService.createRegis(CreateDto);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Patch()
+  async UpdateRegister(@Body() CreateDto: CreateRegisDto  ,@Request() req) {
+    return this.registerService.UpdateRegis(CreateDto,req.user.userId);
   }
 
   @Get('/jobtitle')
@@ -30,6 +36,13 @@ export class RegisterController {
   async findHardSkill(@Param('type') type: string)
   {
     return this.registerService.findHardSkill(type);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get()
+  async GetInfo(@Request() req)
+  {
+    return this.registerService.GetInfo(req.user.userId);
   }
 
 }

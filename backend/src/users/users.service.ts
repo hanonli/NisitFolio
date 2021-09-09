@@ -39,6 +39,13 @@ import { UserDto } from './dto/user.dto';
     return await this.usersRepository.findOne({ id: Id });
   }
 
+  async resetPassword(email: string,password: string) {
+    const acc = await this.usersRepository.findOne({ Email: email });
+    acc.Password = password;
+    return await this.usersRepository.save(acc);
+
+  }
+
   
 };
 
