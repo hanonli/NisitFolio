@@ -10,10 +10,11 @@ import { EditProfileDto2 } from './dto/editprofile2.dto';
 export class RegisterController {
   constructor(private registerService: RegisterService) {}
 
+  @UseGuards(JwtAuthGuard)
   @Patch()
-  async UpdateProfile(@Body() CreateDto: EditProfileDto2) {
-    //const x=req.user.userId
-    const x="613a13762a58701a949f5d19";
+  async UpdateProfile(@Body() CreateDto: EditProfileDto2,@Request() req) {
+    const x=req.user.userId
+    //const x="613a13762a58701a949f5d19";
   return this.registerService.UpdatProfile(x,CreateDto);
 }
 
