@@ -20,6 +20,7 @@ import { ForgotPasswordModule } from './forgotpassword/forgotpassword.module';
 import * as Joi from 'joi';
 import { ResumeModule } from './resume/resume.module';
 import { EditProfileModule } from './editprofile/editprofile.module';
+import { SearchModule } from './search/search.module';
 
 
 @Module({
@@ -53,10 +54,8 @@ import { EditProfileModule } from './editprofile/editprofile.module';
     }),
     EmailConfirmationModule,
     RegisterModule,
-    AnalyticsModule,
     AuthModule,
     UsersModule,
-    BookmarkModule,
     HomeModule,
     PortModule,
     ResumeModule,
@@ -65,6 +64,9 @@ import { EditProfileModule } from './editprofile/editprofile.module';
     MyResumeModule,
     EditProfileModule,
     
+    AnalyticsModule,
+    BookmarkModule,
+    SearchModule,
   ],
   controllers: [AppController],
   providers: [AppService],
