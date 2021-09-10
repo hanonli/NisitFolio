@@ -1,4 +1,4 @@
-"use strict";
+	"use strict";
 	console.log("HELLO LV3!");
 
 		console.log("HELLO LV4!");
@@ -63,6 +63,7 @@
           });
           initialAvatarURL = avatar.src;
           avatar.src = canvas.toDataURL();
+		  console.log(avatar.src);
           $alert.removeClass('alert-success alert-warning');
           canvas.toBlob(function (blob) {
             var formData = new FormData();
@@ -102,6 +103,106 @@
         }
       });
 	  
+	/*function GetAnalyticsData(){
+		fetch("http://localhost:2000/analytics/main/610d3832ca49ebf4cdfed02e/",{
+			method: "GET",
+			headers: {
+				"Access-Control-Allow-Origin": "*",
+				"Access-Control-Allow-Methods": "*",
+				"Access-Control-Allow-Credentials": true,
+				"Content-Type": "application/json"},
+		})
+			.then(response => response.json())
+			.then((datas) => {
+				console.log(datas);
+			});
+	}
+	GetAnalyticsData();*/
+	var id = "610d3832ca49ebf4cdfed02a";
+	var sortType = "time";
+	
+	/*function GetBookmarkData(){
+		fetch("http://localhost:2000/bookmark/"+id+"&&"+sortType,{
+			method: "GET",
+			headers: {
+				"Access-Control-Allow-Origin": "*",
+				"Access-Control-Allow-Methods": "*",
+				"Access-Control-Allow-Credentials": true,
+				"Content-Type": "application/json"},
+		})
+			.then(response => response.json())
+			.then((datas) => {
+				console.log(datas);
+			});
+	}
+	GetBookmarkData();*/
+	
+	const data = 
+	{ userId: '610d3832ca49ebf4cdfed02f',
+	  link: 'https://yahaha.com/',
+	  type: 'user',
+	  thatUserId: '610d3832ca49ebf4cdfed032'
+	};
+	
+	/*function PostBookmarkData(){
+		fetch("http://localhost:2000/bookmark/saveBookmark",{
+			method: "POST",
+			headers: {
+				"Access-Control-Allow-Origin": "*",
+				"Access-Control-Allow-Methods": "*",
+				"Access-Control-Allow-Credentials": true,
+				"Content-Type": "application/json"},
+			body: JSON.stringify(data),
+		})
+			.then(response => response.json())
+			.then((datas) => {
+				console.log(datas);
+			});
+	}
+	PostBookmarkData();*/
+	
+	/*function DeleteBookmarkData(){
+		fetch("http://localhost:2000/bookmark/saveBookmark",{
+			method: "DELETE",
+			headers: {
+				"Access-Control-Allow-Origin": "*",
+				"Access-Control-Allow-Methods": "*",
+				"Access-Control-Allow-Credentials": true,
+				"Content-Type": "application/json"},
+			body: JSON.stringify(data),
+		})
+			.then(response => response.json())
+			.then((datas) => {
+				console.log(datas);
+			});
+	}
+	DeleteBookmarkData();*/
+	//var testt = ['ABC','DEF','GHI'];
+	
+	
+	
+	/*function GetBookmarkData(request){
+	fetch("https://thaiaddressapi-thaikub.herokuapp.com/v1/thailand/provinces",
+		{ method: "GET", })
+		.then(response => response.json())
+		//.then(response => response.result)
+		.then((raw) => {
+			console.log(raw);
+			raw.data.forEach((entry) => {
+				console.log(entry.province);
+			});
+
+        }).catch((error) => {
+			  console.log(error);
+			  ResetData();
+			  DisplayNotFound();
+			});
+		
+		setTimeout(function() { ReinitializeTooltips(); },500);
+		setTimeout(function() { AddListenerToDynamicComponents(); }, 500);
+		
+}*/
+	    
 	  
 	    /*$('button span').parent().click(function () {
 			if($('button span').hasClass('navbar-toggler-icon'))
