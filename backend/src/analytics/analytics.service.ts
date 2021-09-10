@@ -136,23 +136,31 @@ export class AnalyticsService {
                         { $match: { JobName: job } },
                         {
                           $group: {
-                            _id: { SkillName: "$SkillName"}, 
-                            total: { $sum: 1},
+                            _id: { SkillName: "$SkillName"},
+                            mean: { $avg: "$Score" } , 
+                            total: { $sum: 1 },
                           }
                         },
                         { $sort : {total: -1, _id: 1}},
       ])
+      const userList = await this.UserJobSkillModel.aggregate([
+                        { $match: { JobName: job } },
+                        { 
+                          $group: {
+                            _id: { userId : "$userId"}, 
+                            total: { $sum: 1 },
+                          }
+                        }
+      ])
       console.log(SumSkill) ;
-      let n = 0 ;
-      for (var i of SumSkill) {
-        n += i.total ;
-      }
-      array[job] = {numberOfUsers: n} ;
+      let numberOfUsers = userList.length ;
+      array[job] = {numberOfUsers: numberOfUsers} ;
       let temp = [] ;
       for (var i of SumSkill){ 
         // console.log(i) ;
         const _name = i._id.SkillName ;
         const _sum = i.total ;
+        const mean = i.mean ;
         
         // ---------- AllUser Score --------------//
         const AllUser = await this.UserJobSkillModel.find({JobName: job, SkillName: _name}) ;
@@ -172,7 +180,7 @@ export class AnalyticsService {
         
         // console.log(_name);
         // console.log(_sum);
-        temp.push({SkillName: _name, total: _sum, "AllScore": AllScore, "UserScore": UserScore,"Mean": sum/n, percentage: _sum/n*100}) ;
+        temp.push({SkillName: _name, total: _sum, "AllScore": AllScore, "UserScore": UserScore,"Mean": mean, percentage: n/numberOfUsers*100}) ;
       }
       array[job]['List'] = temp ;
     }
