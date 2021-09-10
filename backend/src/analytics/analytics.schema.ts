@@ -2,7 +2,7 @@ import { Document, Mongoose } from 'mongoose';
 
 import * as mongoose from 'mongoose';
 import { ObjectId } from 'mongodb';
-import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
+import { Schema, Prop, SchemaFactory, Schema } from '@nestjs/mongoose';
 
 // -------------------- UserAdditionalSkill ---------------------------
 
@@ -48,3 +48,14 @@ export class AdditionalSkill {
 }
 
 export const AdditionalSkillSchema = SchemaFactory.createForClass(AdditionalSkill);
+
+@Schema({ collection: 'JobTitle' })
+export class JobTitle {
+  @Prop()
+  Name: String;
+
+  @Prop()
+  THName: String;
+}
+
+export const JobTitleSchema = SchemaFactory.createForClass(JobTitle);
