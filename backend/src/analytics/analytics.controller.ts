@@ -31,5 +31,5 @@ export class AnalyticsController {
     const oid = mongoose.Types.ObjectId(userId) ;
     return this.analyticsService.createUserJobSkill(oid, Objective, Score, JobName, SkillName) ;
   }
-
+  
 }

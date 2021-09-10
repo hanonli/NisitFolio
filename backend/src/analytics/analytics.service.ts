@@ -1,7 +1,7 @@
 import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { UserAddSkill, UserJobSkill, AdditionalSkill } from './analytics.schema';
+import { UserAddSkill, UserJobSkill, AdditionalSkill, JobTitle } from './analytics.schema';
 
 import { ObjectId } from 'mongodb' ;
 
@@ -15,21 +15,42 @@ export class AnalyticsService {
     @InjectModel('UserJobSkill')
     private UserJobSkillModel: Model<UserJobSkill>,
     @InjectModel('AdditionalSkill')
-    private AdditionalSkillModel: Model<AdditionalSkill>,    
+    private AdditionalSkillModel: Model<AdditionalSkill>,
+    @InjectModel('JobTitle')
+    private JobTitleModel: Model<JobTitle>,    
 
   ) {}
   
   async additionalAnalytics(id: ObjectId): Promise<any> {
-    const InterestedJobs = await this.UserJobSkillModel.find({ userId: id }).select({ JobName: 1 , _id: 0 }).distinct('JobName');
-    //console.log(InterestedJobs);
+    const Jobs = await this.UserJobSkillModel.aggregate([
+      { $match: {userId: id} },
+      { 
+        $group: { 
+          _id: { JobName: "$JobName" } 
+        },
+      },
+      { $sort: { _id: 1 } },
+    ]);
+
+    let jobs = [];
+    for ( var job of Jobs ) {
+      const job_name = job._id.JobName;
+      const job_THname = await this.JobTitleModel.findOne({ Name: job_name }).select({ THName: 1, _id: 0 }).exec();
+      jobs.push({ name: job_name, THname: job_THname.THName });
+    }
+
+    console.log(jobs);
     let finalResults = {};
-    finalResults['InterestedJobs'] = InterestedJobs;
+    finalResults['InterestedJobs'] = jobs;
     const mySkills = await this.AdditionalSkillModel.find({ UserId: id }).select({ AdditionalSkill: 1 , _id: 0 }).distinct('AdditionalSkill');
     //console.log(mySkills);
     finalResults['mySkills'] = mySkills;
 
-    for ( var job of InterestedJobs ) {
-      const users = await this.UserJobSkillModel.find({ JobName: job }).select({ userId: 1, _id: 0 }).distinct('userId');
+    for ( var job of jobs ) {
+      const job_name = job.name;
+      console.log(job_name);
+      console.log(job.THname);
+      const users = await this.UserJobSkillModel.find({ JobName: job_name }).select({ userId: 1, _id: 0 }).distinct('userId');
       //console.log(users);
       const numberOfUsers = users.length;
 
@@ -53,9 +74,10 @@ export class AnalyticsService {
                               percentage: result.total/numberOfUsers * 100
                             });
       }
-      finalResults[job] = {};
-      finalResults[job]['numberOfUsers'] = numberOfUsers;
-      finalResults[job]['List'] = ModifiedResults;
+
+      finalResults[job_name] = {};
+      finalResults[job_name]['numberOfUsers'] = numberOfUsers;
+      finalResults[job_name]['List'] = ModifiedResults;
     }
     /*
     * Overview

@@ -48,3 +48,14 @@ export class AdditionalSkill {
 }
 
 export const AdditionalSkillSchema = SchemaFactory.createForClass(AdditionalSkill);
+
+@Schema({ collection: 'JobTitle' })
+export class JobTitle {
+  @Prop()
+  Name: String;
+
+  @Prop()
+  THName: String;
+}
+
+export const JobTitleSchema = SchemaFactory.createForClass(JobTitle);
