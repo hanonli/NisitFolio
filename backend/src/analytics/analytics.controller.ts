@@ -6,12 +6,10 @@ import { AnalyticsService } from './analytics.service';
 export class AnalyticsController {
   constructor(private analyticsService: AnalyticsService) {}
 
-  // -------------------- AdditionalSkill ---------------------------
-
   @Get('/additional/:id')
-  async findAddSkillById(@Param('id') id: string): Promise<any> {
+  async additionalAnalytics(@Param('id') id: string): Promise<any> {
     const oid = mongoose.Types.ObjectId(id);
-    return this.analyticsService.findAddSkillById(oid);
+    return this.analyticsService.additionalAnalytics(oid);
   }
 
   // -------------------- MainSkill ---------------------------

@@ -1,7 +1,7 @@
 import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { UserAddSkill, UserJobSkill } from './analytics.schema';
+import { UserAddSkill, UserJobSkill, AdditionalSkill } from './analytics.schema';
 
 import { ObjectId } from 'mongodb' ;
 
@@ -14,135 +14,82 @@ export class AnalyticsService {
     private UserAddSkill: Model<UserAddSkill>,
     @InjectModel('UserJobSkill')
     private UserJobSkillModel: Model<UserJobSkill>,
+    @InjectModel('AdditionalSkill')
+    private AdditionalSkillModel: Model<AdditionalSkill>,    
 
   ) {}
   
-  /*
-  * FindAdditionSkillById
-  * parameters: id
-  * return results (type: {})
-  */
-
-  async findAddSkillById(id: ObjectId): Promise<any> {
-    
+  async additionalAnalytics(id: ObjectId): Promise<any> {
     const InterestedJobs = await this.UserJobSkillModel.find({ userId: id }).select({ JobName: 1 , _id: 0 }).distinct('JobName');
     //console.log(InterestedJobs);
-
-    let results = {};
-    // const InterestedJobs = ["Software Engineer", "Data Scientist"]; // test
-    results['InterestedJobs'] = InterestedJobs;
-    
-    /*
-    * Find This user's additional skills.
-    */
-    const mySkills = await this.UserAddSkill.find({ userId: id }).select({ AdditionalSkill: 1 , _id: 0 }).distinct('AdditionalSkill');
+    let finalResults = {};
+    finalResults['InterestedJobs'] = InterestedJobs;
+    const mySkills = await this.AdditionalSkillModel.find({ UserId: id }).select({ AdditionalSkill: 1 , _id: 0 }).distinct('AdditionalSkill');
     //console.log(mySkills);
-    results['mySkills'] = mySkills;
+    finalResults['mySkills'] = mySkills;
 
-    /*
-    * First find people who interest in the same job(s).
-    * then count a number of them grouped by AdditionalSkill.
-    */
-
-    for (var job of InterestedJobs) {
-      /*
-      * Count number of users who interest in this job.
-      */
-      
-      const users = await this.UserAddSkill.find( { Job: job }).select( { userId:1 }).distinct('userId').exec();
+    for ( var job of InterestedJobs ) {
+      const users = await this.UserJobSkillModel.find({ JobName: job }).select({ userId: 1, _id: 0 }).distinct('userId');
+      //console.log(users);
       const numberOfUsers = users.length;
-      results[job] = { numberOfUsers: numberOfUsers };
-      //console.log(numberOfUsers);
-      
-      // Match the job, group by AdditionalSkill, count, sort
-      const rawResult = await this.UserAddSkill.aggregate([
+
+      const rawResults = await this.AdditionalSkillModel.aggregate([
         {
-          $match: { Job: job }
+          $match: { UserId: { "$in": users } }
         },
         {  
           $group: {
             _id: { AdditionalSkill: "$AdditionalSkill"},
-            total: { $sum: 1}                        
+            total: { $sum: 1 }                        
           }
         },
-        { $sort: {total: -1}}
+        { $sort: { total: -1, _id: 1 }}
       ]).exec();
 
-      /*
-      * rawResult is in the form of [ { _id: { AdditionalSkill: 'XXXXX' }, total: X }, ]
-      * Need to rearrange to a simpler form.
-      */
-
-      let ArrangedResult = [];
-      for (var result of rawResult) {
-        ArrangedResult.push({ AdditionalSkill: result['_id'].AdditionalSkill,
+      let ModifiedResults = [];
+      for (var result of rawResults) {
+        ModifiedResults.push({ AdditionalSkill: result['_id'].AdditionalSkill,
                               total: result.total,
                               percentage: result.total/numberOfUsers * 100
-                            })
+                            });
       }
-      results[job]["List"] = ArrangedResult;
+      finalResults[job] = {};
+      finalResults[job]['numberOfUsers'] = numberOfUsers;
+      finalResults[job]['List'] = ModifiedResults;
     }
-
     /*
-    * Now we look at the "Overview" considering all users.
+    * Overview
     */
-    
-    const users = await this.UserAddSkill.find().select( { userId:1 } ).distinct('userId').exec();
-    const numberOfUsers = users.length;
-
-    results["Overview"] = { numberOfUsers: numberOfUsers };
-
-    /*
-    * Note that there are duplicates of one's skill sets, because we store at most 3 documents per job per user.
-    * So we are going to drop those duplicates.
-    */
-
-    const queryResults = await this.UserAddSkill.aggregate([
+    const totalUsers = await this.UserJobSkillModel.find().select({ userId: 1, _id: 0 }).distinct('userId');
+    const totalNumberOfUsers = totalUsers.length;
+    const rawResults = await this.AdditionalSkillModel.aggregate([
       {  
-        $group: { _id: { userId: "$userId", AdditionalSkill: "$AdditionalSkill"} }
+        $group: {
+          _id: { AdditionalSkill: "$AdditionalSkill"},
+          total: { $sum: 1 }                        
+        }
       },
+      { $sort: {total: -1 , _id: 1 }}
     ]).exec();
-
-    //console.log(queryResults);
-
-    let skillCounts = {};
-
-    for ( result of queryResults ) {
-      const skill = result._id["AdditionalSkill"];
-      if ( skillCounts.hasOwnProperty(skill) ) {
-        skillCounts[skill] += 1;
-      }
-      else {
-        skillCounts[skill] = 1;
-      }
+    //console.log(rawResults);
+    let ModifiedResults = [];
+    for (var result of rawResults) {
+      if (result['_id'].AdditionalSkill == null) {continue;};
+      ModifiedResults.push({ AdditionalSkill: result['_id'].AdditionalSkill,
+                            total: result.total,
+                            percentage: result.total/totalNumberOfUsers * 100
+                          });
+  
     }
-
-    /*
-    * Sort object by values in descending order. This is a little tricky.
-    * We will get a list of keys.
-    */
-
-    const keysSorted = Object.keys(skillCounts).sort(function(a,b) {return skillCounts[b]-skillCounts[a]});
-
-    /*
-    * Finally for each key in that list. we add desired fields to it.
-    * Then map the final result to "Overview".
-    */
-    let finalResults = [];
-    for ( var key of keysSorted ) {
-      finalResults.push({ AdditionalSkill: key,
-                          total: skillCounts[key],
-                          percentage: skillCounts[key]/numberOfUsers * 100
-                        });
-    }
-
-    results["Overview"]["List"] = finalResults;
-
-    // test -> http://localhost:2000/analytics/additional/610d3832ca49ebf4cdfed02e
-    return results;
-    }
-
-  /*********************************************************************************************************************************************/
+    finalResults['Overview'] = {};
+    finalResults['Overview']['numberOfUsers'] = totalNumberOfUsers;
+    finalResults['Overview']['List'] = ModifiedResults;
+    return finalResults;
+  }
+  
+/*
+* ******************************************************************************************************************************************
+*/
 
   async findUserJobSkill(userId: ObjectId): Promise<any> {
     const findObjective = await this.UserJobSkillModel.aggregate([
