@@ -739,7 +739,6 @@ function PostRegis(){
       })
   })
   }
-
   var DropdownsideskillChoice = {'Technical': ['CAD',
     'Lean manufacturing',
     'Multivariate analysis',

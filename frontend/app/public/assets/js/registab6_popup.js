@@ -421,7 +421,7 @@ function GetJob(text){
 		.then(response => response.json())
 		//.then(response => response.result)
 		.then((raws) => {
-			console.log(raws);
+			//console.log(raws);
             for(var i=0;i<165;i++){
                 var job_now = raws[i].THName;
                 console.log(job_now);

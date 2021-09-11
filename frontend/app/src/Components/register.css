@@ -328,3 +328,15 @@ datalist {
 .is-invalid {
   background-image: none;
 }
+
+.sharingSize {
+  height: 30vh;
+  weight: 100vw;
+  border-radius: 1vw;
+}
+
+.SharingFontHead {
+  font-size: 48px;
+  color:#000;
+  font-weight: 500;
+}
