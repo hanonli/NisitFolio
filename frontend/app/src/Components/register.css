@@ -340,7 +340,7 @@ datalist {
 .SharingFontHead {
   margin-left: 1vw;
   margin-top: 0.6vw;
-  margin-bottom: -0.5vw;
+  margin-bottom: -0.2vw;
   font-size:32px;
   color:#000;
   font-weight: 800;
@@ -349,4 +349,8 @@ datalist {
 
 .modal-content {
   border: none;
+}
+
+.mg-l1 {
+  margin-left: 0.6vw;
 }
