@@ -149,6 +149,9 @@ $(document).on('click', "#summit-to-delete-certi", function () {
     //console.log(`delete _certi id:`, removeIndex);
     $(`#` + id_list_certi_del).remove();
     console.log(`list_of_certi:`, list_of_certi);
+    $("#preview_before_upload").remove();
+    $("#icon-upload-112").remove();
+    $("#text-upload-112").remove();
     $("#exampleModal_remove_certi").modal("hide");
 });
 
