@@ -232,3 +232,32 @@ export class AnalyticsService {
     return createUserJobSkill.save() ;
   }
 }
+
+function find_mode( arr: any[] ): any {
+  let count = {};
+  let max_count = 0;
+  for ( let i=0; i<arr.length; i++ ) {
+    const num = arr[i].toFixed(2);
+    if(count.hasOwnProperty(num)){
+      count[num]++;
+      if(count[num]>max_count)
+        max_count = count[num];
+    }
+    else
+      count[num]=1;
+  }
+
+  let mode=[];
+  let count_mode=0;
+  for ( const num in count ) {
+    if (count[num] == max_count){
+      mode.push(parseFloat(num));
+      count_mode++
+    }
+    if(count_mode>2){
+      mode=[];
+      break;
+    }
+  }
+  return [count, mode];
+}
