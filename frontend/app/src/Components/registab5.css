@@ -128,3 +128,7 @@
 .error_select_certi{
     border: 1px solid red;
 }
+
+#border_certi {
+    border-radius: 10px;
+}

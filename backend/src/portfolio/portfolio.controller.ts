@@ -30,7 +30,7 @@ export class PortController {
   @UseGuards(JwtAuthGuard)
   @Get()
     async GetOwnPort(@Request() req) {
-      return this.portService.GetOwnPort(req.user.userId);
+      return this.portService.getPortbyUser(req.user.userId);
   }
 
   @UseGuards(JwtAuthGuard)
