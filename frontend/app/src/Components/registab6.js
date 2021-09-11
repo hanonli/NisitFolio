@@ -72,7 +72,6 @@ class Registab6 extends React.Component {
 								<div className="contentOfModalJop">
 									<div class="tab-contents_pop">
 										<div class="tab-pane_pop current2" id="tab01">
-
 											<div class="row list-job-skill1">
 												<div class="col-md-5">
 													<select class="form-select dropbtn_year margin-bottom1 fff" id="each_skill1" required>
@@ -84,8 +83,8 @@ class Registab6 extends React.Component {
 													</select>
 												</div>
 												<div class="col-md-5">
-													<div className="range-slider-job">
-														<input type="range" class="slider x1" min="0" max="10" step="0.1" defaultValue="5" id="customRange11" />
+													<div class="box-slider1">
+														<div class="sliderWithLabels" id="mySlider1"></div>
 													</div>
 												</div>
 											</div>
@@ -101,8 +100,8 @@ class Registab6 extends React.Component {
 													</select>
 												</div>
 												<div class="col-md-5">
-													<div className="range-slider-job">
-														<input type="range" class="slider x2" min="0" max="10" step="0.1" defaultValue="5" id="customRange12" />
+													<div class="box-slider2">
+														<div class="sliderWithLabels" id="mySlider2"></div>
 													</div>
 												</div>
 											</div>
@@ -118,14 +117,8 @@ class Registab6 extends React.Component {
 													</select>
 												</div>
 												<div class="col-md-5">
-													<div className="range-slider-job">
-														<input type="range" class="slider x3" min="0" max="10" step="0.1" defaultValue="5" id="customRange13" />
-														<div className="mark3">
-															<label>ไม่ได้</label>
-															<label>พื้นฐาน</label>
-															<label>ดี</label>
-															<label>ยอดเยี่ยม</label>
-														</div>
+													<div class="box-slider3">
+														<div class="sliderWithLabels" id="mySlider3"></div>
 													</div>
 												</div>
 											</div>
