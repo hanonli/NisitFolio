@@ -125,11 +125,19 @@ export class AnalyticsService {
     ]) ;
     let array = {} ;
     let InterestedJobs = [] ;
+    let THnameJobs = [] ;
     
-    for (var obj of userSkill) {
-      InterestedJobs.push(obj._id.JobName) ;
+    for ( var job of userSkill ) {
+      const job_name = job._id.JobName;
+      const job_THname = await this.JobTitleModel.findOne({ Name: job_name }).select({ THName: 1, _id: 0 }).exec();
+      InterestedJobs.push(job._id.JobName) ;
+      THnameJobs.push({ "name": job_name, "THname": job_THname.THName })
     }
-    array['InterestedJobs'] = InterestedJobs ;
+
+    array['InterestedJobs'] = THnameJobs ;
+
+    const mySkills = await this.UserJobSkillModel.find({ userId: userId }).select({ SkillName: 1 , _id: 0 }).distinct('SkillName');
+    array['mySkills'] = mySkills;
 
     for (var job of InterestedJobs) {
       const SumSkill = await this.UserJobSkillModel.aggregate([
@@ -163,7 +171,8 @@ export class AnalyticsService {
         const mean = i.mean ;
         
         // ---------- AllUser Score --------------//
-        const AllUser = await this.UserJobSkillModel.find({JobName: job, SkillName: _name}) ;
+        const AllUser = await this.UserJobSkillModel.find({JobName: job, SkillName: _name}).sort({ Score: 1 }) ;
+        
         let AllScore = [] ;
         let UserScore = null ;
         let sum = 0 ;
@@ -206,7 +215,7 @@ export class AnalyticsService {
     let percentage = 0 ;
     for (var i of New) {
       percentage = i.total/numberOfUsers*100 ;
-      temp2.push({"SkillName": i._id.SkillName, "percentage": percentage}) ;
+      temp2.push({"SkillName": i._id.SkillName, "total": i.total,  "percentage": percentage}) ;
     }
     array["Overview"] = {};
     array['Overview']['numberOfUser'] = numberOfUsers ;
@@ -222,4 +231,33 @@ export class AnalyticsService {
     const createUserJobSkill =  new this.UserJobSkillModel({userId, Objective, Score, JobName, SkillName}) ;
     return createUserJobSkill.save() ;
   }
+}
+
+function find_mode( arr: any[] ): any {
+  let count = {};
+  let max_count = 0;
+  for ( let i=0; i<arr.length; i++ ) {
+    const num = arr[i].toFixed(2);
+    if(count.hasOwnProperty(num)){
+      count[num]++;
+      if(count[num]>max_count)
+        max_count = count[num];
+    }
+    else
+      count[num]=1;
+  }
+
+  let mode=[];
+  let count_mode=0;
+  for ( const num in count ) {
+    if (count[num] == max_count){
+      mode.push(parseFloat(num));
+      count_mode++
+    }
+    if(count_mode>2){
+      mode=[];
+      break;
+    }
+  }
+  return [count, mode];
 }
