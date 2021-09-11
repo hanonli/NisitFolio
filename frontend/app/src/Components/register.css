@@ -330,13 +330,17 @@ datalist {
 }
 
 .sharingSize {
-  height: 30vh;
+  height: 28vh;
   weight: 100vw;
   border-radius: 1vw;
 }
 
 .SharingFontHead {
+  margin-left: 0.5vw;
+  margin-top: 0.5vw;
+  margin-bottom: -0.5vw;
   font-size: 48px;
   color:#000;
   font-weight: 500;
+  display:inline-block;
 }
