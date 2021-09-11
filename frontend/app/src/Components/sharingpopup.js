@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 class SharingPopup extends React.Component {  
     render (){
+
     return (
         <div>
         <div class="modal fade" id="sharingResume" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
@@ -11,9 +12,9 @@ class SharingPopup extends React.Component {
                         <p class="SharingFontHead col-10">Sharing</p>
                     </div>
                     <div class="row">
-                        <img class="col-4" src="assets/images/share_link.png" type="button" data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharinglink"/>
-                        <img class="col-4" src="assets/images/share_qr.png" type="button" data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharingqr"/>
-                        <img class="col-4" src="assets/images/share_pdf.png" type="button" data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharingpdf"/>
+                        <img class="col-4 transition-component scale-up-s" src="assets/images/share_link.png" id="cross-fade" type="button" data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharinglink"/>
+                        <img class="col-4 transition-component scale-up-s" src="assets/images/share_qr.png" id="cross-fade" type="button" data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharingqr"/>
+                        <img class="col-4 transition-component scale-up-s" src="assets/images/share_pdf.png" id="cross-fade" type="button" data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharingpdf"/>
                     </div>
                 </div>
             </div>
