@@ -1,0 +1,20 @@
+.template-header{
+    display: inline-flex;
+}
+
+/*-----------text-choose-template myresume-----------*/
+#text-choose-template {
+    color: black;
+    font-size: 65px;
+}
+
+/*-----------text-display-info myresume-----------*/
+#text-display-info {
+    font-size: 25px;
+    font-weight: 300;
+    margin-left: 38px;
+    margin-top: 46px;
+}
+#span-text-display-info{
+    color: black;
+}
