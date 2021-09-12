@@ -117,7 +117,7 @@ export class RegisterService {
       await this.InterestedJobRepository.save(interestedJob);
     }
     
-    //await this.emailConfirmationService.sendVerificationLink(createDto.Email);
+    await this.emailConfirmationService.sendVerificationLink(createDto.Email);
 
     return (this.userinfoRepository.save(userinfo));
 
