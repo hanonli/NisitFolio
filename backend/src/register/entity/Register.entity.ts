@@ -184,16 +184,16 @@ export class InterestedJob {
   UserId: ObjectId;
 
   @Column()
-  Job_Objective: string;
+  Job_Objective: string[];
 
   @Column()
-  Job_Score: Float32Array;
+  Job_Score: Float32Array[];
 
   @Column()
   Job_JobName: string;
 
   @Column()
-  Job_SkillName: string;
+  Job_SkillName: string[];
 }
 
 

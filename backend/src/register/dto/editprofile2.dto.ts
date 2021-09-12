@@ -83,14 +83,14 @@ export class EditProfileDto2 {
 
   Infomation: string[];
 
-  Job_Objective: string[];
+  Job_Objective: string[][];
 
-  Job_Score: Float32Array[];
+  Job_Score: Float32Array[][];
 
   @IsNotEmpty()
   Job_JobName: string[];
 
-  Job_SkillName: string[];
+  Job_SkillName: string[][];
 
   /*@OneToMany(type => CreateDto3, ED => ED)
   ED: CreateDto3[];*/
