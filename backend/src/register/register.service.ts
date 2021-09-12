@@ -109,14 +109,14 @@ export class RegisterService {
     for (var _i = 0; _i < createDto.Job_JobName.length; _i++) {
       const interestedJob = new InterestedJob();
       interestedJob.UserId = accountid;
+      interestedJob.Job_JobName = createDto.Job_JobName[_i];
       interestedJob.Job_Objective = createDto.Job_Objective[_i];
       interestedJob.Job_Score = createDto.Job_Score[_i];
-      interestedJob.Job_JobName = createDto.Job_JobName[_i];
       interestedJob.Job_SkillName = createDto.Job_SkillName[_i];
       await this.InterestedJobRepository.save(interestedJob);
     }
     
-    await this.emailConfirmationService.sendVerificationLink(createDto.Email);
+    //await this.emailConfirmationService.sendVerificationLink(createDto.Email);
 
     return (this.userinfoRepository.save(userinfo));
 
