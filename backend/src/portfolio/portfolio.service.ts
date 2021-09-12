@@ -51,6 +51,8 @@ export class PortService {
     const port =  await this.portRepository.findOne({where:{ _id: portid }});
   
     if (port && port.UserId === userId) {
+      const portpic =  await this.portfolioPictureRepository.findOne({where:{ PortId: port.id }});
+      await this.portfolioPictureRepository.remove(portpic);
       return await this.portRepository.remove(port);
     }
     
@@ -60,7 +62,11 @@ export class PortService {
   async updatePort(CreateDto: CreatePortfolioDto,portId:string, userId:string){
     const portid = new ObjectID(portId);
     const port =  await this.portModel.findById(portid);
-    const portfoliopic = await this.portfolioPictureRepository.findOne({where:{ PortId: portid }});
+    const portpic =  await this.portfolioPictureRepository.findOne({where:{ PortId: portid }});
+    await this.portfolioPictureRepository.remove(portpic);
+    const portfoliopic = new PortfolioPicture();
+    portfoliopic.PortId = portid;
+    
     var portpic_arr = [];
     if (port && port.UserId === userId) {
       if (CreateDto.Port_Tag != null)
@@ -70,7 +76,7 @@ export class PortService {
       if (CreateDto.Pic != null)
         portfoliopic.Pic = CreateDto.Pic;
       if (CreateDto.Description != null)
-        portfoliopic.Description = CreateDto.Description;
+        portfoliopic.Description =  CreateDto.Description;
       portpic_arr.push(portfoliopic)
       port.portfolioPictures = portpic_arr;
       await this.portfolioPictureRepository.save(portfoliopic);

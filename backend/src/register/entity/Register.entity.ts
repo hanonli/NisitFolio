@@ -1,4 +1,4 @@
-import { Entity, Column, ObjectIdColumn, OneToMany, ManyToOne } from 'typeorm'; 
+import { Entity, Column, ObjectIdColumn, OneToMany, ManyToOne, ManyToMany, OneToOne , JoinTable } from 'typeorm'; 
 import { ObjectId, Timestamp } from 'mongodb';
 
 //--------------------Account--------------------------//
@@ -33,7 +33,7 @@ export class Userinfo {
   @ObjectIdColumn()
   id?: ObjectId;
 
-  @ObjectIdColumn()
+  @Column()
   UserId: ObjectId;
 
   @Column()
@@ -63,8 +63,6 @@ export class Userinfo {
   @Column()
   City: string;
 
-  /*@OneToMany(type => AdditionalSkill, additionalSkill => additionalSkill.userinfo)
-  additionalSkills: AdditionalSkill[];*/
 }
 
 //--------------------AdditionalSkill--------------------------//
@@ -73,14 +71,14 @@ export class AdditionalSkill {
   @ObjectIdColumn()
   id?: ObjectId;
 
-  @ObjectIdColumn()
+  @Column()
   UserId: ObjectId;
 
   @Column()
   SoftSkill: string;
 
-  /*@ManyToOne(type => Userinfo, userinfo => userinfo.additionalSkills)
-  userinfo: Userinfo;*/
+  @ManyToOne(type => Resume, resume => resume.additionalSkills)
+  resumes: Resume[];
 
 }
 
@@ -90,7 +88,7 @@ export class Certificate {
   @ObjectIdColumn()
   id?: ObjectId;
 
-  @ObjectIdColumn()
+  @Column()
   UserId: ObjectId;
   
   @ObjectIdColumn()
@@ -104,6 +102,10 @@ export class Certificate {
   
   @Column()
   CertYear: number;
+
+  @ManyToOne(type => Resume, resume => resume.certificates)
+  resumes: Resume[];
+
 }
 
 
@@ -113,7 +115,7 @@ export class EducationHistory {
   @ObjectIdColumn()
   id?: ObjectId;
   
-  @ObjectIdColumn()
+  @Column()
   UserId: ObjectId;
 
   @Column()
@@ -131,9 +133,11 @@ export class EducationHistory {
   @Column()
   Grade: Float32Array;
    
-
   @Column()
   Education_End_Year: number;   
+
+  @ManyToOne(type => Resume, resume => resume.educationHistorys)
+  resumes: Resume[];
 }
 
 //--------------------WorkHistory--------------------------//
@@ -142,7 +146,7 @@ export class WorkHistory {
   @ObjectIdColumn()
   id?: ObjectId;
   
-  @ObjectIdColumn()
+  @Column()
   UserId: ObjectId;
 
   @Column()
@@ -172,6 +176,9 @@ export class WorkHistory {
   @Column()
   Infomation: string;
 
+  @ManyToOne(type => Resume, resume => resume.workHistorys)
+  resumes: Resume[];
+
 }
 
 //--------------------InterestedJob--------------------------//
@@ -180,7 +187,7 @@ export class InterestedJob {
   @ObjectIdColumn()
   id?: ObjectId;
   
-  @ObjectIdColumn()
+  @Column()
   UserId: ObjectId;
 
   @Column()
@@ -194,9 +201,88 @@ export class InterestedJob {
 
   @Column()
   Job_SkillName: string[];
+
+  @OneToMany(type => Resume, resume => resume.interestedJob)
+  resumes: Resume[];
 }
 
 
+//--------------------Portfolio--------------------------//
+@Entity("Portfolio")
+export class Portfolio {
+  @ObjectIdColumn()
+  _id?: ObjectId;
+  
+  @Column()
+  UserId: string;
+
+  @Column()
+  Port_Tag: string;
+
+  @Column()
+  Port_Privacy: string;
+
+  @OneToMany(type => PortfolioPicture, portfolioPicture => portfolioPicture.portfolio)
+  portfolioPictures: PortfolioPicture[];
+
+  @ManyToOne(type => Resume, resume => resume.portfolios)
+  resumes: Resume[];
+}
+
+//--------------------PortfolioPicture--------------------------//
+@Entity("PortfolioPicture")
+export class PortfolioPicture {
+  @ObjectIdColumn()
+  id?: ObjectId;
+  
+  @Column()
+  PortId: ObjectId;
+
+  @Column()
+  Pic: string[];
+
+  @Column()
+  Description: string[];
+
+  @ManyToOne(type => Portfolio, portfolio => portfolio.portfolioPictures)
+  portfolio: Portfolio;
+
+}
+
+//-----------------Resume---------------------------//
+@Entity("Resume")
+export class Resume {
+  @ObjectIdColumn()
+  id?: ObjectId;
+  
+  @Column()
+  UserId: string;
+
+  @Column()
+  TAG: string[];
+
+  @Column()
+  Privacy: string;
+
+  @OneToMany(type => EducationHistory, educationHistory => educationHistory.resumes)
+  educationHistorys: EducationHistory[];
+
+  @OneToMany(type => WorkHistory, workHistory => workHistory.resumes)
+  workHistorys: WorkHistory[];
+
+  @OneToMany(type => AdditionalSkill, additionalSkill => additionalSkill.resumes)
+  additionalSkills: AdditionalSkill[];
+
+  @OneToMany(type => Certificate, certificate => certificate.resumes)
+  certificates: Certificate[];
+
+  @OneToMany(type => Portfolio, portfolio => portfolio.resumes)
+  portfolios: Portfolio[];
+
+  @ManyToOne(type => InterestedJob, interestedJob => interestedJob.resumes)
+  interestedJob: InterestedJob;
+
+}
 
 
 

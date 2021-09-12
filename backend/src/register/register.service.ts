@@ -4,7 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Md5 } from 'ts-md5/dist/md5';
 import { ObjectID } from 'mongodb';
 
-import { Account, Userinfo, AdditionalSkill, Certificate, EducationHistory, InterestedJob, WorkHistory} from './entity/Register.entity'
+import { Account, Userinfo, AdditionalSkill, Certificate, EducationHistory, InterestedJob, WorkHistory,Portfolio,PortfolioPicture,Resume} from './entity/Register.entity'
 import { CreateRegisDto } from './dto/create-register.dto';
 import { EmailConfirmationService } from '../emailConfirmation/emailConfirmation.service';
 
@@ -12,7 +12,12 @@ import { EmailConfirmationService } from '../emailConfirmation/emailConfirmation
 import { JobTitle } from 'src/register/entity/JobTitle.entrity'
 import { Skill } from 'src/register/entity/Skill.entrity'
 import { HardSkill} from 'src/register/entity/HardSkill.entrity'
-import { EditProfileDto2 } from './dto/editprofile2.dto';
+import { PatchRegisDto } from './dto/patch-register.dto';
+
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { UserInfoMongoose } from './entity/register.schema';
+import { UserInfoDocument } from './entity/register.schema';
 
 @Injectable()
 export class RegisterService {
@@ -37,6 +42,14 @@ export class RegisterService {
     private SkillRepository: Repository<Skill>,
     @InjectRepository(HardSkill)
     private HardSkillRepository: Repository<Skill>,
+    @InjectRepository(Portfolio)
+    private portfolioRepository: Repository<Portfolio>,
+    @InjectRepository(PortfolioPicture)
+    private portfolioPictureRepository: Repository<PortfolioPicture>,
+    @InjectRepository(Resume)
+    private resumeRepository: Repository<Resume>,
+    @InjectModel(UserInfoMongoose.name) 
+    private userInfoModel: Model<UserInfoDocument>,
     
     private readonly emailConfirmationService: EmailConfirmationService
 
@@ -73,7 +86,6 @@ export class RegisterService {
     for (var _i = 0; _i < createDto.CertName.length; _i++) {
       const certificate = new Certificate();
       certificate.UserId = accountid;
-      certificate.ResumeId = null;
       certificate.CertName = createDto.CertName[_i]
       certificate.CertPic = createDto.CertPic[_i]
       certificate.CertYear = createDto.CertYear[_i]
@@ -117,7 +129,7 @@ export class RegisterService {
       await this.InterestedJobRepository.save(interestedJob);
     }
     
-    await this.emailConfirmationService.sendVerificationLink(createDto.Email);
+    //await this.emailConfirmationService.sendVerificationLink(createDto.Email);
 
     return (this.userinfoRepository.save(userinfo));
 
@@ -138,100 +150,121 @@ export class RegisterService {
     return this.HardSkillRepository.find({where:{ Type: Type }});
   }
 
-  async UpdateRegis(createDto: CreateRegisDto,UserId:string)
+  async UpdateRegis(createDto: PatchRegisDto ,UserId:string)
   {
     const userid = new ObjectID(UserId);
     const acc =  await this.accountRepository.findOne({where:{ _id: userid }});
-    
-    if (acc && acc._id === userid) {
-      if (createDto.Password != null)
-        acc.Password = Md5.hashStr(createDto.Password);
-      if (createDto.ProfilePic != null)
-        acc.ProfilePic = createDto.ProfilePic;
-      if (createDto.Privacy != null)
-        acc.Privacy = createDto.Privacy;
+
+    if (createDto.Password != null)
+      acc.Password = Md5.hashStr(createDto.Password);
+    if (createDto.ProfilePic != null)
+      acc.ProfilePic = createDto.ProfilePic;
+    if (createDto.Privacy != null)
+      acc.Privacy = createDto.Privacy;
       
-      await this.accountRepository.save(acc);
-    }
-
-    const userinfo =  await this.userinfoRepository.findOne({where:{ UserId: userid }});
-    userinfo.UserId = userid;
+    await this.accountRepository.save(acc);
     
-    if (userinfo && userinfo.id === userid) {
-      if (createDto.Firstname != null)
-        userinfo.Firstname = createDto.Firstname;
-      if (createDto.Lastname != null)
-        userinfo.Lastname = createDto.Lastname;
-      if (createDto.Birthday != null)
-        userinfo.Birthday = createDto.Birthday;
-      if (createDto.Gender != null)
-        userinfo.Gender = createDto.Gender;
-      if (createDto.AboutMe != null)
-        userinfo.AboutMe = createDto.AboutMe;
-      if (createDto.Email2nd != null)
-        userinfo.Email2nd = createDto.Email2nd;
-      if (createDto.Country != null)
-        userinfo.Country = createDto.Country;
-      if (createDto.Province != null)
-        userinfo.Province = createDto.Province;
-      if (createDto.City != null)
-        userinfo.City = createDto.City;
-    }
 
-    const additionalskill = await this.AdditionalSkillRepository.find({where:{ _id: userid }});
-    const certificate = await this.CertificateRepository.find({where:{ _id: userid }});
-    const educationHistory =  await this.EducationHistoryRepository.find({where:{ _id: userid }});
-    const workHistory = await this.WorkHistoryRepository.find({where:{ _id: userid }});
-    const interestedJob = await this.InterestedJobRepository.find({where:{ _id: userid }});
-
+    const userinfo =  await this.userInfoModel.findOne({UserId: userid });
+    
+    if (createDto.Firstname != null)
+      userinfo.Firstname = createDto.Firstname;
+    if (createDto.Lastname != null)
+      userinfo.Lastname = createDto.Lastname;
+    if (createDto.Birthday != null)
+      userinfo.Birthday = createDto.Birthday;
+    if (createDto.Gender != null)
+      userinfo.Gender = createDto.Gender;
+    if (createDto.AboutMe != null)
+      userinfo.AboutMe = createDto.AboutMe;
+    if (createDto.Email2nd != null)
+      userinfo.Email2nd = createDto.Email2nd;
+    if (createDto.Country != null)
+      userinfo.Country = createDto.Country;
+    if (createDto.Province != null)
+      userinfo.Province = createDto.Province;
+    if (createDto.City != null)
+      userinfo.City = createDto.City;
+    
+    
+    const additionalskill = await this.AdditionalSkillRepository.find({where:{ UserId: userid}});
     for (var _i = 0; _i < additionalskill.length; _i++) {
-      
-      additionalskill[_i].SoftSkill =  createDto.SoftSkill[_i]; 
+      await this.AdditionalSkillRepository.remove(additionalskill[_i]);
+    }
+
+    for (var _i = 0; _i < createDto.SoftSkill.length; _i++) {
+      const additionalskill = new AdditionalSkill();
+      additionalskill.UserId = userid;
+      additionalskill.SoftSkill  = createDto.SoftSkill[_i]; 
       await this.AdditionalSkillRepository.save(additionalskill);
     }
-    
+
+    const certificate = await this.CertificateRepository.find({where:{ UserId: userid}});
     for (var _i = 0; _i < certificate.length; _i++) {
-      certificate[_i].CertName = createDto.CertName[_i]
-      certificate[_i].CertPic = createDto.CertPic[_i]
-      certificate[_i].CertYear = createDto.CertYear[_i]
+      await this.CertificateRepository.remove(certificate[_i]);
+    }
+
+    for (var _i = 0; _i < createDto.CertName.length; _i++) {
+      const certificate = new Certificate();
+      certificate.UserId = userid;
+      certificate.CertName = createDto.CertName[_i]
+      certificate.CertPic = createDto.CertPic[_i]
+      certificate.CertYear = createDto.CertYear[_i]
       await this.CertificateRepository.save(certificate);
     }
 
+    const educationHistory = await this.EducationHistoryRepository.find({where:{ UserId: userid}});
     for (var _i = 0; _i < educationHistory.length; _i++) {
-      educationHistory[_i].Degree = createDto.Degree[_i];
-      educationHistory[_i].Facalty = createDto.Facalty[_i];
-      educationHistory[_i].Field_of_study = createDto.Field_of_study[_i];
-      educationHistory[_i].Academy = createDto.Academy[_i];
-      educationHistory[_i].Grade = createDto.Grade[_i];
-      educationHistory[_i].Education_End_Year = createDto.Education_End_Year[_i];
+      await this.EducationHistoryRepository.remove(educationHistory[_i]);
+    }
+
+    for (var _i = 0; _i < createDto.Degree.length; _i++) {
+      const educationHistory = new EducationHistory();
+      educationHistory.UserId = userid;
+      educationHistory.Degree = createDto.Degree[_i];
+      educationHistory.Facalty = createDto.Facalty[_i];
+      educationHistory.Field_of_study = createDto.Field_of_study[_i];
+      educationHistory.Academy = createDto.Academy[_i];
+      educationHistory.Grade = createDto.Grade[_i];
+      educationHistory.Education_End_Year = createDto.Education_End_Year[_i];
       await this.EducationHistoryRepository.save(educationHistory);
     }
 
+    const workHistory = await this.WorkHistoryRepository.find({where:{ UserId: userid}});
     for (var _i = 0; _i < workHistory.length; _i++) {
-      
-      workHistory[_i].Work_JobName = createDto.Work_JobName[_i];
-      workHistory[_i].Work_JobType = createDto.Work_JobType[_i];
-      workHistory[_i].Company = createDto.Company[_i];
-      workHistory[_i].Work_Start_Month = createDto.Work_Start_Month[_i];
-      workHistory[_i].Work_End_Month = createDto.Work_End_Month[_i];
-      workHistory[_i].Work_Start_Year = createDto.Work_Start_Year[_i];
-      workHistory[_i].Work_End_Year = createDto.Work_End_Year[_i];
-      workHistory[_i].Salary = createDto.Salary[_i]; 
-      workHistory[_i].Infomation = createDto.Infomation[_i]; 
+      await this.WorkHistoryRepository.remove(workHistory[_i]);
+    }
+
+    for (var _i = 0; _i < createDto.Work_JobName.length; _i++) {
+      const workHistory = new WorkHistory();
+      workHistory.UserId = userid;
+      workHistory.Work_JobName = createDto.Work_JobName[_i];
+      workHistory.Work_JobType = createDto.Work_JobType[_i];
+      workHistory.Company = createDto.Company[_i];
+      workHistory.Work_Start_Month = createDto.Work_Start_Month[_i];
+      workHistory.Work_End_Month = createDto.Work_End_Month[_i];
+      workHistory.Work_Start_Year = createDto.Work_Start_Year[_i];
+      workHistory.Work_End_Year = createDto.Work_End_Year[_i];
+      workHistory.Salary = createDto.Salary[_i]; 
+      workHistory.Infomation = createDto.Infomation[_i]; 
       await this.WorkHistoryRepository.save(workHistory);
     }
 
+    const interestedJob = await this.InterestedJobRepository.find({where:{ UserId: userid}});
     for (var _i = 0; _i < interestedJob.length; _i++) {
-      
-      interestedJob[_i].Job_Objective = createDto.Job_Objective[_i];
-      interestedJob[_i].Job_Score = createDto.Job_Score[_i];
-      interestedJob[_i].Job_JobName = createDto.Job_JobName[_i];
-      interestedJob[_i].Job_SkillName = createDto.Job_SkillName[_i];
+      await this.InterestedJobRepository.remove(interestedJob[_i]);
+    }
+
+    for (var _i = 0; _i < createDto.Job_JobName.length; _i++) {
+      const interestedJob = new InterestedJob();
+      interestedJob.UserId = userid;
+      interestedJob.Job_JobName = createDto.Job_JobName[_i];
+      interestedJob.Job_Objective = createDto.Job_Objective[_i];
+      interestedJob.Job_Score = createDto.Job_Score[_i];
+      interestedJob.Job_SkillName = createDto.Job_SkillName[_i];
       await this.InterestedJobRepository.save(interestedJob);
     }
-    
-    return (this.userinfoRepository.save(userinfo));
-
+    return await this.userInfoModel.create(userinfo);
   }
 
   async GetInfo(UserId:string) {
@@ -354,120 +387,55 @@ export class RegisterService {
     return result;
     
   }
-  async UpdatProfile(UserId:string,createDto:EditProfileDto2){
-    const UserID2 = new ObjectID(UserId);
 
-    const account = await this.accountRepository.findOne({_id:UserID2});
-    account.Email = createDto.Email;
+  async DeleteRegis(UserId:string)
+  {
+    const userid = new ObjectID(UserId);
+    const acc =  await this.accountRepository.findOne({where:{ _id: userid }});
+    await this.accountRepository.remove(acc);
 
-    if(createDto.New_Password!=createDto.New_Password_again){
-      return "new password not match";
-    }
-    account.Password = Md5.hashStr(createDto.New_Password);
-
-    account.ProfilePic = createDto.ProfilePic; 
-    //account.Privacy = "Public";
-    if(createDto.Privacy==""){
-      account.Privacy = "Public";
-    }else{
-      account.Privacy=createDto.Privacy;
-    }
-    account.isEmailConfirmed = false;
-
-    const userinfo = await this.userinfoRepository.findOne({UserId:UserID2});
-    userinfo.UserId = UserID2;
-    userinfo.Firstname = createDto.Firstname;
-    userinfo.Lastname = createDto.Lastname;
-    userinfo.Birthday = createDto.Birthday;
-    userinfo.Gender = createDto.Gender;
-    userinfo.AboutMe = createDto.AboutMe;
-    userinfo.Email2nd = createDto.Email2nd;
-    userinfo.Country = createDto.Country;
-    userinfo.Province = createDto.Province;
-    userinfo.City = createDto.City;
-
-    await this.userinfoRepository.save(userinfo);
-    const old_userinfo = await this.userinfoRepository.findOne({UserId:UserID2});
-    await this.userinfoRepository.remove(old_userinfo);
-    
-    const old_additionalskill = await this.AdditionalSkillRepository.find({UserId:UserID2});
-    for (var _i = 0; _i < old_additionalskill.length; _i++) {
-      await this.AdditionalSkillRepository.remove(old_additionalskill[_i]);
-    }
-    for (var _i = 0; _i < createDto.SoftSkill.length; _i++) {
-      const additionalskill = new AdditionalSkill();
-      additionalskill.UserId = UserID2;
-      additionalskill.SoftSkill  = createDto.SoftSkill[_i]; 
-      await this.AdditionalSkillRepository.save(additionalskill);
-    }
-    
-    const old_certificate = await this.CertificateRepository.find({UserId:UserID2});
-    for (var _i = 0; _i < old_certificate.length; _i++) {
-      await this.CertificateRepository.remove(old_certificate[_i]);
-    }
-    for (var _i = 0; _i < createDto.CertName.length; _i++) {
-      const certificate = new Certificate();
-      certificate.UserId = UserID2;
-      certificate.ResumeId = null;
-      certificate.CertName = createDto.CertName[_i]
-      certificate.CertPic = createDto.CertPic[_i]
-      certificate.CertYear = createDto.CertYear[_i]
-      await this.CertificateRepository.save(certificate);
-    }
-
-    const old_ED = await this.EducationHistoryRepository.find({UserId:UserID2});
-    for (var _i = 0; _i < old_ED.length; _i++) {
-      await this.EducationHistoryRepository.remove(old_ED[_i]);
-    }
-    for (var _i = 0; _i < createDto.Degree.length; _i++) {
-      const educationHistory = new EducationHistory();
-      educationHistory.UserId = UserID2;
-      educationHistory.Degree = createDto.Degree[_i];
-      educationHistory.Facalty = createDto.Facalty[_i];
-      educationHistory.Field_of_study = createDto.Field_of_study[_i];
-      educationHistory.Academy = createDto.Academy[_i];
-      educationHistory.Grade = createDto.Grade[_i];
-      educationHistory.Education_End_Year = createDto.Education_End_Year[_i];
-      await this.EducationHistoryRepository.save(educationHistory);
-    }
-
-
-    const old_WH = await this.WorkHistoryRepository.find({UserId:UserID2});
-    for (var _i = 0; _i < old_WH.length; _i++) {
-      await this.WorkHistoryRepository.remove(old_WH[_i]);
-    }
-    for (var _i = 0; _i < createDto.Work_JobName.length; _i++) {
-      const workHistory = new WorkHistory();
-      workHistory.UserId = UserID2;
-      workHistory.Work_JobName = createDto.Work_JobName[_i];
-      workHistory.Work_JobType = createDto.Work_JobType[_i];
-      workHistory.Company = createDto.Company[_i];
-      workHistory.Work_Start_Month = createDto.Work_Start_Month[_i];
-      workHistory.Work_End_Month = createDto.Work_End_Month[_i];
-      workHistory.Work_Start_Year = createDto.Work_Start_Year[_i];
-      workHistory.Work_End_Year = createDto.Work_End_Year[_i];
-      workHistory.Salary = createDto.Salary[_i]; 
-      workHistory.Infomation = createDto.Infomation[_i]; 
-      await this.WorkHistoryRepository.save(workHistory);
-    }
-
-    const old_IJ = await this.InterestedJobRepository.find({UserId:UserID2});
-    for (var _i = 0; _i < old_IJ.length; _i++) {
-      await this.InterestedJobRepository.remove(old_IJ[_i]);
-    }
-    for (var _i = 0; _i < createDto.Job_JobName.length; _i++) {
-      const interestedJob = new InterestedJob();
-      interestedJob.UserId = UserID2;
-      interestedJob.Job_Objective = createDto.Job_Objective[_i];
-      interestedJob.Job_Score = createDto.Job_Score[_i];
-      interestedJob.Job_JobName = createDto.Job_JobName[_i];
-      interestedJob.Job_SkillName = createDto.Job_SkillName[_i];
-      await this.InterestedJobRepository.save(interestedJob);
-    }
+    const userinfo =  await this.userinfoRepository.findOne({where:{UserId: userid }});
     
 
-    return (this.accountRepository.save(account));
-    
+    const additionalskill = await this.AdditionalSkillRepository.find({where:{ UserId: userid}});
+    for (var _i = 0; _i < additionalskill.length; _i++) {
+      await this.AdditionalSkillRepository.remove(additionalskill[_i]);
+    }
+
+    const certificate = await this.CertificateRepository.find({where:{ UserId: userid}});
+    for (var _i = 0; _i < certificate.length; _i++) {
+      await this.CertificateRepository.remove(certificate[_i]);
+    }
+
+    const educationHistory = await this.EducationHistoryRepository.find({where:{ UserId: userid}});
+    for (var _i = 0; _i < educationHistory.length; _i++) {
+      await this.EducationHistoryRepository.remove(educationHistory[_i]);
+    }
+
+    const workHistory = await this.WorkHistoryRepository.find({where:{ UserId: userid}});
+    for (var _i = 0; _i < workHistory.length; _i++) {
+      await this.WorkHistoryRepository.remove(workHistory[_i]);
+    }
+
+    const interestedJob = await this.InterestedJobRepository.find({where:{ UserId: userid}});
+    for (var _i = 0; _i < interestedJob.length; _i++) {
+      await this.InterestedJobRepository.remove(interestedJob[_i]);
+    }
+
+    const resume = await this.resumeRepository.find({where:{ UserId: UserId}});
+    for (var _i = 0; _i <  resume.length; _i++) {
+      await this.resumeRepository.remove(resume[_i]);
+    }
+
+    const port =  await this.portfolioRepository.find({where:{ UserId: UserId }});
+    for (var _i = 0; _i < port.length; _i++) {
+      const portid = port[_i]._id  
+      const portpic =  await this.portfolioPictureRepository.findOne({where:{ PortId: portid }});
+      await this.portfolioPictureRepository.remove(portpic);
+      await this.portfolioRepository.remove(port[_i]);
+    }
+
+    return await this.userinfoRepository.remove(userinfo);
 
   }
   
