@@ -457,7 +457,7 @@ function GetJob(text){
 			//console.log(raws);
             for(var i=0;i<165;i++){
                 var job_now = raws[i].THName;
-                console.log(job_now);
+                //console.log(job_now);
                 $('#nm_job').append($('<option />').val(job_now).html(job_now));
             };
 

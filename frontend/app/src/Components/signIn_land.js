@@ -88,7 +88,7 @@ class SignInLand extends React.Component {
                                 <a href="#" >ลืมรหัสผ่าน?</a>
                             </p>
                             <br />
-                            <Link to="/agreement">
+                            <Link to="/register">
                                 <button type="submit" class="btn btn-lg btn-primary deep-purple btn-block" id="buttonSignIn112">สมัครสมาชิก</button>
                             </Link>
                         </div>

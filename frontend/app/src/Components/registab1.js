@@ -33,7 +33,7 @@ class Registab1 extends React.Component {
 											<label class="sexdistance form-f-sex">เพศ<a class="red_markEp1">*</a></label>
 										</div>
 										<div class="col-6">
-											<select class="form-select dropbtn margin-bottom1 fff" required>
+											<select class="form-select dropbtn margin-bottom1 fff" id ="sexgen" required>
 												<option selected disabled value="">เลือกเพศ</option>
 												<option value="ชาย">ชาย</option>
 												<option value="หญิง">หญิง</option>

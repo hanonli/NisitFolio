@@ -73,9 +73,23 @@ $(function(){
 $('#continue2').click(function () {    
   if(RequireCount_pass==1){     
     console.log('You Pass!');  
-    PostRegis();
+    //PostRegis();
     //window.location.pathname = '/emailverify'
-
+    var bdd = $('#bdday').val() + '/' + $('#bdmonth').val() + '/' + $('#bdyear').val(); 
+    const FormRegis2 = {
+      Email: $('#re03').val(),
+      Password: $('#pass05').val(),
+      Firstname: $('#re01').val(),
+      Lastname: $('#re02').val(),
+      Birthday: bdd,
+      Gender: $('#sexgen').val(),
+      SoftSkill:[],
+      CertName:[],
+      Degree:[],
+      Work_JobName: [],
+      Job_JobName: []
+  }
+    console.log(FormRegis2);
   }
   else{
     console.log('You Wrong!');
@@ -716,7 +730,7 @@ function GetDistrict(text){
 		
 }
 
-function PostRegis(){
+/*function PostRegis(){
   fetch("http://localhost:2000/register",
 		{ method: "POST",
       headers: {
@@ -739,6 +753,7 @@ function PostRegis(){
       })
   })
   }
+  */
   var DropdownsideskillChoice = {'Technical': ['CAD',
     'Lean manufacturing',
     'Multivariate analysis',
@@ -824,19 +839,5 @@ function PostRegis(){
       Job_JobName:[],
       Job_SkillName:[]
   }
-    const FormRegis2 = {
-      Email:"rungnattayaporn40@gmail.com",
-      Password:"nattayaporn1234",
-      Firstname:"Natty",
-      Lastname:"Koonwatty",
-      Birthday:"23/10/2000",
-      Gender:"หญิง",
-      SoftSkill:[],
-      CertName:[],
-      Degree:[],
-      Work_JobName: [],
-      Job_JobName: []
-  }
     
-    console.log(JSON.stringify(FormRegis));
-    console.log(JSON.stringify(FormRegis2));
+    
