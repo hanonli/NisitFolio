@@ -5,7 +5,7 @@ import { ObjectId, Timestamp } from 'mongodb';
 @Entity("Account")
 export class Account {
   @ObjectIdColumn()
-  id?: ObjectId;
+  _id?: ObjectId;
 
   @Column()
   Email: string;

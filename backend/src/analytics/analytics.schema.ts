@@ -2,20 +2,21 @@ import { Document, Mongoose } from 'mongoose';
 
 import * as mongoose from 'mongoose';
 import { ObjectId } from 'mongodb';
+import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
 
 // -------------------- UserAdditionalSkill ---------------------------
 
 export const UserAdditionalSkillSchema = new mongoose.Schema({
   userId: { type: ObjectId, required: [true, 'userID must not empty'] },
   Job: { type: String, required: [true, 'Job must not empty'] },
-  SoftSkill: { type: String, required: [true, 'SoftSkill must not empty'] },
+  AdditionalSkill: { type: String, required: [true, 'AdditionalSkill must not empty'] },
 })
 
 export interface UserAddSkill extends Document {
   id: string;
   userId: ObjectId;
   Job: String;
-  SoftSkill: String;
+  AdditionalSkill: String;
 }
 
 // -------------------- UserJobSkill ---------------------------
@@ -36,3 +37,25 @@ export interface UserJobSkill {
   JobName: string;
   SkillName: string;
 }
+
+@Schema({ collection: 'AdditionalSkill' })
+export class AdditionalSkill {
+  @Prop()
+  UserId: ObjectId;
+
+  @Prop()
+  AdditionalSkill: String;
+}
+
+export const AdditionalSkillSchema = SchemaFactory.createForClass(AdditionalSkill);
+
+@Schema({ collection: 'JobTitle' })
+export class JobTitle {
+  @Prop()
+  Name: String;
+
+  @Prop()
+  THName: String;
+}
+
+export const JobTitleSchema = SchemaFactory.createForClass(JobTitle);

@@ -12,6 +12,7 @@ import { EmailConfirmationService } from '../emailConfirmation/emailConfirmation
 import { JobTitle } from 'src/register/entity/JobTitle.entrity'
 import { Skill } from 'src/register/entity/Skill.entrity'
 import { HardSkill} from 'src/register/entity/HardSkill.entrity'
+import { EditProfileDto2 } from './dto/editprofile2.dto';
 
 @Injectable()
 export class RegisterService {
@@ -49,7 +50,7 @@ export class RegisterService {
     account.Privacy = "Public";
     account.isEmailConfirmed = false;
 
-    const accountid = (await this.accountRepository.save(account)).id
+    const accountid = (await this.accountRepository.save(account))._id
     const userinfo = new Userinfo();
     userinfo.UserId = accountid;
     userinfo.Firstname = createDto.Firstname;
@@ -142,7 +143,7 @@ export class RegisterService {
     const userid = new ObjectID(UserId);
     const acc =  await this.accountRepository.findOne({where:{ _id: userid }});
     
-    if (acc && acc.id === userid) {
+    if (acc && acc._id === userid) {
       if (createDto.Password != null)
         acc.Password = Md5.hashStr(createDto.Password);
       if (createDto.ProfilePic != null)
@@ -352,6 +353,122 @@ export class RegisterService {
     
     return result;
     
+  }
+  async UpdatProfile(UserId:string,createDto:EditProfileDto2){
+    const UserID2 = new ObjectID(UserId);
+
+    const account = await this.accountRepository.findOne({_id:UserID2});
+    account.Email = createDto.Email;
+
+    if(createDto.New_Password!=createDto.New_Password_again){
+      return "new password not match";
+    }
+    account.Password = Md5.hashStr(createDto.New_Password);
+
+    account.ProfilePic = createDto.ProfilePic; 
+    //account.Privacy = "Public";
+    if(createDto.Privacy==""){
+      account.Privacy = "Public";
+    }else{
+      account.Privacy=createDto.Privacy;
+    }
+    account.isEmailConfirmed = false;
+
+    const userinfo = await this.userinfoRepository.findOne({UserId:UserID2});
+    userinfo.UserId = UserID2;
+    userinfo.Firstname = createDto.Firstname;
+    userinfo.Lastname = createDto.Lastname;
+    userinfo.Birthday = createDto.Birthday;
+    userinfo.Gender = createDto.Gender;
+    userinfo.AboutMe = createDto.AboutMe;
+    userinfo.Email2nd = createDto.Email2nd;
+    userinfo.Country = createDto.Country;
+    userinfo.Province = createDto.Province;
+    userinfo.City = createDto.City;
+
+    await this.userinfoRepository.save(userinfo);
+    const old_userinfo = await this.userinfoRepository.findOne({UserId:UserID2});
+    await this.userinfoRepository.remove(old_userinfo);
+    
+    const old_additionalskill = await this.AdditionalSkillRepository.find({UserId:UserID2});
+    for (var _i = 0; _i < old_additionalskill.length; _i++) {
+      await this.AdditionalSkillRepository.remove(old_additionalskill[_i]);
+    }
+    for (var _i = 0; _i < createDto.SoftSkill.length; _i++) {
+      const additionalskill = new AdditionalSkill();
+      additionalskill.UserId = UserID2;
+      additionalskill.SoftSkill  = createDto.SoftSkill[_i]; 
+      await this.AdditionalSkillRepository.save(additionalskill);
+    }
+    
+    const old_certificate = await this.CertificateRepository.find({UserId:UserID2});
+    for (var _i = 0; _i < old_certificate.length; _i++) {
+      await this.CertificateRepository.remove(old_certificate[_i]);
+    }
+    for (var _i = 0; _i < createDto.CertName.length; _i++) {
+      const certificate = new Certificate();
+      certificate.UserId = UserID2;
+      certificate.ResumeId = null;
+      certificate.CertName = createDto.CertName[_i]
+      certificate.CertPic = createDto.CertPic[_i]
+      certificate.CertYear = createDto.CertYear[_i]
+      await this.CertificateRepository.save(certificate);
+    }
+
+    const old_ED = await this.EducationHistoryRepository.find({UserId:UserID2});
+    for (var _i = 0; _i < old_ED.length; _i++) {
+      await this.EducationHistoryRepository.remove(old_ED[_i]);
+    }
+    for (var _i = 0; _i < createDto.Degree.length; _i++) {
+      const educationHistory = new EducationHistory();
+      educationHistory.UserId = UserID2;
+      educationHistory.Degree = createDto.Degree[_i];
+      educationHistory.Facalty = createDto.Facalty[_i];
+      educationHistory.Field_of_study = createDto.Field_of_study[_i];
+      educationHistory.Academy = createDto.Academy[_i];
+      educationHistory.Grade = createDto.Grade[_i];
+      educationHistory.Education_End_Year = createDto.Education_End_Year[_i];
+      await this.EducationHistoryRepository.save(educationHistory);
+    }
+
+
+    const old_WH = await this.WorkHistoryRepository.find({UserId:UserID2});
+    for (var _i = 0; _i < old_WH.length; _i++) {
+      await this.WorkHistoryRepository.remove(old_WH[_i]);
+    }
+    for (var _i = 0; _i < createDto.Work_JobName.length; _i++) {
+      const workHistory = new WorkHistory();
+      workHistory.UserId = UserID2;
+      workHistory.Work_JobName = createDto.Work_JobName[_i];
+      workHistory.Work_JobType = createDto.Work_JobType[_i];
+      workHistory.Company = createDto.Company[_i];
+      workHistory.Work_Start_Month = createDto.Work_Start_Month[_i];
+      workHistory.Work_End_Month = createDto.Work_End_Month[_i];
+      workHistory.Work_Start_Year = createDto.Work_Start_Year[_i];
+      workHistory.Work_End_Year = createDto.Work_End_Year[_i];
+      workHistory.Salary = createDto.Salary[_i]; 
+      workHistory.Infomation = createDto.Infomation[_i]; 
+      await this.WorkHistoryRepository.save(workHistory);
+    }
+
+    const old_IJ = await this.InterestedJobRepository.find({UserId:UserID2});
+    for (var _i = 0; _i < old_IJ.length; _i++) {
+      await this.InterestedJobRepository.remove(old_IJ[_i]);
+    }
+    for (var _i = 0; _i < createDto.Job_JobName.length; _i++) {
+      const interestedJob = new InterestedJob();
+      interestedJob.UserId = UserID2;
+      interestedJob.Job_Objective = createDto.Job_Objective[_i];
+      interestedJob.Job_Score = createDto.Job_Score[_i];
+      interestedJob.Job_JobName = createDto.Job_JobName[_i];
+      interestedJob.Job_SkillName = createDto.Job_SkillName[_i];
+      await this.InterestedJobRepository.save(interestedJob);
+    }
+    
+
+    return (this.accountRepository.save(account));
+    
+
   }
   
 }

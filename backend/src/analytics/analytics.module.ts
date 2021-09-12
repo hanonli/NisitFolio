@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AnalyticsController } from './analytics.controller';
-import { UserAdditionalSkillSchema, UserJobSkillSchema } from './analytics.schema';
+import { AdditionalSkillSchema, JobTitleSchema, UserAdditionalSkillSchema, UserJobSkillSchema } from './analytics.schema';
 import { AnalyticsService } from './analytics.service';
 
 @Module({
@@ -9,6 +9,8 @@ import { AnalyticsService } from './analytics.service';
     MongooseModule.forFeature([
       { name: 'UserAdditionalSkill', schema: UserAdditionalSkillSchema },
       { name: 'UserJobSkill', schema: UserJobSkillSchema },
+      { name: 'AdditionalSkill', schema: AdditionalSkillSchema },
+      { name: 'JobTitle', schema: JobTitleSchema },
     ]),
   ],
   controllers: [AnalyticsController],
