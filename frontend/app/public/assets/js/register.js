@@ -1,5 +1,5 @@
 /*For Javascript Desu*/
-console.log("Artty!");
+
 /*Tabs New*/
 $(function(){
     $('.tab-content').hide();
@@ -73,7 +73,7 @@ $(function(){
 $('#continue2').click(function () {    
   if(RequireCount_pass==1){     
     console.log('You Pass!');  
-    //PostRegis();
+    PostRegis();
     //window.location.pathname = '/emailverify'
     var bdd = $('#bdday').val() + '/' + $('#bdmonth').val() + '/' + $('#bdyear').val(); 
     const FormRegis2 = {
@@ -274,8 +274,8 @@ function checkPass() {
   textEntered2 = document.getElementById('pass06').value;
   checknow = textEntered1.length;
   if(textEntered2 == '') {
-    console.log('Password Typing...');
-    console.log('Length : ' + checknow);
+    //console.log('Password Typing...');
+    //console.log('Length : ' + checknow);
     if(checknow < min_pass_count){
       $('#pass05').removeClass('is-valid');
       $('#pass05').addClass('is-invalid');
@@ -314,7 +314,7 @@ function checkPass() {
   else {
     console.log('Password FALSE');
     /*$('#pass06').addClass('red_markEp2');*/
-    console.log('Length false : ' + checknow);
+    //console.log('Length false : ' + checknow);
     if(checknow < min_pass_count){
       $('#pass05').removeClass('is-valid');
       $('#pass05').addClass('is-invalid');
@@ -345,7 +345,7 @@ function countCharactersAbme() {
   textEntered = document.getElementById('aboutme2').value;  
   counter = (180 - (textEntered.length));
   countRemaining = document.getElementById('charactersRemaining'); 
-  console.log('Char left : ' + counter);
+  //console.log('Char left : ' + counter);
   countRemaining.textContent = counter;
   if(counter <= min_abme_count) {
     console.log('Warning!');
@@ -361,7 +361,7 @@ el.addEventListener('keyup', countCharactersAbme, false);
 $('.aboutmee').on('change', 'input', function(){
   var abme = $('.aboutmee').val();
   var abme_count = abme.length;
-  console.log('L : ' + abme_count);
+  //console.log('L : ' + abme_count);
   
 });
 
@@ -752,8 +752,8 @@ function GetDistrict(text){
           message:error
       })
   })
-  }
-  */
+  }*/
+  
   var DropdownsideskillChoice = {'Technical': ['CAD',
     'Lean manufacturing',
     'Multivariate analysis',
@@ -766,7 +766,8 @@ function GetDistrict(text){
     'Automated Billing Systems',
     'CRM Platforms',
     'Research',
-    'Troubleshooting'], Computer: ['Python','C']};
+    'Troubleshooting'],
+     Computer: ['Python','C']};
 
     $(function(){
       $('#ch1').on('change', function(){
@@ -800,44 +801,42 @@ function GetDistrict(text){
     });
     
     const FormRegis = {
-      Email:"rungnattayaporn40@gmail.com",
-      Password:"nattayaporn1234",
+      Email:"kohamatrio@gmail.com",
+      Password:"artty678",
       ProfilePic:"",
-      Privacy: "Public",
-      isEmailConfirmed: false,
-      Firstname:"Natty",
-      Lastname:"Koonwatty",
-      Birthday:"23/10/2000",
-      Gender:"หญิง",
-      AboutMe:"ลองpostปลอมๆนะครับผม อย่าได้นำพา งานยังไม่เสด ver2",
-      Email2nd:"",
+      Firstname:"Artty",
+      Lastname:"wannasleep",
+      Birthday:"26/10/1998",
+      Gender:"ชาย",
+      AboutMe:"สวัสดีครับ ผมชื่ออาร์ท อาร์ต อาต อาท จะเรียกไรก็เรียกเถอะครับ ตั้งใจมาเรียนคณะนี้เพราะชอบเขียนโค้ด เวลาว่างชอบไปตีปิงปองแล้วก็เที่ยวกับเพื่อนครับ",
+      Email2nd:"artty678@gmail.com",
       Country:"ประเทศไทย",
-      Province:"สุรินทร์",
+      Province:"จันทบุรี",
       City:"ในเมือง",
       SoftSkill:["Web","Painting","C"],
-      CertName:["ชนะเลิศการแข่งขันท่องสูตรคูณแห่งชาติ","รองชนะเลิศการแข่งขันปิงปองพาราลิมปิก"],
-      CertPic:["pic11","pic21"],
-      CertYear:[2009,2013],
+      CertName:["ชนะเลิศการแข่งขันจีบสาวแห่งชาติ","รองชนะเลิศการแข่งขันปิงปองโอลิมปิก","ชนะเลิศการแข่งขันเขียนโค้ดความเร็วแสง"],
+      CertPic:["picart11","picart2","picart3"],
+      CertYear:[2016,2013,2018],
       Degree:["ปริญญาตรี"],
-      Facalty:["วิทยาศาสตร์"],
+      Facalty:["วิศวกรรมศาสตร์"],
       Field_of_study:["คอมพิวเตอร์"],
       Academy:["มหาวิทยาลัยเกษตรศาสตร์ บางเขน"],
-      Grade:[2.55],
+      Grade:[2.98],
       Education_Start_Year:[2019],
       Education_End_Year:[],
-      Work_JobName:[],
-      Work_JobType:[],
-      Company:[],
-      Work_Start_Month:[],
-      Work_End_Month:[],
-      Work_Start_Year:[],
-      Work_End_Year:[],
-      Salary:[],
-      Infomation:[],
-      Job_Objective:["อยากได้หัวหน้าที่ไม่กดขี่ลูกน้อง"],
-      Job_Score:[],
-      Job_JobName:[],
-      Job_SkillName:[]
+      Work_JobName:["นักพัฒนาเกม","โปรแกรมเมอร์","ยูทูปเบอร์"],
+      Work_JobType:["ฟรีแลนซ์","พนักงานบริษัท","ธุรกิจส่วนตัว",],
+      Company:["Artty FL","Nisitfolio","WriteCodeWithArtty Channel"],
+      Work_Start_Month:[4,5,6],
+      Work_End_Month:[4,5,6],
+      Work_Start_Year:[2013,2016,2019],
+      Work_End_Year:[2015,2018,2020],
+      Salary:[45000,28000,38000],
+      Infomation:["เหนื่อยแต่เงินดี","ใช้แรงงานเยี่ยงทาสแต่ไม่คุ้มเท่าไหร่","เป็นเจ้านายตัวเอง ทำงานตามใจฉัน"],
+      Job_Objective:["อยากได้งานทีละงานที่มีเดดไลน์ชัดเจน","ไม่ทักเรื่องงานในวันหยุด","สวัสดิการดี"],
+      Job_Score:[[9,10,8.8]],
+      Job_JobName:["โปรแกรมเมอร์"],
+      Job_SkillName:["C","JQuery","HTML"]
   }
     
     

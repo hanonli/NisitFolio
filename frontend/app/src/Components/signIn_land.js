@@ -57,6 +57,7 @@ class SignInLand extends React.Component {
         }
         else {
             console.log(`nha hee`);
+            alert("ผู้ใช้หรือรหัสผ่านที่คุณป้อนไม่ถูกต้อง");
             this.setState({ id_form: "inputform2_error" });
         }
     }
