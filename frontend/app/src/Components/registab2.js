@@ -1,28 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react'
 
 class Registab2 extends React.Component {
-
-	constructor(props) {
-		super(props);
-		this.handleLoad = this.handleLoad.bind(this);
-	 }
-	
-	componentDidMount() {
-		window.addEventListener('load', this.handleLoad);
-		console.log("YEAHXXX!");
-		const script = document.createElement("script");
-		script.src = "assets/js/register.js";
-		document.body.appendChild(script);
-		
-	}
-	
-	componentWillUnmount() { 
-	   window.removeEventListener('load', this.handleLoad)  
-	}
-	
-	handleLoad() {
-		console.log("YEAH!");
-	 }
 
 	render (){
 		return (
@@ -48,7 +26,7 @@ class Registab2 extends React.Component {
 										</select>
 									</div>
 									<div class="col-md-3">
-										<select class="form-select dropbtn margin-bottom1 fff" id="town">
+										<select class="form-select dropbtn margin-bottom1 fff" id="townny">
 											<option selected disabled value="">เมือง</option>
 										</select>
 									</div>
@@ -58,7 +36,7 @@ class Registab2 extends React.Component {
 								</div>
 								<div class="row-3">
 									<div class="col-md-9">
-										<textarea type="text" class="form-control aboutmee margin-bottom1" id="aboutme2" placeholder="บอกเล่าเกี่ยวกับตัวเองสั้นๆ"></textarea>
+										<textarea type="text" class="form-control aboutmee margin-bottom2" id="aboutme2" placeholder="บอกเล่าเกี่ยวกับตัวเองสั้นๆ"></textarea>
 										<div id="charactersRemaining">180 characters</div>
 									</div>
 								</div>

@@ -6,8 +6,16 @@ import DataHeader from './Components/dataHeader';
 import reportWebVitals from './reportWebVitals';
 import { Link } from "react-router-dom";
 
-/* NOT AVALIABLE TO TEST RIGHT NOW BC DONT HAVE PATH TO LINK WITH*/
 class Emailverify extends React.Component {
+
+	componentDidMount() {
+		window.addEventListener('load', this.handleLoad);
+		console.log("YEAHXXX!");
+		const script = document.createElement("script");
+		script.src = "assets/js/register2.js";
+		document.body.appendChild(script);
+	}
+
 	render (){
 		return (
 			<div className="Emailverify">
@@ -32,11 +40,9 @@ class Emailverify extends React.Component {
 					<div class="emailpic">
 						<img class="img-fluid" data-bs-placement="top" title="ส่งอีเมลล์ยืนยันแล้ว" src="assets/images/mail.png" alt="" width="150" height="150"/>	
 					</div>
-					<Link to="/successregis">
-						<div class="col">
-							<a class="btn btn-cta-primary-yellowwideE round profile-button" href="#" target="_blank">ส่งใหม่อีกครั้ง</a>
-						</div>
-					</Link>
+					<div class="col">
+						<a class="btn btn-cta-primary-yellowwideE round profile-button" href="#" id='resendEmail' target="_blank">ส่งใหม่อีกครั้ง</a>
+					</div>
 				</div>
 			</div>
 		);

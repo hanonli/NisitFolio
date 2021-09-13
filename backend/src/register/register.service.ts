@@ -59,7 +59,7 @@ export class RegisterService {
     const account = new Account(); 
     account.Email = createDto.Email;
     account.Password = Md5.hashStr(createDto.Password);
-    account.ProfilePic = createDto.ProfilePic; 
+    account.ProfilePic = createDto.ProfilePic;
     account.Privacy = "Public";
     account.isEmailConfirmed = false;
 
