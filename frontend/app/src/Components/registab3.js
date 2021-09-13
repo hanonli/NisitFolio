@@ -3,60 +3,108 @@ import Registab3_addHigher from './registab3_addHigher';
 import Registab3_addSecondary from './registab3_addSecondary';
 import './register.css'
 import './registab3.css'
-import './registab3_script'
 
+const initialstate = {
+    HigherAcademy: '',
+    HigherDegree: '',
+    HigherEndYear: '',
+    HigherFaculty: '',
+    HigherFieldofStudy: '',
+    HigherGrade: '',
+    SecondaryAcademy: '',
+    SecondaryDegree: '',
+    SecondaryEndYear: '',
+    SecondaryFaculty: '-',
+    SecondaryFieldofStudy: '',
+    SecondaryGrade: '',
+}
 
-const Registab3 = () => {
+class Registab3 extends React.Component {
+    constructor(props) {
+		super(props);
+        this.state = initialstate;
+      
+        this.setHigherAcademy = this.setHigherAcademy.bind(this);
+        this.setHigherDegree = this.setHigherDegree.bind(this);
+        this.setHigherEndYear = this.setHigherEndYear.bind(this);
+        this.setHigherFaculty = this.setHigherFaculty.bind(this);
+        this.setHigherFieldofStudy = this.setHigherFieldofStudy.bind(this);
+        this.setHigherGrade = this.setHigherGrade.bind(this);
+        this.handleHigherSubmit = this.handleHigherSubmit.bind(this);
+        this.setSecondaryAcademy = this.setSecondaryAcademy.bind(this);
+        this.setSecondaryDegree = this.setSecondaryDegree.bind(this);
+        this.setSecondaryEndYear = this.setSecondaryEndYear.bind(this);
+        this.setSecondaryFaculty = this.setSecondaryFaculty.bind(this);
+        this.setSecondaryFieldofStudy = this.setSecondaryFieldofStudy.bind(this);
+        this.setSecondaryGrade = this.setSecondaryGrade.bind(this);
+        this.handleSecondarySubmit = this.handleSecondarySubmit.bind(this);
+	 }
+	 
+    setHigherAcademy = (e) => {
+        this.setState({HigherAcademy : e.target.value});
+    }
+    setHigherDegree = (e) =>{
+        this.setState({HigherDegree : e.target.value});
+    }
+    setHigherEndYear= (e) =>{
+        this.setState({HigherEndYear: e.target.value});
+    }
+    setHigherFaculty = (e) =>{
+        this.setState({HigherFaculty: e.target.value});
+    }
+    setHigherFieldofStudy = (e) =>{
+        this.setState({ HigherFieldofStudy : e.target.value});
+    }
+    setHigherGrade = (e) =>{
+        this.setState({HigherGrade : e.target.value});
+    }
 
-        const handleSubmitHigher = (e) => {
-            e.preventDefault();
-			const FormHigher = {HigherAcademy , HigherDegree , HigherEndYear , HigherFaculty ,HigherFieldofStudy ,HigherGrade};
+    setSecondaryAcademy = (e) => {
+        this.setState({SecondaryAcademy : e.target.value});
+    }
+    setSecondaryDegree = (e) =>{
+        this.setState({SecondaryDegree : e.target.value});
+    }
+    setSecondaryEndYear= (e) =>{
+        this.setState({SecondaryEndYear: e.target.value});
+    }
+    setSecondaryFaculty = (e) =>{
+        this.setState({SecondaryFaculty: e.target.value});
+    }
+    setSecondaryFieldofStudy = (e) =>{
+        this.setState({ SecondaryFieldofStudy : e.target.value});
+    }
+    setSecondaryGrade = (e) =>{
+        this.setState({SecondaryGrade : e.target.value});
+    }
+    handleHigherSubmit(){
+        // console.log(this.state)
+        // //Clearing data
+        // this.state = initialstate;
+        // document.getElementById("HigherForm").reset();
+        // console.log(this.state)
+    }
+    handleSecondarySubmit(){
 
-			fetch('http://localhost:2000/educationhistory',{
-				method: 'Post',
-				headers: {"Content-Type" : "application/json"},
-				body: JSON.stringify(FormHigher)
-			}).then(() => {
-				console.log('FormHigher added')
-			})
-            alert('FormHigher added')
-            alert(`You just submit a Form \n data = ${JSON.stringify(FormHigher)}`)
+        // //Clearing data
+        // this.state = initialstate;
+        // document.getElementById("SecondaryForm").reset();
+    }
 
-		}
-
-        const [HigherDegree , setHigherDegree] = useState();
-        const [HigherAcademy, setHigherAcademy] = useState('');
-        const [HigherFaculty , setHigherFaculty] = useState('');
-        const [HigherFieldofStudy , setHigherFieldofStudy] = useState('');
-        const [HigherGrade , setHigherGrade] = useState('');
-        const [HigherEndYear , setHigherEndYear] = useState('');
+	componentDidMount() {
+		window.addEventListener('load', this.handleLoad);
+        console.log('from registab3, Mounted')
+		const script = document.createElement("script");
+		script.src = "assets/js/registab3_script.js";
+        document.body.appendChild(script);
 		
-		
-        const handleSubmitSecondary = (e) => {
-            e.preventDefault();
-			const FormSecondary = {SecondaryAcademy , SecondaryDegree , SecondaryEndYear , SecondaryFaculty , SecondaryFieldofStudy , SecondaryGrade}
+	}
+	
+	componentWillUnmount() { 
+	   window.removeEventListener('load', this.handleLoad)  
+	}
 
-			fetch('http://localhost:2000/educationhistory',{
-				method: 'Post',
-				headers: {"Content-Type" : "application/json"},
-				body: JSON.stringify(FormSecondary)
-			}).then(() => {
-				console.log('FormSecondary added')
-                
-			})
-            alert(`You just submit a Form \n data = ${JSON.stringify(FormSecondary)}`)
-            
-		}
-
-        const [SecondaryDegree , setSecondaryDegree] = useState('');
-        const [SecondaryAcademy, setSecondaryAcademy] = useState('');
-        const [SecondaryFaculty , setSecondaryFaculty] = useState('-');
-        const [SecondaryFieldofStudy , setSecondaryFieldofStudy] = useState('');
-        const [SecondaryGrade , setSecondaryGrade] = useState('');
-        const [SecondaryEndYear , setSecondaryEndYear] = useState('');
-        
-		
-
+	render(){
 
 		return (
 			<div className="Registab3 regis-box-content">
@@ -66,7 +114,7 @@ const Registab3 = () => {
 								<div className='registab3_formbox col-5'>
 									<h1>อุดมศึกษา</h1>
 									<div className='registab3_btnplus'>
-										<button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#registab3Modal1">
+										<button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#registab3Modal1" >
 											<img id='icon-plus-circle'  src="assets/images/+.png"></img>
 										</button>
 									</div>
@@ -82,7 +130,7 @@ const Registab3 = () => {
                 <form  id='HigherForm'>
                     <div class='col-3' >
                         <div class="selectDropdown">
-                            <select class="form-select form-select-lg dropbtn margin-bottom1 fff" id='regis3_selectdropdown1' aria-labelledby="select1" value={HigherDegree} onChange={ (e) => setHigherDegree(e.target.value)} required>
+                            <select class="form-select form-select-lg dropbtn margin-bottom1 fff" id='regis3_selectdropdown1' aria-labelledby="select1"  onChange={this.setHigherDegree} required>
                                 <option selected disabled value='None'>เลือกวุฒิการศึกษา*</option>
                                 <option value='ปริญญาเอก'>ปริญญาเอก</option>    
                                 <option value='ปริญญาโท'>ปริญญาโท</option>
@@ -95,15 +143,15 @@ const Registab3 = () => {
                     </div>
                     <div class='row'>
                         <div class="col-6 ">
-                            <input type="text" class="form-control dropbtn margin-bottom1 " id="ValidationUniversityFeedback" placeholder="สถานศึกษา*" value={HigherAcademy} onChange={ (e) => setHigherAcademy(e.target.value)} required></input>
+                            <input type="text" class="form-control dropbtn margin-bottom1 " id="ValidationUniversityFeedback" placeholder="สถานศึกษา*" defaultValue={this.state.HigherAcademy} onBlur={this.setHigherAcademy} required></input>
                         </div>
                         <div class="col-6">
-                            <input type="text" class="form-control dropbtn margin-bottom1 " id="ValidationFacultyFeedback" placeholder="คณะ*" value={HigherFaculty} onChange={ (e) => setHigherFaculty(e.target.value)} required></input>
+                            <input type="text" class="form-control dropbtn margin-bottom1 " id="ValidationFacultyFeedback" placeholder="คณะ*" defaultValue={this.state.HigherFaculty} onBlur={this.setHigherFaculty} required></input>
                         </div>
                     </div>
                     <div class='row'>
                         <div class="col-6   ">
-                            <input type="text" class="form-control dropbtn margin-bottom1 " id="ValidationAreaFeedback"  placeholder='สาขาวิชา' value={HigherFieldofStudy} onChange={ (e) => setHigherFieldofStudy(e.target.value)} required></input>
+                            <input type="text" class="form-control dropbtn margin-bottom1 " id="ValidationAreaFeedback"  placeholder='สาขาวิชา' defaultValue={this.state.HigherFieldofStudy} onBlur={this.setHigherFieldofStudy} required></input>
                         </div>
                         <div class="col-6">
                             <div class='row'>
@@ -111,7 +159,7 @@ const Registab3 = () => {
                                     <h5 id='registab4_textGrade' type='number' >เกรดเฉลี่ยรวม*</h5>
                                 </div>
                                 <div class='col-4 ms-auto'> 
-                                    <input type="text" class="form-control dropbtn margin-bottom1 " id="ValidationGradeFeedback" placeholder="XX.X" value={HigherGrade} onChange={ (e) => setHigherGrade(e.target.value)} required></input>
+                                    <input type="text" class="form-control dropbtn margin-bottom1 " id="ValidationGradeFeedback" placeholder="XX.X" defaultValue={this.state.HigherGrade} onBlur={this.setHigherGrade} required></input>
                                 </div>
                             </div>
                         </div>
@@ -119,7 +167,7 @@ const Registab3 = () => {
                     
                     <div class='col-3' >
                         <div class="selectDropdown">
-                            <select class="form-select form-select-lg dropbtn_year margin-bottom1 fff" id='year_higher' aria-labelledby="select1" value={HigherEndYear} onChange={ (e) => setHigherEndYear(e.target.value)} required>
+                            <select class="form-select form-select-lg dropbtn_year margin-bottom1 fff" id='year_higher' aria-labelledby="select1" defaultValue={this.state.HigherEndYear} onChange={this.setHigherEndYear} required>
                                 <option selected disabled value=''>ปีที่จบการศึกษา</option>
                                 <option>กำลังศึกษา</option>
                             </select>
@@ -133,7 +181,7 @@ const Registab3 = () => {
 												<div class='modal-footer'>
 													<div class="centerverify">
 														<button type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</button>
-														<button type="button" class="btn btn-cta-primary-yellowshort profile-button round" onClick={handleSubmitHigher} data-bs-dismiss='modal' id='regis3_HigherConfirm' >ตกลง</button>
+														<button type="button" class="btn btn-cta-primary-yellowshort profile-button round" onClick={this.handleHigherSubmit}  id='regis3_HigherConfirm' >ตกลง</button>
 													</div>
 												</div>
 
@@ -161,8 +209,8 @@ const Registab3 = () => {
                 <form  id='SecondaryForm'>
                     <div class='col-5' >
                         <div class="selectDropdown">
-                            <select class="form-select form-select-lg dropbtn margin-bottom1 fff" id='regis3_selectdropdown2' aria-labelledby="select1"  value={SecondaryDegree} onChange={ (e) => setSecondaryDegree(e.target.value)} required>
-                                <option selected disabled value='เลือกวุฒิการศึกษา<'>เลือกวุฒิการศึกษา</option>
+                            <select class="form-select form-select-lg dropbtn margin-bottom1 fff" id='regis3_selectdropdown2' aria-labelledby="select1"   onChange={this.setSecondaryDegree} required>
+                                <option selected disabled value=''>เลือกวุฒิการศึกษา</option>
                                 <option value='มัธยมศึกษาปีที่ 1' >มัธยมศึกษาปีที่ 1</option>    
                                 <option value='มัธยมศึกษาปีที่ 2' >มัธยมศึกษาปีที่ 2</option>
                                 <option value='มัธยมศึกษาปีที่ 3' >มัธยมศึกษาปีที่ 3</option>
@@ -174,12 +222,12 @@ const Registab3 = () => {
                     </div>
                     <div class='row'>
                         <div class="col-12 ">
-                            <input type="text" class="form-control dropbtn margin-bottom1 " id="ValidationSchoolFeedback" placeholder="สถานศึกษา*" value={SecondaryAcademy} onChange={ (e) => setSecondaryAcademy(e.target.value)} required></input>
+                            <input type="text" class="form-control dropbtn margin-bottom1 " id="ValidationSchoolFeedback" placeholder="สถานศึกษา*" value={this.state.SecondaryAcademy} onChange={this.setSecondaryAcademy} required></input>
                         </div>
                     </div>
                     <div class='row'>
                         <div class="col-8 ">
-                            <input type="text" class="form-control dropbtn margin-bottom1 " id="ValidationCourseFeedback"  placeholder='หลักสูตร/แผนการเรียน' value={SecondaryFieldofStudy} onChange={ (e) => setSecondaryFieldofStudy(e.target.value)}required></input>
+                            <input type="text" class="form-control dropbtn margin-bottom1 " id="ValidationCourseFeedback"  placeholder='หลักสูตร/แผนการเรียน' value={this.state.SecondaryFieldofStudy} onChange={this.setSecondaryFieldofStudy}required></input>
                         </div>
                         <div class="col-4">
                             <div class='row'>
@@ -187,7 +235,7 @@ const Registab3 = () => {
                                     <h5 id='registab4_textGrade'>เกรดเฉลี่ยรวม</h5>
                                 </div>
                                 <div class='col-7 ms-auto'> 
-                                    <input type="text" class="form-control dropbtn margin-bottom1 " id="ValidationGradeFeedback" placeholder="XX.X" value={SecondaryGrade} onChange={ (e) => setSecondaryGrade(e.target.value)} required></input>
+                                    <input type="text" class="form-control dropbtn margin-bottom1 " id="ValidationGradeFeedback" placeholder="XX.X" value={this.state.SecondaryGrade} onChange={this.setSecondaryGrade} required></input>
                                 </div>
                             </div>
                         </div>
@@ -195,7 +243,7 @@ const Registab3 = () => {
 
                     <div class='col-3' >
                         <div class="selectDropdown">
-                            <select class="form-select form-select-lg dropbtn_year margin-bottom1 fff" id='year_secondary' aria-labelledby="select1" value={SecondaryEndYear} onChange={ (e) => setSecondaryEndYear(e.target.value)} required>
+                            <select class="form-select form-select-lg dropbtn_year margin-bottom1 fff" id='year_secondary' aria-labelledby="select1" value={this.state.SecondaryEndYear} onChange={this.setSecondaryEndYear} required>
                                 <option selected disabled value=''>ปีที่จบการศึกษา</option>
                                 <option>กำลังศึกษา</option>
                             </select>
@@ -209,7 +257,7 @@ const Registab3 = () => {
 												<div class='modal-footer'>
 													<div class="centerverify">
 														<button type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</button>
-														<button type="button" class="btn btn-cta-primary-yellowshort profile-button round" onClick={handleSubmitSecondary} data-bs-dismiss='modal'>ตกลง</button>
+														<button type="button" class="btn btn-cta-primary-yellowshort profile-button round"  onClick={this.handleSecondarySubmit} data-bs-dismiss='modal'>ตกลง</button>
 													</div>
 												</div>
 
@@ -229,6 +277,6 @@ const Registab3 = () => {
 			
 		);
 	}
-
+}
 
 export default Registab3;
