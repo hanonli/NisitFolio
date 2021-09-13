@@ -91,15 +91,6 @@ class Registab3 extends React.Component {
         // document.getElementById("SecondaryForm").reset();
     }
 
-	componentDidMount() {
-		window.addEventListener('load', this.handleLoad);
-        console.log('from registab3, Mounted')
-		const script = document.createElement("script");
-		script.src = "assets/js/registab3_script.js";
-        document.body.appendChild(script);
-		
-	}
-	
 	componentWillUnmount() { 
 	   window.removeEventListener('load', this.handleLoad)  
 	}

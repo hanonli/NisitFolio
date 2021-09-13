@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Navbar from './Components/navbar';
-import ProfileHeader from './Components/profileHeader';
 import MyResumeContent from './Components/myresumeContent';
 import reportWebVitals from './reportWebVitals';
 
@@ -33,7 +32,6 @@ class MyResume extends React.Component {
 		return (
 			<div className="Home">
 				<Navbar />
-				<ProfileHeader />
 				<MyResumeContent />
 			</div>
 		);

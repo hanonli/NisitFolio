@@ -70,7 +70,7 @@ $(function(){
  });
 
 /*Tab1*/
-$('#continue2').click(function () {    
+/*$('#continue2').click(function () {    
   if(RequireCount_pass==1){     
     console.log('You Pass!');  
     PostRegis();
@@ -98,7 +98,7 @@ $('#continue2').click(function () {
     $('#tab-1').addClass('tab-list-active')
     $('#registab1-content').show();
   }
-});
+});*/
 
 var startYear = 1950;
 var endYear = new Date().getFullYear();
