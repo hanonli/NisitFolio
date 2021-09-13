@@ -136,7 +136,7 @@ export class AnalyticsService {
 
     array['InterestedJobs'] = THnameJobs ;
 
-    const mySkills = await this.UserJobSkillModel.find({ userId: userId }).select({ SkillName: 1 , _id: 0 }).distinct('SkillName');
+    const mySkills = await this.UserJobSkillModel.find({ userId: userId }).select({ SkillName: 1 , _id: 0 }).distinct('SkillName').exec();
     array['mySkills'] = mySkills;
 
     for (var job of InterestedJobs) {
@@ -160,39 +160,48 @@ export class AnalyticsService {
                           }
                         }
       ])
-      console.log(SumSkill) ;
+      //console.log(SumSkill) ;
       let numberOfUsers = userList.length ;
       array[job] = {numberOfUsers: numberOfUsers} ;
+      let countTop = 0 ;
       let temp = [] ;
       for (var i of SumSkill){ 
-        // console.log(i) ;
         const _name = i._id.SkillName ;
         const _sum = i.total ;
         const mean = i.mean ;
-        
-        // ---------- AllUser Score --------------//
-        const AllUser = await this.UserJobSkillModel.find({JobName: job, SkillName: _name}).sort({ Score: 1 }) ;
-        
-        let AllScore = [] ;
-        let UserScore = null ;
-        let sum = 0 ;
-        let n = 0 ;
-        console.log(AllUser) ;
-        for (var j of AllUser) {
-          if (userId.equals(j.userId)) { 
-            UserScore = j.Score ;
+        if ( countTop <= 2 || mySkills.includes(_name) ) {  
+          // ---------- AllUser Score --------------//
+          const AllUser = await this.UserJobSkillModel.find({JobName: job, SkillName: _name}).sort({ Score: 1 }).exec() ;
+          
+          let AllScore = [] ;
+          let UserScore = null ;
+          let n = 0 ;
+          //console.log(AllUser) ;
+          for (var j of AllUser) {
+            if (userId.equals(j.userId)) { 
+              UserScore = j.Score ;
+            }
+            AllScore.push(j.Score) ;
+            n += 1 ;
           }
-          AllScore.push(j.Score) ;
-          sum += j.Score ;
-          n += 1 ;
+          const detailList = find_mode(AllScore) ;
+          const newAllScore = detailList[0]
+          const count = detailList[1] ;
+          const mode = detailList[2] ;
+          
+          // console.log(_name);
+          // console.log(_sum);
+          temp.push({SkillName: _name, total: _sum, "AllScore": newAllScore, "UserScore": UserScore, "Count": count,"Mean": mean, "Mode": mode, percentage: n/numberOfUsers*100}) ;
         }
-        
-        // console.log(_name);
-        // console.log(_sum);
-        temp.push({SkillName: _name, total: _sum, "AllScore": AllScore, "UserScore": UserScore,"Mean": mean, percentage: n/numberOfUsers*100}) ;
+        else { 
+          temp.push({SkillName: _name, total: _sum, "Mean": mean})
+        }
+        countTop ++ ;
       }
       array[job]['List'] = temp ;
     }
+
+    // ----------------------------------------- Overview -------------------------------------------------
 
     const users = await this.UserJobSkillModel.find( {JobName: { "$in" : InterestedJobs }} ).select({ userId: 1, _id: 0 }).distinct('userId');
     const numberOfUsers = users.length;
@@ -204,23 +213,50 @@ export class AnalyticsService {
       { 
         $group: { 
           _id: { SkillName: "$SkillName" }, 
-          total: { $sum: 1 }
+          mean: { $avg: "$Score"} ,
+          total: { $sum: 1 },
         }
       },
       { 
         $sort: { total: -1 , _id: 1 },
-      }
+      },
     ])
     let temp2 = [] ;
     let percentage = 0 ;
+    
+    let countTop = 0 ;
     for (var i of New) {
-      percentage = i.total/numberOfUsers*100 ;
-      temp2.push({"SkillName": i._id.SkillName, "total": i.total,  "percentage": percentage}) ;
+      const Skill = i._id.SkillName ;
+      const total = i.total ;
+      const AllUserScore = await this.UserJobSkillModel.find( { JobName: { "$in": InterestedJobs }, SkillName: Skill } ).select({ userId: 1, Score: 1, _id: 0 }).sort({Score: 1}) ;
+      //console.log(AllUserScore) ;
+      let AllScore = [] ;
+      let UserScore = null ;
+      if (countTop <= 2 || mySkills.includes(Skill)) {
+        countTop += 1 ;
+        for (var obj of AllUserScore) {
+          // console.log(obj.Score) ;
+          // console.log(obj.userId) ;
+          AllScore.push(obj.Score) ;
+          if (userId.equals(obj.userId)) {
+            UserScore = obj.Score ;
+          }
+        }
+        const details = find_mode(AllScore) ;
+        const newAllScore = details[0] ;
+        const count = details[1] ;
+        const mode = details[2] ;
+        percentage = total/numberOfUsers*100 ;
+        temp2.push({"SkillName": Skill, "total": total, "AllScore": newAllScore, "UserScore": UserScore, "Count": count, "Mean": i.mean, "Mode": mode, "percentage": percentage}) ;
+      }
+      else {
+        temp2.push({ "SkillName": Skill, "total": total, "Mean": i.mean })
+      }
     }
     array["Overview"] = {};
     array['Overview']['numberOfUser'] = numberOfUsers ;
     array['Overview']['List'] = temp2 ; 
-    console.log(New) ;
+    //console.log(New) ;
     //console.log(array);
     return array ;
   }
@@ -240,11 +276,17 @@ function find_mode( arr: any[] ): any {
     const num = arr[i].toFixed(2);
     if(count.hasOwnProperty(num)){
       count[num]++;
-      if(count[num]>max_count)
-        max_count = count[num];
     }
-    else
-      count[num]=1;
+    else count[num]=1;
+    if(count[num]>max_count)
+      max_count = count[num];
+  }
+
+  let Score = [] ;
+  let freq = [] ;
+  for ( const num in count ) {
+    Score.push(parseFloat(num)) ;
+    freq.push(count[num])
   }
 
   let mode=[];
@@ -259,5 +301,5 @@ function find_mode( arr: any[] ): any {
       break;
     }
   }
-  return [count, mode];
+  return [Score, freq, mode];
 }
