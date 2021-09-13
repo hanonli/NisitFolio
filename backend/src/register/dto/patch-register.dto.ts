@@ -1,38 +1,23 @@
 import { IsEmail, IsNotEmpty, IsNumberString } from 'class-validator';
 
-export class EditProfileDto2 {
+export class PatchRegisDto {
 
-  @IsNotEmpty()
-  @IsEmail()
-  Email: string;
-
-  @IsNotEmpty()
-  Old_Password: string;
-
-  New_Password:string;
-
-  New_Password_again:string;
+  Password: string;
 
   ProfilePic: string;
 
   Privacy: string;
 
-  //isEmailConfirmed: boolean;
-
-  @IsNotEmpty()
   Firstname: string;
   
-  @IsNotEmpty()
   Lastname: string;
-  
-  @IsNotEmpty()
+
   Birthday: string;
 
   AboutMe: string;
 
   Email2nd: string;
 
-  @IsNotEmpty()
   Gender: string;
 
   Country: string;
@@ -41,17 +26,14 @@ export class EditProfileDto2 {
 
   City: string;
 
-  @IsNotEmpty()
   SoftSkill: string[];
 
-  @IsNotEmpty()
   CertName: string[];
 
   CertPic: string[];
 
   CertYear: number[];
 
-  @IsNotEmpty()
   Degree: string[];
 
   Facalty: string[];
@@ -64,7 +46,6 @@ export class EditProfileDto2 {
 
   Education_End_Year: number[];   
 
-  @IsNotEmpty()
   Work_JobName: string[];
 
   Work_JobType: string[];
@@ -83,16 +64,13 @@ export class EditProfileDto2 {
 
   Infomation: string[];
 
-  Job_Objective: string[];
-
-  Job_Score: Float32Array[];
-
-  @IsNotEmpty()
   Job_JobName: string[];
 
-  Job_SkillName: string[];
+  Job_Objective: string[][];
 
-  /*@OneToMany(type => CreateDto3, ED => ED)
-  ED: CreateDto3[];*/
+  Job_Score: Float32Array[][];
+
+  Job_SkillName: string[][];
+
  
 }
