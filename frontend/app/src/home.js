@@ -84,7 +84,7 @@ class Home extends React.Component {
 										<h1 class="name" id="fetch-name"></h1>
 										<div id="tags-container">
 										</div>
-									<h2 class="desc-s" id="fetch-desc">I'm an ordinary guy who wants to be a great developer. However, one day I met another guy named Fa_ and I realize that he has already achieved my dream.</h2> 
+									<h2 class="desc-s" id="fetch-desc"> </h2> 
 									</div>
 								</div>
 								<div class="col-md-5">
