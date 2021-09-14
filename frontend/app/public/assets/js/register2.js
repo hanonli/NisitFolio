@@ -16,3 +16,8 @@ AAA.addEventListener('change', function(){
 $('#continue1').click(function () {           
   window.location.pathname = '/register'
 });
+
+/*emailvrify*/
+$('#resendEmail').click(function () {           
+  setInterval('window.location.pathname = "/successregis"', 3000);
+});
