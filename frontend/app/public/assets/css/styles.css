@@ -30,16 +30,28 @@ mf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 18px; font-wei
 	line-height: 1.2;
 }
 
-.iAnalytic-red{
+.iAnalytic-green{
 	color: rgba(1, 184, 170, 1);
 }
 
-.iAnalytic-green{
+.iAnalytic-red{
 	color: rgba(253, 98, 94, 1);
 }
 
 .iAnalytic-Yellow{
 	color: rgba(242, 200, 15, 1);
+}
+
+.iAnalytic-purple{
+	color:rgba(166, 105, 153, 1);
+}
+
+.iAnalytic-azure{
+	color:rgba(138, 212, 235, 1);
+}
+
+.iAnalytic-orange{
+	color:rgba(254, 150, 102, 1);
 }
 
 .iAnalytic-Other{
@@ -159,7 +171,18 @@ mf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 18px; font-wei
 }
 
 .yahaha5{
-	height: 40vh;
+	height: 50vh;
+}
+
+.yahaha36{
+	position: relative;
+	top: -60px; 
+	transition: all 0.2s;
+}
+
+.yahaha37{
+	position: relative;
+	top: -40px; 
 }
 
 .yahaha6{
@@ -321,7 +344,7 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 
 .header2 {
   padding: 30px 0;
-  background: grey;
+  background: #C2C2C2;
   /*border-top: 1px solid #778492;*/
 }
 
@@ -348,6 +371,12 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 .not-found-icon{
 	width:10vw; 
 	height:10vw;
+	display: block;
+}
+
+.not-found-icon-mini{
+	width:6vw; 
+	height:6vw;
 	display: block;
 }
 
@@ -443,7 +472,7 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 
 .yahaha18{
 	position: relative;
-	top: 0px; 
+	top: 3vh; 
 	transition: all 0.2s;
 }
 
@@ -463,7 +492,7 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 }
 
 .yahaha22{
-	height: 48.5vh;
+	height: 38.5vh;
 }
 
 .yahaha25{
@@ -473,6 +502,10 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 
 .yahaha26{
 	margin-left: -0.6vw;
+}
+
+.yahaha35{
+	height: 28vh;
 }
 
 .yahaha27{
@@ -493,6 +526,14 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 	display: none;
 	transform: scale(0.0);
 	transition: all 0.2s;
+}
+
+.hard-pv-2{
+	display: none;
+}
+
+.hard-pv-3{
+	display: none;
 }
 
 .hard-ct1{
@@ -612,6 +653,10 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 }
 
 .skill-not-found{
+	display: none;
+}
+
+.hidden-tab{
 	display: none;
 }
 
