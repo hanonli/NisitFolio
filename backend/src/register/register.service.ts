@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable ,HttpException,HttpStatus,BadRequestException} from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Md5 } from 'ts-md5/dist/md5';
@@ -56,14 +56,20 @@ export class RegisterService {
   ) {}
   async createRegis(createDto: CreateRegisDto)
   {
+    const time =  new Date();
+    const isoTime = time.toLocaleDateString('th-TH',{ year:'numeric',month: 'long',day:'numeric',hour:"2-digit",minute:"2-digit"});
     const account = new Account(); 
     account.Email = createDto.Email;
-    account.Password = Md5.hashStr(createDto.Password);
+    account.Password = [Md5.hashStr(createDto.Password)];
     account.ProfilePic = createDto.ProfilePic; 
     account.Privacy = "Public";
     account.isEmailConfirmed = false;
+    account.create_time =  isoTime;
+    account.last_modified =  [isoTime] ;
+    account.last_login = null;
 
-    const accountid = (await this.accountRepository.save(account))._id
+    const accountid = (await this.accountRepository.save(account))._id.toString()
+    
     const userinfo = new Userinfo();
     userinfo.UserId = accountid;
     userinfo.Firstname = createDto.Firstname;
@@ -75,11 +81,16 @@ export class RegisterService {
     userinfo.Country = createDto.Country;
     userinfo.Province = createDto.Province;
     userinfo.City = createDto.City;
+    userinfo.create_time = isoTime ;
+    userinfo.last_modified =  [isoTime] ;
 
     for (var _i = 0; _i < createDto.SoftSkill.length; _i++) {
       const additionalskill = new AdditionalSkill();
       additionalskill.UserId = accountid;
-      additionalskill.SoftSkill  = createDto.SoftSkill[_i]; 
+      additionalskill.AdditionalSkill  = createDto.SoftSkill[_i]; 
+      additionalskill.create_time = isoTime ;
+      additionalskill.last_modified =  [isoTime] ;
+      additionalskill.ResumeId =  null ;
       await this.AdditionalSkillRepository.save(additionalskill);
     }
     
@@ -89,6 +100,9 @@ export class RegisterService {
       certificate.CertName = createDto.CertName[_i]
       certificate.CertPic = createDto.CertPic[_i]
       certificate.CertYear = createDto.CertYear[_i]
+      certificate.create_time = isoTime ;
+      certificate.last_modified =  [isoTime] ;
+      certificate.ResumeId = null;
       await this.CertificateRepository.save(certificate);
     }
 
@@ -101,6 +115,9 @@ export class RegisterService {
       educationHistory.Academy = createDto.Academy[_i];
       educationHistory.Grade = createDto.Grade[_i];
       educationHistory.Education_End_Year = createDto.Education_End_Year[_i];
+      educationHistory.create_time = isoTime ;
+      educationHistory.last_modified =  [isoTime] ;
+      educationHistory.ResumeId = null;
       await this.EducationHistoryRepository.save(educationHistory);
     }
 
@@ -109,13 +126,17 @@ export class RegisterService {
       workHistory.UserId = accountid;
       workHistory.Work_JobName = createDto.Work_JobName[_i];
       workHistory.Work_JobType = createDto.Work_JobType[_i];
-      workHistory.Company = createDto.Company[_i];
+      workHistory.Work_Company = createDto.Company[_i];
       workHistory.Work_Start_Month = createDto.Work_Start_Month[_i];
       workHistory.Work_End_Month = createDto.Work_End_Month[_i];
       workHistory.Work_Start_Year = createDto.Work_Start_Year[_i];
       workHistory.Work_End_Year = createDto.Work_End_Year[_i];
-      workHistory.Salary = createDto.Salary[_i]; 
-      workHistory.Infomation = createDto.Infomation[_i]; 
+      workHistory.Work_Salary = createDto.Salary[_i]; 
+      workHistory.Work_Infomation = createDto.Infomation[_i]; 
+      workHistory.Work_Salary_Type = createDto.SalaryType[_i]; 
+      workHistory.create_time = isoTime ;
+      workHistory.last_modified =  [isoTime] ;
+      workHistory.ResumeId = null;
       await this.WorkHistoryRepository.save(workHistory);
     }
 
@@ -126,10 +147,13 @@ export class RegisterService {
       interestedJob.Job_Objective = createDto.Job_Objective[_i];
       interestedJob.Job_Score = createDto.Job_Score[_i];
       interestedJob.Job_SkillName = createDto.Job_SkillName[_i];
+      interestedJob.create_time = isoTime ;
+      interestedJob.last_modified =  [isoTime] ;
+      interestedJob.ResumeId = null;
       await this.InterestedJobRepository.save(interestedJob);
     }
-    
-    //await this.emailConfirmationService.sendVerificationLink(createDto.Email);
+
+    await this.emailConfirmationService.sendVerificationLink(createDto.Email);
 
     return (this.userinfoRepository.save(userinfo));
 
@@ -150,131 +174,357 @@ export class RegisterService {
     return this.HardSkillRepository.find({where:{ Type: Type }});
   }
 
-  async UpdateRegis(createDto: PatchRegisDto ,UserId:string)
+  async UpdateRegis(patchDto: PatchRegisDto ,UserId:string)
   {
+    const time =  new Date();
+    const isoTime = time.toLocaleDateString('th-TH',{ year:'numeric',month: 'long',day:'numeric',hour:"2-digit",minute:"2-digit"});
     const userid = new ObjectID(UserId);
     const acc =  await this.accountRepository.findOne({where:{ _id: userid }});
 
-    if (createDto.Password != null)
-      acc.Password = Md5.hashStr(createDto.Password);
-    if (createDto.ProfilePic != null)
-      acc.ProfilePic = createDto.ProfilePic;
-    if (createDto.Privacy != null)
-      acc.Privacy = createDto.Privacy;
-      
+    if (patchDto.Password != null)
+      acc.Password.push(Md5.hashStr(patchDto.Password));
+      acc.last_modified.push(isoTime);
+    if (patchDto.ProfilePic != null)
+      acc.ProfilePic = patchDto.ProfilePic;
+    if (patchDto.Privacy != null)
+      acc.Privacy = patchDto.Privacy;
+    
     await this.accountRepository.save(acc);
     
 
-    const userinfo =  await this.userInfoModel.findOne({UserId: userid });
+  const userinfo =  await this.userInfoModel.findOne({UserId: UserId });
+
+    if (patchDto.Firstname || patchDto.Lastname || patchDto.Birthday || patchDto.Gender || patchDto.AboutMe || patchDto.Email2nd || patchDto.Country || patchDto.City || patchDto.Province )
+      userinfo.last_modified.push(isoTime);
+    if (patchDto.Firstname != null)
+      userinfo.Firstname = patchDto.Firstname;
+    if (patchDto.Lastname != null)
+      userinfo.Lastname = patchDto.Lastname;
+    if (patchDto.Birthday != null)
+      userinfo.Birthday = patchDto.Birthday;
+    if (patchDto.Gender != null)
+      userinfo.Gender = patchDto.Gender;
+    if (patchDto.AboutMe != null)
+      userinfo.AboutMe = patchDto.AboutMe;
+    if (patchDto.Email2nd != null)
+      userinfo.Email2nd = patchDto.Email2nd;
+    if (patchDto.Country != null)
+      userinfo.Country = patchDto.Country;
+    if (patchDto.Province != null)
+      userinfo.Province = patchDto.Province;
+    if (patchDto.City != null)
+      userinfo.City = patchDto.City;
     
-    if (createDto.Firstname != null)
-      userinfo.Firstname = createDto.Firstname;
-    if (createDto.Lastname != null)
-      userinfo.Lastname = createDto.Lastname;
-    if (createDto.Birthday != null)
-      userinfo.Birthday = createDto.Birthday;
-    if (createDto.Gender != null)
-      userinfo.Gender = createDto.Gender;
-    if (createDto.AboutMe != null)
-      userinfo.AboutMe = createDto.AboutMe;
-    if (createDto.Email2nd != null)
-      userinfo.Email2nd = createDto.Email2nd;
-    if (createDto.Country != null)
-      userinfo.Country = createDto.Country;
-    if (createDto.Province != null)
-      userinfo.Province = createDto.Province;
-    if (createDto.City != null)
-      userinfo.City = createDto.City;
+      return await this.userInfoModel.create(userinfo);
+
+  }
+
+  async DeleteRegis(UserId:string)
+  {
+    const userid = new ObjectID(UserId);
+    const acc =  await this.accountRepository.findOne({where:{ _id: userid }});
+    await this.accountRepository.remove(acc);
+
+    const userinfo =  await this.userinfoRepository.findOne({where:{UserId: UserId }});
     
-    
-    const additionalskill = await this.AdditionalSkillRepository.find({where:{ UserId: userid}});
+
+    const additionalskill = await this.AdditionalSkillRepository.find({where:{ UserId: UserId}});
     for (var _i = 0; _i < additionalskill.length; _i++) {
       await this.AdditionalSkillRepository.remove(additionalskill[_i]);
     }
 
-    for (var _i = 0; _i < createDto.SoftSkill.length; _i++) {
-      const additionalskill = new AdditionalSkill();
-      additionalskill.UserId = userid;
-      additionalskill.SoftSkill  = createDto.SoftSkill[_i]; 
-      await this.AdditionalSkillRepository.save(additionalskill);
-    }
-
-    const certificate = await this.CertificateRepository.find({where:{ UserId: userid}});
+    const certificate = await this.CertificateRepository.find({where:{ UserId: UserId}});
     for (var _i = 0; _i < certificate.length; _i++) {
       await this.CertificateRepository.remove(certificate[_i]);
     }
 
-    for (var _i = 0; _i < createDto.CertName.length; _i++) {
-      const certificate = new Certificate();
-      certificate.UserId = userid;
-      certificate.CertName = createDto.CertName[_i]
-      certificate.CertPic = createDto.CertPic[_i]
-      certificate.CertYear = createDto.CertYear[_i]
-      await this.CertificateRepository.save(certificate);
-    }
-
-    const educationHistory = await this.EducationHistoryRepository.find({where:{ UserId: userid}});
+    const educationHistory = await this.EducationHistoryRepository.find({where:{ UserId: UserId}});
     for (var _i = 0; _i < educationHistory.length; _i++) {
       await this.EducationHistoryRepository.remove(educationHistory[_i]);
     }
 
-    for (var _i = 0; _i < createDto.Degree.length; _i++) {
-      const educationHistory = new EducationHistory();
-      educationHistory.UserId = userid;
-      educationHistory.Degree = createDto.Degree[_i];
-      educationHistory.Facalty = createDto.Facalty[_i];
-      educationHistory.Field_of_study = createDto.Field_of_study[_i];
-      educationHistory.Academy = createDto.Academy[_i];
-      educationHistory.Grade = createDto.Grade[_i];
-      educationHistory.Education_End_Year = createDto.Education_End_Year[_i];
-      await this.EducationHistoryRepository.save(educationHistory);
-    }
-
-    const workHistory = await this.WorkHistoryRepository.find({where:{ UserId: userid}});
+    const workHistory = await this.WorkHistoryRepository.find({where:{ UserId: UserId}});
     for (var _i = 0; _i < workHistory.length; _i++) {
       await this.WorkHistoryRepository.remove(workHistory[_i]);
     }
 
-    for (var _i = 0; _i < createDto.Work_JobName.length; _i++) {
-      const workHistory = new WorkHistory();
-      workHistory.UserId = userid;
-      workHistory.Work_JobName = createDto.Work_JobName[_i];
-      workHistory.Work_JobType = createDto.Work_JobType[_i];
-      workHistory.Company = createDto.Company[_i];
-      workHistory.Work_Start_Month = createDto.Work_Start_Month[_i];
-      workHistory.Work_End_Month = createDto.Work_End_Month[_i];
-      workHistory.Work_Start_Year = createDto.Work_Start_Year[_i];
-      workHistory.Work_End_Year = createDto.Work_End_Year[_i];
-      workHistory.Salary = createDto.Salary[_i]; 
-      workHistory.Infomation = createDto.Infomation[_i]; 
-      await this.WorkHistoryRepository.save(workHistory);
-    }
-
-    const interestedJob = await this.InterestedJobRepository.find({where:{ UserId: userid}});
+    const interestedJob = await this.InterestedJobRepository.find({where:{ UserId: UserId}});
     for (var _i = 0; _i < interestedJob.length; _i++) {
       await this.InterestedJobRepository.remove(interestedJob[_i]);
     }
 
-    for (var _i = 0; _i < createDto.Job_JobName.length; _i++) {
-      const interestedJob = new InterestedJob();
-      interestedJob.UserId = userid;
-      interestedJob.Job_JobName = createDto.Job_JobName[_i];
-      interestedJob.Job_Objective = createDto.Job_Objective[_i];
-      interestedJob.Job_Score = createDto.Job_Score[_i];
-      interestedJob.Job_SkillName = createDto.Job_SkillName[_i];
-      await this.InterestedJobRepository.save(interestedJob);
+    const resume = await this.resumeRepository.find({where:{ UserId: UserId}});
+    for (var _i = 0; _i <  resume.length; _i++) {
+      await this.resumeRepository.remove(resume[_i]);
     }
-    return await this.userInfoModel.create(userinfo);
+
+    const port =  await this.portfolioRepository.find({where:{ UserId: UserId }});
+    for (var _i = 0; _i < port.length; _i++) {
+      const portid = port[_i]._id.toString()
+      const portpic =  await this.portfolioPictureRepository.findOne({where:{ PortId: portid }});
+      await this.portfolioPictureRepository.remove(portpic);
+      await this.portfolioRepository.remove(port[_i]);
+    }
+
+    return await this.userinfoRepository.remove(userinfo);
+
+  }
+  
+  async UpdateAdditionalSkill(patchDto: PatchRegisDto ,UserId:string,id:string){
+    const time =  new Date();
+    const isoTime = time.toLocaleDateString('th-TH',{ year:'numeric',month: 'long',day:'numeric',hour:"2-digit",minute:"2-digit"});
+    const ID = new ObjectID(id);
+    const additionalskill = await this.AdditionalSkillRepository.findOne({where:{ _id: ID}});
+    if (!additionalskill){
+      throw new BadRequestException('Invalid oject');
+    }
+    if (additionalskill.UserId != UserId){
+      throw new HttpException({
+        status: HttpStatus.UNAUTHORIZED,
+        error: 'Can not Patch Other Data',
+      }, HttpStatus.UNAUTHORIZED);
+    }
+    if (patchDto.SoftSkill){
+      additionalskill.last_modified.push(isoTime);
+      additionalskill.AdditionalSkill = patchDto.SoftSkill;
+      return await this.AdditionalSkillRepository.save(additionalskill);
+    }
+    throw new BadRequestException('Dto error');
+      
+
+  }
+
+  async DeleteAdditionalSkill(UserId:string,id:string){
+    const ID = new ObjectID(id);
+    const additionalskill = await this.AdditionalSkillRepository.findOne({where:{ _id: ID}});
+    if (!additionalskill){
+      throw new BadRequestException('Invalid oject');
+    }
+    if (additionalskill.UserId != UserId){
+      throw new HttpException({
+        status: HttpStatus.UNAUTHORIZED,
+        error: 'Can not Delete Other Data',
+      }, HttpStatus.UNAUTHORIZED);
+    }
+    
+    return await this.AdditionalSkillRepository.remove(additionalskill);
+
+  }
+
+  async UpdateCertificate(patchDto: PatchRegisDto ,UserId:string,id:string){
+    const time =  new Date();
+    const isoTime = time.toLocaleDateString('th-TH',{ year:'numeric',month: 'long',day:'numeric',hour:"2-digit",minute:"2-digit"});
+    const ID = new ObjectID(id);
+    const certificate = await this.CertificateRepository.findOne({where:{ _id: ID}});
+    if (!certificate){
+      throw new BadRequestException('Invalid oject');
+    }
+    if (certificate.UserId != UserId){
+      throw new HttpException({
+        status: HttpStatus.UNAUTHORIZED,
+        error: 'Can not Patch Other Data',
+      }, HttpStatus.UNAUTHORIZED);
+    }
+    if (patchDto.CertName || patchDto.CertYear || patchDto.CertPic){
+      certificate.last_modified.push(isoTime);
+      if (patchDto.CertName)
+        certificate.CertName = patchDto.CertName;
+      if (patchDto.CertYear)
+        certificate.CertYear = patchDto.CertYear;
+      if (patchDto.CertPic)
+        certificate.CertPic = patchDto.CertPic;
+      return await this.CertificateRepository.save(certificate);
+    }
+    throw new BadRequestException('Dto error');
+      
+
+  }
+
+  async DeleteCertificate(UserId:string,id:string){
+    const ID = new ObjectID(id);
+    const certificate = await this.CertificateRepository.findOne({where:{ _id: ID}});
+    if (!certificate){
+      throw new BadRequestException('Invalid oject');
+    }
+    if (certificate.UserId != UserId){
+      throw new HttpException({
+        status: HttpStatus.UNAUTHORIZED,
+        error: 'Can not Delete Other Data',
+      }, HttpStatus.UNAUTHORIZED);
+    }
+    
+    return await this.CertificateRepository.remove(certificate);
+
+  }
+
+  async UpdateEducationHistory(patchDto: PatchRegisDto ,UserId:string,id:string){
+    const time =  new Date();
+    const isoTime = time.toLocaleDateString('th-TH',{ year:'numeric',month: 'long',day:'numeric',hour:"2-digit",minute:"2-digit"});
+    const ID = new ObjectID(id);
+    const educationHistory = await this.EducationHistoryRepository.findOne({where:{ _id: ID}});
+    if (!educationHistory){
+      throw new BadRequestException('Invalid oject');
+    }
+    if (educationHistory.UserId != UserId){
+      throw new HttpException({
+        status: HttpStatus.UNAUTHORIZED,
+        error: 'Can not Patch Other Data',
+      }, HttpStatus.UNAUTHORIZED);
+    }
+    if (patchDto.Degree || patchDto.Facalty || patchDto.Field_of_study || patchDto.Academy || patchDto.Grade || patchDto.Education_End_Year ){
+      educationHistory.last_modified.push(isoTime);
+      if (patchDto.Degree)
+        educationHistory.Degree = patchDto.Degree;
+      if (patchDto.Facalty)
+        educationHistory.Facalty = patchDto.Facalty;
+      if (patchDto.Field_of_study)
+        educationHistory.Field_of_study = patchDto.Field_of_study;
+      if (patchDto.Academy)
+        educationHistory.Academy = patchDto.Academy;
+      if (patchDto.Grade)
+        educationHistory.Grade = patchDto.Grade;
+      if (patchDto.Education_End_Year)
+        educationHistory.Education_End_Year = patchDto.Education_End_Year;
+      return await this.EducationHistoryRepository.save(educationHistory);
+    }
+    throw new BadRequestException('Dto error');
+      
+
+  }
+
+  async DeleteEducationHistory(UserId:string,id:string){
+    const ID = new ObjectID(id);
+    const educationHistory = await this.EducationHistoryRepository.findOne({where:{ _id: ID}});
+    if (!educationHistory){
+      throw new BadRequestException('Invalid oject');
+    }
+    if (educationHistory.UserId != UserId){
+      throw new HttpException({
+        status: HttpStatus.UNAUTHORIZED,
+        error: 'Can not Delete Other Data',
+      }, HttpStatus.UNAUTHORIZED);
+    }
+    
+    return await this.EducationHistoryRepository.remove(educationHistory);
+
+  }
+
+  async UpdateWorkHistory(patchDto: PatchRegisDto ,UserId:string,id:string){
+    const time =  new Date();
+    const isoTime = time.toLocaleDateString('th-TH',{ year:'numeric',month: 'long',day:'numeric',hour:"2-digit",minute:"2-digit"});
+    const ID = new ObjectID(id);
+    const workHistory = await this.WorkHistoryRepository.findOne({where:{ _id: ID}});
+    if (!workHistory){
+      throw new BadRequestException('Invalid oject');
+    }
+    if (workHistory.UserId != UserId){
+      throw new HttpException({
+        status: HttpStatus.UNAUTHORIZED,
+        error: 'Can not Patch Other Data',
+      }, HttpStatus.UNAUTHORIZED);
+    }
+    if (patchDto.Work_JobName || patchDto.Work_JobType || patchDto.Company || patchDto.Work_Start_Month || patchDto.Work_End_Month || patchDto.Work_Start_Year || patchDto.Work_End_Year || patchDto.Salary || patchDto.Infomation || patchDto.SalaryType){
+      workHistory.last_modified.push(isoTime);
+      if (patchDto.Work_JobName)
+        workHistory.Work_JobName = patchDto.Work_JobName;
+      if (patchDto.Work_JobType)
+        workHistory.Work_JobType = patchDto.Work_JobName;
+      if (patchDto.Company)
+        workHistory.Work_Company = patchDto.Company;
+      if (patchDto.Work_End_Month)
+        workHistory.Work_End_Month = patchDto.Work_End_Month;
+      if (patchDto.Work_End_Year)
+        workHistory.Work_End_Year = patchDto.Work_End_Year;
+      if (patchDto.Work_Start_Month)
+        workHistory.Work_Start_Month = patchDto.Work_Start_Month;
+      if (patchDto.Work_Start_Year)
+        workHistory.Work_Start_Year = patchDto.Work_Start_Year;
+      if (patchDto.Salary)
+        workHistory.Work_Salary = patchDto.Salary;
+      if (patchDto.SalaryType)
+        workHistory.Work_Salary_Type = patchDto.SalaryType;
+      if (patchDto.Infomation)
+        workHistory.Work_Infomation = patchDto.Infomation;
+      return await this.WorkHistoryRepository.save(workHistory);
+    }
+    throw new BadRequestException('Dto error');
+      
+
+  }
+
+  async DeleteWorkHistory(UserId:string,id:string){
+    const ID = new ObjectID(id);
+    const workHistory = await this.WorkHistoryRepository.findOne({where:{ _id: ID}});
+    if (!workHistory){
+      throw new BadRequestException('Invalid oject');
+    }
+    if (workHistory.UserId != UserId){
+      throw new HttpException({
+        status: HttpStatus.UNAUTHORIZED,
+        error: 'Can not Delete Other Data',
+      }, HttpStatus.UNAUTHORIZED);
+    }
+    
+    return await this.WorkHistoryRepository.remove(workHistory);
+
+  }
+
+  async UpdateInterestedJob(patchDto: PatchRegisDto ,UserId:string,id:string){
+    const time =  new Date();
+    const isoTime = time.toLocaleDateString('th-TH',{ year:'numeric',month: 'long',day:'numeric',hour:"2-digit",minute:"2-digit"});
+    const ID = new ObjectID(id);
+    const interestedJob  = await this.InterestedJobRepository.findOne({where:{ _id: ID}});
+    if (!interestedJob){
+      throw new BadRequestException('Invalid oject');
+    }
+    if (interestedJob.UserId != UserId){
+      throw new HttpException({
+        status: HttpStatus.UNAUTHORIZED,
+        error: 'Can not Patch Other Data',
+      }, HttpStatus.UNAUTHORIZED);
+    }
+    if (patchDto.Job_JobName || patchDto.Job_Objective || patchDto.Job_Score || patchDto.Job_SkillName ){
+      interestedJob.last_modified.push(isoTime);
+      if (patchDto.Job_JobName)
+        interestedJob.Job_JobName = patchDto.Job_JobName;
+      if (patchDto.Job_Objective)
+        interestedJob.Job_Objective = patchDto.Job_Objective;
+      if (patchDto.Job_Score)
+        interestedJob.Job_Score = patchDto.Job_Score;
+      if (patchDto.Job_SkillName)
+        interestedJob.Job_SkillName = patchDto.Job_SkillName;
+      return await this.InterestedJobRepository.save(interestedJob);
+    }
+    throw new BadRequestException('Dto error');
+      
+
+  }
+
+  async DeleteInterestedJob(UserId:string,id:string){
+    const ID = new ObjectID(id);
+    const interestedJob  = await this.InterestedJobRepository.findOne({where:{ _id: ID}});
+    if (!interestedJob){
+      throw new BadRequestException('Invalid oject');
+    }
+    if (interestedJob.UserId != UserId){
+      throw new HttpException({
+        status: HttpStatus.UNAUTHORIZED,
+        error: 'Can not Delete Other Data',
+      }, HttpStatus.UNAUTHORIZED);
+    }
+    
+    return await this.InterestedJobRepository.remove(interestedJob);
+
   }
 
   async GetInfo(UserId:string) {
     const result = new CreateRegisDto;
     const userid = new ObjectID(UserId);
     const account=await this.accountRepository.findOne({where:{_id:userid}});
-    const userinfo=await this.userinfoRepository.findOne({where:{UserId:userid}});
+    const userinfo=await this.userinfoRepository.findOne({where:{UserId:UserId}});
 
     result.Email=account.Email;
-    result.Password=account.Password;
+    result.Password=account.Password[account.Password.length - 1];
     result.ProfilePic=account.ProfilePic;
     result.Privacy=account.Privacy;
 
@@ -289,9 +539,9 @@ export class RegisterService {
     result.City=userinfo.City;
 
     const softskill_arr=[];
-    const additionalskill=await this.AdditionalSkillRepository.find({where:{UserId:userid}});
+    const additionalskill=await this.AdditionalSkillRepository.find({where:{UserId:UserId}});
     for (var _i = 0; _i < additionalskill.length; _i++) {
-      softskill_arr.push(additionalskill[_i].SoftSkill);
+      softskill_arr.push(additionalskill[_i].AdditionalSkill);
     }
     result.SoftSkill=softskill_arr;
    
@@ -299,7 +549,7 @@ export class RegisterService {
     const CertName_arr=[];
     const CertPic_arr=[];
     const CertYear_arr=[];
-    const Certificate=await this.CertificateRepository.find({where:{UserId:userid}});
+    const Certificate=await this.CertificateRepository.find({where:{UserId:UserId}});
     for (var _i = 0; _i < Certificate.length; _i++) {
       CertName_arr.push(Certificate[_i].CertName);
       CertPic_arr.push(Certificate[_i].CertPic);
@@ -317,7 +567,7 @@ export class RegisterService {
     const Academy_arr=[];
     const Grade_arr=[];
     const Education_End_Year_arr=[];
-    const educationHistory=await this.EducationHistoryRepository.find({where:{UserId:userid}});
+    const educationHistory=await this.EducationHistoryRepository.find({where:{UserId:UserId}});
     for (var _i = 0; _i < educationHistory.length; _i++) {
       Degree_arr.push(educationHistory[_i].Degree);
       Facalty_arr.push(educationHistory[_i].Facalty);
@@ -344,17 +594,19 @@ export class RegisterService {
     const Work_End_Year_arr=[];
     const Salary_arr=[];
     const Infomation_arr=[];
-    const workHistory =await this.WorkHistoryRepository.find({where:{UserId:userid}});
+    const SalaryType_arr=[];
+    const workHistory =await this.WorkHistoryRepository.find({where:{UserId:UserId}});
     for (var _i = 0; _i < workHistory.length; _i++) {
       Work_JobName_arr.push(workHistory[_i].Work_JobName);
       Work_JobType_arr.push(workHistory[_i].Work_JobType);
-      Company_arr.push(workHistory[_i].Company);
+      Company_arr.push(workHistory[_i].Work_Company);
       Work_Start_Month_arr.push(workHistory[_i].Work_Start_Month);
       Work_End_Month_arr.push(workHistory[_i].Work_End_Month);
       Work_Start_Year_arr.push(workHistory[_i].Work_Start_Year);
       Work_End_Year_arr.push(workHistory[_i].Work_End_Year);
-      Salary_arr.push(workHistory[_i].Salary);
-      Infomation_arr.push(workHistory[_i].Infomation);
+      Salary_arr.push(workHistory[_i].Work_Salary);
+      Infomation_arr.push(workHistory[_i].Work_Infomation);
+      SalaryType_arr.push(workHistory[_i].Work_Salary_Type);
     }
     result.Work_JobName=Work_JobName_arr;
     result.Work_JobType=Work_JobType_arr;
@@ -365,12 +617,13 @@ export class RegisterService {
     result.Work_End_Year=Work_End_Year_arr;
     result.Salary=Salary_arr;
     result.Infomation=Infomation_arr;
-
+    result.SalaryType=SalaryType_arr;
+    
     const Job_Objective_arr=[];
     const Job_Score_arr=[];
     const Job_JobName_arr=[];
     const Job_SkillName_arr=[];
-    const IJ=await this.InterestedJobRepository.find({where:{UserId:userid}});
+    const IJ=await this.InterestedJobRepository.find({where:{UserId:UserId}});
     for (var _i = 0; _i < IJ.length; _i++) {
       Job_Objective_arr.push(IJ[_i].Job_Objective);
       Job_Score_arr.push(IJ[_i].Job_Score);
@@ -388,55 +641,5 @@ export class RegisterService {
     
   }
 
-  async DeleteRegis(UserId:string)
-  {
-    const userid = new ObjectID(UserId);
-    const acc =  await this.accountRepository.findOne({where:{ _id: userid }});
-    await this.accountRepository.remove(acc);
-
-    const userinfo =  await this.userinfoRepository.findOne({where:{UserId: userid }});
-    
-
-    const additionalskill = await this.AdditionalSkillRepository.find({where:{ UserId: userid}});
-    for (var _i = 0; _i < additionalskill.length; _i++) {
-      await this.AdditionalSkillRepository.remove(additionalskill[_i]);
-    }
-
-    const certificate = await this.CertificateRepository.find({where:{ UserId: userid}});
-    for (var _i = 0; _i < certificate.length; _i++) {
-      await this.CertificateRepository.remove(certificate[_i]);
-    }
-
-    const educationHistory = await this.EducationHistoryRepository.find({where:{ UserId: userid}});
-    for (var _i = 0; _i < educationHistory.length; _i++) {
-      await this.EducationHistoryRepository.remove(educationHistory[_i]);
-    }
-
-    const workHistory = await this.WorkHistoryRepository.find({where:{ UserId: userid}});
-    for (var _i = 0; _i < workHistory.length; _i++) {
-      await this.WorkHistoryRepository.remove(workHistory[_i]);
-    }
-
-    const interestedJob = await this.InterestedJobRepository.find({where:{ UserId: userid}});
-    for (var _i = 0; _i < interestedJob.length; _i++) {
-      await this.InterestedJobRepository.remove(interestedJob[_i]);
-    }
-
-    const resume = await this.resumeRepository.find({where:{ UserId: UserId}});
-    for (var _i = 0; _i <  resume.length; _i++) {
-      await this.resumeRepository.remove(resume[_i]);
-    }
-
-    const port =  await this.portfolioRepository.find({where:{ UserId: UserId }});
-    for (var _i = 0; _i < port.length; _i++) {
-      const portid = port[_i]._id  
-      const portpic =  await this.portfolioPictureRepository.findOne({where:{ PortId: portid }});
-      await this.portfolioPictureRepository.remove(portpic);
-      await this.portfolioRepository.remove(port[_i]);
-    }
-
-    return await this.userinfoRepository.remove(userinfo);
-
-  }
   
 }

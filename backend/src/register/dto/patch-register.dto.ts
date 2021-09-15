@@ -26,51 +26,53 @@ export class PatchRegisDto {
 
   City: string;
 
-  SoftSkill: string[];
+  SoftSkill: string;
 
-  CertName: string[];
+  CertName: string;
 
-  CertPic: string[];
+  CertPic: string;
 
-  CertYear: number[];
+  CertYear: number;
 
-  Degree: string[];
+  Degree: string;
 
-  Facalty: string[];
+  Facalty: string;
 
-  Field_of_study: string[];
+  Field_of_study: string;
 
-  Academy: string[];
+  Academy: string;
 
-  Grade: Float32Array[]; 
+  Grade: Float32Array; 
 
-  Education_End_Year: number[];   
+  Education_End_Year: number;   
 
-  Work_JobName: string[];
+  Work_JobName: string;
 
-  Work_JobType: string[];
+  Work_JobType: string;
 
-  Company: string[];
+  Company: string;
 
-  Work_Start_Month: number[];
+  Work_Start_Month: number;
 
-  Work_End_Month: number[];
+  Work_End_Month: number;
 
-  Work_Start_Year: number[];
+  Work_Start_Year: number;
   
-  Work_End_Year: number[];
+  Work_End_Year: number;
 
-  Salary: Float32Array[];
+  Salary: Float32Array;
 
-  Infomation: string[];
+  SalaryType: string;
 
-  Job_JobName: string[];
+  Infomation: string;
 
-  Job_Objective: string[][];
+  Job_JobName: string;
 
-  Job_Score: Float32Array[][];
+  Job_Objective: string[];
 
-  Job_SkillName: string[][];
+  Job_Score: Float32Array[];
+
+  Job_SkillName: string[];
 
  
 }

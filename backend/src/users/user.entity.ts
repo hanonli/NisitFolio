@@ -13,7 +13,7 @@ class UserReq {
   public username: string;*/
   
   @Column()
-  public Password: string;
+  public Password: string[];
 
   @Column()
   public ProfilePic: string;
@@ -23,6 +23,12 @@ class UserReq {
 
   @Column()
   public isEmailConfirmed: boolean;
+
+  @Column()
+  public last_login: string;
+
+  @Column()
+  public last_modified: string[];
 }
  
 export default UserReq ;

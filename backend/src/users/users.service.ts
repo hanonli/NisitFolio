@@ -1,11 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable,UnauthorizedException,HttpException,HttpStatus } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import UserReq  from './user.entity';
 import { ObjectId } from 'mongodb';
 import { UserDto } from './dto/user.dto';
-
-//export type User = any;
 
 
 @Injectable()
@@ -21,6 +19,15 @@ import { UserDto } from './dto/user.dto';
       isEmailConfirmed: true
     });
   }
+
+  async addloginTime(Email: string) {
+    const time =  new Date();
+    const isoTime = time.toLocaleDateString('th-TH',{ year:'numeric',month: 'long',day:'numeric',hour:"2-digit",minute:"2-digit"});
+    return this.usersRepository.update({ Email }, {
+      last_login: isoTime
+    });
+  }
+
   async getByEmail(Email: string) {
     return await this.usersRepository.findOne({ Email: Email });
   }
@@ -32,6 +39,13 @@ import { UserDto } from './dto/user.dto';
     return userDto;};
 
     const user = await this.usersRepository.findOne({ Email: Email })
+    if(!user)
+    {
+      throw new HttpException({
+        status: HttpStatus.UNAUTHORIZED,
+        error: 'Input Worng Email',
+      }, HttpStatus.UNAUTHORIZED);
+    }
     return toUserDto(user)
   }
 
@@ -40,8 +54,11 @@ import { UserDto } from './dto/user.dto';
   }
 
   async resetPassword(email: string,password: string) {
+    const time =  new Date();
+    const isoTime = time.toLocaleDateString('th-TH',{ year:'numeric',month: 'long',day:'numeric',hour:"2-digit",minute:"2-digit"});
     const acc = await this.usersRepository.findOne({ Email: email });
-    acc.Password = password;
+    acc.Password.push(password);
+    acc.last_modified.push(isoTime);
     return await this.usersRepository.save(acc);
 
   }
@@ -51,36 +68,3 @@ import { UserDto } from './dto/user.dto';
 
   
   
-
-/*export type User = any;
-
-@Injectable()
-export class UsersService {
-  private readonly users: User[];
-
-  constructor() {
-    this.users = [
-      {
-        id: '1',
-        username: 'john',
-        password: 'testme',
-        email: 'sirapopjpt@gmail.com',
-        isEmailConfirmed: false,
-      },
-      {
-        id: '2',
-        username: 'mary',
-        password: 'ishappy',
-      },
-      {
-        id: '10',
-        username: 'bob',
-        password: 'hungry',
-      }
-    ]
-  }
-
-  async findOne(username: string): Promise<User | undefined> {
-    return this.users.find(user => user.username === username);
-  }
-}*/

@@ -66,6 +66,10 @@ export class ForgotPasswordService {
   }
 
   public async resendForgotMailLink(sendlinkdto: SendLinkDto) {
-    await this.sendForgotMailLink(sendlinkdto.email);
+    const user = await this.usersService.getByEmail(sendlinkdto.email);
+    if(!user)
+      throw new BadRequestException('No User with this Emails');
+    else
+      await this.sendForgotMailLink(sendlinkdto.email);
   }
 }

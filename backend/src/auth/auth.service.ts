@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable,HttpException,HttpStatus } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { JwtService } from '@nestjs/jwt';
@@ -19,14 +19,28 @@ export class AuthService {
   async validateUser(email: string, pass: string): Promise<any> {
     const user = await this.usersService.findOne(email);
     const password = Md5.hashStr(pass);
-    if (user && user.Password === password) {
+  
+    if (user && user.Password[user.Password.length - 1] === password) {
       const { Password, ...result } = user;
       return result;
+    }
+    else if (user && user.Password.indexOf(password) == -1 ){
+      throw new HttpException({
+        status: HttpStatus.UNAUTHORIZED,
+        error: 'Input Wrong Password',
+      }, HttpStatus.UNAUTHORIZED);
+    }
+    else if (user && user.Password.indexOf(password) != user.Password.length - 1 ){
+      throw new HttpException({
+        status: HttpStatus.UNAUTHORIZED,
+        error: 'Input Old Password',
+      }, HttpStatus.UNAUTHORIZED);
     }
     return null;
   }  
 
   async login(user: any) {
+    await this.usersService.addloginTime(user.Email)
     const payload = { Email: user.Email , sub: user.id};
     console.log(user)
     return {
