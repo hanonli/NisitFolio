@@ -27,13 +27,13 @@ export class AuthService {
     else if (user && user.Password.indexOf(password) == -1 ){
       throw new HttpException({
         status: HttpStatus.UNAUTHORIZED,
-        error: 'Input Wrong Password',
+        error: 'Wrongpwd',
       }, HttpStatus.UNAUTHORIZED);
     }
     else if (user && user.Password.indexOf(password) != user.Password.length - 1 ){
       throw new HttpException({
         status: HttpStatus.UNAUTHORIZED,
-        error: 'Input Old Password',
+        error: 'Oldpwd',
       }, HttpStatus.UNAUTHORIZED);
     }
     return null;

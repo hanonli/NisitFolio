@@ -43,7 +43,7 @@ import { UserDto } from './dto/user.dto';
     {
       throw new HttpException({
         status: HttpStatus.UNAUTHORIZED,
-        error: 'Input Worng Email',
+        error: 'Wronguser',
       }, HttpStatus.UNAUTHORIZED);
     }
     return toUserDto(user)
