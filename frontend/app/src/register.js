@@ -12,17 +12,23 @@ import Registab4 from "./Components/registab4";
 import Registab5 from "./Components/registab5";
 import Registab6 from "./Components/registab6";
 import Registab7 from "./Components/registab7";
+import $ from 'jquery';
 
 class Register extends React.Component {
 
 	componentDidMount() {
+		reloadJs("assets/js/register.js");
 		window.addEventListener('load', this.handleLoad);
 		console.log("YEAHXXX!");
 		const script = document.createElement("script");
 		script.src = "assets/js/register.js";
 		document.body.appendChild(script);
+		function reloadJs(src) {
+			src = $('script[src$="' + src + '"]').attr("src");
+			$('script[src$="' + src + '"]').remove();
+			$('<script/>').attr('src', src).appendTo('head');
+		}
 	}
-	
 
 	render() {
 		return (

@@ -33,8 +33,8 @@ class SharingPopup extends React.Component {
                 <div class="modal-content sharingSize container-fluid">
                     <div class="row">
                         <h1 class="SharingFontHead col-10" id="exampleModalToggleLabel2">Sharing</h1>
-
                     </div>
+                    <a href="' + artworkUrl + '" onclick="copyURI(event)">Copy cover URL</a>
                 </div>
             </div>
         </div>

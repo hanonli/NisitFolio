@@ -76,7 +76,7 @@ $(function(){
     PostRegis();
     //window.location.pathname = '/emailverify'
     var bdd = $('#bdday').val() + '/' + $('#bdmonth').val() + '/' + $('#bdyear').val(); 
-    const FormRegis2 = {
+    var FormRegis2 = {
       Email: $('#re03').val(),
       Password: $('#pass05').val(),
       Firstname: $('#re01').val(),
@@ -800,7 +800,7 @@ function GetDistrict(text){
       });
     });
     
-    const FormRegis = {
+    var FormRegis = {
       Email:"kohamatrio@gmail.com",
       Password:"artty678",
       ProfilePic:"",
