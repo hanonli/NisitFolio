@@ -70,13 +70,13 @@ $(function(){
  });
 
 /*Tab1*/
-$('#continue2').click(function () {    
+/*$('#continue2').click(function () {    
   if(RequireCount_pass==1){     
     console.log('You Pass!');  
     PostRegis();
     //window.location.pathname = '/emailverify'
     var bdd = $('#bdday').val() + '/' + $('#bdmonth').val() + '/' + $('#bdyear').val(); 
-    const FormRegis2 = {
+    var FormRegis2 = {
       Email: $('#re03').val(),
       Password: $('#pass05').val(),
       Firstname: $('#re01').val(),
@@ -98,7 +98,7 @@ $('#continue2').click(function () {
     $('#tab-1').addClass('tab-list-active')
     $('#registab1-content').show();
   }
-});
+});*/
 
 var startYear = 1950;
 var endYear = new Date().getFullYear();
@@ -800,7 +800,7 @@ function GetDistrict(text){
       });
     });
     
-    const FormRegis = {
+    var FormRegis = {
       Email:"kohamatrio@gmail.com",
       Password:"artty678",
       ProfilePic:"",
