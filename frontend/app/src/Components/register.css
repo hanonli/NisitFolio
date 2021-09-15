@@ -13,6 +13,7 @@
     margin-top: 1%;
     margin-bottom: 2%;
     padding: 1%;
+    overflow-y: scroll;
 }
 
 .regis-box-content1 {
@@ -116,7 +117,7 @@
     /*cursor: pointer;*/
     border-radius: 24px;
     padding-left: 30px;
-    height: 27vh;
+    height: 21vh;
   }
 
   .aboutmee:hover, .aboutmee:focus {
@@ -220,7 +221,9 @@
 .margin-bottom1 {
     margin-bottom: 20px;
 }
-
+.margin-bottom2 {
+    margin-bottom: 10px;
+}
 .margin-top1 {
     margin-top: 10px;
 }
@@ -327,4 +330,30 @@ datalist {
 
 .is-invalid {
   background-image: none;
+}
+
+.sharingSize {
+  height: 25vh;
+  width: 130vw;
+  border-radius: 1vw;
+  padding-top: 0.7vw;
+
+}
+
+.SharingFontHead {
+  margin-left: 1vw;
+  margin-top: 0.6vw;
+  margin-bottom: -0.2vw;
+  font-size:32px;
+  color:#000;
+  font-weight: 800;
+  display:inline-block;
+}
+
+.modal-content {
+  border: none;
+}
+
+.mg-l1 {
+  margin-left: 0.6vw;
 }

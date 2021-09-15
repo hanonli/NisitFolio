@@ -24,6 +24,7 @@ class SignInLand extends React.Component {
 
     async loginUser(credentials) {
         console.log(`credentials: ${credentials["Email"]}`);
+        console.log(JSON.stringify(credentials));
         return fetch('http://localhost:2000/auth/login', {
             method: 'POST',
             headers: {
@@ -56,6 +57,7 @@ class SignInLand extends React.Component {
         }
         else {
             console.log(`nha hee`);
+            alert("ผู้ใช้หรือรหัสผ่านที่คุณป้อนไม่ถูกต้อง");
             this.setState({ id_form: "inputform2_error" });
         }
     }
@@ -87,7 +89,7 @@ class SignInLand extends React.Component {
                                 <a href="#" >ลืมรหัสผ่าน?</a>
                             </p>
                             <br />
-                            <Link to="/agreement">
+                            <Link to="/register">
                                 <button type="submit" class="btn btn-lg btn-primary deep-purple btn-block" id="buttonSignIn112">สมัครสมาชิก</button>
                             </Link>
                         </div>

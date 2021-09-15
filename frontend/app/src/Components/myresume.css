@@ -1,0 +1,71 @@
+/* Zone Decoration */
+
+.Ex {
+    font-style: italic;
+}
+.myresume-contentEx1 {
+    width:94vw;
+    background-color: aqua;
+    /*margin-left:6vw;*/
+    padding: 1vw;
+    text-align: center;
+}
+
+.myresume-contentEx2 {
+    width:45vw;
+    margin-left:55vw;
+    background-color: rebeccapurple;
+    padding: 1vw;
+}
+
+.myresume-contentEx3 {
+    width:45vw;
+    background-color: darkorange;
+    padding: 1vw;
+}
+
+.myresume-contentEx4 {
+    width:35vw;
+    background-color: darkorange;
+    padding: 1vw;
+}
+
+.myresume-contentEx5 {
+    width:94vw;
+    background-color: darkmagenta;
+    margin-left:6vw;
+    padding: 1vw;
+}
+
+.myresume-navbarEx {
+    width:45vw;
+}
+
+.marginLEx1 {
+    margin-left: 1vw;
+}
+
+.marginBEx2 {
+    margin-bottom: 2vw;
+}
+
+.NavEx1 {
+    width:6vw;
+    background-color: rosybrown;
+}
+
+.NavEx2 {
+    width:20vw;
+    background-color: royalblue;
+    display: inline-block;
+}
+
+.del-mg-row {
+    margin-left: calc(var(--bs-gutter-x) * 0);
+}
+
+.block-right2 {
+    display: inline-block;
+    text-align: right;
+    margin-left: 60vw;
+}

@@ -17,7 +17,7 @@ class LandingPage4 extends React.Component {
                                     <h1 id='sharing'>Sharing</h1    >
                                     <h1 id='textsharing'>แชร์เรซูเม่อันทรงพลังของคุณให้กับเพื่อน ๆหรือคนที่สนใจได้อย่างง่ายดายด้วยระบบ QR Code และ PDF ที่เป็นที่นิยม</h1>   
                                     <h1 id='textinvite'>เริ่มต้น<br/>ชีวิตที่ดีกว่า<br/>เพียงแค่คลิก</h1> 
-                                    <Link to="/agreement">
+                                    <Link to="/register">
                                         <button className="btn" id="buttonRegisLanding" ><h1 id='buttontextRegis'>สมัครสมาชิก</h1></button>
 						            </Link>
                                 </div> 

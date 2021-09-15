@@ -1,5 +1,5 @@
 /*For Javascript Desu*/
-console.log("Artty!");
+
 /*Tabs New*/
 $(function(){
     $('.tab-content').hide();
@@ -54,26 +54,42 @@ $(function(){
         $('#tab-7').addClass('tab-list-active')
         $('#registab7-content').show();
         if(sideskill_count == 0){
-          $('#sideskilllist2').hide();
-          $('#sideskilllist3').hide();
+          $('.ddt7_2').hide();
+          $('.ddt7_3').hide();
         }
         else if(sideskill_count == 1){
-          $('#sideskilllist2').show();
-          $('#sideskilllist3').hide();
+          $('.ddt7_2').show();
+          $('.ddt7_3').hide();
         }
         else if(sideskill_count == 2){
-          $('#sideskilllist2').show();
-          $('#sideskilllist3').show();
+          $('.ddt7_2').show();
+          $('.ddt7_3').show();
         }
     });
 
  });
 
 /*Tab1*/
-$('#continue2').click(function () {    
+/*$('#continue2').click(function () {    
   if(RequireCount_pass==1){     
     console.log('You Pass!');  
-    window.location.pathname = '/emailverify'
+    PostRegis();
+    //window.location.pathname = '/emailverify'
+    var bdd = $('#bdday').val() + '/' + $('#bdmonth').val() + '/' + $('#bdyear').val(); 
+    var FormRegis2 = {
+      Email: $('#re03').val(),
+      Password: $('#pass05').val(),
+      Firstname: $('#re01').val(),
+      Lastname: $('#re02').val(),
+      Birthday: bdd,
+      Gender: $('#sexgen').val(),
+      SoftSkill:[],
+      CertName:[],
+      Degree:[],
+      Work_JobName: [],
+      Job_JobName: []
+  }
+    console.log(FormRegis2);
   }
   else{
     console.log('You Wrong!');
@@ -82,10 +98,10 @@ $('#continue2').click(function () {
     $('#tab-1').addClass('tab-list-active')
     $('#registab1-content').show();
   }
-});
+});*/
 
-let startYear = 1950;
-let endYear = new Date().getFullYear();
+var startYear = 1950;
+var endYear = new Date().getFullYear();
 for (i = endYear; i > startYear; i--) {
     $('#bdyear').append($('<option />').val(i).html(i));
     $('#year_enjob').append($('<option />').val(i).html(i));
@@ -93,15 +109,15 @@ for (i = endYear; i > startYear; i--) {
     $('#year_secondary').append($('<option />').val(i).html(i));
 }
 
-let MaxM = 13;
-let startM = 1;
+var MaxM = 13;
+var startM = 1;
 for (j = startM; j < MaxM; j++) {
     $('#bdmonth').append($('<option />').val(j).html(j));
 }
 
 
-let MaxD = 32;
-let startD = 1;
+var MaxD = 32;
+var startD = 1;
 for (k = startD; k < MaxD; k++) {
     $('#bdday').append($('<option />').val(k).html(k));
 }
@@ -141,7 +157,7 @@ for (k = startD; k < MaxD; k++) {
             done(URL.createObjectURL(file));
           } else if (FileReader) {
             reader = new FileReader();
-            reader.onload = function (e) {
+            reader.onload = function () {
               done(reader.result);
             };
             reader.readAsDataURL(file);
@@ -171,6 +187,7 @@ for (k = startD; k < MaxD; k++) {
           });
           initialAvatarURL = avatar1.src;
           avatar1.src = canvas.toDataURL();
+          console.log(avatar1.src);
           $alert.removeClass('alert-success alert-warning');
           canvas.toBlob(function (blob) {
             var formData = new FormData();
@@ -217,6 +234,7 @@ ret1.addEventListener('keyup', function(){
   if(valt1 == ''){
     $('#re01').removeClass('is-valid');
     $('#re01').addClass('is-invalid');
+    console.log(FormRegis);
   }
   else {
     $('#re01').removeClass('is-invalid');
@@ -246,19 +264,18 @@ ret3.addEventListener('keyup', function(){
     $('#re03').removeClass('is-invalid');
     $('#re03').addClass('is-valid');
   }});
-
 var passw = 0;
 var min_pass_count = 8;
 var max_pass_count = 20;
 var RequireCount_pass = 0;
-function checkPass(e) {                                    
+function checkPass() {                                    
   var textEntered1, textEntered2, checknow, result1;      
   textEntered1 = document.getElementById('pass05').value;    
   textEntered2 = document.getElementById('pass06').value;
   checknow = textEntered1.length;
   if(textEntered2 == '') {
-    console.log('Password Typing...');
-    console.log('Length : ' + checknow);
+    //console.log('Password Typing...');
+    //console.log('Length : ' + checknow);
     if(checknow < min_pass_count){
       $('#pass05').removeClass('is-valid');
       $('#pass05').addClass('is-invalid');
@@ -297,7 +314,7 @@ function checkPass(e) {
   else {
     console.log('Password FALSE');
     /*$('#pass06').addClass('red_markEp2');*/
-    console.log('Length false : ' + checknow);
+    //console.log('Length false : ' + checknow);
     if(checknow < min_pass_count){
       $('#pass05').removeClass('is-valid');
       $('#pass05').addClass('is-invalid');
@@ -328,7 +345,7 @@ function countCharactersAbme() {
   textEntered = document.getElementById('aboutme2').value;  
   counter = (180 - (textEntered.length));
   countRemaining = document.getElementById('charactersRemaining'); 
-  console.log('Char left : ' + counter);
+  //console.log('Char left : ' + counter);
   countRemaining.textContent = counter;
   if(counter <= min_abme_count) {
     console.log('Warning!');
@@ -344,7 +361,7 @@ el.addEventListener('keyup', countCharactersAbme, false);
 $('.aboutmee').on('change', 'input', function(){
   var abme = $('.aboutmee').val();
   var abme_count = abme.length;
-  console.log('L : ' + abme_count);
+  //console.log('L : ' + abme_count);
   
 });
 
@@ -445,17 +462,17 @@ var sskdd3 = '<div class="col-2">\
             </div>\
             </div>\
             ';
-var sideskilldropdown1_1 = '<div class="container-fluid dropbtn-box form-f margin-bottom1" id="ssl_1">\
+var sideskilldropdown1_1 = '<div class="container-fluid dropbtn-box form-f " id="ssl_1">\
                               <div class="row">\
                                 <div class="col-10">\
                                   <a>\
                                   ';
-var sideskilldropdown1_2 = '<div class="container-fluid dropbtn-box form-f margin-bottom1" id="ssl_2">\
+var sideskilldropdown1_2 = '<div class="container-fluid dropbtn-box form-f " id="ssl_2">\
                                   <div class="row">\
                                     <div class="col-10">\
                                       <a>\
                                       ';
-var sideskilldropdown1_3 = '<div class="container-fluid dropbtn-box form-f margin-bottom1" id="ssl_3">\
+var sideskilldropdown1_3 = '<div class="container-fluid dropbtn-box form-f " id="ssl_3">\
                               <div class="row">\
                                 <div class="col-10">\
                                   <a>\
@@ -467,8 +484,11 @@ var sideskill_count=0;
 var max_sideskill=3;
 var sumsideskill='';
 var valss_now='';
+var valt7_1 = '';
+var valt7_2 = '';
+var valt7_3 = '';
 
-$(document).on('change', 'input', function(){
+/*$(document).on('change', 'input', function(){
     var options = $('datalist')[0].options;
     var val = $(this).val();
     for (let i=0;i<options.length;++i){
@@ -480,10 +500,10 @@ $(document).on('change', 'input', function(){
           if(sideskill_count == 1){
             $('#sideskilllist1').hide();          
             valss_now = $('#sideskilllist1').val();
-            var valt7_1 = valss_now;
+            valt7_1 = valss_now;
             console.log(valss_now);
             sumsideskill = sideskilldropdown1_1 + valss_now + sideskilldropdown2 + sskdd1;
-            /*console.log(sumsideskill);*/
+            console.log(sumsideskill);
             $('.dropdowntap7_1').append(sumsideskill);
             sumsideskill = '';
             $('#sideskilllist2').show();
@@ -492,37 +512,124 @@ $(document).on('change', 'input', function(){
             $('#sideskilllist2').hide(); 
             $('#sideskilllist3').show();
             valss_now = $('#sideskilllist2').val();
-            var valt7_2 = valss_now;
+            valt7_2 = valss_now;
             vvv = valss_now.length;
             console.log(valss_now);
             console.log('Length : ' + vvv);
             sumsideskill = sideskilldropdown1_2 + valss_now + sideskilldropdown2 + sskdd2;
-            /*console.log(sumsideskill);*/
+            console.log(sumsideskill);
             $('.dropdowntap7_2').append(sumsideskill);
             sumsideskill = '';
           }
           else if(sideskill_count == 3){
             $('#sideskilllist3').hide(); 
             valss_now = $('#sideskilllist3').val();
-            var valt7_3 = valss_now;
+            valt7_3 = valss_now;
             console.log(valss_now);
             sumsideskill = sideskilldropdown1_3 + valss_now + sideskilldropdown2 + sskdd3;
-            /*console.log(sumsideskill);*/
+            console.log(sumsideskill);
             $('.dropdowntap7_3').append(sumsideskill);
             sumsideskill = '';
           }
           break;
        }
     }
-});
+});*/
+var Dropdownsideskill1 = '<div class="row ddt7_1">\
+<div class="col-md-6">\
+  <select class="form-select dropbtn fff" id="ch1">\
+    <option selected disabled value="">เลือกหมวดทักษะเสริมที่ถนัด</option>\
+    <option value="Technical">Technical</option>\
+    <option value="Computer">Computer</option>\
+    <option value="Analytical">Analytical</option>\
+    <option value="Marketing">Marketing</option>\
+    <option value="Presentation">Presentation</option>\
+    <option value="Management">Management</option>\
+    <option value="Writing">Writing</option>\
+    <option value="Language">Language</option>\
+    <option value="Design">Design</option>\
+  </select>\
+</div>\
+<div class="col-md-6">\
+  <select class="form-select dropbtn" id="sideskilllist1">\
+    <option selected disabled value="">เลือกทักษะเสริมที่ถนัด</option>\
+  </select>\
+</div>\
+</div>\
+';
+
+var Dropdownsideskill2 = '<div class="row ddt7_2">\
+<div class="col-md-6">\
+  <select class="form-select dropbtn fff" id="ch2">\
+    <option selected disabled value="">เลือกหมวดทักษะเสริมที่ถนัด</option>\
+    <option value="Technical">Technical</option>\
+    <option value="Computer">Computer</option>\
+    <option value="Analytical">Analytical</option>\
+    <option value="Marketing">Marketing</option>\
+    <option value="Presentation">Presentation</option>\
+    <option value="Management">Management</option>\
+    <option value="Writing">Writing</option>\
+    <option value="Language">Language</option>\
+    <option value="Design">Design</option>\
+  </select>\
+</div>\
+<div class="col-md-6">\
+  <select class="form-select dropbtn" id="sideskilllist2">\
+    <option selected disabled value="">เลือกทักษะเสริมที่ถนัด</option>\
+  </select>\
+</div>\
+</div>\
+';
+
+var Dropdownsideskill3 = '<div class="row ddt7_3">\
+<div class="col-md-6">\
+  <select class="form-select dropbtn fff" id="ch3">\
+    <option selected disabled value="">เลือกหมวดทักษะเสริมที่ถนัด</option>\
+    <option value="Technical">Technical</option>\
+    <option value="Computer">Computer</option>\
+    <option value="Analytical">Analytical</option>\
+    <option value="Marketing">Marketing</option>\
+    <option value="Presentation">Presentation</option>\
+    <option value="Management">Management</option>\
+    <option value="Writing">Writing</option>\
+    <option value="Language">Language</option>\
+    <option value="Design">Design</option>\
+  </select>\
+</div>\
+<div class="col-md-6">\
+  <select class="form-select dropbtn" id="sideskilllist3">\
+    <option selected disabled value="">เลือกทักษะเสริมที่ถนัด</option>\
+  </select>\
+</div>\
+</div>\
+';
 
 $(function(){
   $('#del_sideskill1').on('click', function(){
     console.log('EiEi this is Del1');
-    console.log(valt7_1);
-    console.log(valt7_2);
-    console.log(valt7_3);
+    console.log('SSK1 :' + valt7_1);
+    console.log('SSK2 :' + valt7_2);
+    console.log('SSK3 :' + valt7_3);
     $('#ssl_1').remove();
+    $('.ddt7_1').remove();
+    console.log('Sum SSK :' + sideskill_count + '!!!');
+    if(sideskill_count==1){
+      sumsideskill = Dropdownsideskill1;
+      $('.dropdowntap7_1').append(sumsideskill);
+      sumsideskill = '';
+      $('.ddt7_2').hide();
+    }
+    else if(sideskill_count==2){
+      $('.ddt7_2').remove();
+      sumsideskill = sideskilldropdown1_1 + valt7_2 + sideskilldropdown2 + sskdd1;
+      $('.dropdowntap7_1').append(sumsideskill);
+      $('#ssl_2').remove();
+      sumsideskill = Dropdownsideskill2;
+      $('.dropdowntap7_2').append(sumsideskill);
+      sumsideskill = '';
+      $('.ddt7_3').hide();
+
+    }
     sideskill_count -= 1;
   });
   $('#del_sideskill2').on('click', function(){
@@ -533,8 +640,203 @@ $(function(){
   $('#del_sideskill3').on('click', function(){
     console.log('EiEi this is Del3');
     $('#ssl_3').remove();
-    $('#sideskilllist3').show(); 
+    $('#sideskilllist3').show();
     sideskill_count -= 1;
   });
 });
 
+$(function(){
+  $('#sideskilllist1').on('change', function(){
+    console.log('EiEi this is Sel1');
+    valss_now = $('#sideskilllist1').val();
+    valt7_1 = valss_now;
+    //console.log(valss_now);
+    sumsideskill = sideskilldropdown1_1 + valss_now + sideskilldropdown2 + sskdd1;
+    $('.dropdowntap7_1').append(sumsideskill);
+    sumsideskill = '';
+    $('.ddt7_1').hide();
+    $('.ddt7_2').show();
+    sideskill_count += 1;
+    console.log('Sum SSK ++:' + sideskill_count + '!');
+  });
+  $('#sideskilllist2').on('change', function(){
+    console.log('EiEi this is Sel2');
+    valss_now = $('#sideskilllist2').val();
+    valt7_2 = valss_now;
+    console.log(valss_now);
+    sumsideskill = sideskilldropdown1_2 + valss_now + sideskilldropdown2 + sskdd2;
+    $('.dropdowntap7_2').append(sumsideskill);
+    sumsideskill = '';
+    $('.ddt7_2').hide();
+    $('.ddt7_3').show();
+    sideskill_count += 1;
+    console.log('Sum SSK ++:' + sideskill_count + '!!');
+  });
+  $('#sideskilllist3').on('change', function(){
+    console.log('EiEi this is Sel3');
+    valss_now = $('#sideskilllist3').val();
+    valt7_1 = valss_now;
+    console.log(valss_now);
+    sumsideskill = sideskilldropdown1_3 + valss_now + sideskilldropdown2 + sskdd3;
+    $('.dropdowntap7_3').append(sumsideskill);
+    sumsideskill = '';
+    $('.ddt7_3').hide();
+    sideskill_count += 1;
+    console.log('Sum SSK ++:' + sideskill_count + '!!!');
+  });
+});
+
+function GetProvince(){
+	fetch("https://thaiaddressapi-thaikub.herokuapp.com/v1/thailand/provinces",
+		{ method: "GET", })
+		.then(response => response.json())
+		//.then(response => response.result)
+		.then((raw) => {
+			//console.log(raw);
+			raw.data.forEach((entry) => {
+				//console.log(entry.province);
+        var pro_now = entry.province;
+        $('#province').append($('<option />').val(pro_now).html(pro_now));
+			});
+        }).catch((error) => {
+			  console.log(error);
+			});
+		
+}
+GetProvince();
+
+$('#province').change(function () {
+  var selectedText1 = $(this).find("option:selected").text();
+  console.log(selectedText1);
+  GetDistrict(selectedText1);
+});
+
+function GetDistrict(text){
+	fetch("https://thaiaddressapi-thaikub.herokuapp.com/v1/thailand/provinces/" + text +'/district',
+		{ method: "GET", })
+		.then(response => response.json())
+		//.then(response => response.result)
+		.then((raws) => {
+			console.log(raws);
+			raws.data.forEach((entrys) => {
+				//console.log(entrys);
+        var dis_now = entrys;
+        $('#townny').append($('<option />').val(dis_now).html(dis_now));
+			});
+
+        }).catch((error) => {
+			  console.log(error);
+			});
+		
+}
+
+/*function PostRegis(){
+  fetch("http://localhost:2000/register",
+		{ method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+		  body: JSON.stringify(FormRegis)}
+  )
+    .then(function (response) {
+        window.location.pathname = '/emailverify'
+        return response.json();
+    })
+    .then(function (result) {
+        alert(result);
+    })
+    .catch((error) => {
+      res.status(500)
+      .json({
+          message:error
+      })
+  })
+  }*/
+  
+  var DropdownsideskillChoice = {'Technical': ['CAD',
+    'Lean manufacturing',
+    'Multivariate analysis',
+    'Linear regression',
+    'Prototyping',
+    'Workflow development',
+    'STEM skills',
+    'Web: HTML, CSS, Javascript',
+    'Payment processing',
+    'Automated Billing Systems',
+    'CRM Platforms',
+    'Research',
+    'Troubleshooting'],
+     Computer: ['Python','C']};
+
+    $(function(){
+      $('#ch1').on('change', function(){
+        console.log('Checkkaaaa');
+        var chss_now = $('#ch1').val();
+        cht7_1 = chss_now;
+        console.log('I am :' + chss_now);
+        //console.log(DropdownsideskillChoice[chss_now]);
+        DropdownsideskillChoice[chss_now].forEach((entryc1) => {
+          var ch_now1 = entryc1;
+          //console.log('I am Choice:' + ch_now1);
+          $('#sideskilllist1').append($('<option />').val(ch_now1).html(ch_now1));
+        })
+      });
+      $('#ch2').on('change', function(){
+        var chss_now = $('#ch2').val();
+        cht7_2 = chss_now;
+        DropdownsideskillChoice[chss_now].forEach((entryc2) => {
+          var ch_now2 = entryc2;
+          $('#sideskilllist2').append($('<option />').val(ch_now2).html(ch_now2));
+        })
+      });
+      $('#ch3').on('change', function(){
+        var chss_now = $('#ch3').val();
+        cht7_3 = chss_now;
+        DropdownsideskillChoice[chss_now].forEach((entryc3) => {
+          var ch_now3 = entryc3;
+          $('#sideskilllist3').append($('<option />').val(ch_now3).html(ch_now3));
+        })
+      });
+    });
+    
+    var FormRegis = {
+      Email:"kohamatrio@gmail.com",
+      Password:"artty678",
+      ProfilePic:"",
+      Firstname:"Artty",
+      Lastname:"wannasleep",
+      Birthday:"26/10/1998",
+      Gender:"ชาย",
+      AboutMe:"สวัสดีครับ ผมชื่ออาร์ท อาร์ต อาต อาท จะเรียกไรก็เรียกเถอะครับ ตั้งใจมาเรียนคณะนี้เพราะชอบเขียนโค้ด เวลาว่างชอบไปตีปิงปองแล้วก็เที่ยวกับเพื่อนครับ",
+      Email2nd:"artty678@gmail.com",
+      Country:"ประเทศไทย",
+      Province:"จันทบุรี",
+      City:"ในเมือง",
+      SoftSkill:["Web","Painting","C"],
+      CertName:["ชนะเลิศการแข่งขันจีบสาวแห่งชาติ","รองชนะเลิศการแข่งขันปิงปองโอลิมปิก","ชนะเลิศการแข่งขันเขียนโค้ดความเร็วแสง"],
+      CertPic:["picart11","picart2","picart3"],
+      CertYear:[2016,2013,2018],
+      Degree:["ปริญญาตรี"],
+      Facalty:["วิศวกรรมศาสตร์"],
+      Field_of_study:["คอมพิวเตอร์"],
+      Academy:["มหาวิทยาลัยเกษตรศาสตร์ บางเขน"],
+      Grade:[2.98],
+      Education_Start_Year:[2019],
+      Education_End_Year:[],
+      Work_JobName:["นักพัฒนาเกม","โปรแกรมเมอร์","ยูทูปเบอร์"],
+      Work_JobType:["ฟรีแลนซ์","พนักงานบริษัท","ธุรกิจส่วนตัว",],
+      Company:["Artty FL","Nisitfolio","WriteCodeWithArtty Channel"],
+      Work_Start_Month:[4,5,6],
+      Work_End_Month:[4,5,6],
+      Work_Start_Year:[2013,2016,2019],
+      Work_End_Year:[2015,2018,2020],
+      Salary:[45000,28000,38000],
+      Infomation:["เหนื่อยแต่เงินดี","ใช้แรงงานเยี่ยงทาสแต่ไม่คุ้มเท่าไหร่","เป็นเจ้านายตัวเอง ทำงานตามใจฉัน"],
+      Job_Objective:["อยากได้งานทีละงานที่มีเดดไลน์ชัดเจน","ไม่ทักเรื่องงานในวันหยุด","สวัสดิการดี"],
+      Job_Score:[[9,10,8.8]],
+      Job_JobName:["โปรแกรมเมอร์"],
+      Job_SkillName:["C","JQuery","HTML"]
+  }
+    
+    
