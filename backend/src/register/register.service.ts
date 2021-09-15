@@ -60,13 +60,8 @@ export class RegisterService {
     const isoTime = time.toLocaleDateString('th-TH',{ year:'numeric',month: 'long',day:'numeric',hour:"2-digit",minute:"2-digit"});
     const account = new Account(); 
     account.Email = createDto.Email;
-<<<<<<< HEAD
     account.Password = [Md5.hashStr(createDto.Password)];
     account.ProfilePic = createDto.ProfilePic; 
-=======
-    account.Password = Md5.hashStr(createDto.Password);
-    account.ProfilePic = createDto.ProfilePic;
->>>>>>> 11f38d8499e54dd87d7978ca4a1175e4c95ffb12
     account.Privacy = "Public";
     account.isEmailConfirmed = false;
     account.create_time =  isoTime;
@@ -158,7 +153,7 @@ export class RegisterService {
       await this.InterestedJobRepository.save(interestedJob);
     }
 
-    await this.emailConfirmationService.sendVerificationLink(createDto.Email);
+    //await this.emailConfirmationService.sendVerificationLink(createDto.Email);
 
     return (this.userinfoRepository.save(userinfo));
 

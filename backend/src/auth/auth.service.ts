@@ -27,20 +27,20 @@ export class AuthService {
     else if (user && user.Password.indexOf(password) == -1 ){
       throw new HttpException({
         status: HttpStatus.UNAUTHORIZED,
-        error: 'Input Wrong Password',
+        error: 'Wrongpwd',
       }, HttpStatus.UNAUTHORIZED);
     }
     else if (user && user.Password.indexOf(password) != user.Password.length - 1 ){
       throw new HttpException({
         status: HttpStatus.UNAUTHORIZED,
-        error: 'Input Old Password',
+        error: 'Oldpwd',
       }, HttpStatus.UNAUTHORIZED);
     }
     return null;
   }  
 
-  async login(user: any) {
-    await this.usersService.addloginTime(user.Email)
+  async login(user: any,ip:string) {
+    await this.usersService.addloginTime_IP(user.Email,ip)
     const payload = { Email: user.Email , sub: user.id};
     console.log(user)
     return {
