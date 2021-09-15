@@ -5,6 +5,7 @@ import { LocalAuthGuard } from './auth/local-auth.guard';
 import { UsersService } from './users/users.service';
 import { LoginDto } from './auth/dto/create-login.dto';
 import { JwtAuthGuard } from './auth/jwt-auth.guard';
+import { RealIP } from 'nestjs-real-ip';
 
 @Controller()
 export class AppController {
@@ -28,9 +29,9 @@ export class AppController {
 
   @UseGuards(LocalAuthGuard)
   @Post('auth/login')
-  async login(@Request() req) {
+  async login(@Request() req,@RealIP() ip: string) {
     
-    return this.authService.login(req.user);
+    return this.authService.login(req.user,ip);
   }
 
   @UseGuards(JwtAuthGuard)

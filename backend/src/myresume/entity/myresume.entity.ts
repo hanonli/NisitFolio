@@ -264,6 +264,9 @@ export class Resume {
   @Column()
   Privacy: string;
 
+  @Column()
+  Color: string;
+
   @OneToMany(type => EducationHistory, educationHistory => educationHistory.resumes)
   educationHistorys: EducationHistory[];
 
@@ -282,6 +285,16 @@ export class Resume {
   @ManyToOne(type => InterestedJob, interestedJob => interestedJob.resumes)
   interestedJob: InterestedJob;
 
+  @Column()
+  create_time:string;
+
+  @Column()
+  last_modified:string[];
+
+  @Column()
+  modified_by:string[];
+
+  
 }
 
 

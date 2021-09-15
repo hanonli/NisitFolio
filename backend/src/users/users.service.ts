@@ -20,11 +20,12 @@ import { UserDto } from './dto/user.dto';
     });
   }
 
-  async addloginTime(Email: string) {
+  async addloginTime_IP(Email: string,ip:string) {
     const time =  new Date();
     const isoTime = time.toLocaleDateString('th-TH',{ year:'numeric',month: 'long',day:'numeric',hour:"2-digit",minute:"2-digit"});
     return this.usersRepository.update({ Email }, {
-      last_login: isoTime
+      last_login: isoTime,
+      IP:  ip
     });
   }
 

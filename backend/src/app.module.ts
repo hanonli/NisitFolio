@@ -18,8 +18,6 @@ import { MyResumeModule } from './myresume/myresume.module';
 import { ForgotPasswordModule } from './forgotpassword/forgotpassword.module';
 
 import * as Joi from 'joi';
-import { ResumeModule } from './resume/resume.module';
-import { EditProfileModule } from './editprofile/editprofile.module';
 import { SearchModule } from './search/search.module';
 
 
@@ -58,12 +56,8 @@ import { SearchModule } from './search/search.module';
     UsersModule,
     HomeModule,
     PortModule,
-    ResumeModule,
     ForgotPasswordModule,
-    
-    MyResumeModule,
-    EditProfileModule,
-    
+    MyResumeModule,  
     AnalyticsModule,
     BookmarkModule,
     SearchModule,

@@ -29,6 +29,9 @@ class UserReq {
 
   @Column()
   public last_modified: string[];
+
+  @Column()
+  public IP: string;
 }
  
 export default UserReq ;

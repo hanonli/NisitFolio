@@ -343,6 +343,9 @@ export class Resume {
   @Column()
   Privacy: string;
 
+  @Column()
+  Color: string;
+
   @OneToMany(type => EducationHistory, educationHistory => educationHistory.resumes)
   educationHistorys: EducationHistory[];
 

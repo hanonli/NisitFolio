@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable , HttpException , HttpStatus} from '@nestjs/common';
 import { CreateResumeDto } from './dto/myresume.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, SimpleConsoleLogger } from 'typeorm';
@@ -40,7 +40,10 @@ export class MyResumeService {
   ) {}
   
 
-  async createResume(CreateDto: CreateResumeDto ){
+  async createResume(CreateDto: CreateResumeDto ,ip:string){
+    const time =  new Date();
+    const isoTime = time.toLocaleDateString('th-TH',{ year:'numeric',month: 'long',day:'numeric',hour:"2-digit",minute:"2-digit"});
+
     const resume = new Resume(); 
     resume.UserId = CreateDto.UserId;
     resume.Privacy = "Public";
@@ -92,6 +95,11 @@ export class MyResumeService {
       port_arr.push(portfolio);
     }
     resume.portfolios = port_arr;
+
+    resume.Color = CreateDto.Color;
+    resume.create_time =  isoTime;
+    resume.last_modified =  [isoTime] ;
+    resume.modified_by = [ip];
     
     return await this.resumePictureRepository.save(resume);
   }
@@ -115,10 +123,16 @@ export class MyResumeService {
       return await this.resumePictureRepository.remove(resume);
     }
     
-    return "can not delete other's data";
+    throw new HttpException({
+      status: HttpStatus.UNAUTHORIZED,
+      error: 'Can not Delete Other Data',
+    }, HttpStatus.UNAUTHORIZED);
   }
 
-  async updateResume(CreateDto: CreateResumeDto ,resumeId:string, userId:string){
+  async updateResume(CreateDto: CreateResumeDto ,resumeId:string, userId:string,ip:string){
+    const time =  new Date();
+    const isoTime = time.toLocaleDateString('th-TH',{ year:'numeric',month: 'long',day:'numeric',hour:"2-digit",minute:"2-digit"});
+
     const resumeid = new ObjectID(resumeId);
     const resume =  await this.resumeModel.findOne({_id: resumeid });
   
@@ -178,10 +192,14 @@ export class MyResumeService {
         resume.interestedJob = job_arr;
 
       }
-
+      resume.last_modified.push(isoTime);
+      resume.modified_by.push(ip);
       return await this.resumeModel.create(resume);
     }
     
-    return "can not update other's data";
+    throw new HttpException({
+      status: HttpStatus.UNAUTHORIZED,
+      error: 'Can not Patch Other Data',
+    }, HttpStatus.UNAUTHORIZED);
   }
 }

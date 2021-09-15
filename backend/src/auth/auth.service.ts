@@ -39,8 +39,8 @@ export class AuthService {
     return null;
   }  
 
-  async login(user: any) {
-    await this.usersService.addloginTime(user.Email)
+  async login(user: any,ip:string) {
+    await this.usersService.addloginTime_IP(user.Email,ip)
     const payload = { Email: user.Email , sub: user.id};
     console.log(user)
     return {

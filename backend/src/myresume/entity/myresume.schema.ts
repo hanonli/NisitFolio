@@ -12,6 +12,9 @@ export class Resume2 {
   Privacy: string;
 
   @Prop()
+  Color: string;
+
+  @Prop()
   interestedJob: string[];
 
   @Prop()
@@ -29,6 +32,14 @@ export class Resume2 {
   @Prop()
   portfolios: string[];
 
+  @Prop()
+  create_time:string;
+
+  @Prop()
+  last_modified:string[];
+
+  @Prop()
+  modified_by:string[];
 }
 
 export const ResumeSchema = SchemaFactory.createForClass(Resume2);
