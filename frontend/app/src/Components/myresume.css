@@ -63,3 +63,9 @@
 .del-mg-row {
     margin-left: calc(var(--bs-gutter-x) * 0);
 }
+
+.block-right2 {
+    display: inline-block;
+    text-align: right;
+    margin-left: 60vw;
+}
