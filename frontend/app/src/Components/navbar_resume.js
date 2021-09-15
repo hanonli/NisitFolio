@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-class Navbar extends React.Component {
+class Resume_sideNavbar extends React.Component {
 	constructor(props) {
 		super(props);
 		this.handleLoad = this.handleLoad.bind(this);
@@ -9,10 +9,9 @@ class Navbar extends React.Component {
 	
 	componentDidMount() {
 		window.addEventListener('load', this.handleLoad);
-		console.log("Mounted Navbar script!");
 		const script = document.createElement("script");
-		script.src = "assets/js/navbar.js";
-		document.body.appendChild(script);
+		// script.src = "assets/js/navbar.js";
+		// document.body.appendChild(script);
 		
 	}
 
@@ -23,13 +22,11 @@ class Navbar extends React.Component {
 	
 	render (){
 		return (
-			<div className="Navbar">
-				<nav class="navbar-2 navbar-no-vertical-padding navbar-expand-lg navbar-light bg-light ">
-				
-				</nav>
+			<div className="Resume_sideNavbar">
+				<a href='#'>About</a>
 			</div>
 		);
 	}
 }
 
-export default Navbar;
+export default Resume_sideNavbar;
