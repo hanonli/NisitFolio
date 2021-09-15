@@ -2,20 +2,18 @@
 .content-certi1 {
     display: grid;
     grid-template-columns: repeat(2,1fr);
-    gap: 3.5px;
+    
 }
 
 .card_certi {
     border: 1px solid black;
     height: 220px;
-    width: 725px;
+    width: 730px;
     border-radius: 25px;
     margin-top: 5px;
     margin-bottom: 5px;
     position: relative;
-}
-
-#pos_card {
+    left: 4px;
     justify-content: center;
 }
 
@@ -50,10 +48,10 @@
 
 .layer-button-certi {
     height: 219px;
-    width: 724px;
+    width: 729px;
     position: absolute;
     top: 0;
-    left: 0;
+    left: -1px;
     transition: 0.2s;
     border-radius: 25px;
     background: transparent;
@@ -105,7 +103,7 @@
     background-color: #b6deea;
     border: 1px solid black;
     height: 140px;
-    width: 1470px;
+    /*width: 1470px;*/
     border-radius: 25px;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -131,4 +129,8 @@
 
 #border_certi {
     border-radius: 10px;
+}
+
+#textOfyear_certi {
+    color: black;
 }
