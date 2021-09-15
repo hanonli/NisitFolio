@@ -75,7 +75,7 @@ export class AdditionalSkill {
   UserId: String;
 
   @Column()
-  SoftSkill: string;
+  AdditionalSkill: string;
 
   @ManyToOne(type => Resume, resume => resume.additionalSkills)
   resumes: Resume[];
@@ -294,7 +294,7 @@ export class Resume {
   @Column()
   modified_by:string[];
 
-  
+
 }
 
 

@@ -192,6 +192,7 @@ export class MyResumeService {
         resume.interestedJob = job_arr;
 
       }
+      resume.Color = CreateDto.Color;
       resume.last_modified.push(isoTime);
       resume.modified_by.push(ip);
       return await this.resumeModel.create(resume);
