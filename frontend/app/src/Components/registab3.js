@@ -78,16 +78,16 @@ class Registab3 extends React.Component {
         this.setState({SecondaryGrade : e.target.value});
     }
     handleHigherSubmit(){
-        // console.log(this.state)
+        console.log(this.state)
         // //Clearing data
-        // this.state = initialstate;
+        this.state = initialstate;
         // document.getElementById("HigherForm").reset();
         // console.log(this.state)
-    }
+    }   
     handleSecondarySubmit(){
 
         // //Clearing data
-        // this.state = initialstate;
+        this.state = initialstate;
         // document.getElementById("SecondaryForm").reset();
     }
 
