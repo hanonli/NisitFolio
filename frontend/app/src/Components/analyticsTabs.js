@@ -8,27 +8,8 @@ import BookmarkProfileGrid from './bookmarkProfileGrid';
 import BookmarkWorkGrid from './bookmarkWorkGrid';
 import BookmarkProfileList from './bookmarkProfileList';
 import BookmarkWorkList from './bookmarkWorkList';
+import LoadingS from './loadingS';
 import TabBookmark from "./TabBookmark"; 
-
-const data = {
-  labels: ['ทักษะ B', 'ทักษะ A', 'ทักษะ C'],
-  orders: ['#2', '#1', '#3'],
-  percentages: ['xx.xx%', 'xx.xx%', 'xx.xx%'],
-  datasets: [
-    {
-      label: '# จำนวน',
-	  categoryPercentage: 0.9,
-	  barPercentage: 1.0,
-      data: [12, 17, 8],
-      backgroundColor: [
-        'rgba(1, 184, 170, 1)',
-        'rgba(253, 98, 94, 1)',
-        'rgba(242, 200, 15, 1)',
-      ],
-    },
-  ],
-};
-
 
 const tooltip_config = {
 	callbacks: {
@@ -80,7 +61,8 @@ class BookmarkTabs extends React.Component {
 		super(props);
 		this.handleLoad = this.handleLoad.bind(this);
 		this.state = {
-			//render: false //Set render state to false
+			render: false, //Set render state to false
+			allow: false,
 			
 			overviewMainCount: 0,
 			mainFocusName: 'ที่ x',
@@ -350,7 +332,7 @@ class BookmarkTabs extends React.Component {
 		var sumChart4 = new Chart();
 		var sumChart5 = new Chart();
 		var jobChart = new Chart();
-		var jobChart2 = new Chart(ctxJ2, jobChart4Config);
+		var jobChart2 = new Chart();
 		var jobChart3 = new Chart();
 		var jobChart4 = new Chart();
 		var hardChart1a = new Chart();
@@ -391,6 +373,10 @@ class BookmarkTabs extends React.Component {
 		var rawAdditional = {};
 		var rawMain = {};
 		var refThis = this;
+		
+		var rawScore = [];
+		var vLabels = [];
+		var vPoints = [];
 		
 		function ReuseAbleFuncMainOverview(){
 			//console.log(idm);
@@ -1163,11 +1149,7 @@ class BookmarkTabs extends React.Component {
 				hardChart2 = new Chart(ctxH2, hardChart2Config); console.log(hardChart2);
 			}, 400);
 		}
-		
-		var rawScore = [];
-		var vLabels = [];
-		var vPoints = [];
-		
+
 		function GenerateDistributionChartDataOverview(config,index){
 			    rawScore = [0,0,0,0,0,0,0,0,0,0,
 				0,0,0,0,0,0,0,0,0,0,
@@ -1277,7 +1259,6 @@ class BookmarkTabs extends React.Component {
 				console.log(rawScore);
 				//console.log(filteredScore);
 		}
-		
 		
 		function GenerateDistributionChartData(config,index){
 			    rawScore = [0,0,0,0,0,0,0,0,0,0,
@@ -1847,8 +1828,7 @@ class BookmarkTabs extends React.Component {
 								<a class="btn btn-cta-primary-yellow round profile-button" href="#" target="_blank">แก้ไขโปรไฟล์</a>\
 							</div>'
 				$('#overall-job-container').append(entry);
-			}
-			
+			}		
 			if(mainJobList.length > 0){
 				idm = 0;
 				ReuseAbleFuncMain();
@@ -2099,6 +2079,7 @@ class BookmarkTabs extends React.Component {
 					  }
 			}
 		};
+			ctx3 = document.getElementById("sumChart3").getContext("2d");
 			sumChart3 = new Chart(ctx3, sumChart3Config);
 		}
 		
@@ -2365,7 +2346,25 @@ class BookmarkTabs extends React.Component {
 			  $('.fac').removeClass("animate-fac");
 		}
 		
-		$(function(){
+		function InitializeAnalytics(){
+			ctx1 = $('#sumChart1');
+			ctx2a = $('#sumChart2a');
+			ctx2b = $('#sumChart2b');
+			ctx2c = $('#sumChart2c');
+			ctx3 = $('#sumChart3');
+			ctx4 = $('#sumChart4');
+			ctx5 = $('#sumChart5');
+			ctxJ = $('#jobChart1');
+			ctxJ2 = $('#jobChart2');
+			ctxJ3 = $('#jobChart3');
+			ctxJ4 = $('#jobChart4');
+			ctxH1a = $('#hardChart1a');
+			ctxH1b = $('#hardChart1b');
+			ctxH1c = $('#hardChart1c');
+			ctxH2 = $('#hardChart2');
+			ctxH3 = $('#hardChart3');
+			jobChart2 = new Chart(ctxJ2, jobChart4Config);
+			
 			//$('.fag').addClass("animate-fag");
 			//$('.fac').addClass("animate-fac");
 		   $('.tab-content').hide();
@@ -3169,7 +3168,7 @@ class BookmarkTabs extends React.Component {
 				setTimeout(function() { $('.hard-ct1').css('display', ''); $('.hard-ct2').css('display', 'none'); }, 200);
 				setTimeout(function() { $('.hard-ct1').removeClass("animate-hard-ct1"); }, 300);
 		  });
-		});
+		};
 
 		fetch("http://localhost:2000/analytics/main/"+userID,{
 			//fetch("http://localhost:3000/samples_json_for_testing (must upload to server first/temp_main",{
@@ -3187,6 +3186,9 @@ class BookmarkTabs extends React.Component {
 				rawMain = datas;
 				mainJobList = datas.InterestedJobs;
 				//mainJobList = [];
+				
+				this.setState({ render: true});
+				InitializeAnalytics();
 				
 				//ShowAdditionalInterfaceLv1
 				$('.main-not-found').hide();
@@ -3221,6 +3223,9 @@ class BookmarkTabs extends React.Component {
 					console.log(entry.replace('+',' '));
 				});*/
 				this.setState({ overviewMainCount: rawMain.Overview.numberOfUser });
+				
+				
+				//setTimeout(function() { Tab1Func(); }, 1000);
 				Tab1Func();
 				
 			}).catch((error) => {
@@ -3277,8 +3282,29 @@ class BookmarkTabs extends React.Component {
 	 }
 	
 	render (){
+		if(!this.state.render) return (
+			<LoadingS />
+		);
+		
+		if(!this.state.allow) return (
+			<div className="BookmarkTabs">
+				<header class="bookmark-header-fixed fat bgs">
+					<div class="container-fluid yahaha2">     
+						<div class="row">
+							<div class="col">
+								<div class="topDataBk-content text-center">
+									<h1 class="name inline">You don't have permission to access this page!</h1>
+								</div>
+							</div>
+						</div>        
+					</div>
+				</header>
+			</div>
+		);
+		
 		return (
 			<div className="BookmarkTabs">
+				<br></br>
 				<header class="header-white bookmark-header-fixed fat">
 					<div class="container-fluid yahaha2">     
 						<div class="row">

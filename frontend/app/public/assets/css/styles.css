@@ -66,6 +66,119 @@ mf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 18px; font-wei
 	margin-left: 2%;
 }
 
+.wrapper-loading {
+  height: 90vh;
+  position: relative;
+}
+
+.bgs {
+  background-image: url("http://magicalsarta.com/image/sr_anime_20161218.gif");
+  height: 93vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.wrapper-loading-l {
+  height: 100vh;
+  position: relative;
+}
+
+.balls-guruguru {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  background-color: #fff;
+}
+.ball {
+  width: 50%;
+  height: 20px;
+  position: absolute;
+  top: calc(50% - 10px);
+  transform-origin: 100% 50%;
+  left: 0;
+}
+.ball::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #333;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.ball-1::before {
+  animation: ball-guruguru 1s linear 0s infinite;
+}
+.ball-2 {
+  transform: rotate(45deg);
+}
+.ball-2::before {
+  animation: ball-guruguru 1s linear -0.125s infinite;
+}
+.ball-3 {
+  transform: rotate(90deg);
+}
+.ball-3::before {
+  animation: ball-guruguru 1s linear -0.25s infinite;
+}
+.ball-4 {
+  transform: rotate(135deg);
+}
+.ball-4::before {
+  animation: ball-guruguru 1s linear -0.375s infinite;
+}
+.ball-5 {
+  transform: rotate(180deg);
+}
+.ball-5::before {
+  animation: ball-guruguru 1s linear -0.5s infinite;
+}
+.ball-6 {
+  transform: rotate(225deg);
+}
+.ball-6::before {
+  animation: ball-guruguru 1s linear -0.625s infinite;
+}
+.ball-7 {
+  transform: rotate(270deg);
+}
+.ball-7::before {
+  animation: ball-guruguru 1s linear -0.75s infinite;
+}
+.ball-8 {
+  transform: rotate(315deg);
+}
+.ball-8::before {
+  animation: ball-guruguru 1s linear -0.875s infinite;
+}
+@keyframes ball-guruguru {
+  0% {
+    width: 20px;
+    height: 20px;
+    opacity: 1;
+  }
+  100% {
+    width: 6px;
+    height: 6px;
+    opacity: .2;
+    margin-left: 7px;
+  }
+}
+
+@keyframes loading4 {
+  0% {transform:rotate(0deg);}
+  85% {transform:rotate(360deg);}
+  100% {transform:rotate(360deg);}
+}
+
+
 .yahaha8{
 	word-spacing: 1.2em;
 }
@@ -353,7 +466,7 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 }
 
 .header .profile-image {
-	margin-top: 15px;
+	/*margin-top: 15px;*/
 	margin-right: 30px;
 	box-shadow: 0px 4px 3px rgba(50, 50, 50, 0.75);
 }
@@ -1298,8 +1411,34 @@ a.btn-search:hover, .btn-search:hover {
 	height: 15vw;
 }
 
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
 
-@media (min-height: 1000px) {
+.outer {
+  display: flex;
+  flex-flow: column;
+  height: 92vh;
+}
+
+.inner_remaining {
+  /*background-color: #DDDDDD;*/
+  flex-grow : 1;
+}
+
+.yhh1{
+	flex-grow : 1;
+	/*background-color: #DDDDDD;*/
+}
+
+.df-f{ margin-top: 2%; height:92% }
+.df-x{ margin-top: 0%; }
+
+
+/*@media (min-height: 1000px) {
 	.df-f{ margin-top: 5%; }
 	.df-x{ margin-top: 1%; }
 }
@@ -1307,7 +1446,7 @@ a.btn-search:hover, .btn-search:hover {
 @media (max-height: 1000px) {
 	.df-f{ margin-top: 2%; }
 	.df-x{ margin-top: 0%; }
-}
+}*/
 
 .search-box{
 	margin-left: 30%;

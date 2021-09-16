@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import $ from 'jquery';
+import cookie from 'react-cookies';
 
 class Navbar extends React.Component {
 	constructor(props) {
@@ -13,6 +15,15 @@ class Navbar extends React.Component {
 		const script = document.createElement("script");
 		script.src = "assets/js/navbar.js";
 		document.body.appendChild(script);
+		
+		
+		$(function(){
+			$("#logout").click(function(){
+			  //alert('logout!');
+			  cookie.save('login-token', null, { path: '/' })
+		   });
+		});
+		
 		
 	}
 	
@@ -121,7 +132,7 @@ class Navbar extends React.Component {
 										  </a>
 									  </Link>
 									</li>
-									<li class="nav-item tooltips-item shadow-box" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Logout">
+									<li class="nav-item tooltips-item shadow-box" id="logout" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Logout">
 									  <Link to="/landing">
 										  <a class="nav-link">
 											<span class="lg-view">
