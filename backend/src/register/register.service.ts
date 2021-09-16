@@ -90,7 +90,7 @@ export class RegisterService {
       additionalskill.AdditionalSkill  = createDto.SoftSkill[_i]; 
       additionalskill.create_time = isoTime ;
       additionalskill.last_modified =  [isoTime] ;
-      additionalskill.ResumeId =  null ;
+      additionalskill.ResumeId =  new Array() ;
       await this.AdditionalSkillRepository.save(additionalskill);
     }
     
@@ -102,7 +102,7 @@ export class RegisterService {
       certificate.CertYear = createDto.CertYear[_i]
       certificate.create_time = isoTime ;
       certificate.last_modified =  [isoTime] ;
-      certificate.ResumeId = null;
+      certificate.ResumeId = new Array();
       await this.CertificateRepository.save(certificate);
     }
 
@@ -117,7 +117,7 @@ export class RegisterService {
       educationHistory.Education_End_Year = createDto.Education_End_Year[_i];
       educationHistory.create_time = isoTime ;
       educationHistory.last_modified =  [isoTime] ;
-      educationHistory.ResumeId = null;
+      educationHistory.ResumeId = new Array();
       await this.EducationHistoryRepository.save(educationHistory);
     }
 
@@ -136,7 +136,7 @@ export class RegisterService {
       workHistory.Work_Salary_Type = createDto.SalaryType[_i]; 
       workHistory.create_time = isoTime ;
       workHistory.last_modified =  [isoTime] ;
-      workHistory.ResumeId = null;
+      workHistory.ResumeId = new Array();
       await this.WorkHistoryRepository.save(workHistory);
     }
 
@@ -149,7 +149,7 @@ export class RegisterService {
       interestedJob.Job_SkillName = createDto.Job_SkillName[_i];
       interestedJob.create_time = isoTime ;
       interestedJob.last_modified =  [isoTime] ;
-      interestedJob.ResumeId = null;
+      interestedJob.ResumeId = new Array();
       await this.InterestedJobRepository.save(interestedJob);
     }
 

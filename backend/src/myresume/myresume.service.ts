@@ -51,57 +51,81 @@ export class MyResumeService {
     const jobid = new ObjectID(CreateDto.JobID);
 
     const interestedjob = await this.InterestedJobRepository.findOne({where:{ _id: jobid }});
-    resume.interestedJob = interestedjob;
+    const subinterestedjob = await this.InterestedJobRepository.findOne({select: ["Job_JobName","Job_Objective","Job_Score","Job_SkillName"] , where:{ _id: jobid }});
+    resume.interestedJob = subinterestedjob;
+    
+
+    const myresume = await this.resumePictureRepository.save(resume);
+    const resumeID = myresume._id.toString();
+    await this.resumePictureRepository.remove(resume);
+
+    interestedjob.ResumeId.push(resumeID);
+    await this.InterestedJobRepository.save(interestedjob)
 
     const softskill_arr = [];
     for (var _i = 0; _i < CreateDto.SoftSkillID.length; _i++) {
       const softskillid = new ObjectID(CreateDto.SoftSkillID[_i]);
       const additionalskill = await this.AdditionalSkillRepository.findOne({where:{ _id: softskillid }});
-      softskill_arr.push(additionalskill);
+      const subadditionalskill = await this.AdditionalSkillRepository.findOne({select: ["AdditionalSkill"] ,where:{ _id: softskillid }});
+      softskill_arr.push(subadditionalskill);
+      additionalskill.ResumeId.push(resumeID);
+      await this.AdditionalSkillRepository.save(additionalskill);
     }
-    resume.additionalSkills = softskill_arr;
+    myresume.additionalSkills = softskill_arr;
 
     var cert_arr = [];
     for (var _i = 0; _i < CreateDto.CertID.length; _i++) {
       const certid = new ObjectID(CreateDto.CertID[_i]);
       const certificate = await this.CertificateRepository.findOne({where:{ _id: certid }});
-      cert_arr.push(certificate);
-      
+      const subcertificate = await this.CertificateRepository.findOne({select: ["CertName","CertPic","CertYear"] ,where:{ _id: certid }});
+      cert_arr.push(subcertificate );
+      certificate.ResumeId.push(resumeID);
+      await this.CertificateRepository.save(certificate)
+
     }
-    resume.certificates = cert_arr;
+    myresume.certificates = cert_arr;
 
     var education_arr = [];
     for (var _i = 0; _i < CreateDto.EducationID.length; _i++) {
       const educationid = new ObjectID(CreateDto.EducationID[_i]);
       const educationhistory = await this.EducationHistoryRepository.findOne({where:{ _id: educationid }});
-      education_arr.push(educationhistory);
-      
+      const subeducationhistory = await this.EducationHistoryRepository.findOne({select: ["Degree","Academy","Education_End_Year","Facalty","Field_of_study","Grade"] ,where:{ _id: educationid }});
+      education_arr.push(subeducationhistory);
+      educationhistory.ResumeId.push(resumeID);
+      await this.EducationHistoryRepository.save(educationhistory)
     }
-    resume.educationHistorys = education_arr;
+    myresume.educationHistorys = education_arr;
 
     var work_arr = [];
     for (var _i = 0; _i < CreateDto.WorkID.length; _i++) {
       const workid = new ObjectID(CreateDto.WorkID[_i]);
       const workhistory = await this.WorkHistoryRepository.findOne({where:{ _id: workid }});
-      work_arr.push(workhistory);
+      const subworkhistory = await this.WorkHistoryRepository.findOne({select: ["Work_Company","Work_End_Month","Work_End_Year","Work_Infomation","Work_JobName","Work_JobType","Work_Salary","Work_Salary_Type","Work_Start_Month","Work_Start_Year"],where:{ _id: workid }});
+      work_arr.push(subworkhistory);
+      workhistory.ResumeId.push(resumeID);
+      await this.WorkHistoryRepository.save(workhistory)
       
     }
-    resume.workHistorys = work_arr;
+    myresume.workHistorys = work_arr;
 
     var port_arr = [];
     for (var _i = 0; _i < CreateDto.PortID.length; _i++) {
       const portid = new ObjectID(CreateDto.PortID[_i]);
       const portfolio = await this.portModel.findOne({ _id: portid });
-      port_arr.push(portfolio);
+      const subportfolio = await this.portModel.findOne({ _id: portid },["Port_Tag","Port_Privacy","portfolioPictures"]);
+      port_arr.push(subportfolio);
+      portfolio.ResumeId.push(resumeID);
+      await this.portModel.create(portfolio)
     }
-    resume.portfolios = port_arr;
+    myresume.portfolios = port_arr;
 
-    resume.Color = CreateDto.Color;
-    resume.create_time =  isoTime;
-    resume.last_modified =  [isoTime] ;
-    resume.modified_by = [ip];
-    
-    return await this.resumePictureRepository.save(resume);
+    myresume.Color = CreateDto.Color;
+    myresume.create_time =  isoTime;
+    myresume.last_modified =  [isoTime] ;
+    myresume.modified_by = [ip];
+    const ObjID = new ObjectID(resumeID);
+    myresume._id=ObjID;
+    return await this.resumePictureRepository.save(myresume);
   }
 
   async getResume(resumeId:string ){
