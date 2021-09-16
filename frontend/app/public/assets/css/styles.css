@@ -1581,6 +1581,22 @@ a.btn-cta-primary-blackL:hover, .btn-cta-primary-blackL:hover {
   color: #000;
 }
 
+a.btn-cta-primary-blackwide, .btn-cta-primary-blackwide {
+  color: #fff;
+  font-weight: 400;
+  font-size: 2.2vh;
+  border: 1px solid #000;
+  background: #000;
+  height: 50px;
+  width: 200px;
+  
+}
+
+a.btn-cta-primary-blackwide:hover, .btn-cta-primary-blackwide:hover {
+  background: #778492;
+  border: 1px solid #778492;
+}
+
 a.btn-cta-primary-svshort:hover, .btn-cta-primary-svshort:hover {
   background: #000000;
   border: 1px solid #000000;

@@ -7,3 +7,6 @@ for (i = endYear; i > startYear; i--) {
     $('#year_secondary').append($('<option />').val(i).html(i));
 }
 
+function handleHigherSubmit(){
+  alert('click');
+}

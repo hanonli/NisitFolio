@@ -1,0 +1,80 @@
+/*const additionalskill = await this.AdditionalSkillRepository.find({where:{ UserId: UserId}});
+    for (var _i = 0; _i < additionalskill.length; _i++) {
+      await this.AdditionalSkillRepository.remove(additionalskill[_i]);
+    }
+
+    for (var _i = 0; _i < patchDto.SoftSkill.length; _i++) {
+      const additionalskill = new AdditionalSkill();
+      additionalskill.UserId = UserId;
+      additionalskill.AdditionalSkill  = patchDto.SoftSkill[_i]; 
+      additionalskill.create_time = isoTime ;
+      additionalskill.last_modified =  [isoTime] ;
+      additionalskill.ResumeId =  null ;
+      await this.AdditionalSkillRepository.save(additionalskill);
+    }
+
+    /*const certificate = await this.CertificateRepository.find({where:{ UserId: UserId}});
+    for (var _i = 0; _i < certificate.length; _i++) {
+      await this.CertificateRepository.remove(certificate[_i]);
+    }
+
+    for (var _i = 0; _i < createDto.CertName.length; _i++) {
+      const certificate = new Certificate();
+      certificate.UserId = UserId;
+      certificate.CertName = createDto.CertName[_i]
+      certificate.CertPic = createDto.CertPic[_i]
+      certificate.CertYear = createDto.CertYear[_i]
+      await this.CertificateRepository.save(certificate);
+    }
+
+    const educationHistory = await this.EducationHistoryRepository.find({where:{ UserId: UserId}});
+    for (var _i = 0; _i < educationHistory.length; _i++) {
+      await this.EducationHistoryRepository.remove(educationHistory[_i]);
+    }
+
+    for (var _i = 0; _i < createDto.Degree.length; _i++) {
+      const educationHistory = new EducationHistory();
+      educationHistory.UserId = UserId;
+      educationHistory.Degree = createDto.Degree[_i];
+      educationHistory.Facalty = createDto.Facalty[_i];
+      educationHistory.Field_of_study = createDto.Field_of_study[_i];
+      educationHistory.Academy = createDto.Academy[_i];
+      educationHistory.Grade = createDto.Grade[_i];
+      educationHistory.Education_End_Year = createDto.Education_End_Year[_i];
+      await this.EducationHistoryRepository.save(educationHistory);
+    }
+
+    const workHistory = await this.WorkHistoryRepository.find({where:{ UserId: UserId}});
+    for (var _i = 0; _i < workHistory.length; _i++) {
+      await this.WorkHistoryRepository.remove(workHistory[_i]);
+    }
+
+    for (var _i = 0; _i < createDto.Work_JobName.length; _i++) {
+      const workHistory = new WorkHistory();
+      workHistory.UserId = UserId;
+      workHistory.Work_JobName = createDto.Work_JobName[_i];
+      workHistory.Work_JobType = createDto.Work_JobType[_i];
+      workHistory.Company = createDto.Company[_i];
+      workHistory.Work_Start_Month = createDto.Work_Start_Month[_i];
+      workHistory.Work_End_Month = createDto.Work_End_Month[_i];
+      workHistory.Work_Start_Year = createDto.Work_Start_Year[_i];
+      workHistory.Work_End_Year = createDto.Work_End_Year[_i];
+      workHistory.Salary = createDto.Salary[_i]; 
+      workHistory.Infomation = createDto.Infomation[_i]; 
+      await this.WorkHistoryRepository.save(workHistory);
+    }
+
+    const interestedJob = await this.InterestedJobRepository.find({where:{ UserId: UserId}});
+    for (var _i = 0; _i < interestedJob.length; _i++) {
+      await this.InterestedJobRepository.remove(interestedJob[_i]);
+    }
+
+    for (var _i = 0; _i < createDto.Job_JobName.length; _i++) {
+      const interestedJob = new InterestedJob();
+      interestedJob.UserId = UserId;
+      interestedJob.Job_JobName = createDto.Job_JobName[_i];
+      interestedJob.Job_Objective = createDto.Job_Objective[_i];
+      interestedJob.Job_Score = createDto.Job_Score[_i];
+      interestedJob.Job_SkillName = createDto.Job_SkillName[_i];
+      await this.InterestedJobRepository.save(interestedJob);
+    }*/

@@ -1,8 +1,6 @@
 import React from 'react';
 import './register.css';
 import './registab6.css';
-import TabsJob from "./Tabs-job";
-
 
 class Registab6 extends React.Component {
 
@@ -22,7 +20,7 @@ class Registab6 extends React.Component {
 
 					<div class="frame_add_job_interest">
 						<div className="button_add_job_interest">
-							<button id="add-job" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModalJob">
+							<button id="add-job" type="button" class="btn">
 								<img src="assets/images/+.png" width="115" height="115"></img>
 							</button>
 						</div>
@@ -34,7 +32,7 @@ class Registab6 extends React.Component {
 							<div class="modal-content minisize">
 								<h4 class="del-b">คุณต้องการลบเป้าหมายในการทำงานนี้ ?</h4>
 								<div class="centerverify">
-									<a type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" >ยกเลิก</a>
+									<a id="hide-modal-delete" type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" >ยกเลิก</a>
 									<a id="summit-to-delete" type="button" class="btn btn-cta-primary-yellowshort profile-button round" >ลบ</a>
 								</div>
 							</div>
@@ -52,12 +50,6 @@ class Registab6 extends React.Component {
 									<div class="col-md-5 select-job4">
 										<select id="nm_job" class="form-select dropbtn-job4 margin-bottom-job4 fff" required>
 											<option selected disabled value="">เลือกตำแหน่งงานหรืองานที่คุณสนใจ *</option>
-											<option >โปรแกรมเมอร์</option>
-											<option >บาร์เทนเนอร์</option>
-											<option >ดีไซน์เนอร์</option>
-											<option >นักแปลภาษา</option>
-											<option >สลิ่ม</option>
-											<option >สามกีบ</option>
 										</select>
 									</div>
 								</div>

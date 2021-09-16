@@ -36,6 +36,9 @@ export class UserInfoMongoose {
 
   @Prop()
   City: string;
+
+  @Prop()
+  last_modified: string[];
   
 }
 

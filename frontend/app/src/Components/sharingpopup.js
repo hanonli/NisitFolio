@@ -1,8 +1,30 @@
 import React, { useState } from 'react';
 
 class SharingPopup extends React.Component {  
+    constructor(props) {
+        super(props);
+		this.handleLoad = this.handleLoad.bind(this);
+      }
+    
+      componentDidMount() {
+        var linkhref="";
+        //copyURI(linkhref);
+        function copyURI(evt) {
+            evt.preventDefault();
+            navigator.clipboard.writeText(evt.target.getAttribute('href')).then(() => {
+              /* clipboard successfully set */
+            }, () => {
+              /* clipboard write failed */
+            });
+        }
+      }
+      componentWillUnmount() {
+        window.removeEventListener('load', this.handleLoad)  
+      }
+      handleLoad() {
+		console.log("YEAH!");
+	 }
     render (){
-
     return (
         <div>
         <div class="modal fade" id="sharingResume" aria-hidden="true" tabindex="-1">
@@ -34,7 +56,10 @@ class SharingPopup extends React.Component {
                     <div class="row">
                         <h1 class="SharingFontHead col-10" id="exampleModalToggleLabel2">Sharing</h1>
                     </div>
-                    <a href="' + artworkUrl + '" onclick="copyURI(event)">Copy cover URL</a>
+                    <div class="dropbtn">
+                        <p></p>
+                        <img class="tooltip-icon" href="" src="assets/images/outline_content_copy_black_48dp.png" onclick="copyURI(event)" type="button" height="30" width="30"/>
+                    </div>
                 </div>
             </div>
         </div>
