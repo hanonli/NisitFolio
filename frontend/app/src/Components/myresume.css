@@ -45,6 +45,10 @@
     margin-left: 1vw;
 }
 
+.marginBEx1 {
+    margin-bottom: 1vw;
+}
+
 .marginBEx2 {
     margin-bottom: 2vw;
 }
@@ -68,4 +72,24 @@
     display: inline-block;
     text-align: right;
     margin-left: 60vw;
+}
+
+.block-right3{
+    text-align: right;
+}
+
+.del-pad-col1 {
+    padding: -1vw;
+}
+
+.margin1 {
+    margin: 1vw;
+}
+
+.link-text {
+    font-size: 20px;
+    margin-bottom: 0px;
+    display: inline;
+    padding-top: 0.5vw;
+    margin-left: 0vw;
 }
