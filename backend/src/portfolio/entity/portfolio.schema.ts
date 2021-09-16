@@ -26,6 +26,9 @@ export class Portfolio2 {
   @Prop()
   modified_by:string[];
 
+  @Prop()
+  ResumeId:string[];
+
   
 }
 
