@@ -5,7 +5,7 @@ $(".Home" ).ready(function() {
 });
 
 $(".MyResumeContent" ).ready(function() {
-    $('.MyResumeContent').css("padding-left",'40px');
+    $('.MyResumeContent').css("padding-left",'100px');
 });
 
 
@@ -25,10 +25,10 @@ $( "#slidenav" ).click(function() {
     }
     else if(toggle){
         // alert('toggle close')
-        $("#sideNav").css("width", "40px");
+        $("#sideNav").css("width", "100px");
         $("#icon-slide_right").css("transform", "rotate(0deg)");
-        $(".sidenav-centered").css("left", "50%");
-        $('.MyResumeContent').css("padding-left","40px");
+        $(".sidenav-centered").css("left", "80%");
+        $('.MyResumeContent').css("padding-left","100px");
     }
     toggle=!toggle;  
 });
