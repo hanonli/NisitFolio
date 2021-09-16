@@ -24,14 +24,18 @@ class Registab5 extends React.Component {
 						</div>
 					</div>
 
-					<div class="content-certi1" id="pos_card"></div>
+					<div class="box-box-box">
+
+					</div>
+
+
 					<div class="modal fade" id="exampleModal_remove_certi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog modal-dialog-centered">
 							<div class="modal-content minisize">
 								<h4 class="del-b">คุณต้องการลบใบรับรองนี้ ?</h4>
 								<div class="centerverify">
-									<a type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</a>
-									<a id="summit-to-delete-certi" type="button" class="btn btn-cta-primary-yellowshort profile-button round" data-bs-dismiss="modal">ลบ</a>
+									<a id="hide-delete-certi" type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m">ยกเลิก</a>
+									<a id="summit-to-delete-certi" type="button" class="btn btn-cta-primary-yellowshort profile-button round">ลบ</a>
 								</div>
 							</div>
 						</div>

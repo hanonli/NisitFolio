@@ -213,6 +213,15 @@ export class Portfolio {
   @OneToMany(type => PortfolioPicture, portfolioPicture => portfolioPicture.portfolio)
   portfolioPictures: PortfolioPicture[];
 
+  @Column()
+  create_time:string;
+
+  @Column()
+  last_modified:string[];
+
+  @Column()
+  modified_by:string[];
+
 }
 
 //--------------------PortfolioPicture--------------------------//
@@ -232,6 +241,12 @@ export class PortfolioPicture {
 
   @ManyToOne(type => Portfolio, portfolio => portfolio.portfolioPictures)
   portfolio: Portfolio;
+
+  @Column()
+  create_time:string;
+
+  @Column()
+  last_modified:string[];
 
 }
 

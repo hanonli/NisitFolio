@@ -17,6 +17,16 @@ export class Portfolio2 {
   @Prop()
   portfolioPictures: string[];
   
+  @Prop()
+  create_time:string;
+
+  @Prop()
+  last_modified:string[];
+
+  @Prop()
+  modified_by:string[];
+
+  
 }
 
 export const PortfolioSchema = SchemaFactory.createForClass(Portfolio2);

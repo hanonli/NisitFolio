@@ -2,6 +2,7 @@ import { Controller, Get, Post, Request, UseGuards , Body,Param, Delete ,Patch} 
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { PortService } from "./portfolio.service";
 import { CreatePortfolioDto } from './dto/portfolio.dto';
+import { RealIP } from 'nestjs-real-ip';
 
 
 @Controller("portfolio")
@@ -22,9 +23,9 @@ export class PortController {
 
   @UseGuards(JwtAuthGuard)
   @Post()
-    async CreatePortfolio(@Body() CreateDto: CreatePortfolioDto ,@Request() req) {
+    async CreatePortfolio(@Body() CreateDto: CreatePortfolioDto ,@Request() req,@RealIP() ip: string) {
       CreateDto.UserId = req.user.userId;
-    return this.portService.createPort(CreateDto);
+    return this.portService.createPort(CreateDto,ip);
   }
 
   @UseGuards(JwtAuthGuard)

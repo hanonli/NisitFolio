@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, HttpException , HttpStatus } from '@nestjs/common';
 import { CreatePortfolioDto } from './dto/portfolio.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, SimpleConsoleLogger } from 'typeorm';
@@ -28,7 +28,10 @@ export class PortService {
     return this.portModel.find({UserId : userId});
   }
 
-  async createPort(CreateDto: CreatePortfolioDto ){
+  async createPort(CreateDto: CreatePortfolioDto ,ip:string){
+    const time =  new Date();
+    const isoTime = time.toLocaleDateString('th-TH',{ year:'numeric',month: 'long',day:'numeric',hour:"2-digit",minute:"2-digit"});
+
     const port = new Portfolio(); 
     port.UserId = CreateDto.UserId;
     port.Port_Tag = CreateDto.Port_Tag;
@@ -40,9 +43,16 @@ export class PortService {
 
     port.portfolioPictures = [portpic];
 
+    port.create_time = isoTime;
+    port.last_modified = [isoTime];
+    port.modified_by = [ip];
+
     const portid = (await this.portRepository.save(port)).id;
     portpic.PortId = portid;
-    
+
+    portpic.last_modified =  [isoTime];
+    portpic.create_time = isoTime;
+
     return await this.portfolioPictureRepository.save(portpic);
   }
 
@@ -56,7 +66,10 @@ export class PortService {
       return await this.portRepository.remove(port);
     }
     
-    return "can not delete other's data";
+    throw new HttpException({
+      status: HttpStatus.UNAUTHORIZED,
+      error: 'Can not Delete Other Data',
+    }, HttpStatus.UNAUTHORIZED);
   }
 
   async updatePort(CreateDto: CreatePortfolioDto,portId:string, userId:string){
@@ -83,7 +96,10 @@ export class PortService {
       return await this.portModel.create(port);
     }
     
-    return "can not update other's data";
+    throw new HttpException({
+      status: HttpStatus.UNAUTHORIZED,
+      error: 'Can not Patch Other Data',
+    }, HttpStatus.UNAUTHORIZED);
   }
 
 
