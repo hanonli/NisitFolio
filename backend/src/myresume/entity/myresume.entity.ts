@@ -5,13 +5,13 @@ import { ObjectId, Timestamp } from 'mongodb';
 @Entity("Account")
 export class Account {
   @ObjectIdColumn()
-  id?: ObjectId;
+  _id?: ObjectId;
 
   @Column()
   Email: string;
   
   @Column()
-  Password: string;
+  Password: string[];
 
   @Column()
   ProfilePic: string;
@@ -21,6 +21,15 @@ export class Account {
 
   @Column()
   isEmailConfirmed: boolean;
+
+  @Column()
+  create_time:string;
+
+  @Column()
+  last_modified:string[];
+
+  @Column()
+  last_login:string[];
 }
 
 export default Account;
@@ -34,7 +43,7 @@ export class Userinfo {
   id?: ObjectId;
 
   @Column()
-  UserId: String;
+  UserId: string;
 
   @Column()
   Firstname: string;
@@ -63,6 +72,12 @@ export class Userinfo {
   @Column()
   City: string;
 
+  @Column()
+  create_time:string;
+
+  @Column()
+  last_modified:string[];
+
 }
 
 //--------------------AdditionalSkill--------------------------//
@@ -72,10 +87,19 @@ export class AdditionalSkill {
   id?: ObjectId;
 
   @Column()
-  UserId: String;
+  ResumeId: string[];
+
+  @Column()
+  UserId: string;
 
   @Column()
   AdditionalSkill: string;
+
+  @Column()
+  create_time:string;
+
+  @Column()
+  last_modified:string[];
 
   @ManyToOne(type => Resume, resume => resume.additionalSkills)
   resumes: Resume[];
@@ -89,10 +113,10 @@ export class Certificate {
   id?: ObjectId;
 
   @Column()
-  UserId: String;
+  UserId: string;
   
-  @ObjectIdColumn()
-  ResumeId?: ObjectId;
+  @Column()
+  ResumeId: string[];
 
   @Column()
   CertName: string;
@@ -102,6 +126,12 @@ export class Certificate {
   
   @Column()
   CertYear: number;
+
+  @Column()
+  create_time:string;
+
+  @Column()
+  last_modified:string[];
 
   @ManyToOne(type => Resume, resume => resume.certificates)
   resumes: Resume[];
@@ -116,7 +146,10 @@ export class EducationHistory {
   id?: ObjectId;
   
   @Column()
-  UserId: String;
+  ResumeId: string[];
+
+  @Column()
+  UserId: string;
 
   @Column()
   Degree: string;
@@ -136,6 +169,12 @@ export class EducationHistory {
   @Column()
   Education_End_Year: number;   
 
+  @Column()
+  create_time:string;
+
+  @Column()
+  last_modified:string[];
+
   @ManyToOne(type => Resume, resume => resume.educationHistorys)
   resumes: Resume[];
 }
@@ -147,7 +186,10 @@ export class WorkHistory {
   id?: ObjectId;
   
   @Column()
-  UserId: String;
+  ResumeId: string[];
+
+  @Column()
+  UserId: string;
 
   @Column()
   Work_JobName: string;
@@ -156,7 +198,7 @@ export class WorkHistory {
   Work_JobType: string;
   
   @Column()
-  Company: string;
+  Work_Company: string;
   
   @Column()
   Work_Start_Month: number;
@@ -171,10 +213,19 @@ export class WorkHistory {
   Work_End_Year: number;
 
   @Column()
-  Salary: Float32Array;
+  Work_Salary: Float32Array;
 
   @Column()
-  Infomation: string;
+  Work_Salary_Type: string;
+
+  @Column()
+  Work_Infomation: string;
+
+  @Column()
+  create_time:string;
+
+  @Column()
+  last_modified:string[];
 
   @ManyToOne(type => Resume, resume => resume.workHistorys)
   resumes: Resume[];
@@ -188,19 +239,28 @@ export class InterestedJob {
   id?: ObjectId;
   
   @Column()
-  UserId: String;
+  ResumeId: string[];
 
   @Column()
-  Job_Objective: string;
+  UserId: string;
 
   @Column()
-  Job_Score: Float32Array;
+  Job_Objective: string[];
+
+  @Column()
+  Job_Score: Float32Array[];
 
   @Column()
   Job_JobName: string;
 
   @Column()
-  Job_SkillName: string;
+  Job_SkillName: string[];
+
+  @Column()
+  create_time:string;
+
+  @Column()
+  last_modified:string[];
 
   @OneToMany(type => Resume, resume => resume.interestedJob)
   resumes: Resume[];
@@ -253,7 +313,7 @@ export class PortfolioPicture {
 @Entity("Resume")
 export class Resume {
   @ObjectIdColumn()
-  id?: ObjectId;
+  _id?: ObjectId;
   
   @Column()
   UserId: string;
