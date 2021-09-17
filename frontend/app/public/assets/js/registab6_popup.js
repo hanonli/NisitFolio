@@ -1,10 +1,13 @@
 /*------------------------ REGISTER TAB 6 ------------------------*/
 
 /*---------------- TAB IN MODAL ---------------*/
+var tabId;
 $(document).on('click', '.tabs_pop li', function () {
-    var tabId = $(this).attr('data-tab1');
     $('.tabs_pop li').removeClass('current2');
     $('.tab-pane_pop').removeClass('current2');
+    tabId = $(this).attr('data-tab1');
+    console.log(`tabId:`, tabId);
+    console.log(`this is!!:`, this);
     $(this).addClass('current2');
     $('#' + tabId).addClass('current2');
 });
@@ -89,9 +92,16 @@ function show_all_job() {
         else {
             grid_Job_skill3 = "";
         }
+
         $(".list-of-job").append(grid_Job1 + grid_Job_skill1 + grid_Job_skill2 + grid_Job_skill3 + grid_Job2);
+        console.log(`list_of_job:`, list_of_job);
     });
 }
+
+$(document).ready(function () {
+    show_all_job();
+});
+
 
 /*---slider range----*/
 var score_slider1, score_slider2, score_slider3, pre_click_slider1 = '', pre_click_slider2 = '', pre_click_slider3 = '';
@@ -223,6 +233,10 @@ function setupSlider(id, vals, initialVal = 0) {
 }
 
 $(document).on("click", "#add-job", function () {
+    /*$('#tab01').addClass('current2');
+    $('.tabs_pop li').addClass('current2');
+    $('.tab-pane_pop').addClass('current2');*/
+
     $("#nm_job").removeClass("error_select_job");
     choose_function = 2;
     if (list_of_job.length < 3) {
@@ -349,7 +363,7 @@ $(document).on('click', "#summit-to-delete", function () {
 
 $(document).on('click', "#hide-modal-tab6", function () {
     $('#exampleModalJob').modal('hide');
-    $("#obj-job-01").val('');
+    /*$("#obj-job-01").val('');
     $("#obj-job-02").val('');
     $("#obj-job-03").val('');
     $('#nm_job').prop('selectedIndex', 0);
@@ -360,7 +374,7 @@ $(document).on('click', "#hide-modal-tab6", function () {
     $(".step-labels").remove();
     $("#input_mySlider1").remove();
     $("#input_mySlider2").remove();
-    $("#input_mySlider3").remove();
+    $("#input_mySlider3").remove();*/
 });
 
 $(document).on('hide.bs.modal', "#exampleModalJob", function () {
@@ -376,6 +390,12 @@ $(document).on('hide.bs.modal', "#exampleModalJob", function () {
     $("#input_mySlider1").remove();
     $("#input_mySlider2").remove();
     $("#input_mySlider3").remove();
+    if (tabId == "tab02") {
+        $('.tabs_pop li').removeClass('current2');
+        $('.tab-pane_pop').removeClass('current2');
+        $('#prayut-nha-hee').addClass('current2');
+        $('#tab01').addClass('current2');
+    }
 });
 
 $(document).on('click', "#hide-modal-delete", function () {
@@ -404,15 +424,15 @@ document.getElementById("submit-job11").addEventListener("click", function () {
     else {
         if (skill_job_1 == 'เลือกทักษะของคุณที่เหมาะกับงาน' || skill_job_1 == '' || skill_job_1 == 'none') {
             skill_job_1 = 'none';
-            score_slider1 = 0;
+            score_slider1 = "none";
         }
         if (skill_job_2 == 'เลือกทักษะของคุณที่เหมาะกับงาน' || skill_job_2 == '' || skill_job_2 == 'none') {
             skill_job_2 = 'none';
-            score_slider2 = 0;
+            score_slider2 = "none";
         }
         if (skill_job_3 == 'เลือกทักษะของคุณที่เหมาะกับงาน' || skill_job_3 == '' || skill_job_3 == 'none') {
             skill_job_3 = 'none';
-            score_slider3 = 0;
+            score_slider3 = "none";
         }
         if (obj_job_1 == "") {
             obj_job_1 = "none";
@@ -487,7 +507,6 @@ document.getElementById("submit-job11").addEventListener("click", function () {
             $(".frame_add_job_interest").hide();
         }
     }
-
 });
 
 /*--- textarea obj ----*/
@@ -534,15 +553,9 @@ $(document).on("click", "#pos-del-obj-button3", function () {
     $("#pos-del-obj-button3").hide();
 });
 
-$(document).on("change", "#obj-job-01", function () {
+/*$(document).on("change", "#obj-job-01", function () {
     if ($("#obj-job-01").val() != "") {
         $("#pos-del-obj-button1").show();
-        /*if ($("#obj-job-02").val() == "" && $("#obj-job-03").val() != "") {
-            $("#obj-job-02").val($("#obj-job-03").val());
-            $("#pos-del-obj-button2").show();
-            $("#obj-job-03").val('');
-            $("#pos-del-obj-button3").hide();
-        }*/
     }
     else {
         if ($("#obj-job-02").val() != "" && $("#obj-job-03").val() != "") {
@@ -610,6 +623,31 @@ $(document).on("change", "#obj-job-03", function () {
         else {
             $("#pos-del-obj-button3").show();
         }
+    }
+    else {
+        $("#pos-del-obj-button3").hide();
+    }
+});*/
+
+$(document).on("change", "#obj-job-01", function () {
+    if ($("#obj-job-01").val() != "") {
+        $("#pos-del-obj-button1").show();
+    }
+    else {
+        $("#pos-del-obj-button1").hide();
+    }
+});
+$(document).on("change", "#obj-job-02", function () {
+    if ($("#obj-job-02").val() != "") {
+        $("#pos-del-obj-button2").show();
+    }
+    else {
+        $("#pos-del-obj-button2").hide();
+    }
+});
+$(document).on("change", "#obj-job-03", function () {
+    if ($("#obj-job-03").val() != "") {
+        $("#pos-del-obj-button3").show();
     }
     else {
         $("#pos-del-obj-button3").hide();
