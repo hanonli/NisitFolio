@@ -16,7 +16,7 @@ class MyResume extends React.Component {
 		window.addEventListener('load', this.handleLoad);
 		console.log("YEAHXXX!");
 		const script = document.createElement("script");
-		script.src = "assets/js/home.js";
+		script.src = "assets/js/myresume.js";
 		document.body.appendChild(script);
 		
 	}

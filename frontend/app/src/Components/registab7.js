@@ -11,7 +11,7 @@ class Registab7 extends React.Component {
 					<h1 class="headerRegis" id="havesideskill">ทักษะเสริม ( WIP )</h1>
 					<div class="dropdowntap7_1 ssf">
 						<div class="row ddt7_1">
-							<div class="col-md-6">
+							<div class="col-md-12">
 								<select class="form-select dropbtn fff" id="ch1">
 									<option selected disabled value="">เลือกหมวดทักษะเสริมที่ถนัด</option>
 									<option value= 'Technical'>Technical</option>
@@ -25,7 +25,7 @@ class Registab7 extends React.Component {
 									<option value='Design'>Design</option>
 								</select>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-12">
 								<select class="form-select dropbtn" id="sideskilllist1">
 									<option selected disabled value="">เลือกทักษะเสริมที่ถนัด</option>
 								</select>
@@ -34,7 +34,7 @@ class Registab7 extends React.Component {
 					</div>
 					<div class="dropdowntap7_2 ssf">
 					<div class="row ddt7_2">
-							<div class="col-md-6 chh2">
+							<div class="col-md-12 chh2">
 								<select class="form-select dropbtn fff" id="ch2">
 									<option selected disabled value="">เลือกหมวดทักษะเสริมที่ถนัด</option>
 									<option value= 'Technical'>Technical</option>
@@ -48,7 +48,7 @@ class Registab7 extends React.Component {
 									<option value='Design'>Design</option>
 								</select>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-12">
 								<select class="form-select dropbtn" id="sideskilllist2">
 									<option selected disabled value="">เลือกทักษะเสริมที่ถนัด</option>
 								</select>
@@ -57,7 +57,7 @@ class Registab7 extends React.Component {
 					</div>
 					<div class="dropdowntap7_3 ssf">
 					<div class="row ddt7_3">
-							<div class="col-md-6">
+							<div class="col-md-12">
 								<select class="form-select dropbtn fff" id="ch3">
 									<option selected disabled value="">เลือกหมวดทักษะเสริมที่ถนัด</option>
 									<option value= 'Technical'>Technical</option>
@@ -71,7 +71,7 @@ class Registab7 extends React.Component {
 									<option value='Design'>Design</option>
 								</select>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-12">
 								<select class="form-select dropbtn" id="sideskilllist3">
 									<option selected disabled value="">เลือกทักษะเสริมที่ถนัด</option>
 								</select>
