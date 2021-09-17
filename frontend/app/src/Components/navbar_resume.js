@@ -23,10 +23,21 @@ class Resume_sideNavbar extends React.Component {
 	render (){
 		return (
 			<div className="Resume_sideNavbar" id='sideNav'>
+				<div class='row'> 
+						<a href="#"> <img id='icon-myresume'  src="assets/images/bookmark_1.png"></img> </a>
+						<a href="#"> <img id='icon-myresume'  src="assets/images/bookmark_1.png"></img> </a>
+						<a href="#"> <img id='icon-myresume'  src="assets/images/ประวัติการศึกษา.png"></img> </a>
+						<a href="#"> <img id='icon-myresume'  src="assets/images/เกียรติบัตรและใบรับรอง.png"></img> </a>
+						<a href="#"> <img id='icon-myresume'  src="assets/images/ความถนัดและทักษะ.png"></img> </a>
+						<a href="#"> <img id='icon-myresume'  src="assets/images/bookmark_1.png"></img> </a>
+						<a href="#"> <img id='icon-myresume'  src="assets/images/ผลงานของฉัน.png"></img> </a>
+						<a href="#"> <img id='icon-myresume'  src="assets/images/เป้าหมายการทำงาน.png"></img> </a>
+				</div>
 				<div className='sidenav-centered'>
 					<button type="button" class="slide_button" id='slidenav'>
 						<img id='icon-slide_right'  src="assets/images/slide_right.png"></img>
 					</button>
+					
 				</div>
 				
 			</div>
