@@ -79,6 +79,7 @@ $('#continue2').click(function () {
     var FormRegis2 = {
       Email: $('#re03').val(),
       Password: $('#pass05').val(),
+      ProfilePic: avatar1.src,
       Firstname: $('#re01').val(),
       Lastname: $('#re02').val(),
       Birthday: bdd,
@@ -117,7 +118,8 @@ var startYear = 1950;
 var endYear = new Date().getFullYear();
 for (i = endYear; i > startYear; i--) {
     $('#bdyear').append($('<option />').val(i).html(i));
-    $('#year_enjob').append($('<option />').val(i).html(i));
+    $('#year_startjob').append($('<option />').val(i).html(i));
+    $('#year_endjob').append($('<option />').val(i).html(i));
     $('#year_higher').append($('<option />').val(i).html(i));
     $('#year_secondary').append($('<option />').val(i).html(i));
 }
@@ -498,57 +500,7 @@ var sideskill_count=0;
 var max_sideskill=3;
 var sumsideskill='';
 var valss_now='';
-var valt7_1 = '';
-var valt7_2 = '';
-var valt7_3 = '';
 
-/*$(document).on('change', 'input', function(){
-    var options = $('datalist')[0].options;
-    var val = $(this).val();
-    for (let i=0;i<options.length;++i){
-       if (options[i].value === val) {
-          console.log("User selected: "+val+" -> Remove focus away.");
-		      $('#sideskilllist').blur();
-          sideskill_count += 1;
-          console.log(val)
-          if(sideskill_count == 1){
-            $('#sideskilllist1').hide();          
-            valss_now = $('#sideskilllist1').val();
-            valt7_1 = valss_now;
-            console.log(valss_now);
-            sumsideskill = sideskilldropdown1_1 + valss_now + sideskilldropdown2 + sskdd1;
-            console.log(sumsideskill);
-            $('.dropdowntap7_1').append(sumsideskill);
-            sumsideskill = '';
-            $('#sideskilllist2').show();
-          }
-          else if(sideskill_count == 2){
-            $('#sideskilllist2').hide(); 
-            $('#sideskilllist3').show();
-            valss_now = $('#sideskilllist2').val();
-            valt7_2 = valss_now;
-            vvv = valss_now.length;
-            console.log(valss_now);
-            console.log('Length : ' + vvv);
-            sumsideskill = sideskilldropdown1_2 + valss_now + sideskilldropdown2 + sskdd2;
-            console.log(sumsideskill);
-            $('.dropdowntap7_2').append(sumsideskill);
-            sumsideskill = '';
-          }
-          else if(sideskill_count == 3){
-            $('#sideskilllist3').hide(); 
-            valss_now = $('#sideskilllist3').val();
-            valt7_3 = valss_now;
-            console.log(valss_now);
-            sumsideskill = sideskilldropdown1_3 + valss_now + sideskilldropdown2 + sskdd3;
-            console.log(sumsideskill);
-            $('.dropdowntap7_3').append(sumsideskill);
-            sumsideskill = '';
-          }
-          break;
-       }
-    }
-});*/
 var Dropdownsideskill1 = '<div class="row ddt7_1">\
 <div class="col-md-12">\
   <select class="form-select dropbtn fff" id="ch1">\
@@ -621,9 +573,6 @@ var Dropdownsideskill3 = '<div class="row ddt7_3">\
 $(function(){
   $('#del_sideskill1').on('click', function(){
     console.log('EiEi this is Del1');
-    console.log('SSK1 :' + valt7_1);
-    console.log('SSK2 :' + valt7_2);
-    console.log('SSK3 :' + valt7_3);
     console.log(list_sideskill);
     $('#ssl_1').remove();
     $('.ddt7_1').remove();
@@ -638,7 +587,8 @@ $(function(){
     }
     else if(sideskill_count==2){
       $('.ddt7_2').remove();
-      sumsideskill = sideskilldropdown1_1 + valt7_2 + sideskilldropdown1 + sskdd1;
+      sumsideskill = sideskilldropdown1_1 + list_sideskill[1] + sideskilldropdown2 + sskdd1;
+      console.log(sumsideskill);
       $('.dropdowntap7_1').append(sumsideskill);
       list_sideskill[0]=list_sideskill[1];
       list_sideskill[1]="";
@@ -652,17 +602,19 @@ $(function(){
     else if(sideskill_count==3){
       $('.ddt7_2').remove();
       $('.ddt7_3').remove();
-      sumsideskill = sideskilldropdown1_1 + valt7_2 + sideskilldropdown1 + sskdd1;
+      sumsideskill = sideskilldropdown1_1 + list_sideskill[1] + sideskilldropdown2 + sskdd1;
       $('.dropdowntap7_1').append(sumsideskill);
-      sumsideskill = sideskilldropdown1_2 + valt7_3 + sideskilldropdown2 + sskdd2;
+      sumsideskill = sideskilldropdown1_2 + list_sideskill[2] + sideskilldropdown2 + sskdd2;
       $('.dropdowntap7_2').append(sumsideskill);
       list_sideskill[0]=list_sideskill[1];
-      list_sideskill[1]="";
+      list_sideskill[1]=list_sideskill[2];
+      list_sideskill[2]="";
       $('#ssl_2').remove();
-      sumsideskill = Dropdownsideskill2;
-      $('.dropdowntap7_2').append(sumsideskill);
+      $('#ssl_3').remove();
+      sumsideskill = Dropdownsideskill3;
+      $('.dropdowntap7_3').append(sumsideskill);
       sumsideskill = '';
-      $('.ddt7_3').hide();
+      $('#sideskilllist3').hide();
     }
     console.log(list_sideskill);
     sideskill_count -= 1;
@@ -671,6 +623,27 @@ $(function(){
   $('#del_sideskill2').on('click', function(){
     console.log('EiEi this is Del2');
     $('#ssl_2').remove();
+    $('.ddt7_2').remove();
+    if(sideskill_count==2){
+      $('.ddt7_2').remove();
+      list_sideskill[1]="";
+      sumsideskill = Dropdownsideskill2;
+      $('.dropdowntap7_2').append(sumsideskill);
+      $('#sideskilllist2').hide();
+      sumsideskill = '';
+      $('.ddt7_3').hide();
+    }
+    else if(sideskill_count==3){
+      sumsideskill = sideskilldropdown1_2 + list_sideskill[2] + sideskilldropdown2 + sskdd2;
+      $('.dropdowntap7_2').append(sumsideskill);
+      list_sideskill[1]=list_sideskill[2];
+      list_sideskill[2]="";
+      $('#ssl_3').remove();
+      sumsideskill = Dropdownsideskill3;
+      $('.dropdowntap7_3').append(sumsideskill);
+      sumsideskill = '';
+      $('#sideskilllist3').hide();
+    }
     console.log(list_sideskill);
     sideskill_count -= 1;
     console.log('Sum SSK :' + sideskill_count + '!!!');
@@ -678,7 +651,12 @@ $(function(){
   $('#del_sideskill3').on('click', function(){
     console.log('EiEi this is Del3');
     $('#ssl_3').remove();
-    $('#sideskilllist3').show();
+    $('.ddt7_3').remove();
+    list_sideskill[2]="";
+    sumsideskill = Dropdownsideskill3;
+    $('.dropdowntap7_3').append(sumsideskill);
+    $('#sideskilllist3').hide();
+    sumsideskill = '';
     console.log(list_sideskill);
     sideskill_count -= 1;
     console.log('Sum SSK :' + sideskill_count + '!!!');

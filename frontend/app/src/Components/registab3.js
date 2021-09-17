@@ -85,7 +85,7 @@ class Registab3 extends React.Component {
         // console.log(this.state)
     }   
     handleSecondarySubmit(){
-
+        console.log(this.state)
         // //Clearing data
         this.state = initialstate;
         // document.getElementById("SecondaryForm").reset();
@@ -112,9 +112,8 @@ class Registab3 extends React.Component {
 
 									<div class="modal fade" id="registab3Modal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
 										<div class="modal-dialog modal-dialog-centered modal-xl">
-											<div class="modal-content " >
+											<div class="modal-content modalworkaddH" >
 												<div class='modal-body'>
-													<button type="button" class="btn-close" id='registab3_btnclose' aria-label="Close" data-bs-dismiss="modal"></button>
 													<h1 class='modal-title' id='regisModallabel1' >เพิ่มประวัติการศึกษา</h1>
 													<div className='addHigher'>
 			<div className="Registab3_addHigher ">
@@ -126,8 +125,6 @@ class Registab3 extends React.Component {
                                 <option value='ปริญญาเอก'>ปริญญาเอก</option>    
                                 <option value='ปริญญาโท'>ปริญญาโท</option>
                                 <option value='ปริญญาตรี'>ปริญญาตรี</option>
-                                <option value='ปริญญาจัตวา'>ปริญญาจัตวา</option>
-                                <option value='ปริญญาใจ'>ปริญญาใจ</option>
                             </select>
 
                         </div>
@@ -150,7 +147,7 @@ class Registab3 extends React.Component {
                                     <h5 id='registab4_textGrade' type='number' >เกรดเฉลี่ยรวม*</h5>
                                 </div>
                                 <div class='col-4 ms-auto'> 
-                                    <input type="text" class="form-control dropbtn margin-bottom1 " id="ValidationGradeFeedback" placeholder="XX.X" defaultValue={this.state.HigherGrade} onBlur={this.setHigherGrade} required></input>
+                                    <input type="text" class="form-control dropbtn margin-bottom1 " id="ValidationGradeFeedback" placeholder="X.XX" defaultValue={this.state.HigherGrade} onBlur={this.setHigherGrade} required></input>
                                 </div>
                             </div>
                         </div>
@@ -160,7 +157,7 @@ class Registab3 extends React.Component {
                         <div class="selectDropdown">
                             <select class="form-select form-select-lg dropbtn_year margin-bottom1 fff" id='year_higher' aria-labelledby="select1" defaultValue={this.state.HigherEndYear} onChange={this.setHigherEndYear} required>
                                 <option selected disabled value=''>ปีที่จบการศึกษา</option>
-                                <option>กำลังศึกษา</option>
+                                <option value="0">กำลังศึกษา</option>
                             </select>
                             <br/>
                         </div>               
@@ -169,12 +166,10 @@ class Registab3 extends React.Component {
 			</div>
 													</div>													
 												</div>
-												<div class='modal-footer'>
-													<div class="centerverify">
-														<button type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</button>
-														<button type="button" class="btn btn-cta-primary-yellowshort profile-button round" onClick={this.handleHigherSubmit}  id='regis3_HigherConfirm' >ตกลง</button>
+													<div class="centerverify button-add-addH1">
+														<button type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal"  id='registab3_btnclose'>ยกเลิก</button>
+														<button type="button" class="btn btn-cta-primary-yellowshort profile-button round" onClick={this.handleHigherSubmit}  id='regis3_HigherConfirm' >เพิ่ม</button>
 													</div>
-												</div>
 
 											</div>
 										</div>
@@ -190,9 +185,8 @@ class Registab3 extends React.Component {
 									</div>
 									<div class="modal fade" id="registab3Modal2" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
 										<div class="modal-dialog modal-dialog-centered modal-xl">
-											<div class="modal-content " >
+											<div class="modal-content modalworkaddH" >
 												<div class='modal-body'>
-													<button type="button" class="btn-close" id='registab3_btnclose' aria-label="Close" data-bs-dismiss="modal"></button>
 													<h1 class='modal-title' id='regisModallabel2' >เพิ่มประวัติการศึกษา</h1>
 													<div className='addSecondary'>
 													<div className="Registab3_addSecondary">
@@ -202,12 +196,9 @@ class Registab3 extends React.Component {
                         <div class="selectDropdown">
                             <select class="form-select form-select-lg dropbtn margin-bottom1 fff" id='regis3_selectdropdown2' aria-labelledby="select1"   onChange={this.setSecondaryDegree} required>
                                 <option selected disabled value=''>เลือกวุฒิการศึกษา</option>
-                                <option value='มัธยมศึกษาปีที่ 1' >มัธยมศึกษาปีที่ 1</option>    
-                                <option value='มัธยมศึกษาปีที่ 2' >มัธยมศึกษาปีที่ 2</option>
-                                <option value='มัธยมศึกษาปีที่ 3' >มัธยมศึกษาปีที่ 3</option>
-                                <option value='มัธยมศึกษาปีที่ 4' >มัธยมศึกษาปีที่ 4</option>
-                                <option value='มัธยมศึกษาปีที่ 5' >มัธยมศึกษาปีที่ 5</option>
-                                <option value='มัธยมศึกษาปีที่ 6' >มัธยมศึกษาปีที่ 6</option>
+                                <option value='ประถมศึกษา' >ประถมศึกษา</option>    
+                                <option value='มัธยมศึกษาตอนต้น' >มัธยมศึกษาตอนต้น</option>    
+                                <option value='มัธยมศึกษาตอนปลาย' >มัธยมศึกษาตอนปลาย</option>
                             </select>
                         </div>
                     </div>
@@ -226,7 +217,7 @@ class Registab3 extends React.Component {
                                     <h5 id='registab4_textGrade'>เกรดเฉลี่ยรวม</h5>
                                 </div>
                                 <div class='col-7 ms-auto'> 
-                                    <input type="text" class="form-control dropbtn margin-bottom1 " id="ValidationGradeFeedback" placeholder="XX.X" value={this.state.SecondaryGrade} onChange={this.setSecondaryGrade} required></input>
+                                    <input type="text" class="form-control dropbtn margin-bottom1 " id="ValidationGradeFeedback" placeholder="X.XX" value={this.state.SecondaryGrade} onChange={this.setSecondaryGrade} required></input>
                                 </div>
                             </div>
                         </div>
@@ -245,12 +236,10 @@ class Registab3 extends React.Component {
 			</div>
 													</div>													
 												</div>
-												<div class='modal-footer'>
-													<div class="centerverify">
+													<div class="centerverify button-add-addH1">
 														<button type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</button>
-														<button type="button" class="btn btn-cta-primary-yellowshort profile-button round"  onClick={this.handleSecondarySubmit} data-bs-dismiss='modal'>ตกลง</button>
+														<button type="button" class="btn btn-cta-primary-yellowshort profile-button round"  onClick={this.handleSecondarySubmit}>เพิ่ม</button>
 													</div>
-												</div>
 
 											</div>
 										</div>

@@ -16,6 +16,10 @@ h1, h2, h3, h4, h5, h6, input, span,label,button,textarea, a, div {
   color: #778492;
 }
 
+textarea {
+  resize: none;
+}
+
 nf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 32px; font-weight: 200;  color: #939393; }
 nnf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 24px; font-weight: 400;  color: #939393; }
 uf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 24px; font-weight: 200;  color: #939393; }
