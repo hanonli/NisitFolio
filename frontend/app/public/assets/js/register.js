@@ -70,7 +70,24 @@ $(function(){
  });
 
 /*Tab1*/
-$('#continue2').click(function () {    
+$('#continue2').click(function () {
+  var last_sideskill = list_sideskill;
+  console.log(list_of_job);
+  console.log(list_of_job[0]);
+  console.log(list_of_job[0].name_job);
+  var last_jobname = [list_of_job[0].name_job,list_of_job[1].name_job,list_of_job[2].name_job];
+  if(avatar1.src=="http://localhost:3000/assets/images/Circleuploadprofile.png"){
+    avatar1.src="http://localhost:3000/assets/images/profile_uk.png";
+  }
+  if(list_sideskill[0]==''){
+    var last_sideskill = [];
+  }
+  else if(list_sideskill[1]==''){
+    var last_sideskill = [list_sideskill[0]];
+  }
+  else if(list_sideskill[2]==''){
+    var last_sideskill = [list_sideskill[0],list_sideskill[1]];
+  }
   if(RequireCount_pass==1){     
     console.log('You Pass!'); 
     //PostRegis();
@@ -85,14 +102,14 @@ $('#continue2').click(function () {
       Birthday: bdd,
       Gender: $('#sexgen').val(),
       Email2nd:"-",
-      SoftSkill:list_sideskill,
+      SoftSkill:last_sideskill,
       //CertName:[list_of_certi[0].name_certi,list_of_certi[1].name_certi,list_of_certi[2].name_certi],
       //CertPic:[list_of_certi[0].path_file_certi,list_of_certi[1].path_file_certi,list_of_certi[2].path_file_certi],
       //CertYear:[list_of_certi[0].year_certi,list_of_certi[1].year_certi,list_of_certi[2].year_certi],
       //Degree:[],
       Work_JobName: [],
       Work_JobType:[],
-      //Job_JobName:[list_of_job[0].name_job,list_of_job[1].name_job,list_of_job[2].name_job],
+      Job_JobName:last_jobname,
       //Job_SkillName: [[list_of_job[0].skill1,list_of_job[0].skill2,list_of_job[0].skill3],[list_of_job[1].skill1,list_of_job[1].skill2,list_of_job[1].skill3],[list_of_job[2].skill1,list_of_job[2].skill2,list_of_job[2].skill3]],
       //Job_Score: [[list_of_job[0].score_skill1,list_of_job[0].score_skill2,list_of_job[0].score_skill3],[list_of_job[1].score_skill1,list_of_job[1].score_skill2,list_of_job[1].score_skill3],[list_of_job[2].score_skill1,list_of_job[2].score_skill2,list_of_job[2].score_skill3]],
       //Job_Objective:[[list_of_job[0].obj1,list_of_job[0].obj2,list_of_job[0].obj3],[list_of_job[1].obj1,list_of_job[1].obj2,list_of_job[1].obj3],[list_of_job[2].obj1,list_of_job[2].obj2,list_of_job[2].obj3]],
@@ -245,7 +262,7 @@ for (k = startD; k < MaxD; k++) {
 ret1 = document.getElementById('re01');                   
 ret1.addEventListener('keyup', function(){
     var valt1 = $('#re01').val();
-    console.log('Name : ' + valt1);
+    //console.log('Name : ' + valt1);
   if(valt1 == ''){
     $('#re01').removeClass('is-valid');
     $('#re01').addClass('is-invalid');
@@ -258,7 +275,7 @@ ret1.addEventListener('keyup', function(){
 ret2 = document.getElementById('re02');                   
 ret2.addEventListener('keyup', function(){
   var valt1 = $('#re02').val();
-  console.log('Surname : ' + valt1);
+  //console.log('Surname : ' + valt1);
   if(valt1 == ''){
     $('#re02').removeClass('is-valid');
     $('#re02').addClass('is-invalid');
@@ -269,16 +286,13 @@ ret2.addEventListener('keyup', function(){
   }});
 ret3 = document.getElementById('re03');                   
 ret3.addEventListener('keyup', function(){
-  var valt1 = $('#re03').val();
-  console.log('Email : ' + valt1);
-  if(valt1 == ''){
-    $('#re03').removeClass('is-valid');
-    $('#re03').addClass('is-invalid');
-  }
-  else {
-    $('#re03').removeClass('is-invalid');
-    $('#re03').addClass('is-valid');
-  }});
+  var input=$(this);
+  //console.log('Email : ' + input);
+	var re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+	var is_email=re.test(input.val());
+	if(is_email){input.removeClass("is-invalid").addClass("is-valid");}
+	else{input.removeClass("is-valid").addClass("is-invalid");}
+});
 var passw = 0;
 var min_pass_count = 8;
 var max_pass_count = 20;
@@ -352,7 +366,7 @@ pa1.addEventListener('keyup', checkPass, false);
 pa2.addEventListener('keyup', checkPass, false);
 
 /*Tab2*/
-var min_abme_count = 0;
+var min_abme_count = -1;
 var el;
 
 function countCharactersAbme() {                                    
@@ -667,13 +681,12 @@ $(function(){
   $('#sideskilllist1').on('change', function(){
     console.log('EiEi this is Sel1');
     valss_now = $('#sideskilllist1').val();
-    valt7_1 = valss_now;
     list_sideskill[0]=valss_now;
     //console.log(valss_now);
     sumsideskill = sideskilldropdown1_1 + valss_now + sideskilldropdown2 + sskdd1;
     $('.dropdowntap7_1').append(sumsideskill);
     sumsideskill = '';
-    $('.ddt7_1').hide();
+    $('.ddt7_1').remove();
     $('.ddt7_2').show();
     $('#sideskilllist2').hide();
     sideskill_count += 1;
@@ -682,7 +695,6 @@ $(function(){
   $('#sideskilllist2').on('change', function(){
     console.log('EiEi this is Sel2');
     valss_now = $('#sideskilllist2').val();
-    valt7_2 = valss_now;
     list_sideskill[1]=valss_now;
     //console.log(valss_now);
     sumsideskill = sideskilldropdown1_2 + valss_now + sideskilldropdown2 + sskdd2;
@@ -697,7 +709,6 @@ $(function(){
   $('#sideskilllist3').on('change', function(){
     console.log('EiEi this is Sel3');
     valss_now = $('#sideskilllist3').val();
-    valt7_3 = valss_now;
     list_sideskill[2]=valss_now;
     //console.log(valss_now);
     sumsideskill = sideskilldropdown1_3 + valss_now + sideskilldropdown2 + sskdd3;
@@ -801,7 +812,7 @@ function GetDistrict(text){
      Computer: ['Python','C']};
 
     $(function(){
-      $('#ch1').on('input', function(){
+      $('#ch1').on('change', function(){
         console.log('Checkkaaaa');
         var chss_now = $('#ch1').val();
         cht7_1 = chss_now;

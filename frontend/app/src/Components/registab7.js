@@ -8,7 +8,7 @@ class Registab7 extends React.Component {
 		return (
 			<div className="Registab7">
 				<div class="regis-box-content7 " id="yyy">
-					<h1 class="headerRegis" id="havesideskill">ทักษะเสริม ( WIP )</h1>
+					<h1 class="headerRegis" id="havesideskill">ทักษะเสริม</h1>
 					<div class="dropdowntap7_1 ssf">
 						<div class="row ddt7_1">
 							<div class="col-md-12">
