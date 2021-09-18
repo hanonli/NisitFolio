@@ -62,7 +62,7 @@ class BookmarkTabs extends React.Component {
 		this.handleLoad = this.handleLoad.bind(this);
 		this.state = {
 			render: false, //Set render state to false
-			allow: false,
+			allow: true,
 			
 			overviewMainCount: 0,
 			mainFocusName: 'ที่ x',
@@ -2902,11 +2902,13 @@ class BookmarkTabs extends React.Component {
 				var jList = rawMain[mainJobList[idm].name].List;
 				console.log(mainJobMixed);
 				jList.forEach((entry) => {
+					//alert(entry.SkillName);
 					if(!mainJobMixed.includes(entry.SkillName)){ // this skill wasn't shown
+						//alert('was not show: '+entry.SkillName);
 						remJobs.push(entry.SkillName);
 						//remOrders.push('#'+extra);
 						remOrders.push('#'+extra);
-						remPercentages.push(entry.percentage.toFixed(2)+'%');
+						remPercentages.push(entry.percentage+'%');
 						remData.push(entry.total);
 						extra += 1;
 					}
