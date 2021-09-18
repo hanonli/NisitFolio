@@ -106,7 +106,7 @@ $(document).ready(function () {
 function setupSlider(id, vals, initialVal) {
     $(`#${id}`).append($('<div>').addClass('step-marks'));
     $(`#${id}`).append($('<div>').addClass('step-labels'));
-    $(`#${id}`).append($('<input type="range" step="0.01" id="' + 'input_' + id + '">'));
+    $(`#${id}`).append($('<input type="range" step="0.1" id="' + 'input_' + id + '">'));
 
     var min = 2.5;
     var max = 10;
@@ -163,7 +163,7 @@ function set_slider_range1(value) {
     });
     var slider1 = document.getElementById("input_mySlider1");
     slider1.style.background = 'linear-gradient(to right, #f0a143 0%, #f0a143 ' + (slider1.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 ' + (slider1.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 100%)';
-    
+
     slider1.oninput = function (event) {
         //console.log('skill1:', slider1.value);
         //score_slider1 = parseFloat(slider1.value).toFixed(2);
@@ -280,11 +280,11 @@ $(document).on("click", "#edit-job", function () {
         if (post.id == id_list_job_edit)
             return true;
     });
-    
+
     set_slider_range1(for_edit["score_skill1"]);
     set_slider_range2(for_edit["score_skill2"]);
     set_slider_range3(for_edit["score_skill3"]);
-    
+
     if (for_edit["skill1"] == "none") {
         //set_slider_range1(0);
         //document.getElementById("input_mySlider1").disabled = true;
@@ -302,12 +302,12 @@ $(document).on("click", "#edit-job", function () {
     else {
         document.getElementById("each_skill2").selectedIndex = for_edit["skill2_select"];
         //$("#customRange12").val(for_edit["score_skill2"]);
-       // set_slider_range2(for_edit["score_skill2"]);
+        // set_slider_range2(for_edit["score_skill2"]);
         document.getElementById("input_mySlider2").disabled = false;
     }
     if (for_edit["skill3"] == "none") {
         //set_slider_range3(0);
-       // document.getElementById("input_mySlider3").disabled = true;
+        // document.getElementById("input_mySlider3").disabled = true;
         // document.getElementsByClassName("x3").style.background = "linear-gradient(to right,#c98a11 0%,#f0a143 50%, #c98a11 50%, #c4c4c4 100%)";
     }
     else {
@@ -470,13 +470,13 @@ document.getElementById("submit-job11").addEventListener("click", function () {
             for_edit["name_job_select"] = $("#nm_job").prop('selectedIndex');
             for_edit["skill1"] = skill_job_1;
             for_edit["skill1_select"] = $("#each_skill1").prop('selectedIndex');
-            for_edit["score_skill1"] = score_slider11;
+            for_edit["score_skill1"] = parseFloat(score_slider11).toFixed(1);
             for_edit["skill2"] = skill_job_2;
             for_edit["skill2_select"] = $("#each_skill2").prop('selectedIndex');
-            for_edit["score_skill2"] = score_slider12;
+            for_edit["score_skill2"] = parseFloat(score_slider12).toFixed(1);
             for_edit["skill3"] = skill_job_3;
             for_edit["skill3_select"] = $("#each_skill3").prop('selectedIndex');
-            for_edit["score_skill3"] = score_slider13;
+            for_edit["score_skill3"] = parseFloat(score_slider13).toFixed(1);
             for_edit["obj1"] = obj_job_1;
             for_edit["obj2"] = obj_job_2;
             for_edit["obj3"] = obj_job_3;
@@ -489,13 +489,13 @@ document.getElementById("submit-job11").addEventListener("click", function () {
                 name_job_select: $("#nm_job").prop('selectedIndex'),
                 skill1: skill_job_1,
                 skill1_select: $("#each_skill1").prop('selectedIndex'),
-                score_skill1: score_slider11,
+                score_skill1: parseFloat(score_slider11).toFixed(1),
                 skill2: skill_job_2,
                 skill2_select: $("#each_skill2").prop('selectedIndex'),
-                score_skill2: score_slider12,
+                score_skill2: parseFloat(score_slider12).toFixed(1),
                 skill3: skill_job_3,
                 skill3_select: $("#each_skill3").prop('selectedIndex'),
-                score_skill3: score_slider13,
+                score_skill3: parseFloat(score_slider13).toFixed(1),
                 obj1: obj_job_1,
                 obj2: obj_job_2,
                 obj3: obj_job_3
@@ -720,35 +720,42 @@ GetSkill('each_skill2');
 GetSkill('each_skill3');
 
 
-function testPost(){
-    
-    var total1 = [];
-    var i=0;
+function testPost6() {
+    var Job_Score = [], Job_Jobname = [], Job_Objective = [], Job_SkillName = []; //variable for send to backend 
+    var i = 0;
     list_of_job.forEach(ele => {
+        //post job name
+        Job_Jobname.push([ele["name_job"]]);
+        //post skill name
+        Job_SkillName.push([ele["skill1"], ele["skill2"], ele["skill3"]]);
+        //post job score
         var total_skill_score = new Float32Array(3);
-        if(ele["skill1"]!="none"){
+        if (ele["skill1"] != "none") {
             total_skill_score[0] = ele["score_skill1"];
         }
-        else{
-            total_skill_score[0] = null;
+        else {
+            total_skill_score[0] = "none";
         }
-        if(ele["skill2"]!="none"){
+        if (ele["skill2"] != "none") {
             total_skill_score[1] = ele["score_skill2"];
         }
-        else{
-            total_skill_score[1] = null;
+        else {
+            total_skill_score[1] = "none";
         }
-        if(ele["skill3"]!="none"){
+        if (ele["skill3"] != "none") {
             total_skill_score[2] = ele["score_skill3"];
         }
-        else{
-            total_skill_score[2] = null;
+        else {
+            total_skill_score[2] = "none";
         }
-        
-        total1.push(total_skill_score);
-        //console.log("total:",total_skill_score);
+        Job_Score.push(total_skill_score);
+        //post job objective
+        Job_Objective.push([ele["obj1"], ele["obj2"], ele["obj3"]]);
     });
-    console.log("total:",total1);
+    console.log("Job_Jobname:", Job_Jobname);
+    console.log("Job_SkillName:", Job_SkillName);
+    console.log("Job_Score:", Job_Score);
+    console.log("Job_Objective:", Job_Objective);
 }
 /*---------------- disable slider range ----------------*/
 
