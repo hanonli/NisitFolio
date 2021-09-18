@@ -16,7 +16,7 @@ $(document).ready( function() {
     $('#icon-myresume-certi').attr('title', 'Certificate');
     $('#icon-myresume-skill').attr('title', 'Skill');
     $('#icon-myresume-work').attr('title', 'Work');
-    $('#icon-myresume-education').attr('title', 'education');
+    //$('#icon-myresume-education').attr('title', 'education');
     $('#icon-myresume-goal').attr('title', 'Goal');
 
 

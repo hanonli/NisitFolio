@@ -23,8 +23,15 @@ class Resume_sideNavbar extends React.Component {
 	render (){
 		return (
 			<div className="Resume_sideNavbar" id='sideNav'>
-				<div class='row' id='myresumepath'> 
-						<a href="#"> <img id='icon-myresume-education'  src="assets/images/ประวัติการศึกษา.png"></img> </a>
+				
+				<div class="row" id='myresumepath'> 
+						<a href="#"> 
+							<img id='icon-myresume-education'  src="assets/images/ประวัติการศึกษา.png"/>
+							<span class="sm-view">
+								Education
+							</span>
+						</a>
+			
 						<a href="#"> <img id='icon-myresume-certi'  src="assets/images/เกียรติบัตรและใบรับรอง.png"></img> </a>
 						<a href="#"> <img id='icon-myresume-skill'  src="assets/images/ความถนัดและทักษะ.png"></img> </a>
 						<a href="#"> <img id='icon-myresume'  src="assets/images/bookmark_1.png"></img> </a>
