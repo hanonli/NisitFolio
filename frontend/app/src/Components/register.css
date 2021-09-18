@@ -118,10 +118,12 @@
     border-radius: 24px;
     padding-left: 30px;
     height: 21vh;
+    resize: none;
   }
 
   .aboutmee:hover, .aboutmee:focus {
     background-color: #cdcdcd;
+    resize: none;
   }
   
   .certibtn {
@@ -337,7 +339,13 @@ datalist {
   width: 130vw;
   border-radius: 1vw;
   padding-top: 0.7vw;
+}
 
+.sharingSize2 {
+  height: 40vh;
+  width: 130vw;
+  border-radius: 1vw;
+  padding-top: 0.7vw;
 }
 
 .SharingFontHead {

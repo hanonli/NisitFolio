@@ -97,6 +97,10 @@ function show_certi() {
     console.log(`list_of_year_certi:`, list_of_year_certi);
 }
 
+$(document).ready(function () {
+    show_certi();
+});
+
 var picOfCerti = '';
 
 $(document).on('change', "#image-upload112", function () {
