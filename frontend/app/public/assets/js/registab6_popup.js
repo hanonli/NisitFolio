@@ -46,11 +46,11 @@ function show_all_job() {
                                 <h1 id="job-position">ตำแหน่งงานที่ {no_job}</h1>\
                                 <h1 id="job-name">{name_job}</h1>\
                                 </div >\
-                                <div class="head-skill">\
-                                    <h1 id="mySkil-job">ทักษะของฉัน</h1>\
-                                </div>\
-                                <div class="my-skill-content">\
-                                    <div class="each-skill-job">`;
+                                    <div class="my-skill-content">\
+                                        <div class="head-skill">\
+                                            <h1 id="mySkil-job">ทักษะของฉัน</h1>\
+                                        </div>\                                    
+                                        <div class="each-skill-job">`;
 
         var grid_Job_skill1 = `		        <p id="skill1-job">{skill1}</p>`;
 
@@ -59,7 +59,7 @@ function show_all_job() {
         var grid_Job_skill3 = `		        <p id="skill3-job">{skill3}</p>`;
 
         var grid_Job2 = `				</div>\
-                                </div>\
+                                     </div>\
                                 <div class="layer_icon" id="{no_list}">\
 								    <button type="button" class="btn" id="edit-job"><img src="assets/images/blackedit.png" width="65" height="65"></img></button>\
 								    <button type="button" class="btn" id="del-job"><img src="assets/images/bin.png" width="90" height="90"></img></button>\
@@ -102,111 +102,11 @@ $(document).ready(function () {
     show_all_job();
 });
 
-
-/*---slider range----*/
-var score_slider1, score_slider2, score_slider3, pre_click_slider1 = '', pre_click_slider2 = '', pre_click_slider3 = '';
-
-function set_slider_range1(value) {
-    setupSlider('mySlider1', ["พอได้เล็กน้อย", "พื้นฐาน", "ดี", "ยอดเยี่ยม"], value);
-    if (document.getElementById("each_skill1").value == 'เลือกทักษะของคุณที่เหมาะกับงาน') {
-        document.getElementById("input_mySlider1").disabled = true;
-    }
-    else {
-        document.getElementById("input_mySlider1").disabled = false;
-    }
-    document.getElementById("each_skill1").addEventListener("click", function () {
-        var skill_job_1 = document.getElementById("each_skill1").value;
-        if (skill_job_1 != 'เลือกทักษะของคุณที่เหมาะกับงาน' && skill_job_1 != pre_click_slider1) {
-            document.getElementById("input_mySlider1").disabled = false;
-            document.getElementById("input_mySlider1").value = "6.25";
-            document.getElementById("input_mySlider1").style.background = 'linear-gradient(to right, #f0a143 0%, #f0a143 ' + 50 + '%, #c4c4c4 ' + 50 + '%, #c4c4c4 100%)';
-            pre_click_slider1 = skill_job_1;
-        }
-        else if (skill_job_1 == 'เลือกทักษะของคุณที่เหมาะกับงาน') {
-            document.getElementById("input_mySlider1").disabled = true;
-            document.getElementById("input_mySlider1").value = "0";
-            document.getElementById("input_mySlider1").style.background = 'linear-gradient(to right, #f0a143 0%, #f0a143 ' + 0 + '%, #c4c4c4 ' + 0 + '%, #c4c4c4 100%)';
-            pre_click_slider1 = '';
-        }
-    });
-    var slider1 = document.getElementById("input_mySlider1");
-    slider1.style.background = 'linear-gradient(to right, #f0a143 0%, #f0a143 ' + (slider1.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 ' + (slider1.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 100%)';
-    slider1.oninput = function (event) {
-        console.log('skill1:', slider1.value);
-        score_slider1 = parseFloat(slider1.value).toFixed(1);
-        slider1.style.background = 'linear-gradient(to right, #f0a143 0%, #f0a143 ' + (slider1.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 ' + (slider1.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 100%)';
-    }
-}
-
-function set_slider_range2(value) {
-    setupSlider('mySlider2', ["พอได้เล็กน้อย", "พื้นฐาน", "ดี", "ยอดเยี่ยม"], value);
-    if (document.getElementById("each_skill2").value == 'เลือกทักษะของคุณที่เหมาะกับงาน') {
-        document.getElementById("input_mySlider2").disabled = true;
-    }
-    else {
-        document.getElementById("input_mySlider2").disabled = false;
-    }
-    document.getElementById("each_skill2").addEventListener("click", function () {
-        var skill_job_2 = document.getElementById("each_skill2").value;
-        if (skill_job_2 != 'เลือกทักษะของคุณที่เหมาะกับงาน' && skill_job_2 != pre_click_slider2) {
-            document.getElementById("input_mySlider2").disabled = false;
-            document.getElementById("input_mySlider2").value = "6.25";
-            document.getElementById("input_mySlider2").style.background = 'linear-gradient(to right, #0fe17c 0%, #0fe17c ' + 50 + '%, #c4c4c4 ' + 50 + '%, #c4c4c4 100%)';
-            pre_click_slider2 = skill_job_2;
-        }
-        else if (skill_job_2 == 'เลือกทักษะของคุณที่เหมาะกับงาน') {
-            document.getElementById("input_mySlider2").disabled = true;
-            document.getElementById("input_mySlider2").value = "0";
-            document.getElementById("input_mySlider2").style.background = 'linear-gradient(to right, #0fe17c 0%, #0fe17c ' + 0 + '%, #c4c4c4 ' + 0 + '%, #c4c4c4 100%)';
-            pre_click_slider2 = '';
-        }
-    });
-    var slider2 = document.getElementById("input_mySlider2");
-    slider2.style.background = 'linear-gradient(to right, #0fe17c 0%, #0fe17c ' + (slider2.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 ' + (slider2.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 100%)';
-    slider2.oninput = function (event) {
-        console.log('skill2:', slider2.value);
-        score_slider2 = parseFloat(slider2.value).toFixed(1);
-        slider2.style.background = 'linear-gradient(to right, #0fe17c 0%, #0fe17c ' + (slider2.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 ' + (slider2.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 100%)';
-    }
-}
-
-function set_slider_range3(value) {
-    setupSlider('mySlider3', ["พอได้เล็กน้อย", "พื้นฐาน", "ดี", "ยอดเยี่ยม"], value);
-    if (document.getElementById("each_skill3").value == 'เลือกทักษะของคุณที่เหมาะกับงาน') {
-        document.getElementById("input_mySlider3").disabled = true;
-    }
-    else {
-        document.getElementById("input_mySlider3").disabled = false;
-    }
-    document.getElementById("each_skill3").addEventListener("click", function () {
-        var skill_job_3 = document.getElementById("each_skill3").value;
-        if (skill_job_3 != 'เลือกทักษะของคุณที่เหมาะกับงาน' && skill_job_3 != pre_click_slider3) {
-            document.getElementById("input_mySlider3").disabled = false;
-            document.getElementById("input_mySlider3").value = "6.25";
-            document.getElementById("input_mySlider3").style.background = 'linear-gradient(to right, #c98a11 0%, #c98a11 ' + 50 + '%, #c4c4c4 ' + 50 + '%, #c4c4c4 100%)';
-            pre_click_slider3 = skill_job_3;
-        }
-        else if (skill_job_3 == 'เลือกทักษะของคุณที่เหมาะกับงาน') {
-            document.getElementById("input_mySlider3").disabled = true;
-            document.getElementById("input_mySlider3").value = "0";
-            document.getElementById("input_mySlider3").style.background = 'linear-gradient(to right, #c98a11 0%, #c98a11 ' + 0 + '%, #c4c4c4 ' + 0 + '%, #c4c4c4 100%)';
-            pre_click_slider3 = '';
-        }
-    });
-    var slider3 = document.getElementById("input_mySlider3");
-    slider3.style.background = 'linear-gradient(to right, #c98a11 0%, #c98a11 ' + (slider3.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 ' + (slider3.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 100%)';
-    slider3.oninput = function (event) {
-        console.log('skill3:', slider3.value);
-        score_slider3 = parseFloat(slider3.value).toFixed(1);
-        slider3.style.background = 'linear-gradient(to right, #c98a11 0%, #c98a11 ' + (slider3.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 ' + (slider3.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 100%)';
-    }
-}
-
 // setup slider HTML, then call the following method with the values
-function setupSlider(id, vals, initialVal = 0) {
+function setupSlider(id, vals, initialVal) {
     $(`#${id}`).append($('<div>').addClass('step-marks'));
     $(`#${id}`).append($('<div>').addClass('step-labels'));
-    $(`#${id}`).append($('<input type="range" step="0.1" id="' + 'input_' + id + '">'));
+    $(`#${id}`).append($('<input type="range" step="0.01" id="' + 'input_' + id + '">'));
 
     var min = 2.5;
     var max = 10;
@@ -232,6 +132,116 @@ function setupSlider(id, vals, initialVal = 0) {
     $(`#${id}`).show();
 }
 
+/*---slider range----*/
+var score_slider1, score_slider2, score_slider3, pre_click_slider1 = -1, pre_click_slider2 = -1, pre_click_slider3 = -1;
+
+function set_slider_range1(value) {
+    pre_click_slider1 = -1;
+    setupSlider('mySlider1', ["พอได้เล็กน้อย", "พื้นฐาน", "ดี", "ยอดเยี่ยม"], value);
+    if (document.getElementById("each_skill1").value == 'เลือกทักษะของคุณที่เหมาะกับงาน') {
+        document.getElementById("input_mySlider1").disabled = true;
+    }
+    else {
+        document.getElementById("input_mySlider1").disabled = false;
+    }
+    document.getElementById("each_skill1").addEventListener("click", function () {
+        var skill_job_1 = document.getElementById("each_skill1").value;
+        if (skill_job_1 != 'เลือกทักษะของคุณที่เหมาะกับงาน' && skill_job_1 != pre_click_slider1) {
+            document.getElementById("input_mySlider1").disabled = false;
+            document.getElementById("input_mySlider1").value = "6.25";
+            document.getElementById("input_mySlider1").style.background = 'linear-gradient(to right, #f0a143 0%, #f0a143 ' + 50 + '%, #c4c4c4 ' + 50 + '%, #c4c4c4 100%)';
+            pre_click_slider1 = skill_job_1;
+            score_slider1 = "6.25";
+        }
+        else if (skill_job_1 == 'เลือกทักษะของคุณที่เหมาะกับงาน') {
+            document.getElementById("input_mySlider1").disabled = true;
+            document.getElementById("input_mySlider1").value = "2.5";
+            document.getElementById("input_mySlider1").style.background = 'linear-gradient(to right, #f0a143 0%, #f0a143 ' + 0 + '%, #c4c4c4 ' + 0 + '%, #c4c4c4 100%)';
+            pre_click_slider1 = -1;
+            score_slider1 = "2.5";
+        }
+    });
+    var slider1 = document.getElementById("input_mySlider1");
+    slider1.style.background = 'linear-gradient(to right, #f0a143 0%, #f0a143 ' + (slider1.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 ' + (slider1.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 100%)';
+    
+    slider1.oninput = function (event) {
+        //console.log('skill1:', slider1.value);
+        //score_slider1 = parseFloat(slider1.value).toFixed(2);
+        score_slider1 = slider1.value;
+        slider1.style.background = 'linear-gradient(to right, #f0a143 0%, #f0a143 ' + (slider1.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 ' + (slider1.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 100%)';
+    }
+}
+
+function set_slider_range2(value) {
+    pre_click_slider2 = -1;
+    setupSlider('mySlider2', ["พอได้เล็กน้อย", "พื้นฐาน", "ดี", "ยอดเยี่ยม"], value);
+    if (document.getElementById("each_skill2").value == 'เลือกทักษะของคุณที่เหมาะกับงาน') {
+        document.getElementById("input_mySlider2").disabled = true;
+    }
+    else {
+        document.getElementById("input_mySlider2").disabled = false;
+    }
+    document.getElementById("each_skill2").addEventListener("click", function () {
+        var skill_job_2 = document.getElementById("each_skill2").value;
+        if (skill_job_2 != 'เลือกทักษะของคุณที่เหมาะกับงาน' && skill_job_2 != pre_click_slider2) {
+            document.getElementById("input_mySlider2").disabled = false;
+            document.getElementById("input_mySlider2").value = "6.25";
+            document.getElementById("input_mySlider2").style.background = 'linear-gradient(to right, #0fe17c 0%, #0fe17c ' + 50 + '%, #c4c4c4 ' + 50 + '%, #c4c4c4 100%)';
+            pre_click_slider2 = skill_job_2;
+            score_slider2 = "6.25";
+        }
+        else if (skill_job_2 == 'เลือกทักษะของคุณที่เหมาะกับงาน') {
+            document.getElementById("input_mySlider2").disabled = true;
+            document.getElementById("input_mySlider2").value = "2.5";
+            document.getElementById("input_mySlider2").style.background = 'linear-gradient(to right, #0fe17c 0%, #0fe17c ' + 0 + '%, #c4c4c4 ' + 0 + '%, #c4c4c4 100%)';
+            pre_click_slider2 = -1;
+            score_slider2 = "2.5";
+        }
+    });
+    var slider2 = document.getElementById("input_mySlider2");
+    slider2.style.background = 'linear-gradient(to right, #0fe17c 0%, #0fe17c ' + (slider2.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 ' + (slider2.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 100%)';
+    slider2.oninput = function (event) {
+        //console.log('skill2:', slider2.value);
+        score_slider2 = slider2.value;
+        slider2.style.background = 'linear-gradient(to right, #0fe17c 0%, #0fe17c ' + (slider2.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 ' + (slider2.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 100%)';
+    }
+}
+
+function set_slider_range3(value) {
+    pre_click_slider3 = -1;
+    setupSlider('mySlider3', ["พอได้เล็กน้อย", "พื้นฐาน", "ดี", "ยอดเยี่ยม"], value);
+    if (document.getElementById("each_skill3").value == 'เลือกทักษะของคุณที่เหมาะกับงาน') {
+        document.getElementById("input_mySlider3").disabled = true;
+    }
+    else {
+        document.getElementById("input_mySlider3").disabled = false;
+    }
+    document.getElementById("each_skill3").addEventListener("click", function () {
+        var skill_job_3 = document.getElementById("each_skill3").value;
+        if (skill_job_3 != 'เลือกทักษะของคุณที่เหมาะกับงาน' && skill_job_3 != pre_click_slider3) {
+            document.getElementById("input_mySlider3").disabled = false;
+            document.getElementById("input_mySlider3").value = "6.25";
+            document.getElementById("input_mySlider3").style.background = 'linear-gradient(to right, #c98a11 0%, #c98a11 ' + 50 + '%, #c4c4c4 ' + 50 + '%, #c4c4c4 100%)';
+            pre_click_slider3 = skill_job_3;
+            score_slider3 = "6.25";
+        }
+        else if (skill_job_3 == 'เลือกทักษะของคุณที่เหมาะกับงาน') {
+            document.getElementById("input_mySlider3").disabled = true;
+            document.getElementById("input_mySlider3").value = "2.5";
+            document.getElementById("input_mySlider3").style.background = 'linear-gradient(to right, #c98a11 0%, #c98a11 ' + 0 + '%, #c4c4c4 ' + 0 + '%, #c4c4c4 100%)';
+            pre_click_slider3 = -1;
+            score_slider3 = "2.5";
+        }
+    });
+    var slider3 = document.getElementById("input_mySlider3");
+    slider3.style.background = 'linear-gradient(to right, #c98a11 0%, #c98a11 ' + (slider3.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 ' + (slider3.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 100%)';
+    slider3.oninput = function (event) {
+        //console.log('skill3:', slider3.value);
+        score_slider3 = slider3.value;
+        slider3.style.background = 'linear-gradient(to right, #c98a11 0%, #c98a11 ' + (slider3.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 ' + (slider3.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 100%)';
+    }
+}
+
 $(document).on("click", "#add-job", function () {
     /*$('#tab01').addClass('current2');
     $('.tabs_pop li').addClass('current2');
@@ -245,9 +255,9 @@ $(document).on("click", "#add-job", function () {
     /*else {
         $(".frame_add_job_interest").hide();
     }*/
-    set_slider_range1(0);
-    set_slider_range2(0);
-    set_slider_range3(0);
+    set_slider_range1(2.5);
+    set_slider_range2(2.5);
+    set_slider_range3(2.5);
     $('#submit-job11').text('เพิ่ม');
     $("#obj-job-01").val('');
     $("#pos-del-obj-button1").hide();
@@ -270,33 +280,41 @@ $(document).on("click", "#edit-job", function () {
         if (post.id == id_list_job_edit)
             return true;
     });
+    
     set_slider_range1(for_edit["score_skill1"]);
     set_slider_range2(for_edit["score_skill2"]);
     set_slider_range3(for_edit["score_skill3"]);
+    
     if (for_edit["skill1"] == "none") {
+        //set_slider_range1(0);
         //document.getElementById("input_mySlider1").disabled = true;
     }
     else {
         document.getElementById("each_skill1").selectedIndex = for_edit["skill1_select"];
-        document.getElementById("input_mySlider1").disabled = false;
         //$("#customRange11").val(for_edit["score_skill1"]);
+        //set_slider_range1(for_edit["score_skill1"]);
+        document.getElementById("input_mySlider1").disabled = false;
     }
     if (for_edit["skill2"] == "none") {
+        //set_slider_range2(0);
         //document.getElementById("input_mySlider2").disabled = true;
     }
     else {
         document.getElementById("each_skill2").selectedIndex = for_edit["skill2_select"];
-        document.getElementById("input_mySlider2").disabled = false;
         //$("#customRange12").val(for_edit["score_skill2"]);
+       // set_slider_range2(for_edit["score_skill2"]);
+        document.getElementById("input_mySlider2").disabled = false;
     }
     if (for_edit["skill3"] == "none") {
-        //document.getElementById("input_mySlider3").disabled = true;
+        //set_slider_range3(0);
+       // document.getElementById("input_mySlider3").disabled = true;
         // document.getElementsByClassName("x3").style.background = "linear-gradient(to right,#c98a11 0%,#f0a143 50%, #c98a11 50%, #c4c4c4 100%)";
     }
     else {
         document.getElementById("each_skill3").selectedIndex = for_edit["skill3_select"];
-        document.getElementById("input_mySlider3").disabled = false;
         //$("#customRange13").val(for_edit["score_skill3"]);
+        //set_slider_range3(for_edit["score_skill3"]);
+        document.getElementById("input_mySlider3").disabled = false;
     }
     console.log(`for_edit:`, for_edit);
     document.getElementById("nm_job").selectedIndex = for_edit["name_job_select"];
@@ -416,23 +434,26 @@ document.getElementById("submit-job11").addEventListener("click", function () {
     obj_job_1 = document.getElementById("obj-job-01").value;
     obj_job_2 = document.getElementById("obj-job-02").value;
     obj_job_3 = document.getElementById("obj-job-03").value;
+    score_slider11 = document.getElementById("input_mySlider1").value;
+    score_slider12 = document.getElementById("input_mySlider2").value;
+    score_slider13 = document.getElementById("input_mySlider3").value;
 
     if (document.getElementById("nm_job").value == '') {
         //alert("kuay");
         $("#nm_job").addClass("error_select_job");
     }
     else {
-        if (skill_job_1 == 'เลือกทักษะของคุณที่เหมาะกับงาน' || skill_job_1 == '' || skill_job_1 == 'none') {
+        if (skill_job_1 == 'เลือกทักษะของคุณที่เหมาะกับงาน' || skill_job_1 == 'none') {
             skill_job_1 = 'none';
-            score_slider1 = "none";
+            score_slider11 = "2.5";
         }
-        if (skill_job_2 == 'เลือกทักษะของคุณที่เหมาะกับงาน' || skill_job_2 == '' || skill_job_2 == 'none') {
+        if (skill_job_2 == 'เลือกทักษะของคุณที่เหมาะกับงาน' || skill_job_2 == 'none') {
             skill_job_2 = 'none';
-            score_slider2 = "none";
+            score_slider12 = "2.5";
         }
-        if (skill_job_3 == 'เลือกทักษะของคุณที่เหมาะกับงาน' || skill_job_3 == '' || skill_job_3 == 'none') {
+        if (skill_job_3 == 'เลือกทักษะของคุณที่เหมาะกับงาน' || skill_job_3 == 'none') {
             skill_job_3 = 'none';
-            score_slider3 = "none";
+            score_slider13 = "2.5";
         }
         if (obj_job_1 == "") {
             obj_job_1 = "none";
@@ -449,13 +470,13 @@ document.getElementById("submit-job11").addEventListener("click", function () {
             for_edit["name_job_select"] = $("#nm_job").prop('selectedIndex');
             for_edit["skill1"] = skill_job_1;
             for_edit["skill1_select"] = $("#each_skill1").prop('selectedIndex');
-            for_edit["score_skill1"] = score_slider1;
+            for_edit["score_skill1"] = score_slider11;
             for_edit["skill2"] = skill_job_2;
             for_edit["skill2_select"] = $("#each_skill2").prop('selectedIndex');
-            for_edit["score_skill2"] = score_slider2;
+            for_edit["score_skill2"] = score_slider12;
             for_edit["skill3"] = skill_job_3;
             for_edit["skill3_select"] = $("#each_skill3").prop('selectedIndex');
-            for_edit["score_skill3"] = score_slider3;
+            for_edit["score_skill3"] = score_slider13;
             for_edit["obj1"] = obj_job_1;
             for_edit["obj2"] = obj_job_2;
             for_edit["obj3"] = obj_job_3;
@@ -468,13 +489,13 @@ document.getElementById("submit-job11").addEventListener("click", function () {
                 name_job_select: $("#nm_job").prop('selectedIndex'),
                 skill1: skill_job_1,
                 skill1_select: $("#each_skill1").prop('selectedIndex'),
-                score_skill1: score_slider1,
+                score_skill1: score_slider11,
                 skill2: skill_job_2,
                 skill2_select: $("#each_skill2").prop('selectedIndex'),
-                score_skill2: score_slider2,
+                score_skill2: score_slider12,
                 skill3: skill_job_3,
                 skill3_select: $("#each_skill3").prop('selectedIndex'),
-                score_skill3: score_slider3,
+                score_skill3: score_slider13,
                 obj1: obj_job_1,
                 obj2: obj_job_2,
                 obj3: obj_job_3
@@ -692,6 +713,42 @@ function GetSkill(target) {
             console.log(error);
         });
 
+}
+
+GetSkill('each_skill1');
+GetSkill('each_skill2');
+GetSkill('each_skill3');
+
+
+function testPost(){
+    
+    var total1 = [];
+    var i=0;
+    list_of_job.forEach(ele => {
+        var total_skill_score = new Float32Array(3);
+        if(ele["skill1"]!="none"){
+            total_skill_score[0] = ele["score_skill1"];
+        }
+        else{
+            total_skill_score[0] = null;
+        }
+        if(ele["skill2"]!="none"){
+            total_skill_score[1] = ele["score_skill2"];
+        }
+        else{
+            total_skill_score[1] = null;
+        }
+        if(ele["skill3"]!="none"){
+            total_skill_score[2] = ele["score_skill3"];
+        }
+        else{
+            total_skill_score[2] = null;
+        }
+        
+        total1.push(total_skill_score);
+        //console.log("total:",total_skill_score);
+    });
+    console.log("total:",total1);
 }
 /*---------------- disable slider range ----------------*/
 

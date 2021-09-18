@@ -72,7 +72,6 @@ class Registab6 extends React.Component {
 														<option >ทักษะB</option>
 														<option >ทักษะC</option>
 														<option >ทักษะD</option>
-														<option >ปั่นจักรยานทางไกล</option>
 													</select>
 												</div>
 												<div class="col-md-5">
@@ -90,7 +89,6 @@ class Registab6 extends React.Component {
 														<option >ทักษะB</option>
 														<option >ทักษะC</option>
 														<option >ทักษะD</option>
-														<option >ปั่นจักรยานทางไกล</option>
 													</select>
 												</div>
 												<div class="col-md-5">
@@ -108,7 +106,6 @@ class Registab6 extends React.Component {
 														<option >ทักษะB</option>
 														<option >ทักษะC</option>
 														<option >ทักษะD</option>
-														<option >ปั่นจักรยานทางไกล</option>
 													</select>
 												</div>
 												<div class="col-md-5">
