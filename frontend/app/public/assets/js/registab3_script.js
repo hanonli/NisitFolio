@@ -11,9 +11,12 @@ for (i = endYear; i > startYear; i--) {
 }
 
 $('handleHigherSubmit').on('click',function() {
-  console.log('script for registab3 clikc')
   $("#registab3Modal1").modal("hide");
 
+});
+
+$('handleSecondaryubmit').on('click',function() {
+  $("#registab3Modal2").modal("hide");
 });
 
 
