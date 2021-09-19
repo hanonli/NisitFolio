@@ -68,7 +68,7 @@ class EducationContent extends React.Component {
         if(data.Grade != 0){
             content.push(
             <div class="educationcontentLine4">
-                <p class="grade-label inline">เกรด</p>
+                <p class="grade-label inline">เกรดเฉลี่ย</p>
                 <div class="centerbreak inline">
                     <div class="breakline inline">
                         {" "}
