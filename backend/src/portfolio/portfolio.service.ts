@@ -10,7 +10,7 @@ import { Portfolio2, PortfolioDocument} from './entity/portfolio.schema';
 //import { Portfolio3} from './dto/portfoli4';
 import { UserInfoDocument, UserInfoMongoose } from 'src/register/entity/register.schema';
 import Portfolio3 from './dto/portfolio4.dto';
-import { hearderDto } from 'src/myresume/dto/haerder.dto';
+import { hearderDto } from 'src/portfolio/dto/haerder.dto';
 
 @Injectable()
 export class PortService {
@@ -31,10 +31,11 @@ export class PortService {
   ) {}
   async getportheader(UserID:string ){
     const id = new ObjectID(UserID);
+
     const get_header=new hearderDto;
-    const id2 = new ObjectID(id);
-    const account=await this.accountRepository.findOne({where:{_id:id2}});
+    const account=await this.accountRepository.findOne({where:{_id:id}});
     const userinfo=await this.userInfoRepository.findOne({where:{UserId:UserID}});
+    const port=await this.portModel.findOne({UserId : UserID});
 
     get_header.Email=account.Email;
     get_header.Firstname=userinfo.Firstname;
@@ -44,6 +45,7 @@ export class PortService {
     get_header.City=userinfo.City;
     get_header.AboutMe=userinfo.AboutMe;
     get_header.Province=userinfo.Province;
+    get_header.Port_Date=port.Port_Date;
     //*/
     return get_header;
     
@@ -57,7 +59,6 @@ export class PortService {
   async getPortbyUser(userId:string ){
     return this.portModel.find({UserId : userId});
   }
-
   async createPort(CreateDto: CreatePortfolioDto ,ip:string){
     const time =  new Date();
     const isoTime = time.toLocaleDateString('th-TH',{ year:'numeric',month: 'long',day:'numeric',hour:"2-digit",minute:"2-digit"});
@@ -66,6 +67,7 @@ export class PortService {
     port.UserId = CreateDto.UserId;
     port.Port_Tag = CreateDto.Port_Tag;
     port.Port_Privacy = CreateDto.Port_Privacy;
+    port.Port_Date = CreateDto.Port_Date;
     
     const portpic = new PortfolioPicture();
     portpic.Pic = CreateDto.Pic;
@@ -106,8 +108,15 @@ export class PortService {
     const portid = new ObjectID(portId);
     const port =  await this.portModel.findById(portid);
     const portpic =  await this.portfolioPictureRepository.findOne({where:{ PortId: portid }});
-    await this.portfolioPictureRepository.remove(portpic);
+    
+    const time =  new Date();
+    const isoTime = time.toLocaleDateString('th-TH',{ year:'numeric',month: 'long',day:'numeric',hour:"2-digit",minute:"2-digit"});
     const portfoliopic = new PortfolioPicture();
+    portfoliopic.create_time=portpic.create_time;
+    portfoliopic.last_modified=portpic.last_modified;
+    portfoliopic.last_modified.push(isoTime)
+
+    await this.portfolioPictureRepository.remove(portpic);
     portfoliopic.PortId = portid;
     
     var portpic_arr = [];
@@ -125,11 +134,6 @@ export class PortService {
       await this.portfolioPictureRepository.save(portfoliopic);
       return await this.portModel.create(port);
     }
-    
-    throw new HttpException({
-      status: HttpStatus.UNAUTHORIZED,
-      error: 'Can not Patch Other Data',
-    }, HttpStatus.UNAUTHORIZED);
   }
 
 

@@ -3,13 +3,13 @@ $(document).ready( function() {
     $('#icon-myresume-education, #icon-myresume-certi, #icon-myresume-skill, #icon-myresume-work, #icon-myresume-goal, #icon-myresume' )
     .attr({
         'margin' : '100px 100px 100px 100px',
-        'width': '40px',
-        'height' : '40px',
+        'width': ' 45px',
+        'height' : '45px',
     });
-    $("#icon-myresume-education, #icon-myresume-certi, #icon-myresume-skill, #icon-myresume-work, #icon-myresume-goal, #icon-myresume").hover(function(){
-        $(this).css("background-color", "#cf7a9a");
+    $(".resumeblock").hover(function(){
+        $(this).css("background-color", "#e6ba4e");
         }, function(){
-        $(this).css("background-color", "#F28FB5");
+        $(this).css("background-color", "#FFCE55");
       });
 
     $('#icon-myresume-education').attr('title', 'Education');
@@ -18,9 +18,10 @@ $(document).ready( function() {
     $('#icon-myresume-work').attr('title', 'Work');
     //$('#icon-myresume-education').attr('title', 'education');
     $('#icon-myresume-goal').attr('title', 'Goal');
+    
 
-
-
+    
+      
 });
 
 
@@ -31,6 +32,17 @@ $('.MyResumeContent').css("padding-left",'6%');
 
 $("#icon-myresume").attr('title', 'Bookmark');
 $("#icon-myresume").attr('title', 'Education');
+
+$(window).on("scroll load resize", function(){
+    if($(window).scrollTop() > 0){
+        $('.Resume_sideNavbar').css("padding-top","2%");
+        $('.Resume_sideNavbar').css("transition","0.3s");
+    }else{
+        $('.Resume_sideNavbar').css("padding-top","4%");
+        $('.Resume_sideNavbar').css("padding-bottom","10%");
+        $('.Resume_sideNavbar').css("transition","0.3s");
+    }
+});
 
 
 

@@ -242,7 +242,7 @@ function set_slider_range3(value) {
     }
 }
 
-$(document).on("click", "#add-job", function () {
+$(document).on("click", ".frame_add_job_interest", function () {
     /*$('#tab01').addClass('current2');
     $('.tabs_pop li').addClass('current2');
     $('.tab-pane_pop').addClass('current2');*/
@@ -437,7 +437,7 @@ document.getElementById("submit-job11").addEventListener("click", function () {
     score_slider11 = document.getElementById("input_mySlider1").value;
     score_slider12 = document.getElementById("input_mySlider2").value;
     score_slider13 = document.getElementById("input_mySlider3").value;
-
+    var push2list = {};
     if (document.getElementById("nm_job").value == '') {
         //alert("kuay");
         $("#nm_job").addClass("error_select_job");
@@ -480,9 +480,51 @@ document.getElementById("submit-job11").addEventListener("click", function () {
             for_edit["obj1"] = obj_job_1;
             for_edit["obj2"] = obj_job_2;
             for_edit["obj3"] = obj_job_3;
+
+            if(for_edit["skill1_select"]!=0&&for_edit["skill2_select"]==0){
+                if(for_edit["skill3_select"]!=0){
+                    for_edit["skill2_select"] = for_edit["skill3_select"];
+                    for_edit["skill3_select"] = 0;
+                    for_edit["skill2"] = for_edit["skill3"];
+                    for_edit["skill3"] = "none";
+                    for_edit["score_skill2"] = for_edit["score_skill3"];
+                    for_edit["score_skill3"] = "2.5";                    
+                }
+            }
+            else if(for_edit["skill1_select"]==0&&for_edit["skill2_select"]!=0){
+                if(for_edit["skill3_select"]!=0){
+                    for_edit["skill1_select"] = for_edit["skill2_select"];
+                    for_edit["skill2_select"] = for_edit["skill3_select"];
+                    for_edit["skill3_select"] = 0;
+                    for_edit["skill1"] = for_edit["skill2"];
+                    for_edit["skill2"] = for_edit["skill3"];
+                    for_edit["skill3"] = "none";
+                    for_edit["score_skill1"] = for_edit["score_skill2"];
+                    for_edit["score_skill2"] = for_edit["score_skill3"];
+                    for_edit["score_skill3"] = "2.5";  
+                }
+                else{
+                    for_edit["skill1_select"] = for_edit["skill2_select"];
+                    for_edit["skill2_select"] = 0;
+                    for_edit["skill1"] = for_edit["skill2"];
+                    for_edit["skill2"] = "none";
+                    for_edit["score_skill1"] = for_edit["score_skill2"];
+                    for_edit["score_skill2"] = "2.5"; 
+                }
+            }
+            else if(for_edit["skill1_select"]==0&&for_edit["skill2_select"]==0){
+                if(for_edit["skill3_select"]!=0){
+                    for_edit["skill1_select"] = for_edit["skill3_select"];
+                    for_edit["skill3_select"] = 0;
+                    for_edit["skill1"] = for_edit["skill3"];
+                    for_edit["skill3"] = "none";
+                    for_edit["score_skill1"] = for_edit["score_skill3"];
+                    for_edit["score_skill3"] = "2.5";  
+                }
+            }
         }
         else if (choose_function == 2) { //add job in list
-            list_of_job.push({
+            push2list = {
                 id: create_UUID(),
                 job_pos: 0,
                 name_job: name_job,
@@ -498,8 +540,50 @@ document.getElementById("submit-job11").addEventListener("click", function () {
                 score_skill3: parseFloat(score_slider13).toFixed(1),
                 obj1: obj_job_1,
                 obj2: obj_job_2,
-                obj3: obj_job_3
-            });
+                obj3: obj_job_3   
+            }
+            if(push2list["skill1_select"]!=0&&push2list["skill2_select"]==0){
+                if(push2list["skill3_select"]!=0){
+                    push2list["skill2_select"] = push2list["skill3_select"];
+                    push2list["skill3_select"] = 0;
+                    push2list["skill2"] = push2list["skill3"];
+                    push2list["skill3"] = "none";
+                    push2list["score_skill2"] = push2list["score_skill3"];
+                    push2list["score_skill3"] = "2.5";                    
+                }
+            }
+            else if(push2list["skill1_select"]==0&&push2list["skill2_select"]!=0){
+                if(push2list["skill3_select"]!=0){
+                    push2list["skill1_select"] = push2list["skill2_select"];
+                    push2list["skill2_select"] = push2list["skill3_select"];
+                    push2list["skill3_select"] = 0;
+                    push2list["skill1"] = push2list["skill2"];
+                    push2list["skill2"] = push2list["skill3"];
+                    push2list["skill3"] = "none";
+                    push2list["score_skill1"] = push2list["score_skill2"];
+                    push2list["score_skill2"] = push2list["score_skill3"];
+                    push2list["score_skill3"] = "2.5";  
+                }
+                else{
+                    push2list["skill1_select"] = push2list["skill2_select"];
+                    push2list["skill2_select"] = 0;
+                    push2list["skill1"] = push2list["skill2"];
+                    push2list["skill2"] = "none";
+                    push2list["score_skill1"] = push2list["score_skill2"];
+                    push2list["score_skill2"] = "2.5"; 
+                }
+            }
+            else if(push2list["skill1_select"]==0&&push2list["skill2_select"]==0){
+                if(push2list["skill3_select"]!=0){
+                    push2list["skill1_select"] = push2list["skill3_select"];
+                    push2list["skill3_select"] = 0;
+                    push2list["skill1"] = push2list["skill3"];
+                    push2list["skill3"] = "none";
+                    push2list["score_skill1"] = push2list["score_skill3"];
+                    push2list["score_skill3"] = "2.5";  
+                }
+            }
+            list_of_job.push(push2list);
             get_job_id(list_of_job, 1);
             console.log(list_of_job);
         }
@@ -726,31 +810,49 @@ function testPost6() {
     list_of_job.forEach(ele => {
         //post job name
         Job_Jobname.push([ele["name_job"]]);
-        //post skill name
-        Job_SkillName.push([ele["skill1"], ele["skill2"], ele["skill3"]]);
-        //post job score
+        //post skill name and score
+        var listofskill = [];
+        //Job_SkillName.push([ele["skill1"], ele["skill2"], ele["skill3"]]);
         var total_skill_score = new Float32Array(3);
+        var index_score = 0;
         if (ele["skill1"] != "none") {
-            total_skill_score[0] = ele["score_skill1"];
+            listofskill.push(ele["skill1"]);
+            total_skill_score[index_score] = ele["score_skill1"];
+            index_score++;
         }
         else {
-            total_skill_score[0] = "none";
+            //total_skill_score[0] = "none";
         }
         if (ele["skill2"] != "none") {
-            total_skill_score[1] = ele["score_skill2"];
+            listofskill.push(ele["skill2"]);
+            total_skill_score[index_score] = ele["score_skill2"];
+            index_score++;
         }
         else {
-            total_skill_score[1] = "none";
+            //total_skill_score[1] = "none";
         }
         if (ele["skill3"] != "none") {
-            total_skill_score[2] = ele["score_skill3"];
+            listofskill.push(ele["skill3"]);
+            total_skill_score[index_score] = ele["score_skill3"];
+            index_score++;
         }
         else {
-            total_skill_score[2] = "none";
+            //total_skill_score[2] = "none";
         }
+        Job_SkillName.push(listofskill);
         Job_Score.push(total_skill_score);
         //post job objective
-        Job_Objective.push([ele["obj1"], ele["obj2"], ele["obj3"]]);
+        var listofObj = [];
+        if(ele["obj1"]!="none" && ele["obj1"]!=""){
+            listofObj.push(ele["obj1"]);
+        }
+        if(ele["obj2"]!="none" && ele["obj2"]!=""){
+            listofObj.push(ele["obj2"]);
+        }
+        if(ele["obj3"]!="none" && ele["obj3"]!=""){
+            listofObj.push(ele["obj3"]);
+        }
+        Job_Objective.push(listofObj);
     });
     console.log("Job_Jobname:", Job_Jobname);
     console.log("Job_SkillName:", Job_SkillName);
