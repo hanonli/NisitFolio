@@ -3,6 +3,7 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { PortService } from "./portfolio.service";
 import { CreatePortfolioDto } from './dto/portfolio.dto';
 import { RealIP } from 'nestjs-real-ip';
+import { count } from 'console';
 
 
 @Controller("portfolio")
@@ -16,9 +17,10 @@ export class PortController {
     return this.portService.getPort(portfolioId);
   }
 
+  
   @UseGuards(JwtAuthGuard)
-  @Get('header')
-  async getheadert(@Request() req){
+  @Get('/header/:x')
+  async getheadert(@Param('x') x: string,@Request() req){
     const userid= req.user.userId;
     return this.portService.getportheader(userid);
   }
@@ -28,6 +30,7 @@ export class PortController {
     return this.portService.getPortbyUser(UserId);
   }
 
+
   @UseGuards(JwtAuthGuard)
   @Post()
     async CreatePortfolio(@Body() CreateDto: CreatePortfolioDto ,@Request() req,@RealIP() ip: string) {
@@ -35,18 +38,24 @@ export class PortController {
     return this.portService.createPort(CreateDto,ip);
   }
 
+
+
+  
   @UseGuards(JwtAuthGuard)
   @Get()
     async GetOwnPort(@Request() req) {
       return this.portService.getPortbyUser(req.user.userId);
   }
+  //*/
 
   @UseGuards(JwtAuthGuard)
   @Delete(":portfolioId")
     async removePort(@Param('portfolioId') portfolioId: string,@Request() req ) {
       return this.portService.removePort(portfolioId,req.user.userId);
 
-    }
+  }
+
+
 
   @UseGuards(JwtAuthGuard)
   @Patch(":portfolioId")
@@ -54,4 +63,5 @@ export class PortController {
       return this.portService.updatePort(CreateDto,portfolioId,req.user.userId);
 
     }
+    //*/
 }
