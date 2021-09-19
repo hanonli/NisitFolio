@@ -14,15 +14,18 @@ class Registab7 extends React.Component {
 							<div class="col-md-12">
 								<select class="form-select dropbtn fff" id="ch1">
 									<option selected disabled value="">เลือกหมวดทักษะเสริมที่ถนัด</option>
-									<option value= 'Technical'>Technical</option>
-									<option value='Computer'>Computer</option>
-									<option value='Analytical'>Analytical</option>
+									<option value='2021_Trending'>2021_Trending</option>
+									<option value='Computer_Technology'>Computer_Technology</option>
+									<option value='Hard_Communication%20Skills'>Hard_Communication Skills</option>
+									<option value='Data_Analysis'>Data_Analysis</option>
+									<option value='Certifications_and_Licenses'>Certifications_and_Licenses</option>
 									<option value='Marketing'>Marketing</option>
-									<option value='Presentation'>Presentation</option>
-									<option value='Management'>Management</option>
-									<option value='Writing'>Writing</option>
-									<option value='Language'>Language</option>
+									<option value='Project_Management'>Project_Management</option>
 									<option value='Design'>Design</option>
+									<option value='Cloud_Computing'>Cloud_Computing</option>
+									<option value='Writing'>Writing</option>
+									<option value='Mobile_&_Web_Development'>Mobile_&_Web_Development</option>
+									<option value='Network_Structure&_Security'>NetworkStructure&_Security</option>
 								</select>
 							</div>
 							<div class="col-md-12">
@@ -37,15 +40,18 @@ class Registab7 extends React.Component {
 							<div class="col-md-12 chh2">
 								<select class="form-select dropbtn fff" id="ch2">
 									<option selected disabled value="">เลือกหมวดทักษะเสริมที่ถนัด</option>
-									<option value= 'Technical'>Technical</option>
-									<option value='Computer'>Computer</option>
-									<option value='Analytical'>Analytical</option>
+									<option value='2021_Trending'>2021_Trending</option>
+									<option value='Computer_Technology'>Computer_Technology</option>
+									<option value='Hard_Communication%20Skills'>Hard_Communication Skills</option>
+									<option value='Data_Analysis'>Data_Analysis</option>
+									<option value='Certifications_and_Licenses'>Certifications_and_Licenses</option>
 									<option value='Marketing'>Marketing</option>
-									<option value='Presentation'>Presentation</option>
-									<option value='Management'>Management</option>
-									<option value='Writing'>Writing</option>
-									<option value='Language'>Language</option>
+									<option value='Project_Management'>Project_Management</option>
 									<option value='Design'>Design</option>
+									<option value='Cloud_Computing'>Cloud_Computing</option>
+									<option value='Writing'>Writing</option>
+									<option value='Mobile_&_Web_Development'>Mobile_&_Web_Development</option>
+									<option value='Network_Structure&_Security'>NetworkStructure&_Security</option>
 								</select>
 							</div>
 							<div class="col-md-12">
@@ -60,15 +66,18 @@ class Registab7 extends React.Component {
 							<div class="col-md-12">
 								<select class="form-select dropbtn fff" id="ch3">
 									<option selected disabled value="">เลือกหมวดทักษะเสริมที่ถนัด</option>
-									<option value= 'Technical'>Technical</option>
-									<option value='Computer'>Computer</option>
-									<option value='Analytical'>Analytical</option>
+									<option value='2021_Trending'>2021_Trending</option>
+									<option value='Computer_Technology'>Computer_Technology</option>
+									<option value='Hard_Communication%20Skills'>Hard_Communication Skills</option>
+									<option value='Data_Analysis'>Data_Analysis</option>
+									<option value='Certifications_and_Licenses'>Certifications_and_Licenses</option>
 									<option value='Marketing'>Marketing</option>
-									<option value='Presentation'>Presentation</option>
-									<option value='Management'>Management</option>
-									<option value='Writing'>Writing</option>
-									<option value='Language'>Language</option>
+									<option value='Project_Management'>Project_Management</option>
 									<option value='Design'>Design</option>
+									<option value='Cloud_Computing'>Cloud_Computing</option>
+									<option value='Writing'>Writing</option>
+									<option value='Mobile_&_Web_Development'>Mobile_&_Web_Development</option>
+									<option value='Network_Structure&_Security'>NetworkStructure&_Security</option>
 								</select>
 							</div>
 							<div class="col-md-12">
