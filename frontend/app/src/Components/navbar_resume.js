@@ -25,7 +25,7 @@ class Resume_sideNavbar extends React.Component {
 			<div className="Resume_sideNavbar" id='sideNav'>
 				
 				<div class="row" id='myresumepath'> 
-						<a href="#"> 
+						<a href="#resumetopic"> 
 							<img id='icon-myresume-education'  src="assets/images/ประวัติการศึกษา.png"/>
 						</a>
 			

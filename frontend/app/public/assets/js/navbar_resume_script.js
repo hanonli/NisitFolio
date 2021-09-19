@@ -7,9 +7,9 @@ $(document).ready( function() {
         'height' : '40px',
     });
     $("a").hover(function(){
-        $(this).css("background-color", "#cf7a9a");
+        $(this).css("background-color", "#e6ba4e");
         }, function(){
-        $(this).css("background-color", "#F28FB5");
+        $(this).css("background-color", "#FFCE55");
       });
 
     $('#icon-myresume-education').attr('title', 'Education');
