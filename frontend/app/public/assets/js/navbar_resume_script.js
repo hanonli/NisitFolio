@@ -3,10 +3,10 @@ $(document).ready( function() {
     $('#icon-myresume-education, #icon-myresume-certi, #icon-myresume-skill, #icon-myresume-work, #icon-myresume-goal, #icon-myresume' )
     .attr({
         'margin' : '100px 100px 100px 100px',
-        'width': '40px',
-        'height' : '40px',
+        'width': ' 45px',
+        'height' : '45px',
     });
-    $("a").hover(function(){
+    $(".resumeblock").hover(function(){
         $(this).css("background-color", "#e6ba4e");
         }, function(){
         $(this).css("background-color", "#FFCE55");
@@ -35,10 +35,11 @@ $("#icon-myresume").attr('title', 'Education');
 
 $(window).on("scroll load resize", function(){
     if($(window).scrollTop() > 0){
-        $('.Resume_sideNavbar').css("padding-top","40px");
+        $('.Resume_sideNavbar').css("padding-top","2%");
         $('.Resume_sideNavbar').css("transition","0.3s");
     }else{
-        $('.Resume_sideNavbar').css("padding-top","80px");
+        $('.Resume_sideNavbar').css("padding-top","4%");
+        $('.Resume_sideNavbar').css("padding-bottom","10%");
         $('.Resume_sideNavbar').css("transition","0.3s");
     }
 });
