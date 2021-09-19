@@ -91,6 +91,13 @@ class Registab3 extends React.Component {
         // document.getElementById("SecondaryForm").reset();
     }
 
+    componentDidMount() {
+		window.addEventListener('load', this.handleLoad);
+		const script = document.createElement("script");
+		script.src = "assets/js/registab3_script.js";
+		document.body.appendChild(script);
+	}
+
 	componentWillUnmount() { 
 	   window.removeEventListener('load', this.handleLoad)  
 	}
@@ -147,7 +154,7 @@ class Registab3 extends React.Component {
                                     <h5 id='registab4_textGrade' type='number' >เกรดเฉลี่ยรวม*</h5>
                                 </div>
                                 <div class='col-4 ms-auto'> 
-                                    <input type="text" class="form-control dropbtn margin-bottom1 " id="ValidationGradeFeedback" placeholder="X.XX" defaultValue={this.state.HigherGrade} onBlur={this.setHigherGrade} required></input>
+                                    <input type="text" class="form-control dropbtn margin-bottom1 " id="ValidationGrade1Feedback" placeholder="X.XX" defaultValue={this.state.HigherGrade} onBlur={this.setHigherGrade} required></input>
                                 </div>
                             </div>
                         </div>
@@ -217,7 +224,7 @@ class Registab3 extends React.Component {
                                     <h5 id='registab4_textGrade'>เกรดเฉลี่ยรวม</h5>
                                 </div>
                                 <div class='col-7 ms-auto'> 
-                                    <input type="text" class="form-control dropbtn margin-bottom1 " id="ValidationGradeFeedback" placeholder="X.XX" value={this.state.SecondaryGrade} onChange={this.setSecondaryGrade} required></input>
+                                    <input type="text" class="form-control dropbtn margin-bottom1 " id="ValidationGrade2Feedback" placeholder="X.XX" value={this.state.SecondaryGrade} onChange={this.setSecondaryGrade} required></input>
                                 </div>
                             </div>
                         </div>

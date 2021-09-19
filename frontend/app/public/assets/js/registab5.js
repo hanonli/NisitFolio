@@ -301,3 +301,19 @@ $(document).on('hide.bs.modal', "#exampleModal11112", function () {
 $(document).on('click', "#hide-delete-certi", function () {
     $('#exampleModal_remove_certi').modal('hide');
 });
+
+function testPost5() {
+    var CertName = [], CertPic = [], CertYear = []; //variable for send to backend
+    list_of_certi.forEach(ele => {
+        //post certi name
+        CertName.push(ele["name_certi"]);
+        //post year certi
+        CertYear.push(ele["year_certi"]);
+        //post pic certi
+        CertPic.push(ele["path_file_certi"]);
+
+    });
+    console.log("CertName:", CertName);
+    console.log("CertPic:", CertPic);
+    console.log("CertYear:", CertYear);
+}
