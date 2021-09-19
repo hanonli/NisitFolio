@@ -1,9 +1,9 @@
 
 .Resume_sideNavbar {
-    background-color: #F28FB5;
+    background-color: #FFCE55;
   
     height: 100%; /* Full-height: remove this if you want "auto" height */
-    width: 5%; /* Set the width of the sidebar */
+    width: 6%; /* Set the width of the sidebar */
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
@@ -12,28 +12,31 @@
     overflow-y: hidden;
     text-align: center;
     vertical-align: middle;
-    padding-top: 80px;
-    padding-bottom: 50px;
+
   }
+  /* .Resume_sideNavbar .resumeblock{
+    padding-bottom: 20%;
+
+  } */
 
   .Resume_sideNavbar a {
     position: relative;
-    margin-top: 45%;
-    margin-bottom: 45%;
-    text-decoration: none;
+    margin-top: 25%;
+    margin-bottom: 25%;
+    padding-top: 20%;
+    padding-bottom: 20%;
     font-size: 25px;
-    color: #818181;
     display: block;
 
   }
   
-  .sidenav-centered  {
+  /* .sidenav-centered  {
     float: none;
     position: absolute;
-    top: 50%;
+    top: 100%;
     left: 80%;
     transform: translate(-50%, -50%);
-  }
+  } */
 
   /* 
   .slide_button {

@@ -161,7 +161,7 @@ const Registab4 = () => {
                                 <div class='row'>
                                     <div class='col'>
                                         <div class="form-check" id='registab4_radiocheck'>
-                                            <input class="form-check-input" type="radio" name="exampleRadios" id="registab4_Radios1" value="option1"  ></input>
+                                            <input class="form-check-input" type="checkbox" id="registab4_cb" value=''  ></input>
                                             <label class="form-check-label" for="registab4_Radios1">
                                                 ยังอยู่ในงาน
                                             </label>

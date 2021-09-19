@@ -4,92 +4,7 @@ import Registab3_addSecondary from './registab3_addSecondary';
 import './register.css'
 import './registab3.css'
 
-const initialstate = {
-    HigherAcademy: '',
-    HigherDegree: '',
-    HigherEndYear: '',
-    HigherFaculty: '',
-    HigherFieldofStudy: '',
-    HigherGrade: '',
-    SecondaryAcademy: '',
-    SecondaryDegree: '',
-    SecondaryEndYear: '',
-    SecondaryFaculty: '-',
-    SecondaryFieldofStudy: '',
-    SecondaryGrade: '',
-}
-
 class Registab3 extends React.Component {
-    constructor(props) {
-		super(props);
-        this.state = initialstate;
-      
-        this.setHigherAcademy = this.setHigherAcademy.bind(this);
-        this.setHigherDegree = this.setHigherDegree.bind(this);
-        this.setHigherEndYear = this.setHigherEndYear.bind(this);
-        this.setHigherFaculty = this.setHigherFaculty.bind(this);
-        this.setHigherFieldofStudy = this.setHigherFieldofStudy.bind(this);
-        this.setHigherGrade = this.setHigherGrade.bind(this);
-        this.handleHigherSubmit = this.handleHigherSubmit.bind(this);
-        this.setSecondaryAcademy = this.setSecondaryAcademy.bind(this);
-        this.setSecondaryDegree = this.setSecondaryDegree.bind(this);
-        this.setSecondaryEndYear = this.setSecondaryEndYear.bind(this);
-        this.setSecondaryFaculty = this.setSecondaryFaculty.bind(this);
-        this.setSecondaryFieldofStudy = this.setSecondaryFieldofStudy.bind(this);
-        this.setSecondaryGrade = this.setSecondaryGrade.bind(this);
-        this.handleSecondarySubmit = this.handleSecondarySubmit.bind(this);
-	 }
-	 
-    setHigherAcademy = (e) => {
-        this.setState({HigherAcademy : e.target.value});
-    }
-    setHigherDegree = (e) =>{
-        this.setState({HigherDegree : e.target.value});
-    }
-    setHigherEndYear= (e) =>{
-        this.setState({HigherEndYear: e.target.value});
-    }
-    setHigherFaculty = (e) =>{
-        this.setState({HigherFaculty: e.target.value});
-    }
-    setHigherFieldofStudy = (e) =>{
-        this.setState({ HigherFieldofStudy : e.target.value});
-    }
-    setHigherGrade = (e) =>{
-        this.setState({HigherGrade : e.target.value});
-    }
-
-    setSecondaryAcademy = (e) => {
-        this.setState({SecondaryAcademy : e.target.value});
-    }
-    setSecondaryDegree = (e) =>{
-        this.setState({SecondaryDegree : e.target.value});
-    }
-    setSecondaryEndYear= (e) =>{
-        this.setState({SecondaryEndYear: e.target.value});
-    }
-    setSecondaryFaculty = (e) =>{
-        this.setState({SecondaryFaculty: e.target.value});
-    }
-    setSecondaryFieldofStudy = (e) =>{
-        this.setState({ SecondaryFieldofStudy : e.target.value});
-    }
-    setSecondaryGrade = (e) =>{
-        this.setState({SecondaryGrade : e.target.value});
-    }
-    handleHigherSubmit(){
-        console.log(this.state)
-        // //Clearing data
-        this.state = initialstate;
-        // document.getElementById("HigherForm").reset();
-        // console.log(this.state)
-    }   
-    handleSecondarySubmit(){
-        console.log(this.state)
-        // //Clearing data
-        this.state = initialstate;
-        // document.getElementById("SecondaryForm").reset();
-    }
 
     componentDidMount() {
 		window.addEventListener('load', this.handleLoad);
@@ -110,22 +25,10 @@ class Registab3 extends React.Component {
 					<div class='col-16'>
 						<div class='row justify-content-center'>
 								<div className='registab3_formbox col-6'>
-									<h1 class="font-headert3">อุดมศึกษา</h1>
+									<h2 class="font-headert3">อุดมศึกษา</h2>
 									<div className=''>
                                         <div class="list-of-aca" id="in-list-of-aca"></div>
-                                        <div class="t3-content1">
-                                            <div class="row">
-                                                <div class="col-3 font-titlet3">ปริญญาโท</div>
-                                                <div class="col-4 font-titlet3">บริหารบุคคล</div>
-                                                <div class="col-5 font-titlet3">คณะบริหารธุรกิจ</div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-3 font-titlet3">2560</div>
-                                                <div class="col-4 font-titlet3">เกรด 4.00</div>
-                                                <div class="col-5 font-titlet3">มหาวิทยาลัยเกษตรศาสตร์</div>
-                                            </div>
-                                        </div>
-										<button type="button" class="btn registab3_btnplus" data-bs-toggle="modal" data-bs-target="#registab3Modal1" >
+										<button type="button" class="btn registab3_btnplus" id="add_aca">
 											<img id='icon-plus-circle'  src="assets/images/+.png"></img>
 										</button>
 									</div>
@@ -140,8 +43,8 @@ class Registab3 extends React.Component {
                                                             <form  id='HigherForm'>
                                                                 <div class='col-3' >
                                                                     <div class="selectDropdown">
-                                                                        <select class="form-select form-select-lg dropbtn margin-bottom1 fff" id='aca_degreedd' aria-labelledby="select1"  onChange={this.setHigherDegree} required>
-                                                                            <option selected disabled value='None'>เลือกวุฒิการศึกษา*</option>
+                                                                        <select class="form-select form-select-lg dropbtn margin-bottom1 fff" id='aca_degree' aria-labelledby="select1" required>
+                                                                            <option selected disabled value='none'>เลือกวุฒิการศึกษา*</option>
                                                                             <option value='ปริญญาเอก'>ปริญญาเอก</option>    
                                                                             <option value='ปริญญาโท'>ปริญญาโท</option>
                                                                             <option value='ปริญญาตรี'>ปริญญาตรี</option>
@@ -151,15 +54,15 @@ class Registab3 extends React.Component {
                                                                 </div>
                                                                 <div class='row'>
                                                                     <div class="col-6 ">
-                                                                        <input type="text" class="form-control dropbtn margin-bottom1 " id="aca_name" placeholder="สถานศึกษา*" defaultValue={this.state.HigherAcademy} onBlur={this.setHigherAcademy} required></input>
+                                                                        <input type="text" class="form-control dropbtn margin-bottom1 " id="aca_name" placeholder="สถานศึกษา*" required></input>
                                                                     </div>
                                                                     <div class="col-6">
-                                                                        <input type="text" class="form-control dropbtn margin-bottom1 " id="aca_faculty" placeholder="คณะ*" defaultValue={this.state.HigherFaculty} onBlur={this.setHigherFaculty} required></input>
+                                                                        <input type="text" class="form-control dropbtn margin-bottom1 " id="aca_faculty" placeholder="คณะ*" required></input>
                                                                     </div>
                                                                 </div>
                                                                 <div class='row'>
                                                                     <div class="col-6   ">
-                                                                        <input type="text" class="form-control dropbtn margin-bottom1 " id="aca_field"  placeholder='สาขาวิชา' defaultValue={this.state.HigherFieldofStudy} onBlur={this.setHigherFieldofStudy} required></input>
+                                                                        <input type="text" class="form-control dropbtn margin-bottom1 " id="aca_field"  placeholder='สาขาวิชา'></input>
                                                                     </div>
                                                                     <div class="col-6">
                                                                         <div class='row'>
@@ -167,7 +70,7 @@ class Registab3 extends React.Component {
                                                                                 <h5 id='registab4_textGrade' type='number' >เกรดเฉลี่ยสะสม</h5>
                                                                             </div>
                                                                             <div class='col-4 ms-auto'> 
-                                                                                <input type="number" class="form-control dropbtn margin-bottom1 " id="aca_grade" placeholder="X.XX" defaultValue={this.state.HigherGrade} onBlur={this.setHigherGrade} required></input>
+                                                                                <input type="number" class="form-control dropbtn margin-bottom1" placeholder='X.XX' id="aca_grade"></input>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -175,7 +78,7 @@ class Registab3 extends React.Component {
                                                                 
                                                                 <div class='col-3' >
                                                                     <div class="selectDropdown">
-                                                                        <select class="form-select form-select-lg dropbtn_year margin-bottom1 fff" id='year_higher' aria-labelledby="select1" defaultValue={this.state.HigherEndYear} onChange={this.setHigherEndYear} required>
+                                                                        <select class="form-select form-select-lg dropbtn_year margin-bottom1 fff" id='year_secondary' aria-labelledby="select1">
                                                                             <option selected disabled value=''>ปีที่จบการศึกษา</option>
                                                                             <option value='9999'>กำลังศึกษา</option>
                                                                         </select>
@@ -187,8 +90,8 @@ class Registab3 extends React.Component {
                                                                                                 </div>													
                                                                                             </div>
                                                                                                 <div class="centerverify button-add-addH1">
-                                                                                                    <button type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal"  id='registab3_btnclose'>ยกเลิก</button>
-                                                                                                    <button type="button" class="btn btn-cta-primary-yellowshort profile-button round" onClick={this.handleHigherSubmit}  id='regis3_AcaConfirm' >เพิ่ม</button>
+                                                                                                    <button type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal"  id='can-aca'>ยกเลิก</button>
+                                                                                                    <button type="button" class="btn btn-cta-primary-yellowshort profile-button round" id='submit-aca' >เพิ่ม</button>
                                                                                                 </div>
 
                                                                                         </div>
@@ -197,7 +100,7 @@ class Registab3 extends React.Component {
                                                                             </div>
 
 								<div className='registab3_formbox col-6'>
-									<h1 class="font-headert3">มัธยมศึกษา</h1>
+									<h2 class="font-headert3">มัธยมศึกษา</h2>
 									<div className=''>		
                                         <div class="list-of-high" id="in-list-of-high"></div>
                                             <div class="t3-content1">
@@ -231,8 +134,8 @@ class Registab3 extends React.Component {
                 <form  id='SecondaryForm'>
                     <div class='col-5' >
                         <div class="selectDropdown">
-                            <select class="form-select form-select-lg dropbtn margin-bottom1 fff" id='high_degree' aria-labelledby="select1"   onChange={this.setSecondaryDegree} required>
-                                <option selected disabled value=''>เลือกวุฒิการศึกษา</option>
+                            <select class="form-select form-select-lg dropbtn margin-bottom1 fff" id='high_degree' aria-labelledby="select1" required>
+                                <option selected disabled value=''>เลือกวุฒิการศึกษา*</option>
                                 <option value='ประถมศึกษา' >ประถมศึกษา</option>    
                                 <option value='มัธยมศึกษาตอนต้น' >มัธยมศึกษาตอนต้น</option>    
                                 <option value='มัธยมศึกษาตอนปลาย' >มัธยมศึกษาตอนปลาย</option>
@@ -241,12 +144,12 @@ class Registab3 extends React.Component {
                     </div>
                     <div class='row'>
                         <div class="col-12 ">
-                            <input type="text" class="form-control dropbtn margin-bottom1 " id="high_name" placeholder="สถานศึกษา*" value={this.state.SecondaryAcademy} onChange={this.setSecondaryAcademy} required></input>
+                            <input type="text" class="form-control dropbtn margin-bottom1 " id="high_name" placeholder="สถานศึกษา*" required></input>
                         </div>
                     </div>
                     <div class='row'>
                         <div class="col-7 ">
-                            <input type="text" class="form-control dropbtn margin-bottom1 " id="high_field"  placeholder='หลักสูตร/แผนการเรียน' value={this.state.SecondaryFieldofStudy} onChange={this.setSecondaryFieldofStudy}required></input>
+                            <input type="text" class="form-control dropbtn margin-bottom1 " id="high_field"  placeholder='หลักสูตร/แผนการเรียน' required></input>
                         </div>
                         <div class="col-5">
                             <div class='row'>
@@ -254,7 +157,7 @@ class Registab3 extends React.Component {
                                     <h5 id='registab4_textGrade'>เกรดเฉลี่ยสะสม</h5>
                                 </div>
                                 <div class='col-7 ms-auto'> 
-                                    <input type="text" class="form-control dropbtn margin-bottom1 " id="high_grade" placeholder="X.XX" value={this.state.SecondaryGrade} onChange={this.setSecondaryGrade} required></input>
+                                    <input type="text" class="form-control dropbtn margin-bottom1 " id="high_grade" placeholder="X.XX"></input>
                                 </div>
                             </div>
                         </div>
@@ -262,7 +165,7 @@ class Registab3 extends React.Component {
 
                     <div class='col-3' >
                         <div class="selectDropdown">
-                            <select class="form-select form-select-lg dropbtn_year margin-bottom1 fff" id='year_secondary' aria-labelledby="select1" value={this.state.SecondaryEndYear} onChange={this.setSecondaryEndYear} required>
+                            <select class="form-select form-select-lg dropbtn_year margin-bottom1 fff" id='year_higher' aria-labelledby="select1">
                                 <option selected disabled value=''>ปีที่จบการศึกษา</option>
                                 <option value='9999'>กำลังศึกษา</option>
                             </select>
@@ -275,7 +178,7 @@ class Registab3 extends React.Component {
 												</div>
 													<div class="centerverify button-add-addH1">
 														<button type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</button>
-														<button type="button" class="btn btn-cta-primary-yellowshort profile-button round"  onClick={this.handleSecondarySubmit}>เพิ่ม</button>
+														<button type="button" class="btn btn-cta-primary-yellowshort profile-button round" id="submit-high">เพิ่ม</button>
 													</div>
 
 											</div>
