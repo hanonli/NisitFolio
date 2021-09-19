@@ -561,7 +561,7 @@ var Dropdownsideskill1 = '<div class="row ddt7_1">\
 		<option value="Marketing">Marketing</option>\
 		<option value="Project_Management">Project_Management</option>\
 		<option value="Design">Design</option>\
-		<option value="Cloud_Computing">CloudComputing</option>\
+		<option value="Cloud_Computing">Cloud_Computing</option>\
 		<option value="Writing">Writing</option>\
 		<option value="Mobile_&_Web_Development">Mobile&_Web_Development</option>\
   	<option value="Network_Structure&_Security">NetworkStructure&_Security</option>\
@@ -587,7 +587,7 @@ var Dropdownsideskill2 = '<div class="row ddt7_2">\
 		<option value="Marketing">Marketing</option>\
 		<option value="Project_Management">Project_Management</option>\
 		<option value="Design">Design</option>\
-		<option value="Cloud_Computing">CloudComputing</option>\
+		<option value="Cloud_Computing">Cloud_Computing</option>\
 		<option value="Writing">Writing</option>\
 		<option value="Mobile_&_Web_Development">Mobile&_Web_Development</option>\
   	<option value="Network_Structure&_Security">NetworkStructure&_Security</option>\
@@ -613,7 +613,7 @@ var Dropdownsideskill3 = '<div class="row ddt7_3">\
   <option value="Marketing">Marketing</option>\
   <option value="Project_Management">Project_Management</option>\
   <option value="Design">Design</option>\
-  <option value="Cloud_Computing">CloudComputing</option>\
+  <option value="Cloud_Computing">Cloud_Computing</option>\
   <option value="Writing">Writing</option>\
   <option value="Mobile_&_Web_Development">Mobile&_Web_Development</option>\
   <option value="Network_Structure&_Security">NetworkStructure&_Security</option>\
@@ -823,9 +823,10 @@ function Getchoicehardskill(typeC,number){
 		.then((raws) => {
       console.log("http://localhost:2000/register/" + typeC +"/hardskill");
 			console.log(raws);
-			raws.data.forEach((entryss) => {
-				//console.log(entrys);
-        var dis_now = entryss;
+			raws.forEach((entryss) => {
+				//console.log(entryss);
+        //console.log(entryss.THName);
+        var dis_now = entryss.THName;
         if(number==1){
           $('#sideskilllist1').append($('<option />').val(dis_now).html(dis_now));
         }

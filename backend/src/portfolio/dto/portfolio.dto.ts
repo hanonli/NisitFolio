@@ -13,4 +13,6 @@ export class CreatePortfolioDto {
     Pic: string[];
 
     Description: string[];
+
+    Port_Date: string;
 }

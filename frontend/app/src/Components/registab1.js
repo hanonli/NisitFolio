@@ -1,4 +1,5 @@
 import React from 'react';
+import DatePickerBD from './datepickerBD.js';
 
 class Registab1 extends React.Component {
 	render (){
@@ -47,20 +48,8 @@ class Registab1 extends React.Component {
 										<div class="col-md-2">
 											<label class="sexdistance form-f-sex ">วันเกิด<a class="red_markEp1">*</a></label>
 										</div>
-										<div class="col-md-2">
-											<select class="form-select dropbtn margin-bottom1 fff" id="bdday" required>
-												<option selected disabled value="">วัน</option>
-											</select>
-										</div>
-										<div class="col-md-2">
-											<select class="form-select dropbtn margin-bottom1 fff" id="bdmonth" required>
-												<option selected disabled value="">เดือน</option>
-											</select>
-										</div>
-										<div class="col-md-2">
-											<select class="form-select dropbtn margin-bottom1 fff" id="bdyear" required>
-												<option selected disabled value="">ปี</option>
-											</select>
+										<div class="col-10">
+											<DatePickerBD />
 										</div>
 									</div>
 								</div>

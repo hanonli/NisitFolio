@@ -210,6 +210,9 @@ export class Portfolio {
   @Column()
   Port_Privacy: string;
 
+  @Column()
+  Port_Date: string;
+
   @OneToMany(type => PortfolioPicture, portfolioPicture => portfolioPicture.portfolio)
   portfolioPictures: PortfolioPicture[];
 

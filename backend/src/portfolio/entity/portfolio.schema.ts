@@ -29,6 +29,9 @@ export class Portfolio2 {
   @Prop()
   ResumeId:string[];
 
+  @Prop()
+  Port_Date: string;
+
   
 }
 

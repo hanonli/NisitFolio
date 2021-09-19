@@ -5,25 +5,22 @@
 }
 
 .Registab3 .registab3_formbox {
-
-    background-color: rgb(236, 236, 236);
+    background-color: white;
     border: 1px solid black;
     border-radius: 25px;
-
-    
-    height: fit-content;
-    width: 47%;
+    height: 45vh;
+    width: 40%;
     margin-top: 5px;
     margin-bottom: 5px;
-    margin-left: 10px;
-    margin-right: 10px;
-
-
-    justify-content: center;
+    margin-left: 15px;
+    margin-right: 15px;
+    position: relative;
 }
 
 .Registab3 .registab3_formbox .registab3_btnplus{
     text-align: center;
+    justify-content: center;
+    margin-left: 43%;
 }
 
 .Registab3 .registab3_formbox #icon-plus-circle {
@@ -48,12 +45,91 @@
     padding-left: 40px;
 }
 
+.font-titlet3{
+    color:black;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+
+.Registab3 .registab3_formbox .font-headert3{
+    color:black;
+    font-size: 36px;
+}
+
+.t3-content1 {
+    text-align: left;
+    position: relative;
+}
+
+/*.t3-content1:hover,  .t3-content1:focus{
+    background-color: #e1e1e1;
+}*/
+
+.layer_icon1 {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: 0.2s;
+    background: transparent;
+}
+
+.layer_icon1 .button1{
+    visibility: hidden;
+    padding-left: 35%;
+    margin-top: 0.8%;
+    transition: 0.1s;
+}
+
+.layer_icon1:hover{
+    background: #E1E1E1;
+    display: flex;
+    opacity: 0.7;
+}
+
+.layer_icon1:hover .button1{
+    visibility: visible;
+    opacity: 2;
+}
+.layer_icon1 .button2{
+    visibility: hidden;
+    padding-left: 10%;
+    margin-top: 0.8%;
+    transition: 0.1s;
+}
+
+.layer_icon1:hover .button2{
+    visibility: visible;
+    opacity: 2;
+}
+
+.error_select_aca{
+    border: 1px solid red;
+}
+
+
+
+
+
+
+
+
+
+
 .Registab4 .registab4_formbox {
     background-color: #b6deea;
     border: 1px solid black;
+<<<<<<< HEAD
     height: 140px;
     /*width: 1470px;*/
     border-radius: 25px;
+=======
+    border-radius: 25px;
+    height: 140px;
+    width: 100%;
+>>>>>>> 8884fe9f25085366d0964590b93fdba55e263b57
     margin-top: 5px;
     margin-bottom: 5px;
     margin-left: 5px;

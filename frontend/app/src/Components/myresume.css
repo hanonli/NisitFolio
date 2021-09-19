@@ -1,3 +1,5 @@
+@import "myresumeTimeline.css";
+@import "myresumeEducation.css";
 /* Zone Decoration */
 
 .Ex {
@@ -67,6 +69,100 @@
     margin-left: calc(var(--bs-gutter-x) * 0);
 }
 
+
+.resumenewnav{
+    width: 92%;
+    margin-left: 8%;
+}
+
+/*Header*/
+
+.resume-header{
+    width: 100%;
+    position: relative;
+}
+
+.resume-head-darkpart{
+    width: 100%;
+    background-color: #161513;
+    padding: 4vw;
+    color: #FFFFFF;
+}
+
+.resume-name-box{
+    margin-left:45%;
+    width:45%;
+    padding: 1vw;
+    color: #FFFFFF;
+}
+
+.resume-name-text{
+    font-size: 6vw;
+    font-weight: 1000;
+    color: #FFFFFF;
+}
+
+.resume-occupation{
+    font-size: 3vw;
+}
+
+.resume-name-bio-part{
+    padding: 2vw;
+    margin-left:43%;
+    width:47%;
+    min-height: 15vw;
+    font-size: 2vw;
+    /*font-weight: 300;*/
+}
+
+.resume-profile-pic{
+    width: 100%;
+    height: 100%;
+}
+
+.resume-profile-picture{
+    box-shadow: none;
+	display: block;
+	margin-left: 0vw;
+	margin-top: 8vw;
+	position: absolute;
+	/*background: rgba(0, 0, 0, 0.3) none repeat scroll 0 0;
+	*/
+    width: 40%;
+    height: auto;
+    z-index:9;
+}
+
+.resume-hometown{
+    margin-top: 2%;
+    margin-left: 45%;
+}
+.resume-hometown p{
+    font-size: 2vw;
+    margin-bottom: 0%;
+}
+.indark-text{
+    color: #FFFFFF;
+}
+
+
+
+.resumetopic{
+    color: black;
+    font-size: 4vw;
+    padding: 0vw;
+}
+
+.resumesectionline{
+    width: 40%;
+    height: 0.5vw;
+    margin-inline: auto;
+    /*background-color: black;*/
+}
+
+
+
+
 .block-right2 {
     display: inline-block;
     text-align: right;
@@ -92,3 +188,4 @@
     padding-top: 0.5vw;
     margin-left: 0vw;
 }
+

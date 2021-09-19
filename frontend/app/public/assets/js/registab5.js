@@ -149,7 +149,7 @@ $(document).on("click", "#edit-certi", function () {
 });
 
 //open modal to add certi
-$(document).on("click", "#add-certi", function () {
+$(document).on("click", ".frame_add_certi", function () {
     choose_function = 2;
     console.log(`chosoe: ${choose_function}`);
     $('#exampleModal11112').modal('toggle');
