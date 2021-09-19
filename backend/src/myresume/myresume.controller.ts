@@ -23,6 +23,12 @@ export class MyResumeController {
   }
 
   @UseGuards(JwtAuthGuard)
+  @Get("header")
+    async Getheader(@Request() req) {
+      return this.resumeService.getResumeheader(req.user.userId);
+  }
+
+  @UseGuards(JwtAuthGuard)
   @Post()
     async CreateResume(@Body() CreateDto: CreateResumeDto ,@Request() req,@RealIP() ip: string) {
       CreateDto.UserId = req.user.userId;

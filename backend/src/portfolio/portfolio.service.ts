@@ -10,6 +10,7 @@ import { Portfolio2, PortfolioDocument} from './entity/portfolio.schema';
 //import { Portfolio3} from './dto/portfoli4';
 import { UserInfoDocument, UserInfoMongoose } from 'src/register/entity/register.schema';
 import Portfolio3 from './dto/portfolio4.dto';
+import { hearderDto } from 'src/myresume/dto/haerder.dto';
 
 @Injectable()
 export class PortService {
@@ -21,107 +22,40 @@ export class PortService {
     @InjectModel(Portfolio2.name) 
     private portModel: Model<PortfolioDocument>,
     @InjectRepository(Userinfo)
-    private UserInfoRepository: Repository<Userinfo>,
+    private userInfoRepository: Repository<Userinfo>,
     @InjectRepository(Account)
     private accountRepository: Repository<Account>,
     
 
 
   ) {}
+  async getportheader(UserID:string ){
+    const id = new ObjectID(UserID);
+    const get_header=new hearderDto;
+    const id2 = new ObjectID(id);
+    const account=await this.accountRepository.findOne({where:{_id:id2}});
+    const userinfo=await this.userInfoRepository.findOne({where:{UserId:UserID}});
+
+    get_header.Email=account.Email;
+    get_header.Firstname=userinfo.Firstname;
+    get_header.Lastname=userinfo.Lastname;
+    get_header.ProfilePic=account.ProfilePic;
+    get_header.Country=userinfo.Country;
+    get_header.City=userinfo.City;
+    get_header.AboutMe=userinfo.AboutMe;
+    get_header.Province=userinfo.Province;
+    //*/
+    return get_header;
+    
+  }
   async getPort(portId:string ){
     const id = new ObjectID(portId);
-    const Get_Portfolio = new Portfolio3;
-    //const Id = new ObjectID(userId);
-
-    const Port=await this.portModel.findById(id);
-
-    const userId=Port.UserId;
-    const id2 = new ObjectID(userId);
-
-    const account=await this.accountRepository.findOne({where:{_id:id2}});
-
-    //return account
-    
-    const userinfo=await this.UserInfoRepository.findOne({where:{UserId:userId}});
-    //return userinfo
-    
-    const Port2=await this.portModel.find({UserId : userId});
-    //return Port
-    
-
-    Get_Portfolio.Email=account.Email;
-    Get_Portfolio.Firstname=userinfo.Firstname;
-    Get_Portfolio.Lastname=userinfo.Lastname;
-    Get_Portfolio.ProfilePic=account.ProfilePic;
-    Get_Portfolio.Country=userinfo.Country;
-    Get_Portfolio.City=userinfo.City;
-    Get_Portfolio.AboutMe=userinfo.AboutMe;
-    Get_Portfolio.Province=userinfo.Province;
-    //return Get_Portfolio;
-    
-    Get_Portfolio.ResumeId[0]=Port.ResumeId
-    Get_Portfolio.Port_Privacy[0]=Port.Port_Privacy
-    Get_Portfolio.Port_Tag[0]=Port.Port_Tag
-    Get_Portfolio.create_time[0]=Port.create_time
-    Get_Portfolio.last_modified[0]=Port.last_modified
-    Get_Portfolio.modified_by[0]=Port.modified_by
-    Get_Portfolio.portfolioPictures[0]=Port.portfolioPictures
-    //*/
-    return Get_Portfolio;
-    //return this.portModel.findById(id);
+    return this.portModel.findById(id);
   }
 
-  //--------------------------------------------------------------------------
 
   async getPortbyUser(userId:string ){
-    const Get_Portfolio = new Portfolio3;
-    const id = new ObjectID(userId);
-    const account=await this.accountRepository.findOne({where:{_id:id}});
-    //return account
-    
-    const userinfo=await this.UserInfoRepository.findOne({where:{UserId:userId}});
-    //return userinfo
-    
-    const Port=await this.portModel.find({UserId : userId});
-    //return Port
-    
-
-    Get_Portfolio.Email=account.Email;
-    Get_Portfolio.Firstname=userinfo.Firstname;
-    Get_Portfolio.Lastname=userinfo.Lastname;
-    Get_Portfolio.ProfilePic=account.ProfilePic;
-    Get_Portfolio.Country=userinfo.Country;
-    Get_Portfolio.City=userinfo.City;
-    Get_Portfolio.AboutMe=userinfo.AboutMe;
-    Get_Portfolio.Province=userinfo.Province;
-    //return Get_Portfolio;
-    const ResumeId_list=[]
-    const Port_Privacy_list=[]
-    const Port_Tag_list=[]
-    const create_time_list=[]
-    const last_modified_list=[]
-    const modified_by_list=[]
-    const portfolioPictures_list=[]
-
-    for (var _i = 0; _i < Port.length; _i++) {
-
-      ResumeId_list.push(Port[_i].ResumeId);
-      Port_Privacy_list.push(Port[_i].Port_Privacy);
-      Port_Tag_list.push(Port[_i].Port_Tag);
-      create_time_list.push(Port[_i].create_time);
-      last_modified_list.push(Port[_i].last_modified);
-      modified_by_list.push(Port[_i].modified_by);
-      portfolioPictures_list.push(Port[_i].portfolioPictures);
-    }
-    Get_Portfolio.ResumeId=ResumeId_list
-    Get_Portfolio.Port_Privacy=Port_Privacy_list
-    Get_Portfolio.Port_Tag=Port_Tag_list
-    Get_Portfolio.create_time=create_time_list
-    Get_Portfolio.last_modified=last_modified_list
-    Get_Portfolio.modified_by=modified_by_list
-    Get_Portfolio.portfolioPictures=portfolioPictures_list
-    //*/
-    return Get_Portfolio;
+    return this.portModel.find({UserId : userId});
   }
 
   async createPort(CreateDto: CreatePortfolioDto ,ip:string){

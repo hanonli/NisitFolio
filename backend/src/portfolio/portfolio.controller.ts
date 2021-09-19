@@ -16,6 +16,13 @@ export class PortController {
     return this.portService.getPort(portfolioId);
   }
 
+  @UseGuards(JwtAuthGuard)
+  @Get('header')
+  async getheadert(@Request() req){
+    const userid= req.user.userId;
+    return this.portService.getportheader(userid);
+  }
+
   @Get('/user/:userid')
   async getPortbyUser(@Param('userid') UserId: string){
     return this.portService.getPortbyUser(UserId);

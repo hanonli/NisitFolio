@@ -8,6 +8,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Resume2 , ResumeDocument} from './entity/myresume.schema';
 import { Portfolio2, PortfolioDocument} from '../portfolio/entity/portfolio.schema';
+import { hearderDto } from './dto/haerder.dto';
 
 @Injectable()
 export class MyResumeService {
@@ -126,6 +127,24 @@ export class MyResumeService {
     const ObjID = new ObjectID(resumeID);
     myresume._id=ObjID;
     return await this.resumePictureRepository.save(myresume);
+  }
+  async getResumeheader(UserID:string ){
+    const id = new ObjectID(UserID);
+    const get_header=new hearderDto;
+    const id2 = new ObjectID(id);
+    const account=await this.accountRepository.findOne({where:{_id:id2}});
+    const userinfo=await this.userinfoRepository.findOne({where:{UserId:UserID}});
+    get_header.Email=account.Email;
+    get_header.Firstname=userinfo.Firstname;
+    get_header.Lastname=userinfo.Lastname;
+    get_header.ProfilePic=account.ProfilePic;
+    get_header.Country=userinfo.Country;
+    get_header.City=userinfo.City;
+    get_header.AboutMe=userinfo.AboutMe;
+    get_header.Province=userinfo.Province;
+    //*/
+    return get_header;
+    
   }
 
   async getResume(resumeId:string ){
