@@ -53,7 +53,7 @@ class MyResumeContent extends React.Component {
 				<h1>Example</h1>
 				<MyResumeEx></MyResumeEx>
 				<h1>MyResume Content Space</h1>
-				<MyResume1></MyResume1>
+				<MyResume1></MyResume1>				
 				<MyResume2></MyResume2>
 				<MyResume3></MyResume3>
 				<h1>Testing Sharing Space</h1>
