@@ -9,12 +9,14 @@ import PortfolioContent from './Components/portfolioContent';
 import reportWebVitals from './reportWebVitals';
 import { ReactSortable } from "react-sortablejs";
 import PortThumb from "./portThumb";
+import BasicDatePickerPort from "./Components/datePickerPort";
 
 class Portfolio extends React.Component {
 	constructor(props) {
 		super(props);
 		this.handleLoad = this.handleLoad.bind(this);
 		this.state = {
+			allow: false,
 			/*list: [{ id: "1", name: "Img1" },
 					{ id: "2", name: "Img2" },
 					{ id: "3", name: "Img3" },
@@ -56,7 +58,7 @@ class Portfolio extends React.Component {
 		
 		$("input").keypress(function(){
 		  i += 1;
-		  //alert(i);
+		  alert(document.getElementById('basic-date-picker').value);
 		  var temp = refThis.state.list;
 		  temp.push({ id: i, name: "Img"+i });
 		  refThis.setState({ list: temp });
@@ -64,6 +66,8 @@ class Portfolio extends React.Component {
 		});
 		
 		$(function(){
+			$("#basic-date-picker").attr("placeholder", "วัน/เดือน/ปี");
+			
 		  $('.static-public-icon').on('click', function(){
 			  $('.static-public-icon').removeClass('spi-active');
 			  $(this).addClass('spi-active');
@@ -75,6 +79,7 @@ class Portfolio extends React.Component {
 			  $('.static-footer-arrow').hide();
 			  $('.p5-label').hide();
 			  $('.port-bg').css('background-color', '#C7C7C7');
+			  $('.pu-date-picker').css("display", "block");
 		  });
 		  
 		  $('.static-popup-arrow').on('click', function(){
@@ -83,6 +88,10 @@ class Portfolio extends React.Component {
 			  $('.static-footer-arrow').show();
 			  $('.p5-label').show();
 			  $('.port-bg').css('background-color', 'white');
+			  
+			  setTimeout(function() { $('.pu-date-picker').css("display", "none"); }, 300);
+			  
+			  
 		  });
 		});	
 		
@@ -97,13 +106,27 @@ class Portfolio extends React.Component {
 	 }
 	
 	render (){
+		if(!this.state.allow) return (
+			<div className="Underconstruction">
+				< Navbar/>
+				<header class="bookmark-header-fixed fat bgs">
+					<div class="container-fluid yahaha2">     
+						<div class="row">
+							<div class="col">
+								<div class="topDataBk-content text-center">
+									<h1 class="name inline">You don't have permission to access this page!</h1>
+								</div>
+							</div>
+						</div>        
+					</div>
+				</header>
+			</div>
+		);
+		
 		return (
 			<div className="Portfolio">
 				<div class="outer-full port-bg">
-
-						< Navbar/>
-
-				    
+					< Navbar/>
 				    <div id="inner-fixed-folio-2">
 						<div className={this.state.sortableContainer}>
 						  <ReactSortable
@@ -142,11 +165,29 @@ class Portfolio extends React.Component {
 				    </div>
 					
 					<div class="inner-popup-folio">
-						<img class="static-popup-arrow" src="assets/images/arrow_up1.png"></img>
+						<img class="static-popup-arrow" src="assets/images/arrow_down2.png"></img>
 						<div class="pu-label">
 							ซ่อน
 						</div>
-
+						<div class="pu2-label">
+							ไฟล์แนบ
+						</div>
+						<div class="pu-attach" >
+						
+						</div>
+						<img class="popup-file-icon" src="assets/images/file_ic.png"></img>
+						<div class="pua-label">
+							เพิ่มไฟล์แนบ (สูงสุด 8MB)
+						</div>
+						<div class="pu3-label">
+							วันที่เข้าร่วม /<br/> ได้รับ
+						</div>
+						<div class="pu-date-picker">
+							< BasicDatePickerPort />
+						</div>
+						<div class="pu4-label">
+							ค่าเริ่มต้น : วันที่ผู้ใช้เพิ่มข้อมูลครั้งแรก
+						</div>
 				    </div>
 				  
 				    <div id="inner-fixed-folio-3">
@@ -165,7 +206,7 @@ class Portfolio extends React.Component {
 						
 						<div class="port-buttons">
 							<Link to="/home">
-								<a class="btn btn-cta-primary round port-button grey margin-right-m" target="_blank">ยกเลิก</a>
+								<a class="btn btn-cta-primary round grey margin-right-m port-button" target="_blank">ยกเลิก</a>
 							</Link>        
 							<a class="btn btn-cta-primary-yellow round port-button" href="#" target="_blank">เพิ่ม</a>
 						</div>
