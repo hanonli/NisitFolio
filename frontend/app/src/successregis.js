@@ -7,6 +7,25 @@ import { Link } from "react-router-dom";
 
 /* NOT AVALIABLE TO TEST RIGHT NOW BC DONT HAVE PATH TO LINK WITH*/
 class Successregis extends React.Component {
+	constructor(props){
+		super(props);
+	}
+	
+	componentDidMount() {
+		// Simple POST request with a JSON body using fetch
+		let params = new URLSearchParams(document.location.search.substring(1));
+		let token = params.get("token");
+		console.log(token);
+		const requestOptions = {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ token: token })
+		};
+		fetch('http://localhost:2000/email-confirmation/confirm', requestOptions)
+			.then(response => response.json())
+			.then(data => this.setState({ postId: data.id }));
+	}
+
 	render (){
 		return (
 			<div className="Successregis">
