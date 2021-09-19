@@ -117,7 +117,5 @@ export class RegisterController {
   async testget(@Request() req) {
     return this.registerService.GetInfo2(req.user.userId);
   }
-
-
-
+  
 }
