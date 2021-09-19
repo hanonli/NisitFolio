@@ -54,42 +54,106 @@ $(function(){
         $('#tab-7').addClass('tab-list-active')
         $('#registab7-content').show();
         if(sideskill_count == 0){
+          $('#sideskilllist1').hide();
           $('.ddt7_2').hide();
           $('.ddt7_3').hide();
         }
         else if(sideskill_count == 1){
-          $('.ddt7_2').show();
+          $('#sideskilllist2').hide();
           $('.ddt7_3').hide();
         }
         else if(sideskill_count == 2){
-          $('.ddt7_2').show();
-          $('.ddt7_3').show();
+          $('#sideskilllist3').hide();
         }
     });
 
  });
 
 /*Tab1*/
-/*$('#continue2').click(function () {    
+$('#continue2').click(function () {
+  var last_sideskill = list_sideskill;
+  var last_jobname=[],last_jobskill=[],last_jobscore=[],last_jobobj=[];
+  //console.log(list_of_job);
+  list_of_job.forEach((entry) => {
+    //console.log(entry);
+    last_jobname.push(entry.name_job);
+    last_jobskill.push([entry.skill1,entry.skill2,entry.skill3]);
+    last_jobscore.push([entry.score_skill1,entry.score_skill2,entry.score_skill3]);
+    last_jobobj.push([entry.obj1,entry.obj2,entry.obj3]);
+  });
+  var last_certname=[],last_certpic=[],last_certyear=[];
+  //console.log(list_of_certi);
+  list_of_certi.forEach((entryy) => {
+    //console.log(entryy);
+    last_certname.push(entryy.name_certi);
+    last_certpic.push(entryy.path_file_certi);
+    last_certyear.push(entryy.year_certi);
+  });
+  //console.log(last_jobname);
+  if(avatar1.src=="http://localhost:3000/assets/images/Circleuploadprofile.png"){
+    avatar1.src="http://localhost:3000/assets/images/profile_uk.png";
+  }
+  if(list_sideskill[0]==''){
+    var last_sideskill = [];
+  }
+  else if(list_sideskill[1]==''){
+    var last_sideskill = [list_sideskill[0]];
+  }
+  else if(list_sideskill[2]==''){
+    var last_sideskill = [list_sideskill[0],list_sideskill[1]];
+  }
   if(RequireCount_pass==1){     
-    console.log('You Pass!');  
-    PostRegis();
+    console.log('You Pass!'); 
     //window.location.pathname = '/emailverify'
     var bdd = $('#bdday').val() + '/' + $('#bdmonth').val() + '/' + $('#bdyear').val(); 
     var FormRegis2 = {
       Email: $('#re03').val(),
       Password: $('#pass05').val(),
+      ProfilePic: avatar1.src,
       Firstname: $('#re01').val(),
       Lastname: $('#re02').val(),
       Birthday: bdd,
       Gender: $('#sexgen').val(),
-      SoftSkill:[],
-      CertName:[],
-      Degree:[],
-      Work_JobName: [],
-      Job_JobName: []
-  }
+      Aboutme: $('#aboutme2').val(),
+      Email2nd:"-",
+      Country:"ประเทศไทย",
+      Province:$('#province').val(),
+      City:$('#townny').val(),
+      SoftSkill:last_sideskill,
+      CertName:last_certname,
+      CertPic:last_certpic,
+      CertYear:last_certyear,
+      //Degree:[],
+      //Work_JobName: [],
+      //Work_JobType:[],
+      Degree:["อาชีวะศึกษา"],
+      Facalty:["การเย็บปักถักร้อย"],
+      Field_of_study:["ซ่อมตุ๊กตา"],
+      Academy:["โรงเรียนหมีน้อย"],
+      Grade:[3.01],
+      Education_End_Year:[2017],
+      Work_JobName:["เขียนเว็บ"],
+      Work_JobType:["ฟรีแลนซ์"],
+      Company:["freelance.com"],
+      Work_Start_Month:[1],
+      Work_End_Month:[5],
+      Work_Start_Year:[2007],
+      Work_End_Year:[20012],
+      Salary:[15000],
+      SalaryType:["รายได้เป็นงาน"],
+      Infomation:["จะดีมากถ้าลูกค้าไม่เรื่องมาก"],
+      Job_JobName:last_jobname,
+      Job_SkillName: last_jobskill,
+      Job_Score: [[9,8,0]],
+      //Job_Score: last_jobscore,
+      Job_Objective:last_jobobj,
+    }
     console.log(FormRegis2);
+    //console.log(Regis3_form);
+    //console.log(Regis3_form2);
+    //console.log(Registab4);
+    console.log(JSON.stringify(FormRegis2));
+    PostRegis(FormRegis2);
   }
   else{
     console.log('You Wrong!');
@@ -98,15 +162,16 @@ $(function(){
     $('#tab-1').addClass('tab-list-active')
     $('#registab1-content').show();
   }
-});*/
+});
 
 var startYear = 1950;
 var endYear = new Date().getFullYear();
 for (i = endYear; i > startYear; i--) {
     $('#bdyear').append($('<option />').val(i).html(i));
-    $('#year_enjob').append($('<option />').val(i).html(i));
-    $('#year_higher').append($('<option />').val(i).html(i));
-    $('#year_secondary').append($('<option />').val(i).html(i));
+    //$('#year_startjob').append($('<option />').val(i).html(i));
+    //$('#year_endjob').append($('<option />').val(i).html(i));
+    //$('#year_higher').append($('<option />').val(i).html(i));
+    //$('#year_secondary').append($('<option />').val(i).html(i));
 }
 
 var MaxM = 13;
@@ -115,8 +180,8 @@ for (j = startM; j < MaxM; j++) {
     $('#bdmonth').append($('<option />').val(j).html(j));
 }
 
-
 var MaxD = 32;
+var MaxD2 = 30;
 var startD = 1;
 for (k = startD; k < MaxD; k++) {
     $('#bdday').append($('<option />').val(k).html(k));
@@ -230,7 +295,7 @@ for (k = startD; k < MaxD; k++) {
 ret1 = document.getElementById('re01');                   
 ret1.addEventListener('keyup', function(){
     var valt1 = $('#re01').val();
-    console.log('Name : ' + valt1);
+    //console.log('Name : ' + valt1);
   if(valt1 == ''){
     $('#re01').removeClass('is-valid');
     $('#re01').addClass('is-invalid');
@@ -243,7 +308,7 @@ ret1.addEventListener('keyup', function(){
 ret2 = document.getElementById('re02');                   
 ret2.addEventListener('keyup', function(){
   var valt1 = $('#re02').val();
-  console.log('Surname : ' + valt1);
+  //console.log('Surname : ' + valt1);
   if(valt1 == ''){
     $('#re02').removeClass('is-valid');
     $('#re02').addClass('is-invalid');
@@ -254,16 +319,13 @@ ret2.addEventListener('keyup', function(){
   }});
 ret3 = document.getElementById('re03');                   
 ret3.addEventListener('keyup', function(){
-  var valt1 = $('#re03').val();
-  console.log('Email : ' + valt1);
-  if(valt1 == ''){
-    $('#re03').removeClass('is-valid');
-    $('#re03').addClass('is-invalid');
-  }
-  else {
-    $('#re03').removeClass('is-invalid');
-    $('#re03').addClass('is-valid');
-  }});
+  var input=$(this);
+  //console.log('Email : ' + input);
+	var re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+	var is_email=re.test(input.val());
+	if(is_email){input.removeClass("is-invalid").addClass("is-valid");}
+	else{input.removeClass("is-valid").addClass("is-invalid");}
+});
 var passw = 0;
 var min_pass_count = 8;
 var max_pass_count = 20;
@@ -337,7 +399,7 @@ pa1.addEventListener('keyup', checkPass, false);
 pa2.addEventListener('keyup', checkPass, false);
 
 /*Tab2*/
-var min_abme_count = 0;
+var min_abme_count = -1;
 var el;
 
 function countCharactersAbme() {                                    
@@ -368,6 +430,7 @@ $('.aboutmee').on('change', 'input', function(){
 /*Tab3*/
 
 /*Higher*/
+/*
 regis3Higher_dropdwn1 = document.getElementById('regis3_selectdropdown1');                   
 regis3Higher_dropdwn1.addEventListener('change', function(){
     var regis3_dropdwn1selected = $('#regis3_selectdropdown1').val();
@@ -409,7 +472,7 @@ ValidationGrade.addEventListener('keyup', function(){
       $('#ValidationGradeFeedback').removeClass('is-invalid');
       $('#ValidationGradeFeedback').addClass('is-valid');
     }});
-/*
+
 let regis3_HigherConfirm = document.getElementById('regis3_HigherConfirm');
 var regis3_dropdwn1selected = $('#regis3_selectdropdown1').val();
 var regis3_universityval = $('#ValidationUniversityFeedback').val();
@@ -418,9 +481,9 @@ if( regis3_dropdwn1selected != '' && regis3_universityval != '')
   regis3_HigherConfirm.disabled = true;
 else
   regis3_HigherConfirm.disabled = false;
-*/
 
- /*Lower*/
+
+ //Lower
  regis3Secondary_dropdwn1 = document.getElementById('regis3_selectdropdown2');                   
  regis3Secondary_dropdwn1.addEventListener('change', function(){
      var regis3_dropdwn2selected = $('#regis3_selectdropdown2').val();
@@ -438,25 +501,26 @@ ValidationSchool.addEventListener('keyup', function(){
     else {
       $('#ValidationSchoolFeedback').removeClass('is-invalid');
       $('#ValidationSchoolFeedback').addClass('is-valid');
-    }});
+    }});*/
 
 /*Tab7*/
+var list_sideskill = ["","",""];
 var sskdd1 = '<div class="col-2">\
-                <div class="bookmark-content">\
+                <div class="delbtn">\
                 <img class="obj-icon tooltips-item" src="assets/images/bin.png" type="button" data-bs-toggle="modal" toggle-type="dynamic"data-bs-target="#Modaltab7-1" id="valss1" alt="" width="30" height="30"/>\
                 </div>\
               </div>\
               </div>\
               ';
 var sskdd2 = '<div class="col-2">\
-                <div class="bookmark-content">\
+                <div class="delbtn">\
                 <img class="obj-icon tooltips-item" src="assets/images/bin.png" type="button" data-bs-toggle="modal" toggle-type="dynamic"data-bs-target="#Modaltab7-2" id="valss2" alt="" width="30" height="30"/>\
                 </div>\
               </div>\
               </div>\
               ';
 var sskdd3 = '<div class="col-2">\
-              <div class="bookmark-content">\
+              <div class="delbtn">\
               <img class="obj-icon tooltips-item" src="assets/images/bin.png" type="button" data-bs-toggle="modal" toggle-type="dynamic"data-bs-target="#Modaltab7-3" id="valss3" alt="" width="30" height="30"/>\
               </div>\
             </div>\
@@ -484,73 +548,26 @@ var sideskill_count=0;
 var max_sideskill=3;
 var sumsideskill='';
 var valss_now='';
-var valt7_1 = '';
-var valt7_2 = '';
-var valt7_3 = '';
 
-/*$(document).on('change', 'input', function(){
-    var options = $('datalist')[0].options;
-    var val = $(this).val();
-    for (let i=0;i<options.length;++i){
-       if (options[i].value === val) {
-          console.log("User selected: "+val+" -> Remove focus away.");
-		      $('#sideskilllist').blur();
-          sideskill_count += 1;
-          console.log(val)
-          if(sideskill_count == 1){
-            $('#sideskilllist1').hide();          
-            valss_now = $('#sideskilllist1').val();
-            valt7_1 = valss_now;
-            console.log(valss_now);
-            sumsideskill = sideskilldropdown1_1 + valss_now + sideskilldropdown2 + sskdd1;
-            console.log(sumsideskill);
-            $('.dropdowntap7_1').append(sumsideskill);
-            sumsideskill = '';
-            $('#sideskilllist2').show();
-          }
-          else if(sideskill_count == 2){
-            $('#sideskilllist2').hide(); 
-            $('#sideskilllist3').show();
-            valss_now = $('#sideskilllist2').val();
-            valt7_2 = valss_now;
-            vvv = valss_now.length;
-            console.log(valss_now);
-            console.log('Length : ' + vvv);
-            sumsideskill = sideskilldropdown1_2 + valss_now + sideskilldropdown2 + sskdd2;
-            console.log(sumsideskill);
-            $('.dropdowntap7_2').append(sumsideskill);
-            sumsideskill = '';
-          }
-          else if(sideskill_count == 3){
-            $('#sideskilllist3').hide(); 
-            valss_now = $('#sideskilllist3').val();
-            valt7_3 = valss_now;
-            console.log(valss_now);
-            sumsideskill = sideskilldropdown1_3 + valss_now + sideskilldropdown2 + sskdd3;
-            console.log(sumsideskill);
-            $('.dropdowntap7_3').append(sumsideskill);
-            sumsideskill = '';
-          }
-          break;
-       }
-    }
-});*/
 var Dropdownsideskill1 = '<div class="row ddt7_1">\
-<div class="col-md-6">\
+<div class="col-md-12">\
   <select class="form-select dropbtn fff" id="ch1">\
     <option selected disabled value="">เลือกหมวดทักษะเสริมที่ถนัด</option>\
-    <option value="Technical">Technical</option>\
-    <option value="Computer">Computer</option>\
-    <option value="Analytical">Analytical</option>\
-    <option value="Marketing">Marketing</option>\
-    <option value="Presentation">Presentation</option>\
-    <option value="Management">Management</option>\
-    <option value="Writing">Writing</option>\
-    <option value="Language">Language</option>\
-    <option value="Design">Design</option>\
+		<option value= "2021_Trending">2021_Trending</option>\
+		<option value="Computer_Technology">Computer_Technology</option>\
+		<option value="Hard_Communication%20Skills">Hard_Communication Skills</option>\
+		<option value="Data_Analysis">Data_Analysis</option>\
+	  <option value="Certifications_and_Licenses">Certifications_and_Licenses</option>\
+		<option value="Marketing">Marketing</option>\
+		<option value="Project_Management">Project_Management</option>\
+		<option value="Design">Design</option>\
+		<option value="Cloud_Computing">CloudComputing</option>\
+		<option value="Writing">Writing</option>\
+		<option value="Mobile_&_Web_Development">Mobile&_Web_Development</option>\
+  	<option value="Network_Structure&_Security">NetworkStructure&_Security</option>\
   </select>\
 </div>\
-<div class="col-md-6">\
+<div class="col-md-12">\
   <select class="form-select dropbtn" id="sideskilllist1">\
     <option selected disabled value="">เลือกทักษะเสริมที่ถนัด</option>\
   </select>\
@@ -559,21 +576,24 @@ var Dropdownsideskill1 = '<div class="row ddt7_1">\
 ';
 
 var Dropdownsideskill2 = '<div class="row ddt7_2">\
-<div class="col-md-6">\
+<div class="col-md-12">\
   <select class="form-select dropbtn fff" id="ch2">\
     <option selected disabled value="">เลือกหมวดทักษะเสริมที่ถนัด</option>\
-    <option value="Technical">Technical</option>\
-    <option value="Computer">Computer</option>\
-    <option value="Analytical">Analytical</option>\
-    <option value="Marketing">Marketing</option>\
-    <option value="Presentation">Presentation</option>\
-    <option value="Management">Management</option>\
-    <option value="Writing">Writing</option>\
-    <option value="Language">Language</option>\
-    <option value="Design">Design</option>\
+		<option value= "2021_Trending">2021_Trending</option>\
+		<option value="Computer_Technology">Computer_Technology</option>\
+		<option value="Hard_Communication%20Skills">Hard_Communication Skills</option>\
+		<option value="Data_Analysis">Data_Analysis</option>\
+	  <option value="Certifications_and_Licenses">Certifications_and_Licenses</option>\
+		<option value="Marketing">Marketing</option>\
+		<option value="Project_Management">Project_Management</option>\
+		<option value="Design">Design</option>\
+		<option value="Cloud_Computing">CloudComputing</option>\
+		<option value="Writing">Writing</option>\
+		<option value="Mobile_&_Web_Development">Mobile&_Web_Development</option>\
+  	<option value="Network_Structure&_Security">NetworkStructure&_Security</option>\
   </select>\
 </div>\
-<div class="col-md-6">\
+<div class="col-md-12">\
   <select class="form-select dropbtn" id="sideskilllist2">\
     <option selected disabled value="">เลือกทักษะเสริมที่ถนัด</option>\
   </select>\
@@ -582,21 +602,24 @@ var Dropdownsideskill2 = '<div class="row ddt7_2">\
 ';
 
 var Dropdownsideskill3 = '<div class="row ddt7_3">\
-<div class="col-md-6">\
+<div class="col-md-12">\
   <select class="form-select dropbtn fff" id="ch3">\
-    <option selected disabled value="">เลือกหมวดทักษะเสริมที่ถนัด</option>\
-    <option value="Technical">Technical</option>\
-    <option value="Computer">Computer</option>\
-    <option value="Analytical">Analytical</option>\
-    <option value="Marketing">Marketing</option>\
-    <option value="Presentation">Presentation</option>\
-    <option value="Management">Management</option>\
-    <option value="Writing">Writing</option>\
-    <option value="Language">Language</option>\
-    <option value="Design">Design</option>\
+  <option selected disabled value="">เลือกหมวดทักษะเสริมที่ถนัด</option>\
+  <option value= "2021_Trending">2021_Trending</option>\
+  <option value="Computer_Technology">Computer_Technology</option>\
+  <option value="Hard_Communication%20Skills">Hard_Communication Skills</option>\
+  <option value="Data_Analysis">Data_Analysis</option>\
+  <option value="Certifications_and_Licenses">Certifications_and_Licenses</option>\
+  <option value="Marketing">Marketing</option>\
+  <option value="Project_Management">Project_Management</option>\
+  <option value="Design">Design</option>\
+  <option value="Cloud_Computing">CloudComputing</option>\
+  <option value="Writing">Writing</option>\
+  <option value="Mobile_&_Web_Development">Mobile&_Web_Development</option>\
+  <option value="Network_Structure&_Security">NetworkStructure&_Security</option>\
   </select>\
 </div>\
-<div class="col-md-6">\
+<div class="col-md-12">\
   <select class="form-select dropbtn" id="sideskilllist3">\
     <option selected disabled value="">เลือกทักษะเสริมที่ถนัด</option>\
   </select>\
@@ -607,41 +630,93 @@ var Dropdownsideskill3 = '<div class="row ddt7_3">\
 $(function(){
   $('#del_sideskill1').on('click', function(){
     console.log('EiEi this is Del1');
-    console.log('SSK1 :' + valt7_1);
-    console.log('SSK2 :' + valt7_2);
-    console.log('SSK3 :' + valt7_3);
+    console.log(list_sideskill);
     $('#ssl_1').remove();
     $('.ddt7_1').remove();
-    console.log('Sum SSK :' + sideskill_count + '!!!');
     if(sideskill_count==1){
       sumsideskill = Dropdownsideskill1;
+      list_sideskill[0]=list_sideskill[1];
+      list_sideskill[1]="";
       $('.dropdowntap7_1').append(sumsideskill);
       sumsideskill = '';
+      $('#sideskilllist1').hide();
       $('.ddt7_2').hide();
     }
     else if(sideskill_count==2){
       $('.ddt7_2').remove();
-      sumsideskill = sideskilldropdown1_1 + valt7_2 + sideskilldropdown2 + sskdd1;
+      sumsideskill = sideskilldropdown1_1 + list_sideskill[1] + sideskilldropdown2 + sskdd1;
+      console.log(sumsideskill);
       $('.dropdowntap7_1').append(sumsideskill);
+      list_sideskill[0]=list_sideskill[1];
+      list_sideskill[1]="";
       $('#ssl_2').remove();
       sumsideskill = Dropdownsideskill2;
       $('.dropdowntap7_2').append(sumsideskill);
+      $('#sideskilllist2').hide();
       sumsideskill = '';
       $('.ddt7_3').hide();
-
     }
+    else if(sideskill_count==3){
+      $('.ddt7_2').remove();
+      $('.ddt7_3').remove();
+      sumsideskill = sideskilldropdown1_1 + list_sideskill[1] + sideskilldropdown2 + sskdd1;
+      $('.dropdowntap7_1').append(sumsideskill);
+      sumsideskill = sideskilldropdown1_2 + list_sideskill[2] + sideskilldropdown2 + sskdd2;
+      $('.dropdowntap7_2').append(sumsideskill);
+      list_sideskill[0]=list_sideskill[1];
+      list_sideskill[1]=list_sideskill[2];
+      list_sideskill[2]="";
+      $('#ssl_2').remove();
+      $('#ssl_3').remove();
+      sumsideskill = Dropdownsideskill3;
+      $('.dropdowntap7_3').append(sumsideskill);
+      sumsideskill = '';
+      $('#sideskilllist3').hide();
+    }
+    console.log(list_sideskill);
     sideskill_count -= 1;
+    console.log('Sum SSK :' + sideskill_count + '!!!');
   });
   $('#del_sideskill2').on('click', function(){
     console.log('EiEi this is Del2');
     $('#ssl_2').remove();
+    $('.ddt7_2').remove();
+    if(sideskill_count==2){
+      $('.ddt7_2').remove();
+      list_sideskill[1]="";
+      sumsideskill = Dropdownsideskill2;
+      $('.dropdowntap7_2').append(sumsideskill);
+      $('#sideskilllist2').hide();
+      sumsideskill = '';
+      $('.ddt7_3').hide();
+    }
+    else if(sideskill_count==3){
+      sumsideskill = sideskilldropdown1_2 + list_sideskill[2] + sideskilldropdown2 + sskdd2;
+      $('.dropdowntap7_2').append(sumsideskill);
+      list_sideskill[1]=list_sideskill[2];
+      list_sideskill[2]="";
+      $('#ssl_3').remove();
+      sumsideskill = Dropdownsideskill3;
+      $('.dropdowntap7_3').append(sumsideskill);
+      sumsideskill = '';
+      $('#sideskilllist3').hide();
+    }
+    console.log(list_sideskill);
     sideskill_count -= 1;
+    console.log('Sum SSK :' + sideskill_count + '!!!');
   });
   $('#del_sideskill3').on('click', function(){
     console.log('EiEi this is Del3');
     $('#ssl_3').remove();
-    $('#sideskilllist3').show();
+    $('.ddt7_3').remove();
+    list_sideskill[2]="";
+    sumsideskill = Dropdownsideskill3;
+    $('.dropdowntap7_3').append(sumsideskill);
+    $('#sideskilllist3').hide();
+    sumsideskill = '';
+    console.log(list_sideskill);
     sideskill_count -= 1;
+    console.log('Sum SSK :' + sideskill_count + '!!!');
   });
 });
 
@@ -649,34 +724,36 @@ $(function(){
   $('#sideskilllist1').on('change', function(){
     console.log('EiEi this is Sel1');
     valss_now = $('#sideskilllist1').val();
-    valt7_1 = valss_now;
+    list_sideskill[0]=valss_now;
     //console.log(valss_now);
     sumsideskill = sideskilldropdown1_1 + valss_now + sideskilldropdown2 + sskdd1;
     $('.dropdowntap7_1').append(sumsideskill);
     sumsideskill = '';
-    $('.ddt7_1').hide();
+    $('.ddt7_1').remove();
     $('.ddt7_2').show();
+    $('#sideskilllist2').hide();
     sideskill_count += 1;
     console.log('Sum SSK ++:' + sideskill_count + '!');
   });
   $('#sideskilllist2').on('change', function(){
     console.log('EiEi this is Sel2');
     valss_now = $('#sideskilllist2').val();
-    valt7_2 = valss_now;
-    console.log(valss_now);
+    list_sideskill[1]=valss_now;
+    //console.log(valss_now);
     sumsideskill = sideskilldropdown1_2 + valss_now + sideskilldropdown2 + sskdd2;
     $('.dropdowntap7_2').append(sumsideskill);
     sumsideskill = '';
     $('.ddt7_2').hide();
     $('.ddt7_3').show();
+    $('#sideskilllist3').hide();
     sideskill_count += 1;
     console.log('Sum SSK ++:' + sideskill_count + '!!');
   });
   $('#sideskilllist3').on('change', function(){
     console.log('EiEi this is Sel3');
     valss_now = $('#sideskilllist3').val();
-    valt7_1 = valss_now;
-    console.log(valss_now);
+    list_sideskill[2]=valss_now;
+    //console.log(valss_now);
     sumsideskill = sideskilldropdown1_3 + valss_now + sideskilldropdown2 + sskdd3;
     $('.dropdowntap7_3').append(sumsideskill);
     sumsideskill = '';
@@ -705,9 +782,17 @@ function GetProvince(){
 }
 GetProvince();
 
+function removeOptions(selectElement) {
+  var i, L = selectElement.options.length - 1;
+  for(i = L; i >= 1; i--) {
+     selectElement.remove(i);
+  }
+}
+
 $('#province').change(function () {
   var selectedText1 = $(this).find("option:selected").text();
   console.log(selectedText1);
+  removeOptions(document.getElementById('townny'));
   GetDistrict(selectedText1);
 });
 
@@ -730,17 +815,43 @@ function GetDistrict(text){
 		
 }
 
-/*function PostRegis(){
+function Getchoicehardskill(typeC,number){
+	fetch("http://localhost:2000/register/" + typeC +"/hardskill",
+		{ method: "GET", })
+		.then(response => response.json())
+		//.then(response => response.result)
+		.then((raws) => {
+      console.log("http://localhost:2000/register/" + typeC +"/hardskill");
+			console.log(raws);
+			raws.data.forEach((entryss) => {
+				//console.log(entrys);
+        var dis_now = entryss;
+        if(number==1){
+          $('#sideskilllist1').append($('<option />').val(dis_now).html(dis_now));
+        }
+        else if(number==2){
+          $('#sideskilllist2').append($('<option />').val(dis_now).html(dis_now));
+        }
+        else if(number==3){
+          $('#sideskilllist3').append($('<option />').val(dis_now).html(dis_now));
+        }
+			});
+        }).catch((error) => {
+			  console.log(error);
+			});
+}
+
+function PostRegis(pack){
   fetch("http://localhost:2000/register",
 		{ method: "POST",
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json"
       },
-		  body: JSON.stringify(FormRegis)}
+		  body: JSON.stringify(pack)}
   )
     .then(function (response) {
-        window.location.pathname = '/emailverify'
+        //window.location.pathname = '/emailverify'
         return response.json();
     })
     .then(function (result) {
@@ -752,7 +863,7 @@ function GetDistrict(text){
           message:error
       })
   })
-  }*/
+  }
   
   var DropdownsideskillChoice = {'Technical': ['CAD',
     'Lean manufacturing',
@@ -776,34 +887,49 @@ function GetDistrict(text){
         cht7_1 = chss_now;
         console.log('I am :' + chss_now);
         //console.log(DropdownsideskillChoice[chss_now]);
-        DropdownsideskillChoice[chss_now].forEach((entryc1) => {
+        $('#ch1').hide();
+        $('#sideskilllist1').show();
+        Getchoicehardskill(chss_now,1);
+        /*DropdownsideskillChoice[chss_now].forEach((entryc1) => {
           var ch_now1 = entryc1;
           //console.log('I am Choice:' + ch_now1);
+          $('#ch1').hide();
+          $('#sideskilllist1').show();
           $('#sideskilllist1').append($('<option />').val(ch_now1).html(ch_now1));
-        })
+        })*/
       });
       $('#ch2').on('change', function(){
         var chss_now = $('#ch2').val();
         cht7_2 = chss_now;
-        DropdownsideskillChoice[chss_now].forEach((entryc2) => {
+        $('#ch2').hide();
+        $('#sideskilllist2').show();
+        Getchoicehardskill(chss_now,2);
+        /*DropdownsideskillChoice[chss_now].forEach((entryc2) => {
           var ch_now2 = entryc2;
+          $('#ch2').hide();
+          $('#sideskilllist2').show();
           $('#sideskilllist2').append($('<option />').val(ch_now2).html(ch_now2));
-        })
+        })*/
       });
       $('#ch3').on('change', function(){
         var chss_now = $('#ch3').val();
         cht7_3 = chss_now;
-        DropdownsideskillChoice[chss_now].forEach((entryc3) => {
+        $('#ch3').hide();
+        $('#sideskilllist3').show();
+        Getchoicehardskill(chss_now,3);
+        /*DropdownsideskillChoice[chss_now].forEach((entryc3) => {
           var ch_now3 = entryc3;
+          $('#ch3').hide();
+          $('#sideskilllist3').show();
           $('#sideskilllist3').append($('<option />').val(ch_now3).html(ch_now3));
-        })
+        })*/
       });
     });
     
     var FormRegis = {
       Email:"kohamatrio@gmail.com",
       Password:"artty678",
-      ProfilePic:"",
+      ProfilePic:null,
       Firstname:"Artty",
       Lastname:"wannasleep",
       Birthday:"26/10/1998",
@@ -833,10 +959,46 @@ function GetDistrict(text){
       Work_End_Year:[2015,2018,2020],
       Salary:[45000,28000,38000],
       Infomation:["เหนื่อยแต่เงินดี","ใช้แรงงานเยี่ยงทาสแต่ไม่คุ้มเท่าไหร่","เป็นเจ้านายตัวเอง ทำงานตามใจฉัน"],
-      Job_Objective:["อยากได้งานทีละงานที่มีเดดไลน์ชัดเจน","ไม่ทักเรื่องงานในวันหยุด","สวัสดิการดี"],
+      Job_Objective:[["อยากได้งานทีละงานที่มีเดดไลน์ชัดเจน","ไม่ทักเรื่องงานในวันหยุด","สวัสดิการดี"]],
       Job_Score:[[9,10,8.8]],
-      Job_JobName:["โปรแกรมเมอร์"],
-      Job_SkillName:["C","JQuery","HTML"]
+      Job_JobName:[["โปรแกรมเมอร์"]],
+      Job_SkillName:[["C","JQuery","HTML"]]
   }
     
-    
+  var FormRegis1 = {
+    "Academy": ['โรงเรียนหมีน้อย'],
+  "Birthday": "18/10/2003",
+  "CertName": ['21', '14'],
+  "CertPic": ['a.png','b.png'],
+  "CertYear": [2021, 2014],
+  "City": "จตุจักร",
+  "Company": ['freelance.com'],
+  "Country": "ประเทศไทย",
+  "Degree": ['อาชีวะศึกษา'],
+  "Education_End_Year": [2017],
+  "Email": "rungry5@test.com",
+  "Email2nd": "-",
+  "Facalty": ['การเย็บปักถักร้อย'],
+  "Field_of_study": ['ซ่อมตุ๊กตา'],
+  "Firstname": "eeee",
+  "Gender": "ชาย",
+  "Grade": [3.01],
+  "Infomation": ['จะดีมากถ้าลูกค้าไม่เรื่องมาก'],
+  "Job_JobName": ['วิศวกร'],
+  "Job_Objective": [['หิวข้าวมากแม่']],
+  "Job_Score": [[9,8,0]],
+  "Job_SkillName": [['ล้างรถ','C','C++']],
+  "Lastname": "1111",
+  "Password": "11111111",
+  "ProfilePic": "http://localhost:3000/assets/images/profile_uk.png",
+  "Province": "กรุงเทพมหานคร",
+  "Salary": [15000],
+  "SalaryType": ['รายได้เป็นงาน'],
+  "SoftSkill": ['CAD', 'Multivariate analysis'],
+  "Work_End_Month": [5],
+  "Work_End_Year": [2012],
+  "Work_JobName": ['เขียนเว็บ'],
+  "Work_JobType": ['ฟรีแลนซ์'],
+  "Work_Start_Month": [1],
+  "Work_Start_Year": [2007],
+  }

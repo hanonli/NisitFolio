@@ -8,7 +8,7 @@ export class UserDto {
     Email: string;
 
     @IsNotEmpty()
-    Password: string;
+    Password: string[];
 
     @IsNotEmpty()
     id: ObjectId;

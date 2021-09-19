@@ -35,8 +35,8 @@ export class HomeService {
       const id = new ObjectID(userId);
       
 
-      const user = await this.userinfoRepository.findOne({where:{ UserId: id }})
-      const tag = await this.InterestedJobRepository.find({where:{ UserId: id }})
+      const user = await this.userinfoRepository.findOne({where:{ UserId: userId }})
+      const tag = await this.InterestedJobRepository.find({where:{ UserId: userId }})
       const acc = await this.AccountJobRepository.findOne({where:{ _id: id }});
       
       /*console.log(user)

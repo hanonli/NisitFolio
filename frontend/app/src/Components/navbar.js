@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import $ from 'jquery';
+import cookie from 'react-cookies';
 
 class Navbar extends React.Component {
 	constructor(props) {
@@ -13,6 +15,15 @@ class Navbar extends React.Component {
 		const script = document.createElement("script");
 		script.src = "assets/js/navbar.js";
 		document.body.appendChild(script);
+		
+		
+		$(function(){
+			$("#logout").click(function(){
+			  //alert('logout!');
+			  cookie.save('login-token', null, { path: '/' })
+		   });
+		});
+		
 		
 	}
 	
@@ -28,9 +39,9 @@ class Navbar extends React.Component {
 		return (
 			<div className="Navbar">
 				<nav class="navbar-2 navbar-no-vertical-padding navbar-expand-lg navbar-light bg-light ">
-				  <div class="container-fluid p-0">
+				  <div class="container-fluid">
 					<div class="row">
-						<div class="col-3 d-flex align-items-center">
+						<div class="nvw1 d-flex align-items-center">
 							<div class="lg-view">
 								<a class="navbar-brand">
 									<Link to="/home">
@@ -38,28 +49,27 @@ class Navbar extends React.Component {
 									</Link>
 								</a>
 							</div>
-						</div>
-						<div class="col-6 d-flex align-items-center justify-content-center">
-							<div class="lg-view-search container-fluid container-search">
-								<form class="d-flex">
-									<input class="form-control btn-search-box home" id="search-input" type="search" placeholder="ค้นหา" aria-label="Search"/>
-									<Link to="/search" class="d-flex">
-									<button class="btn btn-search yellow" type="submit">
-										<img src="assets/images/search.png" class="fx" alt="" width="20" height="20"/>
-									</button>
-									</Link>
-								</form>
-							</div>
-						</div>
-						<div class="col-3 d-flex align-items-center justify-content-end">
-								<a class="sm-view navbar-brand-sm">
+							<a class="sm-view navbar-brand-sm">
 									<Link to="/home">
 										<img src="assets/images/logo2_noname_square.png" alt="" width="30" height="30"/>
 									</Link>
-								</a>
+							</a>
+						</div>
+
+						<div class="nvw2 d-flex align-items-center justify-content-end">
+								<div class="lg-view-search container-fluid container-search">
+									<form class="d-flex nvm3">
+										<input class="form-control btn-search-box home" id="search-input" type="search" placeholder="ค้นหา" aria-label="Search"/>
+										<Link to="/search" class="d-flex">
+										<button class="btn btn-search yellow" type="submit">
+											<img src="assets/images/search.png" class="fx" alt="" width="20" height="20"/>
+										</button>
+										</Link>
+									</form>
+								</div>
 								
 								<span class="sm-view ms-auto">
-									<form class="d-flex">
+									<form class="d-flex nvm3">
 										<input class="form-control btn-search-box" type="search" placeholder="ค้นหา" aria-label="Search"/>
 										<button class="btn btn-search yellow" type="submit">
 											<img src="assets/images/search.png" alt="" width="20" height="20"/>
@@ -121,7 +131,7 @@ class Navbar extends React.Component {
 										  </a>
 									  </Link>
 									</li>
-									<li class="nav-item tooltips-item shadow-box" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Logout">
+									<li class="nav-item tooltips-item shadow-box" id="logout" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Logout">
 									  <Link to="/landing">
 										  <a class="nav-link">
 											<span class="lg-view">

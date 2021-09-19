@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Component, useState } from 'react';
 import Registab4_addWorkHistory from './registab4_addWorkHistory';
 
 import './registab3.css'
@@ -42,9 +42,8 @@ const Registab4 = () => {
 								</div>
 								<div class="modal fade" id="registab4Modal" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
 									<div class="modal-dialog modal-dialog-centered modal-xl">
-										<div class="modal-content " >
+										<div class="modal-content modalworkhis" >
 											<div class='modal-body'>
-												<button type="button" class="btn-close" id='registab3_btnclose' aria-label="Close" data-bs-dismiss="modal"></button>
 												<h1 class='modal-title' id='regisModallabel1'>เพิ่มประวัติการทำงาน</h1>			
 												<div className='addWorkHistory'>
 												<div className="Registab4_addWorkHistory">
@@ -54,9 +53,9 @@ const Registab4 = () => {
                             <div class="selectDropdown">
                                 <select class="form-select form-select-lg dropbtn margin-bottom1 fff"  aria-labelledby="select1" value={JobType} onChange={(e) => setJobType(e.target.value)}required>
                                     <option selected disabled value=''>ประเภทงาน*</option>
-                                    <option value='ระเบิดบ้าน' >ระเบิดมหาลัย</option>    
-                                    <option value='เผาบ้าน' >เผาบ้าน</option>
-                                    <option value='ขูดรถ' >ขูดรถ</option>
+                                    <option value='งานประจำ' >งานประจำ</option>    
+                                    <option value='งานเสริมนอกเวลา' >งานเสริมนอกเวลา</option>
+                                    <option value='ฟรีแลนซ์' >ฟรีแลนซ์</option>
                                 </select>
                             </div>
                         </div>
@@ -79,10 +78,13 @@ const Registab4 = () => {
                                     <div class="selectDropdown">
                                         <select class="form-select form-select-lg dropbtn margin-bottom1 fff"  aria-labelledby="select1"  required>
                                             <option selected disabled value=''>ประเภทรายได้</option>
-                                            <option >ได้ใจ</option>    
-                                            <option >ได้หน้า</option>
-                                            <option >ได้ตา</option>
-                                            <option >ได้หมดถ้าสดชื่น</option>
+                                            <option value='รายได้ต่อไตรมาส' >รายได้ต่อไตรมาส</option>
+                                            <option value='รายได้ต่อเดือน'>รายได้ต่อเดือน</option>    
+                                            <option value='รายได้ต่อสัปดาห์'>รายได้ต่อสัปดาห์</option>
+                                            <option value='รายได้ต่อวัน'>รายได้ต่อวัน</option>
+                                            <option value='รายได้ต่องาน'>รายได้ต่องาน</option>
+                                            <option value='รายได้ไม่แน่นอน'>รายได้ไม่แน่นอน</option>
+                                            <option value='ไม่ระบุ'>ไม่ระบุ</option>
                                         </select>
                                     </div>       
                                 </div>
@@ -93,11 +95,8 @@ const Registab4 = () => {
                             <div class='col-5'>
                                 <div class='col-8'>
                                     <div class="selectDropdown">
-                                        <select class="form-select form-select-lg dropbtn margin-bottom1 fff"  aria-labelledby="select1" value={StartYear} onChange={ (e) => setStartYear(e.target.value)} required>
+                                        <select class="form-select form-select-lg dropbtn margin-bottom1 fff"  id='year_startjob' aria-labelledby="select1" value={StartYear} onChange={ (e) => setStartYear(e.target.value)} required>
                                             <option selected disabled value=''>ปีที่เข้าทำงาน*</option>
-                                            <option >ปีนี้</option>    
-                                            <option >ปีหน้า</option>
-                                            <option >ปีไหนก็ไม่เข้าหรอก</option>
                                         </select>
                                     </div>       
                                 </div>
@@ -107,8 +106,18 @@ const Registab4 = () => {
                                     <div class="selectDropdown">
                                         <select class="form-select form-select-lg dropbtn margin-bottom1 fff"  aria-labelledby="select1" value={StartMonth} onChange={(e) => setStartMonth(e.target.value)} required>
                                             <option selected disabled value=''>เดือนที่เข้าทำงาน*</option>
-                                            <option >เดือนนี้</option>    
-                                            <option >เดือนหน้า</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
                                         </select>
                                     </div>       
                                 </div>
@@ -120,10 +129,6 @@ const Registab4 = () => {
                                     <div class="selectDropdown">
                                         <select class="form-select form-select-lg dropbtn margin-bottom1 fff"  aria-labelledby="select1" id='year_endjob' value={EndYear} onChange={(e) => setEndYear(e.target.value)} required>
                                             <option selected disabled value=''>ปีที่ออกจากงาน</option>
-                                            <option >ปีนี้</option>    
-                                            <option >ปีหน้า</option>
-                                            <option >7ปีก้ไม่ออก</option>
-                                            <option >ปีไหนก็ไม่ออกหรอก</option>
                                         </select>
                                     </div>       
                                 </div>
@@ -133,9 +138,18 @@ const Registab4 = () => {
                                     <div class="selectDropdown">
                                         <select class="form-select form-select-lg dropbtn margin-bottom1 fff"  aria-labelledby="select1" value={EndMonth} onChange={(e) => setEndMonth(e.target.value)} required>
                                             <option selected disabled value=''>เดือนที่ออกงาน</option>
-                                            <option >เดือนนี้</option>    
-                                            <option >เดือนหน้า</option>
-                                            <option >ก็บอกว่าไม่ออก</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
                                         </select>
                                     </div>       
                                 </div>
@@ -164,12 +178,10 @@ const Registab4 = () => {
 			</div>
 												</div>								
 											</div>
-											<div class='modal-footer'>
-												<div class="centerverify">
+												<div class="centerverify button-add-work1">
 													<button type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</button>												
-													<button type="button" class="btn btn-cta-primary-yellowshort profile-button round" onClick={handleSubmit} data-bs-dismiss="modal">ตกลง</button>
+													<button type="button" class="btn btn-cta-primary-yellowshort profile-button round" onClick={handleSubmit} data-bs-dismiss="modal">เพิ่ม</button>
 												</div>
-											</div>
 
 										</div>
 									</div>

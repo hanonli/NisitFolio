@@ -47,11 +47,6 @@ class MyResume1 extends React.Component {
             <div class="resume1">
                 <MyresumeHeading firstname={firstname} lastname={lastname} const occupation={occupation} bio={bio} imagepath={imagepath} colour="#FFCE55"></MyresumeHeading>
 			    <MyResumeEducation data={educationdata}></MyResumeEducation>
-			    <h1>ลองเวลาบีบ</h1>
-                <div class="resumenewnav">
-                    <MyresumeHeading firstname={firstname} lastname={lastname} const occupation={occupation} bio={bio} imagepath={imagepath} colour="#FFCE55"></MyresumeHeading>
-                    <MyResumeEducation data={educationdata}></MyResumeEducation>
-                </div>
             </div>
         );
         
