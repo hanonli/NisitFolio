@@ -242,7 +242,7 @@ function set_slider_range3(value) {
     }
 }
 
-$(document).on("click", ".frame_add_job_interest", function () {
+$(document).on("click", "#add-job", function () {
     /*$('#tab01').addClass('current2');
     $('.tabs_pop li').addClass('current2');
     $('.tab-pane_pop').addClass('current2');*/
@@ -726,49 +726,31 @@ function testPost6() {
     list_of_job.forEach(ele => {
         //post job name
         Job_Jobname.push([ele["name_job"]]);
-        //post skill name and score
-        var listofskill = [];
-        //Job_SkillName.push([ele["skill1"], ele["skill2"], ele["skill3"]]);
+        //post skill name
+        Job_SkillName.push([ele["skill1"], ele["skill2"], ele["skill3"]]);
+        //post job score
         var total_skill_score = new Float32Array(3);
-        var index_score = 0;
         if (ele["skill1"] != "none") {
-            listofskill.push(ele["skill1"]);
-            total_skill_score[index_score] = ele["score_skill1"];
-            index_score++;
+            total_skill_score[0] = ele["score_skill1"];
         }
         else {
-            //total_skill_score[0] = "none";
+            total_skill_score[0] = "none";
         }
         if (ele["skill2"] != "none") {
-            listofskill.push(ele["skill2"]);
-            total_skill_score[index_score] = ele["score_skill2"];
-            index_score++;
+            total_skill_score[1] = ele["score_skill2"];
         }
         else {
-            //total_skill_score[1] = "none";
+            total_skill_score[1] = "none";
         }
         if (ele["skill3"] != "none") {
-            listofskill.push(ele["skill3"]);
-            total_skill_score[index_score] = ele["score_skill3"];
-            index_score++;
+            total_skill_score[2] = ele["score_skill3"];
         }
         else {
-            //total_skill_score[2] = "none";
+            total_skill_score[2] = "none";
         }
-        Job_SkillName.push(listofskill);
         Job_Score.push(total_skill_score);
         //post job objective
-        var listofObj = [];
-        if(ele["obj1"]!="none"){
-            listofObj.push(ele["obj1"]);
-        }
-        if(ele["obj2"]!="none"){
-            listofObj.push(ele["obj2"]);
-        }
-        if(ele["obj3"]!="none"){
-            listofObj.push(ele["obj3"]);
-        }
-        Job_Objective.push(listofObj);
+        Job_Objective.push([ele["obj1"], ele["obj2"], ele["obj3"]]);
     });
     console.log("Job_Jobname:", Job_Jobname);
     console.log("Job_SkillName:", Job_SkillName);
