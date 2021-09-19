@@ -98,9 +98,9 @@ $(document).ready(function () {
 
 //func add new aca form
 $(document).on("click", "#add_aca", function () {
-  $("#aca_name").removeClass("error_select_aca");
-  $("#aca_degree").removeClass("error_select_aca");
-  $("#aca_faculty").removeClass("error_select_aca");
+  $("#aca_name").removeClass("is-invalid");
+  $("#aca_degree").removeClass("is-invalid");
+  $("#aca_faculty").removeClass("is-invalid");
   choose_function3 = 2;
   $('#registab3Modal1').modal('toggle');
   $('#aca_degree').prop('selectedIndex', 0);
@@ -118,9 +118,9 @@ $(document).on("click", "#add_aca", function () {
 //func edit aca
 var for_editaca;
 $(document).on("click", "#edit-aca", function () {
-  $("#aca_name").removeClass("error_select_aca");
-  $("#aca_degree").removeClass("error_select_aca");
-  $("#aca_faculty").removeClass("error_select_aca");
+  $("#aca_name").removeClass("is-invalid");
+  $("#aca_degree").removeClass("is-invalid");
+  $("#aca_faculty").removeClass("is-invalid");
   id_list_aca_edit = $(this).parents().attr('id');
   console.log(`edit:`, id_list_aca_edit);
   choose_function3 = 1;
@@ -134,7 +134,11 @@ $(document).on("click", "#edit-aca", function () {
       }
   });
   console.log(`for_editaca:`, for_editaca);
+  console.log(for_editaca["name_aca"]);
   $("#aca_name").val(for_editaca["name_aca"]);
+  $("#aca_faculty").val(for_editaca["faculty_aca"]);
+  $("#aca_field").val(for_editaca["field_aca"]);
+  $("#aca_grade").val(for_editaca["grade_aca"]);
   document.getElementById("aca_degree").selectedIndex = for_editaca["degree_aca"];
   document.getElementById("year_secondary").selectedIndex = for_editaca["year_aca_select"];
 });
@@ -181,7 +185,7 @@ $(document).on('click', "#can_aca_del", function () {
 
 $(document).on("change", "#aca_degree", function () {
   if (document.getElementById("aca_degree").selectedIndex != 0) {
-      $("#aca_degree").removeClass("error_select_aca");
+      $("#aca_degree").removeClass("is-invalid");
   }
 });
 
@@ -194,16 +198,16 @@ document.getElementById("submit-aca").addEventListener("click", function () {
   year_aca = document.getElementById("year_secondary").value;
   $('#submit_aca').text = 'ยืนยัน';
   if (document.getElementById("aca_name").value == '') {
-      alert("submit aca wrong!");
-      $("#aca_name").addClass("error_select_aca");
+      //alert("submit aca wrong!");
+      $("#aca_name").addClass("is-invalid");
   }
-  if (document.getElementById("aca_degree").value == '0') {
-    alert("submit aca wrong!");
-    $("#aca_degree").addClass("error_select_aca");
+  if (document.getElementById("aca_degree").value == 'none') {
+    //alert("submit aca wrong!");
+    $("#aca_degree").addClass("is-invalid");
   }
   if (document.getElementById("aca_faculty").value == '') {
-    alert("submit aca wrong!");
-    $("#aca_faculty").addClass("error_select_aca");
+    //alert("submit aca wrong!");
+    $("#aca_faculty").addClass("is-invalid");
   }
   else {
       if (field_aca == '') {
