@@ -1,6 +1,7 @@
 import React from 'react';
 import MyresumeHeading from './myresumeheading.js';
 import MyResumeEducation from './myresumeeducation.js'
+import MyresumeCertificate from './myresumecertificate.js';
 
 class MyResume1 extends React.Component {
 
@@ -47,6 +48,7 @@ class MyResume1 extends React.Component {
             <div class="resume1">
                 <MyresumeHeading firstname={firstname} lastname={lastname} const occupation={occupation} bio={bio} imagepath={imagepath} colour="#FFCE55"></MyresumeHeading>
 			    <MyResumeEducation data={educationdata}></MyResumeEducation>
+                <MyresumeCertificate></MyresumeCertificate>
             </div>
         );
         

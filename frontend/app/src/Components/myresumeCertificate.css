@@ -1,0 +1,15 @@
+.cert-info-w *{
+    text-align: center;
+    color: black;
+}
+.cert-info-w{
+    background-color: white;
+}
+
+.cert-info-c *{
+    text-align: center;
+    color: black;
+}
+.cert-info-c{
+    background-color:yellow;
+}
