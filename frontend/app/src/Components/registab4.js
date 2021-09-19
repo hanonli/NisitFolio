@@ -33,7 +33,7 @@ const Registab4 = () => {
 		return (
 			<div className="Registab4 regis-box-content">
 		
-						<div className='registab4_formbox col-12' >
+						<div className='registab4_formbox' >
 								
 								<div class='registab4_btnplus'>
 									<button type="button" class="btn justify-content-center" data-bs-toggle="modal" data-bs-target="#registab4Modal">

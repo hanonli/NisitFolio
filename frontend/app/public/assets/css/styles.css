@@ -1581,6 +1581,7 @@ body {
 }
 
 .popup-file-icon{
+	cursor: pointer;
 	position:absolute;
 	top:38%;
 	right:50%;
@@ -1590,6 +1591,7 @@ body {
 }
 
 .pua-label{
+	cursor: pointer;
 	position: absolute;
 	top:56%;
 	left:40.5vw;

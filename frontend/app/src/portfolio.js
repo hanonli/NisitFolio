@@ -16,7 +16,7 @@ class Portfolio extends React.Component {
 		super(props);
 		this.handleLoad = this.handleLoad.bind(this);
 		this.state = {
-			allow: false,
+			allow: true,
 			/*list: [{ id: "1", name: "Img1" },
 					{ id: "2", name: "Img2" },
 					{ id: "3", name: "Img3" },
@@ -66,7 +66,7 @@ class Portfolio extends React.Component {
 		});
 		
 		$(function(){
-			$("#basic-date-picker").attr("placeholder", "วัน/เดือน/ปี");
+		  $("#basic-date-picker").attr("placeholder", "วัน/เดือน/ปี");
 			
 		  $('.static-public-icon').on('click', function(){
 			  $('.static-public-icon').removeClass('spi-active');
