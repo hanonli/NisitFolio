@@ -20,11 +20,10 @@ class BookmarkTabs extends React.Component {
                                  <li class="tab-list-item" id="tab-3" type="button">ผลงาน</li>
                                  <div class="float-end">
                                     <img class="layout-toggle gridOn" src="assets/images/outline_format_list_bulleted_black_48dp 3.png" alt="" width="40" height="40" type="button" />
-									<button class="btn btn-cta-primary round grey dropdown-toggle tab-dropdown-pad" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">เรียงตามความนิยม</button>
+									<button class="btn btn-cta-primary round grey dropdown-toggle tab-dropdown-pad" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">เรียงตามล่าสุด</button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                       <li><a class="dropdown-item">เรียงตามความนิยม</a></li>
-                                       <li><a class="dropdown-item">เรียงตามล่าสุด</a></li>
-                                       <li><a class="dropdown-item">เรียงตามตัวอักษร</a></li>
+									   <li><a class="dropdown-item" id="sort-time">เรียงตามล่าสุด</a></li>
+                                       <li><a class="dropdown-item" id="sort-total">เรียงตามความนิยม</a></li>
                                     </ul>
 									<div class="float-end" id="result-count">
 										จำนวน 0 รายการ

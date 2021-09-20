@@ -1,0 +1,73 @@
+{
+  "InterestedJobs": [
+    "Pilot"
+  ],
+  "Pilot": {
+    "numberOfUsers": 2,
+    "List": [
+      {
+        "SkillName": "Aircraft+and+Avionics",
+        "total": 2,
+        "AllScore": [
+          73.5,
+          89.2
+        ],
+        "UserScore": 89.2,
+        "Mean": 81.35,
+        "percentage": 100
+      },
+      {
+        "SkillName": "Situation+Awareness",
+        "total": 2,
+        "AllScore": [
+          93.2,
+          91.7
+        ],
+        "UserScore": 91.7,
+        "Mean": 92.45,
+        "percentage": 100
+      },
+      {
+        "SkillName": "Math",
+        "total": 1,
+        "AllScore": [
+          75.6
+        ],
+        "UserScore": 75.6,
+        "Mean": 75.6,
+        "percentage": 50
+      },
+      {
+        "SkillName": "Physics",
+        "total": 1,
+        "AllScore": [
+          70
+        ],
+        "UserScore": null,
+        "Mean": 70,
+        "percentage": 50
+      }
+    ]
+  },
+  "Overview": {
+    "numberOfUser": 2,
+    "List": [
+      {
+        "SkillName": "Aircraft+and+Avionics",
+        "percentage": 100
+      },
+      {
+        "SkillName": "Situation+Awareness",
+        "percentage": 100
+      },
+      {
+        "SkillName": "Math",
+        "percentage": 50
+      },
+      {
+        "SkillName": "Physics",
+        "percentage": 50
+      }
+    ]
+  }
+}

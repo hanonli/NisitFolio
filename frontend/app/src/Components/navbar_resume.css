@@ -1,0 +1,63 @@
+
+.Resume_sideNavbar {
+    background-color: #FFCE55;
+  
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 6%; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    overflow-y: hidden;
+    text-align: center;
+    vertical-align: middle;
+
+  }
+  /* .Resume_sideNavbar .resumeblock{
+    padding-bottom: 20%;
+
+  } */
+
+  .Resume_sideNavbar a {
+    position: relative;
+    margin-top: 25%;
+    margin-bottom: 25%;
+    padding-top: 20%;
+    padding-bottom: 20%;
+    font-size: 25px;
+    display: block;
+
+  }
+  
+  /* .sidenav-centered  {
+    float: none;
+    position: absolute;
+    top: 100%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+  } */
+
+  /* 
+  .slide_button {
+    z-index: 1;
+    background: transparent;
+    border: transparent;
+  }
+
+  .slide_button #icon-slide_right{
+    width: 40px;
+    height: 100px;
+    transition: .1s;
+    background-color: #F28FB5;
+    background-image: #F28FB5;
+  } 
+  */
+
+ 
+
+
+  @media screen and (max-height: 450px) {
+    .Resume_sideNavbar {padding-top: 15px;}
+    .Resume_sideNavbar a {font-size: 18px;}
+  }

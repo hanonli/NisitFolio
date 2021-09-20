@@ -77,6 +77,8 @@ export class CreateRegisDto {
 
   Salary: Float32Array[];
 
+  SalaryType: string[];
+
   Infomation: string[];
 
   Job_Objective: string[][];

@@ -210,8 +210,20 @@ export class Portfolio {
   @Column()
   Port_Privacy: string;
 
+  @Column()
+  Port_Date: string;
+
   @OneToMany(type => PortfolioPicture, portfolioPicture => portfolioPicture.portfolio)
   portfolioPictures: PortfolioPicture[];
+
+  @Column()
+  create_time:string;
+
+  @Column()
+  last_modified:string[];
+
+  @Column()
+  modified_by:string[];
 
 }
 
@@ -232,6 +244,12 @@ export class PortfolioPicture {
 
   @ManyToOne(type => Portfolio, portfolio => portfolio.portfolioPictures)
   portfolio: Portfolio;
+
+  @Column()
+  create_time:string;
+
+  @Column()
+  last_modified:string[];
 
 }
 

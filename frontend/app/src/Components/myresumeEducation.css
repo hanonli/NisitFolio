@@ -1,0 +1,75 @@
+/*education content style*/
+
+.myeducation{
+    padding: 4vw;
+    text-align: center;
+}
+
+.educationonecontent{
+    /*margin-top: 50%;*/
+    transform: translate(0, -50%);
+    color: black;
+}
+
+.educationonecontent *{
+    color: black;
+}
+
+.inline2 { 
+    display: inline; 
+    }
+
+.educationcontentLine1 .year{
+    bottom: 0;
+    font-size: 2.4vw;
+
+}
+.educationcontentLine1 .degree{
+    bottom: 0;
+    font-size: 2.2vw;
+}
+
+.educationcontentLine1 .centerbreak{
+    padding: 1vw;
+}
+
+.breakline{
+    font-weight: 400;
+    font-size: 3vw;
+}
+
+.educationcontentLine2 .field{
+    font-size: 4vw;
+}
+.educationcontentLine3{
+    height: auto;
+    margin: 0%;
+    padding: 0%;
+}
+.educationcontentLine3 p{
+    font-size: 2vw;
+    height: auto;
+    margin-bottom: 0%;
+}
+
+.educationcontentbigLine3{
+    font-size: 4vw;
+    height: auto;
+    margin-bottom: 0%;
+}
+
+.educationcontentbigLine3 p{
+    font-size: 4vw;
+    height: auto;
+    margin-bottom: 0.5%;
+}
+
+.educationcontentLine4 .grade{
+    bottom: 0;
+    font-size: 2.6vw;
+    font-weight: 800;
+}
+.educationcontentLine4 .grade-label{
+    bottom: 0;
+    font-size: 2.2vw;
+}

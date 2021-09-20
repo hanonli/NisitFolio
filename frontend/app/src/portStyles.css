@@ -1,0 +1,9 @@
+.item {
+  font-family: sans-serif;
+  text-align: center;
+
+  width: 80%;
+  background-color: #ccc;
+  margin: 0.5rem;
+  padding: 0.5rem;
+}

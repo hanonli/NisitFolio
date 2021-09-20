@@ -227,15 +227,15 @@ function AddMixedListEntity(data){
 			raw_html += '<div class="row">'; //first row start
 		
 	var dtype = "";
-	var valid_desc = FormatEllipsis('desc-list',data.desc);
+	var valid_desc = FormatEllipsis('desc-list',data.about);
 	
-	if(data.type == "profile") {
-		if(data.tags.length > 0)
-			dtype = profile_list.replace("{name}", data.name).replace("{img}", data.pic).replace("{desc}", valid_desc).replace("{tag1}", data.tags[0]).replace("{tag2}", data.tags[1]).replace("{tag3}", data.tags[2]);
+	if(data.type == "user") {
+		if(data.jobs.length > 0)
+			dtype = profile_list.replace("{name}", data.name).replace("{img}", data.profilePic).replace("{desc}", valid_desc).replace("{tag1}", data.jobs[0]).replace("{tag2}", data.jobs[1]).replace("{tag3}", data.jobs[2]);
 		else
-			dtype = profile_list_no_tag.replace("{name}", data.name).replace("{img}", data.pic).replace("{desc}", valid_desc);
+			dtype = profile_list_no_tag.replace("{name}", data.name).replace("{img}", data.profilePic).replace("{desc}", valid_desc);
 	}else{
-		dtype = work_list.replace("{name}", data.name).replace("{img}", data.pic).replace("{desc}", valid_desc).replace("{owner}", data.owner);
+		dtype = work_list.replace("{name}", data.name).replace("{img}", data.profilePic).replace("{desc}", valid_desc).replace("{owner}", data.owner);
 	}
 	dtype = FormatIcon(data,dtype);
 	
@@ -247,23 +247,23 @@ function AddMixedListEntity(data){
 }
 
 function AddMixedGridEntity(data){
-	console.log(data.tags);
+	console.log(data.jobs);
 	var row_filled = true;
 	
 	if(temp.length < max_col-1){ // store new data
 		temp.push(data);
 		row_filled = false;
 	}
-	var valid_desc = FormatEllipsis('desc-grid',data.desc);
+	var valid_desc = FormatEllipsis('desc-grid',data.about);
 	var dtype = "";
 	
-	if(data.type == "profile") {
-		if(data.tags.length > 0)
-			dtype = profile_grid.replace("{name}", data.name).replace("{img}", data.pic).replace("{tag1}", data.tags[0]).replace("{tag2}", data.tags[1]).replace("{tag3}", data.tags[2]);
+	if(data.type == "user") {
+		if(data.jobs.length > 0)
+			dtype = profile_grid.replace("{name}", data.name).replace("{img}", data.profilePic).replace("{tag1}", data.jobs[0]).replace("{tag2}", data.jobs[1]).replace("{tag3}", data.jobs[2]);
 		else
-			dtype = profile_grid_no_tag.replace("{name}", data.name).replace("{img}", data.pic);
+			dtype = profile_grid_no_tag.replace("{name}", data.name).replace("{img}", data.profilePic);
 	}else{
-		dtype = work_grid.replace("{name}", data.name).replace("{img}", data.pic).replace("{desc}", data.port).replace("{owner}", data.owner);
+		dtype = work_grid.replace("{name}", data.name).replace("{img}", data.profilePic).replace("{desc}", data.port).replace("{owner}", data.owner);
 	}
 	
 	if(row_filled || (index == max)){// add 2 data as new row
@@ -275,13 +275,13 @@ function AddMixedGridEntity(data){
 			raw_html += '<div class="row">'; //first row start
 		if(row_filled){
 			for (let i = 0; i < temp.length; i++) {
-				if(temp[i].type == "profile") {
-					if(temp[i].tags.length > 0)
-						ttype = profile_grid.replace("{name}", temp[i].name).replace("{img}", temp[i].pic).replace("{tag1}", temp[i].tags[0]).replace("{tag2}", temp[i].tags[1]).replace("{tag3}", temp[i].tags[2]);
+				if(temp[i].type == "user") {
+					if(temp[i].jobs.length > 0)
+						ttype = profile_grid.replace("{name}", temp[i].name).replace("{img}", temp[i].profilePic).replace("{tag1}", temp[i].jobs[0]).replace("{tag2}", temp[i].jobs[1]).replace("{tag3}", temp[i].jobs[2]);
 					else
-						ttype = profile_grid_no_tag.replace("{name}", temp[i].name).replace("{img}", temp[i].pic);
+						ttype = profile_grid_no_tag.replace("{name}", temp[i].name).replace("{img}", temp[i].profilePic);
 				}else{
-					ttype = work_grid.replace("{name}", temp[i].name).replace("{img}", temp[i].pic).replace("{desc}", data.port).replace("{owner}", data.owner);
+					ttype = work_grid.replace("{name}", temp[i].name).replace("{img}", temp[i].profilePic).replace("{desc}", data.port).replace("{owner}", data.owner);
 				}
 				ttype = FormatIcon(temp[i],ttype);
 				raw_html += '<div class="col-md-'+12/max_col+'">' + ttype + '</div>';
@@ -307,12 +307,12 @@ function AddProfileListEntity(data){
 			raw_html += '<div class="row bookmark-row-top-buffer">'; //row start
 		else
 			raw_html += '<div class="row">'; //first row start
-	var valid_desc = FormatEllipsis('desc-list',data.desc);
+	var valid_desc = FormatEllipsis('desc-list',data.about);
 	var dtype = null;
-	if(data.tags.length > 0)
-		dtype = profile_list.replace("{name}", data.name).replace("{img}", data.pic).replace("{desc}", valid_desc).replace("{tag1}", data.tags[0]).replace("{tag2}", data.tags[1]).replace("{tag3}", data.tags[2]);
+	if(data.jobs.length > 0)
+		dtype = profile_list.replace("{name}", data.name).replace("{img}", data.profilePic).replace("{desc}", valid_desc).replace("{tag1}", data.jobs[0]).replace("{tag2}", data.jobs[1]).replace("{tag3}", data.jobs[2]);
 	else
-		dtype = profile_list_no_tag.replace("{name}", data.name).replace("{img}", data.pic).replace("{desc}", valid_desc);
+		dtype = profile_list_no_tag.replace("{name}", data.name).replace("{img}", data.profilePic).replace("{desc}", valid_desc);
 	dtype = FormatIcon(data,dtype);
 	raw_html += dtype;
 	raw_html += '</div>'; // row close
@@ -322,7 +322,7 @@ function AddProfileListEntity(data){
 }
 
 function AddProfileGridEntity(data){
-	console.log(data.tags);
+	console.log(data.jobs);
 	var row_filled = true;
 	
 	if(temp.length < max_col-1){ // store new data
@@ -330,7 +330,7 @@ function AddProfileGridEntity(data){
 		row_filled = false;
 	}
 	
-	var valid_desc = FormatEllipsis('desc-grid',data.desc);
+	var valid_desc = FormatEllipsis('desc-grid',data.about);
 	
 	if(row_filled || (index == max)){// add 2 data as new row
 		console.log("add new GRID: "+index+" : "+data.name + " max: " + max);
@@ -342,19 +342,19 @@ function AddProfileGridEntity(data){
 		if(row_filled){
 			for (let i = 0; i < temp.length; i++) {
 				var ttype = null;
-				if(temp[i].tags.length > 0)
-						ttype = profile_grid.replace("{name}", temp[i].name).replace("{img}", temp[i].pic).replace("{tag1}", temp[i].tags[0]).replace("{tag2}", temp[i].tags[1]).replace("{tag3}", temp[i].tags[2]);
+				if(temp[i].jobs.length > 0)
+						ttype = profile_grid.replace("{name}", temp[i].name).replace("{img}", temp[i].profilePic).replace("{tag1}", temp[i].jobs[0]).replace("{tag2}", temp[i].jobs[1]).replace("{tag3}", temp[i].jobs[2]);
 					else
-						ttype = profile_grid_no_tag.replace("{name}", temp[i].name).replace("{img}", temp[i].pic);
+						ttype = profile_grid_no_tag.replace("{name}", temp[i].name).replace("{img}", temp[i].profilePic);
 				ttype = FormatIcon(temp[i],ttype);
 				raw_html += '<div class="col-md-6">' + ttype + '</div>';
 			}
 		}
 		var dtype = null;
-		if(data.tags.length > 0)
-			dtype = profile_grid.replace("{name}", data.name).replace("{img}", data.pic).replace("{tag1}", data.tags[0]).replace("{tag2}", data.tags[1]).replace("{tag3}", data.tags[2]);
+		if(data.jobs.length > 0)
+			dtype = profile_grid.replace("{name}", data.name).replace("{img}", data.profilePic).replace("{tag1}", data.jobs[0]).replace("{tag2}", data.jobs[1]).replace("{tag3}", data.jobs[2]);
 		else
-			dtype = profile_grid_no_tag.replace("{name}", data.name).replace("{img}", data.pic);
+			dtype = profile_grid_no_tag.replace("{name}", data.name).replace("{img}", data.profilePic);
 		
 		dtype = FormatIcon(data,dtype);
 		raw_html += '<div class="col-md-6">' + dtype + '</div>';
@@ -437,8 +437,8 @@ function ReinitializeTooltips(){
 		})
 }
 
-/*Load data from backend*/
-function GetBookmarkData(request){
+//Load data from backend
+/*function GetBookmarkData(request){
 	var key = pageName
 	if(key == 'search'){
 		key += "_"+Cookies.get('search-entry').toLowerCase();
@@ -511,7 +511,86 @@ function GetBookmarkData(request){
 		setTimeout(function() { ReinitializeTooltips(); }, 500);
 }
 
-GetBookmarkData("data");
+GetBookmarkData("data");*/
+
+var id = "610d3832ca49ebf4cdfed02a";
+var sortType = "time";
+
+function GetBookmarkData(){
+	fetch("http://localhost:2000/bookmark/"+id+"&&"+sortType,{
+        method: "GET",
+        headers: {
+			"Access-Control-Allow-Origin": "*",
+			"Access-Control-Allow-Methods": "*",
+			"Access-Control-Allow-Credentials": true,
+			"Content-Type": "application/json"},
+    })
+		.then(response => response.json())
+		//.then(response => response.result)
+		.then((datas) => {
+			var found = false;
+			console.log(datas);
+			console.log('BYAAA!!!!');
+			ResetData();
+			max = datas.length;
+			$('#result-count').text('จำนวน '+max+' รายการ');
+			datas.forEach((data) => {
+				index += 1;
+				console.log("check: "+data.name);
+				if(data.type == "user"){
+					if(current_tab == 1){
+						found = true;
+						if(view_type == 'grid'){
+							AddMixedGridEntity(data);
+						}else{
+							AddMixedListEntity(data);
+						}
+					}else if(current_tab == 2){
+						found = true;
+						if(view_type == 'grid'){
+							AddProfileGridEntity(data);
+						}else{
+							AddProfileListEntity(data);
+						}
+					}else{
+						// This is a profile & user is viewing work, skip it
+						console.log("skip: "+data.name);
+					}
+				}else{
+					if(current_tab == 1){
+						found = true;
+						if(view_type == 'grid'){
+							AddMixedGridEntity(data);
+						}else{
+							AddMixedListEntity(data);
+						}
+					}else if(current_tab == 3){
+						found = true;
+						if(view_type == 'grid'){
+							AddWorkGridEntity(data);
+						}else{
+							AddWorkListEntity(data);
+						}
+					}else{
+						// This is a work & user is viewing profile, skip it
+						console.log("skip: "+data.name);
+					}
+				}
+			});
+			
+			if(!found){
+				DisplayNotFound();
+			}
+			
+        }).catch((error) => {
+			  console.log(error);
+			  ResetData();
+			  DisplayNotFound();
+			});
+		setTimeout(function() { ReinitializeTooltips(); }, 500);
+}
+
+GetBookmarkData();
 
 $(function(){
    $('.tab-content').hide();
@@ -522,7 +601,7 @@ $(function(){
 	  $('#tab-1').addClass('tab-list-active')
 	  $('#content1').show();
 	  current_tab = 1;
-	  GetBookmarkData("data");
+	  GetBookmarkData();
   });
   
   $('#tab-2').on('click', function(){
@@ -531,7 +610,7 @@ $(function(){
 	  $('#tab-2').addClass('tab-list-active')
 	  $('#content2').show();
 	  current_tab = 2;
-	  GetBookmarkData("data_profile");
+	  GetBookmarkData();
   });
   
   $('#tab-3').on('click', function(){
@@ -540,18 +619,18 @@ $(function(){
 	  $('#tab-3').addClass('tab-list-active')
 	  $('#content3').show();
 	  current_tab = 3;
-	  GetBookmarkData("data_work");
+	  GetBookmarkData();
   });
 });
 
 $(function(){
-
     $(".dropdown-item").click(function(){
       $("#dropdownMenuButton1").text($(this).text());
       $("#dropdownMenuButton1").val($(this).text());
-
    });
 
+   $("#sort-time").click(function(){ sortType = 'time'; GetBookmarkData(); });
+   $("#sort-total").click(function(){ sortType = 'total'; GetBookmarkData(); });
 });
 
 $(function(){
@@ -572,12 +651,6 @@ $(function(){
 		console.log("show list!");
 		view_type = "list";
       }
-
-	  if(current_tab == 1)
-			GetBookmarkData("data");
-		else if(current_tab == 2)
-			GetBookmarkData("data_profile");
-		else
-			GetBookmarkData("data_work");
+	  GetBookmarkData();
   });
 });

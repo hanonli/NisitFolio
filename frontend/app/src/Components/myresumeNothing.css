@@ -1,0 +1,22 @@
+.nothing-content{
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: 565px;
+}
+
+/*-----------text-nothing myresume-----------*/
+#text-nothing{
+    font-weight: 300;
+    font-size: 30px;
+}
+
+/*-----------button create myresume-----------*/
+#create-myResume {
+    width: 430px;
+    height: 70px;
+    font-size: 32.5px;
+    border-radius: 25px;
+    margin-top: 30px;
+}

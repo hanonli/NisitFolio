@@ -13,6 +13,7 @@
     margin-top: 1%;
     margin-bottom: 2%;
     padding: 1%;
+    overflow-y: scroll;
 }
 
 .regis-box-content1 {
@@ -60,7 +61,7 @@
     /*border: none;*/
     border-color: #EAEAEA;
     /*cursor: pointer;*/
-    border-radius: 24px;
+    border-radius: 2.5vh;
     padding-left: 30px;
   }
   
@@ -116,11 +117,13 @@
     /*cursor: pointer;*/
     border-radius: 24px;
     padding-left: 30px;
-    height: 27vh;
+    height: 21vh;
+    resize: none;
   }
 
   .aboutmee:hover, .aboutmee:focus {
     background-color: #cdcdcd;
+    resize: none;
   }
   
   .certibtn {
@@ -220,7 +223,9 @@
 .margin-bottom1 {
     margin-bottom: 20px;
 }
-
+.margin-bottom2 {
+    margin-bottom: 10px;
+}
 .margin-top1 {
     margin-top: 10px;
 }
@@ -327,4 +332,71 @@ datalist {
 
 .is-invalid {
   background-image: none;
+}
+
+.sharingSize {
+  height: 25vh;
+  width: 130vw;
+  border-radius: 1vw;
+  padding-top: 0.7vw;
+}
+
+.sharingSize2 {
+  height: 40vh;
+  width: 130vw;
+  border-radius: 1vw;
+  padding-top: 0.7vw;
+}
+
+.SharingFontHead {
+  margin-left: 1vw;
+  margin-top: 0.6vw;
+  margin-bottom: -0.2vw;
+  font-size:32px;
+  color:#000;
+  font-weight: 800;
+  display:inline-block;
+}
+
+.modal-content {
+  border: none;
+}
+
+.mg-l1 {
+  margin-left: 0.6vw;
+}
+
+#basic-date-picker1{
+  padding: 1.5vh;
+  border-radius: 48px;
+}
+
+.textT7B {
+  color:black;
+  font-weight: 400;
+}
+
+.dis_input1{
+  background-color: #EAEAEA;
+    color: #000;
+    padding: 10px;
+    font-size: 20px;
+    /*border: none;*/
+    border-color: #EAEAEA;
+    /*cursor: pointer;*/
+    border-radius: 2.5vh;
+    padding-left: 30px;
+}
+
+
+.dis_input2{
+  background-color: #EAEAEA;
+    color: #cfcfcf;
+    padding: 10px;
+    font-size: 20px;
+    /*border: none;*/
+    border-color: #EAEAEA;
+    /*cursor: pointer;*/
+    border-radius: 2.5vh;
+    padding-left: 30px;
 }

@@ -1,59 +1,88 @@
 import React from 'react';
 import './register.css';
+import CustomSelect from './customSelect';
 
 class Registab7 extends React.Component {
-	constructor(props) {
-		super(props);
-		this.handleLoad = this.handleLoad.bind(this);
-	 }
-	
-	componentDidMount() {
-		window.addEventListener('load', this.handleLoad);
-		console.log("YEAHXXX!");
-		const script = document.createElement("script");
-		script.src = "assets/js/register.js";
-		document.body.appendChild(script);
-		
-	}
-	
-	componentWillUnmount() { 
-	   window.removeEventListener('load', this.handleLoad)  
-	}
-	
-	handleLoad() {
-		console.log("YEAH!");
-	 }
 
 	render (){
 		return (
 			<div className="Registab7">
 				<div class="regis-box-content7 " id="yyy">
 					<h1 class="headerRegis" id="havesideskill">ทักษะเสริม</h1>
-					<div class="dropdowntap7_1">
-						<input class="form-control dropbtn ssf" list="sideskillop" id="sideskilllist1" placeholder="เลือกทักษะเสริมที่ถนัด"></input>
-						<datalist class="dropdown-content" id="sideskillop">
-							<option value="Photoshop"></option>
-							<option value="Word"></option>
-							<option value="Excel"></option>
-							<option value="Ai"></option>
-							<option value="Python"></option>
-							<option value="Photoshop"></option>
-							<option value="Word"></option>
-							<option value="Excel"></option>
-							<option value="Ai"></option>
-							<option value="Python"></option>
-							<option value="Photoshop"></option>
-							<option value="Word"></option>
-							<option value="Excel"></option>
-							<option value="Ai"></option>
-							<option value="Python"></option>
-						</datalist>	
+					<div class="dropdowntap7_1 ssf">
+						<div class="row ddt7_1">
+							<div class="col-md-12">
+								<select class="form-select dropbtn fff" id="ch1">
+									<option selected disabled value="">เลือกหมวดทักษะเสริมที่ถนัด</option>
+									<option value='Computer_Technology'>Computer_Technology</option>
+									<option value='Hard_Communication%20Skills'>Hard_Communication Skills</option>
+									<option value='Data_Analysis'>Data_Analysis</option>
+									<option value='Certifications_and_Licenses'>Certifications_and_Licenses</option>
+									<option value='Marketing'>Marketing</option>
+									<option value='Project_Management'>Project_Management</option>
+									<option value='Design'>Design</option>
+									<option value='Cloud_Computing'>Cloud_Computing</option>
+									<option value='Writing'>Writing</option>
+									<option value='Mobile_&_Web_Development'>Mobile_&_Web_Development</option>
+									<option value='Network_Structure&_Security'>NetworkStructure&_Security</option>
+								</select>
+							</div>
+							<div class="col-md-12">
+								<select class="form-select dropbtn" id="sideskilllist1">
+									<option selected disabled value="">เลือกทักษะเสริมที่ถนัด</option>
+								</select>
+							</div>
+						</div>
 					</div>
-					<div class="dropdowntap7_2">
-						<input class="form-control dropbtn ssf" list="sideskillop" id="sideskilllist2"  placeholder="เลือกทักษะเสริมที่ถนัด"></input>
+					<div class="dropdowntap7_2 ssf">
+					<div class="row ddt7_2">
+							<div class="col-md-12 chh2">
+								<select class="form-select dropbtn fff" id="ch2">
+									<option selected disabled value="">เลือกหมวดทักษะเสริมที่ถนัด</option>tion>
+									<option value='Computer_Technology'>Computer_Technology</option>
+									<option value='Hard_Communication%20Skills'>Hard_Communication Skills</option>
+									<option value='Data_Analysis'>Data_Analysis</option>
+									<option value='Certifications_and_Licenses'>Certifications_and_Licenses</option>
+									<option value='Marketing'>Marketing</option>
+									<option value='Project_Management'>Project_Management</option>
+									<option value='Design'>Design</option>
+									<option value='Cloud_Computing'>Cloud_Computing</option>
+									<option value='Writing'>Writing</option>
+									<option value='Mobile_&_Web_Development'>Mobile_&_Web_Development</option>
+									<option value='Network_Structure&_Security'>NetworkStructure&_Security</option>
+								</select>
+							</div>
+							<div class="col-md-12">
+								<select class="form-select dropbtn" id="sideskilllist2">
+									<option selected disabled value="">เลือกทักษะเสริมที่ถนัด</option>
+								</select>
+							</div>
+						</div>
 					</div>
-					<div class="dropdowntap7_3">
-						<input class="form-control dropbtn ssf" list="sideskillop" id="sideskilllist3"  placeholder="เลือกทักษะเสริมที่ถนัด"></input>
+					<div class="dropdowntap7_3 ssf">
+					<div class="row ddt7_3">
+							<div class="col-md-12">
+								<select class="form-select dropbtn fff" id="ch3">
+									<option selected disabled value="">เลือกหมวดทักษะเสริมที่ถนัด</option>
+									<option value='Computer_Technology'>Computer_Technology</option>
+									<option value='Hard_Communication%20Skills'>Hard_Communication Skills</option>
+									<option value='Data_Analysis'>Data_Analysis</option>
+									<option value='Certifications_and_Licenses'>Certifications_and_Licenses</option>
+									<option value='Marketing'>Marketing</option>
+									<option value='Project_Management'>Project_Management</option>
+									<option value='Design'>Design</option>
+									<option value='Cloud_Computing'>Cloud_Computing</option>
+									<option value='Writing'>Writing</option>
+									<option value='Mobile_&_Web_Development'>Mobile_&_Web_Development</option>
+									<option value='Network_Structure&_Security'>NetworkStructure&_Security</option>
+								</select>
+							</div>
+							<div class="col-md-12">
+								<select class="form-select dropbtn" id="sideskilllist3">
+									<option selected disabled value="">เลือกทักษะเสริมที่ถนัด</option>
+								</select>
+							</div>
+						</div>
 					</div>
 					<div class="modal fade" id="Modaltab7-1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog modal-dialog-centered">

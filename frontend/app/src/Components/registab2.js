@@ -1,28 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react'
 
 class Registab2 extends React.Component {
-
-	constructor(props) {
-		super(props);
-		this.handleLoad = this.handleLoad.bind(this);
-	 }
-	
-	componentDidMount() {
-		window.addEventListener('load', this.handleLoad);
-		console.log("YEAHXXX!");
-		const script = document.createElement("script");
-		script.src = "assets/js/register.js";
-		document.body.appendChild(script);
-		
-	}
-	
-	componentWillUnmount() { 
-	   window.removeEventListener('load', this.handleLoad)  
-	}
-	
-	handleLoad() {
-		console.log("YEAH!");
-	 }
 
 	render (){
 		return (
@@ -37,7 +15,7 @@ class Registab2 extends React.Component {
 										<label class="sexdistance form-f-sex">ที่อยู่ปัจจุบัน</label>
 									</div>
 									<div class="col-md-7">
-										<h4 class="form-control dropbtn margin-bottom1 fff">ประเทศไทย</h4>
+										<h4 class="form-control margin-bottom1 fff dis_input1">ประเทศไทย</h4>
 									</div>
 								</div>
 								<div class="row">
@@ -48,17 +26,17 @@ class Registab2 extends React.Component {
 										</select>
 									</div>
 									<div class="col-md-3">
-										<select class="form-select dropbtn margin-bottom1 fff" id="town">
+										<select class="form-select dropbtn margin-bottom1 fff" id="townny">
 											<option selected disabled value="">เมือง</option>
 										</select>
 									</div>
 								</div>
 								<div class="col-md-9">
-									<input type="text" class="form-control dropbtn margin-bottom1" id="" placeholder="อีเมลสำรอง" ></input>
+									<h4 type="text" class="form-control margin-bottom1 dis_input2" >อีเมลสำรอง</h4>
 								</div>
 								<div class="row-3">
 									<div class="col-md-9">
-										<textarea type="text" class="form-control aboutmee margin-bottom1" id="aboutme2" placeholder="บอกเล่าเกี่ยวกับตัวเองสั้นๆ"></textarea>
+										<textarea type="text" class="form-control aboutmee margin-bottom2" id="aboutme2" placeholder="บอกเล่าเกี่ยวกับตัวเองสั้นๆ" autocomplete="off"></textarea>
 										<div id="charactersRemaining">180 characters</div>
 									</div>
 								</div>

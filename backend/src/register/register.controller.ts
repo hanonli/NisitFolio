@@ -1,22 +1,14 @@
-import { Controller, Get, Post, Body, Param, Request, Patch, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Request, Patch, UseGuards, Delete } from '@nestjs/common';
 
 import { RegisterService } from './register.service';
 import { CreateRegisDto } from './dto/create-register.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { EditProfileDto2 } from './dto/editprofile2.dto';
+import { PatchRegisDto } from './dto/patch-register.dto';
 
 
 @Controller('register')
 export class RegisterController {
   constructor(private registerService: RegisterService) {}
-
-  @UseGuards(JwtAuthGuard)
-  @Patch()
-  async UpdateProfile(@Body() CreateDto: EditProfileDto2,@Request() req) {
-    const x=req.user.userId
-    //const x="613a13762a58701a949f5d19";
-  return this.registerService.UpdatProfile(x,CreateDto);
-}
 
   @Post()
   async CreateRegister(@Body() CreateDto: CreateRegisDto ) {
@@ -25,8 +17,14 @@ export class RegisterController {
 
   @UseGuards(JwtAuthGuard)
   @Patch()
-  async UpdateRegister(@Body() CreateDto: CreateRegisDto  ,@Request() req) {
+  async UpdateRegister(@Body() CreateDto: PatchRegisDto  ,@Request() req) {
     return this.registerService.UpdateRegis(CreateDto,req.user.userId);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Delete()
+  async DeleteRegister(@Request() req) {
+    return this.registerService.DeleteRegis(req.user.userId);
   }
 
   @Get('/jobtitle')
@@ -53,14 +51,71 @@ export class RegisterController {
   {
     return this.registerService.GetInfo(req.user.userId);
   }
-  //@UseGuards(JwtAuthGuard)
-  //,@Request() req
-  /*
-  @Patch()
-    async UpdateProfile(@Body() CreateDto: EditProfileDto2) {
-      //const x=req.user.userId
-      const x="613a13762a58701a949f5d19";
-    return this.registerService.UpdatProfile(x,CreateDto);
+
+  @UseGuards(JwtAuthGuard)
+  @Patch("additionalSkill/:id")
+  async UpdateAdditionalSkill(@Body() CreateDto: PatchRegisDto  ,@Request() req,@Param('id') id: string) {
+    return this.registerService.UpdateAdditionalSkill(CreateDto,req.user.userId,id);
   }
-*/
+
+  @UseGuards(JwtAuthGuard)
+  @Delete("additionalSkill/:id")
+  async DeleteAdditionalSkill(@Request() req,@Param('id') id: string) {
+    return this.registerService.DeleteAdditionalSkill(req.user.userId,id);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Patch("certificate/:id")
+  async UpdateCertificate(@Body() CreateDto: PatchRegisDto  ,@Request() req,@Param('id') id: string) {
+    return this.registerService.UpdateCertificate(CreateDto,req.user.userId,id);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Delete("certificate/:id")
+  async DeleteCertificate(@Request() req,@Param('id') id: string) {
+    return this.registerService.DeleteCertificate(req.user.userId,id);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Patch("educationHistory/:id")
+  async UpdateEducationHistory(@Body() CreateDto: PatchRegisDto  ,@Request() req,@Param('id') id: string) {
+    return this.registerService.UpdateEducationHistory(CreateDto,req.user.userId,id);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Delete("educationHistory/:id")
+  async DeleteEducationHistory(@Request() req,@Param('id') id: string) {
+    return this.registerService.DeleteEducationHistory(req.user.userId,id);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Patch("workHistory/:id")
+  async UpdateWorkHistory(@Body() CreateDto: PatchRegisDto  ,@Request() req,@Param('id') id: string) {
+    return this.registerService.UpdateWorkHistory(CreateDto,req.user.userId,id);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Delete("workHistory/:id")
+  async DeleteWorkHistory(@Request() req,@Param('id') id: string) {
+    return this.registerService.DeleteWorkHistory(req.user.userId,id);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Patch("interestedJob/:id")
+  async UpdateInterestedJob(@Body() CreateDto: PatchRegisDto  ,@Request() req,@Param('id') id: string) {
+    return this.registerService.UpdateInterestedJob(CreateDto,req.user.userId,id);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Delete("interestedJob/:id")
+  async DeleteInterestedJob(@Request() req,@Param('id') id: string) {
+    return this.registerService.DeleteInterestedJob(req.user.userId,id);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get("getinfo")
+  async testget(@Request() req) {
+    return this.registerService.GetInfo2(req.user.userId);
+  }
+  
 }
