@@ -105,7 +105,7 @@
 .my-skill-content {
     position: absolute;
     right: 16px;
-    top: 65px;
+    top: 55px;
     /*right: 10px;*/
 }
 
@@ -118,37 +118,48 @@
 .each-skill-job {
     display: flex;
     gap: 10px;
-    justify-content: space-between;
+    /*justify-content: space-between;*/
+    align-items: center;
+    /*justify-content: center;*/
 }
 
 #skill1-job {
     color: black;
-    font-size: 19px;
+    font-size: 11px;
     font-weight: 300;
     font-family: 'Kanit';
     border: 2px solid #FFC045;
-    border-radius: 10px;
-    width: 105px;
+    border-radius: 8px;
+    width: 120px;
+    text-align: center;
+    padding-left: 4px;
+    padding-right: 4px;
 }
 
 #skill2-job {
     color: black;
-    font-size: 19px;
+    font-size: 11px;
     font-weight: 300;
     font-family: 'Kanit';
     border: 2px solid #79CE23;
-    border-radius: 10px;
-    width: 105px;
+    border-radius: 8px;
+    width: 120px;
+    text-align: center;
+    padding-left: 4px;
+    padding-right: 4px;
 }
 
 #skill3-job {
     color: black;
-    font-size: 19px;
+    font-size: 11px;
     font-weight: 300;
     font-family: 'Kanit';
     border: 2px solid #C98A11;
-    border-radius: 10px;
-    width: 105px;
+    border-radius: 8px;
+    width: 120px;
+    text-align: center;
+    padding-left: 4px;
+    padding-right: 4px;
 }
 
 /*------------------tab------------------*/
@@ -288,7 +299,6 @@ li.current2{
 .error_select_job{
     border: 1px solid red;
 }
-
 
 /*----new slider range----*/
 .sliderWithLabels {
