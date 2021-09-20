@@ -123,10 +123,11 @@ class Registab3 extends React.Component {
                     <div class='col-5' >
                         <div class="selectDropdown">
                             <select class="form-select form-select-lg dropbtn margin-bottom1 fff" id='high_degree' aria-labelledby="select1" required>
-                                <option selected disabled value=''>เลือกวุฒิการศึกษา*</option>
-                                <option value='ประถมศึกษา' >ประถมศึกษา</option>    
-                                <option value='มัธยมศึกษาตอนต้น' >มัธยมศึกษาตอนต้น</option>    
-                                <option value='มัธยมศึกษาตอนปลาย' >มัธยมศึกษาตอนปลาย</option>
+                                <option selected disabled value=''>เลือกวุฒิการศึกษา*</option> 
+                                <option value='อาชีวะศึกษา' >อาชีวะศึกษา </option>  
+                                <option value='มัธยมศึกษาตอนปลาย' >มัธยมศึกษาตอนปลาย</option>    
+                                <option value='มัธยมศึกษาตอนต้น' >มัธยมศึกษาตอนต้น</option>
+                                <option value='ประถมศึกษา' >ประถมศึกษา</option> 
                             </select>
                         </div>
                     </div>

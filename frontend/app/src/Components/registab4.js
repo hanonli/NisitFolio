@@ -12,11 +12,12 @@ const Registab4 = () => {
 						<div className='registab4_formbox' >
 								
 								<div class='registab4_btnplus'>
-									<button type="button" class="btn justify-content-center" data-bs-toggle="modal" data-bs-target="#registab4Modal">
+									<button type="button" class="btn justify-content-center" id="add_work" data-bs-toggle="modal" data-bs-target="#registab4Modal">
 											<img id='icon-plus-circle'  src="assets/images/+.png" width="115" height="115" ></img>
 									</button>
 								</div>
-                                <div class="list-of-work" id="in-list-of-work"></div>
+                                <div class="list-of-work row" id="in-list-of-work"></div>
+                                <div class="t4-content col-6">
 								<div class="modal fade" id="registab4Modal" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
 									<div class="modal-dialog modal-dialog-centered modal-xl">
 										<div class="modal-content modalworkhis" >
@@ -28,7 +29,7 @@ const Registab4 = () => {
                     <form class='' id='WorkHistoryForm'>
                         <div class='col-4'>
                             <div class="selectDropdown">
-                                <select class="form-select form-select-lg dropbtn margin-bottom1 fff"  aria-labelledby="select1" id='work_jobtype' required>
+                                <select class="form-select form-select-lg dropbtn margin-bottom1 fff"  aria-labelledby="select1" id='jobtype_work' required>
                                     <option selected disabled value='none'>ประเภทงาน*</option>
                                     <option value='งานประจำ' >งานประจำ</option>    
                                     <option value='งานเสริมนอกเวลา' >งานเสริมนอกเวลา</option>
@@ -38,22 +39,22 @@ const Registab4 = () => {
                         </div>
                         <div class='row'>
                             <div class='col-6'>
-                                <input type="text" class="form-control dropbtn margin-bottom1 " id="work_jobname" placeholder="ตำแหน่งงาน*" required></input>
+                                <input type="text" class="form-control dropbtn margin-bottom1 " id="jobname_work" placeholder="ตำแหน่งงาน*" required></input>
                             </div>
                             <div class='col-6'>
-                                <input type="text" class="form-control dropbtn margin-bottom1 " id="work_company" placeholder="สังกัด/บริษัท(ถ้ามี)"></input>
+                                <input type="text" class="form-control dropbtn margin-bottom1 " id="company_work" placeholder="สังกัด/บริษัท(ถ้ามี)"></input>
                             </div>
                         </div>
                         <div class='row'>
                             <div class='col-5'>
                                 <div class='col-8'>
-                                    <input type="text" class="form-control dropbtn margin-bottom1 " id="work_salary" placeholder="รายได้"></input>
+                                    <input type="text" class="form-control dropbtn margin-bottom1 " id="salary_work" placeholder="รายได้"></input>
                                 </div>
                             </div>
                             <div class='col-5'>
                                 <div class='col-8'>
                                     <div class="selectDropdown">
-                                        <select class="form-select form-select-lg dropbtn margin-bottom1 fff"  id="work_salarytype" aria-labelledby="select1"  required>
+                                        <select class="form-select form-select-lg dropbtn margin-bottom1 fff"  id="salarytype_work" aria-labelledby="select1"  required>
                                             <option selected disabled value=''>ประเภทรายได้</option>
                                             <option value='รายได้ต่อไตรมาส' >รายได้ต่อไตรมาส</option>
                                             <option value='รายได้ต่อเดือน'>รายได้ต่อเดือน</option>    
@@ -73,7 +74,7 @@ const Registab4 = () => {
                                 <div class='col-8'>
                                     <div class="selectDropdown">
                                         <select class="form-select form-select-lg dropbtn margin-bottom1 fff"  id='year_startwork' aria-labelledby="select1"  required>
-                                            <option selected disabled value=''>ปีที่เข้าทำงาน*</option>
+                                            <option selected disabled value='0'>ปีที่เข้าทำงาน*</option>
                                         </select>
                                     </div>       
                                 </div>
@@ -105,7 +106,7 @@ const Registab4 = () => {
                                 <div class='col-8'>
                                     <div class="selectDropdown">
                                         <select class="form-select form-select-lg dropbtn margin-bottom1 fff" id='year_endwork' aria-labelledby="select1" >
-                                            <option selected disabled value=''>ปีที่ออกจากงาน</option>
+                                            <option selected disabled value='0'>ปีที่ออกจากงาน</option>
                                         </select>
                                     </div>       
                                 </div>
@@ -138,7 +139,7 @@ const Registab4 = () => {
                                 <div class='row'>
                                     <div class='col'>
                                         <div class="form-check" id='registab4_radiocheck'>
-                                            <input class="form-check-input" type="checkbox" id="regist4_cb" value='0'></input>
+                                            <input class="form-check-input" type="checkbox" id="regist4_cb" for="flexCheckDefault"></input>
                                             <label class="form-check-label modaltextB" for="registab4_Radios1">
                                                 ยังอยู่ในงาน
                                             </label>
@@ -148,7 +149,7 @@ const Registab4 = () => {
                             </div>
 
                         </div>
-                        <textarea type="text" rows='5' class="form-control dropbtn margin-bottom1 registab4_textbox" id="work_inform"  placeholder='เพิ่มรายละเอียด(ถ้ามี)'>
+                        <textarea type="text" rows='5' class="form-control dropbtn margin-bottom1 registab4_textbox" id="inform_work"  placeholder='เพิ่มรายละเอียด(ถ้ามี)'>
                         </textarea>
 
                     </form>
@@ -157,7 +158,7 @@ const Registab4 = () => {
 											</div>
 												<div class="centerverify button-add-work1">
 													<button type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</button>												
-													<button type="button" class="btn btn-cta-primary-yellowshort profile-button round" id="submit-work" data-bs-dismiss="modal">เพิ่ม</button>
+													<button type="button" class="btn btn-cta-primary-yellowshort profile-button round" id="submit-work">เพิ่ม</button>
 												</div>
 
 										</div>

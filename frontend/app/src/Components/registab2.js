@@ -15,7 +15,7 @@ class Registab2 extends React.Component {
 										<label class="sexdistance form-f-sex">ที่อยู่ปัจจุบัน</label>
 									</div>
 									<div class="col-md-7">
-										<h4 class="form-control dropbtn margin-bottom1 fff">ประเทศไทย</h4>
+										<h4 class="form-control margin-bottom1 fff dis_input1">ประเทศไทย</h4>
 									</div>
 								</div>
 								<div class="row">
@@ -32,7 +32,7 @@ class Registab2 extends React.Component {
 									</div>
 								</div>
 								<div class="col-md-9">
-									<input type="text" class="form-control dropbtn margin-bottom1" id="" placeholder="อีเมลสำรอง" disabled></input>
+									<h4 type="text" class="form-control margin-bottom1 dis_input2" >อีเมลสำรอง</h4>
 								</div>
 								<div class="row-3">
 									<div class="col-md-9">

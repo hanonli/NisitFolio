@@ -375,3 +375,28 @@ datalist {
   color:black;
   font-weight: 400;
 }
+
+.dis_input1{
+  background-color: #EAEAEA;
+    color: #000;
+    padding: 10px;
+    font-size: 20px;
+    /*border: none;*/
+    border-color: #EAEAEA;
+    /*cursor: pointer;*/
+    border-radius: 2.5vh;
+    padding-left: 30px;
+}
+
+
+.dis_input2{
+  background-color: #EAEAEA;
+    color: #cfcfcf;
+    padding: 10px;
+    font-size: 20px;
+    /*border: none;*/
+    border-color: #EAEAEA;
+    /*cursor: pointer;*/
+    border-radius: 2.5vh;
+    padding-left: 30px;
+}
