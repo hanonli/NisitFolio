@@ -2,7 +2,7 @@ import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { UserAddSkill, UserJobSkill, AdditionalSkill, JobTitle } from './analytics.schema';
-
+import * as mongoose from 'mongoose' ;
 import { ObjectId } from 'mongodb' ;
 
 
@@ -21,9 +21,9 @@ export class AnalyticsService {
 
   ) {}
   
-  async additionalAnalytics(id: ObjectId): Promise<any> {
+  async additionalAnalytics(id: string): Promise<any> {
     const Jobs = await this.UserJobSkillModel.aggregate([
-      { $match: {userId: id} },
+      { $match: {userId: mongoose.Types.ObjectId(id)} },
       { 
         $group: { 
           _id: { JobName: "$JobName" } 
@@ -43,7 +43,7 @@ export class AnalyticsService {
     let finalResults = {};
     finalResults['InterestedJobs'] = jobs;
     const mySkills = await this.AdditionalSkillModel.find({ UserId: id }).select({ AdditionalSkill: 1 , _id: 0 }).distinct('AdditionalSkill');
-    //console.log(mySkills);
+    console.log(mySkills);
     finalResults['mySkills'] = mySkills;
 
     for ( var job of jobs ) {
@@ -250,7 +250,7 @@ export class AnalyticsService {
         temp2.push({"SkillName": Skill, "total": total, "AllScore": newAllScore, "UserScore": UserScore, "Count": count, "Mean": i.mean, "Mode": mode, "percentage": percentage}) ;
       }
       else {
-        temp2.push({ "SkillName": Skill, "total": total, "Mean": i.mean })
+        temp2.push({ "SkillName": Skill, "total": total, "Percentage": total/numberOfUsers*100 })
       }
     }
     array["Overview"] = {};
