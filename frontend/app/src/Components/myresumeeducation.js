@@ -68,26 +68,32 @@ class EducationContent extends React.Component {
         if(data.Grade != 0){
             content.push(
             <div class="educationcontentLine4">
+<<<<<<< HEAD
                 <p class="grade-label inline">เกรดเฉลี่ย</p>
                 <div class="centerbreak inline">
                     <div class="breakline inline">
+=======
+                <p class="grade-label inline2">เกรด</p>
+                <div class="centerbreak inline2">
+                    <div class="breakline inline2">
+>>>>>>> 3f98f0a2f52a5778ac3babb0c84459abfa0deef4
                         {" "}
                     </div>
                 </div>
-                <h4 class="grade inline">{data.Grade.toFixed(2)}</h4>
+                <h4 class="grade inline2">{data.Grade.toFixed(2)}</h4>
             </div>
         );
         }
         return(
             <div class ="educationonecontent">
                 <div class="educationcontentLine1">
-                    <p class="year inline">{year}</p>
-                    <div class="centerbreak inline">
-                        <div class="breakline inline">
+                    <p class="year inline2">{year}</p>
+                    <div class="centerbreak inline2">
+                        <div class="breakline inline2">
                             |
                         </div>
                     </div>
-                    <p class="degree inline">{data.Degree}</p>
+                    <p class="degree inline2">{data.Degree}</p>
                 </div>
                 {content}
                 

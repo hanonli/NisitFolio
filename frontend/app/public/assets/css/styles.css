@@ -30,6 +30,10 @@ mf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 18px; font-wei
 	line-height: 1.2;
 }
 
+textarea {
+  resize: none;
+}
+
 .iAnalytic-green{
 	color: rgba(1, 184, 170, 1);
 }
@@ -1305,6 +1309,7 @@ a.btn-cta-primary-white:hover, .btn-cta-primary-white:hover {
 .tab-inline{
 	display: inline-block;
 	width: 100%;
+  color:#000;
 }
 
 .tab-list-item {
@@ -1313,6 +1318,7 @@ a.btn-cta-primary-white:hover, .btn-cta-primary-white:hover {
   margin-bottom: -1px;
   padding-left: 1.5%;
   padding-right: 1.5%;
+  color:#000000;
 }
 
 .tab-list-item:hover {
@@ -1581,6 +1587,7 @@ body {
 }
 
 .popup-file-icon{
+	cursor: pointer;
 	position:absolute;
 	top:38%;
 	right:50%;
@@ -1590,6 +1597,7 @@ body {
 }
 
 .pua-label{
+	cursor: pointer;
 	position: absolute;
 	top:56%;
 	left:40.5vw;

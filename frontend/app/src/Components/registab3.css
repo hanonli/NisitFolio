@@ -5,33 +5,31 @@
 }
 
 .Registab3 .registab3_formbox {
-
-    background-color: rgb(236, 236, 236);
+    background-color: white;
     border: 1px solid black;
     border-radius: 25px;
-
-    
-    height: fit-content;
-    width: 47%;
+    height: 45vh;
+    width: 40%;
     margin-top: 5px;
     margin-bottom: 5px;
-    margin-left: 10px;
-    margin-right: 10px;
-
-
-    justify-content: center;
+    margin-left: 15px;
+    margin-right: 15px;
+    position: relative;
 }
 
 .Registab3 .registab3_formbox .registab3_btnplus{
     text-align: center;
+    justify-content: center;
 }
 
+.center3 {
+    text-align: center;
+}
 .Registab3 .registab3_formbox #icon-plus-circle {
     position: relative;
-
     width: 50px;
     height: 50px;
-
+    justify-content: center;
 }
 
 .Registab3 .registab3_formbox .modal-title{
@@ -48,21 +46,100 @@
     padding-left: 40px;
 }
 
+.font-titlet3{
+    color:black;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+
+.Registab3 .registab3_formbox .font-headert3{
+    color:black;
+    font-size: 36px;
+}
+
+.t3-content1 {
+    text-align: left;
+    position: relative;
+    padding:2%;
+}
+
+.t3-content2 {
+    text-align: left;
+    position: relative;
+    padding:2%;
+}
+/*.t3-content1:hover,  .t3-content1:focus{
+    background-color: #e1e1e1;
+}*/
+.mg-left1per {
+    margin-left: 2%;
+}
+.layer_icon1 {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: 0.2s;
+    background: transparent;
+}
+
+.layer_icon1 .button1{
+    visibility: hidden;
+    padding-left: 38%;
+    margin-top: 0.8%;
+    transition: 0.1s;
+}
+
+.layer_icon1:hover{
+    background: #E1E1E1;
+    display: flex;
+    opacity: 0.7;
+}
+
+.layer_icon1:hover .button1{
+    visibility: visible;
+    opacity: 2;
+}
+.layer_icon1 .button2{
+    visibility: hidden;
+    padding-left: 10%;
+    margin-top: 0.8%;
+    transition: 0.1s;
+}
+
+.layer_icon1:hover .button2{
+    visibility: visible;
+    opacity: 2;
+}
+
+.error_select_aca{
+    border: 1px solid red;
+}
+
+
+
+
+
+
+
+
+
+
 .Registab4 .registab4_formbox {
     background-color: #b6deea;
     border: 1px solid black;
-    border-radius: 25px;
-
     height: 140px;
-    width: 1471px;
-
+    /*width: 1470px;*/
+    border-radius: 25px;
     margin-top: 5px;
     margin-bottom: 5px;
     margin-left: 5px;
     margin-right: 5px;
     position: relative;
+    text-align: center;  
     justify-content: center;
-    align-items: center;
 
 }
 
@@ -138,7 +215,7 @@
 
 }
 
-#registab4_textbox{
+.registab4_textbox{
     text-align: left;
 }
 
@@ -155,7 +232,23 @@
     margin-top: 650px;
 }
 
+#regisModallabelt4_1 {
+    text-align: left;
+}
+
+.modaltextB {
+    color:black;
+    font-weight: 400;
+}
 /*
     This is for registab3_addWorkHistory
 
 */
+
+.t4-content {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 25px;
+    height: 15vh;
+    position: relative;
+}

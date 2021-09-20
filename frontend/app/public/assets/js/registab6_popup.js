@@ -19,7 +19,7 @@ function get_job_id(list_of_job, x) {
     //var x = 1;
     list_of_job.forEach(ele => {
         ele["job_pos"] = x;
-        console.log("x:", x);
+        //console.log("x:", x);
         x++;
     });
     return list_of_job;
@@ -45,27 +45,28 @@ function show_all_job() {
                             <div class="job-column-1" >\
                                 <h1 id="job-position">ตำแหน่งงานที่ {no_job}</h1>\
                                 <h1 id="job-name">{name_job}</h1>\
-                                </div >\
-                                    <div class="my-skill-content">\
-                                        <div class="head-skill">\
-                                            <h1 id="mySkil-job">ทักษะของฉัน</h1>\
-                                        </div>\                                    
-                                        <div class="each-skill-job">`;
+                            </div >\
+                            <div class="my-skill-content">\
+                                <div class="head-skill">\
+                                    <h1 id="mySkil-job">ทักษะของฉัน</h1>\
+                                </div>\                                    
+                                <div class="each-skill-job">`;
 
-        var grid_Job_skill1 = `		        <p id="skill1-job">{skill1}</p>`;
+        var grid_Job_skill1 = `	    <p id="skill1-job">{skill1}</p>`;
 
-        var grid_Job_skill2 = `		       	<p id="skill2-job">{skill2}</p>`;
+        var grid_Job_skill2 = `	    <p id="skill2-job">{skill2}</p>`;
 
-        var grid_Job_skill3 = `		        <p id="skill3-job">{skill3}</p>`;
+        var grid_Job_skill3 = `     <p id="skill3-job">{skill3}</p>`;
 
-        var grid_Job2 = `				</div>\
-                                     </div>\
-                                <div class="layer_icon" id="{no_list}">\
-								    <button type="button" class="btn" id="edit-job"><img src="assets/images/blackedit.png" width="65" height="65"></img></button>\
-								    <button type="button" class="btn" id="del-job"><img src="assets/images/bin.png" width="90" height="90"></img></button>\
-                                </div>\
+        var grid_Job2 = `	    </div>\
                             </div>\
-                        </div>`;
+                            <div class="layer_icon" id="{no_list}">\
+								<button type="button" class="btn" id="edit-job"><img src="assets/images/blackedit.png" width="65" height="65"></img></button>\
+								<button type="button" class="btn" id="del-job"><img src="assets/images/bin.png" width="90" height="90"></img></button>\
+                            </div>\
+                        </div>\
+                        </div>\
+                    </div>`;
         grid_Job2 = grid_Job2.replace("{no_list}", ele["id"]);
         grid_Job1 = grid_Job1.replace("{no_job}", ele["job_pos"]);
         grid_Job1 = grid_Job1.replace("{name_job}", ele["name_job"]);
@@ -242,7 +243,7 @@ function set_slider_range3(value) {
     }
 }
 
-$(document).on("click", ".frame_add_job_interest", function () {
+$(document).on("click", "#add-job", function () {
     /*$('#tab01').addClass('current2');
     $('.tabs_pop li').addClass('current2');
     $('.tab-pane_pop').addClass('current2');*/
@@ -271,11 +272,11 @@ var for_edit;
 $(document).on("click", "#edit-job", function () {
     $("#nm_job").removeClass("error_select_job");
     id_list_job_edit = $(this).parents().attr('id');
-    console.log(`edit:`, id_list_job_edit);
+    //console.log(`edit:`, id_list_job_edit);
     choose_function = 1;
     $('#exampleModalJob').modal('toggle');
     $('#submit-job11').text('ยืนยัน');
-    console.log(`chosoe: ${choose_function}`);
+    //console.log(`chosoe: ${choose_function}`);
     for_edit = list_of_job.find(function (post, index_del) {
         if (post.id == id_list_job_edit)
             return true;
@@ -316,7 +317,7 @@ $(document).on("click", "#edit-job", function () {
         //set_slider_range3(for_edit["score_skill3"]);
         document.getElementById("input_mySlider3").disabled = false;
     }
-    console.log(`for_edit:`, for_edit);
+    //console.log(`for_edit:`, for_edit);
     document.getElementById("nm_job").selectedIndex = for_edit["name_job_select"];
     if (for_edit["obj1"] == "none") {
         for_edit["obj1"] = "";
@@ -352,7 +353,7 @@ $(document).on("click", "#edit-job", function () {
 
 $(document).on("click", "#del-job", function () {
     id_list_job_del = $(this).parents().attr('id');
-    console.log("id_list_job111:", id_list_job_del);
+    //console.log("id_list_job111:", id_list_job_del);
     $('#exampleModal_remove_job').modal('toggle');
 });
 
@@ -361,9 +362,9 @@ $(document).on('click', "#summit-to-delete", function () {
         if (post.id == id_list_job_del)
             return true;
     });
-    console.log("id_list_job:", id_list_job_del);
+    //console.log("id_list_job:", id_list_job_del);
     list_of_job.splice(removeIndex, 1);
-    console.log(`delete job id:`, removeIndex);
+    //console.log(`delete job id:`, removeIndex);
     $('#exampleModal_remove_job').modal('hide');
     $(".list-of-job").empty();
     console.log(list_of_job);
@@ -779,7 +780,7 @@ function GetJob(text) {
 }
 
 GetJob();
-
+/*
 function GetSkill(target) {
     fetch("http://localhost:2000/register/jobtitle/skill",
         { method: "GET", })
@@ -802,7 +803,7 @@ function GetSkill(target) {
 GetSkill('each_skill1');
 GetSkill('each_skill2');
 GetSkill('each_skill3');
-
+*/
 
 function testPost6() {
     var Job_Score = [], Job_Jobname = [], Job_Objective = [], Job_SkillName = []; //variable for send to backend 
@@ -810,36 +811,28 @@ function testPost6() {
     list_of_job.forEach(ele => {
         //post job name
         Job_Jobname.push([ele["name_job"]]);
-        //post skill name and score
-        var listofskill = [];
-        //Job_SkillName.push([ele["skill1"], ele["skill2"], ele["skill3"]]);
+        //post skill name
+        Job_SkillName.push([ele["skill1"], ele["skill2"], ele["skill3"]]);
+        //post job score
         var total_skill_score = new Float32Array(3);
-        var index_score = 0;
         if (ele["skill1"] != "none") {
-            listofskill.push(ele["skill1"]);
-            total_skill_score[index_score] = ele["score_skill1"];
-            index_score++;
+            total_skill_score[0] = ele["score_skill1"];
         }
         else {
-            //total_skill_score[0] = "none";
+            total_skill_score[0] = "none";
         }
         if (ele["skill2"] != "none") {
-            listofskill.push(ele["skill2"]);
-            total_skill_score[index_score] = ele["score_skill2"];
-            index_score++;
+            total_skill_score[1] = ele["score_skill2"];
         }
         else {
-            //total_skill_score[1] = "none";
+            total_skill_score[1] = "none";
         }
         if (ele["skill3"] != "none") {
-            listofskill.push(ele["skill3"]);
-            total_skill_score[index_score] = ele["score_skill3"];
-            index_score++;
+            total_skill_score[2] = ele["score_skill3"];
         }
         else {
-            //total_skill_score[2] = "none";
+            total_skill_score[2] = "none";
         }
-        Job_SkillName.push(listofskill);
         Job_Score.push(total_skill_score);
         //post job objective
         var listofObj = [];
