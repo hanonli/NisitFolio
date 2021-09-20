@@ -14,7 +14,6 @@ class Registab7 extends React.Component {
 							<div class="col-md-12">
 								<select class="form-select dropbtn fff" id="ch1">
 									<option selected disabled value="">เลือกหมวดทักษะเสริมที่ถนัด</option>
-									<option value='2021_Trending'>2021_Trending</option>
 									<option value='Computer_Technology'>Computer_Technology</option>
 									<option value='Hard_Communication%20Skills'>Hard_Communication Skills</option>
 									<option value='Data_Analysis'>Data_Analysis</option>
@@ -39,8 +38,7 @@ class Registab7 extends React.Component {
 					<div class="row ddt7_2">
 							<div class="col-md-12 chh2">
 								<select class="form-select dropbtn fff" id="ch2">
-									<option selected disabled value="">เลือกหมวดทักษะเสริมที่ถนัด</option>
-									<option value='2021_Trending'>2021_Trending</option>
+									<option selected disabled value="">เลือกหมวดทักษะเสริมที่ถนัด</option>tion>
 									<option value='Computer_Technology'>Computer_Technology</option>
 									<option value='Hard_Communication%20Skills'>Hard_Communication Skills</option>
 									<option value='Data_Analysis'>Data_Analysis</option>
@@ -66,7 +64,6 @@ class Registab7 extends React.Component {
 							<div class="col-md-12">
 								<select class="form-select dropbtn fff" id="ch3">
 									<option selected disabled value="">เลือกหมวดทักษะเสริมที่ถนัด</option>
-									<option value='2021_Trending'>2021_Trending</option>
 									<option value='Computer_Technology'>Computer_Technology</option>
 									<option value='Hard_Communication%20Skills'>Hard_Communication Skills</option>
 									<option value='Data_Analysis'>Data_Analysis</option>
