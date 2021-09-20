@@ -1,39 +1,45 @@
 
 .Resume_sideNavbar {
-    background-color: #F28FB5;
+    background-color: #FFCE55;
+  
     height: 100%; /* Full-height: remove this if you want "auto" height */
-    width: 100px; /* Set the width of the sidebar */
+    width: 6%; /* Set the width of the sidebar */
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
     left: 0;
     overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 50px;
+    overflow-y: hidden;
+    text-align: center;
+    vertical-align: middle;
+
   }
+  /* .Resume_sideNavbar .resumeblock{
+    padding-bottom: 20%;
+
+  } */
 
   .Resume_sideNavbar a {
-    padding: 20px 4px 6px 16px;
-    text-decoration: none;
+    position: relative;
+    margin-top: 25%;
+    margin-bottom: 25%;
+    padding-top: 20%;
+    padding-bottom: 20%;
     font-size: 25px;
-    color: #818181;
     display: block;
 
   }
   
-  #main {
-    transition: margin-left .5s; /* If you want a transition effect */
-    padding-left: 30px;
-  }
-
-  .sidenav-centered  {
+  /* .sidenav-centered  {
     float: none;
     position: absolute;
-    top: 50%;
+    top: 100%;
     left: 80%;
     transform: translate(-50%, -50%);
-  }
+  } */
+
+  /* 
   .slide_button {
-    
     z-index: 1;
     background: transparent;
     border: transparent;
@@ -45,15 +51,10 @@
     transition: .1s;
     background-color: #F28FB5;
     background-image: #F28FB5;
-  }
+  } 
+  */
 
-  #icon-myresume {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: 20px;
-    width: 40px;
-    height: 40px;
-  }
+ 
 
 
   @media screen and (max-height: 450px) {

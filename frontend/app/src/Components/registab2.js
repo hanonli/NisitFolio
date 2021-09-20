@@ -32,11 +32,11 @@ class Registab2 extends React.Component {
 									</div>
 								</div>
 								<div class="col-md-9">
-									<input type="text" class="form-control dropbtn margin-bottom1" id="" placeholder="อีเมลสำรอง" ></input>
+									<input type="text" class="form-control dropbtn margin-bottom1" id="" placeholder="อีเมลสำรอง" disabled></input>
 								</div>
 								<div class="row-3">
 									<div class="col-md-9">
-										<textarea type="text" class="form-control aboutmee margin-bottom2" id="aboutme2" placeholder="บอกเล่าเกี่ยวกับตัวเองสั้นๆ"></textarea>
+										<textarea type="text" class="form-control aboutmee margin-bottom2" id="aboutme2" placeholder="บอกเล่าเกี่ยวกับตัวเองสั้นๆ" autocomplete="off"></textarea>
 										<div id="charactersRemaining">180 characters</div>
 									</div>
 								</div>

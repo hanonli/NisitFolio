@@ -32,7 +32,7 @@ const Routes = () => {
       <Route exact path='/editprofile' component={Editprofile}></Route>
       <Route exact path='/register' component={Register}></Route>
       <Route exact path='/emailverify' component={Emailverify}></Route>
-      <Route exact path='/successregis' component={Successregis}></Route>
+      <Route path='/successregis' component={Successregis}></Route>
     </Switch>
   );
 }

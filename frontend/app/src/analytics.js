@@ -34,7 +34,7 @@ class Analytics extends React.Component {
 	render (){
 		return (
 			<div className="Analytics">
-				<Navbar /> <br></br>
+				<Navbar />
 				<AnalyticsTabs />
 			</div>
 		);

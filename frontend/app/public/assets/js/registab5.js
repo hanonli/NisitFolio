@@ -97,6 +97,10 @@ function show_certi() {
     console.log(`list_of_year_certi:`, list_of_year_certi);
 }
 
+$(document).ready(function () {
+    show_certi();
+});
+
 var picOfCerti = '';
 
 $(document).on('change', "#image-upload112", function () {
@@ -145,7 +149,7 @@ $(document).on("click", "#edit-certi", function () {
 });
 
 //open modal to add certi
-$(document).on("click", "#add-certi", function () {
+$(document).on("click", ".frame_add_certi", function () {
     choose_function = 2;
     console.log(`chosoe: ${choose_function}`);
     $('#exampleModal11112').modal('toggle');
@@ -297,3 +301,19 @@ $(document).on('hide.bs.modal', "#exampleModal11112", function () {
 $(document).on('click', "#hide-delete-certi", function () {
     $('#exampleModal_remove_certi').modal('hide');
 });
+
+function testPost5() {
+    var CertName = [], CertPic = [], CertYear = []; //variable for send to backend
+    list_of_certi.forEach(ele => {
+        //post certi name
+        CertName.push(ele["name_certi"]);
+        //post year certi
+        CertYear.push(ele["year_certi"]);
+        //post pic certi
+        CertPic.push(ele["path_file_certi"]);
+
+    });
+    console.log("CertName:", CertName);
+    console.log("CertPic:", CertPic);
+    console.log("CertYear:", CertYear);
+}

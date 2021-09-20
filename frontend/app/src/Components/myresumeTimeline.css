@@ -1,0 +1,62 @@
+/*timelime for resume*/
+
+.resumetimeline{
+    width: 100%;
+    padding: 2vw;
+    /*background-color: cadetblue;*/
+    padding-top: 15%;
+    overflow: hidden;
+    position: relative;
+}
+
+.resumetimeline-line{
+    /*background-color: coral;*/
+    width: 2%;
+    height: 100%;
+    /*margin-left: 40.2vw;*/
+    border-radius: 2vw;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+
+.timeline-left-block{
+    text-align: right;
+    padding: 4vw;
+    color: black;
+}
+
+.timeline-right-block{
+    text-align: left;
+    padding: 4vw;
+    color: black;
+}
+.timeline-block{
+    position: relative;
+}
+.timeline-dot-pointer{
+    height: 2.8vw;
+    width: 2.8vw;
+    /*background-color: darkred;*/
+    border-radius: 1.4vw;
+    position: absolute;
+    /*margin-left: 39.6vw;*/
+    /*top: 50%;*/
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.timeline-block .left-row{
+    width: 50%;
+    padding: 2vw;
+    text-align: right;
+    margin-left: 0%;
+}
+
+.timeline-block .right-row{
+    width: 50%;
+    padding: 2vw;
+    text-align: left;
+    margin-left: 50%;
+}

@@ -1,6 +1,7 @@
-	"use strict";
+	
+"use strict";
 	console.log("HELLO LV3!");
-
+	//alert('Homeaaa!');
 		console.log("HELLO LV4!");
       var avatar = document.getElementById('avatar');
       var image = document.getElementById('image');
@@ -137,7 +138,7 @@
 	}
 	GetBookmarkData();*/
 	
-	const data = 
+	var data = 
 	{ userId: '610d3832ca49ebf4cdfed02f',
 	  link: 'https://yahaha.com/',
 	  type: 'user',

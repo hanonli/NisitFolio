@@ -7,17 +7,7 @@ class SharingPopup extends React.Component {
       }
     
       componentDidMount() {
-        var linkhref="";
-        //copyURI(linkhref);
-        function copyURI(evt) {
-            evt.preventDefault();
-            navigator.clipboard.writeText(evt.target.getAttribute('href')).then(() => {
-              /* clipboard successfully set */
-            }, () => {
-              /* clipboard write failed */
-            });
-        }
-      }
+    }
       componentWillUnmount() {
         window.removeEventListener('load', this.handleLoad)  
       }
@@ -53,22 +43,28 @@ class SharingPopup extends React.Component {
         <div class="modal fade" id="sharinglink" aria-hidden="true" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content sharingSize container-fluid">
-                    <div class="row">
+                    <div class="row marginBEx1">
                         <h1 class="SharingFontHead col-10" id="exampleModalToggleLabel2">Sharing</h1>
                     </div>
-                    <div class="dropbtn">
-                        <p></p>
-                        <img class="tooltip-icon" href="" src="assets/images/outline_content_copy_black_48dp.png" onclick="copyURI(event)" type="button" height="30" width="30"/>
+                    <div class="row dropbtn margin1">
+                        <h5 class="col-10 link-text" id="copylink1">link</h5>
+                        <img class="col-2 block-right3 del-pad-col1" href="" src="assets/images/outline_content_copy_black_48dp.png" onclick="copyToCliBoard()" type="button"/>
                     </div>
                 </div>
             </div>
         </div>
         <div class="modal fade" id="sharingpdf" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content sharingSize container-fluid">
+                <div class="modal-content sharingSize2 container-fluid">
                     <div class="row">
                         <h1 class="SharingFontHead col-10" id="exampleModalToggleLabel2">Sharing PDF</h1>
-
+                    </div>
+                    <div class="row">
+                        <div class="dropbtn col-5">
+                            <img src="assets/images/previewRY.png" height="200" width="150"/>
+                            <button class="form-check-input round" id="agree1"></button>
+                        </div>
+                        
                     </div>
                 </div>
             </div>

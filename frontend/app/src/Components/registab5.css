@@ -2,13 +2,13 @@
 .content-certi1 {
     display: grid;
     grid-template-columns: repeat(2,1fr);
-    
+    gap: 5px;
 }
 
 .card_certi {
     border: 1px solid black;
     height: 220px;
-    width: 730px;
+    width: 710px;
     border-radius: 25px;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -48,7 +48,7 @@
 
 .layer-button-certi {
     height: 219px;
-    width: 729px;
+    width: 709px;
     position: absolute;
     top: 0;
     left: -1px;
@@ -112,10 +112,11 @@
     position: relative;
     text-align: center;  
     justify-content: center;
+    cursor: pointer;
 }
 
 .button_add_certi button {
-    margin-top: 2px;
+    margin-top: 0.22%;
 }
 
 .height-job {
