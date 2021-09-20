@@ -81,8 +81,8 @@ class Home extends React.Component {
 				$.getScript('assets/js/home.js');
 				
 				$('#crop').on('click', function(){
-				 //alert('Crop!');
-				setTimeout(function() { UploadProfile(); }, 300);
+					 //alert('Crop!');
+					setTimeout(function() { UploadProfile(); }, 300);
 				});
 			}).catch((error) => {
 				console.log('Token Error!');

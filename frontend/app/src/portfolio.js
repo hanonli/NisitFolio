@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from "react-router-dom";
 import './index.css';
+import './Components/portfolio.css';
 import $ from 'jquery';
 import Navbar from './Components/navbar';
 import ProfileHeader from './Components/profileHeader';
@@ -22,7 +23,7 @@ class Portfolio extends React.Component {
 					{ id: "3", name: "Img3" },
 					{ id: "4", name: "Img4" },
 					{ id: "5", name: "Img5" }],*/
-			list: [{ id: 1, name: "Img1" }],
+			list: [],
 			sortableContainer: "sortable-container-5"
 		}
 	 }
@@ -30,9 +31,10 @@ class Portfolio extends React.Component {
 	componentDidMount() {
 		window.addEventListener('load', this.handleLoad);
 		console.log("YEAHXXX!");
-		const script = document.createElement("script");
+		/*const script = document.createElement("script");
 		script.src = "assets/js/home.js";
-		document.body.appendChild(script);
+		document.body.appendChild(script);*/
+		$.getScript('assets/js/portfolio.js');
 		
 		const refThis = this;
 		
@@ -48,7 +50,8 @@ class Portfolio extends React.Component {
 			}else if(refThis.state.list.length == 1){
 				refThis.setState({ sortableContainer: "sortable-container-1" });
 			}else{ // no image
-				alert('something went wrong!');
+				console.log('list is empty');
+				
 			}
 		}
 		
@@ -60,7 +63,8 @@ class Portfolio extends React.Component {
 		  i += 1;
 		  alert(document.getElementById('basic-date-picker').value);
 		  var temp = refThis.state.list;
-		  temp.push({ id: i, name: "Img"+i });
+		  //temp.push({ id: i, name: "Img"+i });
+		  temp.pop();
 		  refThis.setState({ list: temp });
 		  ResetSortableContent();
 		});
@@ -68,6 +72,56 @@ class Portfolio extends React.Component {
 		$(function(){
 		  $("#basic-date-picker").attr("placeholder", "วัน/เดือน/ปี");
 			
+		  $('#crop').on('click', function(){
+			   var temp = refThis.state.list;
+			   var lid = temp.length+1;
+			   setTimeout(function() {
+				   if(temp.length < 5){
+					   temp.push({ id: lid, name: "Img"+lid });
+					   if(lid == 1) 
+						   temp.push({ id: lid+1, name: "Img"+lid+1 });
+				   }
+				   console.log(temp);
+				   refThis.setState({ list: temp });
+				   refThis.setState({ sortableContainer: "sortable-container-"+lid });
+				   ResetSortableContent();
+				   
+				   if(refThis.state.list.length != 0){
+						/*$(".port-pic-uploadable").prop("onclick", null);
+						$(".port-pic-uploadable").off('click');
+						$(".port-pic-uploadable").off();*/
+						//$(".port-pic-uploadable").click(function() { return false; });
+						//$(".port-pic-uploadable").click(function() {  alert(777); });
+						//$("#inner-fixed-folio-2").removeClass('port-pic-uploadable');
+						$(".port-pic-uploadable").off('click');
+						
+						
+						//$("#inner-fixed-folio-2").addClass('port-pic-uploadable');
+						//$("#upload-id-"+lid).addClass('port-pic-uploadable');
+						$(".upload-file-icon").hide();
+						$(".upload-file-label").hide();
+						
+						$(".delete-upload-icon").off('click'); // fix event stacking bugs
+						$('.delete-upload-icon').on('click', function(){ // add delete event
+							var temp = refThis.state.list;
+							var Did = Number(this.id.slice(-1));
+							console.log('delete: '+Did);
+							console.log(temp);
+							//alert('...'+Did);
+							temp.splice(Did-1, 1);
+							//alert(temp);
+							console.log(temp);
+							refThis.setState({ list: temp });
+							ResetSortableContent();
+						});
+					}else{
+						$("#inner-fixed-folio-2").addClass('port-pic-uploadable');
+						$(".upload-file-icon").show();
+						$(".upload-file-label").show();
+					}
+			   }, 100);
+		  });
+		  
 		  $('.static-public-icon').on('click', function(){
 			  $('.static-public-icon').removeClass('spi-active');
 			  $(this).addClass('spi-active');
@@ -126,8 +180,16 @@ class Portfolio extends React.Component {
 		return (
 			<div className="Portfolio">
 				<div class="outer-full port-bg">
+					<input type="file" id="input" accept="image/*" name="image" hidden />
 					< Navbar/>
-				    <div id="inner-fixed-folio-2">
+					
+					
+				    <div class="port-pic-uploadable" id="inner-fixed-folio-2">
+						
+						<img class="upload-file-icon" src="assets/images/Rectangle 266.png"></img>
+						<div class="upload-file-label">
+							อัพโหลดรูปภาพประกอบได้ที่นี่ (สูงสุด 5 ภาพ)
+						</div>
 						<div className={this.state.sortableContainer}>
 						  <ReactSortable
 							list={this.state.list}
@@ -212,6 +274,28 @@ class Portfolio extends React.Component {
 						</div>
 					</div>
 				</div>
+				
+				<div class="container">
+					<div class="alert" role="alert"></div>
+					<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+					  <div class="modal-dialog" role="document">
+						<div class="modal-content">
+						  <div class="modal-header">
+							<h5 class="modal-title" id="modalLabel">ปรับแต่งรูปโปรไฟล์</h5>
+						  </div>
+						  <div class="modal-body">
+							<div class="img-container">
+							  <img id="image" src="https://avatars0.githubusercontent.com/u/3456749" />
+							</div>
+						  </div>
+						  <div class="modal-footer">
+							<a class="btn btn-cta-primary round profile-button grey" data-bs-dismiss="modal">ยกเลิก</a>
+							<a class="btn btn-cta-primary-yellow round profile-button" id="crop">ใช้งานรูปภาพ</a>
+						  </div>
+						</div>
+					  </div>
+					</div>
+			    </div>
 			</div>
 		);
 	}

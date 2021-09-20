@@ -1495,6 +1495,29 @@ body {
   transition: all 0.5s;
 }
 
+.port-pic-uploadable{
+	cursor: pointer;
+}
+
+.upload-file-icon{
+	position:absolute;
+	top:24%;
+	right:50%;
+    width: 10vh;
+    height: auto;
+	transform: translate(50%, 0%);
+}
+
+.upload-file-label{
+	position: absolute;
+	top:65%;
+	left:39vw;
+	width: 30vw;
+	font-size: 2.5vh;
+	color: black;
+	font-weight: 300;
+}
+
 .pu-label{
 	position: absolute;
 	top:12%;
@@ -1814,6 +1837,7 @@ body {
 }
 
 .sortable-thumbnail-pic{
+	cursor: grab;
 	position: relative;
 	display: flex;
 	font-size: 2vh;
@@ -1824,6 +1848,18 @@ body {
 	background: #C7C7C7;
 	justify-content: center;
 	flex-direction: column;
+}
+
+.delete-upload-icon{
+	cursor: not-allowed;
+	position: absolute;
+	/*padding: 1vh;*/
+	border-radius: 2vh;
+	height: 3.5vh;
+	left: 86%;
+	top: 5%;
+	z-index: 2;
+	/*width: 35vh;*/
 }
 
 .sortable-label{
