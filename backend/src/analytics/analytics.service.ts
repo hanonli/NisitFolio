@@ -51,13 +51,19 @@ export class AnalyticsService {
       const job_name = job.name;
       console.log(job_name);
       console.log(job.THname);
-      const users = await this.UserJobSkillModel.find({ JobName: job_name }).select({ userId: 1, _id: 0 }).distinct('userId');
+      const Users = await this.UserJobSkillModel.find({ JobName: job_name }).select({ userId: 1, _id: 0 }).distinct('userId').exec();
+      //console.log(Users);
+      let users=[];
+      for ( var user of Users ) {
+        //console.log(user);
+        users.push(user.toString());
+      }
       //console.log(users);
       const numberOfUsers = users.length;
 
       const rawResults = await this.AdditionalSkillModel.aggregate([
         {
-          $match: { UserId: { "$in": users } }
+          $match: { UserId: { $in: users } }
         },
         {  
           $group: {
@@ -67,6 +73,8 @@ export class AnalyticsService {
         },
         { $sort: { total: -1, _id: 1 }}
       ]).exec();
+
+      console.log(rawResults);
 
       let ModifiedResults = [];
       for (var result of rawResults) {
