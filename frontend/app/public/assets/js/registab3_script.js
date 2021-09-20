@@ -8,8 +8,8 @@ let endYear3 = new Date().getFullYear();
 for (i = endYear3; i > startYear3; i--) {
   $('#year_higher').append($('<option />').val(i).html(i));
   $('#year_secondary').append($('<option />').val(i).html(i));
-  $('#year_startjob').append($('<option />').val(i).html(i));
-  $('#year_endjob').append($('<option />').val(i).html(i));
+  $('#year_startwork').append($('<option />').val(i).html(i));
+  $('#year_endwork').append($('<option />').val(i).html(i));
 }
 
 /*$('handleHigherSubmit').on('click',function() {
@@ -87,6 +87,9 @@ function show_all_aca() {
       }
       if(ele["aca_year"]=="0"){
         grid_aca1 = grid_aca1.replace("{year_aca}", '-');
+      }
+      else if(ele["aca_year"]=="9999"){
+        grid_aca1 = grid_aca1.replace("{year_aca}", 'กำลังศึกษา');
       }
       else{
         grid_aca1 = grid_aca1.replace("{year_aca}", ele["aca_year"]);
@@ -334,6 +337,9 @@ function show_all_high() {
       }
       if(ele["high_year"]=="0"){
         grid_high1 = grid_high1.replace("{year_high}", '-');
+      }
+      else if(ele["high_year"]=="9999"){
+        grid_aca1 = grid_aca1.replace("{year_high}", 'กำลังศึกษา');
       }
       else{
         grid_high1 = grid_high1.replace("{year_high}", ele["high_year"]);

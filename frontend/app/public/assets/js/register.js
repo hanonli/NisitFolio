@@ -106,7 +106,7 @@ $('#continue2').click(function () {
   }
   if(RequireCount_pass==1){     
     console.log('You Pass!'); 
-    window.location.pathname = '/emailverify'
+    //window.location.pathname = '/emailverify'
     var FormRegis2 = {
       Email: $('#re03').val(),
       Password: $('#pass05').val(),
@@ -145,7 +145,7 @@ $('#continue2').click(function () {
       Infomation:["จะดีมากถ้าลูกค้าไม่เรื่องมาก"],
       Job_JobName:last_jobname,
       Job_SkillName: last_jobskill,
-      Job_Score: Job_Score,
+      Job_Score: [[9.0,8.0,7.0]],
       //Job_Score: last_jobscore,
       Job_Objective:last_jobobj,
     }
@@ -776,7 +776,8 @@ function PostRegis(pack){
 		  body: JSON.stringify(pack)}
   )
     .then(function (response) {
-        //window.location.pathname = '/emailverify'
+        window.location.pathname = '/emailverify'
+        //setInterval(window.location = "http://localhost:3000/emailverify", 3000);
         return response.json();
     })
     .then(function (result) {
@@ -918,7 +919,7 @@ var choose_function4 = -1; //default
 function show_all_work() {
 
   list_of_work.forEach(ele => {
-      var grid_work1 = '<div class="t4-content">\
+      var grid_work1 = '<div class="t4-content col-6">\
                           <h5 class="font-titlet4">{jobname_work}</h5>\
                           <div class="row">\
                               <div class="col-3 font-titlet3">\
@@ -975,6 +976,7 @@ function show_all_work() {
         grid_work1 = grid_work1.replace("{month_endwork}", ele["work_endmonth"]);
       }
       $(".list-of-work").append(grid_work1 + grid_work2);
+      console.log(grid_work1 + grid_work2);
       console.log(`list_of_work:`, list_of_work);
   });
 }
@@ -983,31 +985,31 @@ $(document).ready(function () {
 });
 
 //func add new work form
-$(document).on("click", "#add_aca", function () {
-  $("#work_jobname").removeClass("is-invalid");
-  $("#work_jobtype").removeClass("is-invalid");
+$(document).on("click", "#add_work", function () {
+  $("#jobname_work").removeClass("is-invalid");
+  $("#jobtype_work").removeClass("is-invalid");
   $("#month_startwork").removeClass("is-invalid");
   $("#year_startwork").removeClass("is-invalid");
-  choose_function3 = 2;
+  choose_function4 = 2;
   //$('#registab4Modal').modal('toggle');
-  $('#work_jobtype').prop('selectedIndex', 0);
+  $('#jobtype_work').prop('selectedIndex', 0);
   $('#year_startwork').prop('selectedIndex', 0);
   $('#year_endwork').prop('selectedIndex', 0);
   $('#month_startwork').prop('selectedIndex', 0);
   $('#month_endwork').prop('selectedIndex', 0);
-  $('#work_salarytype').prop('selectedIndex', 0);
-  $('#work_jobname').val('');
-  $('#work_salary').val('');
-  $('#work_inform').val('');
-  $('#work_company').val('');
+  $('#salarytype_work').prop('selectedIndex', 0);
+  $('#jobname_work').val('');
+  $('#salary_work').val('');
+  $('#inform_work').val('');
+  $('#company_work').val('');
   //not sure
 });
 
 //func edit work
 var for_editwork;
 $(document).on("click", "#edit-work", function () {
-  $("#work_jobname").removeClass("is-invalid");
-  $("#work_jobtype").removeClass("is-invalid");
+  $("#jobname_work").removeClass("is-invalid");
+  $("#jobtype_work").removeClass("is-invalid");
   $("#month_startwork").removeClass("is-invalid");
   $("#year_startwork").removeClass("is-invalid");
   id_list_work_edit = $(this).parents().attr('id');
@@ -1023,8 +1025,8 @@ $(document).on("click", "#edit-work", function () {
       }
   });
   console.log(`for_editwork:`, for_editwork);
-  $("#aca_name").val(for_editaca["aca_name"]);
-  $("#aca_faculty").val(for_editaca["aca_faculty"]);
+  $("#jobname_work").val(for_editwork["work_jobname"]);
+  $("#aca_faculty").val(for_editwork["aca_faculty"]);
   if(for_editwork["work_inform"]=='none'){
     $("#work_inform").val('');
   }
@@ -1091,20 +1093,20 @@ $(document).on("change", "#work_jobtype", function () {
 });
 
 document.getElementById("submit-work").addEventListener("click", function () {
-  jobname_work = document.getElementById("work_jobname").value;
-  jobtype_work = document.getElementById("work_jobtype").value;
+  work_jobname = document.getElementById("jobname_work").value;
+  work_jobtype = document.getElementById("jobtype_work").value;
   work_startyear = document.getElementById("year_startwork").value;
   work_endyear = document.getElementById("year_endwork").value;
   work_startmonth = document.getElementById("month_startwork").value;
   work_endmonth = document.getElementById("month_endwork").value;
   $('#submit_work').text = 'ยืนยัน';
   var checkcase1 = true;
-  if (document.getElementById("work_jobname").value == '') {
-      $("#work_jobname").addClass("is-invalid");
+  if (document.getElementById("jobname_work").value == '') {
+      $("#jobname_work").addClass("is-invalid");
       checkcase1 = false;
   }
-  if (document.getElementById("work_jobtype").value == 'none') {
-    $("#work_jobtype").addClass("is-invalid");
+  if (document.getElementById("jobtype_work").value == 'none') {
+    $("#jobtype_work").addClass("is-invalid");
       checkcase1 = false;
   }
   if (document.getElementById("year_startwork").value == '0') {
@@ -1115,9 +1117,7 @@ document.getElementById("submit-work").addEventListener("click", function () {
     $("#month_startwork").addClass("is-invalid");
       checkcase1 = false;
   }
-  if(checkcase1==false){
-  }
-  else {
+  if(checkcase1){
       if (inform_work == '') {
           inform_work = 'none';
       }
@@ -1138,18 +1138,19 @@ document.getElementById("submit-work").addEventListener("click", function () {
           for_editwork["work_endmonth_select"] = $("#work_endmonth").prop('selectedIndex');
           for_editwork["work_inform"] = inform_work;
           for_editwork["work_salary"] = salary_work;
-          //for_editwork["year_secondary"] = parseInt(year_aca);
+          //for_editwork["year_secondary"] = parseInt(year_work);
       }
-      else if (choose_function4 == 2) { //add aca in list
+      else if (choose_function4 == 2) { //add work in list
           list_of_aca.push({
               id: create_UUID(),
               work_pos: 0,
               work_jobname: jobname_work,
               work_jobtype: jobtype_work,
-              work_company: company_job,
-              work_jobtype_select: $("#work_jobtype").prop('selectedIndex'),
-              work_salarytype: jobtype_work,
-              work_salarytype_select: $("#work_salarytype").prop('selectedIndex'),
+              work_company: company_work,
+              work_jobtype_select: $("#jobtype_work").prop('selectedIndex'),
+              work_salary: salary_work,
+              work_salarytype: salarytype_work,
+              work_salarytype_select: $("#salarytype_work").prop('selectedIndex'),
               work_startyear: year_startwork,
               work_startyear_select: $("#year_startwork").prop('selectedIndex'),
               work_startmonth: month_startwork,
@@ -1158,19 +1159,22 @@ document.getElementById("submit-work").addEventListener("click", function () {
               work_endyear_select: $("#year_endwork").prop('selectedIndex'),
               work_endmonth: year_startwork,
               work_endmonth_select: $("#month_endwork").prop('selectedIndex'),
+              work_inform: inform_work
           });
           get_work_id(list_of_work, 1);
           console.log(list_of_work);
       }
       $('#work_jobtype').prop('selectedIndex', 0);
-      $('#work_startyear').prop('selectedIndex', 0);
-      $('#work_endyear').prop('selectedIndex', 0);
-      $('#work_startmonth').prop('selectedIndex', 0);
-      $('#work_endmonth').prop('selectedIndex', 0);
+      $('#year_startwork').prop('selectedIndex', 0);
+      $('#year_endwork').prop('selectedIndex', 0);
+      $('#month_endwork').prop('selectedIndex', 0);
+      $('#month_startwork').prop('selectedIndex', 0);
       $('#work_salarytype').prop('selectedIndex', 0);
       $('#work_jobname').val('');
       $('#work_salary').val('');
       $('#work_inform').val('');
+      $('#work_company').val('');
+      $('#regist4_cb').empty();
       $('#registab4Modal').modal('hide');
       $(".list-of-work").empty();
       show_all_work()
