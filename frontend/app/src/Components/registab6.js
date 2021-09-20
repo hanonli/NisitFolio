@@ -15,7 +15,7 @@ class Registab6 extends React.Component {
 	render() {
 		return (
 			<div className="Registab6">
-				<div class="regis-box-content">
+				<div class="regis-box-content1">
 					<div class="list-of-job" id="in-list-of-job"></div>
 
 					<div class="frame_add_job_interest">
