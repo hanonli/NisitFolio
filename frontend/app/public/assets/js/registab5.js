@@ -81,7 +81,7 @@ function show_certi() {
         grid_certi = grid_certi.replace("{year-certi}", ele["year_certi"]);
         grid_certi = grid_certi.replace("{pic-of-certi}", ele["path_file_certi"]);
         if (year_before_certi != ele["year_certi"]) {
-            console.log(`change year!!!!`);
+            //console.log(`change year!!!!`);
             list_of_year_certi[ele["year_certi"]] = 1;
             year_before_certi = ele["year_certi"];
             headOfyear1234 = headOfyear1234.replace("{show-year}", `yearOf_` + String(ele["year_certi"]));
@@ -94,7 +94,7 @@ function show_certi() {
         }
         $("#contentYear_" + String(ele["year_certi"])).append(grid_certi);
     });
-    console.log(`list_of_year_certi:`, list_of_year_certi);
+    //console.log(`list_of_year_certi:`, list_of_year_certi);
 }
 
 $(document).ready(function () {
@@ -113,7 +113,7 @@ $(document).on('change', "#image-upload112", function () {
     };
     reader.readAsDataURL(path_img.files[0]);
     //picOfCerti = readURL(document.getElementById("image-upload112"));
-    console.log("picOfCerti:", picOfCerti);
+    //console.log("picOfCerti:", picOfCerti);
     $("#icon-upload-112").remove();
     $("#text-upload-112").remove();
     $(".for_upload112").append('<img id="preview_before_upload" height="145"></img>');
@@ -126,9 +126,9 @@ var for_edit;
 //open modal to edit certi
 $(document).on("click", "#edit-certi", function () {
     choose_function = 1;
-    console.log(`chosoe: ${choose_function}`);
+    //console.log(`chosoe: ${choose_function}`);
     id_list_certi_edit = $(this).parents().parents().attr('id');
-    console.log("id_list_certi111:", id_list_certi_edit);
+    //console.log("id_list_certi111:", id_list_certi_edit);
     $('#exampleModal11112').modal('toggle');
     $("#nm_certi").removeClass("error_select_certi");
     $("#yearpicker_111").removeClass("error_select_certi");
@@ -140,7 +140,7 @@ $(document).on("click", "#edit-certi", function () {
         if (post.id == id_list_certi_edit)
             return true;
     });
-    console.log(`for_edit:`, for_edit);
+    //console.log(`for_edit:`, for_edit);
     document.getElementById("nm_certi").value = for_edit["name_certi"];
     document.getElementById("yearpicker_111").selectedIndex = for_edit["year_certi_select"];
     picOfCerti = for_edit["path_file_certi"];
@@ -151,7 +151,7 @@ $(document).on("click", "#edit-certi", function () {
 //open modal to add certi
 $(document).on("click", ".frame_add_certi", function () {
     choose_function = 2;
-    console.log(`chosoe: ${choose_function}`);
+    //console.log(`chosoe: ${choose_function}`);
     $('#exampleModal11112').modal('toggle');
     $("#preview_before_upload").remove();
     $("#nm_certi").removeClass("error_select_certi");
@@ -165,9 +165,9 @@ $(document).on("click", ".frame_add_certi", function () {
 //open modal to delete certi (uncomplete!!!!!!!!!!!!!!!!!!!)
 $(document).on("click", "#del-certi", function () {
     id_list_certi_del = $(this).parents().parents().attr('id');
-    console.log("id_list_certi111:", id_list_certi_del);
+    //console.log("id_list_certi111:", id_list_certi_del);
     $('#exampleModal_remove_certi').modal('toggle');
-    console.log(`list_of_year_certi:`, list_of_year_certi);
+    //console.log(`list_of_year_certi:`, list_of_year_certi);
 });
 
 $(document).on('click', "#summit-to-delete-certi", function () {
@@ -184,7 +184,7 @@ $(document).on('click', "#summit-to-delete-certi", function () {
     list_of_certi.splice(removeIndex, 1);
     //console.log(`delete _certi id:`, removeIndex);
     $(`#` + id_list_certi_del).remove();
-    console.log(`list_of_certi:`, list_of_certi);
+    //console.log(`list_of_certi:`, list_of_certi);
     $("#preview_before_upload").remove();
     $("#icon-upload-112").remove();
     $("#text-upload-112").remove();
@@ -235,7 +235,7 @@ $(document).on('click', "#submit-certi", function () {
             for_edit["path_file_certi"] = picOfCerti;
             for_edit["year_certi_select"] = $("#yearpicker_111").prop('selectedIndex');
             var list_edit11 = document.getElementById(id_list_certi_edit);
-            console.log("id_list_certi_edit:", id_list_certi_edit);
+            //console.log("id_list_certi_edit:", id_list_certi_edit);
         }
         else if (choose_function == 2) {
             //console.log("add!!!!!!")
@@ -260,7 +260,7 @@ $(document).on('click', "#submit-certi", function () {
         $("#yearpicker_111").prop('selectedIndex', 0);
         $("#exampleModal11112").modal("hide");
         $(".box-box-box").empty();
-        console.log(`list_of_certi:`, list_of_certi);
+        //console.log(`list_of_certi:`, list_of_certi);
         show_certi();
         $("#preview_before_upload").remove();
         $("#icon-upload-112").remove();
