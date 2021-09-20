@@ -12,7 +12,7 @@ for (i = endYear3; i > startYear3; i--) {
   $('#year_endjob').append($('<option />').val(i).html(i));
 }
 
-$('handleHigherSubmit').on('click',function() {
+/*$('handleHigherSubmit').on('click',function() {
   $("#registab3Modal1").modal("hide");
 
 });
@@ -20,7 +20,7 @@ $('handleHigherSubmit').on('click',function() {
 $('handleSecondaryubmit').on('click',function() {
   $("#registab3Modal2").modal("hide");
 });
-
+*/
 var list_of_aca = [];
 
 function get_aca_id(list_of_aca, x) {
@@ -443,11 +443,12 @@ document.getElementById("submit-high").addEventListener("click", function () {
   grade_high = document.getElementById("high_grade").value;
   year_high = document.getElementById("year_secondary").value;
   $('#submit_high').text = 'ยืนยัน';
+  //console.log('high_name : '+ $("#high_name").val());
   if (document.getElementById("high_name").value == "") {
       //alert("submit high wrong!");
       $("#high_name").addClass("is-invalid");
   }
-  if (document.getElementById("high_degree").value == 'none') {
+  else if (document.getElementById("high_degree").value == 'none') {
     //alert("submit high wrong!");
     $("#high_degree").addClass("is-invalid");
   }

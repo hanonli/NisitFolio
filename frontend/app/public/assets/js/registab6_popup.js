@@ -19,7 +19,7 @@ function get_job_id(list_of_job, x) {
     //var x = 1;
     list_of_job.forEach(ele => {
         ele["job_pos"] = x;
-        console.log("x:", x);
+        //console.log("x:", x);
         x++;
     });
     return list_of_job;
@@ -272,11 +272,11 @@ var for_edit;
 $(document).on("click", "#edit-job", function () {
     $("#nm_job").removeClass("error_select_job");
     id_list_job_edit = $(this).parents().attr('id');
-    console.log(`edit:`, id_list_job_edit);
+    //console.log(`edit:`, id_list_job_edit);
     choose_function = 1;
     $('#exampleModalJob').modal('toggle');
     $('#submit-job11').text('ยืนยัน');
-    console.log(`chosoe: ${choose_function}`);
+    //console.log(`chosoe: ${choose_function}`);
     for_edit = list_of_job.find(function (post, index_del) {
         if (post.id == id_list_job_edit)
             return true;
@@ -317,7 +317,7 @@ $(document).on("click", "#edit-job", function () {
         //set_slider_range3(for_edit["score_skill3"]);
         document.getElementById("input_mySlider3").disabled = false;
     }
-    console.log(`for_edit:`, for_edit);
+    //console.log(`for_edit:`, for_edit);
     document.getElementById("nm_job").selectedIndex = for_edit["name_job_select"];
     if (for_edit["obj1"] == "none") {
         for_edit["obj1"] = "";
@@ -353,7 +353,7 @@ $(document).on("click", "#edit-job", function () {
 
 $(document).on("click", "#del-job", function () {
     id_list_job_del = $(this).parents().attr('id');
-    console.log("id_list_job111:", id_list_job_del);
+    //console.log("id_list_job111:", id_list_job_del);
     $('#exampleModal_remove_job').modal('toggle');
 });
 
@@ -362,9 +362,9 @@ $(document).on('click', "#summit-to-delete", function () {
         if (post.id == id_list_job_del)
             return true;
     });
-    console.log("id_list_job:", id_list_job_del);
+    //console.log("id_list_job:", id_list_job_del);
     list_of_job.splice(removeIndex, 1);
-    console.log(`delete job id:`, removeIndex);
+    //console.log(`delete job id:`, removeIndex);
     $('#exampleModal_remove_job').modal('hide');
     $(".list-of-job").empty();
     console.log(list_of_job);
@@ -780,7 +780,7 @@ function GetJob(text) {
 }
 
 GetJob();
-
+/*
 function GetSkill(target) {
     fetch("http://localhost:2000/register/jobtitle/skill",
         { method: "GET", })
@@ -803,7 +803,7 @@ function GetSkill(target) {
 GetSkill('each_skill1');
 GetSkill('each_skill2');
 GetSkill('each_skill3');
-
+*/
 
 function testPost6() {
     var Job_Score = [], Job_Jobname = [], Job_Objective = [], Job_SkillName = []; //variable for send to backend 

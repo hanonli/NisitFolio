@@ -29,7 +29,7 @@ const Registab4 = () => {
                         <div class='col-4'>
                             <div class="selectDropdown">
                                 <select class="form-select form-select-lg dropbtn margin-bottom1 fff"  aria-labelledby="select1" id='work_jobtype' required>
-                                    <option selected disabled value=''>ประเภทงาน*</option>
+                                    <option selected disabled value='none'>ประเภทงาน*</option>
                                     <option value='งานประจำ' >งานประจำ</option>    
                                     <option value='งานเสริมนอกเวลา' >งานเสริมนอกเวลา</option>
                                     <option value='ฟรีแลนซ์' >ฟรีแลนซ์</option>
@@ -38,16 +38,16 @@ const Registab4 = () => {
                         </div>
                         <div class='row'>
                             <div class='col-6'>
-                                <input type="text" class="form-control dropbtn margin-bottom1 " id="work_jobname" placeholder="ตำแหน่งงาน*"value='' required></input>
+                                <input type="text" class="form-control dropbtn margin-bottom1 " id="work_jobname" placeholder="ตำแหน่งงาน*" required></input>
                             </div>
                             <div class='col-6'>
-                                <input type="text" class="form-control dropbtn margin-bottom1 " id="work_company" placeholder="สังกัด/บริษัท(ถ้ามี)" value=''></input>
+                                <input type="text" class="form-control dropbtn margin-bottom1 " id="work_company" placeholder="สังกัด/บริษัท(ถ้ามี)"></input>
                             </div>
                         </div>
                         <div class='row'>
                             <div class='col-5'>
                                 <div class='col-8'>
-                                    <input type="text" class="form-control dropbtn margin-bottom1 " id="work_salary" placeholder="รายได้" value=''></input>
+                                    <input type="text" class="form-control dropbtn margin-bottom1 " id="work_salary" placeholder="รายได้"></input>
                                 </div>
                             </div>
                             <div class='col-5'>
@@ -72,7 +72,7 @@ const Registab4 = () => {
                             <div class='col-5'>
                                 <div class='col-8'>
                                     <div class="selectDropdown">
-                                        <select class="form-select form-select-lg dropbtn margin-bottom1 fff"  id='year_startwork' aria-labelledby="select1" value='' required>
+                                        <select class="form-select form-select-lg dropbtn margin-bottom1 fff"  id='year_startwork' aria-labelledby="select1"  required>
                                             <option selected disabled value=''>ปีที่เข้าทำงาน*</option>
                                         </select>
                                     </div>       
@@ -104,7 +104,7 @@ const Registab4 = () => {
                             <div class='col-5'>
                                 <div class='col-8'>
                                     <div class="selectDropdown">
-                                        <select class="form-select form-select-lg dropbtn margin-bottom1 fff" id='year_endwork' aria-labelledby="select1" id='year_endjob'>
+                                        <select class="form-select form-select-lg dropbtn margin-bottom1 fff" id='year_endwork' aria-labelledby="select1" >
                                             <option selected disabled value=''>ปีที่ออกจากงาน</option>
                                         </select>
                                     </div>       
@@ -148,7 +148,7 @@ const Registab4 = () => {
                             </div>
 
                         </div>
-                        <textarea type="text" rows='5' class="form-control dropbtn margin-bottom1 registab4_textbox" id="inform_work"  placeholder='เพิ่มรายละเอียด(ถ้ามี)' value='' >
+                        <textarea type="text" rows='5' class="form-control dropbtn margin-bottom1 registab4_textbox" id="work_inform"  placeholder='เพิ่มรายละเอียด(ถ้ามี)'>
                         </textarea>
 
                     </form>
