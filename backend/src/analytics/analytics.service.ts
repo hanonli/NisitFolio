@@ -4,6 +4,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { UserAddSkill, UserJobSkill, AdditionalSkill, JobTitle } from './analytics.schema';
 import * as mongoose from 'mongoose' ;
 import { ObjectId } from 'mongodb' ;
+import { ConstraintMetadata } from 'class-validator/types/metadata/ConstraintMetadata';
 
 
 
@@ -134,7 +135,7 @@ export class AnalyticsService {
     let array = {} ;
     let InterestedJobs = [] ;
     let THnameJobs = [] ;
-    
+    console.log(userSkill) ;
     for ( var job of userSkill ) {
       const job_name = job._id.JobName;
       const job_THname = await this.JobTitleModel.findOne({ Name: job_name }).select({ THName: 1, _id: 0 }).exec();
@@ -177,9 +178,9 @@ export class AnalyticsService {
         const _name = i._id.SkillName ;
         const _sum = i.total ;
         const mean = i.mean ;
+        const AllUser = await this.UserJobSkillModel.find({JobName: job, SkillName: _name}).sort({ Score: 1 }).exec() ;
         if ( countTop <= 2 || mySkills.includes(_name) ) {  
           // ---------- AllUser Score --------------//
-          const AllUser = await this.UserJobSkillModel.find({JobName: job, SkillName: _name}).sort({ Score: 1 }).exec() ;
           
           let AllScore = [] ;
           let UserScore = null ;
@@ -199,10 +200,10 @@ export class AnalyticsService {
           
           // console.log(_name);
           // console.log(_sum);
-          temp.push({SkillName: _name, total: _sum, "AllScore": newAllScore, "UserScore": UserScore, "Count": count,"Mean": mean, "Mode": mode, percentage: n/numberOfUsers*100}) ;
+          temp.push({SkillName: _name, total: _sum, "AllScore": newAllScore, "UserScore": UserScore, "Count": count,"Mean": mean, "Mode": mode, "percentage": n/numberOfUsers*100}) ;
         }
         else { 
-          temp.push({SkillName: _name, total: _sum, "Mean": mean})
+          temp.push({SkillName: _name, total: _sum, "percentage": AllUser.length/numberOfUsers*100})
         }
         countTop ++ ;
       }
