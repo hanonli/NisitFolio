@@ -28,9 +28,11 @@ class Registab3 extends React.Component {
 									<h2 class="font-headert3">อุดมศึกษา</h2>
 									<div className=''>
                                         <div class="list-of-aca" id="in-list-of-aca"></div>
-										<button type="button" class="btn registab3_btnplus" id="add_aca">
+                                        <div class="center3">
+                                        <button type="button" class="btn registab3_btnplus" id="add_aca">
 											<img id='icon-plus-circle'  src="assets/images/+.png"></img>
 										</button>
+                                        </div>
 									</div>
 
 									<div class="modal fade" id="registab3Modal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
@@ -103,26 +105,12 @@ class Registab3 extends React.Component {
 									<h2 class="font-headert3">มัธยมศึกษา</h2>
 									<div className=''>		
                                         <div class="list-of-high" id="in-list-of-high"></div>
-                                            <div class="t3-content1">
-                                                <div class="row">
-                                                    <div class="col-3 font-titlet3">ปริญญาโท</div>
-                                                    <div class="col-4 font-titlet3">บริหารบุคคล</div>
-                                                    <div class="col-5 font-titlet3">คณะบริหารธุรกิจ</div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-3 font-titlet3">2560</div>
-                                                    <div class="col-4 font-titlet3">เกรด 4.00</div>
-                                                    <div class="col-5 font-titlet3">มหาวิทยาลัยเกษตรศาสตร์</div>
-                                                </div>
-                                                <div class="layer_icon1">
-								                    <button type="button" class="btn" id="edit-t31"><img src="assets/images/blackedit.png" width="30" height="30" data-bs-toggle="modal" data-bs-target="#registab3Modal2"></img></button>
-								                    <button type="button" class="btn" id="del-t31"><img src="assets/images/bin.png" width="30" height="30" data-bs-toggle="modal" data-bs-target="#Modal_remove_high"></img></button>
-                                                </div>
+                                            <div class="center3">
+                                                <button type="button" class="btn registab3_btnplus" data-bs-toggle="modal" data-bs-target="#registab3Modal2" id="add_high">
+                                                    <img id='icon-plus-circle'  src="assets/images/+.png"></img>
+                                                </button>
                                             </div>
-										<button type="button" class="btn registab3_btnplus" data-bs-toggle="modal" data-bs-target="#registab3Modal2">
-											<img id='icon-plus-circle'  src="assets/images/+.png"></img>
-										</button>
-									</div>
+									    </div>
 									<div class="modal fade" id="registab3Modal2" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
 										<div class="modal-dialog modal-dialog-centered modal-xl">
 											<div class="modal-content modalworkaddH" >
