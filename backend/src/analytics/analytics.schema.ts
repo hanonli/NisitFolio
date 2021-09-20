@@ -41,7 +41,7 @@ export interface UserJobSkill {
 @Schema({ collection: 'AdditionalSkill' })
 export class AdditionalSkill {
   @Prop()
-  UserId: ObjectId;
+  UserId: String;
 
   @Prop()
   AdditionalSkill: String;

@@ -3,7 +3,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 
 import { ObjectId } from "mongodb";
-import { Bookmark, TotalBookmark, UserInfo } from "./bookmarks.schema";
+import { Account, Bookmark, TotalBookmark, UserInfo } from "./bookmarks.schema";
 import * as mongoose from "mongoose";
 import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from "constants";
 
@@ -24,6 +24,8 @@ export class BookmarkService {
     @InjectModel('UserInfo')
     private UserInfoModel: Model<UserInfo>,
 
+    @InjectModel('Account')
+    private AccountModel: Model<Account>,
   ) {}
 
   async updateTotalBookmark( method: String, type: String, userId: ObjectId, projectName: String ): Promise<void> {
@@ -118,26 +120,31 @@ export class BookmarkService {
       const total = query.totalBookmarks;
 
       if ( bookmark.type == 'user' ) {
-        //console.log(bookmark);
+        console.log(bookmark.thatUserId);
         const jobs = await this.UserJobSkillModel.find( { userId: bookmark.thatUserId }).select("JobName -_id").distinct('JobName').exec();
         const details = await this.UserInfoModel.findOne({ UserId: bookmark.thatUserId }).select("-_id Firstname Lastname AboutMe").exec();
+        const profilePic = await this.AccountModel.findOne({ _id: bookmark.thatUserId }).select("-_id ProfilePic").exec();
         console.log(details);
+        console.log(profilePic);
         res[i] = {  link: bookmark.link,
                     type: bookmark.type,
                     thatUserId: bookmark.thatUserId,
                     name: details.Firstname + " " + details.Lastname,
-                    profilePic: "",
+                    profilePic: profilePic.ProfilePic,
                     jobs: jobs,
                     about: details.AboutMe,
                     timeUpdated: bookmark.updatedAt,
                     totalBookmarks: total 
                   };
       }
+      else {
+        
+      }
       i++;
     }
-    // if (sort == 'time'){
-    //   const keysSorted = Object.keys(res).sort(function(a,b) {return res[b].time-res[a].time});
-    // }
+
+
+
     let keysSorted;
 
     if (sort == 'time'){
