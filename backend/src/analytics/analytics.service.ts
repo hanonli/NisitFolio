@@ -24,7 +24,7 @@ export class AnalyticsService {
   
   async additionalAnalytics(id: string): Promise<any> {
     const Jobs = await this.UserJobSkillModel.aggregate([
-      { $match: {userId: mongoose.Types.ObjectId(id)} },
+      { $match: {userId: id} },
       { 
         $group: { 
           _id: { JobName: "$JobName" } 
@@ -122,7 +122,7 @@ export class AnalyticsService {
 * ******************************************************************************************************************************************
 */
 
-  async findUserJobSkill(userId: ObjectId): Promise<any> {
+  async findUserJobSkill(userId: string): Promise<any> {
     const userSkill = await this.UserJobSkillModel.aggregate([
                         { $match: {userId: userId} },
                         { 
@@ -187,7 +187,7 @@ export class AnalyticsService {
           let n = 0 ;
           //console.log(AllUser) ;
           for (var j of AllUser) {
-            if (userId.equals(j.userId)) { 
+            if (userId == j.userId) { 
               UserScore = j.Score ;
             }
             AllScore.push(j.Score) ;
@@ -247,7 +247,7 @@ export class AnalyticsService {
           // console.log(obj.Score) ;
           // console.log(obj.userId) ;
           AllScore.push(obj.Score) ;
-          if (userId.equals(obj.userId)) {
+          if (userId == obj.userId) {
             UserScore = obj.Score ;
           }
         }

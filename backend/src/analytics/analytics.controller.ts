@@ -16,8 +16,7 @@ export class AnalyticsController {
 
   @Get('/main/:id')
   async findUserJobSkill(@Param('id') id: string): Promise<any> {
-    const oid = mongoose.Types.ObjectId(id);
-    return this.analyticsService.findUserJobSkill(oid);
+    return this.analyticsService.findUserJobSkill(id);
   }
 
   @Post('main/UserJobSkill')
