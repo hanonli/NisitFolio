@@ -14,9 +14,12 @@ class MyresumeCertificateComponent extends React.Component{
             rand += 1;
             rand = rand%3;
             this.setState({Number: rand})
-        }, 30000)
+        }, 5000)
     }
     render(){
+        const linestyle = {
+            backgroundColor: this.props.colour? this.props.colour: "#FFCE55"
+        };
         let data = this.props.data;
         const mode = this.props.seq? this.props.seq: 0;
         let content = []
@@ -24,67 +27,77 @@ class MyresumeCertificateComponent extends React.Component{
         if((mode%2)===0){
             content.push(
                 <div class="cert-info-w">
-                    <h3>
-                        {data.CertName}
-                    </h3>
-                    <h4>
-                        {data.CertYear}
-                    </h4>
+                    <div class="cert-item">
+                        <h3>
+                            {data.CertName}
+                        </h3>
+                        <h4>
+                            {data.CertYear}
+                        </h4>
+                    </div>
+                        
                 </div>
             );
             content.push(
                 <div class="cert-image">
-                    this is image
+                    <div class="cert-img">
+                    <img
+                        src={data.CertPic}
+                    />
+                    </div>
                 </div>
             );
             content.push(
                 <div class="cert-info-w">
-                    <h3>
-                        {data.CertName}
-                    </h3>
-                    <h4>
-                        {data.CertYear}
-                    </h4>
+                    <div class="cert-item">
+                        <h3>
+                            {data.CertName}
+                        </h3>
+                        <h4>
+                            {data.CertYear}
+                        </h4>
+                    </div>
                 </div>
             );
         }
         else{
             content.push(
-                <div class="cert-info-c">
-                    <h3>
-                        {data.CertName}
-                    </h3>
-                    <h4>
-                        {data.CertYear}
-                    </h4>
+                <div class="cert-info-c" style={linestyle}>
+                    <div class="cert-item">
+                        <h3>
+                            {data.CertName}
+                        </h3>
+                        <h4>
+                            {data.CertYear}
+                        </h4>
+                    </div>
                 </div>
             );
             content.push(
-                <div class="cert-info-c">
-                    <h3>
-                        {data.CertName}
-                    </h3>
-                    <h4>
-                        {data.CertYear}
-                    </h4>
+                <div class="cert-info-c" style={linestyle}>
+                    <div class="cert-item">
+                        <h3>
+                            {data.CertName}
+                        </h3>
+                        <h4>
+                            {data.CertYear}
+                        </h4>
+                    </div>
                 </div>
             );
             content.push(
                 <div class="cert-image">
-                    this is image
+                    <div class="cert-img">
+                        <img
+                            src={data.CertPic}
+                        />
+                    </div>
                 </div>
             );
         }
         return (
-            <div>
-                <h1>
-                    Random Number : 
-                    {this.state.Number}
-
-                    {content[this.state.Number]}
-
-
-                </h1>
+            <div class="cert-element">
+                <div class="cert-child">{content[this.state.Number]}</div>
             </div>
         )
     }
@@ -92,13 +105,15 @@ class MyresumeCertificateComponent extends React.Component{
 
 
 class MyresumeCertificate extends React.Component{
+    
     render(){
+        const colour = this.props.colour? this.props.colour: "#FFCE55";
         const data = [{
             "id": "6135805ad633f137e4559260",
             "UserId": "61358059d633f137e455925c",
             "ResumeId": "6135805ad633f137e4559260",
             "CertName": "การแข่งขันการ์ดยูกิ",
-            "CertPic": "pic1",
+            "CertPic": "assets/images/certi_ex.jpeg",
             "CertYear": 1999
         },
         {
@@ -106,16 +121,15 @@ class MyresumeCertificate extends React.Component{
             "UserId": "61358059d633f137e455925c",
             "ResumeId": "6135805bd633f137e4559261",
             "CertName": "การแข่งขันเอกอิเอ้กเอ้กก",
-            "CertPic": "pic2",
+            "CertPic": "assets/images/certi_ex3.jpeg",
             "CertYear": 2002
         }];
         return(
-            <div>
-                <MyresumeCertificateComponent data={data[0]
-                    } seq={0}></MyresumeCertificateComponent>
-                <MyresumeCertificateComponent data={data[1]} seq={1}></MyresumeCertificateComponent>
+            <div class="row">
+                <div class="column"><MyresumeCertificateComponent data={data[0]} seq={0}></MyresumeCertificateComponent></div>
+                <div class="column"><MyresumeCertificateComponent data={data[1]} seq={1}></MyresumeCertificateComponent></div>
+                
             </div>
-            
         );        
     }
 } 
