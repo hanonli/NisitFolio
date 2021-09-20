@@ -17,7 +17,6 @@ const Registab4 = () => {
 									</button>
 								</div>
                                 <div class="list-of-work row" id="in-list-of-work"></div>
-                                <div class="t4-content col-6">
 								<div class="modal fade" id="registab4Modal" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
 									<div class="modal-dialog modal-dialog-centered modal-xl">
 										<div class="modal-content modalworkhis" >
