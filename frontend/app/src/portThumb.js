@@ -11,7 +11,8 @@ export default function PortThumb({ item }) {
 	<div className="sortItem">
 		<div class="sortable-thumbnail" style={Object.assign({}, { backgroundColor })}>
 			<img class="sortable-thumbnail-pic port-sort-shadow" id={myId} src="assets/images/outline_cancel_black_24dp 1.png" alt="" />
-			<img class="delete-upload-icon" id={myPid} src="assets/images/outline_cancel_black_24dp_g.png" alt="" />
+			<div class="sortable-thumbnail-overlay" />
+			<img class="delete-upload-icon" id={myPid} src="assets/images/del_button.png" alt="" />
 		</div>
 		
 		 

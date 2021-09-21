@@ -88,7 +88,7 @@ class Portfolio extends React.Component {
 		  
 		  var uploadButton = '<piv class="tres" id="{tresId}">\
 								<div class="sortable-thumbnail" style="background-color: rgb(245, 245, 245);">\
-									<img class="sortable-thumbnail-pic" id="upload-next" src="assets/images/img_upload.png" alt="">\
+									<img class="sortable-thumbnail-pic-n" id="upload-next" src="assets/images/img_upload.png" alt="">\
 								</div>\
 							</piv>'
 		  
