@@ -7,7 +7,7 @@ import './register.css'
 const Registab4 = () => {
 
 		return (
-			<div className="Registab4 regis-box-content">
+			<div className="Registab4 regis-box-content1">
 		
 						<div className='registab4_formbox' >
 								
@@ -17,6 +17,25 @@ const Registab4 = () => {
 									</button>
 								</div>
                                 <div class="list-of-work row" id="in-list-of-work"></div>
+                                <div class="t4-content col-6">
+                          <h5 class="font-titlet4 ">พ่อครัว</h5>
+                          <div class="row">
+                              <div class="col-3 font-titlet3">
+                              <div class="font-titlet3">กุ๊กไก่มหาชน</div>
+                              <div class="font-titlet3">เริ่มต้น 08/2009</div>
+                              <div class="font-titlet3">สิ้นสุด 09/2019</div>
+                              </div>
+                              <div class="col-9 font-titlet3">หิวข้าวมากแม่ช่วยด้วยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยย</div>
+                          </div>
+                          <div class="row">
+                              <div class="col-3 font-titlet3">เงินเดือน</div>
+                              <div class="col-9 font-titlet3">- บาท</div>
+                          </div>
+                          <div class="layer_icon2" >
+                             <button type="button" class="btn button1" id="edit-work"><img src="assets/images/blackedit.png" width="57" height="57"></img></button>
+                             <button type="button" class="btn button2" id="del-work"><img src="assets/images/bin.png" width="60" height="60"></img></button>
+                          </div>
+                      </div>
 								<div class="modal fade" id="registab4Modal" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
 									<div class="modal-dialog modal-dialog-centered modal-xl">
 										<div class="modal-content modalworkhis" >
