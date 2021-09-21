@@ -62,7 +62,7 @@ class BookmarkTabs extends React.Component {
 		this.handleLoad = this.handleLoad.bind(this);
 		this.state = {
 			render: false, //Set render state to false
-			allow: false,
+			allow: true,
 			
 			overviewMainCount: 0,
 			mainFocusName: 'ที่ x',
