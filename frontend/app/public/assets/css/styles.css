@@ -1638,18 +1638,8 @@ body {
 	font-weight: 400;
 }
 
-.pu4-label{
-	position: absolute;
-	top:83%;
-	left:45vw;
-	width: 20vw;
-	font-size: 2vh;
-	color: black;
-	font-weight: 300;
-}
-
 .anim-inner-popup-folio{
-	height: 52.5vh; /*position*/
+	height: 52vh; /*position*/
 }
 
 #inner-fixed-folio-3 {
@@ -1827,6 +1817,66 @@ body {
   /*outline: 2px dashed lightblue;*/
 }
 
+.sortable-container-f > div {
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 97%);
+  justify-content: space-between;
+  grid-gap: 1vw;
+  width: 18vw;
+  min-height: 10vh;
+  margin: auto;
+  /*outline: 2px dashed lightblue;*/
+}
+
+#tres-5{
+	position: absolute;
+	display: grid;
+	left: 81%;
+	grid-template-columns: repeat(auto-fill, 18%);
+	justify-content: space-between;
+	grid-gap: 1vw;
+	width: 97vw;
+	min-height: 10vh;
+	margin: auto;
+}
+
+#tres-4{
+	position: absolute;
+	display: grid;
+	left: 71.5%;
+	grid-template-columns: repeat(auto-fill, 22%);
+	justify-content: space-between;
+	grid-gap: 1vw;
+	width: 78vw;
+	min-height: 10vh;
+	margin: auto;
+}
+
+#tres-3{
+	position: absolute;
+	display: grid;
+	left: 61.5%;
+	grid-template-columns: repeat(auto-fill, 30%);
+	justify-content: space-between;
+	grid-gap: 1vw;
+	width: 59vw;
+	min-height: 10vh;
+	margin: auto;
+}
+
+#tres-2{
+	position: absolute;
+	display: grid;
+	left: 50%;
+	grid-template-columns: repeat(auto-fill, 45%);
+	justify-content: space-between;
+	grid-gap: 1vw;
+	width: 39vw;
+	min-height: 10vh;
+	margin: auto;
+}
+
 .sortable-thumbnail{
 	position: relative;
 	display: flex;
@@ -1852,6 +1902,15 @@ body {
 	background: #C7C7C7;
 	justify-content: center;
 	flex-direction: column;
+}
+
+.sortable-thumbnail-pic:hover{
+	opacity: 50%;
+	background: black !important;
+}
+
+.port-sort-shadow{
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .delete-upload-icon{
@@ -1882,6 +1941,8 @@ body {
 	left:5vw;
 	width: 10vw;
 	font-size: 2vh;
+	color: black;
+	font-weight: 400;
 }
 
 .p1-input{
@@ -1905,6 +1966,8 @@ body {
 	left:5vw;
 	width: 10vw;
 	font-size: 2vh;
+	color: black;
+	font-weight: 400;
 }
 
 .p2-input{
@@ -1929,6 +1992,8 @@ body {
 	left:5vw;
 	width: 10vw;
 	font-size: 2vh;
+	color: black;
+	font-weight: 400;
 }
 
 .p3-input{
@@ -1952,6 +2017,8 @@ body {
 	left:5vw;
 	width: 10vw;
 	font-size: 2vh;
+	color: black;
+	font-weight: 400;
 }
 
 .p5-label{

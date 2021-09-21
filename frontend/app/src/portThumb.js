@@ -8,10 +8,10 @@ export default function PortThumb({ item }) {
   //item.id === "2" && (backgroundColor = "#f5f5f5");
 
   return (
-	<div>
+	<div className="sortItem">
 		<div class="sortable-thumbnail" style={Object.assign({}, { backgroundColor })}>
-			<img class="sortable-thumbnail-pic" id={myId} src="assets/images/img_upload.png" alt="" />
-			<img class="delete-upload-icon" id={myPid} src="assets/images/outline_cancel_black_24dp 1.png" alt="" />
+			<img class="sortable-thumbnail-pic port-sort-shadow" id={myId} src="assets/images/outline_cancel_black_24dp 1.png" alt="" />
+			<img class="delete-upload-icon" id={myPid} src="assets/images/outline_cancel_black_24dp_g.png" alt="" />
 		</div>
 		
 		 
