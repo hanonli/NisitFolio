@@ -1031,7 +1031,7 @@ navbar { margin:0; }
 }
 
 .lg-view{
-   display:inline-block;
+   /*display:inline-block;*/
 }
 
 .lg-view-search{
@@ -1065,6 +1065,11 @@ navbar { margin:0; }
     .sm-view{
        display:inline-block;
     }
+	
+	.navbar-nav{
+	  width: 100%;
+	  text-align: center;
+	}
 	
 	.navbar-nav > li{
 	  padding-left:23px;
@@ -1104,27 +1109,53 @@ navbar { margin:0; }
 	width: 100%;
 }
 
-.nvw1{
-	width: 10vw;
-	padding: 0;
-	/*background: red;*/
+.nav-flex{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
+.nvw1{
+	/*background: red;*/
+	flex-grow: 0;
+	min-width: 428px;
+}
+
+@media (max-width: 1280px) {
+	.nvw1{ min-width: 0; }
+	.nvw3{ display: block !important; }
+}
 
 .nvw2{
-	width: 90vw;
-	padding: 0;
+	display: flex;
+	justify-content: center;
+
+
+	flex-grow: 0;
+    flex-shrink: 1;
+	min-width: 260px;
+    flex-basis: 33%;
+	
 	/*background: green;*/
 }
 
-.nvm3{
+.nvf{
+	display: flex;
 	position: relative;
-	width: 70%;
-	float: right;
-	right: 7.5%;
+	width: 100%;
 	
 }
 
+.nvw3{
+	position: relative;
+	/*min-width: 428px;*/
+
+	justify-content: flex-end;
+}
+
+.sm-logo{
+	margin-bottom: 14px;
+}
 
 .parent_div{
    display: flex;
@@ -1587,12 +1618,18 @@ body {
 }
 
 .MuiFilledInput-root{
-	border-radius: 2vh !important;
+	border-radius: 6vh !important;
+	background-color: #EAEAEA !important;
+}
+
+.MuiFilledInput-root:hover{
+	background-color: #CDCDCD !important;
 }
 
 #basic-date-picker{
 	/*margin-bottom: 7% !important;*/
 	padding: 1vh 1vh 1vh 1vh;
+	font-family: 'Nunito','Kanit', arial, sans-serif;
 }
 
 .MuiFilledInput-underline:before{
@@ -1929,7 +1966,7 @@ body {
 .sortable-thumbnail-pic:hover{
 	/*opacity: 1%;
 	background: black !important;*/
-	filter: brightness(50%);
+	filter: brightness(70%);
 }
 
 .sortable-thumbnail-overlay{
@@ -1957,8 +1994,9 @@ body {
 	left: 86%;
 	top: 5%;
 	z-index: 2;
-	display: none !important;
+	display: none;
 	/*width: 35vh;*/
+	/*pointer-events: none;*/
 }
 
 .sortable-label{

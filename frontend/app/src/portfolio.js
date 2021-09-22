@@ -43,6 +43,7 @@ class Portfolio extends React.Component {
 		document.body.appendChild(script);*/
 		//$.getScript('assets/js/portfolio.js');
 		const refThis = this;
+		var refElement = null;
 		
 		  var avatar = $('.port-pic-uploadable');
 		  var image = document.getElementById('image');
@@ -58,6 +59,35 @@ class Portfolio extends React.Component {
 			$( ".port-pic-uploadable" ).click(function() {
 			  input.click();
 			});
+			
+			function ResetHoverFunction(){
+				$('.sortable-thumbnail-pic').on('mouseenter', function(){
+					  //alert('over!'); 
+					 refElement = $(this);
+					 var mid = refElement.attr('id');
+					 var pid = mid.replace('upload','pic');
+					 $('#'+pid).css('display','inline');
+					});
+					
+				  $('.sortable-thumbnail-pic').on('mouseleave', function(){
+					  //alert('out!'); 
+					 $('.delete-upload-icon').css('display','none');
+					});
+					
+				  $('.delete-upload-icon').on('mouseenter', function(){
+					  //alert('over!'); 
+					 var mid = refElement.attr('id');
+					 var pid = mid.replace('upload','pic');
+					 $('#'+pid).css('display','inline');
+					});
+					
+				  $('.delete-upload-icon').on('mouseleave', function(){
+					  //alert('out!'); 
+					 var mid = refElement.attr('id');
+					 var pid = mid.replace('upload','pic');
+					 $('#'+pid).css('display','inline');
+					});
+			}
 
 		  input.addEventListener('change', function (e) {
 			var files = e.target.files;
@@ -213,12 +243,9 @@ class Portfolio extends React.Component {
 				  //}, 2000);
 					  //alert('add!');
 				   //}
+				   $('.delete-upload-icon').css('display','none');
 
-
-			
-			
-			
-				
+				   ResetHoverFunction();
 		  });
 		
 		/////////////////////////
@@ -284,6 +311,7 @@ class Portfolio extends React.Component {
 
 				refThis.setState({ list: temp });
 				ResetSortableContent();
+				ResetHoverFunction();
 				
 				if(temp.length == 0){
 					//alert('empty!');
@@ -316,7 +344,7 @@ class Portfolio extends React.Component {
 					
 					jObj = $(uploadButton.replace('{tresId}','tres-5')).prependTo( $('.sortable-container-5').first());
 					$( "#upload-next" ).click(function() {input.click(); }); 
-
+					ResetHoverFunction();
 				}else{
 					//alert('delete before last');
 					var Did = Number(ref.id.slice(-1));
@@ -331,6 +359,7 @@ class Portfolio extends React.Component {
 						refThis.setState({ list: temp });
 						jObj = $(uploadButton.replace('{tresId}','tres-5')).prependTo( $('.sortable-container-5').first());
 						$( "#upload-next" ).click(function() {input.click(); }); 
+						ResetHoverFunction();
 						
 					}, 10);
 					
@@ -343,7 +372,7 @@ class Portfolio extends React.Component {
 				$('.delete-upload-icon').on('click', function(){ // add delete event
 					delFunc(this);
 				});
-			}, 50);
+			}, 20);
 			
 		}
 		
@@ -377,9 +406,7 @@ class Portfolio extends React.Component {
 			  $('.p5-label').show();
 			  $('.port-bg').css('background-color', 'white');
 			  
-			  setTimeout(function() { $('.pu-date-picker').css("display", "none"); }, 300);
-			  
-			  
+			  setTimeout(function() { $('.pu-date-picker').css("display", "none"); }, 300); 
 		  });
 		});	
 		
@@ -525,7 +552,7 @@ class Portfolio extends React.Component {
 							เพิ่มไฟล์แนบ (สูงสุด 8MB)
 						</div>
 						<div class="pu3-label">
-							วันที่เข้าร่วม /<br/> ได้รับ
+							วันที่เข้าร่วม/ได้รับ
 						</div>
 						<div class="pu-date-picker">
 							< BasicDatePickerPort />

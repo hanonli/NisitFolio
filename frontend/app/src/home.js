@@ -44,7 +44,7 @@ class Home extends React.Component {
 		 });*/
 		
 		
-		fetch("http://localhost:2000/homepage/",{
+		fetch("http://192.168.1.3:2000/homepage/",{
 			method: "GET",
 			headers: {
 				'Authorization': 'Bearer '+token,
@@ -194,7 +194,7 @@ class Home extends React.Component {
 						</header>
 					</div>
 					
-					<div class="container-fluid" id="inner-home">
+					<div class="container-fluid lg-view" id="inner-home">
 						<div class="d-flex df-f justify-content-center align-items-center">
 							<div class="row">
 								<div class="col-md-auto">
