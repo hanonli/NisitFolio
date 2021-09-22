@@ -7,8 +7,8 @@
 
 .card_certi {
     border: 1px solid black;
-    height: 220px;
-    width: 710px;
+    height: 200px;
+    width: 545px;
     border-radius: 25px;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -21,13 +21,13 @@
     color: black;
     margin-left: 30px;
     margin-top: 45px;
-    font-size: 32px;
+    font-size: 24px;
 }
 
 #year-of-certi {
     margin-left: 30px;
     margin-top: 38px;
-    font-size: 35px;
+    font-size: 24px;
 }
 
 .pos-pic-of-certi {
@@ -47,8 +47,8 @@
 /*---layer function of list name certi---*/
 
 .layer-button-certi {
-    height: 219px;
-    width: 709px;
+    height: 199px;
+    width: 544px;
     position: absolute;
     top: 0;
     left: -1px;
@@ -65,16 +65,20 @@
 
 .layer-button-certi button{
     visibility: hidden;
-    margin-top: 6.5%;
-    margin-left: 170px;
+    margin-top: 10.8%;
+    margin-left: 20px;
     transition: 0.1s;
 }
 
 .layer-button-certi:hover button{
     visibility: visible;
-   
 }
 
+.set-layer-button-certi{
+    position: absolute;
+    left: 180px;
+    top: 45px;
+}
 
 #preview_before_upload {
     margin-top: 25px;
@@ -100,9 +104,9 @@
 }
 
 .frame_add_certi {
-    background-color: #b6deea;
+    background-color: #E4F7FF;
     border: 1px solid black;
-    height: 140px;
+    height: 106px;
     /*width: 1470px;*/
     border-radius: 25px;
     margin-top: 5px;
@@ -116,7 +120,7 @@
 }
 
 .button_add_certi button {
-    margin-top: 0.22%;
+    margin-top: 1.42%;
 }
 
 .height-job {
@@ -134,4 +138,13 @@
 
 #textOfyear_certi {
     color: black;
+    font-size: 32px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+#text-add-name-my-certi11{
+    color: black;
+    font-size: 32px;
+    margin-bottom: 15px;
 }
