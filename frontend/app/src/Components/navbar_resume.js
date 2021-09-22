@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import './navbar_resume.css'
 
 class Resume_sideNavbar extends React.Component {
+	
 	constructor(props) {
 		super(props);
 		this.handleLoad = this.handleLoad.bind(this);
@@ -21,32 +22,36 @@ class Resume_sideNavbar extends React.Component {
 	 }
 	
 	render (){
+		const linestyle = {
+            backgroundColor: this.props.colour? this.props.colour: "#FFCE55"
+        };
 		return (
+			
 			<div className="Resume_sideNavbar" id='sideNav'>
 				
-				<div class="row" id='myresumepath'> 
-						<div class='resumeblock'>
-							<a href="#resumetopic"> 
+				<div  id='myresumepath'> 
+						<div className='resumeblock' >
+							<a className='resumeicon' href="#resume-education"> 
 								<img id='icon-myresume-education'  src="assets/images/ประวัติการศึกษา.png"/>
 							</a>
 						</div>
 
-						<div class='resumeblock'>
-							<a href="#"> <img id='icon-myresume-certi'  src="assets/images/เกียรติบัตรและใบรับรอง.png"></img> </a>
+						<div className='resumeblock'>
+							<a className='resumeicon' href="#resume-certificate"> <img id='icon-myresume-certi'  src="assets/images/เกียรติบัตรและใบรับรอง.png"></img> </a>
 						</div>
 
-						<div class='resumeblock'>
-							<a href="#"> <img id='icon-myresume-skill'  src="assets/images/ความถนัดและทักษะ.png"></img> </a>
+						<div className='resumeblock'>
+							<a className='resumeicon' href="#"> <img id='icon-myresume-skill'  src="assets/images/ความถนัดและทักษะ.png"></img> </a>
 						</div>
 
-						<div class='resumeblock'>
-							<a href="#"> <img id='icon-myresume'  src="assets/images/bookmark_1.png"></img> </a>
+						<div className='resumeblock'>
+							<a className='resumeicon' href="#"> <img id='icon-myresume'  src="assets/images/bookmark_1.png"></img> </a>
 						</div>
-						<div class='resumeblock'>
-							<a href="#"> <img id='icon-myresume-work'  src="assets/images/ผลงานของฉัน.png"></img> </a>
+						<div className='resumeblock'>
+							<a className='resumeicon' href="#"> <img id='icon-myresume-work'  src="assets/images/ผลงานของฉัน.png"></img> </a>
 						</div>
-						<div class='resumeblock'>
-							<a href="#"> <img id='icon-myresume-goal'  src="assets/images/เป้าหมายการทำงาน.png"></img> </a>
+						<div className='resumeblock'>
+							<a className='resumeicon' href="#"> <img id='icon-myresume-goal'  src="assets/images/เป้าหมายการทำงาน.png"></img> </a>
 						</div>
 						
 				</div>
