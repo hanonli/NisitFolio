@@ -3,8 +3,8 @@ $(document).ready( function() {
     $('#icon-myresume-education, #icon-myresume-certi, #icon-myresume-skill, #icon-myresume-work, #icon-myresume-goal, #icon-myresume-resume' )
     .attr({
         
-        'width': ' 40vw',
-        'height' : '40vh',
+        'width': ' 30vw',
+        'height' : '30vh',
  
     });
     $(".resumeblock").hover(function(){

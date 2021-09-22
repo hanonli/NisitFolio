@@ -25,14 +25,19 @@
 
 
   .resumeblock{
-    font-size: 120%;
+    font-size: 10vw;
 
   }
   
   #myresumepath{
     height: 100vh;
-
     
+  }
+  #resumetext{
+    display: inline-block;
+    color: black;
+    font-weight: 300;
+    font-size: 2vh;
   }
  
 
