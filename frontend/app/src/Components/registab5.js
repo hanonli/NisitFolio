@@ -14,7 +14,7 @@ class Registab5 extends React.Component {
 	render() {
 		return (
 			<div className="Registab5">
-				<div class="regis-box-content">
+				<div class="regis-box-content1">
 
 					<div class="frame_add_certi">
 						<div className="button_add_certi">
