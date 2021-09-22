@@ -4,53 +4,69 @@ import DatePickerBD from './datepickerBD.js';
 class Registab1 extends React.Component {
 	render (){
 		return (
-			<div className="Registab1 regis-box-content">
+			<div className="Registab1 regis-box-content1">
 				<div class="container-fluid margin-top1">
 					<div class="row">
 						<div class="col-1"></div>
 						<div class="col-8">
 							<div class="container-fluid">
 								<div class="row">
-									<div class="col-md-5">
-										<input type="text" class="form-control dropbtn margin-bottom1 " id="re01" placeholder="ชื่อ*" required></input>
+									<div class="col-2">
+										<label class=" form-f-sex">ชื่อ<a class="red_markEp1">*</a></label>
 									</div>
-									<div class="col-md-2"></div>
-									<div class="col-md-5">
-										<input type="text" class="form-control dropbtn margin-bottom1 " id="re02" placeholder="นามสกุล*" required></input>
+									<div class="col-4">
+										<input type="text" class="form-control dropbtn margin-bottom1 " id="re01" required></input>
 									</div>
-								</div>
-								<div class="col-md-12">
-									<input type="text" class="form-control dropbtn margin-bottom1 " id="re03" placeholder="อีเมล*" required></input>
-								</div>
-								<div class="col-md-12">
-									<input type="password" class="form-control dropbtn margin-bottom1 " id="pass05" placeholder="รหัสผ่าน*" aria-describedby="passwordHelpInline" required></input>
-								</div>
-								<div class="col-md-12 triggerRed1">
-									<input type="password" class="form-control dropbtn margin-bottom1 " id="pass06" placeholder="ยืนยันรหัสผ่าน*" required></input>
-								</div>
-								<div class="col-md-12">
-									<div class="row">
-										<div class="col-md-2">
-											<label class="sexdistance form-f-sex">เพศ<a class="red_markEp1">*</a></label>
-										</div>
-										<div class="col-6">
-											<select class="form-select dropbtn margin-bottom1 fff" id ="sexgen" required>
-												<option selected disabled value="">เลือกเพศ</option>
-												<option value="ชาย">ชาย</option>
-												<option value="หญิง">หญิง</option>
-												<option value="ไม่ระบุ">ไม่ระบุ</option>
-											</select>
-										</div>
+									<div class="col-2">
+										<label class=" form-f-sex">นามสกุล<a class="red_markEp1">*</a></label>
+									</div>
+									<div class="col-4">
+										<input type="text" class="form-control dropbtn margin-bottom1 " id="re02" required></input>
 									</div>
 								</div>
-								<div class="col-md-12">
-									<div class="row">
-										<div class="col-md-2">
-											<label class="sexdistance form-f-sex ">วันเกิด<a class="red_markEp1">*</a></label>
-										</div>
-										<div class="col-10">
-											<DatePickerBD />
-										</div>
+								<div class="row">
+									<div class="col-md-2">
+										<label class="form-f-sex">อีเมล<a class="red_markEp1">*</a></label>
+									</div>
+									<div class="col-10">
+										<input type="text" class="form-control dropbtn margin-bottom1 " id="re03" required></input>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-2">
+										<label class="form-f-sex">รหัสผ่าน<a class="red_markEp1">*</a></label>
+									</div>
+									<div class="col-10">
+										<input type="password" class="form-control dropbtn margin-bottom1 " id="pass05" aria-describedby="passwordHelpInline" required></input>
+									</div>
+								</div>
+								<div class="row triggerRed1">
+									<div class="col-md-2">
+										<label class="form-f-cfp">ยืนยันรหัสผ่าน<a class="red_markEp1">*</a></label>
+									</div>
+									<div class="col-10">
+										<input type="password" class="form-control dropbtn margin-bottom1 " id="pass06" required></input>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-2">
+										<label class="sexdistance form-f-sex">เพศ<a class="red_markEp1">*</a></label>
+									</div>
+									<div class="col-6">
+										<select class="form-select dropbtn margin-bottom1 fff" id ="sexgen" required>
+											<option selected disabled value="">เลือกเพศ</option>
+											<option value="ชาย">ชาย</option>
+											<option value="หญิง">หญิง</option>
+											<option value="ไม่ระบุ">ไม่ระบุ</option>
+										</select>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-2">
+										<label class="sexdistance form-f-sex ">วันเกิด<a class="red_markEp1">*</a></label>
+									</div>
+									<div class="col-10">
+										<DatePickerBD />
 									</div>
 								</div>
 							</div>	

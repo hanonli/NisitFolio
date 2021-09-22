@@ -4,7 +4,7 @@ class Registab2 extends React.Component {
 
 	render (){
 		return (
-			<div className="Registab2 regis-box-content">
+			<div className="Registab2 regis-box-content1">
 				<div class="container-fluid margin-top1">
 					<form class="row">
 						<div class="col-2"></div>
