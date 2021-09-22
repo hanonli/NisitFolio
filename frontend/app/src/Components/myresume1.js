@@ -25,7 +25,7 @@ class MyResume1 extends React.Component {
             {
                 "id": "6135805bd633f137e4559263",
                 "UserId": "61358059d633f137e453925c",
-                "Degree": "มัธยมศึกษา",
+                "Degree": "มัธยมศึกษาตอนต้น",
                 "Facalty": "หมูกรอบ",
                 "Field_of_study": "none",
                 "Academy": "ตู้ล็อกเกอร๋",
@@ -41,6 +41,16 @@ class MyResume1 extends React.Component {
                 "Academy": "โรงเรียนของเราน่านอน",
                 "Grade": 4.0,
                 "Education_End_Year": 2019
+            },
+            {
+                "id": "6135805bd633f137e4559263",
+                "UserId": "61358059d633f137e453925c",
+                "Degree": "มัธยมศึกษาตอนต้น",
+                "Facalty": "none",
+                "Field_of_study": "none",
+                "Academy": "โรงเรียนของเราน่านอน",
+                "Grade": 4.0,
+                "Education_End_Year": 0
             }
         ]
         return (
