@@ -6,12 +6,17 @@ class EducationContent extends React.Component {
     render(){
         const data = this.props.data;
 
-        console.log(data.Degree)
-        
+        let classofed;
         let content = [];
         let year;
         let line3;
         let line3x;
+        if(data.id === "dummydummyeducation"){
+            classofed = "educationdummycontent";
+        }
+        else{
+            classofed = "educationonecontent";
+        }
         if(data.Education_End_Year === 0){
             content.push(
                 <div class="educationcontentLine1">
@@ -108,12 +113,8 @@ class EducationContent extends React.Component {
         );
         }
         return(
-            <div class ="educationonecontent">
+            <div class ={classofed}>
                 {content}
-                
-                
-                
-
             </div>
         )
     }
@@ -166,26 +167,108 @@ class MyResumeEducation extends React.Component {
             }  
         }
 
-
+        const owner = this.props.owner? this.props.owner: false;
         const linestyle = {
             backgroundColor: this.props.colour? this.props.colour: "#FFCE55"
         };
+        const dummylinestyle = {
+            backgroundColor: "#C4C4C4"
+        };
         const data = this.props.data? this.props.data: [];
         /*data.sort((a, b) => (a.Education_End_Year < b.Education_End_Year) ? 1 : -1)*/
-        let sortdata = data.sort(educationSorter("Degree", "Education_End_Year"));
-        console.log(sortdata);
+        const occupation = this.props.occupation? this.props.occupation: "นี้";
+        let EducationCon;
+        let sortdata;
         let content = [];
-        for (var i = 0; i < data.length; i++) {
-            content.push(<EducationContent data={sortdata[i]}></EducationContent>);
-            console.log(data[i]);
+        if(data.length !== 0){
+            sortdata = data.sort(educationSorter("Degree", "Education_End_Year"));
+            for (var i = 0; i < sortdata.length; i++) {
+                content.push(<EducationContent data={sortdata[i]}></EducationContent>);
+                /*console.log(data[i]);*/
+                
+            }
+            EducationCon = (<Myresumetimeline data={content} colour={this.props.colour}></Myresumetimeline>);
         }
-
+        else if(owner){
+            const educationdummydata = [
+                {
+                    "id": "dummydummyeducation",
+                    "Degree": "วุฒิศึกษา",
+                    "Facalty": "คณะ",
+                    "Field_of_study": "สาขาวิชา",
+                    "Academy": "สถานศึกษา",
+                    "Grade": 1.11,
+                    "Education_End_Year": "ปีที่จบการศึกษา"
+                },
+                {
+                    "id": "dummydummyeducation",
+                    "Degree": "วุฒิศึกษา",
+                    "Facalty": "คณะ",
+                    "Field_of_study": "สาขาวิชา",
+                    "Academy": "สถานศึกษา",
+                    "Grade": 1.11,
+                    "Education_End_Year": "ปีที่จบการศึกษา"
+                },
+                {
+                    "id": "dummydummyeducation",
+                    "Degree": "วุฒิศึกษา",
+                    "Facalty": "คณะ",
+                    "Field_of_study": "สาขาวิชา",
+                    "Academy": "สถานศึกษา",
+                    "Grade": 1.11,
+                    "Education_End_Year": "ปีที่จบการศึกษา"
+                },
+                
+            ];
+            for (var i = 0; i < educationdummydata.length; i++) {
+                content.push(<EducationContent data={educationdummydata[i]}></EducationContent>);
+            }
+            EducationCon = (
+                <div class="education-dummyshow">
+                    <div class="resumetimeline">
+                        <div class="resumetimeline-line" style={dummylinestyle}></div>
+                        <div class="timeline-block">
+                            <div class="timeline-dot-pointer" style={dummylinestyle}></div>
+                            <div class="left-row">
+                                <div class="educationdummycontent">
+                                    <div class="educationcontentLine1"><p class="year inline2">ปีที่จบการศึกษา</p><div class="centerbreak inline2"><div class="breakline inline2">|</div></div><p class="degree inline2">วุฒิศึกษา</p></div>
+                                    <div class="educationcontentLine2"><h3 class="field">สาขาวิชา</h3></div>
+                                    <div class="educationcontentLine3"><p>คณะ, สถานศึกษา</p></div>
+                                    <div class="educationcontentLine4"><p class="grade-label inline2">เกรด</p><div class="centerbreak inline2"><div class="breakline inline2"> </div></div><h4 class="grade inline2">1.11</h4></div></div></div></div>
+                        <div class="timeline-block">
+                            <div class="timeline-dot-pointer" style={dummylinestyle}></div>
+                            <div class="right-row">
+                                <div class="educationdummycontent">
+                                    <div class="educationcontentLine1"><p class="year inline2">ปีที่จบการศึกษา</p><div class="centerbreak inline2"><div class="breakline inline2">|</div></div><p class="degree inline2">วุฒิศึกษา</p></div>
+                                    <div class="educationcontentLine2"><h3 class="field">สาขาวิชา</h3></div>
+                                    <div class="educationcontentLine3"><p>คณะ, สถานศึกษา</p></div>
+                                    <div class="educationcontentLine4"><p class="grade-label inline2">เกรด</p><div class="centerbreak inline2"><div class="breakline inline2"> </div></div><h4 class="grade inline2">1.11</h4></div></div></div></div>
+                        <div class="timeline-block">
+                            <div class="timeline-dot-pointer" style={dummylinestyle}></div>
+                            <div class="right-row">
+                                <div class="educationdummycontent">
+                                    <div class="educationcontentLine1"><p class="year inline2">ปีที่จบการศึกษา</p><div class="centerbreak inline2"><div class="breakline inline2">|</div></div><p class="degree inline2">วุฒิศึกษา</p></div>
+                                    <div class="educationcontentLine2"><h3 class="field">สาขาวิชา</h3></div>
+                                    <div class="educationcontentLine3"><p>คณะ, สถานศึกษา</p></div>
+                                    <div class="educationcontentLine4"><p class="grade-label inline2">เกรด</p><div class="centerbreak inline2"><div class="breakline inline2"> </div></div><h4 class="grade inline2">1.11</h4></div></div></div></div>
+                        </div>
+                    <div class="ed-dummy">
+                        <p>ตอนนี้คุณยังไม่มีข้อมูลประวัติการศึกษา สำหรับตำแหน่งงาน{occupation}</p>
+                        <button>แก้ไขโปรไฟล์</button>
+                    </div>
+                </div>
+                );
+        /*console.log(sortdata);*/
+        
+        }
+        
+        
         return (
-            <div class="myeducation">
+            <div class="resume-education" id="resume-education">
                 <div class="educationtopic"><h2 class="resumetopic">ประวัติการศึกษา</h2></div>
                 <div class="resumesectionline" style={linestyle}></div>
-                <Myresumetimeline data={content}></Myresumetimeline>
-                
+                {EducationCon}
+            
             </div>
 
             

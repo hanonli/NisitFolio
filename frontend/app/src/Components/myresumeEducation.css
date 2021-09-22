@@ -1,6 +1,6 @@
 /*education content style*/
 
-.myeducation{
+.resume-education{
     padding: 4vw;
     text-align: center;
 }
@@ -15,18 +15,28 @@
     color: black;
 }
 
+.educationdummycontent{
+    /*margin-top: 50%;*/
+    transform: translate(0, -50%);
+    color: #C4C4C4;
+}
+
+.educationdummycontent *{
+    color: #C4C4C4;
+}
+
 .inline2 { 
     display: inline; 
     }
 
 .educationcontentLine1 .year{
     bottom: 0;
-    font-size: 2.4vw;
+    font-size: 1.8vw;
 
 }
 .educationcontentLine1 .degree{
     bottom: 0;
-    font-size: 2.2vw;
+    font-size: 1.6vw;
 }
 
 .educationcontentLine1 .centerbreak{
@@ -35,11 +45,11 @@
 
 .breakline{
     font-weight: 400;
-    font-size: 3vw;
+    font-size: 2.6vw;
 }
 
 .educationcontentLine2 .field{
-    font-size: 4vw;
+    font-size: 2.6vw;
 }
 .educationcontentLine3{
     height: auto;
@@ -47,12 +57,12 @@
     padding: 0%;
 }
 .educationcontentLine3 p{
-    font-size: 2vw;
+    font-size: 1.3vw;
     height: auto;
     margin-bottom: 0%;
 }
-
-.educationcontentbigLine3{
+/*Terminated*/
+/*.educationcontentbigLine3{
     font-size: 4vw;
     height: auto;
     margin-bottom: 0%;
@@ -63,13 +73,43 @@
     height: auto;
     margin-bottom: 0.5%;
 }
-
+*/
 .educationcontentLine4 .grade{
     bottom: 0;
-    font-size: 2.6vw;
+    font-size: 1.8vw;
     font-weight: 800;
 }
 .educationcontentLine4 .grade-label{
     bottom: 0;
-    font-size: 2.2vw;
+    font-size: 1.6vw;
+}
+
+.education-dummyshow{
+    position: relative;
+}
+
+.ed-dummy{
+    background: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -64%);
+    width: 100%;
+    
+    padding: 2.4vw;
+}
+
+.ed-dummy p{
+    color: #939393;
+    font-size: 1.6vw;
+}
+
+.ed-dummy button{
+    font-size: 2vw;
+    background: #F9DC5C;
+    border-radius: 3vw;
+    padding: 1vw;
+    color: black;
+    padding-inline: 4vw;
+    border: rgba(0,0,0,0);
 }

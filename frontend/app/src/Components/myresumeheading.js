@@ -9,7 +9,7 @@ class MyresumeHeading extends React.Component{
             border: bordercode,
         };
         return(
-            <div class="resume-header">
+            <div class="resume-header" id="resume-header">
                 <div class="resume-profile-picture">
                     <a> 
                         <img class="resume-profile-pic" src={this.props.imagepath? this.props.imagepath: "assets/images/profile2.jpg"}></img>

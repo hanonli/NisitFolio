@@ -155,49 +155,22 @@ class MyresumeCertificate extends React.Component{
     render(){
         const colour = this.props.colour? this.props.colour: "#FFCE55";
         const linestyle = {
-            backgroundColor: this.props.colour? this.props.colour: "#FFCE55"
+            backgroundColor: colour
         };
-        const data = [{
-            "id": "6135805ad633f137e4559260",
-            "UserId": "61358059d633f137e455925c",
-            "ResumeId": "6135805ad633f137e4559260",
-            "CertName": "การแข่งขันการ์ดยูกิ",
-            "CertPic": "assets/images/certi_ex.jpeg",
-            "CertYear": 1999
-        },
-        {
-            "id": "6135805bd633f137e4559261",
-            "UserId": "61358059d633f137e455925c",
-            "ResumeId": "6135805bd633f137e4559261",
-            "CertName": "การแข่งขันเอกอิเอ้กเอ้กก",
-            "CertPic": "assets/images/certi_ex3.jpeg",
-            "CertYear": 2002
-        },
-        {
-            "id": "6135805bd633f137e4559261",
-            "UserId": "61358059d633f137e455925c",
-            "ResumeId": "6135805bd633f137e4559261",
-            "CertName": "การแข่งขันนอนกลางวัน",
-            "CertPic": "assets/images/certi_ex2.jpeg",
-            "CertYear": 2003
-        },
-        {
-            "id": "6135805bd633f137e4559261",
-            "UserId": "61358059d633f137e455925c",
-            "ResumeId": "6135805bd633f137e4559261",
-            "CertName": "การแข่งขันนอนกลางวัน",
-            "CertPic": "assets/images/trylargesizeimg.jpg",
-            "CertYear": 2003
-        }]
-    ;
+        const data = this.props.data? this.props.data: [];
         data.sort((a, b) => (a.CertYear < b.CertYear) ? 1 : -1)
         let content = [];
-        for (var i = 0; i < data.length; i++) {
-            content.push(<div class="cert-column"><MyresumeCertificateComponent data={data[i]} seq={i}></MyresumeCertificateComponent></div>);
-            console.log(data[i]);
+        if(data.length !==0){
+            for (var i = 0; i < data.length; i++) {
+                content.push(<div class="cert-column"><MyresumeCertificateComponent data={data[i]} colour={colour} seq={i}></MyresumeCertificateComponent></div>);
+                console.log(data[i]);
+            }
+        }
+        else{
+
         }
         return(
-            <div class="certificate-data">
+            <div class="certificate-data" id="resume-certificate">
                 <div class="educationtopic"><h2 class="resumetopic">เกียรติบัตรและใบรับรอง</h2></div>
                 <div class="resumesectionline" style={linestyle}></div>
                 <div class="cert-show">
