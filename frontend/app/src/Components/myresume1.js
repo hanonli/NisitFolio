@@ -83,6 +83,7 @@ class MyResume1 extends React.Component {
 			    <MyResumeEducation data={educationdata}></MyResumeEducation>
                 <MyResumeEducation data={[]} owner={true}></MyResumeEducation>
                 <MyresumeCertificate data={certdata}></MyresumeCertificate>
+                <MyresumeCertificate data={[]}></MyresumeCertificate>
             </div>
         );
         

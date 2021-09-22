@@ -123,6 +123,9 @@ class EducationContent extends React.Component {
 
 
 class MyResumeEducation extends React.Component {
+    handleRoute = () =>{ 
+        window.location = ("editprofile");
+    }
     render() {
         function educationSorter(firstKey, secondKey) {
             //console.log("callSort");
@@ -174,7 +177,7 @@ class MyResumeEducation extends React.Component {
         const dummylinestyle = {
             backgroundColor: "#C4C4C4"
         };
-        const data = this.props.data? this.props.data: [];
+        const data = this.props.data? this.props.data : [];
         /*data.sort((a, b) => (a.Education_End_Year < b.Education_End_Year) ? 1 : -1)*/
         const occupation = this.props.occupation? this.props.occupation: "นี้";
         let EducationCon;
@@ -234,7 +237,7 @@ class MyResumeEducation extends React.Component {
                                     <div class="educationcontentLine1"><p class="year inline2">ปีที่จบการศึกษา</p><div class="centerbreak inline2"><div class="breakline inline2">|</div></div><p class="degree inline2">วุฒิศึกษา</p></div>
                                     <div class="educationcontentLine2"><h3 class="field">สาขาวิชา</h3></div>
                                     <div class="educationcontentLine3"><p>คณะ, สถานศึกษา</p></div>
-                                    <div class="educationcontentLine4"><p class="grade-label inline2">เกรด</p><div class="centerbreak inline2"><div class="breakline inline2"> </div></div><h4 class="grade inline2">1.11</h4></div></div></div></div>
+                                    <div class="educationcontentLine4"><p class="grade-label inline2">เกรด</p><div class="centerbreak inline2"><div class="breakline inline2"> </div></div><h4 class="grade inline2">X.XX</h4></div></div></div></div>
                         <div class="timeline-block">
                             <div class="timeline-dot-pointer" style={dummylinestyle}></div>
                             <div class="right-row">
@@ -242,7 +245,7 @@ class MyResumeEducation extends React.Component {
                                     <div class="educationcontentLine1"><p class="year inline2">ปีที่จบการศึกษา</p><div class="centerbreak inline2"><div class="breakline inline2">|</div></div><p class="degree inline2">วุฒิศึกษา</p></div>
                                     <div class="educationcontentLine2"><h3 class="field">สาขาวิชา</h3></div>
                                     <div class="educationcontentLine3"><p>คณะ, สถานศึกษา</p></div>
-                                    <div class="educationcontentLine4"><p class="grade-label inline2">เกรด</p><div class="centerbreak inline2"><div class="breakline inline2"> </div></div><h4 class="grade inline2">1.11</h4></div></div></div></div>
+                                    <div class="educationcontentLine4"><p class="grade-label inline2">เกรด</p><div class="centerbreak inline2"><div class="breakline inline2"> </div></div><h4 class="grade inline2">X.XX</h4></div></div></div></div>
                         <div class="timeline-block">
                             <div class="timeline-dot-pointer" style={dummylinestyle}></div>
                             <div class="right-row">
@@ -250,11 +253,11 @@ class MyResumeEducation extends React.Component {
                                     <div class="educationcontentLine1"><p class="year inline2">ปีที่จบการศึกษา</p><div class="centerbreak inline2"><div class="breakline inline2">|</div></div><p class="degree inline2">วุฒิศึกษา</p></div>
                                     <div class="educationcontentLine2"><h3 class="field">สาขาวิชา</h3></div>
                                     <div class="educationcontentLine3"><p>คณะ, สถานศึกษา</p></div>
-                                    <div class="educationcontentLine4"><p class="grade-label inline2">เกรด</p><div class="centerbreak inline2"><div class="breakline inline2"> </div></div><h4 class="grade inline2">1.11</h4></div></div></div></div>
+                                    <div class="educationcontentLine4"><p class="grade-label inline2">เกรด</p><div class="centerbreak inline2"><div class="breakline inline2"> </div></div><h4 class="grade inline2">X.XX</h4></div></div></div></div>
                         </div>
                     <div class="ed-dummy">
                         <p>ตอนนี้คุณยังไม่มีข้อมูลประวัติการศึกษา สำหรับตำแหน่งงาน{occupation}</p>
-                        <button>แก้ไขโปรไฟล์</button>
+                        <button onClick={this.handleRoute}>แก้ไขโปรไฟล์</button>
                     </div>
                 </div>
                 );

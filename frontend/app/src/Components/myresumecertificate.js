@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { useHistory } from 'react-router-dom';
 class MyresumeCertificateComponent extends React.Component{
     constructor(props){
         super(props)
@@ -151,23 +151,55 @@ class MyresumeCertificateComponent extends React.Component{
 
 
 class MyresumeCertificate extends React.Component{
-    
+    handleRoute = () =>{ 
+        window.location = ("editprofile");
+    }
     render(){
         const colour = this.props.colour? this.props.colour: "#FFCE55";
         const linestyle = {
             backgroundColor: colour
         };
+        const occupation = this.props.occupation? this.props.occupation: "นี้";
         const data = this.props.data? this.props.data: [];
         data.sort((a, b) => (a.CertYear < b.CertYear) ? 1 : -1)
         let content = [];
-        if(data.length !==0){
+        if(data.length != 0){
             for (var i = 0; i < data.length; i++) {
                 content.push(<div class="cert-column"><MyresumeCertificateComponent data={data[i]} colour={colour} seq={i}></MyresumeCertificateComponent></div>);
                 console.log(data[i]);
             }
         }
         else{
-
+            content = [
+                (<div class="cert-column">
+                    <div class="cert-dummybox cert-dummy-w">
+                        <div class="cert-dummytext cert-dummy-w">
+                            <h3>ชื่อใบรับรอง</h3>
+                            <h4>ปีที่ได้รับ</h4>
+                        </div>    
+                    </div>   
+                </div>),
+                (<div class="cert-column">
+                    <div class="cert-dummybox cert-dummy-d">
+                        <div class="cert-dummytext cert-dummy-d">
+                            <h3>ชื่อใบรับรอง</h3>
+                            <h4>ปีที่ได้รับ</h4>
+                        </div>
+                    </div>
+                </div>),
+                (<div class="cert-column">
+                    <div class="cert-dummybox cert-dummy-w">
+                        <div class="cert-dummytext cert-dummy-w">
+                            <h3>ชื่อใบรับรอง</h3>
+                            <h4>ปีที่ได้รับ</h4>
+                        </div>
+                    </div>
+                </div>),
+                (<div class="cert-dummy-edit">
+                    <div class="cert-edit"><p>ตอนนี้คุณยังไม่มีข้อมูลประวัติการศึกษา สำหรับตำแหน่งงาน{occupation}</p>
+                    <button onClick={this.handleRoute}>แก้ไขโปรไฟล์</button></div>
+                </div>)
+            ]
         }
         return(
             <div class="certificate-data" id="resume-certificate">
