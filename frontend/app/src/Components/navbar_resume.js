@@ -32,26 +32,34 @@ class Resume_sideNavbar extends React.Component {
 				<div  id='myresumepath'> 
 						<div className='resumeblock' >
 							<a className='resumeicon' href="#resume-education"> 
-								<img id='icon-myresume-education'  src="assets/images/ประวัติการศึกษา.png"/>
+								<img id='icon-myresume-education'  src="assets/images/ประวัติการศึกษา.png"/> 
 							</a>
+						ประวัติการศึกษา
 						</div>
 
 						<div className='resumeblock'>
-							<a className='resumeicon' href="#resume-certificate"> <img id='icon-myresume-certi'  src="assets/images/เกียรติบัตรและใบรับรอง.png"></img> </a>
+							<a className='resumeicon' href="#"> <img id='icon-myresume-skill'  src="assets/images/ความถนัดและทักษะ.png"></img>  </a>
+							ทักษะที่โดดเด่น
 						</div>
 
 						<div className='resumeblock'>
-							<a className='resumeicon' href="#"> <img id='icon-myresume-skill'  src="assets/images/ความถนัดและทักษะ.png"></img> </a>
+							<a className='resumeicon' href="#"> <img id='icon-myresume-work'  src="assets/images/ประวัติการทำงาน.png"></img>  </a>
+							ประวัติการทำงาน
 						</div>
 
 						<div className='resumeblock'>
-							<a className='resumeicon' href="#"> <img id='icon-myresume'  src="assets/images/bookmark_1.png"></img> </a>
+							<a className='resumeicon' href="#resume-certificate"> <img id='icon-myresume-certi'  src="assets/images/เกียรติบัตรและใบรับรอง.png"></img>  </a>
+							ใบรับรอง
+						</div>
+
+
+						<div className='resumeblock'>
+							<a className='resumeicon' href="#"> <img id='icon-myresume-resume'  src="assets/images/ผลงานของฉัน.png"></img>  </a>
+							ผลงาน
 						</div>
 						<div className='resumeblock'>
-							<a className='resumeicon' href="#"> <img id='icon-myresume-work'  src="assets/images/ผลงานของฉัน.png"></img> </a>
-						</div>
-						<div className='resumeblock'>
-							<a className='resumeicon' href="#"> <img id='icon-myresume-goal'  src="assets/images/เป้าหมายการทำงาน.png"></img> </a>
+							<a className='resumeicon' href="#"> <img id='icon-myresume-goal'  src="assets/images/เป้าหมายการทำงาน.png"></img>  </a>
+							เป้าหมายการทำงาน
 						</div>
 						
 				</div>
