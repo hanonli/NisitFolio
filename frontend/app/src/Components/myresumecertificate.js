@@ -36,6 +36,7 @@ class MyresumeCertificateComponent extends React.Component{
             classofcert = "cert-element-w";
             content.push(
                 <div class="cert-info-w">
+                    <div class="cert-info-w-background" style={linestyle}></div>
                     <div class="cert-item">
                         <h3>
                             {data.CertName}
@@ -44,7 +45,6 @@ class MyresumeCertificateComponent extends React.Component{
                             {data.CertYear}
                         </h4>
                     </div>
-                        
                 </div>
             );
             content.push(
@@ -58,6 +58,7 @@ class MyresumeCertificateComponent extends React.Component{
             );
             content.push(
                 <div class="cert-info-w">
+                    <div class="cert-info-w-background" style={linestyle}></div> 
                     <div class="cert-item">
                         <h3>
                             {data.CertName}

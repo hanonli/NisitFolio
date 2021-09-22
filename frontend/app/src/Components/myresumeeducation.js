@@ -47,19 +47,15 @@ class EducationContent extends React.Component {
 
         }
         if(data.Facalty != "none"){
-            /*if(data.Field_of_study != "none"){
-                line3 = <p>{data.Facalty}, {data.Academy}</p>;
-            }
-            else{
-                line3 = <p>{data.Facalty}</p>;
-                line3x = <p>{data.Academy}</p>;
-            }*/
-            line3 = <p>{data.Facalty}, {data.Academy}</p>;
+            line3 = data.Facalty;
+            line3x = data.Academy;
+            
+            //line3 = <p>{data.Facalty}, {data.Academy}</p>;
         }
         else{
-            line3 = <p>{data.Academy}</p>
+            line3 = data.Academy;
         }
-        if(data.Field_of_study != "none"){
+        if(data.Field_of_study !== "none"){
             content.push(
             <div class="educationcontentLine2">
                 <h3 class="field">{data.Field_of_study}</h3>
@@ -68,35 +64,40 @@ class EducationContent extends React.Component {
             );
             content.push(
             <div class="educationcontentLine3">
-                {line3}
+                <p>{line3}</p>
+            </div>
+            );
+            content.push(
+            <div class="educationcontentLine3">
+                <p>{line3x}</p>
             </div>
             );
         }
         else{
-            /*if(data.Facalty == "none"){
+            if(data.Facalty == "none"){
                 content.push(
-                    <div class="educationcontentbigLine3">
-                        {line3}
+                    <div class="educationcontentLine2">
+                        <h3 class="field">{line3}</h3>
                     </div>
                 );
             }
             else{
                 content.push(
-                    <div class="educationcontentbigLine3">
-                        {line3}
+                    <div class="educationcontentLine2">
+                        <h3 class="field">{line3}</h3>
                     </div>
                 );
                 content.push(
                     <div class="educationcontentLine3">
-                        {line3x}
+                        <p>{line3x}</p>
                     </div>
                 );
-            }*/
-            content.push(
+            }
+            /*content.push(
                 <div class="educationcontentLine3">
                     {line3}
                 </div>
-                );
+                );*/
 
         }
         if(data.Grade != 0){
@@ -236,7 +237,8 @@ class MyResumeEducation extends React.Component {
                                 <div class="educationdummycontent">
                                     <div class="educationcontentLine1"><p class="year inline2">ปีที่จบการศึกษา</p><div class="centerbreak inline2"><div class="breakline inline2">|</div></div><p class="degree inline2">วุฒิศึกษา</p></div>
                                     <div class="educationcontentLine2"><h3 class="field">สาขาวิชา</h3></div>
-                                    <div class="educationcontentLine3"><p>คณะ, สถานศึกษา</p></div>
+                                    <div class="educationcontentLine3"><p>คณะ</p></div>
+                                    <div class="educationcontentLine3"><p>สถานศึกษา</p></div>
                                     <div class="educationcontentLine4"><p class="grade-label inline2">เกรด</p><div class="centerbreak inline2"><div class="breakline inline2"> </div></div><h4 class="grade inline2">X.XX</h4></div></div></div></div>
                         <div class="timeline-block">
                             <div class="timeline-dot-pointer" style={dummylinestyle}></div>
@@ -244,7 +246,8 @@ class MyResumeEducation extends React.Component {
                                 <div class="educationdummycontent">
                                     <div class="educationcontentLine1"><p class="year inline2">ปีที่จบการศึกษา</p><div class="centerbreak inline2"><div class="breakline inline2">|</div></div><p class="degree inline2">วุฒิศึกษา</p></div>
                                     <div class="educationcontentLine2"><h3 class="field">สาขาวิชา</h3></div>
-                                    <div class="educationcontentLine3"><p>คณะ, สถานศึกษา</p></div>
+                                    <div class="educationcontentLine3"><p>คณะ</p></div>
+                                    <div class="educationcontentLine3"><p>สถานศึกษา</p></div>
                                     <div class="educationcontentLine4"><p class="grade-label inline2">เกรด</p><div class="centerbreak inline2"><div class="breakline inline2"> </div></div><h4 class="grade inline2">X.XX</h4></div></div></div></div>
                         <div class="timeline-block">
                             <div class="timeline-dot-pointer" style={dummylinestyle}></div>
@@ -252,7 +255,8 @@ class MyResumeEducation extends React.Component {
                                 <div class="educationdummycontent">
                                     <div class="educationcontentLine1"><p class="year inline2">ปีที่จบการศึกษา</p><div class="centerbreak inline2"><div class="breakline inline2">|</div></div><p class="degree inline2">วุฒิศึกษา</p></div>
                                     <div class="educationcontentLine2"><h3 class="field">สาขาวิชา</h3></div>
-                                    <div class="educationcontentLine3"><p>คณะ, สถานศึกษา</p></div>
+                                    <div class="educationcontentLine3"><p>คณะ</p></div>
+                                    <div class="educationcontentLine3"><p>สถานศึกษา</p></div>
                                     <div class="educationcontentLine4"><p class="grade-label inline2">เกรด</p><div class="centerbreak inline2"><div class="breakline inline2"> </div></div><h4 class="grade inline2">X.XX</h4></div></div></div></div>
                         </div>
                     <div class="ed-dummy">

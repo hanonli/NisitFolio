@@ -31,12 +31,12 @@
 
 .educationcontentLine1 .year{
     bottom: 0;
-    font-size: 1.8vw;
+    font-size: 1.6vw;
 
 }
 .educationcontentLine1 .degree{
     bottom: 0;
-    font-size: 1.6vw;
+    font-size: 1.4vw;
 }
 
 .educationcontentLine1 .centerbreak{
@@ -45,11 +45,11 @@
 
 .breakline{
     font-weight: 400;
-    font-size: 2.6vw;
+    font-size: 2.2vw;
 }
 
 .educationcontentLine2 .field{
-    font-size: 2.6vw;
+    font-size: 2vw;
 }
 .educationcontentLine3{
     height: auto;
@@ -57,7 +57,7 @@
     padding: 0%;
 }
 .educationcontentLine3 p{
-    font-size: 1.3vw;
+    font-size: 0.8vw;
     height: auto;
     margin-bottom: 0%;
 }
@@ -76,12 +76,12 @@
 */
 .educationcontentLine4 .grade{
     bottom: 0;
-    font-size: 1.8vw;
+    font-size: 1.4vw;
     font-weight: 800;
 }
 .educationcontentLine4 .grade-label{
     bottom: 0;
-    font-size: 1.6vw;
+    font-size: 1.2vw;
 }
 
 .education-dummyshow{
@@ -93,23 +93,23 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -60%);
+    transform: translate(-50%, -50%);
     width: 100%;
     
-    padding: 2.4vw;
+    padding: 2vw;
 }
 
 .ed-dummy p{
     color: #939393;
-    font-size: 1.6vw;
+    font-size: 1.4vw;
 }
 
 .ed-dummy button{
-    font-size: 2vw;
+    font-size: 1.8vw;
     background: #F9DC5C;
     border-radius: 3vw;
-    padding: 1vw;
+    padding: 0.8vw;
     color: black;
-    padding-inline: 4vw;
+    padding-inline: 3.6vw;
     border: rgba(0,0,0,0);
 }

@@ -10,6 +10,16 @@
     overflow: hidden;
 }
 
+.cert-info-w-background{
+    opacity: 0.44;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .cert-info-c *{
     text-align: center;
     color: black;
@@ -29,12 +39,12 @@
 
 @-webkit-keyframes fadeinoutc {
     0%, 66.66%, 100% { opacity: 0; }
-    5%, 61.66%, 71.66%, 95% { opacity: 1; }
+    3%, 63.66%, 69.66%, 97% { opacity: 1; }
 }
 
 @keyframes fadeinoutc {
     0%, 66.66%, 100% { opacity: 0; }
-    5%, 61.66%, 71.66%, 95% { opacity: 1; }
+    3%, 63.66%, 69.66%, 97% { opacity: 1; }
 }
 
 .cert-element-w{
@@ -45,13 +55,13 @@
 }
 
 @-webkit-keyframes fadeinoutw {
-    33.33%, 66.66%, 100% { opacity: 0; }
-    0%, 28.33%, 38.33%, 61.66%, 71.66%, 100% { opacity: 1; }
+    33.33%, 66.66% { opacity: 0; }
+    0%, 30.33%, 36.33%, 63.66%, 69.66%, 100% { opacity: 1; }
 }
 
 @keyframes fadeinoutw {
-    33.33%, 66.66%, 100% { opacity: 0; }
-    0%, 28.33%, 38.33%, 61.66%, 71.66%, 100% { opacity: 1; }
+    33.33%, 66.66%{ opacity: 0; }
+    0%, 30.33%, 36.33%, 63.66%, 69.66%, 100% { opacity: 1; }
 }
 
 .cert-child {
@@ -117,6 +127,7 @@
 }
 .certificate-data{
     width: 100%;
+    padding-top: 2.5%;
 }
 
 .cert-show{
@@ -141,7 +152,7 @@
 .cert-overlay{
     width: 100%;
     height: 100%;
-    background-color: black;
+    background-color: rgba(0,0,0,0.6);
     opacity: 0;
     transition: .5s ease;
     position: absolute;
@@ -155,7 +166,7 @@
 }
 
 .cert-box:hover .cert-overlay {
-    opacity: 0.8;
+    opacity: 1;
 }
 
 .cert-overlaybox{
@@ -186,10 +197,10 @@
 
 .cert-modal{
     max-width: 90vw;
-    max-height: 96vh;
+    max-height: 98vh;
     min-width: 35vw;
-    min-height: 50vh;
-    /*width: auto;*/
+    /*min-height: 50vh;*/
+    
     padding-inline: 4vw;
     border-radius: 0%;
     top: 50%;
@@ -199,8 +210,10 @@
     position: absolute;
 }
 .cert-modal img{
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 75vw;
+    max-height: 75vh;
+    min-width: 30vw;
+    /*min-height: 30vh;*/
     display: block; 
     margin-left: 50%;
     transform: translate(-50%, 0%);
@@ -316,21 +329,21 @@
     left: 50%;
     transform: translate(-50%, -60%);
     width: 100%;
-    
+    height: 100%;
     padding: 2.4vw;
 }
 
 .cert-edit p{
     color: #939393;
-    font-size: 1.6vw;
+    font-size: 1.4vw;
 }
 
 .cert-edit button{
-    font-size: 2vw;
+    font-size: 1.8vw;
     background: #F9DC5C;
     border-radius: 3vw;
-    padding: 1vw;
+    padding: 0.8vw;
     color: black;
-    padding-inline: 4vw;
+    padding-inline: 3.6vw;
     border: rgba(0,0,0,0);
 }

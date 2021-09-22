@@ -4,7 +4,7 @@ import React from "react";
 class MyresumeHeading extends React.Component{
     render(){
         const colourcode = this.props.colour? this.props.colour : "#FFCE55";
-        const bordercode = "1vw solid " + colourcode;
+        const bordercode = "0.75vw solid " + colourcode;
         const boxcolourstyle = {
             border: bordercode,
         };
