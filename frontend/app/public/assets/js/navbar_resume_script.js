@@ -5,8 +5,7 @@ $(document).ready( function() {
         
         'width': ' 40vw',
         'height' : '40vh',
-        "padding-top" : "0vh",
-        "margin-bottom" : "0vh"
+ 
     });
     $(".resumeblock").hover(function(){
         $(this).css("background-color", "#e6ba4e");
