@@ -61,8 +61,10 @@ function show_all_job() {
         var grid_Job2 = `	    </div>\
                             </div>\
                             <div class="layer_icon" id="{no_list}">\
-								<button type="button" class="btn" id="edit-job"><img src="assets/images/blackedit.png" width="65" height="65"></img></button>\
-								<button type="button" class="btn" id="del-job"><img src="assets/images/bin.png" width="90" height="90"></img></button>\
+                                <div class="set-layer-button-job">\
+								    <button type="button" class="btn" id="edit-job"><img src="assets/images/blackedit.png" width="35" height="35"></img></button>\
+								    <button type="button" class="btn" id="del-job"><img src="assets/images/bin.png" width="50" height="50"></img></button>\
+                                </div>\
                             </div>\
                         </div>\
                         </div>\
@@ -74,21 +76,37 @@ function show_all_job() {
             grid_Job1 = grid_Job1.replace(`<h1 id="mySkil-job">ทักษะของฉัน</h1>`, "");
         }
         if (ele["skill1"] != "เลือกทักษะของคุณที่เหมาะกับงาน") {
-            grid_Job_skill1 = grid_Job_skill1.replace("{skill1}", ele["skill1"]);
+            if (ele["skill1"].length > 12) {
+                grid_Job_skill1 = grid_Job_skill1.replace("{skill1}", ele["skill1"].slice(0, 13) + "...");
+            }
+            else {
+                grid_Job_skill1 = grid_Job_skill1.replace("{skill1}", ele["skill1"]);
+            }
+
         }
         else {
             grid_Job_skill1 = "";
         }
 
         if (ele["skill2"] != "เลือกทักษะของคุณที่เหมาะกับงาน") {
-            grid_Job_skill2 = grid_Job_skill2.replace("{skill2}", ele["skill2"]);
+            if (ele["skill2"].length > 12) {
+                grid_Job_skill2 = grid_Job_skill2.replace("{skill2}", ele["skill2"].slice(0, 13) + "...");
+            }
+            else {
+                grid_Job_skill2 = grid_Job_skill2.replace("{skill2}", ele["skill2"]);
+            }
         }
         else {
             grid_Job_skill2 = "";
         }
 
         if (ele["skill3"] != "เลือกทักษะของคุณที่เหมาะกับงาน") {
-            grid_Job_skill3 = grid_Job_skill3.replace("{skill3}", ele["skill3"]);
+            if (ele["skill3"].length > 12) {
+                grid_Job_skill3 = grid_Job_skill3.replace("{skill3}", ele["skill3"].slice(0, 13) + "...");
+            }
+            else {
+                grid_Job_skill3 = grid_Job_skill3.replace("{skill3}", ele["skill3"]);
+            }
         }
         else {
             grid_Job_skill3 = "";
@@ -301,19 +319,33 @@ $(document).on("change", "#each_skill1", function () {
         $('#each_skill2').prop("disabled", true);
         //$('#each_skill2').val("เลือกทักษะของคุณที่เหมาะกับงาน");
     }
+
 });
 
 $(document).on("change", "#each_skill2", function () {
     if ($('#each_skill2').val() != "เลือกทักษะของคุณที่เหมาะกับงาน") {
         $('#each_skill3').prop("disabled", false);
     }
-});
-
-/*$(document).on("change", "#each_skill3", function () {
-    if ($('#each_skill3').val() != $('#each_skill2').val()) {
+    else {
         $('#each_skill3').prop("disabled", true);
     }
-});*/
+    if (document.getElementById("each_skill2").value == document.getElementById("each_skill1").value) {
+        $("#each_skill2").addClass("error_select_job");
+    }
+    else {
+        $("#each_skill2").removeClass("error_select_job");
+    }
+});
+
+$(document).on("change", "#each_skill3", function () {
+    if (document.getElementById("each_skill3").value == document.getElementById("each_skill1").value || document.getElementById("each_skill3").value == document.getElementById("each_skill2").value) {
+        $("#each_skill3").addClass("error_select_job");
+    }
+    else {
+        $("#each_skill3").removeClass("error_select_job");
+    }
+
+});
 
 
 $(document).on("change", "#nm_job", function () {
@@ -338,7 +370,7 @@ $(document).on("change", "#nm_job", function () {
     set_slider_range3(2.5);
 });
 
-$(document).on("click", "#add-job", function () {
+$(document).on("click", ".frame_add_job_interest", function () {
     /*$('#tab01').addClass('current2');
     $('.tabs_pop li').addClass('current2');
     $('.tab-pane_pop').addClass('current2');*/
@@ -368,7 +400,7 @@ $(document).on("click", "#add-job", function () {
 var for_edit;
 $(document).on("click", "#edit-job", function () {
     $("#nm_job").removeClass("error_select_job");
-    id_list_job_edit = $(this).parents().attr('id');
+    id_list_job_edit = $(this).parents().parents().attr('id');
     //console.log(`edit:`, id_list_job_edit);
     for_edit = list_of_job.find(function (post, index_del) {
         if (post.id == id_list_job_edit)
@@ -476,8 +508,15 @@ document.getElementById("submit-job11").addEventListener("click", function () {
     score_slider12 = document.getElementById("input_mySlider2").value;
     score_slider13 = document.getElementById("input_mySlider3").value;
     var push2list = {};
-    if (document.getElementById("nm_job").value == '') {
+    if (document.getElementById("nm_job").value == 'เลือกตำแหน่งงานหรืองานที่คุณสนใจ *') {
         //alert("kuay");
+        $("#nm_job").addClass("error_select_job");
+    }
+    else if ((skill_job_2 == skill_job_1 || skill_job_3 == skill_job_1 || skill_job_2 == skill_job_3) && skill_job_1 != 'เลือกทักษะของคุณที่เหมาะกับงาน' && skill_job_2 != 'เลือกทักษะของคุณที่เหมาะกับงาน' && skill_job_3 != 'เลือกทักษะของคุณที่เหมาะกับงาน') {
+        //$("#each_skill2").addClass("error_select_job");
+        //can't submit
+    }
+    else if (list_of_job.findIndex(e => e.name_job === document.getElementById("nm_job").value) != -1 && choose_function == 2) {
         $("#nm_job").addClass("error_select_job");
     }
     else {
@@ -654,7 +693,7 @@ document.getElementById("submit-job11").addEventListener("click", function () {
 });
 
 $(document).on("click", "#del-job", function () {
-    id_list_job_del = $(this).parents().attr('id');
+    id_list_job_del = $(this).parents().parents().attr('id');
     //console.log("id_list_job111:", id_list_job_del);
     $('#exampleModal_remove_job').modal('toggle');
 });

@@ -1,7 +1,7 @@
 /*-----list-JOB-----*/
 .frame_job {
     border: 1px solid black;
-    height: 140px;
+    height: 106px;
     /*width: 1450px;*/
     border-radius: 25px;
     margin-top: 5px;
@@ -14,9 +14,9 @@
 }
 
 .frame_add_job_interest {
-    background-color: #b6deea;
+    background-color: #E4F7FF;
     border: 1px solid black;
-    height: 140px;
+    height: 106px;
     /*width: 1450px;*/
     border-radius: 25px;
     margin-top: 5px;
@@ -30,11 +30,11 @@
 }
 
 .button_add_job_interest button {
-    margin-top: 0.22%;
+    margin-top: 1.42%;
 }
 
 .layer_icon {
-    height: 138px;
+    height: 105px;
     width: 100%;
     position: absolute;
     top: 0;
@@ -42,12 +42,13 @@
     transition: 0.2s;
     border-radius: 25px;
     background: transparent;
+    justify-content: center;
 }
 
 .layer_icon button{
     visibility: hidden;
-    padding-left: 55px;
-    padding-right: 55px;
+    padding-left: 25px;
+    padding-right: 25px;
     margin-top: 0.8%;
     transition: 0.1s;
 }
@@ -63,30 +64,37 @@
     opacity: 2;
 }
 
+.set-layer-button-job{
+    position: absolute;
+    left: 38%;
+    right: 34%;
+    top: 20px;
+}
+
 .job-column-1 {
     position: absolute;
     display: flex; 
     justify-content: flex-start;
-    left: 10px;
+    left: 25px;
 }
 
 #job-position {
-    font-size: 38px;
+    font-size: 24px;
     color: black;
     /*margin-left: 10px;
     margin-top: 45px;*/
     border-right: 1.2px solid black;
-    line-height: 118px;
+    line-height: 85px;
     padding-right: 21px;
-    margin-top: 12px;
+    margin-top: 10px;
 }
 
 #job-name {
-    font-size: 32px;
+    font-size: 24px;
     font-weight: 300;
     color: black;
     padding-left: 21px;
-    margin-top: 53.5px;
+    margin-top: 37.2px;
 }
 
 .this-skill-job{
@@ -125,12 +133,13 @@
 
 #skill1-job {
     color: black;
-    font-size: 11px;
+    font-size: 14px;
     font-weight: 300;
     font-family: 'Kanit';
     border: 2px solid #FFC045;
     border-radius: 8px;
     width: 120px;
+    height: 30px;
     text-align: center;
     padding-left: 4px;
     padding-right: 4px;
@@ -138,12 +147,13 @@
 
 #skill2-job {
     color: black;
-    font-size: 11px;
+    font-size: 14px;
     font-weight: 300;
     font-family: 'Kanit';
     border: 2px solid #79CE23;
     border-radius: 8px;
     width: 120px;
+    height: 30px;
     text-align: center;
     padding-left: 4px;
     padding-right: 4px;
@@ -151,12 +161,13 @@
 
 #skill3-job {
     color: black;
-    font-size: 11px;
+    font-size: 14px;
     font-weight: 300;
     font-family: 'Kanit';
     border: 2px solid #C98A11;
     border-radius: 8px;
     width: 120px;
+    height: 30px;
     text-align: center;
     padding-left: 4px;
     padding-right: 4px;
@@ -166,10 +177,12 @@
 .tabs_pop {
     margin: 0;
     padding: 0;
+    color: #4e5264;
 }
 .tabs_pop li {
     display: inline-block;
     padding: 15px 25px;
+    border-bottom: 0.1px solid #c4c4c4;
 }
 
 li.current2{
@@ -178,6 +191,8 @@ li.current2{
 
 .tabs_pop li.current2 {
     /*border-bottom: 6.5px solid black;*/
+    font-weight: 400;
+    color: black;    
 }
 
 .tab-pane_pop {
@@ -189,7 +204,7 @@ li.current2{
 
 .popup_JOB {
     position: relative;
-    width: 1750px;
+    width: 1150px;
     height: 680px;
     border-radius: 25px;
 }
@@ -258,7 +273,7 @@ li.current2{
 }
 
 #topic_pop {
-    font-size: 55px;
+    font-size: 46.6px;
     font-family: 'Kanit';
     font-weight: 500;
     color: black;
@@ -271,13 +286,16 @@ li.current2{
     font-size: 20px;
     border: none;
     /*cursor: pointer;*/
-    border-radius: 24px;
+    border-radius: 22px;
     padding-left: 30px;
-    width: 30vw;
+    width: 29.5vw;
+    
 }
 
 .select-job4 {
+    position: absolute;
     margin-top: 6.5px;
+    right: 178px;
 }
 
 .pos-del-obj-button {
@@ -422,4 +440,29 @@ li.current2{
 .height-job3 {
     padding-right: 28px;
     height: 110px;
+}
+
+#text-add-name-my-job11{
+    color: black;
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+#red-select-job{
+    color: red;
+}
+
+.box-slider1{
+    position:absolute;
+    right: -40px;
+}
+
+.box-slider2{
+    position:absolute;
+    right: -40px;
+}
+
+.box-slider3{
+    position:absolute;
+    right: -40px;
 }
