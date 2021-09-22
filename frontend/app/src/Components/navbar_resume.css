@@ -1,17 +1,16 @@
 
 .Resume_sideNavbar {
     background-color: #FFCE55;
-  
+    
     height: 100vh ;/* Full-height: remove this if you want "auto" height */
-    width: 6vw; /* Set the width of the sidebar */
+    width: 20vw; /* Set the width of the sidebar */
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
     left: 0;
     overflow-x: hidden; /* Disable horizontal scroll */
     overflow-y: hidden;
-    text-align: center;
-    vertical-align: middle;
+  
 
   }
   /* .Resume_sideNavbar .resumeblock{
@@ -21,12 +20,24 @@
 
   .Resume_sideNavbar a {
     position: relative;
-    display: block;
+
+  }
+
+
+  .resumeblock{
+    font-size: 10vw;
+
   }
   
   #myresumepath{
     height: 100vh;
-    padding-top : 0vw;
+    
+  }
+  #resumetext{
+    display: inline-block;
+    color: black;
+    font-weight: 300;
+    font-size: 2vh;
   }
  
 
