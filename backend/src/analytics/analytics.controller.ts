@@ -8,8 +8,8 @@ export class AnalyticsController {
 
   @Get('/additional/:id')
   async additionalAnalytics(@Param('id') id: string): Promise<any> {
-    const oid = mongoose.Types.ObjectId(id);
-    return this.analyticsService.additionalAnalytics(oid);
+    //const oid = mongoose.Types.ObjectId(id);
+    return this.analyticsService.additionalAnalytics(id);
   }
 
   // -------------------- MainSkill ---------------------------

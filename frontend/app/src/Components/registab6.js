@@ -15,7 +15,7 @@ class Registab6 extends React.Component {
 	render() {
 		return (
 			<div className="Registab6">
-				<div class="regis-box-content">
+				<div class="regis-box-content1">
 					<div class="list-of-job" id="in-list-of-job"></div>
 
 					<div class="frame_add_job_interest">
@@ -48,8 +48,8 @@ class Registab6 extends React.Component {
 										<h1 id="topic_pop">เพิ่มงานที่สนใจ</h1>
 									</div>
 									<div class="col-md-5 select-job4">
-										<select id="nm_job" class="form-select dropbtn-job4 margin-bottom-job4 fff" required>
-											<option selected disabled value="">เลือกตำแหน่งงานหรืองานที่คุณสนใจ *</option>
+										<select id="nm_job" class="form-select dropbtn-job4 margin-bottom-job4 fff" >
+											<option selected disabled value="เลือกตำแหน่งงานหรืองานที่คุณสนใจ *">เลือกตำแหน่งงานหรืองานที่คุณสนใจ *</option>
 										</select>
 									</div>
 								</div>
@@ -66,12 +66,8 @@ class Registab6 extends React.Component {
 										<div class="tab-pane_pop current2" id="tab01">
 											<div class="row list-job-skill1">
 												<div class="col-md-5">
-													<select class="form-select dropbtn_year margin-bottom1 fff" id="each_skill1" required>
-														<option >เลือกทักษะของคุณที่เหมาะกับงาน</option>
-														<option >ทักษะA</option>
-														<option >ทักษะB</option>
-														<option >ทักษะC</option>
-														<option >ทักษะD</option>
+													<select id="each_skill1" class="form-select dropbtn_year margin-bottom1 fff"  >
+														<option value="เลือกทักษะของคุณที่เหมาะกับงาน">เลือกทักษะของคุณที่เหมาะกับงาน</option>
 													</select>
 												</div>
 												<div class="col-md-5">
@@ -83,12 +79,8 @@ class Registab6 extends React.Component {
 
 											<div class="row list-job-skill1">
 												<div class="col-md-5">
-													<select class="form-select dropbtn_year margin-bottom1 fff" id="each_skill2" required>
-														<option >เลือกทักษะของคุณที่เหมาะกับงาน</option>
-														<option >ทักษะA</option>
-														<option >ทักษะB</option>
-														<option >ทักษะC</option>
-														<option >ทักษะD</option>
+													<select id="each_skill2" class="form-select dropbtn_year margin-bottom1 fff" >
+														<option value="เลือกทักษะของคุณที่เหมาะกับงาน">เลือกทักษะของคุณที่เหมาะกับงาน</option>
 													</select>
 												</div>
 												<div class="col-md-5">
@@ -100,12 +92,8 @@ class Registab6 extends React.Component {
 
 											<div class="row list-job-skill1">
 												<div class="col-md-5">
-													<select class="form-select dropbtn_year margin-bottom1 fff" id="each_skill3" required>
-														<option >เลือกทักษะของคุณที่เหมาะกับงาน</option>
-														<option >ทักษะA</option>
-														<option >ทักษะB</option>
-														<option >ทักษะC</option>
-														<option >ทักษะD</option>
+													<select id="each_skill3" class="form-select dropbtn_year margin-bottom1 fff">
+														<option value="เลือกทักษะของคุณที่เหมาะกับงาน">เลือกทักษะของคุณที่เหมาะกับงาน</option>
 													</select>
 												</div>
 												<div class="col-md-5">

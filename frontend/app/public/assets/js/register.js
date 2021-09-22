@@ -923,7 +923,7 @@ function show_all_work() {
                           <h5 class="font-titlet4">{jobname_work}</h5>\
                           <div class="row">\
                               <div class="col-3 font-titlet3">\
-                              <div class="font-titlet3">{company_work}</div>\
+                              <div class="font-titlet4">{company_work}</div>\
                               <div class="font-titlet3">เริ่มต้น {month_startwork}/{year_startwork}</div>\
                               <div class="font-titlet3">สิ้นสุด {month_endwork}/{year_endwork}</div>\
                               </div>\
@@ -935,7 +935,7 @@ function show_all_work() {
                           </div>';
 
       var grid_work2 = `
-                          <div class="layer_icon1" id={no-list-work}>\
+                          <div class="layer_icon2" id={no-list-work}>\
                              <button type="button" class="btn button1" id="edit-work"><img src="assets/images/blackedit.png" width="27" height="27"></img></button>\
                              <button type="button" class="btn button2" id="del-work"><img src="assets/images/bin.png" width="30" height="30"></img></button>\
                           </div>\
