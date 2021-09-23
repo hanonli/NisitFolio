@@ -6,34 +6,36 @@
 
 /*Registab7*/
 .regis-box-content {
-    height: 53vh;
-    width: 80vw;
-    /*background-color: aqua;*/
-    margin-left:11vw;
-    margin-top: 1%;
-    margin-bottom: 2%;
-    padding: 1%;
-    overflow-y: scroll;
+  height: 55vh;
+  width: 80vw;
+  margin-left:10%;
+  margin-bottom: 1%;
+  padding-top: 1%;
+  /*padding: 1%;*/
+  margin-right: 10%;
+  overflow-y: scroll;
 }
 
 .regis-box-content1 {
-    height: 65vh;
-    width: 80vw;
-    background-color: aqua;
-    margin-left:11vw;
-    margin-top: 1%;
-    margin-bottom: 2%;
-    padding: 1%;
+    height: 55vh;
+    width: 60vw;
+    margin-left:20%;
+    margin-bottom: 1%;
+    padding-top: 1%;
+    /*padding: 1%;*/
+    margin-right: 20%;
+    overflow-y: scroll;
 }
 
 .regis-box-content7 {
-  height: 53vh;
-  width: 60vw;
-  /*background-color: aqua;*/
-  margin-left:21vw;
-  margin-top: 1%;
-  margin-bottom: 2%;
-  padding: 1%;
+  height: 55vh;
+    width: 60vw;
+    margin-left:20%;
+    margin-bottom: 1%;
+    padding-top: 1%;
+    /*padding: 1%;*/
+    margin-right: 20%;
+    overflow-y: scroll;
 }
 
 .headerRegis {
@@ -217,7 +219,14 @@
     color: #000;
     font-weight: 400;
     margin-top: 10px;
-    margin-left:30px;
+    text-align: right;
+}
+
+.form-f-cfp {
+  font-size: 20px;
+    color: #000;
+    font-weight: 400;
+    margin-top: 10px;
 }
 
 .margin-bottom1 {
@@ -399,4 +408,8 @@ datalist {
     /*cursor: pointer;*/
     border-radius: 2.5vh;
     padding-left: 30px;
+}
+
+#basic-date-picker1 {
+  font-family: 'Nunito','Kanit', arial, sans-serif;
 }

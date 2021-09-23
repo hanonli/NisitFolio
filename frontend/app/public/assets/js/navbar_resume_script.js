@@ -1,74 +1,68 @@
 $(document).ready( function() {
-    console.log('using resume script')
-    $('#icon-myresume-education, #icon-myresume-certi, #icon-myresume-skill, #icon-myresume-work, #icon-myresume-goal, #icon-myresume' )
+
+    $('#icon-myresume-education, #icon-myresume-certi, #icon-myresume-skill, #icon-myresume-work, #icon-myresume-goal, #icon-myresume-resume' )
     .attr({
-        'margin' : '100px 100px 100px 100px',
-        'width': ' 45px',
-        'height' : '45px',
+        
+        'width': ' 30vw',
+        'height' : '30vh',
+ 
     });
     $(".resumeblock").hover(function(){
         $(this).css("background-color", "#e6ba4e");
         }, function(){
         $(this).css("background-color", "#FFCE55");
       });
-
+    $('.resumeicon').css('padding-right' , '1vw');
     $('#icon-myresume-education').attr('title', 'Education');
     $('#icon-myresume-certi').attr('title', 'Certificate');
     $('#icon-myresume-skill').attr('title', 'Skill');
     $('#icon-myresume-work').attr('title', 'Work');
-    //$('#icon-myresume-education').attr('title', 'education');
+    $('#icon-myresume-resume').attr('title', 'Resume');
     $('#icon-myresume-goal').attr('title', 'Goal');
     
 
-    
-      
 });
 
 
 
-$('.Home').css('overflow','hidden');
-$('.MyResumeContent').css("padding-left",'6%');
+$('.Home').css({
+    'overflow':'hidden',
+});
+$('.MyResumeContent').css("padding-left",'20vw');
+$('.Resume_sideNavbar').css("transition","0s");
+$('.resumeblock').css({
+    'color' : 'black',
+    'font-weight' : '300',
+    'font-size' : '64px',
+    'width' : '20vw',
+    'height' : '16.67vh',
+    "padding-top" : "5.03vw",
+    "padding-left" : "2vw",
+    "display" : "block",
+    "font-size" : "1vw"
+});
 
-
-$("#icon-myresume").attr('title', 'Bookmark');
-$("#icon-myresume").attr('title', 'Education');
 
 $(window).on("scroll load resize", function(){
+    
     if($(window).scrollTop() > 0){
-        $('.Resume_sideNavbar').css("padding-top","2%");
-        $('.Resume_sideNavbar').css("transition","0.3s");
+        $('.Resume_sideNavbar').css("padding-top","15vh");
+        $('.resumeblock').css({
+            "height": "6vw",
+            "padding-top" : "2vw",
+        });
+
     }else{
-        $('.Resume_sideNavbar').css("padding-top","4%");
-        $('.Resume_sideNavbar').css("padding-bottom","10%");
-        $('.Resume_sideNavbar').css("transition","0.3s");
+        $('.Resume_sideNavbar').css({
+            "padding-top":"15vh",
+            "padding-bottom":"0vh"
+        });
+        $('.resumeblock').css({
+            "height": "6vw",
+            "padding-top" : "2vw",
+        });
+
     }
 });
 
 
-
-
-// let toggle=false;
-// $( "#slidenav" ).click(function() {
-//     // alert(`toggle ${toggle}`)
-//     if(!toggle){
-//         // alert('toggle open')
-//         $("#sideNav").css("width", "50%");
-//         $('.MyResumeContent').css("width","80%")
-//         $("#icon-slide_right").css("transform", "rotate(180deg)");
-//         $(".sidenav-centered").css("left", "97%");
-//         $('.MyResumeContent').css("padding-left","50%");
-//         $('.MyResumeContent').css("padding-left","50%");
-
-
-//     }
-//     else if(toggle){
-//         // alert('toggle close')
-//         $("#sideNav").css("width", "100px");
-//         $("#icon-slide_right").css("transform", "rotate(0deg)");
-//         $(".sidenav-centered").css("left", "80%");
-//         $('.MyResumeContent').css("padding-left","100px");
-//     }
-//     toggle=!toggle;  
-// });
-
-  

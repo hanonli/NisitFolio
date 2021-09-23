@@ -14,12 +14,12 @@ class Registab5 extends React.Component {
 	render() {
 		return (
 			<div className="Registab5">
-				<div class="regis-box-content">
-
+				<div class="regis-box-content1">
+					<h1 id="text-add-name-my-certi11">เพิ่มใบรับรองของคุณ</h1>
 					<div class="frame_add_certi">
 						<div className="button_add_certi">
-							<button id="add-certi" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal11112">
-								<img src="assets/images/+.png" width="115" height="115"></img>
+							<button id="add-certi-button1" type="button" class="btn">
+								<img src="assets/images/+.png" width="57" height="57"></img>
 							</button>
 						</div>
 					</div>
