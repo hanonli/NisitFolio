@@ -20,10 +20,10 @@ class Registab3 extends React.Component {
 	render(){
 
 		return (
-			<div className="Registab3 regis-box-content">
+			<div className="Registab3 regis-box-content1">
 				<div class='container-fluid'>
 					<div class='col-16'>
-						<div class='row justify-content-center'>
+						<div class='row'>
 								<div className='registab3_formbox col-6'>
 									<h2 class="font-headert3">อุดมศึกษา</h2>
 									<div className=''>

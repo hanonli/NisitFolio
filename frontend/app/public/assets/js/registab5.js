@@ -61,16 +61,18 @@ function show_certi() {
     list_of_year_certi = {};
     list_of_certi.sort(compareValues('year_certi', 'desc'));
     list_of_certi.forEach(ele => {
-        let grid_certi = `<div class="card_certi" id="{no_certi}">
-                                <h1 id="name-of-certi">{name-certi}</h1>
-                                <h1 id="year-of-certi">{year-certi}</h1>
-                                <div class="pos-pic-of-certi">
-                                    <img height="160" src="{pic-of-certi}" id="border_certi"></img>
-                                </div>
-                                <div class="layer-button-certi">
-                                    <button type="button" class="btn" id="edit-certi"><img src="assets/images/blackedit.png" width="80" height="80"></img></button>
-                                    <button type="button" class="btn" id="del-certi"><img src="assets/images/bin.png" width="120" height="120"></img></button>
-                                </div>
+        let grid_certi = `<div class="card_certi" id="{no_certi}">\
+                                <h1 id="name-of-certi">{name-certi}</h1>\
+                                <h1 id="year-of-certi">{year-certi}</h1>\
+                                <div class="pos-pic-of-certi">\
+                                    <img height="142" src="{pic-of-certi}" id="border_certi"></img>\
+                                </div>\
+                                <div class="layer-button-certi">\
+                                    <div class="set-layer-button-certi">\
+                                        <button type="button" class="btn" id="edit-certi"><img src="assets/images/blackedit.png" width="35" height="35"></img></button>\
+                                        <button type="button" class="btn" id="del-certi"><img src="assets/images/bin.png" width="50" height="50"></img></button>\                                    
+                                    </div>\
+                                </div>\
                             </div>`;
         let headOfyear1234 = `<div id="{show-year}" >\
                                     <h1 id="textOfyear_certi">{head-year}</h1>\
@@ -127,7 +129,7 @@ var for_edit;
 $(document).on("click", "#edit-certi", function () {
     choose_function = 1;
     //console.log(`chosoe: ${choose_function}`);
-    id_list_certi_edit = $(this).parents().parents().attr('id');
+    id_list_certi_edit = $(this).parents().parents().parents().attr('id');
     //console.log("id_list_certi111:", id_list_certi_edit);
     $('#exampleModal11112').modal('toggle');
     $("#nm_certi").removeClass("error_select_certi");
@@ -164,7 +166,7 @@ $(document).on("click", ".frame_add_certi", function () {
 
 //open modal to delete certi (uncomplete!!!!!!!!!!!!!!!!!!!)
 $(document).on("click", "#del-certi", function () {
-    id_list_certi_del = $(this).parents().parents().attr('id');
+    id_list_certi_del = $(this).parents().parents().parents().attr('id');
     //console.log("id_list_certi111:", id_list_certi_del);
     $('#exampleModal_remove_certi').modal('toggle');
     //console.log(`list_of_year_certi:`, list_of_year_certi);

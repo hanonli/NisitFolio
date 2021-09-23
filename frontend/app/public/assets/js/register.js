@@ -4,12 +4,14 @@
 $(function(){
     $('.tab-content').hide();
     $('#registab1-content').show();
+    $('#basic-date-picker1').attr('placeholder','วัน/เดือน/ปี');
     console.log("Yahaha!");
    $('#tab-1').on('click', function(){
        $('.tab-content').hide();
        $('.tab-list-item').removeClass('tab-list-active');
        $('#tab-1').addClass('tab-list-active')
        $('#registab1-content').show();
+       $('#basic-date-picker1').attr('placeholder','วัน/เดือน/ปี');
    });
    
    $('#tab-2').on('click', function(){

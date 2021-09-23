@@ -1,4 +1,5 @@
 import { Get, Post, Controller, Body, Param, Delete } from "@nestjs/common";
+import { string } from "joi";
 import * as mongoose from 'mongoose';
 import { Bookmark } from './bookmarks.schema'
 import { BookmarkService } from "./bookmarks.service";
@@ -13,9 +14,7 @@ export class BookmarkController {
   async saveBookmark(
     @Body() detail: { userId: string, link: string, type: string, thatUserId: string, projectName?: string} 
   ): Promise<Bookmark> {
-    const oid1 = mongoose.Types.ObjectId(detail.userId);
-    const oid2 = mongoose.Types.ObjectId(detail.thatUserId);
-    return await this.bookmarkService.SaveBookmark(oid1, detail.link, detail.type, oid2, detail.projectName) ;
+    return await this.bookmarkService.SaveBookmark(detail.userId, detail.link, detail.type, detail.thatUserId, detail.projectName) ;
   }
 
   // ---------------------------- Delete Bookmark ---------------------------
@@ -24,17 +23,13 @@ export class BookmarkController {
   async deleteBookmark(
     @Body() detail: { userId: string, link: string, type: string, thatUserId: string, projectName?: string} 
   ): Promise<any> {
-    const oid1 = mongoose.Types.ObjectId(detail.userId);
-    const oid2 = mongoose.Types.ObjectId(detail.thatUserId);
-    return await this.bookmarkService.DeleteBookmark(oid1, detail.link, detail.type, oid2, detail.projectName) ;
+    return await this.bookmarkService.DeleteBookmark(detail.userId, detail.link, detail.type, detail.thatUserId, detail.projectName) ;
   }
 
   // ---------------------------- Find All Bookmark ---------------------------
   @Get('find/:id')
   async findBookmark(@Param('id') id:string): Promise<any[]> {
-    const oid = mongoose.Types.ObjectId(id) ;
-    console.log(oid); 
-    return await this.bookmarkService.findBookmark(oid) ;
+    return await this.bookmarkService.findBookmark(id) ;
   }
 
   @Get('/:id&&:sort')
@@ -42,8 +37,7 @@ export class BookmarkController {
     @Param('id') userId: string,
     @Param('sort') sort: string
   ): Promise<any[]> {
-    const oid = mongoose.Types.ObjectId(userId);
-    return this.bookmarkService.userBookmark(oid, sort);
+    return this.bookmarkService.userBookmark(userId, sort);
   }
 
 }
