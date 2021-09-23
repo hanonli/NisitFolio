@@ -4,12 +4,12 @@ import React from "react";
 class MyresumeHeading extends React.Component{
     render(){
         const colourcode = this.props.colour? this.props.colour : "#FFCE55";
-        const bordercode = "1vw solid " + colourcode;
+        const bordercode = "0.75vw solid " + colourcode;
         const boxcolourstyle = {
             border: bordercode,
         };
         return(
-            <div class="resume-header">
+            <div class="resume-header" id="resume-header">
                 <div class="resume-profile-picture">
                     <a> 
                         <img class="resume-profile-pic" src={this.props.imagepath? this.props.imagepath: "assets/images/profile2.jpg"}></img>

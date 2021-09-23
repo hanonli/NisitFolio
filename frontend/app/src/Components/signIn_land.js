@@ -11,16 +11,17 @@ class SignInLand extends React.Component {
 
     myChangeHandler_email = (event) => {
         this.setState({ user: event.target.value });
-        this.setState({ invalid_email: "" });
+        /*this.setState({ invalid_email: "" });
         this.setState({ id_email1: "inputform1" });
-        this.setState({ label_text_email: "labelText" });
+        this.setState({ label_text_email: "labelText" });*/
+        this.setState({ invalid_password: "" });
     }
 
     myChangeHandler_password = (event) => {
         this.setState({ password: event.target.value });
         this.setState({ invalid_password: "" });
-        this.setState({ id_password1: "inputform1" });
-        this.setState({ label_text_password: "labelText" });
+        /*this.setState({ id_password1: "inputform1" });
+        this.setState({ label_text_password: "labelText" });*/
     }
 
     async loginUser(credentials) {
@@ -45,14 +46,15 @@ class SignInLand extends React.Component {
         this.setState({ label_text_email: "labelText" });
         this.setState({ label_text_password: "labelText" });*/
         if (this.state.user == "") {
-            this.setState({ invalid_email: "คุณยังไม่ได้ป้อนอีเมล" });
+            /*this.setState({ invalid_email: "คุณยังไม่ได้ป้อนอีเมล" });
             this.setState({ id_email1: "inputform2_error" });
-            this.setState({ label_text_email: "labelText-error" });
+            this.setState({ label_text_email: "labelText-error" });*/
+            this.setState({ invalid_password: "*คุณไม่มีสิทธิ์เข้าใช้งานระบบ" });
         }
         if (this.state.password == "") {
-            this.setState({ invalid_password: "คุณยังไม่ได้ป้อนรหัสผ่าน" });
-            this.setState({ id_password1: "inputform2_error" });
-            this.setState({ label_text_password: "labelText-error" });
+            this.setState({ invalid_password: "*คุณไม่มีสิทธิ์เข้าใช้งานระบบ" });
+            /*this.setState({ id_password1: "inputform2_error" });
+            this.setState({ label_text_password: "labelText-error" });*/
         }
         const result = await this.loginUser({
             username: this.state.user,
@@ -74,7 +76,7 @@ class SignInLand extends React.Component {
             window.location.href = "/home";
         }
         else if ('error' in result) {
-            if (result["error"] == "Wrongpwd") {
+            /*if (result["error"] == "Wrongpwd") {
                 //alert("passwordมึงผิดไอ้ควาย");
                 this.setState({ invalid_password: "รหัสผ่านที่คุณป้อนไม่ถูกต้อง" });
                 this.setState({ id_password1: "inputform2_error" });
@@ -91,7 +93,8 @@ class SignInLand extends React.Component {
                 this.setState({ invalid_email: "อีเมลที่คุณป้อนไม่ถูกต้อง" });
                 this.setState({ id_email1: "inputform2_error" });
                 this.setState({ label_text_email: "labelText-error" });
-            }
+            }*/
+            this.setState({ invalid_password: "*คุณไม่มีสิทธิ์เข้าใช้งานระบบ" });
         }
     }
 

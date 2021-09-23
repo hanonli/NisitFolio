@@ -1,5 +1,6 @@
 @import "myresumeTimeline.css";
 @import "myresumeEducation.css";
+@import "myresumeCertificate.css";
 /* Zone Decoration */
 
 .Ex {
@@ -85,15 +86,16 @@
 .resume-head-darkpart{
     width: 100%;
     background-color: #161513;
-    padding: 4vw;
+    padding: 2vw;
     color: #FFFFFF;
 }
 
 .resume-name-box{
     margin-left:45%;
-    width:45%;
-    padding: 1vw;
+    width:50%;
+    padding: 0.5vw;
     color: #FFFFFF;
+    padding-inline: 1vw;
 }
 
 .resume-name-text{
@@ -103,15 +105,19 @@
 }
 
 .resume-occupation{
-    font-size: 3vw;
+    font-size: 2vw;
+    height: auto;
+    margin-bottom: 0%;
 }
 
 .resume-name-bio-part{
-    padding: 2vw;
-    margin-left:43%;
-    width:47%;
-    min-height: 15vw;
-    font-size: 2vw;
+    padding: 1vw;
+    padding-inline: 2vw;
+    margin-left:42%;
+    width:52%;
+    min-height: 7.5vw;
+    font-size: 1vw;
+    color: black;
     /*font-weight: 300;*/
 }
 
@@ -124,7 +130,7 @@
     box-shadow: none;
 	display: block;
 	margin-left: 0vw;
-	margin-top: 8vw;
+	margin-top: 6%;
 	position: absolute;
 	/*background: rgba(0, 0, 0, 0.3) none repeat scroll 0 0;
 	*/
@@ -149,7 +155,7 @@
 
 .resumetopic{
     color: black;
-    font-size: 4vw;
+    font-size: 3vw;
     padding: 0vw;
 }
 
