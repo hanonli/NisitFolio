@@ -195,3 +195,149 @@
     margin-left: 0vw;
 }
 
+.myresume-mywork {
+    width:45vw;
+    margin-left:55vw;
+    background-color: rgb(255, 255, 255);
+    padding: 1vw;
+}
+
+.showmywork {
+    margin-left: 2vw;
+    padding: 1Vw;
+}
+
+.seemywork{
+    margin-left: 31Vw;
+}
+
+.myresume-mywork-woNb{
+    background-color: rgb(255, 255, 255);
+}
+
+.myresume-head-woNb{
+    color: black;
+    font-size: 3vw;
+    text-align: center;
+}
+
+.line-mywork{
+    border: 0.25Vw solid #FFCE55;
+    width: 27%;
+    margin-left: 36.5%;
+    margin-bottom: 30px;
+}
+
+.seemywork-woNb{
+    margin-left: 80Vw;
+    margin-top: 1.4Vw;
+    padding: 1Vw;
+}
+
+.myresume-work-goals-woNb{
+    background-color: rgba(22, 21, 19, 1);
+    padding: 1Vw;
+    justify-content: center;
+}
+
+.work-goals-head{
+    justify-content: center;
+}
+
+.work-goals{
+    margin-top: 3Vw;
+}
+
+.count-work-goals{
+    font-weight: 200;
+    font-size: 300%;
+}
+
+.color-number{
+    margin-top: 5Vw;
+    font-weight: 200;
+    font-size: 320%;
+    color: #FFCE55;
+
+    text-align: center;
+}
+
+.work-goals-woNb{
+    margin-left: 8Vw;
+    margin-right: 8Vw;
+
+    justify-content: center;
+}
+
+.count-work-goals-woNb{
+    justify-content: center;
+}
+
+.White-font{
+    color: white;
+    text-align: center;
+}
+
+.White-font #WG{
+    font-size: 3vw;
+}
+
+.myresume-work-goals-withoutdata{
+    background-color: rgba(22, 21, 19, 1);
+    padding: 1Vw;
+    justify-content: center;
+}
+
+.myresume-mywork-withoutdata{
+    background-color: rgb(255, 255, 255);
+    padding: 1Vw;
+    justify-content: center;
+}
+
+.text-work-goals-wdata{
+    margin-top: 18Vw;
+    text-align: center;
+}
+
+.work-goals-btn{
+    margin: auto;
+    top: 86vh;
+    left: 78vw;
+
+    width: 30%;
+    height: 3vw;
+    border: 3Vw rgba(249, 220, 92, 1);
+    border-radius: 3vw;
+    background-color: rgba(249, 220, 92, 1);
+    padding: 0.1vw 0.2vw;
+
+    margin-bottom: 20Vw;
+    position: center;
+    display: flex;
+}
+
+.text-btn-work-goals{
+    color: black;
+    margin: auto;
+    display: flex;
+}
+
+.line-arrow{
+    position: absolute;
+    width: 38.62px;
+    height: 0px;
+    margin-left: 80%;
+
+    border: 5px solid #000000;
+    transform: matrix(0.71, 0.67, -0.74, 0.71, 0, 0);
+}
+
+.line-arrow2{
+    position: absolute;
+    width: 36.87px;
+    height: 0px;   
+    margin-left: 80%;
+
+    border: 5px solid #000000;
+    transform: matrix(-0.71, 0.67, -0.74, -0.71, 0, 0);
+}
