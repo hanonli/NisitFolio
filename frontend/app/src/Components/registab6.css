@@ -139,7 +139,7 @@
     border: 2px solid #FFC045;
     border-radius: 8px;
     width: 120px;
-    height: 30px;
+    height: 28px;
     text-align: center;
     padding-left: 4px;
     padding-right: 4px;
@@ -153,7 +153,7 @@
     border: 2px solid #79CE23;
     border-radius: 8px;
     width: 120px;
-    height: 30px;
+    height: 28px;
     text-align: center;
     padding-left: 4px;
     padding-right: 4px;
@@ -167,7 +167,7 @@
     border: 2px solid #C98A11;
     border-radius: 8px;
     width: 120px;
-    height: 30px;
+    height: 28px;
     text-align: center;
     padding-left: 4px;
     padding-right: 4px;
@@ -182,7 +182,14 @@
 .tabs_pop li {
     display: inline-block;
     padding: 15px 25px;
-    border-bottom: 0.1px solid #c4c4c4;
+}
+
+.underline-tabJob1{
+    width: 90%;
+    display: block;
+    height: 0.1px;
+    background-color: #c4c4c4;
+    margin: -3.5px auto 0;
 }
 
 li.current2{
