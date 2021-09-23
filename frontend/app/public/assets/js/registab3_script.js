@@ -178,6 +178,10 @@ $(document).on('click', "#sub_del_aca", function () {
   console.log(list_of_aca);
   get_aca_id(list_of_aca, 1);
   show_all_aca()
+  if (list_of_aca.length != 3) {
+    $('#aca_danger').text('ท่านสามารถเพิ่มประวัติการศึกษาได้สูงสุด 3 อัน');
+    $('#aca_danger').removeClass('red_markEp1');
+}
 });
 
 
@@ -205,6 +209,9 @@ $(document).on("change", "#aca_degree", function () {
 });
 
 document.getElementById("submit-aca").addEventListener("click", function () {
+  $("#aca_name").removeClass("is-invalid");
+  $("#aca_degree").removeClass("is-invalid");
+  $("#aca_faculty").removeClass("is-invalid");
   name_aca = document.getElementById("aca_name").value;
   degree_aca = document.getElementById("aca_degree").value;
   faculty_aca = document.getElementById("aca_faculty").value;
@@ -212,19 +219,23 @@ document.getElementById("submit-aca").addEventListener("click", function () {
   grade_aca = document.getElementById("aca_grade").value;
   year_aca = document.getElementById("year_secondary").value;
   $('#submit_aca').text = 'ยืนยัน';
+  var checkcase1 = true;
   if (document.getElementById("aca_name").value == '') {
       //alert("submit aca wrong!");
       $("#aca_name").addClass("is-invalid");
+      checkcase1 = false;
   }
   if (document.getElementById("aca_degree").value == 'none') {
     //alert("submit aca wrong!");
     $("#aca_degree").addClass("is-invalid");
+    checkcase1 = false;
   }
   if (document.getElementById("aca_faculty").value == '') {
     //alert("submit aca wrong!");
     $("#aca_faculty").addClass("is-invalid");
+    checkcase1 = false;
   }
-  else {
+  if(checkcase1) {
       if (field_aca == '') {
           field_aca = 'none';
       }
@@ -276,6 +287,10 @@ document.getElementById("submit-aca").addEventListener("click", function () {
       $('#registab3Modal1').modal('hide');
       $(".list-of-aca").empty();
       show_all_aca()
+      if (list_of_aca.length == 3) {
+        $('#aca_danger').text('*ท่านเพิ่มประวัติการศึกษาครบจำนวนแล้ว');
+        $('#aca_danger').addClass('red_markEp1');
+    }
   }
 });
 
@@ -421,6 +436,10 @@ $(document).on('click', "#sub_del_high", function () {
   console.log(list_of_high);
   get_high_id(list_of_high, 1);
   show_all_high()
+  if (list_of_high.length != 3) {
+    $('#high_danger').text('ท่านสามารถเพิ่มประวัติการศึกษาได้สูงสุด 3 อัน');
+    $('#high_danger').removeClass('red_markEp1');
+}
 });
 
 
@@ -503,6 +522,10 @@ document.getElementById("submit-high").addEventListener("click", function () {
       $('#registab3Modal2').modal('hide');
       $(".list-of-high").empty();
       show_all_high()
+      if (list_of_high.length == 3) {
+        $('#high_danger').text('*ท่านเพิ่มประวัติการศึกษาครบจำนวนแล้ว');
+        $('#high_danger').addClass('red_markEp1');
+    }
   }
 });
 

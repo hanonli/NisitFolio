@@ -36,7 +36,7 @@ class Registab3 extends React.Component {
 									<div className=''>
                                         <h5 class='font-dest3'>ระดับอุดมศึกษาจะประกอบไปด้วย ปวส. ปริญญาตรี ปริญญาโท และปริญญาเอก</h5>
                                         <div class="list-of-aca" id="in-list-of-aca"></div>
-                                        <h5 class="font-titlet3 normalformzonet3 dangerzonet3">ท่านสามารถเพิ่มประวัติการศึกษาได้สูงสุด 3 อัน</h5>
+                                        <h5 class="font-titlet3 normalformzonet3 dangerzonet3" id='aca_danger'>ท่านสามารถเพิ่มประวัติการศึกษาได้สูงสุด 3 อัน</h5>
 									</div>
 
 									<div class="modal fade" id="registab3Modal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
@@ -47,49 +47,59 @@ class Registab3 extends React.Component {
 													<div className='addHigher'>
                                                         <div className="Registab3_addHigher ">
                                                             <form  id='HigherForm'>
+                                                            <div class='row'>
+                                                                <div class="col-md-2 chidright">
+										                            <label class="form-f-sex">วุฒิการศึกษา<a class="red_markEp1">*</a></label>
+									                            </div>
                                                                 <div class='col-3' >
                                                                     <div class="selectDropdown">
                                                                         <select class="form-select form-select-lg dropbtn margin-bottom1 fff" id='aca_degree' aria-labelledby="select1" required>
-                                                                            <option selected disabled value='none'>เลือกวุฒิการศึกษา*</option>
+                                                                            <option selected disabled value='none'>เลือกวุฒิการศึกษา</option>
                                                                             <option value='ปริญญาเอก'>ปริญญาเอก</option>    
                                                                             <option value='ปริญญาโท'>ปริญญาโท</option>
                                                                             <option value='ปริญญาตรี'>ปริญญาตรี</option>
                                                                         </select>
-
                                                                     </div>
                                                                 </div>
-                                                                <div class='row'>
-                                                                    <div class="col-6 ">
-                                                                        <input type="text" class="form-control dropbtn margin-bottom1 " id="aca_name" placeholder="สถานศึกษา*" required></input>
-                                                                    </div>
-                                                                    <div class="col-6">
-                                                                        <input type="text" class="form-control dropbtn margin-bottom1 " id="aca_faculty" placeholder="คณะ*" required></input>
-                                                                    </div>
-                                                                </div>
-                                                                <div class='row'>
-                                                                    <div class="col-6   ">
-                                                                        <input type="text" class="form-control dropbtn margin-bottom1 " id="aca_field"  placeholder='สาขาวิชา'></input>
-                                                                    </div>
-                                                                    <div class="col-6">
-                                                                        <div class='row'>
-                                                                            <div class='col'> 
-                                                                                <h5 id='registab4_textGrade' type='number' >เกรดเฉลี่ยสะสม</h5>
-                                                                            </div>
-                                                                            <div class='col-4 ms-auto'> 
-                                                                                <input type="number" class="form-control dropbtn margin-bottom1" placeholder='X.XX' id="aca_grade"></input>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                
+                                                                <div class="col-md-3 chidright">
+										                            <label class="form-f-sex">ปีที่จบการศึกษา<a class="red_markEp1">*</a></label>
+									                            </div>
                                                                 <div class='col-3' >
-                                                                    <div class="selectDropdown">
-                                                                        <select class="form-select form-select-lg dropbtn_year margin-bottom1 fff" id='year_secondary' aria-labelledby="select1">
-                                                                            <option selected disabled value=''>ปีที่จบการศึกษา</option>
-                                                                            <option value='9999'>กำลังศึกษา</option>
-                                                                        </select>
-                                                                        <br/>
-                                                                    </div>               
+                                                                    <select class="form-select form-select-lg dropbtn margin-bottom1 fff" id='year_secondary' aria-labelledby="select1">
+                                                                        <option selected disabled value=''>ค.ศ.</option>
+                                                                        <option value='9999'>กำลังศึกษา</option>
+                                                                    </select>            
+                                                                </div>
+                                                            </div>
+                                                                <div class='row'>
+                                                                    <div class="col-md-2 chidright">
+										                                <label class="form-f-sex">สถานศึกษา<a class="red_markEp1">*</a></label>
+									                                </div>
+                                                                    <div class="col-9 ">
+                                                                        <input type="text" class="form-control dropbtn margin-bottom1 " id="aca_name" required></input>
+                                                                    </div>
+                                                                </div>
+                                                                <div class='row'>
+                                                                    <div class="col-md-2 chidright">
+										                                <label class="form-f-sex">คณะ<a class="red_markEp1">*</a></label>
+									                                </div>
+                                                                    <div class="col-9">
+                                                                        <input type="text" class="form-control dropbtn margin-bottom1 " id="aca_faculty" required></input>
+                                                                    </div>
+                                                                </div>
+                                                                <div class='row'>
+                                                                    <div class="col-md-2 chidright">
+										                                <label class="form-f-sex">สาขาวิชา</label>
+									                                </div>
+                                                                    <div class="col-4">
+                                                                        <input type="text" class="form-control dropbtn margin-bottom1 fff" id="aca_field" ></input>
+                                                                    </div>
+                                                                    <div class="col-2 chidright">
+										                                <label class="form-f-sex">เกรดเฉลี่ยสะสม</label>
+									                                </div>
+                                                                    <div class="col-3">
+                                                                        <input type="number" class="form-control dropbtn margin-bottom1" placeholder='X.XX' id="aca_grade"></input>
+                                                                    </div>
                                                                 </div>
                                                             </form>
                                                         </div>
@@ -117,7 +127,7 @@ class Registab3 extends React.Component {
 									<div className=''>		
                                         <h5 class='font-dest3'>ระดับมัธยมศึกษาในที่นี้จะประกอบไปด้วย มัธยมศึกษาตอนปลาย และปวช.</h5>
                                         <div class="list-of-high" id="in-list-of-high"></div>
-                                        <h5 class="font-titlet3 normalformzonet3 dangerzonet3">ท่านสามารถเพิ่มประวัติการศึกษาได้สูงสุด 3 อัน</h5>
+                                        <h5 class="font-titlet3 normalformzonet3 dangerzonet3" id='high_danger'>ท่านสามารถเพิ่มประวัติการศึกษาได้สูงสุด 3 อัน</h5>
                                             <div class="center3">
                                             </div>
 									    </div>
@@ -130,52 +140,56 @@ class Registab3 extends React.Component {
 													<div className="Registab3_addSecondary">
 				
                 <form  id='SecondaryForm'>
-                    <div class='col-5' >
-                        <div class="selectDropdown">
+                    <div class='row'>
+                        <div class="col-3 chidright">
+                            <label class="form-f-sex">วุฒิการศึกษา<a class="red_markEp1">*</a></label>
+                        </div>
+                        <div class="col-3">
                             <select class="form-select form-select-lg dropbtn margin-bottom1 fff" id='high_degree' aria-labelledby="select1" required>
-                                <option selected disabled value=''>เลือกวุฒิการศึกษา*</option> 
+                                <option selected disabled value=''>เลือกวุฒิการศึกษา</option> 
                                 <option value='อาชีวะศึกษา' >อาชีวะศึกษา </option>  
                                 <option value='มัธยมศึกษาตอนปลาย' >มัธยมศึกษาตอนปลาย</option>    
                                 <option value='มัธยมศึกษาตอนต้น' >มัธยมศึกษาตอนต้น</option>
                                 <option value='ประถมศึกษา' >ประถมศึกษา</option> 
                             </select>
                         </div>
-                    </div>
-                    <div class='row'>
-                        <div class="col-12 ">
-                            <input type="text" class="form-control dropbtn margin-bottom1 " id="high_name" placeholder="สถานศึกษา*" required></input>
+                        <div class="col-3 chidright">
+                            <label class="form-f-sex">ปีที่จบการศึกษา<a class="red_markEp1"></a></label>
                         </div>
-                    </div>
-                    <div class='row'>
-                        <div class="col-7 ">
-                            <input type="text" class="form-control dropbtn margin-bottom1 " id="high_field"  placeholder='หลักสูตร/แผนการเรียน' required></input>
-                        </div>
-                        <div class="col-5">
-                            <div class='row'>
-                                <div class='col'> 
-                                    <h5 id='registab4_textGrade'>เกรดเฉลี่ยสะสม</h5>
-                                </div>
-                                <div class='col-7 ms-auto'> 
-                                    <input type="text" class="form-control dropbtn margin-bottom1 " id="high_grade" placeholder="X.XX"></input>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class='col-3' >
-                        <div class="selectDropdown">
-                            <select class="form-select form-select-lg dropbtn_year margin-bottom1 fff" id='year_higher' aria-labelledby="select1">
-                                <option selected disabled value=''>ปีที่จบการศึกษา</option>
+                        <div class='col-3' >
+                            <select class="form-select form-select-lg dropbtn margin-bottom1 fff" id='year_higher' aria-labelledby="select1">
+                                <option selected disabled value=''>ค.ศ.</option>
                                 <option value='9999'>กำลังศึกษา</option>
                             </select>
-                            <br/>
-                        </div>               
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class="col-md-3 chidright">
+							<label class="form-f-sex">สถานศึกษา<a class="red_markEp1">*</a></label>
+						</div>
+                        <div class="col-9 ">
+                            <input type="text" class="form-control dropbtn margin-bottom1 fff" id="high_name" required></input>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class="col-md-3 chidright">
+							<label class="form-f-sex">หลักสูตร/แผนการเรียน</label>
+						</div>
+                        <div class="col-3 ">
+                            <input type="text" class="form-control dropbtn margin-bottom1 fff" id="high_field" required></input>
+                        </div>
+                        <div class="col-md-3 chidright">
+							<label class="form-f-sex">เกรดเฉลี่ยสะสม</label>
+						</div>
+                        <div class='col-3'> 
+                            <input type="text" class="form-control dropbtn margin-bottom1 " id="high_grade" placeholder="X.XX"></input>
+                        </div>
                     </div>
                 </form>
 			</div>
 													</div>													
 												</div>
-													<div class="centerverify button-add-addH1">
+													<div class="centerverify button-add-addH2">
 														<button type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</button>
 														<button type="button" class="btn btn-cta-primary-yellowshort profile-button round" id="submit-high">เพิ่ม</button>
 													</div>
