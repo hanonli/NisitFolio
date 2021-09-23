@@ -28,7 +28,7 @@ export class BookmarkService {
     private AccountModel: Model<Account>,
   ) {}
 
-  async updateTotalBookmark( method: String, type: String, userId: ObjectId, projectName: String ): Promise<void> {
+  async updateTotalBookmark( method: String, type: String, userId: String, projectName: String ): Promise<void> {
     /*
     * Update total number in TotalBookmark table.
     * method: "add" (total++) or "delete" (total--)
@@ -80,8 +80,8 @@ export class BookmarkService {
   }
   // ---------------------------- Save Bookmark ---------------------------
   
-  async SaveBookmark(userId: ObjectId, link: string, type: string, 
-    thatUserId: ObjectId,projectName?: string): Promise<any> {
+  async SaveBookmark(userId: string, link: string, type: string, 
+    thatUserId: string,projectName?: string): Promise<any> {
     const createBookmark = new this.BookmarkModel({userId, link, type, thatUserId, projectName}) ;
     //console.log({userId, link, type, thatUserId, projectName});
     await this.updateTotalBookmark("add", type, thatUserId, projectName);
@@ -90,8 +90,8 @@ export class BookmarkService {
 
   // ---------------------------- Delete Bookmark ---------------------------
   
-  async DeleteBookmark(userId: ObjectId, link: string, type: string, 
-    thatUserId: ObjectId,projectName?: string): Promise<any> {
+  async DeleteBookmark(userId: string, link: string, type: string, 
+    thatUserId: string,projectName?: string): Promise<any> {
     await this.updateTotalBookmark("delete", type, thatUserId, projectName);
     return await this.BookmarkModel.deleteMany( { userId: userId, link: link, type: type, thatUserId: thatUserId, projectName: projectName}, 
       function (err) {
@@ -103,13 +103,13 @@ export class BookmarkService {
 
   // ---------------------------- Find All Bookmark ---------------------------
 
-  async findBookmark(userId: ObjectId) : Promise<any[]> {
+  async findBookmark(userId: string) : Promise<any[]> {
     const All = await this.BookmarkModel.find({userId: userId}).select(['userId','link', 'thatUserId']).sort({updatedAt: -1}).exec() ;
     console.log(All) ;
     return All ;
   }
 
-  async userBookmark(userId: ObjectId, sort: String): Promise<any> {
+  async userBookmark(userId: string, sort: string): Promise<any> {
     const bookmarks = await this.BookmarkModel.find( { userId: userId }).exec();
     //console.log(bookmarks);
     let res = {};

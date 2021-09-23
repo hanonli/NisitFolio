@@ -1095,6 +1095,10 @@ $(document).on("change", "#work_jobtype", function () {
 });
 
 document.getElementById("submit-work").addEventListener("click", function () {
+  $("#jobname_work").removeClass("is-invalid");
+  $("#jobtype_work").removeClass("is-invalid");
+  $("#month_startwork").removeClass("is-invalid");
+  $("#year_startwork").removeClass("is-invalid");
   work_jobname = document.getElementById("jobname_work").value;
   work_jobtype = document.getElementById("jobtype_work").value;
   work_startyear = document.getElementById("year_startwork").value;

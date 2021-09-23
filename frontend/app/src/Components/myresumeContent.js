@@ -4,6 +4,7 @@ import SharingPopup from './sharingpopup';
 import MyResume1 from './myresume1';
 import MyResume2 from './myresume2';
 import MyResume3 from './myresume3';
+import MyresumeWorkGoals from './myresumeworkgoals';
 import MyResumeEx from './myResumeEx';
 import './myresume.css';
 
@@ -54,6 +55,7 @@ class MyResumeContent extends React.Component {
 				<MyResume1></MyResume1>
 				<MyResume2></MyResume2>
 				<MyResume3></MyResume3>
+				<MyresumeWorkGoals></MyresumeWorkGoals>
 				<h1>Testing Sharing Space</h1>
 				<SharingPopup></SharingPopup>
 			</div>
