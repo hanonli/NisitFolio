@@ -10,7 +10,6 @@
     left: 0;
     overflow-x: hidden; /* Disable horizontal scroll */
     overflow-y: hidden;
-    
   
 
   }
@@ -39,6 +38,10 @@
     color: black;
     font-weight: 300;
     font-size: 2vh;
+  }
+
+  .active{
+    background-color: gray;
   }
  
 
