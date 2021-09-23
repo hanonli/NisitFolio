@@ -88,15 +88,15 @@ class MyResume1 extends React.Component {
             
             <div class="resume1">
                 <MyresumeHeading firstname={firstname} lastname={lastname} const occupation={occupation} bio={bio} imagepath={imagepath} colour="#FFCE55"></MyresumeHeading>
-			    <h1 style={{fontSize: "48px"}}>thisis48px นี่คือ48px</h1>
-				<p style={{fontSize: "16px"}}>thisis16px นี่คือ16px</p>
-                <h3 style={{fontSize: "24px"}}>thisis24px นี่คือ24px</h3>
-                <h3 style={{fontSize: "32px"}}>thisis32px นี่คือ32px</h3>
+			    <MyresumeHeading firstname={firstname} lastname={lastname} const occupation={occupation} imagepath={imagepath} colour="#FFCE55"></MyresumeHeading>
+                <MyresumeHeading firstname={firstname} lastname={lastname} const occupation={occupation} imagepath={imagepath} colour="#FFCE55" owner={true}></MyresumeHeading>
                 <MyResumeEducation data={educationdata}></MyResumeEducation>
                 <MyResumeEducation data={[]} owner={true}></MyResumeEducation>
                 <MyresumeCertificate data={certdata}></MyresumeCertificate>
                 <MyresumeCertificate data={[]}></MyresumeCertificate>
+                
             </div>
+
         );
         
     }

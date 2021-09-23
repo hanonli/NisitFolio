@@ -197,7 +197,7 @@ class MyresumeCertificate extends React.Component{
                     </div>
                 </div>),
                 (<div class="cert-dummy-edit">
-                    <div class="cert-edit"><p>ตอนนี้คุณยังไม่มีข้อมูลประวัติการศึกษา สำหรับตำแหน่งงาน{occupation}</p>
+                    <div class="cert-edit"><p>ตอนนี้คุณยังไม่มีข้อมูลเกียรติบัตรและใบรับรอง สำหรับตำแหน่งงาน{occupation}</p>
                     <button onClick={this.handleRoute}>แก้ไขโปรไฟล์</button></div>
                 </div>)
             ]

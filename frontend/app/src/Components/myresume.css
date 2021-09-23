@@ -132,10 +132,23 @@
     padding-inline: 2vw;
     margin-left:42%;
     width:52%;
-    min-height: 7.5vw;
+    min-height: 8vw;
     font-size: 1vw;
     color: black;
     /*font-weight: 300;*/
+    position: relative;
+}
+
+.resume-name-bio-part p{
+
+    /*width: 100%;*/
+    font-size: 1vw;
+    color: black;
+    margin-bottom: 0%;
+    /*font-weight: 300;*/
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .resume-profile-pic{
@@ -175,6 +188,7 @@
     font-size: 3vw;
     padding: 0vw;
     font-weight: 500;
+    margin-bottom: 0%;
 }
 
 .resumesectionline{
