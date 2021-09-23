@@ -17,10 +17,10 @@ export const BookmarkSchema = new mongoose.Schema({
 
 export interface Bookmark extends Document {
   id: string;
-  userId: ObjectId;
+  userId: string;
   link: string;
   type: string;
-  thatUserId: ObjectId;
+  thatUserId: string;
   projectName: string;
 }
 
@@ -30,14 +30,14 @@ export interface Bookmark extends Document {
 
 export const TotalBookmarkSchema = new mongoose.Schema({
   type: { type: String, required: [true, 'type must not be empty.']},
-  userId: { type: ObjectId, required: [true, 'userId must not be empty.'] },
+  userId: { type: String, required: [true, 'userId must not be empty.'] },
   projectName: { type: String },
   totalBookmarks: { type: Number }
 })
 
 export interface TotalBookmark extends Document {
   type: String;
-  userId: ObjectId;
+  userId: String;
   projectName?: String;
   totalBookmarks?: Number;
 }
