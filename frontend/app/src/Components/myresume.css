@@ -2,6 +2,23 @@
 @import "myresumeEducation.css";
 @import "myresumeCertificate.css";
 /* Zone Decoration */
+.MyResumeContent *{
+    font-weight: normal;
+}
+
+.MyResumeContent h1{
+    font-weight: 500;
+}
+.MyResumeContent h2{
+    font-weight: 500;
+}
+.MyResumeContent h3{
+    font-weight: 500;
+}
+.MyResumeContent h4{
+    font-weight: 500;
+}
+
 
 .Ex {
     font-style: italic;
@@ -99,13 +116,13 @@
 }
 
 .resume-name-text{
-    font-size: 6vw;
-    font-weight: 1000;
+    font-size: 5vw;
+    font-weight: 700;
     color: #FFFFFF;
 }
 
 .resume-occupation{
-    font-size: 2vw;
+    font-size: 1.6vw;
     height: auto;
     margin-bottom: 0%;
 }
@@ -115,10 +132,23 @@
     padding-inline: 2vw;
     margin-left:42%;
     width:52%;
-    min-height: 7.5vw;
+    min-height: 8vw;
     font-size: 1vw;
     color: black;
     /*font-weight: 300;*/
+    position: relative;
+}
+
+.resume-name-bio-part p{
+
+    /*width: 100%;*/
+    font-size: 1vw;
+    color: black;
+    margin-bottom: 0%;
+    /*font-weight: 300;*/
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .resume-profile-pic{
@@ -129,12 +159,12 @@
 .resume-profile-picture{
     box-shadow: none;
 	display: block;
-	margin-left: 0vw;
-	margin-top: 6%;
+	left: 0px;
+	bottom: 0px;
 	position: absolute;
 	/*background: rgba(0, 0, 0, 0.3) none repeat scroll 0 0;
 	*/
-    width: 40%;
+    width: 37%;
     height: auto;
     z-index:9;
 }
@@ -157,6 +187,8 @@
     color: black;
     font-size: 3vw;
     padding: 0vw;
+    font-weight: 500;
+    margin-bottom: 0%;
 }
 
 .resumesectionline{
