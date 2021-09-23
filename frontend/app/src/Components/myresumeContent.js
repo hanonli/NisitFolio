@@ -50,7 +50,6 @@ class MyResumeContent extends React.Component {
 	render (){
 		return (
 			<div className="MyResumeContent">
-				<h1>MyResume Content Space</h1>
 				<MyResume1></MyResume1>				
 				<MyResume2></MyResume2>
 				<MyResume3></MyResume3>

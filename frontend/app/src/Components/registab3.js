@@ -25,14 +25,18 @@ class Registab3 extends React.Component {
 					<div class='col-16'>
 						<div class='row'>
 								<div className='registab3_formbox col-6'>
-									<h2 class="font-headert3">อุดมศึกษา</h2>
-									<div className=''>
-                                        <div class="list-of-aca" id="in-list-of-aca"></div>
-                                        <div class="center3">
-                                        <button type="button" class="btn registab3_btnplus" id="add_aca">
-											<img id='icon-plus-circle'  src="assets/images/+.png"></img>
-										</button>
+                                    <div class='row longlang'>
+                                        <div class='col-10'>
+                                            <h2 class="font-headert3">อุดมศึกษา</h2>
                                         </div>
+                                        <button type="button" class="col-2 btn registab3_btnplus" id="add_aca">
+											<img id='icon-plus-circle'  src="assets/images/add_black.png"></img>
+									    </button>
+                                    </div>
+									<div className=''>
+                                        <h5 class='font-dest3'>ระดับอุดมศึกษาจะประกอบไปด้วย ปวส. ปริญญาตรี ปริญญาโท และปริญญาเอก</h5>
+                                        <div class="list-of-aca" id="in-list-of-aca"></div>
+                                        <h5 class="font-titlet3 normalformzonet3 dangerzonet3">ท่านสามารถเพิ่มประวัติการศึกษาได้สูงสุด 3 อัน</h5>
 									</div>
 
 									<div class="modal fade" id="registab3Modal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
@@ -102,13 +106,19 @@ class Registab3 extends React.Component {
                                                                             </div>
 
 								<div className='registab3_formbox col-6'>
-									<h2 class="font-headert3">มัธยมศึกษา</h2>
+                                    <div class='row longlang'>
+                                        <div class='col-10'>
+									        <h2 class="font-headert3">มัธยมศึกษา</h2>
+                                        </div>
+                                        <button type="button" class="btn registab3_btnplus col-2" data-bs-toggle="modal" data-bs-target="#registab3Modal2" id="add_high">
+                                            <img id='icon-plus-circle'  src="assets/images/add_black.png"></img>
+                                        </button>
+                                    </div>
 									<div className=''>		
+                                        <h5 class='font-dest3'>ระดับมัธยมศึกษาในที่นี้จะประกอบไปด้วย มัธยมศึกษาตอนปลาย และปวช.</h5>
                                         <div class="list-of-high" id="in-list-of-high"></div>
+                                        <h5 class="font-titlet3 normalformzonet3 dangerzonet3">ท่านสามารถเพิ่มประวัติการศึกษาได้สูงสุด 3 อัน</h5>
                                             <div class="center3">
-                                                <button type="button" class="btn registab3_btnplus" data-bs-toggle="modal" data-bs-target="#registab3Modal2" id="add_high">
-                                                    <img id='icon-plus-circle'  src="assets/images/+.png"></img>
-                                                </button>
                                             </div>
 									    </div>
 									<div class="modal fade" id="registab3Modal2" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
