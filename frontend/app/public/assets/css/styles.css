@@ -972,7 +972,7 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 }
 
 .sbma-flex{
-	height: 98%;
+	/*height: 98%;*/
 	margin-top: 10px;
 	display: flex;
 	justify-content: center;

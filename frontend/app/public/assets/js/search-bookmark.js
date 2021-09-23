@@ -125,6 +125,10 @@ var not_found_bookmark = '<div class="nf-flex">\
 					
 var profile_count=0;
 var work_count=0;
+
+var profileCount=0;
+var workCount=0;
+
 var mixed_count=0;
 var index=0;
 var max=0;
@@ -293,8 +297,8 @@ function AddProfileGridEntity(data){
 	
 	var valid_desc = FormatEllipsis('desc-grid',data.about);
 	
-	if(row_filled || (index == max)){// add 2 data as new row
-		console.log("add new GRID: "+index+" : "+data.name + " max: " + max);
+	if(row_filled || (index == profileCount)){// add 2 data as new row
+		console.log("add new GRID: "+index+" : "+data.name + " max: " + profileCount);
 		raw_html = "";
 		if(row_filled){
 			for (let i = 0; i < temp.length; i++) {
@@ -325,7 +329,7 @@ function AddProfileGridEntity(data){
 		dtype = FormatIcon(data,dtype);
 		raw_html += '<div class="sbm-grid-entity">' + dtype + '</div>';
 		
-		if(!row_filled && index == max) //last row has only single item, add a dummy to even the row
+		if(!row_filled && index == profileCount) //last row has only single item, add a dummy to even the row
 			raw_html += '<div class="sbm-grid-entity" />';
 		
 		$('.profile-grid-container').append(raw_html); 
@@ -337,16 +341,12 @@ function AddProfileGridEntity(data){
 
 function AddWorkListEntity(data){
 	console.log("Add new list");
-	if(work_count > 0) 
-			raw_html += '<div class="row bookmark-row-top-buffer">'; //row start
-		else
-			raw_html += '<div class="row">'; //first row start
-		
-	var valid_desc = FormatEllipsis('desc-list',data.desc);
-	var dtype = work_list.replace("{name}", data.name).replace("{img}", data.pic).replace("{desc}", valid_desc).replace("{owner}", data.owner);
+
+	var valid_desc = FormatEllipsis('desc-list',data.about);
+	var dtype = work_list.replace("{name}", data.name).replace("{img}", data.profilePic).replace("{desc}", valid_desc).replace("{owner}", data.owner);
 	dtype = FormatIcon(data,dtype);
 	raw_html += dtype;
-	raw_html += '</div>'; // row close
+
 	$('.work-list-container').append(raw_html);
 	work_count += 1;
 	raw_html = "";
@@ -359,27 +359,26 @@ function AddWorkGridEntity(data){
 		temp.push(data);
 		row_filled = false;
 	}
-	var valid_desc = FormatEllipsis('desc-grid',data.desc);
+	var valid_desc = FormatEllipsis('desc-grid',data.about);
 	
-	if(row_filled || (index == max)){// add 2 data as new row
-		console.log("add new GRID: "+index+" : "+data.name + " max: " + max);
+	if(row_filled || (index == workCount)){// add 2 data as new row
+		console.log("add new GRID: "+index+" : "+data.name + " max: " + workCount);
 		raw_html = "";
-		if(work_count > 1) 
-			raw_html += '<div class="row bookmark-row-top-buffer">'; //row start
-		else
-			raw_html += '<div class="row">'; //first row start
+		
 		if(row_filled){
 			for (let i = 0; i < temp.length; i++) {
-				var ttype = work_grid.replace("{name}", temp[i].name).replace("{img}", temp[i].pic).replace("{desc}", temp[i].port).replace("{owner}", temp[i].owner);
+				var ttype = work_grid.replace("{name}", temp[i].name).replace("{img}", temp[i].profilePic).replace("{desc}", temp[i].port).replace("{owner}", temp[i].owner);
 				ttype = FormatIcon(temp[i],ttype);
-				raw_html += '<div class="col-md-6">' + ttype +'</div>';
+				raw_html += '<div class="sbm-grid-entity">' + ttype +'</div>';
 			}
 		}
-		var dtype = work_grid.replace("{name}", data.name).replace("{img}", data.pic).replace("{desc}", data.port).replace("{owner}", data.owner);
+		var dtype = work_grid.replace("{name}", data.name).replace("{img}", data.profilePic).replace("{desc}", data.port).replace("{owner}", data.owner);
 		dtype = FormatIcon(data,dtype);
-		raw_html += '<div class="col-md-6">' + dtype + '</div>';
+		raw_html += '<div class="sbm-grid-entity">' + dtype + '</div>';
 		
-		raw_html += '</div>'; // row close
+		if(!row_filled && index == workCount) //last row has only single item, add a dummy to even the row
+			raw_html += '<div class="sbm-grid-entity" />';
+		
 		
 		$('.work-grid-container').append(raw_html); 
 		temp = [];
@@ -660,12 +659,23 @@ function GetBookmarkData(){
 					"port":5
 				}
 			];
+			
+			profileCount = 0; workCount = 0;
+			datas.forEach((data) => {
+				if(data.type == "user") 
+					profileCount += 1;
+				else 
+					workCount += 1;
+			});
+			max = datas.length;
+			
 			var found = false;
 			console.log(datas);
 			console.log('BYAAA!!!!');
 			ResetData();
-			max = datas.length;
-			$('#result-count').text('จำนวน '+max+' รายการ');
+			if(current_tab == 1) $('#result-count').text('จำนวน '+max+' รายการ');
+			else if(current_tab == 2) $('#result-count').text('จำนวน '+profileCount+' รายการ');
+			else  $('#result-count').text('จำนวน '+workCount+' รายการ');
 			console.log(datas);
 			datas.forEach((data) => {
 				index += 1;
