@@ -5,9 +5,9 @@
     /*width: 1450px;*/
     border-radius: 25px;
     margin-top: 5px;
-    margin-bottom: 5px;
-    margin-left: 5px;
-    margin-right: 5px;
+    margin-bottom: 20px;
+    margin-left: 110px;
+    margin-right: 110px;
     position: relative;
     text-align: center;  
     align-items: center;
@@ -21,8 +21,8 @@
     border-radius: 25px;
     margin-top: 5px;
     margin-bottom: 5px;
-    margin-left: 5px;
-    margin-right: 5px;
+    margin-left: 110px;
+    margin-right: 110px;
     position: relative;
     text-align: center;  
     justify-content: center;
@@ -181,7 +181,7 @@
 }
 .tabs_pop li {
     display: inline-block;
-    padding: 15px 25px;
+    padding: 5px 25px;
 }
 
 .underline-tabJob1{
@@ -251,6 +251,7 @@ li.current2{
     font-family: 'Kanit';
     font-weight: 300;
     font-size: 25px;
+    margin-top: 10px;
     color: #435157;
 }
 
@@ -283,6 +284,8 @@ li.current2{
     font-size: 46.6px;
     font-family: 'Kanit';
     font-weight: 500;
+    margin-top: 10px;
+    /*margin-left: 5px;*/
     color: black;
 }
 
@@ -295,14 +298,13 @@ li.current2{
     /*cursor: pointer;*/
     border-radius: 22px;
     padding-left: 30px;
-    width: 29.5vw;
-    
+    width: 20vw;
 }
 
 .select-job4 {
     position: absolute;
-    margin-top: 6.5px;
-    right: 178px;
+    margin-top: 15px;
+    right: 25px;
 }
 
 .pos-del-obj-button {
@@ -328,8 +330,8 @@ li.current2{
 /*----new slider range----*/
 .sliderWithLabels {
     width: 588px;
-    padding: 20px 40px 0;
-    height: 80px;
+    padding: 0 60px 0;
+    /*height: 80px;*/
     overflow: hidden;
     display: none;
 }
@@ -451,9 +453,9 @@ li.current2{
 
 #text-add-name-my-job11{
     color: black;
-    font-size: 24px;
+    font-size: 32px;
     margin-bottom: 27px;
-    padding-left: 5px;
+    padding-left: 115px;
 }
 
 #red-select-job{
@@ -463,14 +465,17 @@ li.current2{
 .box-slider1{
     position:absolute;
     right: -40px;
+    top: 20px;
 }
 
 .box-slider2{
     position:absolute;
     right: -40px;
+    top: 20px;
 }
 
 .box-slider3{
     position:absolute;
     right: -40px;
+    top: 20px;
 }
