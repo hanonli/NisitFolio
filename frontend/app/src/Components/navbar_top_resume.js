@@ -6,16 +6,20 @@ class Resume_topNavbar extends React.Component {
 	
 	constructor(props) {
 		super(props);
+		this.handleLoad = this.handleLoad.bind(this);
 	 }
 	
 	componentDidMount() {
-
+		window.addEventListener('load', this.handleLoad);
 		const script = document.createElement("script");
 		script.src = "assets/js/navbar_top_resume_script.js";
 		document.body.appendChild(script);
 		
 	}
 
+	handleLoad() {
+		console.log("topNavbar script loaded!");
+	 }
 	
 	render (){
 
@@ -23,16 +27,24 @@ class Resume_topNavbar extends React.Component {
 			
 			<div className="Resume_topNavbar" id='topNav'>
 				
-				<div  id='myresumetoppath'> 
+				<div  class='myresumetoppath'> 
+
+					<div class='resume_topnav' >
+						<a class='topnav_lock' > 
+							<img id='icon-myresume-lock'  src="assets/images/outline_lock_black_24dp.png"/> 
+						</a>
+					</div>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+					<div class='resume_topnav' >
+						<div class='resume_selectjob'> 
+							<h1 class='resume_selectjob_text'>  &nbsp;ตำแหน่งงานที่ 1&nbsp; <span id="resume_verticalline"></span> &nbsp;ตำแหน่งงานที่ 2&nbsp; <span id="resume_verticalline"></span> &nbsp;ตำแหน่งงานที่ 3&nbsp;</h1>
+						</div>
 						
+					</div>
+
 				</div>
-				{/* <div className='sidenav-centered'>
-					<button type="button" class="slide_button" id='slidenav'>
-						<img id='icon-slide_right'  src="assets/images/slide_right.png"></img>
-					</button>
-					
-				</div> */}
-				
+		
 			</div>
 			
 		);
