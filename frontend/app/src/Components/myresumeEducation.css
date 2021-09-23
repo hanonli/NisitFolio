@@ -31,25 +31,27 @@
 
 .educationcontentLine1 .year{
     bottom: 0;
-    font-size: 1.6vw;
+    font-size: 1.0vw;
+    font-weight: 500;
 
 }
 .educationcontentLine1 .degree{
     bottom: 0;
-    font-size: 1.4vw;
+    font-size: 1.2vw;
+    font-weight: 500;
 }
 
 .educationcontentLine1 .centerbreak{
-    padding: 1vw;
+    padding: 0.5vw;
 }
 
 .breakline{
-    font-weight: 400;
-    font-size: 2.2vw;
+    font-weight: 100;
+    font-size: 1.2vw;
 }
 
 .educationcontentLine2 .field{
-    font-size: 2vw;
+    font-size: 1.8vw;
 }
 .educationcontentLine3{
     height: auto;
@@ -96,7 +98,7 @@
     transform: translate(-50%, -50%);
     width: 100%;
     
-    padding: 2vw;
+    padding: 1.8vw;
 }
 
 .ed-dummy p{
