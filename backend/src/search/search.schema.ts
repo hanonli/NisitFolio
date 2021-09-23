@@ -5,7 +5,7 @@ import { ObjectId } from "mongodb";
 // ------------------------------------- User Info --------------------------------------
 
 export interface UserInfo extends Document {
-  readonly UserId: ObjectId ,
+  readonly UserId: string ,
   readonly Firstname: string ,
   readonly Lastname: string ,
   readonly Birthday: string ,
@@ -21,7 +21,7 @@ export interface UserInfo extends Document {
 
 export interface TotalBookmark extends Document {
   type: String;
-  userId: ObjectId;
+  userId: String;
   projectName?: String;
   totalBookmarks?: Number;
 }
@@ -37,7 +37,7 @@ export interface JobTitle extends Document {
 
 export interface UserJobSkill extends Document {
   id: string;
-  userId: ObjectId;
+  userId: string;
   Objective: string;
   Score: number;
   JobName: string;
