@@ -16,20 +16,7 @@ export class AnalyticsController {
 
   @Get('/main/:id')
   async findUserJobSkill(@Param('id') id: string): Promise<any> {
-    const oid = mongoose.Types.ObjectId(id);
-    return this.analyticsService.findUserJobSkill(oid);
-  }
-
-  @Post('main/UserJobSkill')
-  async createUserJobSkill(
-    @Body('userId') userId: string,
-    @Body('Objective') Objective: string,
-    @Body('Score') Score: number,
-    @Body('JobName') JobName: string,
-    @Body('SkillName') SkillName: string,
-  ) {
-    const oid = mongoose.Types.ObjectId(userId) ;
-    return this.analyticsService.createUserJobSkill(oid, Objective, Score, JobName, SkillName) ;
+    return this.analyticsService.findUserJobSkill(id);
   }
   
 }
