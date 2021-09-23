@@ -49,9 +49,9 @@ class Navbar extends React.Component {
 								</a>
 							</div>
 							<a class="sm-view navbar-brand-sm">
-									<Link to="/home">
-										<img src="assets/images/logo2_noname_square.png" alt="" width="60" height="60"/>
-									</Link>
+								<Link to="/home">
+									<img src="assets/images/logo2_noname_new.png" alt="" width="60" height="60"/>
+								</Link>
 							</a>
 						</div>
 

@@ -194,7 +194,7 @@ class Home extends React.Component {
 						</header>
 					</div>
 					
-					<div class="container-fluid lg-view" id="inner-home">
+					<div class="container-fluid md-view" id="inner-home">
 						<div class="d-flex df-f justify-content-center align-items-center">
 							<div class="row">
 								<div class="col-md-auto">
