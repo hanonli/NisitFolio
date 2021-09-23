@@ -5,9 +5,12 @@
     /*width: 1450px;*/
     border-radius: 25px;
     margin-top: 5px;
-    margin-bottom: 20px;
+    /*margin-bottom: 20px;
     margin-left: 110px;
-    margin-right: 110px;
+    margin-right: 110px;*/
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;    
     position: relative;
     text-align: center;  
     align-items: center;
@@ -21,8 +24,10 @@
     border-radius: 25px;
     margin-top: 5px;
     margin-bottom: 5px;
-    margin-left: 110px;
-    margin-right: 110px;
+    /*margin-left: 110px;
+    margin-right: 110px;*/
+    margin-left: 5px;
+    margin-right: 5px;    
     position: relative;
     text-align: center;  
     justify-content: center;
@@ -106,13 +111,13 @@
 .head-skill {
     position: absolute;
     /*right: 10px;*/
-    top: -30px;
-    left: -1px;
+    top: 18px;
+    left: 670px;
 }
 
 .my-skill-content {
     position: absolute;
-    right: 16px;
+    left: 670px;
     top: 55px;
     /*right: 10px;*/
 }
@@ -138,7 +143,7 @@
     font-family: 'Kanit';
     border: 2px solid #FFC045;
     border-radius: 8px;
-    width: 120px;
+    width: 135px;
     height: 28px;
     text-align: center;
     padding-left: 4px;
@@ -152,7 +157,7 @@
     font-family: 'Kanit';
     border: 2px solid #79CE23;
     border-radius: 8px;
-    width: 120px;
+    width: 135px;
     height: 28px;
     text-align: center;
     padding-left: 4px;
@@ -166,7 +171,7 @@
     font-family: 'Kanit';
     border: 2px solid #C98A11;
     border-radius: 8px;
-    width: 120px;
+    width: 135px;
     height: 28px;
     text-align: center;
     padding-left: 4px;
@@ -264,9 +269,14 @@ li.current2{
     border-bottom: 7px solid #435157;
 }
 
+/*#tab01{
+    margin-top: 40px;
+}*/
+
 .list-job-skill1 {
     position: relative;
-    margin-bottom: 60px;
+    margin-bottom: 70px;
+    margin-top: 30px;
 }
 
 .button-add-job1 {
@@ -455,7 +465,8 @@ li.current2{
     color: black;
     font-size: 32px;
     margin-bottom: 27px;
-    padding-left: 115px;
+    /*padding-left: 115px;*/
+    padding-left: 5px;
 }
 
 #red-select-job{
