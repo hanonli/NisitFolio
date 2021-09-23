@@ -1002,11 +1002,44 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 	min-width: 125px;
 }
 
+.pf-start-port{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 25%;
+	min-width: 177.7777px;
+}
+
+.pf-center-port{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: start;
+	align-items: center;
+	width: 50%;
+	gap: 0px 2px;
+	min-width: 180px;
+}
+
+.pf-center-port-list{
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: start;
+	width: 75%;
+}
+
 .pf-start-list{
 	display: flex;
 	justify-content: center;
 	width: 15%;
 	min-width: 125px;
+}
+
+.pf-start-port-list{
+	display: flex;
+	justify-content: center;
+	width: 15%;
+	min-width: 177.7777px;
 }
 
 .no-margin{
@@ -1015,6 +1048,12 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 
 .pf-image{
 	width: 100px;
+}
+
+.pf-port-image{
+	height: 100px;
+	width: 177.7777px;
+	border-radius: 16px;
 }
 
 .pf-center{
@@ -1031,6 +1070,24 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 	text-align: left;
 }
 
+.pf-port-desc{
+	padding-left: 4%;
+	text-align: left;
+	width: 100%;
+}
+
+.pf-port-desc-list{
+	padding-left: 2%;
+	text-align: left;
+	width: 80%;
+	word-wrap: break-word;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* number of lines to show */
+    -webkit-box-orient: vertical;
+}
+
 .pf-center-list{
 	display: flex;
 	flex-wrap: wrap;
@@ -1045,6 +1102,25 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 	text-align: left;
 	font-size: 24px;
 	width: 100%;
+	color: black;
+	/*min-width: 300px;*/
+}
+
+.pf-port-name{
+	padding-left: 4%;
+	text-align: left;
+	font-size: 24px;
+	width: 100%;
+	color: black;
+	/*min-width: 300px;*/
+}
+
+.pf-port-name-list{
+	padding-left: 2%;
+	text-align: left;
+	font-size: 24px;
+	width: 100%;
+	color: black;
 	/*min-width: 300px;*/
 }
 
@@ -1156,6 +1232,32 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 	padding-top: 25px;
 }
 
+@media (max-width: 1700px){
+	.pf-start-port{
+		min-width: 160px;
+		min-height: 100px;
+	}
+	
+	.pf-port-image{
+		height: 90px;
+		width: 160px;
+		border-radius: 16px;
+	}
+}
+
+@media (max-width: 1570px){
+	.pf-start-port{
+		min-width: 142.2222px;
+		min-height: 100px;
+	}
+	
+	.pf-port-image{
+		height: 80px;
+		width: 142.2222px;
+		border-radius: 16px;
+	}
+}
+
 @media (max-width: 990px) {
 	.pf-name-wt{
 		align-self: center;
@@ -1182,6 +1284,12 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 	
 	.pf-name{
 		font-size: 18px;
+	}
+	
+	.pf-port-image{
+		height: 80px;
+		width: 142.2222px;
+		border-radius: 16px;
 	}
 	
 	.tab-list-item-p {
