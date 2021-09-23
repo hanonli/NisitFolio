@@ -6,7 +6,6 @@ class Resume_topNavbar extends React.Component {
 	
 	constructor(props) {
 		super(props);
-		this.handleLoad = this.handleLoad.bind(this);
 	 }
 	
 	componentDidMount() {
