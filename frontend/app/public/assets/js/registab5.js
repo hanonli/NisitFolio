@@ -78,10 +78,18 @@ function show_certi() {
                                     <h1 id="textOfyear_certi">{head-year}</h1>\
                               </div>\
                               <div class="content-certi1" id="{contentYear}"></div>`;
+
         grid_certi = grid_certi.replace("{no_certi}", ele["id"]);
-        grid_certi = grid_certi.replace("{name-certi}", ele["name_certi"]);
+        //grid_certi = grid_certi.replace("{name-certi}", ele["name_certi"]);
+        if (ele["name_certi"].length > 22) {
+            grid_certi = grid_certi.replace("{name-certi}", ele["name_certi"].slice(0, 22) + "...");
+        }
+        else {
+            grid_certi = grid_certi.replace("{name-certi}", ele["name_certi"]);
+        }
         grid_certi = grid_certi.replace("{year-certi}", ele["year_certi"]);
         grid_certi = grid_certi.replace("{pic-of-certi}", ele["path_file_certi"]);
+
         if (year_before_certi != ele["year_certi"]) {
             //console.log(`change year!!!!`);
             list_of_year_certi[ele["year_certi"]] = 1;
@@ -107,19 +115,21 @@ var picOfCerti = '';
 
 $(document).on('change', "#image-upload112", function () {
     var path_img = document.getElementById("image-upload112");
-    var reader = new FileReader();
-    reader.onload = function (e) {
-        //$("#preview_before_upload").remove();
-        picOfCerti = e.target.result;
-        $("#preview_before_upload").attr('src', e.target.result);
-    };
-    reader.readAsDataURL(path_img.files[0]);
-    //picOfCerti = readURL(document.getElementById("image-upload112"));
-    //console.log("picOfCerti:", picOfCerti);
-    $("#icon-upload-112").remove();
-    $("#text-upload-112").remove();
-    $(".for_upload112").append('<img id="preview_before_upload" height="145"></img>');
-    $("#to_upload112").removeClass("error_select_certi");
+    if (path_img.files[0].type == "image/jpeg" || path_img.files[0].type == "image/jpg" || path_img.files[0].type == "image/png") {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            //$("#preview_before_upload").remove();
+            picOfCerti = e.target.result;
+            $("#preview_before_upload").attr('src', e.target.result);
+        };
+        reader.readAsDataURL(path_img.files[0]);
+        //picOfCerti = readURL(document.getElementById("image-upload112"));
+        //console.log("picOfCerti:", picOfCerti);
+        $("#icon-upload-112").remove();
+        $("#text-upload-112").remove();
+        $(".for_upload112").append('<img id="preview_before_upload" height="145"></img>');
+        $("#to_upload112").removeClass("error_select_certi");
+    }
 });
 
 var choose_function = -1; //default

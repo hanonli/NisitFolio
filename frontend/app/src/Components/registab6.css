@@ -5,9 +5,12 @@
     /*width: 1450px;*/
     border-radius: 25px;
     margin-top: 5px;
-    margin-bottom: 5px;
+    /*margin-bottom: 20px;
+    margin-left: 110px;
+    margin-right: 110px;*/
+    margin-bottom: 16px;
     margin-left: 5px;
-    margin-right: 5px;
+    margin-right: 5px;    
     position: relative;
     text-align: center;  
     align-items: center;
@@ -20,9 +23,11 @@
     /*width: 1450px;*/
     border-radius: 25px;
     margin-top: 5px;
-    margin-bottom: 5px;
+    margin-bottom: 16px;
+    /*margin-left: 110px;
+    margin-right: 110px;*/ 
     margin-left: 5px;
-    margin-right: 5px;
+    margin-right: 5px;   
     position: relative;
     text-align: center;  
     justify-content: center;
@@ -106,13 +111,13 @@
 .head-skill {
     position: absolute;
     /*right: 10px;*/
-    top: -30px;
-    left: -1px;
+    top: 18px;
+    left: 605px;
 }
 
 .my-skill-content {
     position: absolute;
-    right: 16px;
+    left: 605px;
     top: 55px;
     /*right: 10px;*/
 }
@@ -125,7 +130,7 @@
 
 .each-skill-job {
     display: flex;
-    gap: 10px;
+    gap: 22px;
     /*justify-content: space-between;*/
     align-items: center;
     /*justify-content: center;*/
@@ -133,13 +138,13 @@
 
 #skill1-job {
     color: black;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 300;
     font-family: 'Kanit';
     border: 2px solid #FFC045;
     border-radius: 8px;
-    width: 120px;
-    height: 28px;
+    width: 142px;
+    height: 31px;
     text-align: center;
     padding-left: 4px;
     padding-right: 4px;
@@ -147,13 +152,13 @@
 
 #skill2-job {
     color: black;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 300;
     font-family: 'Kanit';
     border: 2px solid #79CE23;
     border-radius: 8px;
-    width: 120px;
-    height: 28px;
+    width: 142px;
+    height: 31px;
     text-align: center;
     padding-left: 4px;
     padding-right: 4px;
@@ -161,13 +166,13 @@
 
 #skill3-job {
     color: black;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 300;
     font-family: 'Kanit';
     border: 2px solid #C98A11;
     border-radius: 8px;
-    width: 120px;
-    height: 28px;
+    width: 142px;
+    height: 31px;
     text-align: center;
     padding-left: 4px;
     padding-right: 4px;
@@ -181,7 +186,7 @@
 }
 .tabs_pop li {
     display: inline-block;
-    padding: 15px 25px;
+    padding: 5px 25px;
 }
 
 .underline-tabJob1{
@@ -251,6 +256,7 @@ li.current2{
     font-family: 'Kanit';
     font-weight: 300;
     font-size: 25px;
+    margin-top: 10px;
     color: #435157;
 }
 
@@ -263,9 +269,14 @@ li.current2{
     border-bottom: 7px solid #435157;
 }
 
+/*#tab01{
+    margin-top: 40px;
+}*/
+
 .list-job-skill1 {
     position: relative;
-    margin-bottom: 60px;
+    margin-bottom: 70px;
+    margin-top: 30px;
 }
 
 .button-add-job1 {
@@ -283,6 +294,8 @@ li.current2{
     font-size: 46.6px;
     font-family: 'Kanit';
     font-weight: 500;
+    margin-top: 10px;
+    /*margin-left: 5px;*/
     color: black;
 }
 
@@ -295,14 +308,13 @@ li.current2{
     /*cursor: pointer;*/
     border-radius: 22px;
     padding-left: 30px;
-    width: 29.5vw;
-    
+    width: 20vw;
 }
 
 .select-job4 {
     position: absolute;
-    margin-top: 6.5px;
-    right: 178px;
+    margin-top: 15px;
+    right: 25px;
 }
 
 .pos-del-obj-button {
@@ -328,8 +340,8 @@ li.current2{
 /*----new slider range----*/
 .sliderWithLabels {
     width: 588px;
-    padding: 20px 40px 0;
-    height: 80px;
+    padding: 0 60px 0;
+    /*height: 80px;*/
     overflow: hidden;
     display: none;
 }
@@ -452,7 +464,9 @@ li.current2{
 #text-add-name-my-job11{
     color: black;
     font-size: 32px;
-    margin-bottom: 15px;
+    margin-bottom: 27px;
+    /*padding-left: 115px;*/
+    padding-left: 5px;
 }
 
 #red-select-job{
@@ -462,14 +476,17 @@ li.current2{
 .box-slider1{
     position:absolute;
     right: -40px;
+    top: 20px;
 }
 
 .box-slider2{
     position:absolute;
     right: -40px;
+    top: 20px;
 }
 
 .box-slider3{
     position:absolute;
     right: -40px;
+    top: 20px;
 }

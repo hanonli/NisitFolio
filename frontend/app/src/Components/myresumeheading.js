@@ -8,6 +8,14 @@ class MyresumeHeading extends React.Component{
         const boxcolourstyle = {
             border: bordercode,
         };
+        const owner = this.props.owner? this.props.owner: false;
+        let nonbioresp;
+        if(owner){
+            nonbioresp = <p>ตอนนี้คุณยังไม่ได้เขียน เกี่ยวกับฉัน เพื่ออธิบายตัวตนของคุณ ผู้เข้าชมยังไม่รับรู้ว่าคุณเป็นคนยังไง และสนใจเรื่องอะไรกด <a href="editprofile" style={{color: "black", fontWeight: 700 }}>แก้ไขโปรไฟล์</a> เพื่อแสดง passion ของคุณ!</p>;
+        }
+        else{
+            nonbioresp = [];
+        }
         return(
             <div class="resume-header" id="resume-header">
                 <div class="resume-profile-picture">
@@ -27,7 +35,7 @@ class MyresumeHeading extends React.Component{
                 </div>
                           
                 <div class="resume-name-bio-part">    
-                        {this.props.bio? this.props.bio: ""}
+                        {this.props.bio? <p>{this.props.bio}</p>: nonbioresp}
                 </div>            
             </div>
             

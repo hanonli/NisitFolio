@@ -18,3 +18,42 @@
 #span-text-display-info{
     color: black;
 }
+
+/*------background choose template------*/
+.template-content{
+    position: absolute;
+    height: 661px;
+    width: 1530px;
+    top: 150px;
+    background-color: #F4F4F4;
+    border-radius: 20px;
+}
+
+.choose-color-template11 {
+    position: absolute;
+    left: 580px;
+    top: 110px;
+}
+
+/*------text choose template------*/
+#text-choose-color-template11{
+    color: black;
+}
+
+.choose-template-red1{
+    display: block;
+    width: 227px;
+    height: 125px;
+    background-color: transparent;
+    border-radius: 20px;
+    border: 2px solid #C4C4C4;
+}
+
+.user-choose-template{
+    display: block;
+    width: 227px;
+    height: 125px;
+    background-color: transparent;
+    border-radius: 20px;
+    border: 8px solid #2560A5;    
+}

@@ -56,4 +56,9 @@ export class MyResumeController {
       return this.resumeService.updateResume(CreateDto,resumeId,req.user.userId,ip);
 
     }
+
+  /*@Post("makeresume")
+    async makeResume(@Body() CreateDto: CreateResumeDto ){
+      return this.resumeService.makeResume(CreateDto);
+    }*/
 }
