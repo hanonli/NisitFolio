@@ -1,7 +1,7 @@
 import React from 'react';
 import './register.css';
 import CustomSelect from './customSelect';
-import SelectSS7 from './dropdownt7';
+import SelectSS7 from './dropsideskill';
 
 class Registab7 extends React.Component {
 
