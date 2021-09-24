@@ -490,3 +490,17 @@ li.current2{
     right: -40px;
     top: 20px;
 }
+
+.dis_input3{
+    background-color: #EAEAEA;
+    color: #cfcfcf;
+    padding: 10px;
+    font-size: 20px;
+    /*border: none;*/
+    border-color: #EAEAEA;
+    /*cursor: pointer;*/
+    border-radius: 2.5vh;
+    padding-left: 30px;
+    pointer-events: none;
+    /*---*/
+}
