@@ -56,7 +56,7 @@ export class CreateRegisDto {
 
   Academy: string[];
 
-  Grade: Float32Array[]; 
+  Grade: number[]; 
 
   Education_End_Year: number[];   
 
@@ -75,7 +75,7 @@ export class CreateRegisDto {
   
   Work_End_Year: number[];
 
-  Salary: Float32Array[];
+  Salary: number[];
 
   SalaryType: string[];
 
@@ -83,7 +83,7 @@ export class CreateRegisDto {
 
   Job_Objective: string[][];
 
-  Job_Score: Float32Array[][];
+  Job_Score: number[][];
 
   @IsNotEmpty()
   Job_JobName: string[];
