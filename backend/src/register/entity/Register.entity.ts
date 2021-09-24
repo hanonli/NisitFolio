@@ -1,6 +1,7 @@
 import { Entity, Column, ObjectIdColumn, OneToMany, ManyToOne, ManyToMany, OneToOne , JoinTable } from 'typeorm'; 
 import { ObjectId, Timestamp } from 'mongodb';
 import { ColumnMetadata } from 'typeorm/metadata/ColumnMetadata';
+import internal from 'stream';
 
 //--------------------Account--------------------------//
 @Entity("Account")
@@ -78,6 +79,18 @@ export class Userinfo {
 
   @Column()
   last_modified:string[];
+  
+  @Column()
+  ProfilePic:string;
+
+  @Column()
+  tags:string[];
+
+  @Column()
+  AvgScore:number;
+
+  @Column()
+  totalBookmark:number;
 
 }
 
@@ -165,7 +178,7 @@ export class EducationHistory {
   Academy: string;
   
   @Column()
-  Grade: Float32Array;
+  Grade: number;
    
   @Column()
   Education_End_Year: number;   
@@ -214,7 +227,7 @@ export class WorkHistory {
   Work_End_Year: number;
 
   @Column()
-  Work_Salary: Float32Array;
+  Work_Salary: number;
 
   @Column()
   Work_Salary_Type: string;
@@ -249,7 +262,7 @@ export class InterestedJob {
   Job_Objective: string[];
 
   @Column()
-  Job_Score: Float32Array[];
+  Job_Score: number[];
 
   @Column()
   Job_JobName: string;
@@ -375,5 +388,23 @@ export class Resume {
 
 }
 
+//--------------------UserJobSkill--------------------------//
+@Entity("UserJobSkill")
+export class UserJobSkill {
+  @ObjectIdColumn()
+  id?: ObjectId;
+  
+  @Column()
+  UserId: string;
+
+  @Column()
+  Job_Score: number;
+
+  @Column()
+  Job_JobName: string;
+
+  @Column()
+  Job_SkillName: string;
+}
 
 

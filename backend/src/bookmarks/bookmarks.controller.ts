@@ -12,18 +12,18 @@ export class BookmarkController {
 
   @Post('saveBookmark')
   async saveBookmark(
-    @Body() detail: { userId: string, link: string, type: string, thatUserId: string, projectName?: string} 
+    @Body() detail: { userId: string, link: string, type: string, thatUserId: string, portName?: string} 
   ): Promise<Bookmark> {
-    return await this.bookmarkService.SaveBookmark(detail.userId, detail.link, detail.type, detail.thatUserId, detail.projectName) ;
+    return await this.bookmarkService.SaveBookmark(detail.userId, detail.link, detail.type, detail.thatUserId, detail.portName) ;
   }
 
   // ---------------------------- Delete Bookmark ---------------------------
   
   @Delete('saveBookmark')
   async deleteBookmark(
-    @Body() detail: { userId: string, link: string, type: string, thatUserId: string, projectName?: string} 
+    @Body() detail: { userId: string, link: string, type: string, thatUserId: string, portName?: string} 
   ): Promise<any> {
-    return await this.bookmarkService.DeleteBookmark(detail.userId, detail.link, detail.type, detail.thatUserId, detail.projectName) ;
+    return await this.bookmarkService.DeleteBookmark(detail.userId, detail.link, detail.type, detail.thatUserId, detail.portName) ;
   }
 
   // ---------------------------- Find All Bookmark ---------------------------

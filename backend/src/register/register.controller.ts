@@ -46,13 +46,6 @@ export class RegisterController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get()
-  async GetInfo(@Request() req)
-  {
-    return this.registerService.GetInfo(req.user.userId);
-  }
-
-  @UseGuards(JwtAuthGuard)
   @Patch("additionalSkill/:id")
   async UpdateAdditionalSkill(@Body() CreateDto: PatchRegisDto  ,@Request() req,@Param('id') id: string) {
     return this.registerService.UpdateAdditionalSkill(CreateDto,req.user.userId,id);
@@ -114,8 +107,8 @@ export class RegisterController {
 
   @UseGuards(JwtAuthGuard)
   @Get("getinfo")
-  async testget(@Request() req) {
-    return this.registerService.GetInfo2(req.user.userId);
+  async GetInfo(@Request() req) {
+    return this.registerService.GetInfo(req.user.userId);
   }
   
 }

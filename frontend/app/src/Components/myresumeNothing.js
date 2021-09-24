@@ -6,6 +6,7 @@ class MyResumeNothing extends React.Component {
         return (
             <div class="layout-nothing">
                 <div class="nothing-content">
+                    <img src="assets/images/outline_cancel_black_24dp 1.png" width="250" />
                     <h1 id="text-nothing">ตอนนี้คุณยังไม่มีหน้า MyResume สำหรับตำแหน่งงานที่ 1</h1>
                     <button id="create-myResume" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal_createResume" class="btn btn-cta-primary-yellowshort profile-button round" >เริ่มต้นสร้าง MyResume</button>
                 </div>

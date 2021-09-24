@@ -20,6 +20,13 @@ export interface UserInfo extends Document {
 
 // ------------------------------------- Total Bookmark ---------------------------------------
 
+export const TotalBookmarkSchema = new mongoose.Schema({
+  type: { type: String, required: [true, 'type must not be empty.']},
+  userId: { type: String, required: [true, 'userId must not be empty.'] },
+  projectName: { type: String },
+  totalBookmarks: { type: Number }
+})
+
 export interface TotalBookmark extends Document {
   type: String;
   userId: String;

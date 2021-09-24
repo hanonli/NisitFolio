@@ -31,25 +31,27 @@
 
 .educationcontentLine1 .year{
     bottom: 0;
-    font-size: 1.6vw;
+    font-size: 1.0vw;
+    font-weight: 500;
 
 }
 .educationcontentLine1 .degree{
     bottom: 0;
-    font-size: 1.4vw;
+    font-size: 1.2vw;
+    font-weight: 500;
 }
 
 .educationcontentLine1 .centerbreak{
-    padding: 1vw;
+    padding: 0.5vw;
 }
 
 .breakline{
-    font-weight: 400;
-    font-size: 2.2vw;
+    font-weight: 100;
+    font-size: 1.2vw;
 }
 
 .educationcontentLine2 .field{
-    font-size: 2vw;
+    font-size: 1.8vw;
 }
 .educationcontentLine3{
     height: auto;
@@ -93,22 +95,22 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -57%);
     width: 100%;
     
-    padding: 2vw;
+    padding: 1vw;
 }
 
 .ed-dummy p{
     color: #939393;
-    font-size: 1.4vw;
+    font-size: 1vw;
 }
 
 .ed-dummy button{
-    font-size: 1.8vw;
+    font-size: 1.4vw;
     background: #F9DC5C;
-    border-radius: 3vw;
-    padding: 0.8vw;
+    border-radius: 2vw;
+    padding: 0.9vw;
     color: black;
     padding-inline: 3.6vw;
     border: rgba(0,0,0,0);

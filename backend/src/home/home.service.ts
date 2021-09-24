@@ -18,39 +18,23 @@ export class HomeService {
     ){}
     async getinformation(userId:string)
     {
-      const toUserDto = (data1: Userinfo,data2:InterestedJob[],data3: Account ): HomePageDto => {  
+      //const toUserDto = (data1: Userinfo,data2:InterestedJob[],data3: Account ): HomePageDto => {  
+      const toUserDto = (data1: Userinfo): HomePageDto => {  
         const Firstname = data1.Firstname;
         const Lastname = data1.Lastname;
         const AboutMe  = data1.AboutMe;
-        const Job_JobName = [] ;
-        for (var _i = 0; _i < data2.length; _i++) {
-          Job_JobName[_i]  = data2[_i].Job_JobName;
-        }
+        const Job_JobName = data1.tags ;
 
         //const Job_JobName  = data2[0].Job_JobName;
-        const ProfilePic  = data3.ProfilePic;
+        const ProfilePic  = data1.ProfilePic;
         let homepageDto: HomePageDto = { Firstname, Lastname, AboutMe , ProfilePic , Job_JobName };
         return homepageDto;
       }
-      const id = new ObjectID(userId);
       
 
       const user = await this.userinfoRepository.findOne({where:{ UserId: userId }})
-      const tag = await this.InterestedJobRepository.find({where:{ UserId: userId }})
-      const acc = await this.AccountJobRepository.findOne({where:{ _id: id }});
-      
-      /*console.log(user)
-      console.log(tag)
-      console.log(acc)*/
 
-
-      //value.Firstname = user.find("Firstname");
-      /*value.Lastname =
-      value.ProfilePic =
-      value.AboutMe =
-      value.Job_JobName =*/
-      
-      return toUserDto(user,tag,acc);
+      return toUserDto(user);
       
     }
 }

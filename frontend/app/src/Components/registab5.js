@@ -46,7 +46,7 @@ class Registab5 extends React.Component {
 							<div class="modal-content minisize" id="certi_edit">
 								<div class="row" id="input_certi">
 									<div class="col-md-5">
-										<textarea id="nm_certi" type="text" class="form-control certibtn margin-bottom1" placeholder="พิมพ์ชื่อใบรับรอง/เกียรติบัตร*" required></textarea>
+										<textarea maxlength="39" id="nm_certi" type="text" class="form-control certibtn margin-bottom1" placeholder="พิมพ์ชื่อใบรับรอง/เกียรติบัตร*" required></textarea>
 									</div>
 									<div class="col-md-10">
 										<select class="form-select dropbtn_year margin-bottom1 fff" id="yearpicker_111" required>

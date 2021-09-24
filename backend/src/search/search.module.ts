@@ -3,9 +3,10 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { SearchController } from './search.controller';
 import { SearchService } from './search.service';
 
-import { TotalBookmarkSchema, UserInfoSchema } from 'src/bookmarks/bookmarks.schema';
+import { UserInfoSchema } from 'src/bookmarks/bookmarks.schema';
 import { JobTitleSchema, UserJobSkillSchema } from 'src/analytics/analytics.schema';
 import { InterestedJobSchema } from './search.schema' ;
+import { TotalBookmarkSchema } from './search.schema';
 
 @Module({
   imports: [

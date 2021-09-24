@@ -10,6 +10,7 @@ import { Resume2 , ResumeDocument} from './entity/myresume.schema';
 import { Portfolio2, PortfolioDocument} from '../portfolio/entity/portfolio.schema';
 import { hearderDto } from './dto/haerder.dto';
 
+
 @Injectable()
 export class MyResumeService {
   constructor(
@@ -247,3 +248,4 @@ export class MyResumeService {
     }, HttpStatus.UNAUTHORIZED);
   }
 }
+
