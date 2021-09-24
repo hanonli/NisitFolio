@@ -240,7 +240,7 @@ export class Portfolio {
   onwner: string;
 
   @Column()
-  totalBookmark: string;
+  totalBookmark: number;
   
   @Column()
   Port_Tag: string;
