@@ -15,4 +15,8 @@ export class CreatePortfolioDto {
     Description: string[];
 
     Port_Date: string;
+
+    owner: string;
+
+    totalBookmark: Number;
 }

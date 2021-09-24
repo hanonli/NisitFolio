@@ -8,13 +8,15 @@ export class HomeController {
   constructor(
     private readonly homeService: HomeService
   ) {}
-
+  
   @UseGuards(JwtAuthGuard)
   @Get("")
   async getinformation(@Request() req)
   {
     return this.homeService.getinformation(req.user.userId);
   }
+  //
+
   /*@Get("")
   async infohomepage(){
     return this.homeService.getinformation2();
