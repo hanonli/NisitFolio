@@ -89,7 +89,7 @@ const customStyles = {
 
 function CustomSelect(props){
 	return <div>
-		<Select styles={customStyles} options={opT7} placeholder="เลือกหมวดทักษะเสริมที่ถนัด"/>
+		<Select styles={customStyles} options={opT7} id='selectT7' placeholder="เลือกหมวดทักษะเสริมที่ถนัด"/>
 	</div>
 }
 
