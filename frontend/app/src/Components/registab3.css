@@ -159,15 +159,9 @@
 .Registab4 .registab4_formbox {
     background-color: #b6deea;
     border: 1px solid black;
-<<<<<<< HEAD
-    border-radius: 25px;
-    height: 140px;
-    width: 100%;
-=======
     height: 4.5vw;
     /*width: 1470px;*/
     border-radius: 25px;
->>>>>>> 1b4d8544d6b60f89cecda5e3de5352cf7a06c362
     margin-top: 5px;
     margin-bottom: 5px;
     margin-left: 5px;
