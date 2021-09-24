@@ -161,7 +161,7 @@
 .card_certi {
     border: 1px solid black;
     height: 200px;
-    width: 539px;
+    width: 575px;
     border-radius: 25px;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -172,7 +172,7 @@
 
 .layer-button-certi {
     height: 199px;
-    width: 538px;
+    width: 574px;
     position: absolute;
     top: 0;
     left: -1px;
@@ -184,13 +184,13 @@
 #name-of-certi {
     color: black;
     margin-left: 30px;
-    margin-top: 45px;
+    margin-top: 66px;
     font-size: 24px;
 }
 
 #year-of-certi {
     margin-left: 30px;
-    margin-top: 38px;
+    margin-top: 6px;
     font-size: 24px;
 }
 
@@ -207,10 +207,6 @@
 .border-pic-certi {
     border-radius: 16px;
 }
-
-
-
-
 
 .layer-button-certi:hover {
     background: #E1E1E1;
@@ -231,12 +227,12 @@
 
 .set-layer-button-certi{
     position: absolute;
-    left: 180px;
+    left: 195px;
     top: 45px;
 }
 
 #preview_before_upload {
-    margin-top: 18px;
+    margin-top: 25px;
     padding-left: 10px;
     padding-right: 10px;
 }

@@ -1,19 +1,27 @@
+.layout-template{
+    position: relative;
+    left: 106px;
+}
+
 .template-header{
     display: inline-flex;
+    position: absolute;
+    top: 25px;
 }
 
 /*-----------text-choose-template myresume-----------*/
+
 #text-choose-template {
     color: black;
-    font-size: 65px;
+    font-size: 75px;
 }
 
 /*-----------text-display-info myresume-----------*/
 #text-display-info {
     font-size: 25px;
     font-weight: 300;
-    margin-left: 38px;
-    margin-top: 46px;
+    margin-left: 48px;
+    margin-top: 56px;
 }
 #span-text-display-info{
     color: black;
@@ -22,9 +30,9 @@
 /*------background choose template------*/
 .template-content{
     position: absolute;
-    height: 661px;
-    width: 1530px;
-    top: 150px;
+    height: 630px;
+    width: 1480px;
+    top: 165px;
     background-color: #F4F4F4;
     border-radius: 20px;
 }
@@ -38,9 +46,16 @@
 /*------text choose template------*/
 #text-choose-color-template11{
     color: black;
+    margin-bottom: 50px;
 }
 
-.choose-template-red1{
+.grid-choose-template{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 50px;
+}
+
+.choose-template-color{
     display: block;
     width: 227px;
     height: 125px;
@@ -56,4 +71,48 @@
     background-color: transparent;
     border-radius: 20px;
     border: 8px solid #2560A5;    
+}
+
+#red-template1{
+    padding-left: 42%;
+    padding-right: 40%;
+}
+
+#text-red-template1{
+    color: black;
+    font-size: 24px;
+    font-weight: 300;    
+    margin-top: 195%;
+}
+
+#orange-template1{
+    color: black;
+    font-size: 24px;
+    font-weight: 300;
+    padding-left: 40%;
+    padding-right: 40%;
+}
+
+#yellow-template1{
+    color: black;
+    font-size: 24px;
+    font-weight: 300;
+    padding-left: 36%;
+    padding-right: 40%;
+}
+
+#green-template1{
+    color: black;
+    font-size: 24px;
+    font-weight: 300;
+    padding-left: 40%;
+    padding-right: 40%;
+}
+
+#lightblue-template1{
+    color: black;
+    font-size: 24px;
+    font-weight: 300;
+    padding-left: 42%;
+    padding-right: 40%;
 }
