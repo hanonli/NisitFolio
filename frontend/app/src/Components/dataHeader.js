@@ -26,7 +26,7 @@ class DataHeader extends React.Component {
 						<div class="row align-items-end">
 							<div class="col">
 								<div class="topData2-content">
-									<h1 class="name inline">ข้อมูลผู้ใช้</h1>
+									<h1 class="name">ข้อมูลผู้ใช้</h1>
 									<h1></h1>
 								</div>
 							</div>

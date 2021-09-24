@@ -3,6 +3,7 @@ import { Document, Mongoose } from 'mongoose';
 import * as mongoose from 'mongoose';
 import { ObjectId } from 'mongodb';
 import { UserJobSkillSchema } from 'src/analytics/analytics.schema';
+import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
 
 // -------------------------- Bookmark Schema ----------------------------
 
@@ -16,10 +17,10 @@ export const BookmarkSchema = new mongoose.Schema({
 
 export interface Bookmark extends Document {
   id: string;
-  userId: ObjectId;
+  userId: string;
   link: string;
   type: string;
-  thatUserId: ObjectId;
+  thatUserId: string;
   projectName: string;
 }
 
@@ -29,14 +30,14 @@ export interface Bookmark extends Document {
 
 export const TotalBookmarkSchema = new mongoose.Schema({
   type: { type: String, required: [true, 'type must not be empty.']},
-  userId: { type: ObjectId, required: [true, 'userId must not be empty.'] },
+  userId: { type: String, required: [true, 'userId must not be empty.'] },
   projectName: { type: String },
   totalBookmarks: { type: Number }
 })
 
 export interface TotalBookmark extends Document {
   type: String;
-  userId: ObjectId;
+  userId: String;
   projectName?: String;
   totalBookmarks?: Number;
 }
@@ -44,31 +45,75 @@ export interface TotalBookmark extends Document {
 /*
 * ************************************************************************************************
 */
+@Schema({ collection: "UserInfo"})
+export class UserInfo {
 
-export const UserInfoSchema = new mongoose.Schema({
-  UserId: ObjectId,
-  Firstname: String,
-  Lastname: String,
-  Birthday: String,
-  Gender: String,
-  AboutMe: String,
-  Email2nd: String,
-  Country: String,
-  Province: String,
-  City: String,
-}, { collection: 'UserInfo'});
+  @Prop()
+  UserId: String;
 
-//export const UserInfoModel = mongoose.model('UserInfo', UserInfoSchema, 'UserInfo');
+  @Prop()
+  Firstname: String;
+  
+  @Prop()
+  Lastname: String;
 
-export interface UserInfo extends Document {
-  UserId: ObjectId,
-  Firstname: String,
-  Lastname: String,
-  Birthday: String,
-  Gender: String,
-  AboutMe: String,
-  Email2nd: String,
-  Country: String,
-  Province: String,
-  City: String,
+  @Prop()
+  Birthday: String;
+
+  @Prop()
+  AboutMe: String;
+
+  @Prop()
+  Email2nd: String;
+
+  @Prop()
+  Gender: String;
+
+  @Prop()
+  Country: String;
+
+  @Prop()
+  Province: String;
+
+  @Prop()
+  City: String;
+
+  @Prop()
+  create_time: String;
+
+  @Prop()
+  last_modified: String[];
+
 }
+
+export const UserInfoSchema = SchemaFactory.createForClass(UserInfo);
+
+@Schema({ collection: "Account"})
+export class Account {
+
+  @Prop()
+  Email: string;
+  
+  @Prop()
+  Password: string[];
+
+  @Prop()
+  ProfilePic: string;
+
+  @Prop()
+  Privacy: string;
+
+  @Prop()
+  isEmailConfirmed: boolean;
+
+  @Prop()
+  create_time:string;
+
+  @Prop()
+  last_modified:string[];
+
+  @Prop()
+  last_login:string[];
+}
+
+export const AccountSchema = SchemaFactory.createForClass(Account);

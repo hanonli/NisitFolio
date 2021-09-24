@@ -24,6 +24,7 @@ class Successregis extends React.Component {
 		fetch('http://localhost:2000/email-confirmation/confirm', requestOptions)
 			.then(response => response.json())
 			.then(data => this.setState({ postId: data.id }));
+		setInterval(window.location = "http://localhost:3000/landing", 5000);  
 	}
 
 	render (){

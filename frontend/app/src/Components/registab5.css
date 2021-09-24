@@ -1,19 +1,23 @@
 /*---list name certi---*/
-.content-certi1 {
+/*.content-certi1 {
     display: grid;
     grid-template-columns: repeat(2,1fr);
-    gap: 5px;
+    gap: 12px;
+}
+
+.box-box-box{
+    position: absolute;
+    left: 480px;
 }
 
 .card_certi {
     border: 1px solid black;
-    height: 220px;
-    width: 710px;
+    height: 200px;
+    width: 435px;
     border-radius: 25px;
     margin-top: 5px;
     margin-bottom: 5px;
     position: relative;
-    left: 4px;
     justify-content: center;
 }
 
@@ -21,18 +25,18 @@
     color: black;
     margin-left: 30px;
     margin-top: 45px;
-    font-size: 32px;
+    font-size: 24px;
 }
 
 #year-of-certi {
     margin-left: 30px;
     margin-top: 38px;
-    font-size: 35px;
+    font-size: 24px;
 }
 
 .pos-pic-of-certi {
     position: absolute;
-    right: 20px;;
+    right: 20px;
     top: 30px
 }
 
@@ -44,11 +48,9 @@
     border-radius: 16px;
 }
 
-/*---layer function of list name certi---*/
-
 .layer-button-certi {
-    height: 219px;
-    width: 709px;
+    height: 199px;
+    width: 419px;
     position: absolute;
     top: 0;
     left: -1px;
@@ -65,19 +67,23 @@
 
 .layer-button-certi button{
     visibility: hidden;
-    margin-top: 6.5%;
-    margin-left: 170px;
+    margin-top: 10.8%;
+    margin-left: 20px;
     transition: 0.1s;
 }
 
 .layer-button-certi:hover button{
     visibility: visible;
-   
 }
 
+.set-layer-button-certi{
+    position: absolute;
+    left: 180px;
+    top: 45px;
+}
 
 #preview_before_upload {
-    margin-top: 25px;
+    margin-top: 18px;
     margin-left: 10px;
 }
 
@@ -100,10 +106,164 @@
 }
 
 .frame_add_certi {
-    background-color: #b6deea;
+    background-color: #E4F7FF;
     border: 1px solid black;
-    height: 140px;
-    /*width: 1470px;*/
+    height: 106px;
+    border-radius: 25px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 110px;
+    margin-right: 110px;
+    position: relative;
+    text-align: center;  
+    justify-content: center;
+    cursor: pointer;
+}
+
+.button_add_certi button {
+    margin-top: 1.42%;
+}
+
+.height-job {
+    height: 115px;
+}
+
+.error_select_certi{
+    border: 1px solid red;
+}
+
+#border_certi {
+    border-radius: 10px;
+}
+
+#textOfyear_certi {
+    color: black;
+    font-size: 32px;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    padding-left: 4px;
+}
+
+#text-add-name-my-certi11{
+    color: black;
+    font-size: 32px;
+    margin-bottom: 27px;
+    padding-left: 115px;
+}*/
+
+/*--------------------------------------------------------*/
+.content-certi1 {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 5px;
+}
+
+.card_certi {
+    border: 1px solid black;
+    height: 200px;
+    width: 539px;
+    border-radius: 25px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    position: relative;
+    left: 4px;
+    justify-content: center;
+}
+
+.layer-button-certi {
+    height: 199px;
+    width: 538px;
+    position: absolute;
+    top: 0;
+    left: -1px;
+    transition: 0.2s;
+    border-radius: 25px;
+    background: transparent;
+}
+
+#name-of-certi {
+    color: black;
+    margin-left: 30px;
+    margin-top: 45px;
+    font-size: 24px;
+}
+
+#year-of-certi {
+    margin-left: 30px;
+    margin-top: 38px;
+    font-size: 24px;
+}
+
+.pos-pic-of-certi {
+    position: absolute;
+    right: 20px;;
+    top: 30px
+}
+
+#pic-of-certi {
+    border-radius: 16px;
+}
+
+.border-pic-certi {
+    border-radius: 16px;
+}
+
+
+
+
+
+.layer-button-certi:hover {
+    background: #E1E1E1;
+    display:inline-block;
+    opacity: 0.7;
+}
+
+.layer-button-certi button{
+    visibility: hidden;
+    margin-top: 10.8%;
+    margin-left: 20px;
+    transition: 0.1s;
+}
+
+.layer-button-certi:hover button{
+    visibility: visible;
+}
+
+.set-layer-button-certi{
+    position: absolute;
+    left: 180px;
+    top: 45px;
+}
+
+#preview_before_upload {
+    margin-top: 18px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#input_upload input.hidden {
+    position: absolute;
+    visibility: hidden;
+    cursor: pointer;
+}
+
+#to_upload112 {
+    cursor: pointer;
+}
+
+.button_popup_certi {
+    margin-top: 20.2px;
+}
+
+.button_popup_certi a{
+    width: 120.01px;
+}
+
+.frame_add_certi {
+    background-color: #E4F7FF;
+    border: 1px solid black;
+    height: 106px;
+    
     border-radius: 25px;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -116,14 +276,14 @@
 }
 
 .button_add_certi button {
-    margin-top: 0.22%;
+    margin-top: 1.42%;
 }
 
 .height-job {
     height: 115px;
 }
 
-/*---- red border when ----*/
+
 .error_select_certi{
     border: 1px solid red;
 }
@@ -134,4 +294,21 @@
 
 #textOfyear_certi {
     color: black;
+    font-size: 32px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+#text-add-name-my-certi11{
+    color: black;
+    font-size: 32px;
+    margin-bottom: 27px;
+    padding-left: 5px;
+}
+
+.text_up5 {
+   font-size: 20px;
+   font-weight: 300;
+   top: 60px;
+   color: #4E5264;
 }

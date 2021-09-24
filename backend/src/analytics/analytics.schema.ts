@@ -7,14 +7,14 @@ import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
 // -------------------- UserAdditionalSkill ---------------------------
 
 export const UserAdditionalSkillSchema = new mongoose.Schema({
-  userId: { type: ObjectId, required: [true, 'userID must not empty'] },
+  userId: { type: String, required: [true, 'userID must not empty'] },
   Job: { type: String, required: [true, 'Job must not empty'] },
   AdditionalSkill: { type: String, required: [true, 'AdditionalSkill must not empty'] },
 })
 
 export interface UserAddSkill extends Document {
   id: string;
-  userId: ObjectId;
+  userId: string;
   Job: String;
   AdditionalSkill: String;
 }
@@ -22,7 +22,7 @@ export interface UserAddSkill extends Document {
 // -------------------- UserJobSkill ---------------------------
 
 export const UserJobSkillSchema = new mongoose.Schema({
-  userId: { type: ObjectId, required: [true, 'userID must not empty'] },
+  userId: { type: String, required: [true, 'userID must not empty'] },
   Objective: { type: String, required: [true, 'Objective must not empty'] },
   Score: { type: Number, required: [true, 'Score must not empty']},
   JobName: { type: String, required: [true, 'JobName must not empty']},
@@ -31,7 +31,7 @@ export const UserJobSkillSchema = new mongoose.Schema({
 
 export interface UserJobSkill { 
   id: string;
-  userId: ObjectId;
+  userId: string;
   Objective: string;
   Score: number;
   JobName: string;
@@ -41,7 +41,7 @@ export interface UserJobSkill {
 @Schema({ collection: 'AdditionalSkill' })
 export class AdditionalSkill {
   @Prop()
-  UserId: ObjectId;
+  UserId: String;
 
   @Prop()
   AdditionalSkill: String;

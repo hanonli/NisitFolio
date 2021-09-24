@@ -4,12 +4,14 @@
 $(function(){
     $('.tab-content').hide();
     $('#registab1-content').show();
+    $('#basic-date-picker1').attr('placeholder','วัน/เดือน/ปี');
     console.log("Yahaha!");
    $('#tab-1').on('click', function(){
        $('.tab-content').hide();
        $('.tab-list-item').removeClass('tab-list-active');
        $('#tab-1').addClass('tab-list-active')
        $('#registab1-content').show();
+       $('#basic-date-picker1').attr('placeholder','วัน/เดือน/ปี');
    });
    
    $('#tab-2').on('click', function(){
@@ -70,7 +72,9 @@ $(function(){
  });
 
 /*Tab1*/
+
 $('#continue2').click(function () {
+  var BDDate= $('#basic-date-picker1').val();
   var last_sideskill = list_sideskill;
   var last_jobname=[],last_jobskill=[],last_jobscore=[],last_jobobj=[];
   //console.log(list_of_job);
@@ -105,14 +109,13 @@ $('#continue2').click(function () {
   if(RequireCount_pass==1){     
     console.log('You Pass!'); 
     //window.location.pathname = '/emailverify'
-    var bdd = $('#bdday').val() + '/' + $('#bdmonth').val() + '/' + $('#bdyear').val(); 
     var FormRegis2 = {
       Email: $('#re03').val(),
       Password: $('#pass05').val(),
       ProfilePic: avatar1.src,
       Firstname: $('#re01').val(),
       Lastname: $('#re02').val(),
-      Birthday: bdd,
+      Birthday: BDDate,
       Gender: $('#sexgen').val(),
       Aboutme: $('#aboutme2').val(),
       Email2nd:"-",
@@ -138,13 +141,13 @@ $('#continue2').click(function () {
       Work_Start_Month:[1],
       Work_End_Month:[5],
       Work_Start_Year:[2007],
-      Work_End_Year:[20012],
+      Work_End_Year:[2012],
       Salary:[15000],
       SalaryType:["รายได้เป็นงาน"],
       Infomation:["จะดีมากถ้าลูกค้าไม่เรื่องมาก"],
       Job_JobName:last_jobname,
       Job_SkillName: last_jobskill,
-      Job_Score: [[9,8,0]],
+      Job_Score: [[9.0,8.0,7.0]],
       //Job_Score: last_jobscore,
       Job_Objective:last_jobobj,
     }
@@ -164,10 +167,10 @@ $('#continue2').click(function () {
   }
 });
 
-var startYear = 1950;
+/*var startYear = 1950;
 var endYear = new Date().getFullYear();
 for (i = endYear; i > startYear; i--) {
-    $('#bdyear').append($('<option />').val(i).html(i));
+    //$('#bdyear').append($('<option />').val(i).html(i));
     //$('#year_startjob').append($('<option />').val(i).html(i));
     //$('#year_endjob').append($('<option />').val(i).html(i));
     //$('#year_higher').append($('<option />').val(i).html(i));
@@ -186,6 +189,7 @@ var startD = 1;
 for (k = startD; k < MaxD; k++) {
     $('#bdday').append($('<option />').val(k).html(k));
 }
+*/
 
 "use strict";
 	console.log("HELLO LV3!");
@@ -427,81 +431,6 @@ $('.aboutmee').on('change', 'input', function(){
   
 });
 
-/*Tab3*/
-
-/*Higher*/
-/*
-regis3Higher_dropdwn1 = document.getElementById('regis3_selectdropdown1');                   
-regis3Higher_dropdwn1.addEventListener('change', function(){
-    var regis3_dropdwn1selected = $('#regis3_selectdropdown1').val();
-  if(regis3_dropdwn1selected != ''){
-    $('#regis3_selectdropdown1').addClass('is-valid');
-  }});
-  
-ValidationUniversity = document.getElementById('ValidationUniversityFeedback');                   
-ValidationUniversity.addEventListener('keyup', function(){
-    var regis3_universityval = $('#ValidationUniversityFeedback').val();
-    if(regis3_universityval == ''){
-      $('#ValidationUniversityFeedback').removeClass('is-valid');
-      $('#ValidationUniversityFeedback').addClass('is-invalid');
-    }
-    else {
-      $('#ValidationUniversityFeedback').removeClass('is-invalid');
-      $('#ValidationUniversityFeedback').addClass('is-valid');
-    }});
-
-ValidationFaculty = document.getElementById('ValidationFacultyFeedback');                   
-ValidationFaculty.addEventListener('keyup', function(){
-    var regis3_facultyval = $('#ValidationFacultyFeedback').val();
-    if(regis3_facultyval == ''){
-      $('#ValidationFacultyFeedback').removeClass('is-valid');
-      $('#ValidationFacultyFeedback').addClass('is-invalid');
-    }
-    else {
-      $('#ValidationFacultyFeedback').removeClass('is-invalid');
-      $('#ValidationFacultyFeedback').addClass('is-valid');
-    }});
-ValidationGrade = document.getElementById('ValidationGradeFeedback');                   
-ValidationGrade.addEventListener('keyup', function(){
-    var regis3_gradeval = $('#ValidationGradeFeed').val();
-    if(regis3_gradeval == ''){
-      $('#ValidationGradeFeedback').removeClass('is-valid');
-      $('#ValidationGradeFeedback').addClass('is-invalid');
-    }
-    else {
-      $('#ValidationGradeFeedback').removeClass('is-invalid');
-      $('#ValidationGradeFeedback').addClass('is-valid');
-    }});
-
-let regis3_HigherConfirm = document.getElementById('regis3_HigherConfirm');
-var regis3_dropdwn1selected = $('#regis3_selectdropdown1').val();
-var regis3_universityval = $('#ValidationUniversityFeedback').val();
-console.log(11 + regis3_dropdwn1selected + regis3_universityval + 22)
-if( regis3_dropdwn1selected != '' && regis3_universityval != '')
-  regis3_HigherConfirm.disabled = true;
-else
-  regis3_HigherConfirm.disabled = false;
-
-
- //Lower
- regis3Secondary_dropdwn1 = document.getElementById('regis3_selectdropdown2');                   
- regis3Secondary_dropdwn1.addEventListener('change', function(){
-     var regis3_dropdwn2selected = $('#regis3_selectdropdown2').val();
-   if(regis3_dropdwn2selected != ''){
-     $('#regis3_selectdropdown2').addClass('is-valid');
-   }});
-
-ValidationSchool = document.getElementById('ValidationSchoolFeedback');                   
-ValidationSchool.addEventListener('keyup', function(){
-    var regis3_schoolval = $('#ValidationSchoolFeedback').val();
-    if(regis3_schoolval == ''){
-      $('#ValidationSchoolFeedback').removeClass('is-valid');
-      $('#ValidationSchoolFeedback').addClass('is-invalid');
-    }
-    else {
-      $('#ValidationSchoolFeedback').removeClass('is-invalid');
-      $('#ValidationSchoolFeedback').addClass('is-valid');
-    }});*/
 
 /*Tab7*/
 var list_sideskill = ["","",""];
@@ -529,17 +458,17 @@ var sskdd3 = '<div class="col-2">\
 var sideskilldropdown1_1 = '<div class="container-fluid dropbtn-box form-f " id="ssl_1">\
                               <div class="row">\
                                 <div class="col-10">\
-                                  <a>\
+                                  <a class="textT7B">\
                                   ';
 var sideskilldropdown1_2 = '<div class="container-fluid dropbtn-box form-f " id="ssl_2">\
                                   <div class="row">\
                                     <div class="col-10">\
-                                      <a>\
+                                      <a class="textT7B">\
                                       ';
 var sideskilldropdown1_3 = '<div class="container-fluid dropbtn-box form-f " id="ssl_3">\
                               <div class="row">\
                                 <div class="col-10">\
-                                  <a>\
+                                  <a class="textT7B">\
                                   ';
 var sideskilldropdown2 = '</a>\
                           </div>\
@@ -553,7 +482,6 @@ var Dropdownsideskill1 = '<div class="row ddt7_1">\
 <div class="col-md-12">\
   <select class="form-select dropbtn fff" id="ch1">\
     <option selected disabled value="">เลือกหมวดทักษะเสริมที่ถนัด</option>\
-		<option value= "2021_Trending">2021_Trending</option>\
 		<option value="Computer_Technology">Computer_Technology</option>\
 		<option value="Hard_Communication%20Skills">Hard_Communication Skills</option>\
 		<option value="Data_Analysis">Data_Analysis</option>\
@@ -579,7 +507,6 @@ var Dropdownsideskill2 = '<div class="row ddt7_2">\
 <div class="col-md-12">\
   <select class="form-select dropbtn fff" id="ch2">\
     <option selected disabled value="">เลือกหมวดทักษะเสริมที่ถนัด</option>\
-		<option value= "2021_Trending">2021_Trending</option>\
 		<option value="Computer_Technology">Computer_Technology</option>\
 		<option value="Hard_Communication%20Skills">Hard_Communication Skills</option>\
 		<option value="Data_Analysis">Data_Analysis</option>\
@@ -605,7 +532,6 @@ var Dropdownsideskill3 = '<div class="row ddt7_3">\
 <div class="col-md-12">\
   <select class="form-select dropbtn fff" id="ch3">\
   <option selected disabled value="">เลือกหมวดทักษะเสริมที่ถนัด</option>\
-  <option value= "2021_Trending">2021_Trending</option>\
   <option value="Computer_Technology">Computer_Technology</option>\
   <option value="Hard_Communication%20Skills">Hard_Communication Skills</option>\
   <option value="Data_Analysis">Data_Analysis</option>\
@@ -852,7 +778,8 @@ function PostRegis(pack){
 		  body: JSON.stringify(pack)}
   )
     .then(function (response) {
-        //window.location.pathname = '/emailverify'
+        window.location.pathname = '/emailverify'
+        //setInterval(window.location = "http://localhost:3000/emailverify", 3000);
         return response.json();
     })
     .then(function (result) {
@@ -966,40 +893,296 @@ function PostRegis(pack){
       Job_SkillName:[["C","JQuery","HTML"]]
   }
     
-  var FormRegis1 = {
-    "Academy": ['โรงเรียนหมีน้อย'],
-  "Birthday": "18/10/2003",
-  "CertName": ['21', '14'],
-  "CertPic": ['a.png','b.png'],
-  "CertYear": [2021, 2014],
-  "City": "จตุจักร",
-  "Company": ['freelance.com'],
-  "Country": "ประเทศไทย",
-  "Degree": ['อาชีวะศึกษา'],
-  "Education_End_Year": [2017],
-  "Email": "rungry5@test.com",
-  "Email2nd": "-",
-  "Facalty": ['การเย็บปักถักร้อย'],
-  "Field_of_study": ['ซ่อมตุ๊กตา'],
-  "Firstname": "eeee",
-  "Gender": "ชาย",
-  "Grade": [3.01],
-  "Infomation": ['จะดีมากถ้าลูกค้าไม่เรื่องมาก'],
-  "Job_JobName": ['วิศวกร'],
-  "Job_Objective": [['หิวข้าวมากแม่']],
-  "Job_Score": [[9,8,0]],
-  "Job_SkillName": [['ล้างรถ','C','C++']],
-  "Lastname": "1111",
-  "Password": "11111111",
-  "ProfilePic": "http://localhost:3000/assets/images/profile_uk.png",
-  "Province": "กรุงเทพมหานคร",
-  "Salary": [15000],
-  "SalaryType": ['รายได้เป็นงาน'],
-  "SoftSkill": ['CAD', 'Multivariate analysis'],
-  "Work_End_Month": [5],
-  "Work_End_Year": [2012],
-  "Work_JobName": ['เขียนเว็บ'],
-  "Work_JobType": ['ฟรีแลนซ์'],
-  "Work_Start_Month": [1],
-  "Work_Start_Year": [2007],
+ 
+var list_of_work = [];
+
+function get_work_id(list_of_work, x) {
+  //var x = 1;
+  list_of_work.forEach(ele => {
+      ele["work_pos"] = x;
+      console.log("x:", x);
+      x++;
+  });
+  return list_of_work;
+}
+/*
+function create_UUID() {
+  var dt = new Date().getTime();
+  var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+      var r = (dt + Math.random() * 16) % 16 | 0;
+      dt = Math.floor(dt / 16);
+      return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+  });
+  return uuid;
+}
+*/
+var choose_function4 = -1; //default
+
+function show_all_work() {
+
+  list_of_work.forEach(ele => {
+      var grid_work1 = '<div class="t4-content col-6">\
+                          <h5 class="font-titlet4">{jobname_work}</h5>\
+                          <div class="row">\
+                              <div class="col-3 font-titlet3">\
+                              <div class="font-titlet4">{company_work}</div>\
+                              <div class="font-titlet3">เริ่มต้น {month_startwork}/{year_startwork}</div>\
+                              <div class="font-titlet3">สิ้นสุด {month_endwork}/{year_endwork}</div>\
+                              </div>\
+                              <div class="col-9 font-titlet3">{inform_work}</div>\
+                          </div>\
+                          <div class="row">\
+                              <div class="col-3 font-titlet3">เงินเดือน</div>\
+                              <div class="col-9 font-titlet3">{salary_work} บาท</div>\
+                          </div>';
+
+      var grid_work2 = `
+                          <div class="layer_icon2" id={no-list-work}>\
+                             <button type="button" class="btn button1" id="edit-work"><img src="assets/images/blackedit.png" width="27" height="27"></img></button>\
+                             <button type="button" class="btn button2" id="del-work"><img src="assets/images/bin.png" width="30" height="30"></img></button>\
+                          </div>\
+                      </div>`;
+      grid_work2 = grid_work2.replace("{no-list-work}", ele["id"]);
+      grid_work1 = grid_work1.replace("{no_work}", ele["work_pos"]);
+      grid_work1 = grid_work1.replace("{jobname_work}", ele["work_jobname"]);
+      grid_work1 = grid_work1.replace("{month_startwork}", ele["work_startmonth"]);
+      grid_work1 = grid_work1.replace("{year_startwork}", ele["work_startyear"]);
+      if(ele["work_company"]==""){
+        grid_work1 = grid_work1.replace("{company_work}", '-');
+      }
+      else{
+        grid_work1 = grid_work1.replace("{company_work}", ele["work_company"]);
+      }
+      if(ele["work_inform"]==""){
+        grid_work1 = grid_work1.replace("{inform_work}", '-');
+      }
+      else{
+        grid_work1 = grid_work1.replace("{inform_work}", ele["work_inform"]);
+      }
+      if(ele["work_salary"]=="0"){
+        grid_work1 = grid_work1.replace("{salary_work}", '-');
+      }
+      else{
+        grid_work1 = grid_work1.replace("{salary_work}", ele["work_salary"]);
+      }
+      if(ele["work_endyear"]=="0"){
+        grid_work1 = grid_work1.replace("{year_endwork}", '-');
+      }
+      else{
+        grid_work1 = grid_work1.replace("{year_endwork}", ele["work_endyear"]);
+      }
+      if(ele["work_endmonth"]=="0"){
+        grid_work1 = grid_work1.replace("{month_endwork}", '-');
+      }
+      else{
+        grid_work1 = grid_work1.replace("{month_endwork}", ele["work_endmonth"]);
+      }
+      $(".list-of-work").append(grid_work1 + grid_work2);
+      console.log(grid_work1 + grid_work2);
+      console.log(`list_of_work:`, list_of_work);
+  });
+}
+$(document).ready(function () {
+  show_all_work();
+});
+
+//func add new work form
+$(document).on("click", "#add_work", function () {
+  $("#jobname_work").removeClass("is-invalid");
+  $("#jobtype_work").removeClass("is-invalid");
+  $("#month_startwork").removeClass("is-invalid");
+  $("#year_startwork").removeClass("is-invalid");
+  choose_function4 = 2;
+  //$('#registab4Modal').modal('toggle');
+  $('#jobtype_work').prop('selectedIndex', 0);
+  $('#year_startwork').prop('selectedIndex', 0);
+  $('#year_endwork').prop('selectedIndex', 0);
+  $('#month_startwork').prop('selectedIndex', 0);
+  $('#month_endwork').prop('selectedIndex', 0);
+  $('#salarytype_work').prop('selectedIndex', 0);
+  $('#jobname_work').val('');
+  $('#salary_work').val('');
+  $('#inform_work').val('');
+  $('#company_work').val('');
+  //not sure
+});
+
+//func edit work
+var for_editwork;
+$(document).on("click", "#edit-work", function () {
+  $("#jobname_work").removeClass("is-invalid");
+  $("#jobtype_work").removeClass("is-invalid");
+  $("#month_startwork").removeClass("is-invalid");
+  $("#year_startwork").removeClass("is-invalid");
+  id_list_work_edit = $(this).parents().attr('id');
+  console.log(`edit:`, id_list_work_edit);
+  choose_function4 = 1;
+  $('#registab4Modal').modal('toggle');
+  $('#submit-work').text('ยืนยัน');
+  console.log(`choose: ${choose_function4}`);
+  for_editwork = list_of_work.find(function (post, index_del) {
+      if (post.id == id_list_work_edit){
+        //console.log("Wow!!");
+        return true;
+      }
+  });
+  console.log(`for_editwork:`, for_editwork);
+  $("#jobname_work").val(for_editwork["work_jobname"]);
+  $("#aca_faculty").val(for_editwork["aca_faculty"]);
+  if(for_editwork["work_inform"]=='none'){
+    $("#work_inform").val('');
   }
+  else{
+    $("#work_inform").val(for_editwork["work_inform"]);
+  }
+  if(for_editwork["aca_grade"]=='0.00'){
+    $("#aca_grade").val('');
+  }
+  else{
+    $("#aca_grade").val(for_editwork["aca_grade"]);
+  }
+  document.getElementById("work_jobtype").selectedIndex = for_editwork["work_jobtype_select"];
+  document.getElementById("work_salarytype").selectedIndex = for_editwork["work_salarytype_select"];
+  document.getElementById("work_startyear").selectedIndex = for_editwork["work_startyear_select"];
+  document.getElementById("work_startmonth").selectedIndex = for_editwork["work_startmonth_select"];
+});
+
+
+$(document).on("click", "#del-work", function () {
+  id_list_work_del = $(this).parents().attr('id');
+  console.log("id_list_work4:", id_list_work_del);
+  $('#Modal_remove_work').modal('toggle');
+});
+
+$(document).on('click', "#sub_del_work", function () {
+  var removeIndexA = list_of_work.findIndex(function (post, index_del) {
+      if (post.id == id_list_work_del)
+          return true;
+  });
+  console.log("id_list_work:", id_list_work_del);
+  list_of_work.splice(removeIndexA, 1);
+  console.log(`delete work id:`, removeIndexA);
+  $('#Modal_remove_work').modal('hide');
+  $(".list-of-work").empty();
+  console.log(list_of_work);
+  get_work_id(list_of_work, 1);
+  show_all_work()
+});
+
+
+$(document).on('hide.bs.modal', "#registab4Modal", function () {
+  //$('#registab4Modal').modal('toggle');
+  $('#work_jobtype').prop('selectedIndex', 0);
+  $('#year_startwork').prop('selectedIndex', 0);
+  $('#year_endwork').prop('selectedIndex', 0);
+  $('#month_startwork').prop('selectedIndex', 0);
+  $('#month_endwork').prop('selectedIndex', 0);
+  $('#work_salarytype').prop('selectedIndex', 0);
+  $('#work_jobname').val('');
+  $('#work_salary').val('');
+  $('#work_inform').val('');
+  $('#work_company').val('');
+});
+
+$(document).on('click', "#can_work_del", function () {
+  $('#Modal_remove_work').modal('hide');
+});
+
+$(document).on("change", "#work_jobtype", function () {
+  if (document.getElementById("work_jobtype").selectedIndex != 0) {
+      $("#work_jobtype").removeClass("is-invalid");
+  }
+});
+
+document.getElementById("submit-work").addEventListener("click", function () {
+  $("#jobname_work").removeClass("is-invalid");
+  $("#jobtype_work").removeClass("is-invalid");
+  $("#month_startwork").removeClass("is-invalid");
+  $("#year_startwork").removeClass("is-invalid");
+  work_jobname = document.getElementById("jobname_work").value;
+  work_jobtype = document.getElementById("jobtype_work").value;
+  work_startyear = document.getElementById("year_startwork").value;
+  work_endyear = document.getElementById("year_endwork").value;
+  work_startmonth = document.getElementById("month_startwork").value;
+  work_endmonth = document.getElementById("month_endwork").value;
+  $('#submit_work').text = 'ยืนยัน';
+  var checkcase1 = true;
+  if (document.getElementById("jobname_work").value == '') {
+      $("#jobname_work").addClass("is-invalid");
+      checkcase1 = false;
+  }
+  if (document.getElementById("jobtype_work").value == 'none') {
+    $("#jobtype_work").addClass("is-invalid");
+      checkcase1 = false;
+  }
+  if (document.getElementById("year_startwork").value == '0') {
+    $("#year_startwork").addClass("is-invalid");
+      checkcase1 = false;
+  }
+  if (document.getElementById("month_startwork").value == '0') {
+    $("#month_startwork").addClass("is-invalid");
+      checkcase1 = false;
+  }
+  if(checkcase1){
+      if (inform_work == '') {
+          inform_work = 'none';
+      }
+      if (month_endwork == '') {
+          month_endwork = 0;
+      }
+      if (year_endwork == '') {
+          year_endwork = 0;
+      }
+      if (choose_function4 == 1) { //edit work after add
+          console.log("edit!!!!!!");
+          for_editwork["work_jobname"] = jobname_work;
+          for_editwork["work_jobtype_select"] = $("#work_jobtype").prop('selectedIndex');
+          for_editwork["work_salarytype_select"] = $("#work_salarytype").prop('selectedIndex');
+          for_editwork["work_startyear_select"] = $("#work_startyear").prop('selectedIndex');
+          for_editwork["work_endyear_select"] = $("#work_endyear").prop('selectedIndex');
+          for_editwork["work_startmonth_select"] = $("#work_endyear").prop('selectedIndex');
+          for_editwork["work_endmonth_select"] = $("#work_endmonth").prop('selectedIndex');
+          for_editwork["work_inform"] = inform_work;
+          for_editwork["work_salary"] = salary_work;
+          //for_editwork["year_secondary"] = parseInt(year_work);
+      }
+      else if (choose_function4 == 2) { //add work in list
+          list_of_aca.push({
+              id: create_UUID(),
+              work_pos: 0,
+              work_jobname: jobname_work,
+              work_jobtype: jobtype_work,
+              work_company: company_work,
+              work_jobtype_select: $("#jobtype_work").prop('selectedIndex'),
+              work_salary: salary_work,
+              work_salarytype: salarytype_work,
+              work_salarytype_select: $("#salarytype_work").prop('selectedIndex'),
+              work_startyear: year_startwork,
+              work_startyear_select: $("#year_startwork").prop('selectedIndex'),
+              work_startmonth: month_startwork,
+              work_startmonth_select: $("#month_startwork").prop('selectedIndex'),
+              work_endyear: year_endwork,
+              work_endyear_select: $("#year_endwork").prop('selectedIndex'),
+              work_endmonth: year_startwork,
+              work_endmonth_select: $("#month_endwork").prop('selectedIndex'),
+              work_inform: inform_work
+          });
+          get_work_id(list_of_work, 1);
+          console.log(list_of_work);
+      }
+      $('#work_jobtype').prop('selectedIndex', 0);
+      $('#year_startwork').prop('selectedIndex', 0);
+      $('#year_endwork').prop('selectedIndex', 0);
+      $('#month_endwork').prop('selectedIndex', 0);
+      $('#month_startwork').prop('selectedIndex', 0);
+      $('#work_salarytype').prop('selectedIndex', 0);
+      $('#work_jobname').val('');
+      $('#work_salary').val('');
+      $('#work_inform').val('');
+      $('#work_company').val('');
+      $('#regist4_cb').empty();
+      $('#registab4Modal').modal('hide');
+      $(".list-of-work").empty();
+      show_all_work()
+  }
+});

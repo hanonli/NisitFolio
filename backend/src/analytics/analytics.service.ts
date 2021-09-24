@@ -2,8 +2,9 @@ import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { UserAddSkill, UserJobSkill, AdditionalSkill, JobTitle } from './analytics.schema';
-
+import * as mongoose from 'mongoose' ;
 import { ObjectId } from 'mongodb' ;
+import { ConstraintMetadata } from 'class-validator/types/metadata/ConstraintMetadata';
 
 
 
@@ -21,7 +22,7 @@ export class AnalyticsService {
 
   ) {}
   
-  async additionalAnalytics(id: ObjectId): Promise<any> {
+  async additionalAnalytics(id: string): Promise<any> {
     const Jobs = await this.UserJobSkillModel.aggregate([
       { $match: {userId: id} },
       { 
@@ -43,20 +44,26 @@ export class AnalyticsService {
     let finalResults = {};
     finalResults['InterestedJobs'] = jobs;
     const mySkills = await this.AdditionalSkillModel.find({ UserId: id }).select({ AdditionalSkill: 1 , _id: 0 }).distinct('AdditionalSkill');
-    //console.log(mySkills);
+    console.log(mySkills);
     finalResults['mySkills'] = mySkills;
 
     for ( var job of jobs ) {
       const job_name = job.name;
       console.log(job_name);
       console.log(job.THname);
-      const users = await this.UserJobSkillModel.find({ JobName: job_name }).select({ userId: 1, _id: 0 }).distinct('userId');
+      const Users = await this.UserJobSkillModel.find({ JobName: job_name }).select({ userId: 1, _id: 0 }).distinct('userId').exec();
+      //console.log(Users);
+      let users=[];
+      for ( var user of Users ) {
+        //console.log(user);
+        users.push(user.toString());
+      }
       //console.log(users);
       const numberOfUsers = users.length;
 
       const rawResults = await this.AdditionalSkillModel.aggregate([
         {
-          $match: { UserId: { "$in": users } }
+          $match: { UserId: { $in: users } }
         },
         {  
           $group: {
@@ -66,6 +73,8 @@ export class AnalyticsService {
         },
         { $sort: { total: -1, _id: 1 }}
       ]).exec();
+
+      console.log(rawResults);
 
       let ModifiedResults = [];
       for (var result of rawResults) {
@@ -113,7 +122,7 @@ export class AnalyticsService {
 * ******************************************************************************************************************************************
 */
 
-  async findUserJobSkill(userId: ObjectId): Promise<any> {
+  async findUserJobSkill(userId: string): Promise<any> {
     const userSkill = await this.UserJobSkillModel.aggregate([
                         { $match: {userId: userId} },
                         { 
@@ -126,7 +135,7 @@ export class AnalyticsService {
     let array = {} ;
     let InterestedJobs = [] ;
     let THnameJobs = [] ;
-    
+    console.log(userSkill) ;
     for ( var job of userSkill ) {
       const job_name = job._id.JobName;
       const job_THname = await this.JobTitleModel.findOne({ Name: job_name }).select({ THName: 1, _id: 0 }).exec();
@@ -169,16 +178,16 @@ export class AnalyticsService {
         const _name = i._id.SkillName ;
         const _sum = i.total ;
         const mean = i.mean ;
+        const AllUser = await this.UserJobSkillModel.find({JobName: job, SkillName: _name}).sort({ Score: 1 }).exec() ;
         if ( countTop <= 2 || mySkills.includes(_name) ) {  
           // ---------- AllUser Score --------------//
-          const AllUser = await this.UserJobSkillModel.find({JobName: job, SkillName: _name}).sort({ Score: 1 }).exec() ;
           
           let AllScore = [] ;
           let UserScore = null ;
           let n = 0 ;
           //console.log(AllUser) ;
           for (var j of AllUser) {
-            if (userId.equals(j.userId)) { 
+            if (userId == j.userId) { 
               UserScore = j.Score ;
             }
             AllScore.push(j.Score) ;
@@ -191,10 +200,10 @@ export class AnalyticsService {
           
           // console.log(_name);
           // console.log(_sum);
-          temp.push({SkillName: _name, total: _sum, "AllScore": newAllScore, "UserScore": UserScore, "Count": count,"Mean": mean, "Mode": mode, percentage: n/numberOfUsers*100}) ;
+          temp.push({SkillName: _name, total: _sum, "AllScore": newAllScore, "UserScore": UserScore, "Count": count,"Mean": mean, "Mode": mode, "percentage": n/numberOfUsers*100}) ;
         }
         else { 
-          temp.push({SkillName: _name, total: _sum, "Mean": mean})
+          temp.push({SkillName: _name, total: _sum, "percentage": AllUser.length/numberOfUsers*100})
         }
         countTop ++ ;
       }
@@ -238,7 +247,7 @@ export class AnalyticsService {
           // console.log(obj.Score) ;
           // console.log(obj.userId) ;
           AllScore.push(obj.Score) ;
-          if (userId.equals(obj.userId)) {
+          if (userId == obj.userId) {
             UserScore = obj.Score ;
           }
         }
@@ -250,7 +259,7 @@ export class AnalyticsService {
         temp2.push({"SkillName": Skill, "total": total, "AllScore": newAllScore, "UserScore": UserScore, "Count": count, "Mean": i.mean, "Mode": mode, "percentage": percentage}) ;
       }
       else {
-        temp2.push({ "SkillName": Skill, "total": total, "Mean": i.mean })
+        temp2.push({ "SkillName": Skill, "total": total, "Percentage": total/numberOfUsers*100 })
       }
     }
     array["Overview"] = {};

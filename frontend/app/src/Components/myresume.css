@@ -1,6 +1,24 @@
 @import "myresumeTimeline.css";
 @import "myresumeEducation.css";
+@import "myresumeCertificate.css";
 /* Zone Decoration */
+.MyResumeContent *{
+    font-weight: normal;
+}
+
+.MyResumeContent h1{
+    font-weight: 500;
+}
+.MyResumeContent h2{
+    font-weight: 500;
+}
+.MyResumeContent h3{
+    font-weight: 500;
+}
+.MyResumeContent h4{
+    font-weight: 500;
+}
+
 
 .Ex {
     font-style: italic;
@@ -85,34 +103,52 @@
 .resume-head-darkpart{
     width: 100%;
     background-color: #161513;
-    padding: 4vw;
+    padding: 2vw;
     color: #FFFFFF;
 }
 
 .resume-name-box{
     margin-left:45%;
-    width:45%;
-    padding: 1vw;
+    width:50%;
+    padding: 0.5vw;
     color: #FFFFFF;
+    padding-inline: 1vw;
 }
 
 .resume-name-text{
-    font-size: 6vw;
-    font-weight: 1000;
+    font-size: 5vw;
+    font-weight: 700;
     color: #FFFFFF;
 }
 
 .resume-occupation{
-    font-size: 3vw;
+    font-size: 1.6vw;
+    height: auto;
+    margin-bottom: 0%;
 }
 
 .resume-name-bio-part{
-    padding: 2vw;
-    margin-left:43%;
-    width:47%;
-    min-height: 15vw;
-    font-size: 2vw;
+    padding: 1vw;
+    padding-inline: 2vw;
+    margin-left:42%;
+    width:52%;
+    min-height: 8vw;
+    font-size: 1vw;
+    color: black;
     /*font-weight: 300;*/
+    position: relative;
+}
+
+.resume-name-bio-part p{
+
+    /*width: 100%;*/
+    font-size: 1vw;
+    color: black;
+    margin-bottom: 0%;
+    /*font-weight: 300;*/
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .resume-profile-pic{
@@ -123,12 +159,12 @@
 .resume-profile-picture{
     box-shadow: none;
 	display: block;
-	margin-left: 0vw;
-	margin-top: 8vw;
+	left: 0px;
+	bottom: 0px;
 	position: absolute;
 	/*background: rgba(0, 0, 0, 0.3) none repeat scroll 0 0;
 	*/
-    width: 40%;
+    width: 37%;
     height: auto;
     z-index:9;
 }
@@ -149,8 +185,10 @@
 
 .resumetopic{
     color: black;
-    font-size: 4vw;
+    font-size: 3vw;
     padding: 0vw;
+    font-weight: 500;
+    margin-bottom: 0%;
 }
 
 .resumesectionline{
@@ -189,3 +227,149 @@
     margin-left: 0vw;
 }
 
+.myresume-mywork {
+    width:45vw;
+    margin-left:55vw;
+    background-color: rgb(255, 255, 255);
+    padding: 1vw;
+}
+
+.showmywork {
+    margin-left: 2vw;
+    padding: 1Vw;
+}
+
+.seemywork{
+    margin-left: 31Vw;
+}
+
+.myresume-mywork-woNb{
+    background-color: rgb(255, 255, 255);
+}
+
+.myresume-head-woNb{
+    color: black;
+    font-size: 3vw;
+    text-align: center;
+}
+
+.line-mywork{
+    border: 0.25Vw solid #FFCE55;
+    width: 27%;
+    margin-left: 36.5%;
+    margin-bottom: 30px;
+}
+
+.seemywork-woNb{
+    margin-left: 80Vw;
+    margin-top: 1.4Vw;
+    padding: 1Vw;
+}
+
+.myresume-work-goals-woNb{
+    background-color: rgba(22, 21, 19, 1);
+    padding: 1Vw;
+    justify-content: center;
+}
+
+.work-goals-head{
+    justify-content: center;
+}
+
+.work-goals{
+    margin-top: 3Vw;
+}
+
+.count-work-goals{
+    font-weight: 200;
+    font-size: 300%;
+}
+
+.color-number{
+    margin-top: 5Vw;
+    font-weight: 200;
+    font-size: 320%;
+    color: #FFCE55;
+
+    text-align: center;
+}
+
+.work-goals-woNb{
+    margin-left: 8Vw;
+    margin-right: 8Vw;
+
+    justify-content: center;
+}
+
+.count-work-goals-woNb{
+    justify-content: center;
+}
+
+.White-font{
+    color: white;
+    text-align: center;
+}
+
+.White-font #WG{
+    font-size: 3vw;
+}
+
+.myresume-work-goals-withoutdata{
+    background-color: rgba(22, 21, 19, 1);
+    padding: 1Vw;
+    justify-content: center;
+}
+
+.myresume-mywork-withoutdata{
+    background-color: rgb(255, 255, 255);
+    padding: 1Vw;
+    justify-content: center;
+}
+
+.text-work-goals-wdata{
+    margin-top: 18Vw;
+    text-align: center;
+}
+
+.work-goals-btn{
+    margin: auto;
+    top: 86vh;
+    left: 78vw;
+
+    width: 30%;
+    height: 3vw;
+    border: 3Vw rgba(249, 220, 92, 1);
+    border-radius: 3vw;
+    background-color: rgba(249, 220, 92, 1);
+    padding: 0.1vw 0.2vw;
+
+    margin-bottom: 20Vw;
+    position: center;
+    display: flex;
+}
+
+.text-btn-work-goals{
+    color: black;
+    margin: auto;
+    display: flex;
+}
+
+.line-arrow{
+    position: absolute;
+    width: 38.62px;
+    height: 0px;
+    margin-left: 80%;
+
+    border: 5px solid #000000;
+    transform: matrix(0.71, 0.67, -0.74, 0.71, 0, 0);
+}
+
+.line-arrow2{
+    position: absolute;
+    width: 36.87px;
+    height: 0px;   
+    margin-left: 80%;
+
+    border: 5px solid #000000;
+    transform: matrix(-0.71, 0.67, -0.74, -0.71, 0, 0);
+}

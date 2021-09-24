@@ -36,9 +36,9 @@ class Emailverify extends React.Component {
 					</header>
 				</div>
 				<div class="centerverify">
-					<h1 class="recheck-f">โปรดตรวจสอบการแจ้งเตือนที่อีเมลล์ของคุณเพื่อยืนยันตัวตน</h1>
+					<h1 class="recheck-f">โปรดตรวจสอบการแจ้งเตือนที่อีเมลของคุณเพื่อยืนยันตัวตน</h1>
 					<div class="emailpic">
-						<img class="img-fluid" data-bs-placement="top" title="ส่งอีเมลล์ยืนยันแล้ว" src="assets/images/mail.png" alt="" width="150" height="150"/>	
+						<img class="img-fluid" data-bs-placement="top" title="ส่งอีเมลยืนยันแล้ว" src="assets/images/mail.png" alt="" width="150" height="150"/>	
 					</div>
 					<div class="col">
 						<a class="btn btn-cta-primary-yellowwideE round profile-button" href="#" id='resendEmail' target="_blank">ส่งใหม่อีกครั้ง</a>

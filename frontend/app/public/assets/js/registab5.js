@@ -61,27 +61,37 @@ function show_certi() {
     list_of_year_certi = {};
     list_of_certi.sort(compareValues('year_certi', 'desc'));
     list_of_certi.forEach(ele => {
-        let grid_certi = `<div class="card_certi" id="{no_certi}">
-                                <h1 id="name-of-certi">{name-certi}</h1>
-                                <h1 id="year-of-certi">{year-certi}</h1>
-                                <div class="pos-pic-of-certi">
-                                    <img height="160" src="{pic-of-certi}" id="border_certi"></img>
-                                </div>
-                                <div class="layer-button-certi">
-                                    <button type="button" class="btn" id="edit-certi"><img src="assets/images/blackedit.png" width="80" height="80"></img></button>
-                                    <button type="button" class="btn" id="del-certi"><img src="assets/images/bin.png" width="120" height="120"></img></button>
-                                </div>
+        let grid_certi = `<div class="card_certi" id="{no_certi}">\
+                                <h1 id="name-of-certi">{name-certi}</h1>\
+                                <h1 id="year-of-certi">{year-certi}</h1>\
+                                <div class="pos-pic-of-certi">\
+                                    <img height="142" src="{pic-of-certi}" id="border_certi"></img>\
+                                </div>\
+                                <div class="layer-button-certi">\
+                                    <div class="set-layer-button-certi">\
+                                        <button type="button" class="btn" id="edit-certi"><img src="assets/images/blackedit.png" width="35" height="35"></img></button>\
+                                        <button type="button" class="btn" id="del-certi"><img src="assets/images/bin.png" width="50" height="50"></img></button>\                                    
+                                    </div>\
+                                </div>\
                             </div>`;
         let headOfyear1234 = `<div id="{show-year}" >\
                                     <h1 id="textOfyear_certi">{head-year}</h1>\
                               </div>\
                               <div class="content-certi1" id="{contentYear}"></div>`;
+
         grid_certi = grid_certi.replace("{no_certi}", ele["id"]);
-        grid_certi = grid_certi.replace("{name-certi}", ele["name_certi"]);
+        //grid_certi = grid_certi.replace("{name-certi}", ele["name_certi"]);
+        if (ele["name_certi"].length > 22) {
+            grid_certi = grid_certi.replace("{name-certi}", ele["name_certi"].slice(0, 22) + "...");
+        }
+        else {
+            grid_certi = grid_certi.replace("{name-certi}", ele["name_certi"]);
+        }
         grid_certi = grid_certi.replace("{year-certi}", ele["year_certi"]);
         grid_certi = grid_certi.replace("{pic-of-certi}", ele["path_file_certi"]);
+
         if (year_before_certi != ele["year_certi"]) {
-            console.log(`change year!!!!`);
+            //console.log(`change year!!!!`);
             list_of_year_certi[ele["year_certi"]] = 1;
             year_before_certi = ele["year_certi"];
             headOfyear1234 = headOfyear1234.replace("{show-year}", `yearOf_` + String(ele["year_certi"]));
@@ -94,7 +104,7 @@ function show_certi() {
         }
         $("#contentYear_" + String(ele["year_certi"])).append(grid_certi);
     });
-    console.log(`list_of_year_certi:`, list_of_year_certi);
+    //console.log(`list_of_year_certi:`, list_of_year_certi);
 }
 
 $(document).ready(function () {
@@ -105,19 +115,21 @@ var picOfCerti = '';
 
 $(document).on('change', "#image-upload112", function () {
     var path_img = document.getElementById("image-upload112");
-    var reader = new FileReader();
-    reader.onload = function (e) {
-        //$("#preview_before_upload").remove();
-        picOfCerti = e.target.result;
-        $("#preview_before_upload").attr('src', e.target.result);
-    };
-    reader.readAsDataURL(path_img.files[0]);
-    //picOfCerti = readURL(document.getElementById("image-upload112"));
-    console.log("picOfCerti:", picOfCerti);
-    $("#icon-upload-112").remove();
-    $("#text-upload-112").remove();
-    $(".for_upload112").append('<img id="preview_before_upload" height="145"></img>');
-    $("#to_upload112").removeClass("error_select_certi");
+    if (path_img.files[0].type == "image/jpeg" || path_img.files[0].type == "image/jpg" || path_img.files[0].type == "image/png") {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            //$("#preview_before_upload").remove();
+            picOfCerti = e.target.result;
+            $("#preview_before_upload").attr('src', e.target.result);
+        };
+        reader.readAsDataURL(path_img.files[0]);
+        //picOfCerti = readURL(document.getElementById("image-upload112"));
+        //console.log("picOfCerti:", picOfCerti);
+        $("#icon-upload-112").remove();
+        $("#text-upload-112").remove();
+        $(".for_upload112").append('<img id="preview_before_upload" height="145"></img>');
+        $("#to_upload112").removeClass("error_select_certi");
+    }
 });
 
 var choose_function = -1; //default
@@ -126,9 +138,9 @@ var for_edit;
 //open modal to edit certi
 $(document).on("click", "#edit-certi", function () {
     choose_function = 1;
-    console.log(`chosoe: ${choose_function}`);
-    id_list_certi_edit = $(this).parents().parents().attr('id');
-    console.log("id_list_certi111:", id_list_certi_edit);
+    //console.log(`chosoe: ${choose_function}`);
+    id_list_certi_edit = $(this).parents().parents().parents().attr('id');
+    //console.log("id_list_certi111:", id_list_certi_edit);
     $('#exampleModal11112').modal('toggle');
     $("#nm_certi").removeClass("error_select_certi");
     $("#yearpicker_111").removeClass("error_select_certi");
@@ -140,7 +152,7 @@ $(document).on("click", "#edit-certi", function () {
         if (post.id == id_list_certi_edit)
             return true;
     });
-    console.log(`for_edit:`, for_edit);
+    //console.log(`for_edit:`, for_edit);
     document.getElementById("nm_certi").value = for_edit["name_certi"];
     document.getElementById("yearpicker_111").selectedIndex = for_edit["year_certi_select"];
     picOfCerti = for_edit["path_file_certi"];
@@ -151,7 +163,7 @@ $(document).on("click", "#edit-certi", function () {
 //open modal to add certi
 $(document).on("click", ".frame_add_certi", function () {
     choose_function = 2;
-    console.log(`chosoe: ${choose_function}`);
+    //console.log(`chosoe: ${choose_function}`);
     $('#exampleModal11112').modal('toggle');
     $("#preview_before_upload").remove();
     $("#nm_certi").removeClass("error_select_certi");
@@ -164,10 +176,10 @@ $(document).on("click", ".frame_add_certi", function () {
 
 //open modal to delete certi (uncomplete!!!!!!!!!!!!!!!!!!!)
 $(document).on("click", "#del-certi", function () {
-    id_list_certi_del = $(this).parents().parents().attr('id');
-    console.log("id_list_certi111:", id_list_certi_del);
+    id_list_certi_del = $(this).parents().parents().parents().attr('id');
+    //console.log("id_list_certi111:", id_list_certi_del);
     $('#exampleModal_remove_certi').modal('toggle');
-    console.log(`list_of_year_certi:`, list_of_year_certi);
+    //console.log(`list_of_year_certi:`, list_of_year_certi);
 });
 
 $(document).on('click', "#summit-to-delete-certi", function () {
@@ -184,7 +196,7 @@ $(document).on('click', "#summit-to-delete-certi", function () {
     list_of_certi.splice(removeIndex, 1);
     //console.log(`delete _certi id:`, removeIndex);
     $(`#` + id_list_certi_del).remove();
-    console.log(`list_of_certi:`, list_of_certi);
+    //console.log(`list_of_certi:`, list_of_certi);
     $("#preview_before_upload").remove();
     $("#icon-upload-112").remove();
     $("#text-upload-112").remove();
@@ -235,7 +247,7 @@ $(document).on('click', "#submit-certi", function () {
             for_edit["path_file_certi"] = picOfCerti;
             for_edit["year_certi_select"] = $("#yearpicker_111").prop('selectedIndex');
             var list_edit11 = document.getElementById(id_list_certi_edit);
-            console.log("id_list_certi_edit:", id_list_certi_edit);
+            //console.log("id_list_certi_edit:", id_list_certi_edit);
         }
         else if (choose_function == 2) {
             //console.log("add!!!!!!")
@@ -260,7 +272,7 @@ $(document).on('click', "#submit-certi", function () {
         $("#yearpicker_111").prop('selectedIndex', 0);
         $("#exampleModal11112").modal("hide");
         $(".box-box-box").empty();
-        console.log(`list_of_certi:`, list_of_certi);
+        //console.log(`list_of_certi:`, list_of_certi);
         show_certi();
         $("#preview_before_upload").remove();
         $("#icon-upload-112").remove();

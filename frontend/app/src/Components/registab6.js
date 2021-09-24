@@ -15,13 +15,14 @@ class Registab6 extends React.Component {
 	render() {
 		return (
 			<div className="Registab6">
-				<div class="regis-box-content">
+				<div class="regis-box-content1">
+					<h1 id="text-add-name-my-job11">เพิ่มตำแหน่งงานที่สนใจ</h1>
 					<div class="list-of-job" id="in-list-of-job"></div>
 
 					<div class="frame_add_job_interest">
 						<div className="button_add_job_interest">
 							<button id="add-job" type="button" class="btn">
-								<img src="assets/images/+.png" width="115" height="115"></img>
+								<img src="assets/images/+.png" width="57" height="57"></img>
 							</button>
 						</div>
 					</div>
@@ -42,14 +43,13 @@ class Registab6 extends React.Component {
 					<div class="modal fade" id="exampleModalJob" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog modal-dialog-centered modal-xl">
 							<div class="modal-content popup_JOB" >
-
 								<div class="row head_modal_job">
 									<div class="col-md-5">
-										<h1 id="topic_pop">เพิ่มงานที่สนใจ</h1>
+										<h1 id="topic_pop">เพิ่มตำแหน่งงานที่สนใจ</h1>
 									</div>
 									<div class="col-md-5 select-job4">
-										<select id="nm_job" class="form-select dropbtn-job4 margin-bottom-job4 fff" required>
-											<option selected disabled value="">เลือกตำแหน่งงานหรืองานที่คุณสนใจ *</option>
+										<select id="nm_job" class="form-select dropbtn-job4 margin-bottom-job4 fff" >
+											<option selected disabled value="">เลือกหรือพิมพ์ตำแหน่งงานที่คุณสนใจ *</option>
 										</select>
 									</div>
 								</div>
@@ -59,6 +59,7 @@ class Registab6 extends React.Component {
 										<li class="tab-link_pop current2" id="prayut-nha-hee" data-toggle="tab" data-tab1="tab01" type="button">ทักษะของฉัน</li>
 										<li class="tab-link_pop" data-tab1="tab02" type="button">เป้าหมายในการทำงาน</li>
 									</ul>
+									<div class="underline-tabJob1"></div>
 								</div>
 
 								<div className="contentOfModalJop">
@@ -66,12 +67,8 @@ class Registab6 extends React.Component {
 										<div class="tab-pane_pop current2" id="tab01">
 											<div class="row list-job-skill1">
 												<div class="col-md-5">
-													<select class="form-select dropbtn_year margin-bottom1 fff" id="each_skill1" required>
-														<option >เลือกทักษะของคุณที่เหมาะกับงาน</option>
-														<option >ทักษะA</option>
-														<option >ทักษะB</option>
-														<option >ทักษะC</option>
-														<option >ทักษะD</option>
+													<select id="each_skill1" class="form-select dropbtn_year margin-bottom1 fff"  >
+														<option value="none">เลือกหรือพิมพ์ทักษะของคุณที่เหมาะกับงาน</option>
 													</select>
 												</div>
 												<div class="col-md-5">
@@ -83,12 +80,8 @@ class Registab6 extends React.Component {
 
 											<div class="row list-job-skill1">
 												<div class="col-md-5">
-													<select class="form-select dropbtn_year margin-bottom1 fff" id="each_skill2" required>
-														<option >เลือกทักษะของคุณที่เหมาะกับงาน</option>
-														<option >ทักษะA</option>
-														<option >ทักษะB</option>
-														<option >ทักษะC</option>
-														<option >ทักษะD</option>
+													<select id="each_skill2" class="form-select dropbtn_year margin-bottom1 fff" >
+														<option value="none">เลือกหรือพิมพ์ทักษะของคุณที่เหมาะกับงาน</option>
 													</select>
 												</div>
 												<div class="col-md-5">
@@ -100,12 +93,8 @@ class Registab6 extends React.Component {
 
 											<div class="row list-job-skill1">
 												<div class="col-md-5">
-													<select class="form-select dropbtn_year margin-bottom1 fff" id="each_skill3" required>
-														<option >เลือกทักษะของคุณที่เหมาะกับงาน</option>
-														<option >ทักษะA</option>
-														<option >ทักษะB</option>
-														<option >ทักษะC</option>
-														<option >ทักษะD</option>
+													<select id="each_skill3" class="form-select dropbtn_year margin-bottom1 fff">
+														<option value="none">เลือกหรือพิมพ์ทักษะของคุณที่เหมาะกับงาน</option>
 													</select>
 												</div>
 												<div class="col-md-5">
@@ -122,7 +111,7 @@ class Registab6 extends React.Component {
 													<div class="pos-del-obj-button" id="pos-del-obj-button1">
 														<button type="button" class="btn del-obj-icon"><img src="assets/images/bin.png" width="25" height="25"></img></button>
 													</div>
-													<textarea maxlength="180" type="text" class="form-control dropbtn margin-bottom1 height-job1" id="obj-job-01" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
+													<textarea maxlength="280" type="text" class="form-control dropbtn margin-bottom1 height-job1" id="obj-job-01" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
 												</div>
 											</div>
 											<div class="col-md-lg">
@@ -130,7 +119,7 @@ class Registab6 extends React.Component {
 													<div class="pos-del-obj-button" id="pos-del-obj-button2">
 														<button type="button" class="btn del-obj-icon"><img src="assets/images/bin.png" width="25" height="25"></img></button>
 													</div>
-													<textarea maxlength="180" type="text" class="form-control dropbtn margin-bottom1 height-job2" id="obj-job-02" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
+													<textarea maxlength="280" type="text" class="form-control dropbtn margin-bottom1 height-job2" id="obj-job-02" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
 												</div>
 											</div>
 											<div class="col-md-lg">
@@ -138,7 +127,7 @@ class Registab6 extends React.Component {
 													<div class="pos-del-obj-button" id="pos-del-obj-button3">
 														<button type="button" class="btn del-obj-icon"><img src="assets/images/bin.png" width="25" height="25"></img></button>
 													</div>
-													<textarea maxlength="180" type="text" class="form-control dropbtn margin-bottom1 height-job3" id="obj-job-03" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
+													<textarea maxlength="280" type="text" class="form-control dropbtn margin-bottom1 height-job3" id="obj-job-03" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
 												</div>
 
 											</div>

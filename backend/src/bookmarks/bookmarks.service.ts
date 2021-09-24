@@ -3,7 +3,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 
 import { ObjectId } from "mongodb";
-import { Bookmark, TotalBookmark, UserInfo } from "./bookmarks.schema";
+import { Account, Bookmark, TotalBookmark, UserInfo } from "./bookmarks.schema";
 import * as mongoose from "mongoose";
 import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from "constants";
 
@@ -24,9 +24,11 @@ export class BookmarkService {
     @InjectModel('UserInfo')
     private UserInfoModel: Model<UserInfo>,
 
+    @InjectModel('Account')
+    private AccountModel: Model<Account>,
   ) {}
 
-  async updateTotalBookmark( method: String, type: String, userId: ObjectId, projectName: String ): Promise<void> {
+  async updateTotalBookmark( method: String, type: String, userId: String, projectName: String ): Promise<void> {
     /*
     * Update total number in TotalBookmark table.
     * method: "add" (total++) or "delete" (total--)
@@ -78,8 +80,8 @@ export class BookmarkService {
   }
   // ---------------------------- Save Bookmark ---------------------------
   
-  async SaveBookmark(userId: ObjectId, link: string, type: string, 
-    thatUserId: ObjectId,projectName?: string): Promise<any> {
+  async SaveBookmark(userId: string, link: string, type: string, 
+    thatUserId: string,projectName?: string): Promise<any> {
     const createBookmark = new this.BookmarkModel({userId, link, type, thatUserId, projectName}) ;
     //console.log({userId, link, type, thatUserId, projectName});
     await this.updateTotalBookmark("add", type, thatUserId, projectName);
@@ -88,8 +90,8 @@ export class BookmarkService {
 
   // ---------------------------- Delete Bookmark ---------------------------
   
-  async DeleteBookmark(userId: ObjectId, link: string, type: string, 
-    thatUserId: ObjectId,projectName?: string): Promise<any> {
+  async DeleteBookmark(userId: string, link: string, type: string, 
+    thatUserId: string,projectName?: string): Promise<any> {
     await this.updateTotalBookmark("delete", type, thatUserId, projectName);
     return await this.BookmarkModel.deleteMany( { userId: userId, link: link, type: type, thatUserId: thatUserId, projectName: projectName}, 
       function (err) {
@@ -101,13 +103,13 @@ export class BookmarkService {
 
   // ---------------------------- Find All Bookmark ---------------------------
 
-  async findBookmark(userId: ObjectId) : Promise<any[]> {
+  async findBookmark(userId: string) : Promise<any[]> {
     const All = await this.BookmarkModel.find({userId: userId}).select(['userId','link', 'thatUserId']).sort({updatedAt: -1}).exec() ;
     console.log(All) ;
     return All ;
   }
 
-  async userBookmark(userId: ObjectId, sort: String): Promise<any> {
+  async userBookmark(userId: string, sort: string): Promise<any> {
     const bookmarks = await this.BookmarkModel.find( { userId: userId }).exec();
     //console.log(bookmarks);
     let res = {};
@@ -118,26 +120,31 @@ export class BookmarkService {
       const total = query.totalBookmarks;
 
       if ( bookmark.type == 'user' ) {
-        //console.log(bookmark);
+        console.log(bookmark.thatUserId);
         const jobs = await this.UserJobSkillModel.find( { userId: bookmark.thatUserId }).select("JobName -_id").distinct('JobName').exec();
         const details = await this.UserInfoModel.findOne({ UserId: bookmark.thatUserId }).select("-_id Firstname Lastname AboutMe").exec();
+        const profilePic = await this.AccountModel.findOne({ _id: bookmark.thatUserId }).select("-_id ProfilePic").exec();
         console.log(details);
+        console.log(profilePic);
         res[i] = {  link: bookmark.link,
                     type: bookmark.type,
                     thatUserId: bookmark.thatUserId,
                     name: details.Firstname + " " + details.Lastname,
-                    profilePic: "",
+                    profilePic: profilePic.ProfilePic,
                     jobs: jobs,
                     about: details.AboutMe,
                     timeUpdated: bookmark.updatedAt,
                     totalBookmarks: total 
                   };
       }
+      else {
+        
+      }
       i++;
     }
-    // if (sort == 'time'){
-    //   const keysSorted = Object.keys(res).sort(function(a,b) {return res[b].time-res[a].time});
-    // }
+
+
+
     let keysSorted;
 
     if (sort == 'time'){

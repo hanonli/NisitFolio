@@ -2,16 +2,16 @@
 
 .resumetimeline{
     width: 100%;
-    padding: 2vw;
+    padding-inline: 2vw;
     /*background-color: cadetblue;*/
-    padding-top: 15%;
+    padding-top: 10%;
     overflow: hidden;
     position: relative;
 }
 
 .resumetimeline-line{
     /*background-color: coral;*/
-    width: 2%;
+    width: 1%;
     height: 100%;
     /*margin-left: 40.2vw;*/
     border-radius: 2vw;
@@ -36,10 +36,10 @@
     position: relative;
 }
 .timeline-dot-pointer{
-    height: 2.8vw;
-    width: 2.8vw;
+    height: 2vw;
+    width: 2vw;
     /*background-color: darkred;*/
-    border-radius: 1.4vw;
+    border-radius: 1vw;
     position: absolute;
     /*margin-left: 39.6vw;*/
     /*top: 50%;*/
@@ -49,14 +49,14 @@
 
 .timeline-block .left-row{
     width: 50%;
-    padding: 2vw;
+    padding-inline: 2vw;
     text-align: right;
     margin-left: 0%;
 }
 
 .timeline-block .right-row{
     width: 50%;
-    padding: 2vw;
+    padding-inline: 2vw;
     text-align: left;
     margin-left: 50%;
 }
