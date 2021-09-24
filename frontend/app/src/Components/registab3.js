@@ -29,9 +29,10 @@ class Registab3 extends React.Component {
                                         <div class='col-10'>
                                             <h2 class="font-headert3">อุดมศึกษา</h2>
                                         </div>
-                                        <button type="button" class="col-2 btn registab3_btnplus" id="add_aca">
-											<img id='icon-plus-circle'  src="assets/images/add_black.png"></img>
-									    </button>
+                                        <div class="col-2 transition-component" id="cross-fadegone">
+                                                <img class="registab3_btnplus icon-plus-circle bottom" type='button' id='add_aca' src="assets/images/add_hover.png"></img>
+                                                <img class="registab3_btnplus icon-plus-circle top" type='button' id='add_aca' src="assets/images/add_black.png"></img>
+                                        </div>
                                     </div>
 									<div className=''>
                                         <h5 class='font-dest3'>ระดับอุดมศึกษาจะประกอบไปด้วย ปวส. ปริญญาตรี ปริญญาโท และปริญญาเอก</h5>
@@ -121,9 +122,10 @@ class Registab3 extends React.Component {
                                         <div class='col-10'>
 									        <h2 class="font-headert3">มัธยมศึกษา</h2>
                                         </div>
-                                        <button type="button" class="btn registab3_btnplus col-2" data-bs-toggle="modal" data-bs-target="#registab3Modal2" id="add_high">
-                                            <img id='icon-plus-circle'  src="assets/images/add_black.png"></img>
-                                        </button>
+                                        <div class="col-2 transition-component" id="cross-fadegone">
+                                                <img class="registab3_btnplus icon-plus-circle bottom" type='button' id='add_high' src="assets/images/add_hover.png"></img>
+                                                <img class="registab3_btnplus icon-plus-circle top" type='button' id='add_high' src="assets/images/add_black.png"></img>
+                                        </div>
                                     </div>
 									<div className=''>		
                                         <h5 class='font-dest3'>ระดับมัธยมศึกษาในที่นี้จะประกอบไปด้วย มัธยมศึกษาตอนปลาย และปวช.</h5>
