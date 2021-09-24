@@ -205,6 +205,18 @@ export class Portfolio {
   UserId: string;
 
   @Column()
+  Port_Name: string;
+
+  @Column()
+  Port_Info: string;
+
+  @Column()
+  onwner: string;
+
+  @Column()
+  totalBookmark: string;
+  
+  @Column()
   Port_Tag: string;
 
   @Column()
