@@ -314,10 +314,12 @@ function GetSkill(jobname2findskill) {
 $(document).on("change", "#each_skill1", function () {
     if ($('#each_skill1').val() != "none") {
         $('#each_skill2').prop("disabled", false);
+        $('#each_skill2').removeClass("dis_input3");
     }
     else {
         $('#each_skill2').prop("disabled", true);
         //$('#each_skill2').val("เลือกทักษะของคุณที่เหมาะกับงาน");
+        $('#each_skill2').addClass("dis_input3");
     }
 
 });
@@ -325,9 +327,11 @@ $(document).on("change", "#each_skill1", function () {
 $(document).on("change", "#each_skill2", function () {
     if ($('#each_skill2').val() != "none") {
         $('#each_skill3').prop("disabled", false);
+        $('#each_skill3').removeClass("dis_input3");
     }
     else {
         $('#each_skill3').prop("disabled", true);
+        $('#each_skill3').addClass("dis_input3");
     }
     if (document.getElementById("each_skill2").value == document.getElementById("each_skill1").value) {
         $("#each_skill2").addClass("error_select_job");
@@ -352,6 +356,7 @@ $(document).on("change", "#nm_job", function () {
     if (document.getElementById("nm_job").selectedIndex != 0) {
         $("#nm_job").removeClass("error_select_job");
         $('#each_skill1').prop("disabled", false);
+        $('#each_skill1').removeClass("dis_input3");
         let tomapjobeng = mapEngNameJob[document.getElementById("nm_job").value];
         //console.log("mapEngNameJob:", mapEngNameJob);
         //console.log("tomapjobeng:", tomapjobeng);
@@ -375,8 +380,11 @@ $(document).on("click", ".frame_add_job_interest", function () {
     $('.tabs_pop li').addClass('current2');
     $('.tab-pane_pop').addClass('current2');*/
     $('#each_skill1').prop("disabled", true);
+    $('#each_skill1').addClass("dis_input3");
     $('#each_skill2').prop("disabled", true);
+    $('#each_skill2').addClass("dis_input3");
     $('#each_skill3').prop("disabled", true);
+    $('#each_skill3').addClass("dis_input3");
     $("#nm_job").removeClass("error_select_job");
     choose_function = 2;
     if (list_of_job.length < 3) {
@@ -983,3 +991,4 @@ document.getElementById("input_mySlider3").disabled = true;*/
     //console.log(`click skill_job_3: `, skill_job_3);
     if (skill_job_3 != null || skill_job_3 == 'เลือกทักษะของคุณที่เหมาะกับงาน') document.getElementById("input_mySlider3").disabled = false;
 });*/
+/*---*/
