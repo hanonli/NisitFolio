@@ -208,7 +208,13 @@
 
 .modalworkaddH {
     border-radius: 25px;
-    padding-right: 2.1vw;
+    /*padding-right: 1vw;*/
+    padding-bottom: 2.7vw;
+}
+
+.modalworkaddH2 {
+    border-radius: 25px;
+    padding-right: 5vw;
     padding-bottom: 2.7vw;
 }
 

@@ -49,7 +49,7 @@ class Registab6 extends React.Component {
 									</div>
 									<div class="col-md-5 select-job4">
 										<select id="nm_job" class="form-select dropbtn-job4 margin-bottom-job4 fff" >
-											<option selected disabled value="">เลือกหรือพิมพ์ตำแหน่งงานที่คุณสนใจ *</option>
+											<option selected disabled value="">เลือกหรือพิมพ์ตำแหน่งงานที่คุณสนใจ*</option>
 										</select>
 									</div>
 								</div>
@@ -67,7 +67,7 @@ class Registab6 extends React.Component {
 										<div class="tab-pane_pop current2" id="tab01">
 											<div class="row list-job-skill1">
 												<div class="col-md-5">
-													<select id="each_skill1" class="form-select dropbtn_year margin-bottom1 fff"  >
+													<select id="each_skill1" class="form-select dropbtn_skillP margin-bottom1 fff"  >
 														<option value="none">เลือกหรือพิมพ์ทักษะของคุณที่เหมาะกับงาน</option>
 													</select>
 												</div>
@@ -80,7 +80,7 @@ class Registab6 extends React.Component {
 
 											<div class="row list-job-skill1">
 												<div class="col-md-5">
-													<select id="each_skill2" class="form-select dropbtn_year margin-bottom1 fff" >
+													<select id="each_skill2" class="form-select dropbtn_skillP margin-bottom1 fff" >
 														<option value="none">เลือกหรือพิมพ์ทักษะของคุณที่เหมาะกับงาน</option>
 													</select>
 												</div>
@@ -93,7 +93,7 @@ class Registab6 extends React.Component {
 
 											<div class="row list-job-skill1">
 												<div class="col-md-5">
-													<select id="each_skill3" class="form-select dropbtn_year margin-bottom1 fff">
+													<select id="each_skill3" class="form-select dropbtn_skillP margin-bottom1 fff">
 														<option value="none">เลือกหรือพิมพ์ทักษะของคุณที่เหมาะกับงาน</option>
 													</select>
 												</div>

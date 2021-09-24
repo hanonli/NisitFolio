@@ -409,7 +409,7 @@ var el;
 function countCharactersAbme() {                                    
   var textEntered, countRemaining, counter;          
   textEntered = document.getElementById('aboutme2').value;  
-  counter = (180 - (textEntered.length));
+  counter = (280 - (textEntered.length));
   countRemaining = document.getElementById('charactersRemaining'); 
   //console.log('Char left : ' + counter);
   countRemaining.textContent = counter;
@@ -893,7 +893,7 @@ function PostRegis(pack){
       Job_SkillName:[["C","JQuery","HTML"]]
   }
     
- 
+ /*
 var list_of_work = [];
 
 function get_work_id(list_of_work, x) {
@@ -905,7 +905,7 @@ function get_work_id(list_of_work, x) {
   });
   return list_of_work;
 }
-/*
+
 function create_UUID() {
   var dt = new Date().getTime();
   var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
@@ -915,7 +915,7 @@ function create_UUID() {
   });
   return uuid;
 }
-*/
+
 var choose_function4 = -1; //default
 
 function show_all_work() {
@@ -1185,4 +1185,4 @@ document.getElementById("submit-work").addEventListener("click", function () {
       $(".list-of-work").empty();
       show_all_work()
   }
-});
+});*/
