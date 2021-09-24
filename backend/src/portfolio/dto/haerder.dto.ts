@@ -1,3 +1,4 @@
+import { Int32 } from 'bson';
 import { IsEmail, IsNotEmpty, IsNumberString } from 'class-validator';
 
 export class hearderDto {
@@ -21,4 +22,5 @@ export class hearderDto {
     AboutMe: string;
 
     Port_Date: string;
+
 }

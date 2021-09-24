@@ -1,50 +1,41 @@
-import { Document, Mongoose } from 'mongoose';
-
-import * as mongoose from 'mongoose';
-import { ObjectId } from 'mongodb';
-import { UserJobSkillSchema } from 'src/analytics/analytics.schema';
 import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
+import { TotalBookmarkSchema } from 'src/search/search.schema';
 
-// -------------------------- Bookmark Schema ----------------------------
+@Schema({ collection: "Bookmark", timestamps: true })
+export class Bookmark {
 
-export const BookmarkSchema = new mongoose.Schema({
-  userId: { type: String, require: [true, 'Link must not empty']},
-  link: { type: String, require: [true, 'Link must not empty'] },
-  type: { type: String, require: [true, 'Type must not empty'] },
-  thatUserId: { type: String, require: [true, 'His/Her UserID must not empty'] },
-  projectName: { type: String },
-}, { timestamps: true })
-
-export interface Bookmark extends Document {
-  id: string;
-  userId: string;
-  link: string;
-  type: string;
-  thatUserId: string;
-  projectName: string;
-}
-
-/*
-* TotalBookmark is a table that stores a number of times being bookmarked.
-*/
-
-export const TotalBookmarkSchema = new mongoose.Schema({
-  type: { type: String, required: [true, 'type must not be empty.']},
-  userId: { type: String, required: [true, 'userId must not be empty.'] },
-  projectName: { type: String },
-  totalBookmarks: { type: Number }
-})
-
-export interface TotalBookmark extends Document {
-  type: String;
+  @Prop()
   userId: String;
-  projectName?: String;
-  totalBookmarks?: Number;
+  
+  @Prop()
+  link: String;
+
+  @Prop()
+  thatUserId: String;
+
+  @Prop()
+  type: String;
+
+  @Prop()
+  portName?: String;
+
+  @Prop({type: Object})
+  details: any;
+
+  @Prop()
+  totalBookmark: Number;
+
+  @Prop()
+  updatedAt: Date;
+
+  @Prop()
+  createdAt: Date;
+
 }
 
-/*
-* ************************************************************************************************
-*/
+export const BookmarkSchema = SchemaFactory.createForClass(Bookmark);
+
+
 @Schema({ collection: "UserInfo"})
 export class UserInfo {
 
@@ -84,6 +75,9 @@ export class UserInfo {
   @Prop()
   last_modified: String[];
 
+  @Prop()
+  totalBookmark: Number;
+
 }
 
 export const UserInfoSchema = SchemaFactory.createForClass(UserInfo);
@@ -117,3 +111,49 @@ export class Account {
 }
 
 export const AccountSchema = SchemaFactory.createForClass(Account);
+
+@Schema({collection: "Portfolio"})
+export class Portfolio {
+  
+  @Prop()
+  ResumeId: string[];
+
+  @Prop()
+  UserId: string;
+
+  @Prop()
+  Port_Name: string;
+
+  @Prop()
+  Port_Info: string;
+
+  @Prop()
+  Port_Tag: string;
+
+  @Prop()
+  Port_Privacy: string;
+
+  @Prop()
+  portfolioPictures: any[];
+
+  @Prop()
+  create_time: string;
+
+  @Prop()
+  last_modified: string[];
+
+  @Prop()
+  modified_by: string[];
+
+  @Prop()
+  resumeId: any[];
+
+  @Prop()
+  totalBookmark: Number;
+
+  @Prop()
+  Owner: string;
+
+}
+
+export const PortfolioSchema = SchemaFactory.createForClass(Portfolio);

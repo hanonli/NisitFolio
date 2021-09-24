@@ -42,7 +42,7 @@ export class PatchRegisDto {
 
   Academy: string;
 
-  Grade: Float32Array; 
+  Grade: number; 
 
   Education_End_Year: number;   
 
@@ -60,7 +60,7 @@ export class PatchRegisDto {
   
   Work_End_Year: number;
 
-  Salary: Float32Array;
+  Salary: number;
 
   SalaryType: string;
 
@@ -70,7 +70,7 @@ export class PatchRegisDto {
 
   Job_Objective: string[];
 
-  Job_Score: Float32Array[];
+  Job_Score: number[];
 
   Job_SkillName: string[];
 
