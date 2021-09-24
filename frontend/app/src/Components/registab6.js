@@ -49,7 +49,7 @@ class Registab6 extends React.Component {
 									</div>
 									<div class="col-md-5 select-job4">
 										<select id="nm_job" class="form-select dropbtn-job4 margin-bottom-job4 fff" >
-											<option selected disabled value="">เลือกหรือพิมพ์ตำแหน่งงานที่คุณสนใจ *</option>
+											<option selected disabled value="">เลือกหรือพิมพ์ตำแหน่งงานที่คุณสนใจ*</option>
 										</select>
 									</div>
 								</div>
