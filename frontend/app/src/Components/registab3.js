@@ -58,11 +58,12 @@ class Registab3 extends React.Component {
                                                                             <option value='ปริญญาเอก'>ปริญญาเอก</option>    
                                                                             <option value='ปริญญาโท'>ปริญญาโท</option>
                                                                             <option value='ปริญญาตรี'>ปริญญาตรี</option>
+                                                                            <option value='ปวส.'>ปวส.</option>
                                                                         </select>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-3 chidright">
-										                            <label class="form-f-sex">ปีที่จบการศึกษา<a class="red_markEp1">*</a></label>
+										                            <label class="form-f-sex">ปีที่จบการศึกษา</label>
 									                            </div>
                                                                 <div class='col-3' >
                                                                     <select class="form-select form-select-lg dropbtn margin-bottom1 fff" id='year_secondary' aria-labelledby="select1">
@@ -133,7 +134,7 @@ class Registab3 extends React.Component {
 									    </div>
 									<div class="modal fade" id="registab3Modal2" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
 										<div class="modal-dialog modal-dialog-centered modal-xl">
-											<div class="modal-content modalworkaddH" >
+											<div class="modal-content modalworkaddH2" >
 												<div class='modal-body'>
 													<h1 class='modal-title' id='regisModallabel2' >เพิ่มประวัติการศึกษา</h1>
 													<div className='addSecondary'>
@@ -145,12 +146,10 @@ class Registab3 extends React.Component {
                             <label class="form-f-sex">วุฒิการศึกษา<a class="red_markEp1">*</a></label>
                         </div>
                         <div class="col-3">
-                            <select class="form-select form-select-lg dropbtn margin-bottom1 fff dropbtn_year" id='high_degree' aria-labelledby="select1" required>
-                                <option selected disabled value=''>เลือกวุฒิการศึกษา</option> 
-                                <option value='อาชีวะศึกษา' >อาชีวะศึกษา </option>  
+                            <select class="form-select form-select-lg margin-bottom1 fff dropbtn_year" id='high_degree' aria-labelledby="select1" required>
+                                <option selected disabled value='none'>เลือกวุฒิการศึกษา</option> 
                                 <option value='มัธยมศึกษาตอนปลาย' >มัธยมศึกษาตอนปลาย</option>    
-                                <option value='มัธยมศึกษาตอนต้น' >มัธยมศึกษาตอนต้น</option>
-                                <option value='ประถมศึกษา' >ประถมศึกษา</option> 
+                                <option value='ปวช.' >ปวช.</option>
                             </select>
                         </div>
                         <div class="col-3 chidright">
@@ -172,13 +171,13 @@ class Registab3 extends React.Component {
                         </div>
                     </div>
                     <div class='row'>
-                        <div class="col-md-3 chidright">
-							<label class="form-f-sex">หลักสูตร/แผนการเรียน</label>
+                        <div class="col-md-3 chidright del-padleft">
+							<label class="form-f-cfp">หลักสูตร/แผนการเรียน</label>
 						</div>
-                        <div class="col-3 ">
+                        <div class="col-4 ">
                             <input type="text" class="form-control dropbtn margin-bottom1 fff" id="high_field" required></input>
                         </div>
-                        <div class="col-md-3 chidright">
+                        <div class="col-md-2 chidright">
 							<label class="form-f-sex">เกรดเฉลี่ยสะสม</label>
 						</div>
                         <div class='col-3'> 
