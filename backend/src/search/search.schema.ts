@@ -15,6 +15,7 @@ export interface UserInfo extends Document {
   readonly Country: string ,
   readonly Province: string ,
   readonly City: string ,
+  readonly totalBookmark: number,
 }
 
 // ------------------------------------- Total Bookmark ---------------------------------------
@@ -42,4 +43,22 @@ export interface UserJobSkill extends Document {
   Score: number;
   JobName: string;
   SkillName: string;
+}
+
+// ------------------------------------ interested job ---------------------------------------
+
+export const InterestedJobSchema = new mongoose.Schema({
+  UserId : String ,
+  Job_JobName : String ,
+  Job_Objective : Array ,
+  Job_Score : Array ,
+  Job_SkillName : Array ,
+  create_time: String ,
+  last_modified : Array ,
+  ResumeId : Array ,
+}, { collection: 'InterestedJob'})
+
+export interface InterestedJob extends Document {
+  userId: string ;
+  last_modified: string[] ;
 }

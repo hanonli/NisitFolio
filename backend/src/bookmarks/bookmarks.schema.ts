@@ -84,9 +84,12 @@ export class UserInfo {
   @Prop()
   last_modified: String[];
 
+  @Prop()
+  totalBookmark: Number ;
 }
 
 export const UserInfoSchema = SchemaFactory.createForClass(UserInfo);
+UserInfoSchema.index({Firstname: 'text', Lastname: 'text'})
 
 @Schema({ collection: "Account"})
 export class Account {
