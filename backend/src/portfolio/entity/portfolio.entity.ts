@@ -5,13 +5,13 @@ import { ObjectId, Timestamp } from 'mongodb';
 @Entity("Account")
 export class Account {
   @ObjectIdColumn()
-  id?: ObjectId;
+  _id?: ObjectId;
 
   @Column()
   Email: string;
   
   @Column()
-  Password: string;
+  Password: string[];
 
   @Column()
   ProfilePic: string;
@@ -21,7 +21,17 @@ export class Account {
 
   @Column()
   isEmailConfirmed: boolean;
+
+  @Column()
+  create_time:string;
+
+  @Column()
+  last_modified:string[];
+
+  @Column()
+  last_login:string[];
 }
+
 export default Account;
 
 
@@ -32,8 +42,8 @@ export class Userinfo {
   @ObjectIdColumn()
   id?: ObjectId;
 
-  @ObjectIdColumn()
-  UserId: ObjectId;
+  @Column()
+  UserId: string;
 
   @Column()
   Firstname: string;
@@ -62,8 +72,24 @@ export class Userinfo {
   @Column()
   City: string;
 
-  /*@OneToMany(type => AdditionalSkill, additionalSkill => additionalSkill.userinfo)
-  additionalSkills: AdditionalSkill[];*/
+  @Column()
+  create_time:string;
+
+  @Column()
+  last_modified:string[];
+  
+  @Column()
+  ProfilePic:string;
+
+  @Column()
+  tags:string[];
+
+  @Column()
+  AvgScore:number;
+
+  @Column()
+  totalBookmark:number;
+
 }
 
 //--------------------AdditionalSkill--------------------------//
@@ -214,7 +240,7 @@ export class Portfolio {
   onwner: string;
 
   @Column()
-  totalBookmark: string;
+  totalBookmark: number;
   
   @Column()
   Port_Tag: string;

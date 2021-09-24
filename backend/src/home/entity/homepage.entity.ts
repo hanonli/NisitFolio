@@ -6,17 +6,16 @@ import { ObjectID as ObjectIDType} from 'typeorm'
 export class Userinfo {
 
   @ObjectIdColumn()
-  _id?: ObjectIDType;
+  id?: ObjectId;
 
-  @ObjectIdColumn()
-  UserId: ObjectIDType;
+  @Column()
+  UserId: string;
 
   @Column()
   Firstname: string;
   
   @Column()
   Lastname: string;
-  
 
   @Column()
   Birthday: string;
@@ -39,8 +38,24 @@ export class Userinfo {
   @Column()
   City: string;
 
-  /*@OneToMany(type => AdditionalSkill, additionalSkill => additionalSkill.userinfo)
-  additionalSkills: AdditionalSkill[];*/
+  @Column()
+  create_time:string;
+
+  @Column()
+  last_modified:string[];
+  
+  @Column()
+  ProfilePic:string;
+
+  @Column()
+  tags:string[];
+
+  @Column()
+  AvgScore:number;
+
+  @Column()
+  totalBookmark:number;
+
 }
 
 @Entity("InterestedJob")
@@ -67,13 +82,13 @@ export class InterestedJob {
 @Entity("Account")
 export class Account {
   @ObjectIdColumn()
-  _id?: ObjectIDType;
+  _id?: ObjectId;
 
   @Column()
   Email: string;
   
   @Column()
-  Password: string;
+  Password: string[];
 
   @Column()
   ProfilePic: string;
@@ -83,6 +98,15 @@ export class Account {
 
   @Column()
   isEmailConfirmed: boolean;
+
+  @Column()
+  create_time:string;
+
+  @Column()
+  last_modified:string[];
+
+  @Column()
+  last_login:string[];
 }
 
 export default Account;

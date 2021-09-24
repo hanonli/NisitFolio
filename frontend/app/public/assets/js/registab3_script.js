@@ -68,11 +68,23 @@ function show_all_aca() {
                       </div>`;
       grid_aca2 = grid_aca2.replace("{no-list-aca}", ele["id"]);
       grid_aca1 = grid_aca1.replace("{no_aca}", ele["aca_pos"]);
-      grid_aca1 = grid_aca1.replace("{name_aca}", ele["aca_name"]);
+      //grid_aca1 = grid_aca1.replace("{name_aca}", ele["aca_name"]);
       grid_aca1 = grid_aca1.replace("{degree_aca}", ele["aca_degree"]);
       //grid_aca1 = grid_aca1.replace("{field_aca}", ele["aca_field"]);
-      grid_aca1 = grid_aca1.replace("{faculty_aca}", ele["aca_faculty"]);
+      //grid_aca1 = grid_aca1.replace("{faculty_aca}", ele["aca_faculty"]);
       //grid_aca1 = grid_aca1.replace("{year_aca}", ele["aca_year"]);
+      if (ele["aca_name"].length > 38) {
+        grid_aca1 = grid_aca1.replace("{name_aca}", ele["aca_name"].slice(0, 38) + "...");
+      }
+      else {
+        grid_aca1 = grid_aca1.replace("{name_aca}", ele["aca_name"]);
+      }
+      if (ele["aca_faculty"].length > 38) {
+        grid_aca1 = grid_aca1.replace("{faculty_aca}", ele["aca_faculty"].slice(0, 38) + "...");
+      }
+      else {
+        grid_aca1 = grid_aca1.replace("{faculty_aca}", ele["aca_faculty"]);
+      }
       if(ele["aca_grade"]=="0.00"){
         grid_aca1 = grid_aca1.replace("{grade_aca}", '-');
       }
@@ -82,6 +94,9 @@ function show_all_aca() {
       if(ele["aca_field"]=="none"){
         grid_aca1 = grid_aca1.replace("{field_aca}", '-');
       }
+      /*else if(ele["aca_field"].length > 38){
+        grid_aca1 = grid_aca1.replace("{field_aca}", ele["aca_field"].slice(0, 38) + "...");
+      }*/
       else{
         grid_aca1 = grid_aca1.replace("{field_aca}", ele["aca_field"]);
       }
@@ -181,6 +196,7 @@ $(document).on('click', "#sub_del_aca", function () {
   if (list_of_aca.length != 3) {
     $('#aca_danger').text('ท่านสามารถเพิ่มประวัติการศึกษาได้สูงสุด 3 อัน');
     $('#aca_danger').removeClass('red_markEp1');
+    $('#add_aca').show();
 }
 });
 
@@ -290,6 +306,7 @@ document.getElementById("submit-aca").addEventListener("click", function () {
       if (list_of_aca.length == 3) {
         $('#aca_danger').text('*ท่านเพิ่มประวัติการศึกษาครบจำนวนแล้ว');
         $('#aca_danger').addClass('red_markEp1');
+        $('#add_aca').hide();
     }
   }
 });
@@ -315,17 +332,15 @@ var choose_function3_2 = -1; //default
 function show_all_high() {
 
   list_of_high.forEach(ele => {
-      var grid_high1 = '<div class="t3-content2 row">\
-                          <div class="col mg-left1per">\
-                              <div class="row font-titlet3">{degree_high}</div>\
-                              <div class="row font-titlet3">{year_high}</div>\
+      var grid_high1 = '<div class="t3-content1 row">\
+                          <div class="col-4">\
+                              <div class="row font-titlet3 font-boldt3 mg-left1per">{degree_high}</div>\
+                              <div class="row font-titlet3 font-khotboldt3 mg-left1per">{year_high}</div>\
                           </div>\
-                          <div class="col">\
+                          <div class="col-8">\
                               <div class="row font-titlet3">{field_high}</div>\
-                              <div class="row font-titlet3">เกรด {grade_high}</div>\
-                          </div>\
-                          <div class="col">\
                               <div class="row font-titlet3">{name_high}</div>\
+                              <div class="row font-titlet3">เกรด {grade_high}</div>\
                           </div>';
 
       var grid_high2 = `
@@ -336,8 +351,13 @@ function show_all_high() {
                       </div>`;
       grid_high2 = grid_high2.replace("{no-list-high}", ele["id"]);
       grid_high1 = grid_high1.replace("{no_high}", ele["high_pos"]);
-      grid_high1 = grid_high1.replace("{name_high}", ele["high_name"]);
       grid_high1 = grid_high1.replace("{degree_high}", ele["high_degree"]);
+      if (ele["high_name"].length > 34) {
+        grid_high1 = grid_high1.replace("{name_high}", ele["high_name"].slice(0, 34) + "...");
+      }
+      else {
+        grid_high1 = grid_high1.replace("{name_high}", ele["high_name"]);
+      }
       if(ele["high_grade"]=="0.00"){
         grid_high1 = grid_high1.replace("{grade_high}", '-');
       }
@@ -346,6 +366,9 @@ function show_all_high() {
       }
       if(ele["high_field"]=="none"){
         grid_high1 = grid_high1.replace("{field_high}", '-');
+      }
+      else if(ele["high_field"].length > 34){
+        grid_high1 = grid_high1.replace("{field_high}", ele["high_field"].slice(0, 34) + "...");
       }
       else{
         grid_high1 = grid_high1.replace("{field_high}", ele["high_field"]);
@@ -369,8 +392,8 @@ $(document).ready(function () {
 
 //func add new high form
 $(document).on("click", "#add_high", function () {
-  $("#high_name").removeClass("is-invalid");
   $("#high_degree").removeClass("is-invalid");
+  $("#high_name").removeClass("is-invalid");
   choose_function3_2 = 2;
   $('#registab3Modal2').modal('toggle');
   $('#high_degree').prop('selectedIndex', 0);
@@ -383,9 +406,8 @@ $(document).on("click", "#add_high", function () {
 //func edit high
 var for_edithigh;
 $(document).on("click", "#edit-high", function () {
-  $("#high_name").removeClass("is-invalid");
   $("#high_degree").removeClass("is-invalid");
-  $("#high_faculty").removeClass("is-invalid");
+  $("#high_name").removeClass("is-invalid");
   id_list_high_edit = $(this).parents().attr('id');
   console.log(`edit:`, id_list_high_edit);
   choose_function3_2 = 1;
@@ -439,6 +461,7 @@ $(document).on('click', "#sub_del_high", function () {
   if (list_of_high.length != 3) {
     $('#high_danger').text('ท่านสามารถเพิ่มประวัติการศึกษาได้สูงสุด 3 อัน');
     $('#high_danger').removeClass('red_markEp1');
+    $('#add_high').show();
 }
 });
 
@@ -468,16 +491,19 @@ document.getElementById("submit-high").addEventListener("click", function () {
   grade_high = document.getElementById("high_grade").value;
   year_high = document.getElementById("year_secondary").value;
   $('#submit_high').text = 'ยืนยัน';
+  var checkformT3 = true;
   //console.log('high_name : '+ $("#high_name").val());
   if (document.getElementById("high_name").value == "") {
       //alert("submit high wrong!");
       $("#high_name").addClass("is-invalid");
+      checkformT3 = false;
   }
-  else if (document.getElementById("high_degree").value == 'none') {
+  if (document.getElementById("high_degree").value == 'none') {
     //alert("submit high wrong!");
     $("#high_degree").addClass("is-invalid");
+    checkformT3 = false;
   }
-  else {
+  if(checkformT3) {
       if (field_high == '') {
           field_high = 'none';
       }
@@ -525,6 +551,7 @@ document.getElementById("submit-high").addEventListener("click", function () {
       if (list_of_high.length == 3) {
         $('#high_danger').text('*ท่านเพิ่มประวัติการศึกษาครบจำนวนแล้ว');
         $('#high_danger').addClass('red_markEp1');
+        $('#add_high').hide();
     }
   }
 });

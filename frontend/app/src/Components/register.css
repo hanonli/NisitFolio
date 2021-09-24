@@ -95,21 +95,45 @@
 /* Dropdown_year Button */
 .dropbtn_year {
     background-color: #EAEAEA;
+    border-color: #EAEAEA;
     color: #000;
-    padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 30px;
     font-size: 20px;
-    border: none;
+    border-color: #EAEAEA;
     /*cursor: pointer;*/
     border-radius: 24px;
-    padding-left: 30px;
-    width: 22vw;
+    padding-right: 20px;
+    width: 12vw;
   }
   
   /* Dropdown button on hover & focus */
   .dropbtn_year:hover, .dropbtn_year:focus {
     background-color: #cdcdcd;
+    border-color: #cdcdcd;
   }
 
+  .dropbtn_skillP {
+    background-color: #EAEAEA;
+    color: #000;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    font-size: 20px;
+    border-color: #EAEAEA;
+    /*cursor: pointer;*/
+    border-radius: 24px;
+    padding-right: 10px;
+    width: 21vw;
+  }
+  
+  /* Dropdown button on hover & focus */
+  .dropbtn_skillP:hover, .dropbtn_skillP:focus {
+    background-color: #cdcdcd;
+    border-color: #cdcdcd;
+  }
+  
   .aboutmee {
     background-color: #EAEAEA;
     color: #000;
@@ -376,7 +400,9 @@ datalist {
 }
 
 #basic-date-picker1{
-  padding: 1.5vh;
+  padding-top: 1.5vh;
+  padding-left: 1.5vh;
+  padding-bottom: 1.5vh;
   border-radius: 48px;
 }
 
