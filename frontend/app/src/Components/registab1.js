@@ -13,13 +13,13 @@ class Registab1 extends React.Component {
 										<label class=" form-f-sex">ชื่อ<a class="red_markEp1">*</a></label>
 									</div>
 									<div class="col-4">
-										<input type="text" class="form-control dropbtn margin-bottom1 " id="re01" required></input>
+										<input maxlength="100" type="text" class="form-control dropbtn margin-bottom1 " id="re01" required></input>
 									</div>
 									<div class="col-2 chidright">
 										<label class=" form-f-sex">นามสกุล<a class="red_markEp1">*</a></label>
 									</div>
 									<div class="col-4">
-										<input type="text" class="form-control dropbtn margin-bottom1 " id="re02" required></input>
+										<input maxlength="100" type="text" class="form-control dropbtn margin-bottom1 " id="re02" required></input>
 									</div>
 								</div>
 								<div class="row">
@@ -27,7 +27,7 @@ class Registab1 extends React.Component {
 										<label class="form-f-sex">อีเมล<a class="red_markEp1">*</a></label>
 									</div>
 									<div class="col-10">
-										<input type="text" class="form-control dropbtn margin-bottom1 " id="re03" required></input>
+										<input maxlength="60" type="text" class="form-control dropbtn margin-bottom1 " id="re03" required></input>
 									</div>
 								</div>
 								<div class="row">
@@ -35,7 +35,7 @@ class Registab1 extends React.Component {
 										<label class="form-f-sex">รหัสผ่าน<a class="red_markEp1">*</a></label>
 									</div>
 									<div class="col-10">
-										<input type="password" class="form-control dropbtn margin-bottom1 " id="pass05" aria-describedby="passwordHelpInline" required></input>
+										<input maxlength="100" type="password" class="form-control dropbtn margin-bottom1 " id="pass05" aria-describedby="passwordHelpInline" required></input>
 									</div>
 								</div>
 								<div class="row triggerRed1 chidright">
@@ -43,7 +43,7 @@ class Registab1 extends React.Component {
 										<label class="form-f-cfp">ยืนยันรหัสผ่าน<a class="red_markEp1">*</a></label>
 									</div>
 									<div class="col-10">
-										<input type="password" class="form-control dropbtn margin-bottom1 " id="pass06" required></input>
+										<input maxlength="100" type="password" class="form-control dropbtn margin-bottom1 " id="pass06" required></input>
 									</div>
 								</div>
 								<div class="row">

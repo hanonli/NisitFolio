@@ -77,7 +77,7 @@ class Registab3 extends React.Component {
 										                                <label class="form-f-sex">สถานศึกษา<a class="red_markEp1">*</a></label>
 									                                </div>
                                                                     <div class="col-9 ">
-                                                                        <input type="text" class="form-control dropbtn margin-bottom1 " id="aca_name" required></input>
+                                                                        <input maxlength="56" type="text" class="form-control dropbtn margin-bottom1 " id="aca_name" required></input>
                                                                     </div>
                                                                 </div>
                                                                 <div class='row'>
@@ -85,7 +85,7 @@ class Registab3 extends React.Component {
 										                                <label class="form-f-sex">คณะ<a class="red_markEp1">*</a></label>
 									                                </div>
                                                                     <div class="col-9">
-                                                                        <input type="text" class="form-control dropbtn margin-bottom1 " id="aca_faculty" required></input>
+                                                                        <input maxlength="56" type="text" class="form-control dropbtn margin-bottom1 " id="aca_faculty" required></input>
                                                                     </div>
                                                                 </div>
                                                                 <div class='row'>
@@ -93,7 +93,7 @@ class Registab3 extends React.Component {
 										                                <label class="form-f-sex">สาขาวิชา</label>
 									                                </div>
                                                                     <div class="col-4">
-                                                                        <input type="text" class="form-control dropbtn margin-bottom1 fff" id="aca_field" ></input>
+                                                                        <input maxlength="36" type="text" class="form-control dropbtn margin-bottom1 fff" id="aca_field" ></input>
                                                                     </div>
                                                                     <div class="col-2 chidright">
 										                                <label class="form-f-sex">เกรดเฉลี่ยสะสม</label>
@@ -167,7 +167,7 @@ class Registab3 extends React.Component {
 							<label class="form-f-sex">สถานศึกษา<a class="red_markEp1">*</a></label>
 						</div>
                         <div class="col-9 ">
-                            <input type="text" class="form-control dropbtn margin-bottom1 fff" id="high_name" required></input>
+                            <input maxlength="56" type="text" class="form-control dropbtn margin-bottom1 fff" id="high_name" required></input>
                         </div>
                     </div>
                     <div class='row'>
@@ -175,7 +175,7 @@ class Registab3 extends React.Component {
 							<label class="form-f-cfp">หลักสูตร/แผนการเรียน</label>
 						</div>
                         <div class="col-4 ">
-                            <input type="text" class="form-control dropbtn margin-bottom1 fff" id="high_field" required></input>
+                            <input maxlength="36" type="text" class="form-control dropbtn margin-bottom1 fff" id="high_field" required></input>
                         </div>
                         <div class="col-md-2 chidright">
 							<label class="form-f-sex">เกรดเฉลี่ยสะสม</label>

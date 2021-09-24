@@ -409,7 +409,7 @@ var el;
 function countCharactersAbme() {                                    
   var textEntered, countRemaining, counter;          
   textEntered = document.getElementById('aboutme2').value;  
-  counter = (180 - (textEntered.length));
+  counter = (280 - (textEntered.length));
   countRemaining = document.getElementById('charactersRemaining'); 
   //console.log('Char left : ' + counter);
   countRemaining.textContent = counter;
