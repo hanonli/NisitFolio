@@ -76,8 +76,8 @@ function show_all_job() {
             grid_Job1 = grid_Job1.replace(`<h1 id="mySkil-job">ทักษะของฉัน</h1>`, "");
         }
         if (ele["skill1"] != "none") {
-            if (ele["skill1"].length > 6) {
-                grid_Job_skill1 = grid_Job_skill1.replace("{skill1}", ele["skill1"].slice(0, 7) + "...");
+            if (ele["skill1"].length > 12) {
+                grid_Job_skill1 = grid_Job_skill1.replace("{skill1}", ele["skill1"].slice(0, 11) + "...");
             }
             else {
                 grid_Job_skill1 = grid_Job_skill1.replace("{skill1}", ele["skill1"]);
@@ -89,8 +89,8 @@ function show_all_job() {
         }
 
         if (ele["skill2"] != "none") {
-            if (ele["skill2"].length > 6) {
-                grid_Job_skill2 = grid_Job_skill2.replace("{skill2}", ele["skill2"].slice(0, 7) + "...");
+            if (ele["skill2"].length > 12) {
+                grid_Job_skill2 = grid_Job_skill2.replace("{skill2}", ele["skill2"].slice(0, 11) + "...");
             }
             else {
                 grid_Job_skill2 = grid_Job_skill2.replace("{skill2}", ele["skill2"]);
@@ -101,8 +101,8 @@ function show_all_job() {
         }
 
         if (ele["skill3"] != "none") {
-            if (ele["skill3"].length > 6) {
-                grid_Job_skill3 = grid_Job_skill3.replace("{skill3}", ele["skill3"].slice(0, 7) + "...");
+            if (ele["skill3"].length > 12) {
+                grid_Job_skill3 = grid_Job_skill3.replace("{skill3}", ele["skill3"].slice(0, 11) + "...");
             }
             else {
                 grid_Job_skill3 = grid_Job_skill3.replace("{skill3}", ele["skill3"]);
