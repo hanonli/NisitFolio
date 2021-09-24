@@ -16,6 +16,7 @@ import { HomeModule } from './home/home.module';
 import { PortModule } from './portfolio/portfolio.module';
 import { MyResumeModule } from './myresume/myresume.module';
 import { ForgotPasswordModule } from './forgotpassword/forgotpassword.module';
+import { FilesModule } from './files/files.module';
 
 import * as Joi from 'joi';
 import { SearchModule } from './search/search.module';
@@ -61,6 +62,7 @@ import { SearchModule } from './search/search.module';
     AnalyticsModule,
     BookmarkModule,
     SearchModule,
+    //FilesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

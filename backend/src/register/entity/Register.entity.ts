@@ -1,6 +1,7 @@
 import { Entity, Column, ObjectIdColumn, OneToMany, ManyToOne, ManyToMany, OneToOne , JoinTable } from 'typeorm'; 
 import { ObjectId, Timestamp } from 'mongodb';
 import { ColumnMetadata } from 'typeorm/metadata/ColumnMetadata';
+import internal from 'stream';
 
 //--------------------Account--------------------------//
 @Entity("Account")
@@ -78,6 +79,18 @@ export class Userinfo {
 
   @Column()
   last_modified:string[];
+  
+  @Column()
+  ProfilePic:string;
+
+  @Column()
+  tags:string[];
+
+  @Column()
+  AvgScore:number;
+
+  @Column()
+  totalBookmark:number;
 
 }
 
