@@ -14,27 +14,37 @@ class MyResume3 extends React.Component {
 
         return (
             <>
-                    <div class="myresume-mywork-woNb"></div>
-                        <h1 class="myresume-head-woNb">ผลงานของฉัน</h1>
-                    <div class="line-mywork" style={linestyle}></div>
-                    <div class="showmywork-woNb">
-                        <div class="container">
-                            <div class="row">
-                                    <img className="img-mywork-1" src="assets/images/ldwithgradient.png" />
-                            <img className="img-mywork-1" src="assets/images/ldwithgradient.png" />
-                            <img className="img-mywork-1" src="assets/images/ldwithgradient.png" />
+                <div class="myresume-mywork-woNb"></div>
+                <div class="educationtopic"><h2 class="myresume-head-woNb">ผลงานของฉัน</h2></div>
+                <div class="resumesectionline" style={linestyle}></div>
+                <div class="showmywork-woNb">
+                    <div class="showmywork">
+                        <div class="row">
+                            <div class="mywork-col">
+                                <img className="img-mywork-1" src="assets/images/ldwithgradient.png" />
+                            </div>
+                            <div class="mywork-col">
+                                <img className="img-mywork-1" src="assets/images/MyResume.png" />
+                            </div>
+                            <div class="mywork-col">
+                                <img className="img-mywork-1" src="assets/images/ldwithgradient.png" />
+                            </div>
                         </div>
                         <div class="row">
-                            <img className="img-mywork-1" src="assets/images/ldwithgradient.png" />
-                            <img className="img-mywork-1" src="assets/images/ldwithgradient.png" />
-                            <img className="img-mywork-1" src="assets/images/ldwithgradient.png" />
-                        </div>
+                            <div class="mywork-col">
+                                <img className="img-mywork-1" src="assets/images/MyResume.png" />
+                            </div>
+                            <div class="mywork-col">
+                                <img className="img-mywork-1" src="assets/images/ldwithgradient.png" />
+                            </div>
+                            <div class="mywork-col">
+                                <img className="img-mywork-1" src="assets/images/MyResume.png" />
+                            </div>
                         </div>
                     </div>
-                    <h5 class="seemywork-woNb"></h5>
-                
+                </div>
 
-            <script> 
+            
                 <div class="myresume-mywork-woNb">
                     <div class="myresume-mywork-withoutdata">
                         <h1 class="myresume-head-woNb">ผลงานของฉัน</h1>
@@ -42,14 +52,13 @@ class MyResume3 extends React.Component {
                         <div class="work-goals-woNb">
                             <h4 class="text-work-goals-wdata">ตอนนี้คุณยังไม่มีข้อมูลผลงาน สำหรับตำแหน่งงานนี้</h4>
                             <Link to="/editprofile">
-                                <button class="work-goals-btn">
-                                    <h4 class="text-btn-work-goals">แก้ไขโปรไฟล์</h4>
-                                </button>
+                                <button class="work-goals-btn">แก้ไขโปรไฟล์</button>
                             </Link>
+                            <div class="wgs"></div>
                         </div>
                     </div>
-                    </div>
-                </script>
+                </div>
+                
             </>
         );
     }
