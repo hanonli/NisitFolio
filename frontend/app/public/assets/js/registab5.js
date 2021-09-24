@@ -81,8 +81,8 @@ function show_certi() {
 
         grid_certi = grid_certi.replace("{no_certi}", ele["id"]);
         //grid_certi = grid_certi.replace("{name-certi}", ele["name_certi"]);
-        if (ele["name_certi"].length > 21) {
-            grid_certi = grid_certi.replace("{name-certi}", ele["name_certi"].slice(0, 22) + "...");
+        if (ele["name_certi"].length > 9) {
+            grid_certi = grid_certi.replace("{name-certi}", ele["name_certi"].slice(0, 10) + "...");
         }
         else {
             grid_certi = grid_certi.replace("{name-certi}", ele["name_certi"]);
