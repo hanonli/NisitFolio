@@ -240,9 +240,6 @@
     justify-content: center;
 }
 
-.work-goals-head{
-    justify-content: center;
-}
 
 .work-goals{
     margin-top: 3Vw;
@@ -265,13 +262,9 @@
 .work-goals-woNb{
     margin-left: 8Vw;
     margin-right: 8Vw;
-
-    justify-content: center;
+    margin-bottom: 4Vw;
 }
 
-.count-work-goals-woNb{
-    justify-content: center;
-}
 
 .White-font{
     color: white;
@@ -285,13 +278,18 @@
 .myresume-work-goals-withoutdata{
     background-color: rgba(22, 21, 19, 1);
     padding: 1Vw;
-    justify-content: center;
 }
 
 .myresume-mywork-withoutdata{
     background-color: rgb(255, 255, 255);
     padding: 1Vw;
-    justify-content: center;
+}
+
+.White-font-topic{
+    color: rgb(255, 255, 255);
+    font-size: 3vw;
+    padding: 0vw;
+    text-align: center;
 }
 
 .text-work-goals-wdata{
@@ -299,12 +297,12 @@
     text-align: center;
 }
 
-.work-goals-btn{
+#work-goals-btn{
     margin: auto;
     top: 86vh;
     left: 78vw;
 
-    width: 30%;
+    width: 23%;
     height: 3vw;
     border: 3Vw rgba(249, 220, 92, 1);
     border-radius: 3vw;
@@ -316,28 +314,17 @@
     display: flex;
 }
 
-.text-btn-work-goals{
+#text-btn-work-goals{
     color: black;
     margin: auto;
     display: flex;
 }
 
-.line-arrow{
-    position: absolute;
-    width: 38.62px;
-    height: 0px;
-    margin-left: 80%;
-
-    border: 5px solid #000000;
-    transform: matrix(0.71, 0.67, -0.74, 0.71, 0, 0);
+.img-mywork-1{
+    /*position: absolute;*/
+    width: 33%;
+    height: 33%;
+    margin-left: 0%;
+    display: block;
 }
 
-.line-arrow2{
-    position: absolute;
-    width: 36.87px;
-    height: 0px;   
-    margin-left: 80%;
-
-    border: 5px solid #000000;
-    transform: matrix(-0.71, 0.67, -0.74, -0.71, 0, 0);
-}

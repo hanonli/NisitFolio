@@ -6,22 +6,35 @@ class MyResume3 extends React.Component {
         const linestyle = {
             backgroundColor: this.props.colour ? this.props.colour : "#FFCE55"
         };
+        const colourcode = this.props.colour ? this.props.colour : "#FFCE55";
+        const bordercode = "0.5vw solid " + colourcode;
+        const boxcolourstyle = {
+            border: bordercode,
+        };
+
         return (
             <>
-                
-                    <div class="myresume-mywork-woNb">
+                    <div class="myresume-mywork-woNb"></div>
                         <h1 class="myresume-head-woNb">ผลงานของฉัน</h1>
-                        <div class="line-mywork" style={linestyle}></div>
-                        <div class="showmywork-woNb">
-                        <img src="assets/images/MyResume.png" className="picmywork1" width="409.5" height="300" />
-                        <img src="assets/images/MyResume.png" className="picmywork1" width="409.5" height="300" />
-                        <img src="assets/images/MyResume.png" className="picmywork1" width="409.5" height="300" />
-                        <img src="assets/images/MyResume.png" className="picmywork1" width="409.5" height="300" />
+                    <div class="line-mywork" style={linestyle}></div>
+                    <div class="showmywork-woNb">
+                        <div class="container">
+                            <div class="row">
+                                    <img className="img-mywork-1" src="assets/images/ldwithgradient.png" />
+                            <img className="img-mywork-1" src="assets/images/ldwithgradient.png" />
+                            <img className="img-mywork-1" src="assets/images/ldwithgradient.png" />
                         </div>
-                    <h5 class="seemywork-woNb"></h5>
+                        <div class="row">
+                            <img className="img-mywork-1" src="assets/images/ldwithgradient.png" />
+                            <img className="img-mywork-1" src="assets/images/ldwithgradient.png" />
+                            <img className="img-mywork-1" src="assets/images/ldwithgradient.png" />
+                        </div>
+                        </div>
                     </div>
+                    <h5 class="seemywork-woNb"></h5>
+                
 
-             
+            <script> 
                 <div class="myresume-mywork-woNb">
                     <div class="myresume-mywork-withoutdata">
                         <h1 class="myresume-head-woNb">ผลงานของฉัน</h1>
@@ -36,7 +49,7 @@ class MyResume3 extends React.Component {
                         </div>
                     </div>
                     </div>
-                
+                </script>
             </>
         );
     }
