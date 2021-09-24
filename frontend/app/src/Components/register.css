@@ -400,7 +400,9 @@ datalist {
 }
 
 #basic-date-picker1{
-  padding: 1.5vh;
+  padding-top: 1.5vh;
+  padding-left: 1.5vh;
+  padding-bottom: 1.5vh;
   border-radius: 48px;
 }
 

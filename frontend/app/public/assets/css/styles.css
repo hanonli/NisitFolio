@@ -1557,6 +1557,10 @@ body {
 	border-radius: 2vh;
 }
 
+.MuiFormControl-root{
+  width: 100%;
+}
+
 .Mui-selected{
 	background: #F9DC5C !important;
 }
@@ -1566,7 +1570,12 @@ body {
 }
 
 .MuiFilledInput-root{
-	border-radius: 2vh !important;
+	border-radius: 3vh !important;
+  /*padding-left: 15px !important;*/
+}
+
+.MuiFilledInput-root:hover{
+	background-color: #C4C4C4 !important;
 }
 
 #basic-date-picker{
@@ -1574,6 +1583,9 @@ body {
 	padding: 1vh 1vh 1vh 1vh;
 }
 
+.MuiButtonBase-root{
+  padding:15px !important;
+}
 .MuiFilledInput-underline:before{
 	border-bottom: 0px solid rgba(0,0,0,0.42) !important;
 }
