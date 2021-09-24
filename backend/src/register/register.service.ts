@@ -161,17 +161,18 @@ export class RegisterService {
     let sum_score = 0.00;
     let count_skill = 0;
     for (var _i = 0; _i < createDto.Job_JobName.length; _i++) {
-      const userJobSkill = new UserJobSkill();
-      userJobSkill.UserId = accountid;
       tag_arr.push(createDto.Job_JobName[_i]);
       for (var _j = 0; _j < createDto.Job_Score[_i].length; _j++) {
+        const userJobSkill = new UserJobSkill();
+        userJobSkill.UserId = accountid;
+        userJobSkill.Job_JobName = createDto.Job_JobName[_i];
         userJobSkill.Job_Score = createDto.Job_Score[_i][_j];
         sum_score = sum_score + createDto.Job_Score[_i][_j];
         count_skill = count_skill + 1;
         userJobSkill.Job_SkillName = createDto.Job_SkillName[_i][_j];
+        await this.userJobSkillRepository.save(userJobSkill);
       }
-      await this.userJobSkillRepository.save(userJobSkill);
-
+      
     }
     let avg_score = sum_score / count_skill;
     
