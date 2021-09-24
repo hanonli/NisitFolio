@@ -23,7 +23,7 @@ class Portfolio extends React.Component {
 		this.handleLoad = this.handleLoad.bind(this);
 		this.handleSortUpdate = this.handleSortUpdate.bind(this);
 		this.state = {
-			allow: true,
+			allow: false,
 			allowSort: true,
 			/*list: [{ id: "1", name: "Img1" },
 					{ id: "2", name: "Img2" },
@@ -52,6 +52,9 @@ class Portfolio extends React.Component {
 		  var $modal = window.$('#modal');
 		  var cropper;
 		  var isFull = false;
+		  
+		  if(!this.state.allow) return;
+		  
 			/*$('.port-pic-uploadable').on('click', function(){
 				input.click();
 			});*/

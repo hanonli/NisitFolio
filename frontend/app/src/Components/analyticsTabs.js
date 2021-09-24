@@ -84,6 +84,10 @@ class BookmarkTabs extends React.Component {
 			main2MyCount: 'x',
 			main3MyCount: 'x',
 			
+			addRank1: 1,
+			addRank2: 1,
+			addRank3: 1,
+			
 			overviewHardCount: 0,
 			hard1Name: 'ที่ 1',
 			hard2Name: 'ที่ 2',
@@ -110,11 +114,13 @@ class BookmarkTabs extends React.Component {
 	
 	componentDidMount() {
 		const flag = new Image();
+		const flagRv = new Image();
 		const you = new Image();
 		const avg = new Image();
 		const avgYou = new Image();
 		const dummy = new Image();
 		flag.src = 'assets/images/flag-ch.png'; 
+		flagRv.src = 'assets/images/flag-ch-rv.png'; 
 		you.src = 'assets/images/you-ch.png'; 
 		avg.src = 'assets/images/avg-ch.png'; 
 		dummy.src = 'assets/images/dummy.png'; 
@@ -377,6 +383,7 @@ class BookmarkTabs extends React.Component {
 		var rawScore = [];
 		var vLabels = [];
 		var vPoints = [];
+		var disGraphMax = 1;
 		
 		function ReuseAbleFuncMainOverview(){
 			//console.log(idm);
@@ -466,6 +473,7 @@ class BookmarkTabs extends React.Component {
 				var unmatchedName = [];
 				var unmatchedPercentage = [];
 				var unmatchedCount = [];
+				var unmatchedOrder = [];
 				
 				$('#myOvSkl1').hide();
 				$('#myOvSkl2').hide();
@@ -492,8 +500,9 @@ class BookmarkTabs extends React.Component {
 				//Reset
 				//$('#analytic-lower-buttons').show();
 				//$('#skl-not-found').addClass('skill-not-found');
-				
+				var idx=0;
 				jList.every((entry) => {
+					idx += 1;
 					var match = false;
 					rawAdditional.mySkills.forEach((ms) => {
 						//console.log(ms);
@@ -504,6 +513,7 @@ class BookmarkTabs extends React.Component {
 					if(match){ // found mySkill in JList
 						if(myCount == 0){ // first skill
 							refThis.setState({ hard1MyName: entry.AdditionalSkill, 
+								addRank1: idx,
 								hard1MyPercentage: entry.percentage.toFixed(2), hard1MyCount: entry.total});
 							if(index == 0){
 								$('#myOvSklc1').css("color", "rgba(253, 98, 94, 1)");
@@ -522,6 +532,7 @@ class BookmarkTabs extends React.Component {
 						}else if(myCount == 1){ // second skill
 							console.log('set-color2!');
 							refThis.setState({ hard2MyName: entry.AdditionalSkill, 
+								addRank2: idx,
 								hard2MyPercentage: entry.percentage.toFixed(2), hard1MyCount: entry.total});
 							if(index == 1){
 								$('#myOvSklc2').css("color", "rgba(1, 184, 170, 1)");
@@ -542,6 +553,7 @@ class BookmarkTabs extends React.Component {
 						}else{ // third skill
 							console.log('set-color3!');
 							refThis.setState({ hard3MyName: entry.AdditionalSkill, 
+								addRank3: idx,
 								hard3MyPercentage: entry.percentage.toFixed(2), hard1MyCount: entry.total});
 							if(index == 2){
 								$('#myOvSklc3').css("color", "rgba(242, 200, 15, 1)");
@@ -565,6 +577,7 @@ class BookmarkTabs extends React.Component {
 							unmatchedName.push(entry.AdditionalSkill);
 							unmatchedPercentage.push(entry.percentage.toFixed(2));
 							unmatchedCount.push(entry.total);
+							unmatchedOrder.push('#'+idx);
 							console.log(unmatchedName);
 						}
 					}
@@ -581,18 +594,15 @@ class BookmarkTabs extends React.Component {
 				bgc = ['rgba(1, 184, 170, 1)','rgba(253, 98, 94, 1)','rgba(242, 200, 15, 1']
 				if(unmatchedName.length == 1){
 					jobMixed.push(unmatchedName[0]);
-					//ord.push('#4');
-					ord.push(' ');
+					ord.push(unmatchedOrder[0]);
 					pct.push(unmatchedPercentage[0]+'%');
 					dataMixed.push(unmatchedCount[0]);
 					bgc.push('rgba(138, 212, 235, 1)');
 				}else if(unmatchedName.length == 2){
 					jobMixed.unshift(unmatchedName[0]);
 					jobMixed.push(unmatchedName[1]);
-					/*ord.unshift('#4');
-					ord.push('#5');*/
-					ord.unshift(' ');
-					ord.push(' ');
+					ord.unshift(unmatchedOrder[0]);
+					ord.push(unmatchedOrder[1]);
 					pct.unshift(unmatchedPercentage[0]+'%');
 					pct.push(unmatchedPercentage[1]+'%');
 					dataMixed.unshift(unmatchedCount[0]);
@@ -603,12 +613,9 @@ class BookmarkTabs extends React.Component {
 					jobMixed.unshift(unmatchedName[0]);
 					jobMixed.push(unmatchedName[1]);
 					jobMixed.push(unmatchedName[2]);
-					/*ord.unshift('#4');
-					ord.push('#5');
-					ord.push('#6');*/
-					ord.unshift(' ');
-					ord.push(' ');
-					ord.push(' ');
+					ord.unshift(unmatchedOrder[0]);
+					ord.push(unmatchedOrder[1]);
+					ord.push(unmatchedOrder[2]);
 					pct.unshift(unmatchedPercentage[0]+'%');
 					pct.push(unmatchedPercentage[1]+'%');
 					pct.push(unmatchedPercentage[2]+'%');
@@ -646,6 +653,7 @@ class BookmarkTabs extends React.Component {
 			var unmatchedName = [];
 			var unmatchedPercentage = [];
 			var unmatchedCount = [];
+			var unmatchedOrder = [];
 			
 			$('#myMainSkl1').hide();
 			$('#myMainSkl2').hide();
@@ -666,7 +674,9 @@ class BookmarkTabs extends React.Component {
 				//$('.skill-found').show();
 			}
 			
+			var idx=0;
 			jList.every((entry) => {
+				idx += 1;
 				var match = false;
 				rawMain.mySkills.forEach((ms) => {
 					//console.log(ms);
@@ -743,6 +753,7 @@ class BookmarkTabs extends React.Component {
 						unmatchedPercentage.push(entry.percentage.toFixed(2));
 						unmatchedCount.push(entry.total);
 						console.log(unmatchedName);
+						unmatchedOrder.push('#'+idx);
 					}
 				}
 				if(myCount == jList.length) return false;
@@ -768,18 +779,15 @@ class BookmarkTabs extends React.Component {
 			mainColor = ['rgba(1, 184, 170, 1)','rgba(253, 98, 94, 1)','rgba(242, 200, 15, 1']
 			if(unmatchedName.length == 1){
 				mainJobMixed.push(unmatchedName[0]);
-				//ord.push('#4');
-				mainOrd.push(' ');
+				mainOrd.push(unmatchedOrder[0]);
 				mainPct.push(unmatchedPercentage[0]+'%');
 				mainData.push(unmatchedCount[0]);
 				mainColor.push('rgba(138, 212, 235, 1)');
 			}else if(unmatchedName.length == 2){
 				mainJobMixed.unshift(unmatchedName[0]);
 				mainJobMixed.push(unmatchedName[1]);
-				/*ord.unshift('#4');
-				ord.push('#5');*/
-				mainOrd.unshift(' ');
-				mainOrd.push(' ');
+				mainOrd.unshift(unmatchedOrder[0]);
+				mainOrd.push(unmatchedOrder[1]);
 				mainPct.unshift(unmatchedPercentage[0]+'%');
 				mainPct.push(unmatchedPercentage[1]+'%');
 				mainData.unshift(unmatchedCount[0]);
@@ -790,12 +798,9 @@ class BookmarkTabs extends React.Component {
 				mainJobMixed.unshift(unmatchedName[0]);
 				mainJobMixed.push(unmatchedName[1]);
 				mainJobMixed.push(unmatchedName[2]);
-				/*ord.unshift('#4');
-				ord.push('#5');
-				ord.push('#6');*/
-				mainOrd.unshift(' ');
-				mainOrd.push(' ');
-				mainOrd.push(' ');
+				mainOrd.unshift(unmatchedOrder[0]);
+				mainOrd.push(unmatchedOrder[1]);
+				mainOrd.push(unmatchedOrder[2]);
 				mainPct.unshift(unmatchedPercentage[0]+'%');
 				mainPct.push(unmatchedPercentage[1]+'%');
 				mainPct.push(unmatchedPercentage[2]+'%');
@@ -832,6 +837,7 @@ class BookmarkTabs extends React.Component {
 			var unmatchedName = [];
 			var unmatchedPercentage = [];
 			var unmatchedCount = [];
+			var unmatchedOrder = [];
 			
 			$('#mySkl1').hide();
 			$('#mySkl2').hide();
@@ -867,8 +873,9 @@ class BookmarkTabs extends React.Component {
 				$('#mySkl3').show();
 			}
 			
-			
+			var idx=0;
 			jList.every((entry) => {
+				idx += 1;
 				var match = false;
 				rawAdditional.mySkills.forEach((ms) => {
 					//console.log(ms);
@@ -944,6 +951,7 @@ class BookmarkTabs extends React.Component {
 						unmatchedName.push(entry.AdditionalSkill);
 						unmatchedPercentage.push(entry.percentage.toFixed(2));
 						unmatchedCount.push(entry.total);
+						unmatchedOrder.push('#'+idx);
 						console.log(unmatchedName);
 					}
 				}
@@ -960,18 +968,15 @@ class BookmarkTabs extends React.Component {
 			bgc = ['rgba(1, 184, 170, 1)','rgba(253, 98, 94, 1)','rgba(242, 200, 15, 1']
 			if(unmatchedName.length == 1){
 				jobMixed.push(unmatchedName[0]);
-				//ord.push('#4');
-				ord.push(' ');
+				ord.push(unmatchedOrder[0]);
 				pct.push(unmatchedPercentage[0]+'%');
 				dataMixed.push(unmatchedCount[0]);
 				bgc.push('rgba(138, 212, 235, 1)');
 			}else if(unmatchedName.length == 2){
 				jobMixed.unshift(unmatchedName[0]);
 				jobMixed.push(unmatchedName[1]);
-				/*ord.unshift('#4');
-				ord.push('#5');*/
-				ord.unshift(' ');
-				ord.push(' ');
+				ord.unshift(unmatchedOrder[0]);
+				ord.push(unmatchedOrder[1]);
 				pct.unshift(unmatchedPercentage[0]+'%');
 				pct.push(unmatchedPercentage[1]+'%');
 				dataMixed.unshift(unmatchedCount[0]);
@@ -982,12 +987,9 @@ class BookmarkTabs extends React.Component {
 				jobMixed.unshift(unmatchedName[0]);
 				jobMixed.push(unmatchedName[1]);
 				jobMixed.push(unmatchedName[2]);
-				/*ord.unshift('#4');
-				ord.push('#5');
-				ord.push('#6');*/
-				ord.unshift(' ');
-				ord.push(' ');
-				ord.push(' ');
+				ord.unshift(unmatchedOrder[0]);
+				ord.push(unmatchedOrder[1]);
+				ord.push(unmatchedOrder[2]);
 				pct.unshift(unmatchedPercentage[0]+'%');
 				pct.push(unmatchedPercentage[1]+'%');
 				pct.push(unmatchedPercentage[2]+'%');
@@ -1116,7 +1118,11 @@ class BookmarkTabs extends React.Component {
 							  };
 							},
 							formatter: function(value, context) {
-								return context.chart.data.orders[context.dataIndex];
+								var val = context.chart.data.orders[context.dataIndex];
+								if(val == '#1' || val == '#2' || val == '#3')
+									return val;
+								else
+									return '';
 							}
 						  },subMiddleLabel: {
 							align: 'end',
@@ -1150,44 +1156,240 @@ class BookmarkTabs extends React.Component {
 			}, 400);
 		}
 
-		function GenerateDistributionChartDataOverview(config,index){
-			    rawScore = [0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,
-				];
+		function GenerateDistributionChartData(config,index,key){
+				disGraphMax = 0;
 				
-				vLabels = ['ไม่ได้','','','','','','','','','',
-				'','','','','','','','','','',
-				'','','','','พอได้เล็กน้อย','','','','','',
-				'','','','','','','','','','',
-				'','','','','','','','','','',
-				'','','','','','','','','','',
-				'','','','','','','','','','',
-				'','','','','ดี','','','','','',
-				'','','','','','','','','','',
-				'','','','','','','','','','ยอดเยี่ยม',
-				];
+				/* for testing */
+				/*var scores = [5.5,7.5,7.7];
+				var count = [2,8,1];
 				
-				vPoints = [dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,
-				dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,
-				dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,
-				dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,
-				dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,
-				dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,
-				dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,
-				dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,
-				dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,
-				dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,
-				];
+				var mean = 9;
+				var mode1 = -1;
+				var mode2 = -1;
+				var youScr = null;*/
+				
+				/* real input */
+				var scores = [];
+				var count = [];
+				
+				var mean = 8.4;
+				var mode1 = -1;
+				var mode2 = -1;
+				var youScr = 2.6;
+				
+				var z1Count=0;
+				var z2Count=0;
+				var z3Count=0;
+				
+				var jList = null;
+				
+				if(key == 'overview'){
+					jList = rawMain.Overview.List;
+				}else{
+					jList = rawMain[mainJobList[key].name].List
+				}
+
+				jList.every((entry) => {
+					if(entry.SkillName == config.data.labels[index].replace('\n',' ')){ // this skill wasn't shown
+						refThis.setState({ mainFocusSkillCount: entry.total });
+						console.log('match bar clicked: '+entry.SkillName);
+						
+						mean = Number(entry.Mean.toFixed(2));
+						youScr = entry.UserScore;
+						var meanPos=0; var addMean = true;
+						for (let i = 0; i < entry.AllScore.length; i++) {
+							if(entry.AllScore[i] == mean){
+								addMean = false;
+								break;
+							}		
+						}
+						if(addMean){ // add mean as vertice
+							console.log('search for mean');
+							var foundMean=false;
+							for (let i = 0; i < entry.AllScore.length; i++) {				
+								if(!foundMean && entry.AllScore[i] > mean){
+									meanPos = i;
+									foundMean = true;
+								}
+								scores.push(entry.AllScore[i]);
+								count.push(entry.Count[i]);
+							}
+							scores.splice(meanPos, 0, mean);
+							var dumMean = 0;
+							dumMean = (count[meanPos-1] + count[meanPos]) / 2;
+							//alert(dumMean);
+							count.splice(meanPos, 0, dumMean);
+						}else{
+							console.log('mean is already include');
+							for (let i = 0; i < entry.AllScore.length; i++) {			
+								scores.push(entry.AllScore[i]);
+								count.push(entry.Count[i]);
+							}
+						}
+						
+						
+						if(entry.Mode.length > 0){ // display flag (mode pos)
+							if(entry.Mode.length < 2){ // display single flag
+								mode1 = entry.Mode[0];
+							}else{ // display two flags
+								mode1 = entry.Mode[0];
+								mode2 = entry.Mode[1];
+							}
+						}
+						
+						return false;
+					}
+					return true;
+				});
+				
+				console.log(scores);
+				
+				vLabels = [];
+				vPoints = [];
+				
+				for (let i = 0; i < count.length; i++) {
+					if(count[i] > disGraphMax) disGraphMax = count[i];
+					
+					if(scores[i] < 5) 
+						z1Count += 1;
+					else if(scores[i] < 7.5) 
+						z2Count += 1;
+					else if(scores[i] < 10) 
+						z3Count += 1;
+				}
+				
+				disGraphMax *= 1.5;
+				
+				//alert(disGraphMax);
+				
+				for (let i = 0; i < scores.length; i++) {
+					if(scores[i] == 2.5){
+						vLabels.push('พอได้เล็กน้อย');
+					}else if(scores[i] == 5){
+						vLabels.push('พอใช้');
+					}else if(scores[i] == 7.5){
+						vLabels.push('ดี');
+					}else if(scores[i] == 10){
+						vLabels.push('ยอดเยี่ยม');
+					}else{
+						//if(scores[i] == youScr || scores[i] == mean || scores[i] == mode1 || scores[i] == mode2)
+							vLabels.push(scores[i]);
+						//else
+						//	vLabels.push('');
+					}
+					
+					if(scores[i] == youScr){
+						console.log('set you! at: '+i);
+						vPoints.push(you);
+					}else if(scores[i] == mean){
+						console.log('set mean! at: '+i);
+						vPoints.push(avg);
+					}else if(scores[i] == mode1 && mode1 != -1){
+						console.log('set mode1! at: '+i);
+						if(mode2 != -1)
+							vPoints.push(flagRv);
+						else
+							vPoints.push(flag);
+					}else if(scores[i] == mode2 && mode2 != -1){
+						console.log('set mode2! at: '+i);
+						vPoints.push(flag);
+					}else{
+						console.log('set dummy! at: '+i);
+						vPoints.push(dummy);
+					}
+				}
+
+				if(!scores.includes(2.5)){
+					scores.unshift(2.5);
+					count.unshift(0);
+					vLabels.unshift('พอได้เล็กน้อย');
+					vPoints.unshift(dummy);
+				}
+				
+				if(!scores.includes(10)){
+					scores.push(10);
+					count.push(0);
+					vLabels.push('ยอดเยี่ยม');
+					vPoints.push(dummy);
+				}
+				
+				var goodIndex=0;
+				if(!scores.includes(5)){
+					for (let i = 0; i < scores.length; i++) {
+					  console.log('check 5 => val: '+scores[i]);
+					  if(scores[i] > 5){ 
+						goodIndex = i;
+						break;
+					  }
+					}
+					
+					if(goodIndex == 0){ // only 2.5
+						scores.splice(goodIndex+1, 0, 'SP1');
+						var dumGood = 0;
+						if(z1Count > 0 && z2Count > 0)
+							dumGood = (count[goodIndex] + count[goodIndex+1]) / 2;
+						count.splice(goodIndex+1, 0, dumGood);
+						vLabels.splice(goodIndex+1, 0, 'พอใช้');
+						vPoints.splice(goodIndex+1, 0, dummy);
+					}else{
+						scores.splice(goodIndex, 0, 'SP1');
+						var dumGood = 0;
+						if(z1Count > 0 && z2Count > 0)
+							dumGood = (count[goodIndex-1] + count[goodIndex]) / 2;
+						count.splice(goodIndex, 0, dumGood);
+						vLabels.splice(goodIndex, 0, 'พอใช้');
+						vPoints.splice(goodIndex, 0, dummy);
+					}
+				}
 				
 				
+				var betterIndex=0;
+				if(!scores.includes(7.5)){
+					for (let i = 0; i < scores.length; i++) {
+					  console.log('check 7.5,, i: '+i+'+ => val: '+scores[i]);
+					  if(scores[i] == 'SP1') continue;
+					  if(scores[i] > 7.5){ 
+						betterIndex = i;
+						break;
+					  }
+					}
+					if(betterIndex == scores.length-1){ // only 10
+						scores.splice(betterIndex, 0, 'SP2');
+						var dumGood = 0;
+						if(z2Count > 0 && z3Count > 0)
+							dumGood = (count[betterIndex-1] + count[betterIndex]) / 2;
+						count.splice(betterIndex, 0, dumGood);
+						vLabels.splice(betterIndex, 0, 'ดี');
+						vPoints.splice(betterIndex, 0, dummy);
+					}else{
+						scores.splice(betterIndex, 0, 'SP2');
+						var dumGood = 0;
+						if(z2Count > 0 && z3Count > 0)
+							dumGood = (count[betterIndex-1] + count[betterIndex]) / 2;
+						count.splice(betterIndex, 0, dumGood);
+						vLabels.splice(betterIndex, 0, 'ดี');
+						vPoints.splice(betterIndex, 0, dummy);
+					}
+				}
+				
+				rawScore = count;
+				/*for (let i = 0; i < scores.length; i++) {
+					rawScore[i]
+				}*/
+				
+				
+				console.log(scores);
+				console.log(count);
+				console.log(vLabels);
+				console.log(vPoints);
+			
+			    /*rawScore = [0,1,2,1,1.5,2,1.5,1,2,5,4,1,0];
+				
+				vLabels = ['กาก','3','3.7','4.2','ได้บ้าง','6.2','ดี','8','8.1','8.4','8.7','9.5','ยอดเยี่ยม'];
+				
+				vPoints = [dummy,dummy,,dummy,dummy,dummy,dummy,dummy,avgYou,dummy,flag,dummy,dummy,dummy];*/
+				
+				/*
 				var jList = rawMain.Overview.List;
 				var userScore = -1;
 				var mean = -1;
@@ -1197,128 +1399,17 @@ class BookmarkTabs extends React.Component {
 						console.log('match bar clicked: '+entry.SkillName);
 						//rawScore = entry.AllScore;
 						
-						if(entry.UserScore !== null){
-							userScore = entry.UserScore.toFixed(1)*10;
-							vPoints[userScore-1] = you;
+						if(entry.Mode.length > 0){ // display flag (mode pos)
+							if(entry.Mode.length < 2){ // display single flag
+								var mode = entry.Mode[0].toFixed(1)*10;
+								vPoints[mode-1] = flag;
+							}else{ // display two flags
+								var mode1 = entry.Mode[0].toFixed(1)*10;
+								var mode2 = entry.Mode[1].toFixed(1)*10;
+								vPoints[mode1-1] = flagRv;
+								vPoints[mode2-1] = flag;
+							}
 						}
-						
-						mean = entry.Mean.toFixed(1)*10;
-						if(vPoints[mean-1] == you) //stack
-							vPoints[mean-1] = avgYou;
-						else
-							vPoints[mean-1] = avg;
-						
-						for(var k in entry.AllScore) {
-						   var temp = entry.AllScore[k].toFixed(1)*10; 
-						   //rawScore.push(entry.AllScore[k].toFixed(1)*10);
-						   rawScore[temp-1] = rawScore[temp] + 1;
-						}
-						
-						return false;
-					}
-					return true;
-				});
-				
-				console.log(rawScore);
-				
-				var pos=0; var step=1; var currentScore=0;
-				for(var k in rawScore) {
-					if(rawScore[k] == 0 && k != 99){
-						step += 1;
-					}else{
-						var x = 0;
-						var stepVal = 0;
-						console.log('stepVal: '+stepVal);
-						console.log('compare: '+rawScore[k]+' with: '+currentScore);
-						
-						if(rawScore[k] < rawScore[pos+x]){
-							stepVal = -(rawScore[pos+x] / step);
-							console.log('down to: '+stepVal);
-						}else if(rawScore[k] > rawScore[pos+x]){
-							stepVal = rawScore[k] / step;
-						}
-
-						while(x != step && pos+x < k){
-							//console.log('pos'+pos);
-							//console.log('x:'+x);
-							
-							rawScore[pos+x] = currentScore+stepVal*x;
-							console.log('step at: '+(pos+x)+' value: '+rawScore[pos+x]);
-							x += 1;
-						}
-						step = 1;
-						pos = parseInt(k, 10);
-						currentScore = rawScore[k];
-						console.log('END STEP FOR: '+k);
-						
-					}
-				}
-				
-				console.log(userScore);
-				console.log(mean);
-				console.log(rawScore);
-				//console.log(filteredScore);
-		}
-		
-		function GenerateDistributionChartData(config,index){
-			    rawScore = [0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,
-				];
-				
-				vLabels = ['ไม่ได้','','','','','','','','','',
-				'','','','','','','','','','',
-				'','','','','พอได้เล็กน้อย','','','','','',
-				'','','','','','','','','','',
-				'','','','','','','','','','',
-				'','','','','','','','','','',
-				'','','','','','','','','','',
-				'','','','','ดี','','','','','',
-				'','','','','','','','','','',
-				'','','','','','','','','','ยอดเยี่ยม',
-				];
-				
-				vPoints = [dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,
-				dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,
-				dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,
-				dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,
-				dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,
-				dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,
-				dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,
-				dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,
-				dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,
-				dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,
-				];
-				
-				//console.log(rawScore);
-				//var filteredAry = rawScore.filter(function(e) { return e !== 0 })
-				//console.log(filteredAry);
-				
-				//rawScore[11] = 1; rawScore[78] = 1; rawScore[84] = 1; rawScore[58] = 1;
-				/*rawScore = [-1,11,-1,58,-1,78,84,-1];
-				rawScore = [0,11,34,58,68,78,84,0];*/
-				
-				//rawScore = [-1,1,-1,1,-1,1,1,-1];
-				//rawScore = [0,11,0,58,0,78,84,0];
-				//var rawLabels = ['ไม่ได้','','พอได้เล็กน้อย','','ดี','','','ยอดเยี่ยม'];
-				
-				var jList = rawMain[mainJobList[idm].name].List;
-				//console.log(mainJobMixed);
-				//rawScore = [];
-				var userScore = -1;
-				var mean = -1;
-				jList.every((entry) => {
-					if(entry.SkillName == config.data.labels[index].replace('\n',' ')){ // this skill wasn't shown
-						refThis.setState({ mainFocusSkillCount: entry.total });
-						console.log('match bar clicked: '+entry.SkillName);
-						//rawScore = entry.AllScore;
 						
 						if(entry.UserScore !== null){
 							userScore = entry.UserScore.toFixed(1)*10;
@@ -1331,20 +1422,25 @@ class BookmarkTabs extends React.Component {
 						else
 							vPoints[mean-1] = avg;
 						
+						var i=0;
 						for(var k in entry.AllScore) {
 						   var temp = entry.AllScore[k].toFixed(1)*10; 
 						   //rawScore.push(entry.AllScore[k].toFixed(1)*10);
-						   rawScore[temp-1] = rawScore[temp] + 1;
+						   rawScore[temp] = entry.Count[i];
+						   if(entry.Count[i] > disGraphMax) disGraphMax = entry.Count[i];
+						   i++;
 						}
-						
+						disGraphMax = disGraphMax*1.5;
 						return false;
 					}
 					return true;
 				});
 				
-				console.log(rawScore);
+				console.log(rawScore);*/
 				
-				var pos=0; var step=1; var currentScore=0;
+				//rawScore = rawScore.filter(function(e) { return e !== 0 })
+				
+				/*var pos=0; var step=0; var currentScore=0;
 				for(var k in rawScore) {
 					if(rawScore[k] == 0 && k != 99){
 						step += 1;
@@ -1352,15 +1448,16 @@ class BookmarkTabs extends React.Component {
 						var x = 0;
 						var stepVal = 0;
 						console.log('stepVal: '+stepVal);
-						console.log('compare: '+rawScore[k]+' with: '+currentScore);
+						console.log('compare next score: '+rawScore[k]+' with: '+currentScore);
 						
-						if(rawScore[k] < rawScore[pos+x]){
-							stepVal = -(rawScore[pos+x] / step);
+						if(rawScore[k] < rawScore[pos+x]){ // current < old => go down
+							stepVal = -( (rawScore[pos+x]-rawScore[k]) / step);
 							console.log('down to: '+stepVal);
-						}else if(rawScore[k] > rawScore[pos+x]){
-							stepVal = rawScore[k] / step;
+						}else if(rawScore[k] > rawScore[pos+x]){ // current > old => go up
+							stepVal = (rawScore[k]-rawScore[pos+x]) / step;
 						}
-
+						console.log('step count: '+step+' step val: '+stepVal);
+						console.log('current index (k): '+k);
 						while(x != step && pos+x < k){
 							//console.log('pos'+pos);
 							//console.log('x:'+x);
@@ -1369,38 +1466,16 @@ class BookmarkTabs extends React.Component {
 							console.log('step at: '+(pos+x)+' value: '+rawScore[pos+x]);
 							x += 1;
 						}
+						var c1 = pos+x;
+						console.log('break! x: '+x+' step: '+step+' pos+x: '+c1+' k: '+k);
 						step = 1;
 						pos = parseInt(k, 10);
 						currentScore = rawScore[k];
 						console.log('END STEP FOR: '+k);
 						
 					}
-				}
-				
-				/*var filteredScore = rawScore.filter(function(e) { return e !== 0 });
-				var mark = 0;
-				var points = []; var cLabels = [];
-				for(var k in filteredScore) {
-					  if(filteredScore[k] == -1){
-						  filteredScore[k] = 0;
-						  if(mark == 0){
-							cLabels.push(' ไม่ได้');
-						  }else if(mark == 1){
-							cLabels.push('พอได้เล็กน้อย');
-						  }else if(mark == 2){
-							cLabels.push(' ดี');
-						  }else{
-							  cLabels.push(' ยอดเยี่ยม');
-						  }
-						  mark = mark + 1;
-					  }else{
-						  cLabels.push(' ');
-					  }
 				}*/
 				
-				console.log(userScore);
-				console.log(mean);
-				console.log(rawScore);
 				//console.log(filteredScore);
 		}
 		
@@ -1500,7 +1575,7 @@ class BookmarkTabs extends React.Component {
 							0,0,0,0,0,0,0,0,0,-1,
 							];*/
 							
-							GenerateDistributionChartData(jobChartConfig,index);
+							GenerateDistributionChartData(jobChartConfig,index,idm);
 							
 							jobChart4Config.data.labels = vLabels;
 							jobChart4Config.data.datasets[0].data = rawScore;
@@ -1565,7 +1640,7 @@ class BookmarkTabs extends React.Component {
 							font: function(context) {
 							  var w = context.chart.width;
 							  return {
-								size: w < 512 ? 16 : 24,
+								size: w < 512 ? 14 : 18,
 								weight: 'bold',
 							  };
 							},
@@ -1577,12 +1652,16 @@ class BookmarkTabs extends React.Component {
 							font: function(context) {
 							  var w = context.chart.width;
 							  return {
-								size: w < 512 ? 32 : 48,
+								size: w < 512 ? 24 : 32,
 								weight: 'bold',
 							  };
 							},
 							formatter: function(value, context) {
-								return context.chart.data.orders[context.dataIndex];
+								var val = context.chart.data.orders[context.dataIndex];
+								if(val == '#1' || val == '#2' || val == '#3')
+									return val;
+								else
+									return '';
 							}
 						  },subMiddleLabel: {
 							align: 'end',
@@ -2419,6 +2498,8 @@ class BookmarkTabs extends React.Component {
 		  $('#tab-5').on('click', function(){
 			  $('.tab-content').hide();
 			  
+			  ResetChartJob();
+			  
 			  //Reset
 			  $('#preview-3').addClass("hard-pv-3");
 			  $('#preview-2').addClass("hard-pv-2");
@@ -2441,7 +2522,8 @@ class BookmarkTabs extends React.Component {
 			  $('.fag').addClass("animate-fag");
 			  setTimeout(function(){ $('.fat').addClass("animate-fat"); }, 10);
 			  setTimeout(function(){ $('.fac').addClass("animate-fac"); }, 10);
-			  setTimeout(function(){ ResetChartHard(); }, 5);
+			  //setTimeout(function(){ ResetChartHard(); }, 5);
+			  ResetChartHard();
 		  });
 		  
 		  $("body").on("contextmenu", function(e) {
@@ -2495,15 +2577,22 @@ class BookmarkTabs extends React.Component {
 						sumChart6Config.data.datasets[0].fill.below = sumChart4Config.data.datasets[0].backgroundColor[index];
 						
 						//WTF GenerateDistributionChartDataOverview(sumChart4Config,index);
-						GenerateDistributionChartData(sumChart4Config,index);
+						GenerateDistributionChartData(sumChart4Config,index,'overview');
 						
 						sumChart6Config.data.labels = vLabels;
 						sumChart6Config.data.datasets[0].data = rawScore;
 						sumChart6Config.data.percentages = ['xx.xx%'];
 						sumChart6Config.data.datasets[0].pointStyle = vPoints;
-						sumChart6Config.options.scales.y.max = 2;
+						sumChart6Config.options.scales.y.max = disGraphMax;
+						/* for debug
+						sumChart6Config.data.labels = ['aa','a','a','a'];
+						sumChart6Config.data.datasets[0].data = [0,4,6,0];
+						sumChart6Config.data.percentages = ['xx.xx%'];
+						sumChart6Config.data.datasets[0].pointStyle = [dummy];
+						sumChart6Config.options.scales.y.max = 10;
+						*/
 						jobChart2.update();
-						
+						//alert(5555);
 						sumChart5.destroy();
 						sumChart5 = new Chart(ctx5, sumChart6Config);
 					}
@@ -2606,9 +2695,12 @@ class BookmarkTabs extends React.Component {
 				jList.forEach((entry) => {
 					if(!mainJobMixed.includes(entry.SkillName)){ // this skill wasn't shown
 						remJobs.push(entry.SkillName);
+						console.log('find error: '+entry.SkillName);
+						console.log('get %: '+entry.percentage);
 						//remOrders.push('#'+extra);
 						remOrders.push('#'+extra);
 						remPercentages.push(entry.percentage.toFixed(2)+'%');
+						console.log('pass: '+entry.SkillName);
 						remData.push(entry.total);
 						extra += 1;
 					}
@@ -2656,7 +2748,7 @@ class BookmarkTabs extends React.Component {
 								//console.log(activePoints);
 								const [{ index }] = activePoints;
 								console.log('Click bar: '+sumChart5Config.data.labels[index]+',val: '+sumChart5Config.data.datasets[0].data[index]);
-								$('.analytic-md-header').addClass("animate-analytic-md-header");
+								/*$('.analytic-md-header').addClass("animate-analytic-md-header");
 								$('.analytic-md-sub-header').addClass("animate-analytic-md-sub-header");
 								$('.analytic-right-chart-label').addClass("animate-analytic-right-chart-label");
 								$('.analytic-arrow-cls').addClass("animate-analytic-arrow-cls");
@@ -2670,7 +2762,7 @@ class BookmarkTabs extends React.Component {
 								sumChart6Config.data.datasets[0].fill.above = sumChart5Config.data.datasets[0].backgroundColor[0];
 								sumChart6Config.data.datasets[0].fill.below = sumChart5Config.data.datasets[0].backgroundColor[0];
 								sumChart5.destroy();
-								sumChart5 = new Chart(ctx5, sumChart6Config);
+								sumChart5 = new Chart(ctx5, sumChart6Config);*/
 							}
 						  },
 						   indexAxis: 'y',
@@ -2908,7 +3000,7 @@ class BookmarkTabs extends React.Component {
 						remJobs.push(entry.SkillName);
 						//remOrders.push('#'+extra);
 						remOrders.push('#'+extra);
-						remPercentages.push(entry.percentage+'%');
+						remPercentages.push(entry.percentage.toFixed(2)+'%');
 						remData.push(entry.total);
 						extra += 1;
 					}
@@ -3171,8 +3263,76 @@ class BookmarkTabs extends React.Component {
 				setTimeout(function() { $('.hard-ct1').removeClass("animate-hard-ct1"); }, 300);
 		  });
 		};
+		
+		var fetchFinish=0;
+		
+		function OnFetchEnd(){
+				
+				//ShowAdditionalInterfaceLv1
+				if(addJobList.length == 1){
+					console.log('1 job detected!');
+					refThis.setState({ hard1Name: addJobList[0].THname });
+				}else if(addJobList.length == 2){
+					console.log('2 job detected!');
+					refThis.setState({ hard1Name: addJobList[0].THname, hard2Name: addJobList[1].THname });
+				}else if(addJobList.length == 3){
+					console.log('3 job detected!');
+					refThis.setState({ hard1Name: addJobList[0].THname, hard2Name: addJobList[1].THname,  hard3Name: addJobList[2].THname});
+				}else{
+					alert('no add job detected!');
+				}
 
-		fetch("http://localhost:2000/analytics/main/"+userID,{
+				/*datas.InterestedJobs.forEach((entry) => {
+					console.log(entry.replace('+',' '));
+				});*/
+				console.log(rawAdditional.Overview);
+				refThis.setState({ overviewHardCount: rawAdditional.Overview.numberOfUsers });
+			
+			
+				refThis.setState({ render: true});
+				InitializeAnalytics();
+				
+				//ShowAdditionalInterfaceLv1
+				$('.main-not-found').hide();
+				if(mainJobList.length == 1){
+					console.log('1 job detected!');
+					refThis.setState({ main1Name: mainJobList[0].THname });
+					$('#tab-2').text(refThis.state.main1Name);
+					$('#tab-3').hide();
+					$('#tab-4').hide();
+				}else if(mainJobList.length == 2){
+					console.log('2 job detected!');
+					refThis.setState({ main1Name: mainJobList[0].THname, main2Name: mainJobList[1].THname });
+					$('#tab-2').text(refThis.state.main1Name);
+					$('#tab-3').text(refThis.state.main2Name);
+					$('#tab-4').hide();
+				}else if(mainJobList.length == 3){
+					console.log('3 job detected!');
+					refThis.setState({ main1Name: mainJobList[0].THname, main2Name: mainJobList[1].THname,  main3Name: mainJobList[2].THname});
+					$('#tab-2').text(refThis.state.main1Name);
+					$('#tab-3').text(refThis.state.main2Name);
+					$('#tab-4').text(refThis.state.main3Name);
+				}else{
+					$('.main-found').hide();
+					$('.main-not-found').show();
+					alert('no job detected!');
+					$('#tab-2').hide();
+					$('#tab-3').hide();
+					$('#tab-4').hide();
+				}
+
+				/*datas.InterestedJobs.forEach((entry) => {
+					console.log(entry.replace('+',' '));
+				});*/
+				refThis.setState({ overviewMainCount: rawMain.Overview.numberOfUser });
+				
+				
+				//setTimeout(function() { Tab1Func(); }, 1000);
+				Tab1Func();
+		}
+		
+		fetch("http://localhost:3000/temp_main",{
+		//fetch("http://localhost:2000/analytics/main/"+userID,{
 			//fetch("http://localhost:3000/samples_json_for_testing (must upload to server first/temp_main",{
 			method: "GET",
 			headers: {
@@ -3188,53 +3348,15 @@ class BookmarkTabs extends React.Component {
 				rawMain = datas;
 				mainJobList = datas.InterestedJobs;
 				//mainJobList = [];
-				
-				this.setState({ render: true});
-				InitializeAnalytics();
-				
-				//ShowAdditionalInterfaceLv1
-				$('.main-not-found').hide();
-				if(mainJobList.length == 1){
-					console.log('1 job detected!');
-					this.setState({ main1Name: mainJobList[0].THname });
-					$('#tab-2').text(this.state.main1Name);
-					$('#tab-3').hide();
-					$('#tab-4').hide();
-				}else if(mainJobList.length == 2){
-					console.log('2 job detected!');
-					this.setState({ main1Name: mainJobList[0].THname, main2Name: mainJobList[1].THname });
-					$('#tab-2').text(this.state.main1Name);
-					$('#tab-3').text(this.state.main2Name);
-					$('#tab-4').hide();
-				}else if(mainJobList.length == 3){
-					console.log('3 job detected!');
-					this.setState({ main1Name: mainJobList[0].THname, main2Name: mainJobList[1].THname,  main3Name: mainJobList[2].THname});
-					$('#tab-2').text(this.state.main1Name);
-					$('#tab-3').text(this.state.main2Name);
-					$('#tab-4').text(this.state.main3Name);
-				}else{
-					$('.main-found').hide();
-					$('.main-not-found').show();
-					alert('no job detected!');
-					$('#tab-2').hide();
-					$('#tab-3').hide();
-					$('#tab-4').hide();
-				}
-
-				/*datas.InterestedJobs.forEach((entry) => {
-					console.log(entry.replace('+',' '));
-				});*/
-				this.setState({ overviewMainCount: rawMain.Overview.numberOfUser });
-				
-				
-				//setTimeout(function() { Tab1Func(); }, 1000);
-				Tab1Func();
+				fetchFinish += 1;
+				if(fetchFinish > 1) OnFetchEnd();
 				
 			}).catch((error) => {
 				console.log(error);
 			});
 		
-		fetch("http://localhost:2000/analytics/additional/"+userID,{
+		fetch("http://localhost:3000/temp_add",{
+		//fetch("http://localhost:2000/analytics/additional/"+userID,{
 			method: "GET",
 			headers: {
 				"Access-Control-Allow-Origin": "*",
@@ -3249,26 +3371,8 @@ class BookmarkTabs extends React.Component {
 				rawAdditional = datas;
 				//rawAdditional.mySkills = [];
 				addJobList = datas.InterestedJobs;
-				
-				//ShowAdditionalInterfaceLv1
-				if(addJobList.length == 1){
-					console.log('1 job detected!');
-					this.setState({ hard1Name: addJobList[0].THname });
-				}else if(addJobList.length == 2){
-					console.log('2 job detected!');
-					this.setState({ hard1Name: addJobList[0].THname, hard2Name: addJobList[1].THname });
-				}else if(addJobList.length == 3){
-					console.log('3 job detected!');
-					this.setState({ hard1Name: addJobList[0].THname, hard2Name: addJobList[1].THname,  hard3Name: addJobList[2].THname});
-				}else{
-					alert('no add job detected!');
-				}
-
-				/*datas.InterestedJobs.forEach((entry) => {
-					console.log(entry.replace('+',' '));
-				});*/
-				console.log(rawAdditional.Overview);
-				this.setState({ overviewHardCount: rawAdditional.Overview.numberOfUsers });
+				fetchFinish += 1;
+				if(fetchFinish > 1) OnFetchEnd();
 				
 			}).catch((error) => {
 				console.log(error);
@@ -3387,9 +3491,9 @@ class BookmarkTabs extends React.Component {
 											</div>
 											<div>
 												<af>ทักษะเสริมของคุณ 3 ทักษะ<br/></af>
-												<af class="analytic-spc" id="myOvSkl1"><i class="fas fa-square" id="myOvSklc1"></i> {this.state.hard1MyName} #1<br/></af>
-												<af class="analytic-spc" id="myOvSkl2"><i class="fas fa-square" id="myOvSklc2"></i> {this.state.hard2MyName} #2<br/></af>
-												<af class="analytic-spc" id="myOvSkl3"><i class="fas fa-square" id="myOvSklc3"></i> {this.state.hard3MyName} #3<br/></af>
+												<af class="analytic-spc" id="myOvSkl1"><i class="fas fa-square" id="myOvSklc1"></i> {this.state.hard1MyName} #{this.state.addRank1}<br/></af>
+												<af class="analytic-spc" id="myOvSkl2"><i class="fas fa-square" id="myOvSklc2"></i> {this.state.hard2MyName} #{this.state.addRank2}<br/></af>
+												<af class="analytic-spc" id="myOvSkl3"><i class="fas fa-square" id="myOvSklc3"></i> {this.state.hard3MyName} #{this.state.addRank3}<br/></af>
 											</div>
 										</div>
 										<div class="col-1 container-fluid">
@@ -3492,15 +3596,14 @@ class BookmarkTabs extends React.Component {
 											</div>
 											<div class="skill-found">
 												<div class="yahaha8">
-													<af id="myMainSkl1">#1 <i class="fas fa-square" id="myMainSklc1"></i> {this.state.main1MyName} {this.state.main1MyPercentage}%</af>
+													<af id="myMainSkl1"><i class="fas fa-square" id="myMainSklc1"></i> {this.state.main1MyName} {this.state.main1MyPercentage}%</af>
 													<br></br>
-													<af id="myMainSkl2">#2 <i class="fas fa-square" id="myMainSklc2"></i> {this.state.main2MyName} {this.state.main2MyPercentage}%</af>
+													<af id="myMainSkl2"><i class="fas fa-square" id="myMainSklc2"></i> {this.state.main2MyName} {this.state.main2MyPercentage}%</af>
 													<br></br>
-													<af id="myMainSkl3">#3 <i class="fas fa-square" id="myMainSklc3"></i> {this.state.main3MyName} {this.state.main3MyPercentage}%</af>
+													<af id="myMainSkl3"><i class="fas fa-square" id="myMainSklc3"></i> {this.state.main3MyName} {this.state.main3MyPercentage}%</af>
 													<br></br><br></br>
 												</div>
-												<br></br>
-												<div class="float-end yahaha6" id="analytic-lower-buttons-main">
+												<div class="yahaha6" id="analytic-lower-buttons-main">
 													<a class="btn btn-cta-primary round profile-button other margin-right-m info-button" target="_blank">คลิกเพื่อดูอันดับอื่น ๆ</a> 
 													<a class="btn btn-cta-primary-yellow round profile-button" id="other-button" target="a_blank">แก้ไขทักษะ</a>
 												</div>
@@ -3668,15 +3771,14 @@ class BookmarkTabs extends React.Component {
 												</div>
 												<div class="skill-found">
 													<div class="yahaha8">
-														<af id="mySkl1">#1 <i class="fas fa-square" id="mySklc1"></i> {this.state.hard1MyName} {this.state.hard1MyPercentage}%</af>
+														<af id="mySkl1"><i class="fas fa-square" id="mySklc1"></i> {this.state.hard1MyName} {this.state.hard1MyPercentage}%</af>
 														<br></br>
-														<af id="mySkl2">#2 <i class="fas fa-square" id="mySklc2"></i> {this.state.hard2MyName} {this.state.hard2MyPercentage}%</af>
+														<af id="mySkl2"><i class="fas fa-square" id="mySklc2"></i> {this.state.hard2MyName} {this.state.hard2MyPercentage}%</af>
 														<br></br>
-														<af id="mySkl3">#3 <i class="fas fa-square" id="mySklc3"></i> {this.state.hard3MyName} {this.state.hard3MyPercentage}%</af>
+														<af id="mySkl3"><i class="fas fa-square" id="mySklc3"></i> {this.state.hard3MyName} {this.state.hard3MyPercentage}%</af>
 														<br></br><br></br>
 													</div>
-													<br></br>
-													<div class="float-end yahaha6" id="analytic-lower-buttons">
+													<div class="yahaha6" id="analytic-lower-buttons">
 														<a class="btn btn-cta-primary round profile-button other margin-right-m info-button-hard" id="info-button-hard" target="_blank">คลิกเพื่อดูอันดับอื่น ๆ</a> 
 														<a class="btn btn-cta-primary-yellow round profile-button" id="other-button" target="_blank">แก้ไขทักษะ</a>
 													</div>

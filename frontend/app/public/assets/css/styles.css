@@ -720,8 +720,11 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 	height: 600px;
 }
 
+#mc-container{
+	width: 90%; margin: 0 auto 0 auto;
+}
 
-.chart-container { height: 900px; }
+.chart-container { height: 900px; width: 90%; margin: 0 auto 0 auto; }
 
 .chart-container2 { height: 850px; }
 
@@ -952,6 +955,9 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 	display: flex;
 	justify-content: center;
 	text-align: center;
+	max-width: 1920px;
+	margin-right: auto;
+	margin-left: auto;
 }	
 
 .smb-1a{
@@ -972,6 +978,9 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 }
 
 .sbma-flex{
+	max-width: 1920px;
+	margin-right: auto;
+	margin-left: auto;
 	/*height: 98%;*/
 	margin-top: 10px;
 	display: flex;
@@ -1355,6 +1364,16 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 .profile-button{
 	padding: 10px;
 	font-size: 18px;
+}
+
+#analytic-lower-buttons-main{
+	display: flex;
+	justify-content: end;
+}
+
+#analytic-lower-buttons{
+	display: flex;
+	justify-content: end;
 }
 
 navbar { margin:0; }
