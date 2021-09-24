@@ -43,8 +43,9 @@ class MyResume3 extends React.Component {
                         </div>
                     </div>
                 </div>
+                <div className="myworkb"></div>
 
-            
+            <script>
                 <div class="myresume-mywork-woNb">
                     <div class="myresume-mywork-withoutdata">
                         <h1 class="myresume-head-woNb">ผลงานของฉัน</h1>
@@ -58,7 +59,7 @@ class MyResume3 extends React.Component {
                         </div>
                     </div>
                 </div>
-                
+                </script>
             </>
         );
     }
