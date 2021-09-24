@@ -36,8 +36,13 @@ class Registab2 extends React.Component {
 								</div>
 								<div class="row-3">
 									<div class="col-md-12">
+<<<<<<< HEAD
 										<textarea type="text" class="form-control aboutmee margin-bottom2" id="aboutme2" placeholder="บอกเล่าเกี่ยวกับตัวเองสั้น ๆ" autocomplete="off"></textarea>
 										<div id="charactersRemaining">180 characters</div>
+=======
+										<textarea maxlength="280" type="text" class="form-control aboutmee margin-bottom2" id="aboutme2" placeholder="บอกเล่าเกี่ยวกับตัวเองสั้นๆ" autocomplete="off"></textarea>
+										<div id="charactersRemaining">280 characters</div>
+>>>>>>> 8c395e899705a36cb0e0e7cfb410351a1dc8642e
 									</div>
 								</div>
 							</div>	

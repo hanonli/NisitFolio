@@ -315,17 +315,15 @@ var choose_function3_2 = -1; //default
 function show_all_high() {
 
   list_of_high.forEach(ele => {
-      var grid_high1 = '<div class="t3-content2 row">\
-                          <div class="col mg-left1per">\
-                              <div class="row font-titlet3">{degree_high}</div>\
-                              <div class="row font-titlet3">{year_high}</div>\
+      var grid_high1 = '<div class="t3-content2 row mg-left1per">\
+                          <div class="col-4">\
+                              <div class="row font-titlet3 font-boldt3">{degree_high}</div>\
+                              <div class="row font-titlet3 font-khotboldt3">{year_high}</div>\
                           </div>\
-                          <div class="col">\
+                          <div class="col-8">\
                               <div class="row font-titlet3">{field_high}</div>\
-                              <div class="row font-titlet3">เกรด {grade_high}</div>\
-                          </div>\
-                          <div class="col">\
                               <div class="row font-titlet3">{name_high}</div>\
+                              <div class="row font-titlet3">เกรด {grade_high}</div>\
                           </div>';
 
       var grid_high2 = `
@@ -369,8 +367,8 @@ $(document).ready(function () {
 
 //func add new high form
 $(document).on("click", "#add_high", function () {
-  $("#high_name").removeClass("is-invalid");
   $("#high_degree").removeClass("is-invalid");
+  $("#high_name").removeClass("is-invalid");
   choose_function3_2 = 2;
   $('#registab3Modal2').modal('toggle');
   $('#high_degree').prop('selectedIndex', 0);
@@ -383,9 +381,8 @@ $(document).on("click", "#add_high", function () {
 //func edit high
 var for_edithigh;
 $(document).on("click", "#edit-high", function () {
-  $("#high_name").removeClass("is-invalid");
   $("#high_degree").removeClass("is-invalid");
-  $("#high_faculty").removeClass("is-invalid");
+  $("#high_name").removeClass("is-invalid");
   id_list_high_edit = $(this).parents().attr('id');
   console.log(`edit:`, id_list_high_edit);
   choose_function3_2 = 1;
@@ -468,16 +465,19 @@ document.getElementById("submit-high").addEventListener("click", function () {
   grade_high = document.getElementById("high_grade").value;
   year_high = document.getElementById("year_secondary").value;
   $('#submit_high').text = 'ยืนยัน';
+  var checkformT3 = true;
   //console.log('high_name : '+ $("#high_name").val());
   if (document.getElementById("high_name").value == "") {
       //alert("submit high wrong!");
       $("#high_name").addClass("is-invalid");
+      checkformT3 = false;
   }
-  else if (document.getElementById("high_degree").value == 'none') {
+  if (document.getElementById("high_degree").value == 'none') {
     //alert("submit high wrong!");
     $("#high_degree").addClass("is-invalid");
+    checkformT3 = false;
   }
-  else {
+  if(checkformT3) {
       if (field_high == '') {
           field_high = 'none';
       }
