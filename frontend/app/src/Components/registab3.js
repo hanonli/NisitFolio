@@ -145,7 +145,7 @@ class Registab3 extends React.Component {
                             <label class="form-f-sex">วุฒิการศึกษา<a class="red_markEp1">*</a></label>
                         </div>
                         <div class="col-3">
-                            <select class="form-select form-select-lg dropbtn margin-bottom1 fff" id='high_degree' aria-labelledby="select1" required>
+                            <select class="form-select form-select-lg dropbtn margin-bottom1 fff dropbtn_year" id='high_degree' aria-labelledby="select1" required>
                                 <option selected disabled value=''>เลือกวุฒิการศึกษา</option> 
                                 <option value='อาชีวะศึกษา' >อาชีวะศึกษา </option>  
                                 <option value='มัธยมศึกษาตอนปลาย' >มัธยมศึกษาตอนปลาย</option>    
