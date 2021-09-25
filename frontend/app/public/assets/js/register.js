@@ -1,5 +1,10 @@
 /*For Javascript Desu*/
-
+window.onload = () => {
+  const myInput1 = document.getElementById('pass05');
+  const myInput2 = document.getElementById('pass06');
+  myInput1.onpaste = e => e.preventDefault();
+  myInput2.onpaste = e => e.preventDefault();
+ }
 /*Tabs New*/
 $(function(){
     $('.tab-content').hide();
