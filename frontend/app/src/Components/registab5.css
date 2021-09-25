@@ -187,6 +187,10 @@
     margin-left: 30px;
     margin-top: 66px;
     font-size: 24px;
+    white-space: nowrap;
+    width: 13vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #year-of-certi {
@@ -291,7 +295,7 @@
 
 #textOfyear_certi {
     color: black;
-    font-size: 32px;
+    font-size: 24px;
     margin-top: 35px;
     margin-bottom: 10px;
     padding-left: 5px;
@@ -300,8 +304,8 @@
 #text-add-name-my-certi11{
     color: black;
     font-size: 32px;
-    margin-bottom: 27px;
-    padding-left: 5px;
+    margin-bottom: 20px;
+    /*padding-left: 5px;*/
 }
 
 .text_up5 {

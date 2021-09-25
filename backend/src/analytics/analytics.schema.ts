@@ -22,20 +22,18 @@ export interface UserAddSkill extends Document {
 // -------------------- UserJobSkill ---------------------------
 
 export const UserJobSkillSchema = new mongoose.Schema({
-  userId: { type: String, required: [true, 'userID must not empty'] },
-  Objective: { type: String, required: [true, 'Objective must not empty'] },
-  Score: { type: Number, required: [true, 'Score must not empty']},
-  JobName: { type: String, required: [true, 'JobName must not empty']},
-  SkillName: { type: String, required: [true, 'SkillName must not empty']},
-})
+  UserId: { type: String, required: [true, 'userID must not empty'] },
+  Job_JobName: { type: String, required: [true, 'JobName must not empty']},
+  Job_Score: { type: Number, required: [true, 'Score must not empty']},
+  Job_SkillName: { type: String, required: [true, 'SkillName must not empty']},
+}, {collection: 'UserJobSkill'})
 
 export interface UserJobSkill { 
   id: string;
-  userId: string;
-  Objective: string;
-  Score: number;
-  JobName: string;
-  SkillName: string;
+  UserId: string;
+  Job_JobName: string;
+  Job_Score: number;
+  Job_SkillName: string;
 }
 
 @Schema({ collection: 'AdditionalSkill' })

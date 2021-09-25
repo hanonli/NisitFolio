@@ -17,7 +17,7 @@ export class Bookmark {
   type: String;
 
   @Prop()
-  portName?: String;
+  projectName?: String;
 
   @Prop({type: Object})
   details: any;
@@ -47,18 +47,18 @@ export class UserInfo {
   
   @Prop()
   Lastname: String;
-
+  
   @Prop()
   Birthday: String;
+  
+  @Prop()
+  Gender: String;
 
   @Prop()
   AboutMe: String;
 
   @Prop()
   Email2nd: String;
-
-  @Prop()
-  Gender: String;
 
   @Prop()
   Country: String;
@@ -76,11 +76,21 @@ export class UserInfo {
   last_modified: String[];
 
   @Prop()
+  ProfilePic: String ;
+
+  @Prop()
+  tags: String[] ;
+
+  @Prop()
+  AvgScore: Number ;
+
+  @Prop()
   totalBookmark: Number;
 
 }
 
 export const UserInfoSchema = SchemaFactory.createForClass(UserInfo);
+UserInfoSchema.index({Firstname: 'text', Lastname: 'text'})
 
 @Schema({ collection: "Account"})
 export class Account {

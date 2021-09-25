@@ -11,14 +11,14 @@ export class SearchController {
   @Get('/top?')
   async search(
     @Query('q') q: string ,
+    @Query('userId') userId: string ,
   ): Promise<any[]> {
     console.log(q) ;
     
-    const JobName = await this.searchService.findJobName(q) ;
-    if (JobName.length != 0) {
+    const JobName = await this.searchService.findJobName(q, userId) ;
+    if (JobName.length != 0)
       return JobName ;
-    }
-    const UserName = await this.searchService.findUserName(q) ;
+    const UserName = await this.searchService.findUserName(q, userId) ;
     return UserName ;
   }
 }
