@@ -162,7 +162,7 @@ export class Portfolio {
   totalBookmark: Number;
 
   @Prop()
-  owner: string;
+  Owner: string;
 
 }
 
