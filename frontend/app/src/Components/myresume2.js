@@ -52,10 +52,10 @@ class MyResume2 extends React.Component {
                 <div class="myresume-4">
                     <h1 id="">ส่วนที่4</h1>                  
                 </div>
-            
+                <h1>กลัวจะไม่ทัน จะขึ้นโครง WORK HISTORY ให้ มาปรับ css ให้เข้า กับเก็บ detail เองนะ ตอนนี่ยังไม่ทำรองรับเงื่อนไขไม่มีข้อมูลแต่เป็นเจ้าของ ลองก็อบ html ใน inspect มาทำๆ ดู -PUN-</h1>
                 
                 <MyresumeWork data={workdata}></MyresumeWork>
-                <h1>กลัวจะไม่ทัน จะขึ้นโครง WORK HISTORY ให้ มาปรับ css ให้เข้าดูเองนะ -PUN-</h1>
+                
             </div>
                 
         );
