@@ -17,7 +17,7 @@ export class Bookmark {
   type: String;
 
   @Prop()
-  portName?: String;
+  projectName?: String;
 
   @Prop({type: Object})
   details: any;
@@ -162,7 +162,7 @@ export class Portfolio {
   totalBookmark: Number;
 
   @Prop()
-  Owner: string;
+  owner: string;
 
 }
 
