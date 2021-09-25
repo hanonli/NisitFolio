@@ -140,6 +140,8 @@ var view_type = "grid";
 var current_tab = 1;
 var pageName = location.href.split("/").slice(-1); 
 
+var currentTooltip = null;
+
 function ResetData(){
 	index=0;
 	profileIndex=0;
@@ -154,15 +156,20 @@ function ResetData(){
 
 function FormatIcon(data,dtype) {
   if(pageName == 'search'){
-		if(!data.bookmark) dtype = dtype.replace("{icon-type}","assets/images/bookmark_1.png").replace("{tooltip}","บันทึก").replace("{status}","false");
-		else dtype = dtype.replace("{icon-type}","assets/images/bookmark_2.png").replace("{tooltip}","ยกเลิกการบันทึก").replace("{status}","true");
+		if(data.bookmark == "false") {
+			dtype = dtype.replace("{icon-type}","assets/images/bookmark_1.png").replace("{tooltip}","บันทึก").replace("{status}","false"+"-"+data.thatUserId+'&'+data.type);
+		}else {
+			dtype = dtype.replace("{icon-type}","assets/images/bookmark_2.png").replace("{tooltip}","ยกเลิกการบันทึก").replace("{status}","true"+"-"+data.thatUserId+'&'+data.type);
+		}
 	}else{
-		dtype = dtype.replace("{icon-type}","assets/images/bin.png").replace("{tooltip}","ลบ").replace("{status}","none");
+		dtype = dtype.replace("{icon-type}","assets/images/bin.png").replace("{tooltip}","ลบ").replace("{status}",data.thatUserId+'&'+data.type);
 	}
 	return dtype;
 }
 
 function FormatEllipsis(type,text){
+	if(text === null) return '';
+	
 	if(type == 'desc-list'){
 		if(text.length > max_list_desc_char_count) text = text.substring(0,max_list_desc_char_count)+'...';
 	}else if(type == 'desc-grid'){
@@ -177,15 +184,18 @@ function AddMixedListEntity(data){
 	var dtype = "";
 	var valid_desc = FormatEllipsis('desc-list',data.about);
 	
-	if(data.type == "user") {
+	var pcc = data.profilePic;
+	if(pcc === null) pcc = "assets/images/profile_uk.png";
+	
+	if(data.type == "profile") {
 		if(data.jobs.length > 0){
 			//prepare tags
 			var tags = tag_entity.replace('{tag}',data.jobs[0]);
 			if(data.jobs.length > 1)  tags += tag_entity.replace('{tag}',data.jobs[1]);
 			if(data.jobs.length > 2)  tags += tag_entity.replace('{tag}',data.jobs[2]);
-			dtype = profile_list.replace("{name}", data.name).replace("{img}", data.profilePic).replace("{desc}", valid_desc).replace("{tags}", tags);
+			dtype = profile_list.replace("{name}", data.name).replace("{img}", pcc).replace("{desc}", valid_desc).replace("{tags}", tags);
 		}else{
-			dtype = profile_list_no_tag.replace("{name}", data.name).replace("{img}", data.profilePic).replace("{desc}", valid_desc);
+			dtype = profile_list_no_tag.replace("{name}", data.name).replace("{img}", pcc).replace("{desc}", valid_desc);
 		}
 	}else{
 		dtype = work_list.replace("{name}", data.name).replace("{img}", data.profilePic).replace("{desc}", valid_desc).replace("{owner}", data.owner);
@@ -208,20 +218,23 @@ function AddMixedGridEntity(data){
 	var valid_desc = FormatEllipsis('desc-grid',data.about);
 	var dtype = "";
 	
+	var pcc = data.profilePic;
+	if(pcc === null) pcc = "assets/images/profile_uk.png";
+		
 	
-	if(data.type == "user") {
+	if(data.type == "profile") {
 		if(data.jobs.length > 0){
 			//prepare tags
 			var tags = tag_entity.replace('{tag}',data.jobs[0]);
 			if(data.jobs.length > 1)  tags += tag_entity.replace('{tag}',data.jobs[1]);
 			if(data.jobs.length > 2)  tags += tag_entity.replace('{tag}',data.jobs[2]);
-			dtype = profile_grid.replace("{name}", data.name).replace("{img}", data.profilePic).replace("{tags}", tags);
+			dtype = profile_grid.replace("{name}", data.name).replace("{img}", pcc).replace("{tags}", tags);
 			//console.log('replaced: '+tags);
 		}else{
-			dtype = profile_grid_no_tag.replace("{name}", data.name).replace("{img}", data.profilePic);
+			dtype = profile_grid_no_tag.replace("{name}", data.name).replace("{img}", pcc);
 		}
 	}else{
-		dtype = work_grid.replace("{name}", data.name).replace("{img}", data.profilePic).replace("{desc}", data.port).replace("{owner}", data.owner);
+		dtype = work_grid.replace("{name}", data.name).replace("{img}", pcc).replace("{desc}", data.port).replace("{owner}", data.owner);
 	}
 	
 	if(row_filled || (index == max)){// add 2 data as new row || add last entity to last row
@@ -230,18 +243,20 @@ function AddMixedGridEntity(data){
 
 		if(row_filled){
 			for (let i = 0; i < temp.length; i++) {
-				if(temp[i].type == "user") {
+				var tcc = temp[i].profilePic;
+				if(tcc === null) tcc = "assets/images/profile_uk.png";
+				if(temp[i].type == "profile") {
 					if(temp[i].jobs.length > 0){
 						//prepare tags
 						var tags = tag_entity.replace('{tag}',temp[i].jobs[0]);
 						if(temp[i].jobs.length > 1)  tags += tag_entity.replace('{tag}',temp[i].jobs[1]);
 						if(temp[i].jobs.length > 2)  tags += tag_entity.replace('{tag}',temp[i].jobs[2]);
-						ttype = profile_grid.replace("{name}", temp[i].name).replace("{img}", temp[i].profilePic).replace("{tags}", tags);
+						ttype = profile_grid.replace("{name}", temp[i].name).replace("{img}", tcc).replace("{tags}", tags);
 					}else{
-						ttype = profile_grid_no_tag.replace("{name}", temp[i].name).replace("{img}", temp[i].profilePic);
+						ttype = profile_grid_no_tag.replace("{name}", temp[i].name).replace("{img}", tcc);
 					}
 				}else{
-					ttype = work_grid.replace("{name}", temp[i].name).replace("{img}", temp[i].profilePic).replace("{desc}", data.port).replace("{owner}", data.owner);
+					ttype = work_grid.replace("{name}", temp[i].name).replace("{img}", tcc).replace("{desc}", temp[i].port).replace("{owner}", temp[i].owner);
 				}
 				ttype = FormatIcon(temp[i],ttype);
 				raw_html += '<div class="sbm-grid-entity">' + ttype + '</div>';
@@ -266,14 +281,17 @@ function AddProfileListEntity(data){
 	console.log("Add new list");
 	var valid_desc = FormatEllipsis('desc-list',data.about);
 	var dtype = null;
+	var pcc = data.profilePic;
+	if(pcc === null) pcc = "assets/images/profile_uk.png";
+	
 	if(data.jobs.length > 0){
 		//prepare tags
 		var tags = tag_entity.replace('{tag}',data.jobs[0]);
 		if(data.jobs.length > 1)  tags += tag_entity.replace('{tag}',data.jobs[1]);
 		if(data.jobs.length > 2)  tags += tag_entity.replace('{tag}',data.jobs[2]);
-		dtype = profile_list.replace("{name}", data.name).replace("{img}", data.profilePic).replace("{desc}", valid_desc).replace("{tags}", tags);
+		dtype = profile_list.replace("{name}", data.name).replace("{img}", pcc).replace("{desc}", valid_desc).replace("{tags}", tags);
 	}else{
-		dtype = profile_list_no_tag.replace("{name}", data.name).replace("{img}", data.profilePic).replace("{desc}", valid_desc);
+		dtype = profile_list_no_tag.replace("{name}", data.name).replace("{img}", pcc).replace("{desc}", valid_desc);
 	}
 	dtype = FormatIcon(data,dtype);
 	raw_html += dtype;
@@ -292,20 +310,25 @@ function AddProfileGridEntity(data){
 	
 	var valid_desc = FormatEllipsis('desc-grid',data.about);
 	
+	var pcc = data.profilePic;
+	if(pcc === null) pcc = "assets/images/profile_uk.png";
+	
 	if(row_filled || (profileIndex == profileCount)){// add 2 data as new row
 		console.log("add new GRID: "+profileIndex+" : "+data.name + " max: " + profileCount);
 		raw_html = "";
 		if(row_filled){
 			for (let i = 0; i < temp.length; i++) {
+				var tcc = temp[i].profilePic;
+				if(tcc === null) tcc = "assets/images/profile_uk.png";
 				var ttype = null;
 				if(temp[i].jobs.length > 0){
 					//prepare tags
 					var tags = tag_entity.replace('{tag}',temp[i].jobs[0]);
 					if(temp[i].jobs.length > 1)  tags += tag_entity.replace('{tag}',temp[i].jobs[1]);
 					if(temp[i].jobs.length > 2)  tags += tag_entity.replace('{tag}',temp[i].jobs[2]);
-					ttype = profile_grid.replace("{name}", temp[i].name).replace("{img}", temp[i].profilePic).replace("{tags}", tags);
+					ttype = profile_grid.replace("{name}", temp[i].name).replace("{img}", tcc).replace("{tags}", tags);
 				}else{
-					ttype = profile_grid_no_tag.replace("{name}", temp[i].name).replace("{img}", temp[i].profilePic);
+					ttype = profile_grid_no_tag.replace("{name}", temp[i].name).replace("{img}", tcc);
 				}
 				ttype = FormatIcon(temp[i],ttype);
 				raw_html += '<div class="sbm-grid-entity">' + ttype + '</div>';
@@ -317,9 +340,9 @@ function AddProfileGridEntity(data){
 			var tags = tag_entity.replace('{tag}',data.jobs[0]);
 			if(data.jobs.length > 1)  tags += tag_entity.replace('{tag}',data.jobs[1]);
 			if(data.jobs.length > 2)  tags += tag_entity.replace('{tag}',data.jobs[2]);
-			dtype = profile_grid.replace("{name}", data.name).replace("{img}", data.profilePic).replace("{tags}", tags);
+			dtype = profile_grid.replace("{name}", data.name).replace("{img}", pcc).replace("{tags}", tags);
 		}else{
-			dtype = profile_grid_no_tag.replace("{name}", data.name).replace("{img}", data.profilePic);
+			dtype = profile_grid_no_tag.replace("{name}", data.name).replace("{img}", pcc);
 		}
 		dtype = FormatIcon(data,dtype);
 		raw_html += '<div class="sbm-grid-entity">' + dtype + '</div>';
@@ -335,9 +358,11 @@ function AddProfileGridEntity(data){
 
 function AddWorkListEntity(data){
 	console.log("Add new list");
-
+	var pcc = data.profilePic;
+	if(pcc === null) pcc = "assets/images/profile_uk.png";
+	
 	var valid_desc = FormatEllipsis('desc-list',data.about);
-	var dtype = work_list.replace("{name}", data.name).replace("{img}", data.profilePic).replace("{desc}", valid_desc).replace("{owner}", data.owner);
+	var dtype = work_list.replace("{name}", data.name).replace("{img}", pcc).replace("{desc}", valid_desc).replace("{owner}", data.owner);
 	dtype = FormatIcon(data,dtype);
 	raw_html += dtype;
 
@@ -353,6 +378,8 @@ function AddWorkGridEntity(data){
 		row_filled = false;
 	}
 	var valid_desc = FormatEllipsis('desc-grid',data.about);
+	var pcc = data.profilePic;
+	if(pcc === null) pcc = "assets/images/profile_uk.png";
 	
 	if(row_filled || (workIndex == workCount)){// add 2 data as new row
 		console.log("add new GRID: "+workIndex+" : "+data.name + " max: " + workCount);
@@ -360,12 +387,14 @@ function AddWorkGridEntity(data){
 		
 		if(row_filled){
 			for (let i = 0; i < temp.length; i++) {
-				var ttype = work_grid.replace("{name}", temp[i].name).replace("{img}", temp[i].profilePic).replace("{desc}", temp[i].port).replace("{owner}", temp[i].owner);
+				var pcc = temp[i].profilePic;
+				if(pcc === null) pcc = "assets/images/profile_uk.png";
+				var ttype = work_grid.replace("{name}", temp[i].name).replace("{img}", pcc).replace("{desc}", temp[i].port).replace("{owner}", temp[i].owner);
 				ttype = FormatIcon(temp[i],ttype);
 				raw_html += '<div class="sbm-grid-entity">' + ttype +'</div>';
 			}
 		}
-		var dtype = work_grid.replace("{name}", data.name).replace("{img}", data.profilePic).replace("{desc}", data.port).replace("{owner}", data.owner);
+		var dtype = work_grid.replace("{name}", data.name).replace("{img}", pcc).replace("{desc}", data.port).replace("{owner}", data.owner);
 		dtype = FormatIcon(data,dtype);
 		raw_html += '<div class="sbm-grid-entity">' + dtype + '</div>';
 		
@@ -404,7 +433,7 @@ function ReinitializeTooltips(){
 }
 
 //Load data from backend
-/*function GetBookmarkData(request){
+/*function GetSearchBookmarkData(request){
 	var key = pageName
 	if(key == 'search'){
 		key += "_"+Cookies.get('search-entry').toLowerCase();
@@ -477,13 +506,76 @@ function ReinitializeTooltips(){
 		setTimeout(function() { ReinitializeTooltips(); }, 500);
 }
 
-GetBookmarkData("data");*/
+GetSearchBookmarkData("data");*/
 
-var id = "610d3832ca49ebf4cdfed020";
+function GetFormattedBookmarkData(datas){
+	//alert('Format Bookmark!');
+	//console.log(datas);
+	var fData = [];
+	datas.forEach((data) => {
+		//alert(data.thatUserId);
+		var datt = {};
+		if(data.type == "profile") {
+			datt['type'] = data.type;
+			datt['thatUserId'] = data.thatUserId;
+			datt['name'] = data.details.name;
+			datt['profilePic'] = data.details.pic;
+			datt['about'] = data.details.about;
+			datt['jobs'] = data.details.tags;
+			datt['totalBookmarks'] = data.totalBookmark;
+			fData.push(datt);
+		}else{
+			datt['type'] = data.type;
+			datt['thatUserId'] = data.thatUserId;
+			datt['name'] = data.projectName;
+			datt['profilePic'] = data.details.Port_Pic;
+			datt['about'] = data.details.Port_Info;
+			datt['owner'] = data.details.owner;
+			datt['port'] = data.details.numberOfPic;
+			datt['totalBookmarks'] = data.totalBookmark;
+			fData.push(datt);
+		}
+	});
+	return fData;
+}
+
+function GetFormattedSearchData(datas){
+	var fData = [];
+	datas.forEach((data) => {
+		//alert(data.thatUserId);
+		var datt = {};
+		if(data.type == "profile") {
+			datt['type'] = data.type;
+			datt['thatUserId'] = data.thatUserId;
+			datt['name'] = data.name;
+			datt['profilePic'] = data.pic;
+			datt['about'] = data.about;
+			datt['jobs'] = data.tags;
+			datt['bookmark'] = data.bookmark;
+			fData.push(datt);
+		}else{
+			datt['type'] = data.type;
+			datt['thatUserId'] = data.thatUserId;
+			datt['name'] = data.name;
+			datt['profilePic'] = data.pic[0].Pic[0];
+			datt['about'] = data.about;
+			datt['owner'] = data.owner;
+			datt['port'] = data.pic.length;
+			datt['bookmark'] = data.bookmark;
+			fData.push(datt);
+		}
+	});
+	return fData;
+}
+
+var userId = "610d3832ca49ebf4cdfed03a";
 var sortType = "time";
 
-function GetBookmarkData(){
-	fetch("http://192.168.1.3:2000/bookmark/"+id+"&&"+sortType,{
+function GetSearchBookmarkData(){
+	var q = Cookies.get('search-entry');
+	var path = pageName == 'search' ? "http://localhost:2000/search/top?q="+q+"&userId="+userId : "http://localhost:2000/bookmark/"+userId+"&&"+sortType;
+	
+	fetch(path,{
         method: "GET",
         headers: {
 			"Access-Control-Allow-Origin": "*",
@@ -494,8 +586,8 @@ function GetBookmarkData(){
 		.then(response => response.json())
 		//.then(response => response.result)
 		.then((datas) => {
-			/* Front test */
-			datas = [
+	
+			/*datas = [
 				{ 
 					"link": "111", 
 					"type":"user", 
@@ -581,11 +673,16 @@ function GetBookmarkData(){
 					"timeUpdated":"asp[okdokpas", 
 					"port":5
 				},
-			];
+			];*/
+			
+			if(pageName == "search")
+				datas = GetFormattedSearchData(datas);
+			else
+				datas = GetFormattedBookmarkData(datas);
 			
 			profileCount = 0; workCount = 0;
 			datas.forEach((data) => {
-				if(data.type == "user") 
+				if(data.type == "profile") 
 					profileCount += 1;
 				else 
 					workCount += 1;
@@ -603,7 +700,7 @@ function GetBookmarkData(){
 			datas.forEach((data) => {
 				index += 1;
 				console.log("check: "+data.name);
-				if(data.type == "user"){
+				if(data.type == "profile"){
 					if(current_tab == 1){
 						found = true;
 						profileIndex += 1;
@@ -651,17 +748,23 @@ function GetBookmarkData(){
 			if(!found){
 				DisplayNotFound();
 			}
+			if(currentTooltip != null)
+				currentTooltip.tooltip('hide');
+			
+			ReinitializeTooltips();
+			AddListenerToDynamicComponents();
+			//setTimeout(function() { ReinitializeTooltips(); }, 500);
+			//setTimeout(function() { AddListenerToDynamicComponents(); }, 500);
 			
         }).catch((error) => {
 			  console.log(error);
 			  ResetData();
 			  DisplayNotFound();
 			});
-		setTimeout(function() { ReinitializeTooltips(); }, 500);
-		setTimeout(function() { AddListenerToDynamicComponents(); }, 500);
+		
 }
 
-GetBookmarkData();
+GetSearchBookmarkData();
 
 $(function(){
    $('.tab-content').hide();
@@ -672,7 +775,7 @@ $(function(){
 	  $('#tab-1').addClass('tab-list-active')
 	  $('#content1').show();
 	  current_tab = 1;
-	  GetBookmarkData();
+	  GetSearchBookmarkData();
   });
   
   $('#tab-2').on('click', function(){
@@ -681,7 +784,7 @@ $(function(){
 	  $('#tab-2').addClass('tab-list-active')
 	  $('#content2').show();
 	  current_tab = 2;
-	  GetBookmarkData();
+	  GetSearchBookmarkData();
   });
   
   $('#tab-3').on('click', function(){
@@ -690,7 +793,7 @@ $(function(){
 	  $('#tab-3').addClass('tab-list-active')
 	  $('#content3').show();
 	  current_tab = 3;
-	  GetBookmarkData();
+	  GetSearchBookmarkData();
   });
 });
 
@@ -700,8 +803,8 @@ $(function(){
       $("#dropdownMenuButton1").val($(this).text());
    });
 
-   $("#sort-time").click(function(){ sortType = 'time'; GetBookmarkData(); });
-   $("#sort-total").click(function(){ sortType = 'total'; GetBookmarkData(); });
+   $("#sort-time").click(function(){ sortType = 'time'; GetSearchBookmarkData(); });
+   $("#sort-total").click(function(){ sortType = 'total'; GetSearchBookmarkData(); });
 });
 
 $(function(){
@@ -722,39 +825,114 @@ $(function(){
 		console.log("show list!");
 		view_type = "list";
       }
-	  GetBookmarkData();
+	  GetSearchBookmarkData();
   });
 });
 
+function DeleteBookmark(id){
+	console.log('DeleteBookmark: '+id);
+	
+	var delData = {};
+	var temp = id.split("&");
+	delData['userId'] = userId;
+	delData['type'] = temp[1];
+	delData['thatUserId'] = temp[0];
+	
+	fetch("http://localhost:2000/bookmark/saveBookmark",{
+		method: "DELETE",
+		headers: {
+			"Access-Control-Allow-Origin": "*",
+			"Access-Control-Allow-Methods": "*",
+			"Access-Control-Allow-Credentials": true,
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify(delData),
+	})
+		.then(response =>  {
+			//console.log(datas);
+			console.log(response);
+			if(pageName == "bookmark")
+				GetSearchBookmarkData();
+		})
+		.catch((error) => {
+			console.log('delete Error!');
+			//this.setState({ redirect: "/landing" });
+		});
+}
+
+function AddBookmark(id){
+	console.log('AddBookmark: '+id);
+	
+	var addData = {};
+	var temp = id.split("&");
+	addData['userId'] = userId;
+	addData['type'] = temp[1];
+	addData['thatUserId'] = temp[0];
+	
+	fetch("http://localhost:2000/bookmark/saveBookmark",{
+		method: "POST",
+		headers: {
+			"Access-Control-Allow-Origin": "*",
+			"Access-Control-Allow-Methods": "*",
+			"Access-Control-Allow-Credentials": true,
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify(addData),
+	})
+		.then(response =>  {
+			//console.log(datas);
+			console.log(response);
+			//GetSearchBookmarkData();
+		})
+		.catch((error) => {
+			console.log('add Error!');
+			//this.setState({ redirect: "/landing" });
+		});
+}
 
 function AddListenerToDynamicComponents(){
+	//alert(pageName);
 	$('.tag').on('click', function(){
        //alert(event.target.text);
 	   SearchByTag(event.target.text);
    });
    
    $(".obj-icon").unbind('click');
-   $('.obj-icon').click(function() {  
-		console.log("change icon--!!!");
-	  //alert(this.id);
-	  if (this.id == 'true') {
-		  //alert('remove!');
-        $(this).attr('src', 'assets/images/bookmark_1.png');
-		$(this).attr('data-bs-original-title', 'บันทึก');
-		$(this).attr('id', 'false');
-		console.log("Remove bookmark!");
-      }else if(this.id == 'false'){
-		  //alert('add!');
-		$(this).attr('src', 'assets/images/bookmark_2.png');
-		$(this).attr('data-bs-original-title', 'ยกเลิกการบันทึก');
-		$(this).attr('id', 'true');
-		console.log("Add bookmark!");
-	  }
+   $('.obj-icon').click(function() {
+	  // alert(pageName);
+	   if(pageName == "search"){
+		  //console.log("change icon--!!!");
+		  //alert(this.id);
+		  var nId = $(this).attr('id').split("-");
+		  
+		  if (nId[0] == 'true') {
+			  //alert('remove!');
+			$(this).attr('src', 'assets/images/bookmark_1.png');
+			$(this).attr('data-bs-original-title', 'บันทึก');
+			$(this).attr('id', $(this).attr('id').replace('true','false'));
+			//console.log("Remove bookmark!");
+			DeleteBookmark(nId[1]);
+		  }else if(nId[0] == 'false'){
+			  //alert('add!');
+			$(this).attr('src', 'assets/images/bookmark_2.png');
+			$(this).attr('data-bs-original-title', 'ยกเลิกการบันทึก');
+			$(this).attr('id', $(this).attr('id').replace('false','true'));
+			console.log("Add bookmark!");
+			AddBookmark(nId[1]);
+		  }
+	   }else{
+		   DeleteBookmark($(this).attr('id'));
+	   }
 	  $(this).tooltip('hide');
 	  //setTimeout(function() { ReinitializeTooltips();  }, 500);
 	  //$(this).tooltip('show'); });
 
-});
+	});
+	
+	$('.obj-icon').mouseover(function() {
+		console.log('mouseover icon!');
+		currentTooltip = $(this);
+	});
 }
 
 
