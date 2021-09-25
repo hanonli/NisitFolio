@@ -11,8 +11,6 @@ export class SearchService {
   constructor (
     @InjectModel('UserInfo')
     private UserInfoModel: Model<UserInfo>,
-    @InjectModel('TotalBookmark')
-    private TotalBookmarkModel: Model<TotalBookmark>,
     @InjectModel('JobTitle')
     private JobTitleModel: Model<JobTitle>,
     @InjectModel('UserJobSkill')
@@ -24,15 +22,27 @@ export class SearchService {
   async findJobName(q: string): Promise<any[]> {
     let result = [] ;
     const regex = new RegExp(escapeRegex(q), 'gi') ;
-    const Job = await this.JobTitleModel.findOne({ $or: [ { Name: regex }, { THName: regex }]}).select({ Name: 1, _id: 0}) ;
+    const Job = await this.JobTitleModel.findOne({ $or: [ { Name: regex }, { THName: regex }]}).select({ Name: 1, THName: 1, _id: 0}) ;
     if (Job == null) 
       return result ;
-    const id = await this.UserJobSkillModel.find({ JobName: Job.Name }).select({ userId: 1, _id: 0}).distinct("userId") ;
-    for (var obj of id) {
-      const user = await this.UserInfoModel.findOne({ UserId: obj.userId }) ;
-      if (user != null) 
-      result.push({ "Name": user.Firstname + ' ' + user.Lastname})
-    }
+    console.log(Job.THName, Job.Name) ;
+    const id = await this.UserInfoModel.aggregate([
+      { $match: { tags: { "$in": [Job.THName, Job.Name]}}},
+      { 
+        $group: {
+          _id: { UserId: "$UserId" }
+        }
+      }
+    ])
+    let type = 'profile' ;
+    const oid = await this.UserInfoModel.find({tags: {"$in": [Job.Name, Job.THName]}}).select({FirstName: 1, LastName: 1, UserId: 1, ProfilePic: 1, tags: 1}).distinct('UserId') ;
+    console.log(oid) ;
+    // const id = await this.UserJobSkillModel.find({ JobName: Job.Name }).select({ userId: 1, _id: 0}).distinct("userId") ;
+    // for (var obj of id) {
+    //   const user = await this.UserInfoModel.findOne({ UserId: obj.userId }) ;
+    //   if (user != null) 
+    //   result.push({ "Name": user.Firstname + ' ' + user.Lastname})
+    // }
     return result ;
   }
 

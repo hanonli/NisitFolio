@@ -15,6 +15,11 @@ export interface UserInfo extends Document {
   readonly Country: string ,
   readonly Province: string ,
   readonly City: string ,
+  readonly create_time: string,
+  readonly last_modified: string[],
+  readonly ProfilePic: string,
+  readonly tags: string[] ,
+  readonly AvgScore: number,
   readonly totalBookmark: number,
 }
 
@@ -43,13 +48,12 @@ export interface JobTitle extends Document {
 
 // -------------------------------------- UserJobSkill ---------------------------------------
 
-export interface UserJobSkill extends Document {
+export interface UserJobSkill extends Document{ 
   id: string;
-  userId: string;
-  Objective: string;
-  Score: number;
-  JobName: string;
-  SkillName: string;
+  UserId: string;
+  Job_JobName: string;
+  Job_Score: number;
+  Job_SkillName: string;
 }
 
 // ------------------------------------ interested job ---------------------------------------

@@ -47,18 +47,18 @@ export class UserInfo {
   
   @Prop()
   Lastname: String;
-
+  
   @Prop()
   Birthday: String;
+  
+  @Prop()
+  Gender: String;
 
   @Prop()
   AboutMe: String;
 
   @Prop()
   Email2nd: String;
-
-  @Prop()
-  Gender: String;
 
   @Prop()
   Country: String;
@@ -74,6 +74,15 @@ export class UserInfo {
 
   @Prop()
   last_modified: String[];
+
+  @Prop()
+  ProfilePic: String ;
+
+  @Prop()
+  tags: String[] ;
+
+  @Prop()
+  AvgScore: Number ;
 
   @Prop()
   totalBookmark: Number;
