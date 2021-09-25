@@ -15,9 +15,22 @@ export interface UserInfo extends Document {
   readonly Country: string ,
   readonly Province: string ,
   readonly City: string ,
+  readonly create_time: string,
+  readonly last_modified: string[],
+  readonly ProfilePic: string,
+  readonly tags: string[] ,
+  readonly AvgScore: number,
+  readonly totalBookmark: number,
 }
 
 // ------------------------------------- Total Bookmark ---------------------------------------
+
+export const TotalBookmarkSchema = new mongoose.Schema({
+  type: { type: String, required: [true, 'type must not be empty.']},
+  userId: { type: String, required: [true, 'userId must not be empty.'] },
+  projectName: { type: String },
+  totalBookmarks: { type: Number }
+})
 
 export interface TotalBookmark extends Document {
   type: String;
@@ -35,25 +48,28 @@ export interface JobTitle extends Document {
 
 // -------------------------------------- UserJobSkill ---------------------------------------
 
-export interface UserJobSkill extends Document {
+export interface UserJobSkill extends Document{ 
   id: string;
-  userId: string;
-  Objective: string;
-  Score: number;
-  JobName: string;
-  SkillName: string;
+  UserId: string;
+  Job_JobName: string;
+  Job_Score: number;
+  Job_SkillName: string;
 }
 
-export const TotalBookmarkSchema = new mongoose.Schema({
-  type: { type: String, required: [true, 'type must not be empty.']},
-  userId: { type: String, required: [true, 'userId must not be empty.'] },
-  projectName: { type: String },
-  totalBookmarks: { type: Number }
-})
+// ------------------------------------ interested job ---------------------------------------
 
-export interface TotalBookmark extends Document {
-  type: String;
-  userId: String;
-  projectName?: String;
-  totalBookmarks?: Number;
+export const InterestedJobSchema = new mongoose.Schema({
+  UserId : String ,
+  Job_JobName : String ,
+  Job_Objective : Array ,
+  Job_Score : Array ,
+  Job_SkillName : Array ,
+  create_time: String ,
+  last_modified : Array ,
+  ResumeId : Array ,
+}, { collection: 'InterestedJob'})
+
+export interface InterestedJob extends Document {
+  userId: string ;
+  last_modified: string[] ;
 }

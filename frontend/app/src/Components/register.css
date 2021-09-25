@@ -20,8 +20,8 @@
     height: 26vw;
     width: 60vw;
     margin-left:20%;
-    margin-bottom: 1%;
-    padding-top: 1%;
+    /*margin-bottom: 0.5vw;*/
+    margin-top: 1.5vw;
     /*padding: 1%;*/
     margin-right: 20%;
     overflow-y: scroll;

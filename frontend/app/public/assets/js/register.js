@@ -434,14 +434,14 @@ $('.aboutmee').on('change', 'input', function(){
 
 /*Tab7*/
 var list_sideskill = ["","",""];
-
+/*
 $(document).on("change", "#selectT7", function () {
   if (document.getElementById("selectT7").selectedIndex != 0) {
       $("#selectT7").removeClass("is-invalid");
       removeOptions('selectT7');
   }
 });
-
+*/
 var sskdd1 = '<div class="col-2">\
                 <div class="delbtn">\
                 <img class="obj-icon tooltips-item" src="assets/images/bin.png" type="button" data-bs-toggle="modal" toggle-type="dynamic"data-bs-target="#Modaltab7-1" id="valss1" alt="" width="30" height="30"/>\

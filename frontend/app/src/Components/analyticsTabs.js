@@ -12,6 +12,10 @@ import LoadingS from './loadingS';
 import TabBookmark from "./TabBookmark"; 
 
 const tooltip_config = {
+	titleFont: { family: "'Nunito','Kanit'", },
+	bodyFont: { family: "'Nunito','Kanit'", },
+	footerFont: { family: "'Nunito','Kanit'", },
+	
 	callbacks: {
 		label: function(context) {
 			console.log(context);
@@ -34,6 +38,10 @@ const tooltip_config = {
 	}
 };
 const tooltip_config_vertical = {
+	titleFont: { family: "'Nunito','Kanit'", },
+	bodyFont: { family: "'Nunito','Kanit'", },
+	footerFont: { family: "'Nunito','Kanit'", },
+	
 	callbacks: {
 		label: function(context) {
 			console.log(context);
@@ -372,7 +380,7 @@ class BookmarkTabs extends React.Component {
 		var norBool = false;
 		
 		var current_tab = 1;
-		var userID = '610d3832ca49ebf4cdfed020';
+		var userID = '614e14097f9f24b335174047';
 		var addJobList = [];
 		var mainJobList = [];
 		var jobMixed = [];
@@ -1097,16 +1105,22 @@ class BookmarkTabs extends React.Component {
 						  topLabel: {
 							align: "end",
 							anchor: "end",
-							textAlign: 'center',
 							font: function(context) {
 							  var w = context.chart.width;
 							  return {
-								size: w < 512 ? 14 : 18,
+								size: w < 512 ? 12 : 18,
 								weight: 'bold',
+								family: "'Nunito','Kanit'",
 							  };
 							},
 							formatter: function(value, context) {
-								return context.chart.data.labels[context.dataIndex];
+								var text = context.chart.data.labels[context.dataIndex];
+								if(text.length < 16){
+									return text;
+								}else{
+									return text.substring(0,16)+'...';
+									//return text.substring(0,20)+'\n'+text.substring(20,text.length);
+								}
 							}
 						  },
 						  middleLabel: {
@@ -1115,6 +1129,7 @@ class BookmarkTabs extends React.Component {
 							  return {
 								size: w < 512 ? 24 : 32,
 								weight: 'bold',
+								family: "'Nunito','Kanit'",
 							  };
 							},
 							formatter: function(value, context) {
@@ -1133,6 +1148,7 @@ class BookmarkTabs extends React.Component {
 							  return {
 								size: w < 512 ? 16 : 24,
 								weight: 'bold',
+								family: "'Nunito','Kanit'",
 							  };
 							},
 							formatter: function(value, context) {
@@ -1613,19 +1629,25 @@ class BookmarkTabs extends React.Component {
 						display: true,
 						color: "black",
 						labels: {
-						  topLabel: {
+						 topLabel: {
 							align: "end",
 							anchor: "end",
-							textAlign: 'center',
 							font: function(context) {
 							  var w = context.chart.width;
 							  return {
-								size: w < 512 ? 14 : 18,
+								size: w < 512 ? 12 : 18,
 								weight: 'bold',
+								family: "'Nunito','Kanit'",
 							  };
 							},
 							formatter: function(value, context) {
-								return context.chart.data.labels[context.dataIndex];
+								var text = context.chart.data.labels[context.dataIndex];
+								if(text.length < 16){
+									return text;
+								}else{
+									return text.substring(0,16)+'...';
+									//return text.substring(0,20)+'\n'+text.substring(20,text.length);
+								}
 							}
 						  },
 						  middleLabel: {
@@ -1634,6 +1656,7 @@ class BookmarkTabs extends React.Component {
 							  return {
 								size: w < 512 ? 24 : 32,
 								weight: 'bold',
+								family: "'Nunito','Kanit'",
 							  };
 							},
 							formatter: function(value, context) {
@@ -1652,6 +1675,7 @@ class BookmarkTabs extends React.Component {
 							  return {
 								size: w < 512 ? 16 : 24,
 								weight: 'bold',
+								family: "'Nunito','Kanit'",
 							  };
 							},
 							formatter: function(value, context) {
@@ -1750,12 +1774,19 @@ class BookmarkTabs extends React.Component {
 							font: function(context) {
 							  var w = context.chart.width;
 							  return {
-								size: w < 512 ? 16 : 24,
+								size: w < 512 ? 12 : 18,
 								weight: 'bold',
+								family: "'Nunito','Kanit'",
 							  };
 							},
 							formatter: function(value, context) {
-								return context.chart.data.labels[context.dataIndex];
+								var text = context.chart.data.labels[context.dataIndex];
+								if(text.length < 16){
+									return text;
+								}else{
+									return text.substring(0,16)+'...';
+									//return text.substring(0,20)+'\n'+text.substring(20,text.length);
+								}
 							}
 						  },
 						  middleLabel: {
@@ -1764,6 +1795,7 @@ class BookmarkTabs extends React.Component {
 							  return {
 								size: w < 512 ? 32 : 48,
 								weight: 'bold',
+								family: "'Nunito','Kanit'",
 							  };
 							},
 							formatter: function(value, context) {
@@ -1778,6 +1810,7 @@ class BookmarkTabs extends React.Component {
 							  return {
 								size: w < 512 ? 16 : 24,
 								weight: 'bold',
+								family: "'Nunito','Kanit'",
 							  };
 							},
 							formatter: function(value, context) {
@@ -2621,12 +2654,19 @@ class BookmarkTabs extends React.Component {
 							font: function(context) {
 							  var w = context.chart.width;
 							  return {
-								size: w < 512 ? 16 : 24,
+								size: w < 512 ? 16 : 22,
 								weight: 'bold',
+								family: "'Nunito','Kanit'",
 							  };
 							},
 							formatter: function(value, context) {
-								return context.chart.data.labels[context.dataIndex];
+								var text = context.chart.data.labels[context.dataIndex];
+								if(text.length < 16){
+									return text;
+								}else{
+									return text.substring(0,16)+'...';
+									//return text.substring(0,20)+'\n'+text.substring(20,text.length);
+								}
 							}
 						  },
 						  middleLabel: {
@@ -2635,6 +2675,7 @@ class BookmarkTabs extends React.Component {
 							  return {
 								size: w < 512 ? 32 : 48,
 								weight: 'bold',
+								family: "'Nunito','Kanit'",
 							  };
 							},
 							formatter: function(value, context) {
@@ -2649,6 +2690,7 @@ class BookmarkTabs extends React.Component {
 							  return {
 								size: w < 512 ? 16 : 24,
 								weight: 'bold',
+								family: "'Nunito','Kanit'",
 							  };
 							},
 							formatter: function(value, context) {
@@ -2777,7 +2819,7 @@ class BookmarkTabs extends React.Component {
 				}
 			};
 		
-			  setTimeout(function() { sumChart5 = new Chart(ctx5, sumChart5Config); },200);
+			  setTimeout(function() { sumChart5 = new Chart(ctx5, sumChart5Config); },100);
 		  }
 		  
 		   $('#main-lv2-back').on('click', function(){
@@ -2929,12 +2971,19 @@ class BookmarkTabs extends React.Component {
 									font: function(context) {
 									  var w = context.chart.width;
 									  return {
-										size: w < 512 ? 16 : 24,
+										size: w < 512 ? 12 : 18,
 										weight: 'bold',
+										family: "'Nunito','Kanit'",
 									  };
 									},
 									formatter: function(value, context) {
-										return context.chart.data.labels[context.dataIndex];
+										var text = context.chart.data.labels[context.dataIndex];
+										if(text.length < 16){
+											return text;
+										}else{
+											return text.substring(0,16)+'...';
+											//return text.substring(0,20)+'\n'+text.substring(20,text.length);
+										}
 									}
 								  },
 								  middleLabel: {
@@ -2943,6 +2992,7 @@ class BookmarkTabs extends React.Component {
 									  return {
 										size: w < 512 ? 32 : 48,
 										weight: 'bold',
+										family: "'Nunito','Kanit'",
 									  };
 									},
 									formatter: function(value, context) {
@@ -2957,6 +3007,7 @@ class BookmarkTabs extends React.Component {
 									  return {
 										size: w < 512 ? 16 : 24,
 										weight: 'bold',
+										family: "'Nunito','Kanit'",
 									  };
 									},
 									formatter: function(value, context) {
@@ -3259,7 +3310,7 @@ class BookmarkTabs extends React.Component {
 					console.log('3 job detected!');
 					refThis.setState({ hard1Name: addJobList[0].THname, hard2Name: addJobList[1].THname,  hard3Name: addJobList[2].THname});
 				}else{
-					alert('no add job detected!');
+					console.log('no add job detected!');
 				}
 
 				/*datas.InterestedJobs.forEach((entry) => {
@@ -3311,8 +3362,8 @@ class BookmarkTabs extends React.Component {
 				Tab1Func();
 		}
 		
-		fetch("http://localhost:3000/temp_main",{
-		//fetch("http://localhost:2000/analytics/main/"+userID,{
+		//fetch("http://localhost:3000/temp_main",{
+		fetch("http://localhost:2000/analytics/main/"+userID,{
 			//fetch("http://localhost:3000/samples_json_for_testing (must upload to server first/temp_main",{
 			method: "GET",
 			headers: {
@@ -3335,8 +3386,8 @@ class BookmarkTabs extends React.Component {
 				console.log(error);
 			});
 		
-		fetch("http://localhost:3000/temp_add",{
-		//fetch("http://localhost:2000/analytics/additional/"+userID,{
+		//fetch("http://localhost:3000/temp_add",{
+		fetch("http://localhost:2000/analytics/additional/"+userID,{
 			method: "GET",
 			headers: {
 				"Access-Control-Allow-Origin": "*",

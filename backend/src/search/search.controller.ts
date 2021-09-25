@@ -15,9 +15,8 @@ export class SearchController {
     console.log(q) ;
     
     const JobName = await this.searchService.findJobName(q) ;
-    if (JobName.length != 0) {
+    if (JobName.length != 0)
       return JobName ;
-    }
     const UserName = await this.searchService.findUserName(q) ;
     return UserName ;
   }
