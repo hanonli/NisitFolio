@@ -150,7 +150,7 @@ class MyResumeEducation extends React.Component {
                     console.log("a more than b");*/
                     return -1;  
                 } 
-                else if (educationlevel[[a.firstKey]] < educationlevel[b[firstKey]]) {  
+                else if (educationlevel[[a[firstKey]]] < educationlevel[b[firstKey]]) {  
                     /*console.log(vala);
                     console.log(valb);
                     console.log("a less than b");*/
@@ -159,10 +159,10 @@ class MyResumeEducation extends React.Component {
                 else {
                     /*console.log(vala);
                     console.log(valb);*/
-                    if (a.secondKey < b.secondKey) {  
+                    if (a[secondKey] < b[secondKey]) {  
                         
                         return 1;  
-                    } else if (a.secondKey > b.secondKey) {  
+                    } else if (a[secondKey] > b[secondKey]) {  
                         return -1;  
                     } else {
                         return 0;

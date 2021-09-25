@@ -403,6 +403,10 @@ $(document).on("click", ".frame_add_job_interest", function () {
     $("#pos-del-obj-button2").hide();
     $("#obj-job-03").val('');
     $("#pos-del-obj-button3").hide();
+    $('#obj-job-02').prop("disabled", true);
+    $("#obj-job-02").addClass("dis_input3");
+    $('#obj-job-03').prop("disabled", true);
+    $("#obj-job-03").addClass("dis_input3");
 });
 
 var for_edit;
@@ -905,17 +909,25 @@ $(document).on("change", "#obj-job-03", function () {
 $(document).on("change", "#obj-job-01", function () {
     if ($("#obj-job-01").val() != "") {
         $("#pos-del-obj-button1").show();
+        $('#obj-job-02').prop("disabled", false);
+        $("#obj-job-02").removeClass("dis_input3");
     }
     else {
         $("#pos-del-obj-button1").hide();
+        $('#obj-job-02').prop("disabled", true);
+        $("#obj-job-02").addClass("dis_input3");
     }
 });
 $(document).on("change", "#obj-job-02", function () {
     if ($("#obj-job-02").val() != "") {
         $("#pos-del-obj-button2").show();
+        $('#obj-job-03').prop("disabled", false);
+        $("#obj-job-03").removeClass("dis_input3");
     }
     else {
         $("#pos-del-obj-button2").hide();
+        $('#obj-job-03').prop("disabled", true);
+        $("#obj-job-03").addClass("dis_input3");
     }
 });
 $(document).on("change", "#obj-job-03", function () {

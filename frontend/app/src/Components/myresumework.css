@@ -1,0 +1,117 @@
+/*work content style*/
+
+.resume-work{
+    padding: 4vw;
+    text-align: center;
+}
+
+.workonecontent{
+    /*margin-top: 50%;*/
+    transform: translate(0, -50%);
+    color: black;
+}
+
+.workonecontent *{
+    color: black;
+}
+
+.workdummycontent{
+    /*margin-top: 50%;*/
+    transform: translate(0, -50%);
+    color: #C4C4C4;
+}
+
+.workdummycontent *{
+    color: #C4C4C4;
+}
+
+.inline2 { 
+    display: inline; 
+    }
+
+.workcontentLine1 .year{
+    bottom: 0;
+    font-size: 1.0vw;
+    font-weight: 500;
+
+}
+.workcontentLine1 .degree{
+    bottom: 0;
+    font-size: 1.2vw;
+    font-weight: 500;
+}
+
+.workcontentLine1 .centerbreak{
+    padding: 0.5vw;
+}
+
+.breakline{
+    font-weight: 100;
+    font-size: 1.2vw;
+}
+
+.workcontentLine2 .field{
+    font-size: 1.8vw;
+}
+.workcontentLine3{
+    height: auto;
+    margin: 0%;
+    padding: 0%;
+}
+.workcontentLine3 p{
+    font-size: 0.8vw;
+    height: auto;
+    margin-bottom: 0%;
+}
+/*Terminated*/
+/*.workcontentbigLine3{
+    font-size: 4vw;
+    height: auto;
+    margin-bottom: 0%;
+}
+
+.workcontentbigLine3 p{
+    font-size: 4vw;
+    height: auto;
+    margin-bottom: 0.5%;
+}
+*/
+.workcontentLine4 .grade{
+    bottom: 0;
+    font-size: 1.4vw;
+    font-weight: 800;
+}
+.workcontentLine4 .grade-label{
+    bottom: 0;
+    font-size: 1.2vw;
+}
+
+.work-dummyshow{
+    position: relative;
+}
+
+.work-dummy{
+    background: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -57%);
+    width: 100%;
+    
+    padding: 1vw;
+}
+
+.work-dummy p{
+    color: #939393;
+    font-size: 1vw;
+}
+
+.work-dummy button{
+    font-size: 1.4vw;
+    background: #F9DC5C;
+    border-radius: 2vw;
+    padding: 0.9vw;
+    color: black;
+    padding-inline: 3.6vw;
+    border: rgba(0,0,0,0);
+}
