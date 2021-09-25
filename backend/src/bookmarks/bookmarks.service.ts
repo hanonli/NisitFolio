@@ -25,88 +25,85 @@ export class BookmarkService {
     private PortfolioModel: Model<Portfolio>,
   ) {}
   
-  async SaveBookmark(userId: string, link: string, type: string, thatUserId: string, portName?: string): Promise<any> {
-    const success = await this.UpdateBookmark(userId, type, "add", link, thatUserId, portName);
-    let log;
+  async SaveBookmark(userId: string, type: string, thatUserId: string, projectName?: string): Promise<any> {
+    const [success, message] = await this.UpdateBookmark(userId, type, "add", thatUserId, projectName);
     if (success) {
-      console.log("Save bookmark succesfully.");
-      log = "Save bookmark succesfully.";
+      console.log("Success: " + message)
     }
     else {
-      console.log("Failed to bookmark. This profile or portfolio might not exist.")
-      log = "Failed to bookmark. This profile or portfolio might not exist.";
+      console.log("Failed: " + message)
     }
-    return log;
+    return message;
   }
 
   // ---------------------------- Delete Bookmark ---------------------------
   
-  async DeleteBookmark(userId: string, link: string, type: string, thatUserId: string, portName?: string): Promise<any> {
-    const success = await this.UpdateBookmark(userId, type, "delete", link, thatUserId, portName);
-    let log;
+  async DeleteBookmark(userId: string, type: string, thatUserId: string, projectName?: string): Promise<any> {
+    const [success, message] = await this.UpdateBookmark(userId, type, "delete", thatUserId, projectName);
     if (success) {
-      console.log("Delete bookmark succesfully.");
-      log = "Delete bookmark succesfully.";
+      console.log("Success: " + message)
     }
     else {
-      console.log("Failed to delete. This bookmark might not exist.")
-      log = "Failed to delete. This bookmark might not exist.";
+      console.log("Failed: " + message)
     }
-    return log;
+    return message;
   }
 
   /*
   * Update method
   */
 
-  async UpdateBookmark(userId: string, type: string, option: string, link: string, thatUserId: string, portName?: string): Promise<any> {
+  async UpdateBookmark(userId: string, type: string, option: string, thatUserId: string, projectName?: string): Promise<any> {
     if (type=='profile') {
-  
       if (option=='add') {
+
+          if (await this.isBookmarked(userId, thatUserId, type) ) 
+            return [0, "You already bookmarked this."];
+
           const found = await this.UserInfoModel.findOne({UserId: thatUserId}).countDocuments();
           
-          if ( !found ) return 0;
+          if ( !found ) return [0, "Failed to bookmark. This profile might not exist."];
           
           await this.UserInfoModel.updateOne({UserId: thatUserId}, { $inc: { totalBookmark: 1 }});
           const tags = [];
-          const info = await this.UserInfoModel.findOne({ UserId: thatUserId }).select("-_id Firstname Lastname AboutMe totalBookmark").exec();
-          const profilePic = await this.AccountModel.findOne({ _id: thatUserId }).select("-_id ProfilePic").exec();
+          const info = await this.UserInfoModel.findOne({ UserId: thatUserId }).select("-_id Firstname Lastname AboutMe totalBookmark ProfilePic tags").exec();
           //console.log(bookmark.thatUserId);
           // console.log(profilePic);
           const details = { 
                           name: info.Firstname + " " + info.Lastname, 
-                          pic: profilePic.ProfilePic,
+                          pic: info.ProfilePic,
                           about: info.AboutMe,
-                          tags: tags,
+                          tags: info.tags,
                         }
           const newBookmark = new this.BookmarkModel({
                                                         userId: userId,
-                                                        link: link,
                                                         thatUserId: thatUserId,
                                                         type: type,
                                                         details: details,
                                                         totalBookmark: info.totalBookmark,
                                                       });
           await newBookmark.save()
-          return 1;
+          return [1, "Saved successfully."];
       }
       else {
         const found = await this.BookmarkModel.findOne({userId: userId, type: type, thatUserId: thatUserId}).countDocuments();
-        if (!found) return 0;
+        if (!found) return [0, "Failed to delete. This bookmark might not exist."];
 
         await this.BookmarkModel.deleteOne({userId: userId, type: type, thatUserId: thatUserId});
         await this.UserInfoModel.updateOne({UserId: thatUserId}, { $inc: { totalBookmark: -1 }});
-        return 1;
+        return [1, "Deleted successfully."];
       }
     }
     else if (type=='work') {
-      const found = await this.PortfolioModel.findOne({UserId: thatUserId, Port_Name: portName}).countDocuments();
+      const found = await this.PortfolioModel.findOne({UserId: thatUserId, Port_Name: projectName}).countDocuments();
       
-      if ( !found ) return 0;
+      if ( !found ) return [0, "Failed to bookmark. This portfolio might not exist."];
       
       if (option=='add') {
-        await this.PortfolioModel.updateOne({UserId: thatUserId, Port_Name: portName}, { $inc: { totalBookmark: 1 }});
-        const info = await this.PortfolioModel.findOne({UserId: thatUserId, Port_Name: portName})
+        if ( await this.isBookmarked(userId, thatUserId, type, projectName) ) 
+          return [0, "You already bookmarked this."];
+        await this.PortfolioModel.updateOne({UserId: thatUserId, Port_Name: projectName}, { $inc: { totalBookmark: 1 }});
+        const info = await this.PortfolioModel.findOne({UserId: thatUserId, Port_Name: projectName})
                                     .select("-_id Port_Name Port_Info portfolioPictures Owner totalBookmark").exec();
         
         const details = {
@@ -118,23 +115,22 @@ export class BookmarkService {
 
         const newBookmark = new this.BookmarkModel({
                                                       userId: userId,
-                                                      link: link,
                                                       thatUserId: thatUserId,
-                                                      portName: portName,
+                                                      projectName: projectName,
                                                       type: type,
                                                       details: details,
                                                       totalBookmark: info.totalBookmark,
                                                     });
         await newBookmark.save();
-        return 1;
+        return [1, "Saved successfully."];
       }
       else {
-        const found = await this.BookmarkModel.findOne({userId: userId, type: type, thatUserId: thatUserId, portName: portName}).countDocuments();
-        if (!found) return 0;
+        const found = await this.BookmarkModel.findOne({userId: userId, type: type, thatUserId: thatUserId, projectName: projectName}).countDocuments();
+        if (!found) return [0, "Failed to delete. This bookmark might not exist."];
 
         await this.BookmarkModel.deleteOne({userId: userId, type: type, thatUserId: thatUserId});
-        await this.PortfolioModel.updateOne({UserId: thatUserId, Port_Name: portName}, { $inc: { totalBookmark: -1 }});
-        return 1;
+        await this.PortfolioModel.updateOne({UserId: thatUserId, Port_Name: projectName}, { $inc: { totalBookmark: -1 }});
+        return [1, "Deleted successfully."];
       }
     }
   }
@@ -143,13 +139,23 @@ export class BookmarkService {
     let bookmarks;
     if (sort=='time') {
       bookmarks = await this.BookmarkModel.find( { userId: userId }).sort( { updatedAt: -1, _id: 1})
-                                                                          .select("-_id -__V").exec();
+                                                                          .select("-_id -__v -createdAt").exec();
     }
     else{
       bookmarks = await this.BookmarkModel.find( { userId: userId }).sort( { totalBookmark: -1, _id: 1})
-                                                                          .select("-_id -__V").exec();
+                                                                          .select("-_id -__v -createdAt").exec();
     }
     return bookmarks;
+  }
+
+  async isBookmarked(userId: string, thatUserId: string, type: string, projectName?: string) {
+    let found;
+    if(type=='profile')
+      found = await this.BookmarkModel.findOne({userId: userId, type: type, thatUserId: thatUserId}).countDocuments();
+    if(type=='work')
+      found = await this.BookmarkModel.findOne({userId: userId, type: type, thatUserId: thatUserId, projectName: projectName}).countDocuments();
+    console.log(found);
+    return found;    
   }
   
 }

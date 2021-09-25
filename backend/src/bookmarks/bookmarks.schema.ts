@@ -17,7 +17,7 @@ export class Bookmark {
   type: String;
 
   @Prop()
-  portName?: String;
+  projectName?: String;
 
   @Prop({type: Object})
   details: any;
