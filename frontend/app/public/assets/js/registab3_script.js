@@ -73,18 +73,20 @@ function show_all_aca() {
       //grid_aca1 = grid_aca1.replace("{field_aca}", ele["aca_field"]);
       //grid_aca1 = grid_aca1.replace("{faculty_aca}", ele["aca_faculty"]);
       //grid_aca1 = grid_aca1.replace("{year_aca}", ele["aca_year"]);
-      if (ele["aca_name"].length > 38) {
-        grid_aca1 = grid_aca1.replace("{name_aca}", ele["aca_name"].slice(0, 38) + "...");
-      }
-      else {
-        grid_aca1 = grid_aca1.replace("{name_aca}", ele["aca_name"]);
-      }
-      if (ele["aca_faculty"].length > 38) {
-        grid_aca1 = grid_aca1.replace("{faculty_aca}", ele["aca_faculty"].slice(0, 38) + "...");
-      }
-      else {
-        grid_aca1 = grid_aca1.replace("{faculty_aca}", ele["aca_faculty"]);
-      }
+      // if (ele["aca_name"].length > 38) {
+      //   grid_aca1 = grid_aca1.replace("{name_aca}", ele["aca_name"].slice(0, 38) + "...");
+      // }
+      // else {
+      //   grid_aca1 = grid_aca1.replace("{name_aca}", ele["aca_name"]);
+      // }
+      grid_aca1 = grid_aca1.replace("{name_aca}", ele["aca_name"]);
+      // if (ele["aca_faculty"].length > 38) {
+      //   grid_aca1 = grid_aca1.replace("{faculty_aca}", ele["aca_faculty"].slice(0, 38) + "...");
+      // }
+      // else {
+      //   grid_aca1 = grid_aca1.replace("{faculty_aca}", ele["aca_faculty"]);
+      // }
+      grid_aca1 = grid_aca1.replace("{faculty_aca}", ele["aca_faculty"]);
       if(ele["aca_grade"]=="0.00"){
         grid_aca1 = grid_aca1.replace("{grade_aca}", '-');
       }
@@ -334,13 +336,13 @@ function show_all_high() {
   list_of_high.forEach(ele => {
       var grid_high1 = '<div class="t3-content1 row">\
                           <div class="col-4">\
-                              <div class="row font-titlet3 font-boldt3 mg-left1per">{degree_high}</div>\
-                              <div class="row font-titlet3 font-khotboldt3 mg-left1per">{year_high}</div>\
+                              <div class="font-titlet4 font-boldt3">{degree_high}</div>\
+                              <div class="font-titlet4 font-khotboldt3">{year_high}</div>\
                           </div>\
                           <div class="col-8">\
-                              <div class="row font-titlet3">{field_high}</div>\
-                              <div class="row font-titlet3">{name_high}</div>\
-                              <div class="row font-titlet3">เกรด {grade_high}</div>\
+                              <div class="font-titlet4">{field_high}</div>\
+                              <div class="font-titlet4">{name_high}</div>\
+                              <div class="font-titlet4">เกรด {grade_high}</div>\
                           </div>';
 
       var grid_high2 = `
@@ -352,12 +354,14 @@ function show_all_high() {
       grid_high2 = grid_high2.replace("{no-list-high}", ele["id"]);
       grid_high1 = grid_high1.replace("{no_high}", ele["high_pos"]);
       grid_high1 = grid_high1.replace("{degree_high}", ele["high_degree"]);
-      if (ele["high_name"].length > 34) {
-        grid_high1 = grid_high1.replace("{name_high}", ele["high_name"].slice(0, 34) + "...");
-      }
-      else {
-        grid_high1 = grid_high1.replace("{name_high}", ele["high_name"]);
-      }
+        // if (ele["high_name"].length > 34) {
+        //   grid_high1 = grid_high1.replace("{name_high}", ele["high_name"].slice(0, 34) + "...");
+        // }
+        // else {
+        //   grid_high1 = grid_high1.replace("{name_high}", ele["high_name"]);
+        // }
+
+      grid_high1 = grid_high1.replace("{name_high}", ele["high_name"]);
       if(ele["high_grade"]=="0.00"){
         grid_high1 = grid_high1.replace("{grade_high}", '-');
       }
@@ -367,12 +371,13 @@ function show_all_high() {
       if(ele["high_field"]=="none"){
         grid_high1 = grid_high1.replace("{field_high}", '-');
       }
-      else if(ele["high_field"].length > 34){
-        grid_high1 = grid_high1.replace("{field_high}", ele["high_field"].slice(0, 34) + "...");
-      }
-      else{
-        grid_high1 = grid_high1.replace("{field_high}", ele["high_field"]);
-      }
+      // else if(ele["high_field"].length > 34){
+      //   grid_high1 = grid_high1.replace("{field_high}", ele["high_field"].slice(0, 34) + "...");
+      // }
+      // else{
+      //   grid_high1 = grid_high1.replace("{field_high}", ele["high_field"]);
+      // }
+      grid_high1 = grid_high1.replace("{field_high}", ele["high_field"]);
       if(ele["high_year"]=="0"){
         grid_high1 = grid_high1.replace("{year_high}", '-');
       }
