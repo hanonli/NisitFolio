@@ -1333,6 +1333,7 @@ a.btn-cta-primary-white:hover, .btn-cta-primary-white:hover {
   background-color: white;
   border: solid #070707;
   border-width: 0px 0px 7px 0px;
+  font-weight: 400;
 }
 
 .tab-list-active:hover {
