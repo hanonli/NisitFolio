@@ -1239,7 +1239,7 @@ a.btn-cta-primary-white:hover, .btn-cta-primary-white:hover {
   margin-left: 8%;
   margin-right: 8%;
   margin-bottom: 2%;
-  border-radius: 1vw;
+  border-radius: vw;
   background: #d1d9e2;
   overflow: auto;
 }
@@ -1337,6 +1337,14 @@ a.btn-cta-primary-white:hover, .btn-cta-primary-white:hover {
   background-color: white;
   border: solid #070707;
   border-width: 0px 0px 7px 0px;
+}
+
+.underline-tabJob2{
+  width: 63.3%;
+  display: block;
+  height: 0.1px;
+  background-color: #c4c4c4;
+  margin: -2vh auto 0;
 }
 
 .cropper-crop-box, .cropper-view-box {

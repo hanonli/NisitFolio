@@ -44,6 +44,8 @@ class Register extends React.Component {
 					<li class="tab-list-item" id="tab-6" type="button">งานที่สนใจ</li>
 					<li class="tab-list-item" id="tab-7" type="button">ทักษะเสริม</li>
 				</ol>
+				<div class="underline-tabJob2">
+				</div>
 				<form class="needs-validation" novalidate>
 				<div>
 					<div class="tab-content" id="registab1-content">
