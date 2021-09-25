@@ -1319,6 +1319,8 @@ a.btn-cta-primary-white:hover, .btn-cta-primary-white:hover {
   padding-left: 1.5%;
   padding-right: 1.5%;
   color:#000000;
+  /*border: solid #c4c4c4;
+  border-width: 0px 0px 0.1px 0px;*/
 }
 
 .tab-list-item:hover {
