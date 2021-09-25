@@ -30,8 +30,8 @@ class Registab3 extends React.Component {
                                             <h2 class="font-headert3">อุดมศึกษา</h2>
                                         </div>
                                         <div class="col-2 transition-component" id="cross-fadegone">
-                                                <img class="registab3_btnplus icon-plus-circle bottom" type='button' id='add_aca' src="assets/images/add_hover.png"></img>
-                                                <img class="registab3_btnplus icon-plus-circle top" type='button' id='add_aca' src="assets/images/add_black.png"></img>
+                                                <img class="registab3_btnplus icon-plus-circleA bottom" type='button' src="assets/images/add_hover.png"></img>
+                                                <img class="registab3_btnplus icon-plus-circleA top" type='button' id='add_aca' src="assets/images/add_black.png"></img>
                                         </div>
                                     </div>
 									<div className=''>
@@ -123,8 +123,8 @@ class Registab3 extends React.Component {
 									        <h2 class="font-headert3">มัธยมศึกษา</h2>
                                         </div>
                                         <div class="col-2 transition-component" id="cross-fadegone">
-                                                <img class="registab3_btnplus icon-plus-circle bottom" type='button' id='add_high' src="assets/images/add_hover.png"></img>
-                                                <img class="registab3_btnplus icon-plus-circle top" type='button' id='add_high' src="assets/images/add_black.png"></img>
+                                                <img class="registab3_btnplus icon-plus-circleH bottom" type='button' src="assets/images/add_hover.png"></img>
+                                                <img class="registab3_btnplus icon-plus-circleH top" type='button' id='add_high' src="assets/images/add_black.png"></img>
                                         </div>
                                     </div>
 									<div className=''>		

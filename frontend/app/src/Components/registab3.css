@@ -27,7 +27,14 @@
 .center3 {
     text-align: center;
 }
-.icon-plus-circle {
+.icon-plus-circleA {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    justify-content: center;
+}
+
+.icon-plus-circleH {
     position: relative;
     width: 50px;
     height: 50px;
