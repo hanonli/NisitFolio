@@ -337,13 +337,13 @@ function show_all_high() {
   list_of_high.forEach(ele => {
       var grid_high1 = '<div class="t3-content1 row">\
                           <div class="col-4">\
-                              <div class="row font-titlet3 font-boldt3 mg-left1per">{degree_high}</div>\
-                              <div class="row font-titlet3 font-khotboldt3 mg-left1per">{year_high}</div>\
+                              <div class="font-titlet3 font-boldt3 mg-left1per">{degree_high}</div>\
+                              <div class="font-titlet3 font-khotboldt3 mg-left1per">{year_high}</div>\
                           </div>\
                           <div class="col-8">\
-                              <div class="row font-titlet3">{field_high}</div>\
-                              <div class="row font-titlet3">{name_high}</div>\
-                              <div class="row font-titlet3">เกรด {grade_high}</div>\
+                              <div class="font-titlet3">{field_high}</div>\
+                              <div class="font-titlet3">{name_high}</div>\
+                              <div class="font-titlet3">เกรด {grade_high}</div>\
                           </div>';
 
       var grid_high2 = `
