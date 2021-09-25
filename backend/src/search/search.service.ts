@@ -53,7 +53,7 @@ export class SearchService {
     // ------------------------------------ portfolio -----------------------------------
     
     type = "work" ;
-    const port = await this.PortfolioModel.find({Port_Tag: { "$in": [Job.Name, Job.THName]}}).select({Port_Name: 1, UserId: 1, portfolioPictures: 1, Port_Tag: 1, Port_Info: 1, owner: 1, _id: 0}).exec() ;
+    const port = await this.PortfolioModel.find({Port_Tag: { "$in": [Job.Name, Job.THName]}}).select({Port_Name: 1, UserId: 1, portfolioPictures: 1, Port_Tag: 1, Port_Info: 1, Owner: 1, _id: 0}).exec() ;
     let nport = port.sort((a,b) => (a.totalBookmark < b.totalBookmark ? 1 : -1 )) ;
     for (var obj1 of nport) {
       const is_Bookmark = await this.BookmarkModel.find({ userId: userId, projectName: obj1.Port_Name, thatUserId: obj1.UserId, type: type}).exec() ;
@@ -63,7 +63,7 @@ export class SearchService {
       else 
         check = "false" ;
         result.push({"name": obj1.Port_Name, "type": type, "thatUserId": obj1.UserId, 
-        "pic": obj1.portfolioPictures, "about": obj1.Port_Info, "tags": obj1.Port_Tag, "owner": obj1.owner, "bookmark": check, /* "AvgScore": obj.AvgScore, "totalBookmark": obj.totalBookmark */ }) ;
+        "pic": obj1.portfolioPictures, "about": obj1.Port_Info, "tags": obj1.Port_Tag, "owner": obj1.Owner, "bookmark": check, /* "AvgScore": obj.AvgScore, "totalBookmark": obj.totalBookmark */ }) ;
     }
     //let sorted_result = result.sort((a,b) => (a.totalBookmark < b.totalBookmark ? 1 : a.totalBookmark == b.totalBookmark ? (a.AvgScore < b.AvgScore ? 1 : -1) : -1 ));
     return /* sorted_*/result ;
@@ -98,7 +98,7 @@ export class SearchService {
 
     // ------------------------------------------ portfolio ----------------------------------------
 
-    const port = await this.PortfolioModel.find( {Port_Name: regex, Port_Privacy: "Public"} ).select({Port_Name: 1, UserId: 1, portfolioPictures: 1, Port_Tag: 1, Port_Info: 1, owner: 1, _id: 0}).exec() ;
+    const port = await this.PortfolioModel.find( {Port_Name: regex, Port_Privacy: "Public"} ).select({Port_Name: 1, UserId: 1, portfolioPictures: 1, Port_Tag: 1, Port_Info: 1, Owner: 1, _id: 0}).exec() ;
     let nport = port.sort((a,b) => (a.totalBookmark < b.totalBookmark ? 1 : -1 )) ;
     type = "work" ;
     for (var obj1 of nport) {
@@ -109,7 +109,7 @@ export class SearchService {
       else 
         check = "false" ;
         result.push({"name": obj1.Port_Name, "type": type, "thatUserId": obj1.UserId, 
-        "pic": obj1.portfolioPictures, "about": obj1.Port_Info, "tags": obj1.Port_Tag, "owner": obj1.owner, "bookmark": check, /* "AvgScore": obj.AvgScore, "totalBookmark": obj.totalBookmark */ }) ;
+        "pic": obj1.portfolioPictures, "about": obj1.Port_Info, "tags": obj1.Port_Tag, "owner": obj1.Owner, "bookmark": check, /* "AvgScore": obj.AvgScore, "totalBookmark": obj.totalBookmark */ }) ;
     }
 
     //let result = temp.sort((a,b) => (a.totalBookmark < b.totalBookmark ? 1 : a.totalBookmark == b.totalBookmark ? (a.AvgScore < b.AvgScore ? 1 : -1) : -1 ));
