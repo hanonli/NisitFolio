@@ -1239,7 +1239,7 @@ a.btn-cta-primary-white:hover, .btn-cta-primary-white:hover {
   margin-left: 8%;
   margin-right: 8%;
   margin-bottom: 2%;
-  border-radius: 1vw;
+  border-radius: vw;
   background: #d1d9e2;
   overflow: auto;
 }
@@ -1319,6 +1319,8 @@ a.btn-cta-primary-white:hover, .btn-cta-primary-white:hover {
   padding-left: 1.5%;
   padding-right: 1.5%;
   color:#000000;
+  /*border: solid #c4c4c4;
+  border-width: 0px 0px 0.1px 0px;*/
 }
 
 .tab-list-item:hover {
@@ -1331,12 +1333,21 @@ a.btn-cta-primary-white:hover, .btn-cta-primary-white:hover {
   background-color: white;
   border: solid #070707;
   border-width: 0px 0px 7px 0px;
+  font-weight: 400;
 }
 
 .tab-list-active:hover {
   background-color: white;
   border: solid #070707;
   border-width: 0px 0px 7px 0px;
+}
+
+.underline-tabJob2{
+  width: 63.3%;
+  display: block;
+  height: 0.1px;
+  background-color: #c4c4c4;
+  margin: -2vh auto 0;
 }
 
 .cropper-crop-box, .cropper-view-box {
@@ -1557,6 +1568,10 @@ body {
 	border-radius: 2vh;
 }
 
+.MuiFormControl-root{
+  width: 100%;
+}
+
 .Mui-selected{
 	background: #F9DC5C !important;
 }
@@ -1566,7 +1581,12 @@ body {
 }
 
 .MuiFilledInput-root{
-	border-radius: 2vh !important;
+	border-radius: 3vh !important;
+  /*padding-left: 15px !important;*/
+}
+
+.MuiFilledInput-root:hover{
+	background-color: #C4C4C4 !important;
 }
 
 #basic-date-picker{
@@ -1574,6 +1594,9 @@ body {
 	padding: 1vh 1vh 1vh 1vh;
 }
 
+.MuiButtonBase-root{
+  padding:15px !important;
+}
 .MuiFilledInput-underline:before{
 	border-bottom: 0px solid rgba(0,0,0,0.42) !important;
 }
@@ -2275,4 +2298,31 @@ a.btn-cta-primary-yellowwideE:hover, .btn-cta-primary-yellowwideE:hover {
 
 .fff {
   font-family: 'Nunito','Kanit', arial, sans-serif;
+}
+
+#cross-fadegone {
+  position:relative;
+  margin:0 auto;
+}
+
+#cross-fadegone img {
+  position:absolute;
+  left: 30px;
+  top: 15px;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  -moz-transition: opacity 0.2s ease-in-out;
+  -o-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+}
+
+#cross-fadegone img.bottom {
+  opacity:0.01;
+}
+
+#cross-fadegone:hover img.bottom {
+  opacity:1;
+}
+
+#cross-fadegone img.top:hover {
+  opacity:0;
 }

@@ -29,9 +29,10 @@ class Registab3 extends React.Component {
                                         <div class='col-10'>
                                             <h2 class="font-headert3">อุดมศึกษา</h2>
                                         </div>
-                                        <button type="button" class="col-2 btn registab3_btnplus" id="add_aca">
-											<img id='icon-plus-circle'  src="assets/images/add_black.png"></img>
-									    </button>
+                                        <div class="col-2 transition-component" id="cross-fadegone">
+                                                <img class="registab3_btnplus icon-plus-circle bottom" type='button' id='add_aca' src="assets/images/add_hover.png"></img>
+                                                <img class="registab3_btnplus icon-plus-circle top" type='button' id='add_aca' src="assets/images/add_black.png"></img>
+                                        </div>
                                     </div>
 									<div className=''>
                                         <h5 class='font-dest3'>ระดับอุดมศึกษาจะประกอบไปด้วย ปวส. ปริญญาตรี ปริญญาโท และปริญญาเอก</h5>
@@ -58,11 +59,12 @@ class Registab3 extends React.Component {
                                                                             <option value='ปริญญาเอก'>ปริญญาเอก</option>    
                                                                             <option value='ปริญญาโท'>ปริญญาโท</option>
                                                                             <option value='ปริญญาตรี'>ปริญญาตรี</option>
+                                                                            <option value='ปวส.'>ปวส.</option>
                                                                         </select>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-3 chidright">
-										                            <label class="form-f-sex">ปีที่จบการศึกษา<a class="red_markEp1">*</a></label>
+										                            <label class="form-f-sex">ปีที่จบการศึกษา</label>
 									                            </div>
                                                                 <div class='col-3' >
                                                                     <select class="form-select form-select-lg dropbtn margin-bottom1 fff" id='year_secondary' aria-labelledby="select1">
@@ -76,7 +78,7 @@ class Registab3 extends React.Component {
 										                                <label class="form-f-sex">สถานศึกษา<a class="red_markEp1">*</a></label>
 									                                </div>
                                                                     <div class="col-9 ">
-                                                                        <input type="text" class="form-control dropbtn margin-bottom1 " id="aca_name" required></input>
+                                                                        <input maxlength="56" type="text" class="form-control dropbtn margin-bottom1 " id="aca_name" required></input>
                                                                     </div>
                                                                 </div>
                                                                 <div class='row'>
@@ -84,7 +86,7 @@ class Registab3 extends React.Component {
 										                                <label class="form-f-sex">คณะ<a class="red_markEp1">*</a></label>
 									                                </div>
                                                                     <div class="col-9">
-                                                                        <input type="text" class="form-control dropbtn margin-bottom1 " id="aca_faculty" required></input>
+                                                                        <input maxlength="56" type="text" class="form-control dropbtn margin-bottom1 " id="aca_faculty" required></input>
                                                                     </div>
                                                                 </div>
                                                                 <div class='row'>
@@ -92,7 +94,7 @@ class Registab3 extends React.Component {
 										                                <label class="form-f-sex">สาขาวิชา</label>
 									                                </div>
                                                                     <div class="col-4">
-                                                                        <input type="text" class="form-control dropbtn margin-bottom1 fff" id="aca_field" ></input>
+                                                                        <input maxlength="36" type="text" class="form-control dropbtn margin-bottom1 fff" id="aca_field" ></input>
                                                                     </div>
                                                                     <div class="col-2 chidright">
 										                                <label class="form-f-sex">เกรดเฉลี่ยสะสม</label>
@@ -120,9 +122,10 @@ class Registab3 extends React.Component {
                                         <div class='col-10'>
 									        <h2 class="font-headert3">มัธยมศึกษา</h2>
                                         </div>
-                                        <button type="button" class="btn registab3_btnplus col-2" data-bs-toggle="modal" data-bs-target="#registab3Modal2" id="add_high">
-                                            <img id='icon-plus-circle'  src="assets/images/add_black.png"></img>
-                                        </button>
+                                        <div class="col-2 transition-component" id="cross-fadegone">
+                                                <img class="registab3_btnplus icon-plus-circle bottom" type='button' id='add_high' src="assets/images/add_hover.png"></img>
+                                                <img class="registab3_btnplus icon-plus-circle top" type='button' id='add_high' src="assets/images/add_black.png"></img>
+                                        </div>
                                     </div>
 									<div className=''>		
                                         <h5 class='font-dest3'>ระดับมัธยมศึกษาในที่นี้จะประกอบไปด้วย มัธยมศึกษาตอนปลาย และปวช.</h5>
@@ -133,7 +136,7 @@ class Registab3 extends React.Component {
 									    </div>
 									<div class="modal fade" id="registab3Modal2" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
 										<div class="modal-dialog modal-dialog-centered modal-xl">
-											<div class="modal-content modalworkaddH" >
+											<div class="modal-content modalworkaddH2" >
 												<div class='modal-body'>
 													<h1 class='modal-title' id='regisModallabel2' >เพิ่มประวัติการศึกษา</h1>
 													<div className='addSecondary'>
@@ -145,12 +148,10 @@ class Registab3 extends React.Component {
                             <label class="form-f-sex">วุฒิการศึกษา<a class="red_markEp1">*</a></label>
                         </div>
                         <div class="col-3">
-                            <select class="form-select form-select-lg dropbtn margin-bottom1 fff" id='high_degree' aria-labelledby="select1" required>
-                                <option selected disabled value=''>เลือกวุฒิการศึกษา</option> 
-                                <option value='อาชีวะศึกษา' >อาชีวะศึกษา </option>  
+                            <select class="form-select form-select-lg margin-bottom1 fff dropbtn_year" id='high_degree' aria-labelledby="select1" required>
+                                <option selected disabled value='none'>เลือกวุฒิการศึกษา</option> 
                                 <option value='มัธยมศึกษาตอนปลาย' >มัธยมศึกษาตอนปลาย</option>    
-                                <option value='มัธยมศึกษาตอนต้น' >มัธยมศึกษาตอนต้น</option>
-                                <option value='ประถมศึกษา' >ประถมศึกษา</option> 
+                                <option value='ปวช.' >ปวช.</option>
                             </select>
                         </div>
                         <div class="col-3 chidright">
@@ -168,17 +169,17 @@ class Registab3 extends React.Component {
 							<label class="form-f-sex">สถานศึกษา<a class="red_markEp1">*</a></label>
 						</div>
                         <div class="col-9 ">
-                            <input type="text" class="form-control dropbtn margin-bottom1 fff" id="high_name" required></input>
+                            <input maxlength="56" type="text" class="form-control dropbtn margin-bottom1 fff" id="high_name" required></input>
                         </div>
                     </div>
                     <div class='row'>
-                        <div class="col-md-3 chidright">
-							<label class="form-f-sex">หลักสูตร/แผนการเรียน</label>
+                        <div class="col-md-3 chidright del-padleft">
+							<label class="form-f-cfp">หลักสูตร/แผนการเรียน</label>
 						</div>
-                        <div class="col-3 ">
-                            <input type="text" class="form-control dropbtn margin-bottom1 fff" id="high_field" required></input>
+                        <div class="col-4 ">
+                            <input maxlength="36" type="text" class="form-control dropbtn margin-bottom1 fff" id="high_field" required></input>
                         </div>
-                        <div class="col-md-3 chidright">
+                        <div class="col-md-2 chidright">
 							<label class="form-f-sex">เกรดเฉลี่ยสะสม</label>
 						</div>
                         <div class='col-3'> 

@@ -36,7 +36,7 @@ class Register extends React.Component {
 				<Navbarlogo />
 				<InformationHeader />
 				<ol class="tabs-list">
-					<li class="tab-list-item tab-list-active" id="tab-1" type="button">ข้อมูลสำคัญ</li>
+					<li class="tab-list-item tab-list-active" id="tab-1" type="button">ข้อมูลสำคัญ<a class="red_markEp1">*</a></li>
 					<li class="tab-list-item" id="tab-2" type="button">ข้อมูลเพิ่มเติม</li>
 					<li class="tab-list-item" id="tab-3" type="button">ประวัติการศึกษา</li>
 					<li class="tab-list-item" id="tab-4" type="button">ประวัติการทำงาน</li>
@@ -44,6 +44,8 @@ class Register extends React.Component {
 					<li class="tab-list-item" id="tab-6" type="button">งานที่สนใจ</li>
 					<li class="tab-list-item" id="tab-7" type="button">ทักษะเสริม</li>
 				</ol>
+				<div class="underline-tabJob2">
+				</div>
 				<form class="needs-validation" novalidate>
 				<div>
 					<div class="tab-content" id="registab1-content">
