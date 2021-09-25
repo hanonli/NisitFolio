@@ -30,7 +30,7 @@ class MyresumeHeading extends React.Component{
                         <p class="resume-occupation">{this.props.occupation? this.props.occupation: "ตำแหน่งงานที่สนใจ"}</p>
                     </div>
                     <div class="resume-hometown">
-                        <p>เมือง, นครศรีธรรมราช, ประเทศไทย</p>
+                        <p>{this.props.city? this.props.city+", ": ""}{this.props.province? this.props.province+", ": ""} ประเทศไทย</p>
                     </div>
                 </div>
                           
