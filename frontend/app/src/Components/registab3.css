@@ -37,8 +37,9 @@
 .Registab3 .registab3_formbox .modal-title{
     color:black;
     font-size: 50px;
-    padding-left: 40px;
+    padding-left: 30px;
     padding-bottom: 10px;
+    font-weight: 500;
 }
 
 .Registab3 .registab3_formbox .addHigher{
