@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Select, { NonceProvider } from 'react-select'
+import selectEvent from 'react-select-event'
 import AsyncSelect from 'react-select-async-paginate'
 import $ from 'jquery'
 
@@ -95,15 +96,17 @@ const customStyles = {
             newT.push(temp);
         }
         */
-        $(document).on("change", "#selectT7", function () {
+        $('#selectT7').select(function () {
+            alert('หิวข้าว');
+            console.log($('#selectT7').val());
             var typeSS = $('#selectT7').val();
         fetch("http://localhost:2000/register/" + typeSS +"/hardskill",
 		{ method: "GET", })
 		.then(response => response.json())
 		//.then(response => response.result)
 		.then((raws) => {
-      console.log("http://localhost:2000/register/" + typeSS +"/hardskill");
-			console.log(raws);
+            console.log("http://localhost:2000/register/" + typeSS +"/hardskill");
+			//console.log(raws);
 			raws.forEach((entryss) => {
 				//console.log(entryss);
                 //console.log(entryss.THName);
