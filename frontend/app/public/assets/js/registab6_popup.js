@@ -928,7 +928,7 @@ $(document).on("change", "#obj-job-03", function () {
 });
 
 function testPost6() {
-    var Job_Score = [], Job_Jobname = [], Job_Objective = [], Job_SkillName = []; //variable for send to backend 
+    var Job_Score1 = [], Job_Jobname = [], Job_Objective = [], Job_SkillName = []; //variable for send to backend 
     var i = 0;
     list_of_job.forEach(ele => {
         //post job name
@@ -941,21 +941,21 @@ function testPost6() {
             total_skill_score[0] = ele["score_skill1"];
         }
         else {
-            total_skill_score[0] = "none";
+            total_skill_score[0] = 0;
         }
         if (ele["skill2"] != "none") {
             total_skill_score[1] = ele["score_skill2"];
         }
         else {
-            total_skill_score[1] = "none";
+            total_skill_score[1] = 0;
         }
         if (ele["skill3"] != "none") {
             total_skill_score[2] = ele["score_skill3"];
         }
         else {
-            total_skill_score[2] = "none";
+            total_skill_score[2] = 0;
         }
-        Job_Score.push(total_skill_score);
+        Job_Score1.push(total_skill_score);
         //post job objective
         var listofObj = [];
         listofObj.push(ele["obj1"]);
@@ -965,7 +965,7 @@ function testPost6() {
     });
     console.log("Job_Jobname:", Job_Jobname);
     console.log("Job_SkillName:", Job_SkillName);
-    console.log("Job_Score:", Job_Score);
+    console.log("Job_Score:", Job_Score1);
     console.log("Job_Objective:", Job_Objective);
 }
 /*---------------- disable slider range ----------------*/

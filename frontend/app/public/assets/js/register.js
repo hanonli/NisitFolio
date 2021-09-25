@@ -5,6 +5,7 @@ window.onload = () => {
   myInput1.onpaste = e => e.preventDefault();
   myInput2.onpaste = e => e.preventDefault();
  }
+
 /*Tabs New*/
 $(function(){
     $('.tab-content').hide();
@@ -80,14 +81,46 @@ $(function(){
 
 $('#continue2').click(function () {
   var BDDate= $('#basic-date-picker1').val();
+  var last_province= $('#province').val();
+  var last_city = $('#townny').val();
+  var last_aboutme = $('#aboutme2').val();
   var last_sideskill = list_sideskill;
+  if(last_province==null){
+    last_province='';
+  }
+  if(last_city==null){
+    last_city='';
+  }
+  if(last_aboutme==null){
+    last_aboutme='';
+  }
   var last_jobname=[],last_jobskill=[],last_jobscore=[],last_jobobj=[];
   //console.log(list_of_job);
   list_of_job.forEach((entry) => {
     //console.log(entry);
     last_jobname.push(entry.name_job);
     last_jobskill.push([entry.skill1,entry.skill2,entry.skill3]);
-    last_jobscore.push([entry.score_skill1,entry.score_skill2,entry.score_skill3]);
+    //last_jobscore.push([parseFloat(entry.score_skill1).toFixed(1),parseFloat(entry.score_skill2).toFixed(1),parseFloat(entry.score_skill3).toFixed(1)]);
+    var total_skill_score = new Float32Array(3);
+        if (entry.skill1 != "none") {
+            total_skill_score[0] = entry.score_skill1;
+        }
+        else {
+            total_skill_score[0] = 0;
+        }
+        if (entry.skill2 != "none") {
+            total_skill_score[1] = entry.score_skill2;
+        }
+        else {
+            total_skill_score[1] = 0;
+        }
+        if (entry.skill3 != "none") {
+            total_skill_score[2] = entry.score_skill3;
+        }
+        else {
+            total_skill_score[2] = 0;
+        }
+    last_jobscore.push([total_skill_score[0],total_skill_score[1],total_skill_score[2]]);
     last_jobobj.push([entry.obj1,entry.obj2,entry.obj3]);
   });
   var last_certname=[],last_certpic=[],last_certyear=[];
@@ -98,6 +131,33 @@ $('#continue2').click(function () {
     last_certpic.push(entryy.path_file_certi);
     last_certyear.push(entryy.year_certi);
   });
+  var last_degree=[],last_faculty=[],last_fos=[],last_aca=[],last_grade=[],last_eduyear=[];
+  list_of_aca.forEach((entry) => {
+    //console.log(entry);
+    last_degree.push(entry.aca_degree);
+    last_faculty.push(entry.aca_faculty);
+    last_fos.push(entry.aca_field);
+    last_aca.push(entry.aca_name);
+    //last_grade.push(entry.aca_grade);
+    last_eduyear.push(entry.aca_year);
+    var total_grade_aca = new Float32Array(1);
+      total_grade_aca[0] = entry.grade;
+      last_grade.push(total_grade_aca[0]);
+  });
+  list_of_high.forEach((entry) => {
+    //console.log(entry);
+    last_degree.push(entry.high_degree);
+    last_faculty.push(entry.high_faculty);
+    last_fos.push(entry.high_field);
+    last_aca.push(entry.high_name);
+    //last_grade.push(entry.high_grade);
+    last_eduyear.push(entry.high_year);
+    var total_grade_high = new Float32Array(1);
+      total_grade_high[0] = entry.grade;
+      last_grade.push(total_grade_high[0]);
+  });
+  console.log('grade = ' + last_grade);
+  console.log(last_eduyear);
   //console.log(last_jobname);
   if(avatar1.src=="http://localhost:3000/assets/images/Circleuploadprofile.png"){
     avatar1.src="http://localhost:3000/assets/images/profile_uk.png";
@@ -122,11 +182,11 @@ $('#continue2').click(function () {
       Lastname: $('#re02').val(),
       Birthday: BDDate,
       Gender: $('#sexgen').val(),
-      Aboutme: $('#aboutme2').val(),
+      Aboutme: last_aboutme,
       Email2nd:"-",
       Country:"ประเทศไทย",
-      Province:$('#province').val(),
-      City:$('#townny').val(),
+      Province:last_province,
+      City:last_city,
       SoftSkill:[],
       CertName:last_certname,
       CertPic:last_certpic,
@@ -134,12 +194,12 @@ $('#continue2').click(function () {
       //Degree:[],
       //Work_JobName: [],
       //Work_JobType:[],
-      Degree:["อาชีวะศึกษา"],
-      Facalty:["การเย็บปักถักร้อย"],
-      Field_of_study:["ซ่อมตุ๊กตา"],
-      Academy:["โรงเรียนหมีน้อย"],
-      Grade:[3.01],
-      Education_End_Year:[2017],
+      Degree:last_degree,
+      Facalty:last_faculty,
+      Field_of_study:last_fos,
+      Academy:last_aca,
+      Grade:last_grade,
+      Education_End_Year:last_eduyear,
       Work_JobName:["เขียนเว็บ"],
       Work_JobType:["ฟรีแลนซ์"],
       Company:["freelance.com"],
@@ -152,7 +212,7 @@ $('#continue2').click(function () {
       Infomation:["จะดีมากถ้าลูกค้าไม่เรื่องมาก"],
       Job_JobName:last_jobname,
       Job_SkillName: last_jobskill,
-      Job_Score: [[9.0,8.0,7.0]],
+      Job_Score: last_jobscore,
       //Job_Score: last_jobscore,
       Job_Objective:last_jobobj,
     }
@@ -791,8 +851,8 @@ function PostRegis(pack){
 		  body: JSON.stringify(pack)}
   )
     .then(function (response) {
-        window.location.pathname = '/emailverify'
-        //setInterval(window.location = "http://localhost:3000/emailverify", 3000);
+        //window.location.pathname = '/emailverify'
+        setInterval(window.location = "http://localhost:3000/emailverify", 10000);
         return response.json();
     })
     .then(function (result) {
