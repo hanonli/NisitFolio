@@ -1,14 +1,16 @@
 import React from 'react';
 import './register.css';
 import CustomSelect from './customSelect';
+import SelectSS7 from './dropdownt7';
 
 class Registab7 extends React.Component {
 
 	render (){
 		return (
 			<div className="Registab7">
-				<div class="regis-box-content7 " id="yyy">
-					<h1 class="headerRegis" id="havesideskill">ทักษะเสริม</h1>
+				<div class="regis-box-content1 " id="yyy">
+					<h1 id="text-add-name-my-job11">เพิ่มทักษะเสริมที่ถนัด</h1>
+					<SelectSS7 />
 					<div class="dropdowntap7_1 ssf">
 						<div class="row ddt7_1">
 							<div class="col-md-12">

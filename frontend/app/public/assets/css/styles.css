@@ -288,7 +288,7 @@ mf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 18px; font-wei
 }
 
 .yahaha5{
-	height: 50vh;
+	height: 500px;
 }
 
 .yahaha36{
@@ -2045,6 +2045,10 @@ body {
 	border-radius: 2vh;
 }
 
+.MuiFormControl-root{
+  width: 100%;
+}
+
 .Mui-selected{
 	background: #F9DC5C !important;
 }
@@ -2059,7 +2063,9 @@ body {
 }
 
 .MuiFilledInput-root:hover{
-	background-color: #CDCDCD !important;
+	border-radius: 3vh !important;
+	background-color: #C4C4C4 !important;
+  /*padding-left: 15px !important;*/
 }
 
 #basic-date-picker{
@@ -2068,6 +2074,9 @@ body {
 	font-family: 'Nunito','Kanit', arial, sans-serif;
 }
 
+.MuiButtonBase-root{
+  padding:15px !important;
+}
 .MuiFilledInput-underline:before{
 	border-bottom: 0px solid rgba(0,0,0,0.42) !important;
 }
@@ -2822,8 +2831,10 @@ a.btn-cta-primary-yellowwideE:hover, .btn-cta-primary-yellowwideE:hover {
 .tabs-list {
   text-align: center;
   font-weight: 300;
-  font-size: 2.4vh;
+  font-size: 24px;
   font-family: 'Nunito','Kanit', arial, sans-serif;
+  justify-content: center;
+  margin-left: -2rem;
 }
 
 .block-right {

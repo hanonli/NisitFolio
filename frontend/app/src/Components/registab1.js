@@ -7,52 +7,50 @@ class Registab1 extends React.Component {
 			<div className="Registab1 regis-box-content1">
 				<div class="container-fluid margin-top1">
 					<div class="row">
-						<div class="col-1"></div>
-						<div class="col-8">
-							<div class="container-fluid">
+						<div class="col-9 container-fluid">
 								<div class="row">
-									<div class="col-2">
+									<div class="col-2 chidright">
 										<label class=" form-f-sex">ชื่อ<a class="red_markEp1">*</a></label>
 									</div>
 									<div class="col-4">
-										<input type="text" class="form-control dropbtn margin-bottom1 " id="re01" required></input>
+										<input maxlength="100" type="text" class="form-control dropbtn margin-bottom1 " id="re01" required></input>
 									</div>
-									<div class="col-2">
+									<div class="col-2 chidright">
 										<label class=" form-f-sex">นามสกุล<a class="red_markEp1">*</a></label>
 									</div>
 									<div class="col-4">
-										<input type="text" class="form-control dropbtn margin-bottom1 " id="re02" required></input>
+										<input maxlength="100" type="text" class="form-control dropbtn margin-bottom1 " id="re02" required></input>
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-md-2">
+									<div class="col-md-2 chidright">
 										<label class="form-f-sex">อีเมล<a class="red_markEp1">*</a></label>
 									</div>
 									<div class="col-10">
-										<input type="text" class="form-control dropbtn margin-bottom1 " id="re03" required></input>
+										<input maxlength="60" type="text" class="form-control dropbtn margin-bottom1 " id="re03" required></input>
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-md-2">
+									<div class="col-md-2 chidright">
 										<label class="form-f-sex">รหัสผ่าน<a class="red_markEp1">*</a></label>
 									</div>
 									<div class="col-10">
-										<input type="password" class="form-control dropbtn margin-bottom1 " id="pass05" aria-describedby="passwordHelpInline" required></input>
+										<input maxlength="100" type="password" class="form-control dropbtn margin-bottom1 " id="pass05" aria-describedby="passwordHelpInline" required></input>
 									</div>
 								</div>
-								<div class="row triggerRed1">
-									<div class="col-md-2">
+								<div class="row triggerRed1 chidright">
+									<div class="col-md-2 del-padleft">
 										<label class="form-f-cfp">ยืนยันรหัสผ่าน<a class="red_markEp1">*</a></label>
 									</div>
 									<div class="col-10">
-										<input type="password" class="form-control dropbtn margin-bottom1 " id="pass06" required></input>
+										<input maxlength="100" type="password" class="form-control dropbtn margin-bottom1 " id="pass06" required></input>
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-md-2">
-										<label class="sexdistance form-f-sex">เพศ<a class="red_markEp1">*</a></label>
+									<div class="col-md-2 chidright">
+										<label class="form-f-cfp">เพศ<a class="red_markEp1">*</a></label>
 									</div>
-									<div class="col-6">
+									<div class="col-4">
 										<select class="form-select dropbtn margin-bottom1 fff" id ="sexgen" required>
 											<option selected disabled value="">เลือกเพศ</option>
 											<option value="ชาย">ชาย</option>
@@ -60,19 +58,16 @@ class Registab1 extends React.Component {
 											<option value="ไม่ระบุ">ไม่ระบุ</option>
 										</select>
 									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-2">
+									<div class="col-md-2 chidright">
 										<label class="sexdistance form-f-sex ">วันเกิด<a class="red_markEp1">*</a></label>
 									</div>
-									<div class="col-10">
+									<div class="col-4">
 										<DatePickerBD />
 									</div>
 								</div>
-							</div>	
-						</div>
-						<div class="col-2">
-							<div class="">
+					</div>
+						<div class="col-3">
+							<div class="container-fluid">
 								<img class="profile-image img-fluid rounded-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="อัพโหลดรูปโปรไฟล์" type='button' id="avatar1" src="assets/images/Circleuploadprofile.png" width="250" height="250"/>
 								<input type="file" class="sr-only" id="input" accept="image/*" name="image" hidden />
 							</div>

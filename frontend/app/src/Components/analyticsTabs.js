@@ -1555,33 +1555,13 @@ class BookmarkTabs extends React.Component {
 								jobChart = new Chart(ctxJ, jobChartConfig);
 							}, 10);
 							
-							
-							//jobChart.destroy();
-							//jobChart = new Chart(ctxJ, jobChart2Config);
-
-							/*var rawScore = [12,79,85];
-							rawScore.unshift(0);
-							rawScore.push(0);*/
-							
-							/*var rawScore = [-1,0,0,0,0,0,0,0,0,0,
-							0,0,0,0,0,0,0,0,0,0,
-							0,0,0,0,-1,0,0,0,0,0,
-							0,0,0,0,0,0,0,0,0,0,
-							0,0,0,0,0,0,0,0,0,0,
-							0,0,0,0,0,0,0,0,0,0,
-							0,0,0,0,0,0,0,0,0,0,
-							0,0,0,0,-1,0,0,0,0,0,
-							0,0,0,0,0,0,0,0,0,0,
-							0,0,0,0,0,0,0,0,0,-1,
-							];*/
-							
 							GenerateDistributionChartData(jobChartConfig,index,idm);
 							
 							jobChart4Config.data.labels = vLabels;
 							jobChart4Config.data.datasets[0].data = rawScore;
 							jobChart4Config.data.percentages = ['xx.xx%'];
 							jobChart4Config.data.datasets[0].pointStyle = vPoints;
-							jobChart4Config.options.scales.y.max = 2;
+							jobChart4Config.options.scales.y.max = disGraphMax;
 							jobChart2.update();
 							/*jobChart2.destroy();
 							$("#jobChart2").remove();
@@ -1688,10 +1668,10 @@ class BookmarkTabs extends React.Component {
 			$("#jobChart1").remove();
 			$("#chart-container-job").append('<canvas id="jobChart1" width="100" height="450"></canvas>');
 			ctxJ = document.getElementById("jobChart1").getContext("2d");
-			
-			setTimeout(function() {
+			//jobChart.destroy();
+
 				jobChart = new Chart(ctxJ, jobChartConfig);
-			}, 10);
+
 			
 			/*$("#hardChart2").remove();
 			$("#hc2-container").append('<canvas id="hardChart2" width="100" height="450"></canvas>');
@@ -3605,7 +3585,9 @@ class BookmarkTabs extends React.Component {
 												</div>
 												<div class="yahaha6" id="analytic-lower-buttons-main">
 													<a class="btn btn-cta-primary round profile-button other margin-right-m info-button" target="_blank">คลิกเพื่อดูอันดับอื่น ๆ</a> 
-													<a class="btn btn-cta-primary-yellow round profile-button" id="other-button" target="a_blank">แก้ไขทักษะ</a>
+													<Link to="/editprofile">
+															<a class="btn btn-cta-primary-yellow round profile-button" id="other-button" target="_blank">แก้ไขทักษะ</a>
+													</Link>
 												</div>
 											</div>
 										</div>
@@ -3780,7 +3762,9 @@ class BookmarkTabs extends React.Component {
 													</div>
 													<div class="yahaha6" id="analytic-lower-buttons">
 														<a class="btn btn-cta-primary round profile-button other margin-right-m info-button-hard" id="info-button-hard" target="_blank">คลิกเพื่อดูอันดับอื่น ๆ</a> 
-														<a class="btn btn-cta-primary-yellow round profile-button" id="other-button" target="_blank">แก้ไขทักษะ</a>
+														<Link to="/editprofile">
+															<a class="btn btn-cta-primary-yellow round profile-button" id="other-button" target="_blank">แก้ไขทักษะ</a>
+														</Link>
 													</div>
 												</div>
 											</div>

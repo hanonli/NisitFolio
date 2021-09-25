@@ -122,7 +122,7 @@ $('#continue2').click(function () {
       Country:"ประเทศไทย",
       Province:$('#province').val(),
       City:$('#townny').val(),
-      SoftSkill:last_sideskill,
+      SoftSkill:[],
       CertName:last_certname,
       CertPic:last_certpic,
       CertYear:last_certyear,
@@ -409,7 +409,7 @@ var el;
 function countCharactersAbme() {                                    
   var textEntered, countRemaining, counter;          
   textEntered = document.getElementById('aboutme2').value;  
-  counter = (180 - (textEntered.length));
+  counter = (280 - (textEntered.length));
   countRemaining = document.getElementById('charactersRemaining'); 
   //console.log('Char left : ' + counter);
   countRemaining.textContent = counter;
@@ -434,6 +434,14 @@ $('.aboutmee').on('change', 'input', function(){
 
 /*Tab7*/
 var list_sideskill = ["","",""];
+
+$(document).on("change", "#selectT7", function () {
+  if (document.getElementById("selectT7").selectedIndex != 0) {
+      $("#selectT7").removeClass("is-invalid");
+      removeOptions('selectT7');
+  }
+});
+
 var sskdd1 = '<div class="col-2">\
                 <div class="delbtn">\
                 <img class="obj-icon tooltips-item" src="assets/images/bin.png" type="button" data-bs-toggle="modal" toggle-type="dynamic"data-bs-target="#Modaltab7-1" id="valss1" alt="" width="30" height="30"/>\
@@ -552,7 +560,7 @@ var Dropdownsideskill3 = '<div class="row ddt7_3">\
 </div>\
 </div>\
 ';
-
+/*
 $(function(){
   $('#del_sideskill1').on('click', function(){
     console.log('EiEi this is Del1');
@@ -688,7 +696,7 @@ $(function(){
     console.log('Sum SSK ++:' + sideskill_count + '!!!');
   });
 });
-
+*/
 function GetProvince(){
 	fetch("https://thaiaddressapi-thaikub.herokuapp.com/v1/thailand/provinces",
 		{ method: "GET", })
@@ -792,7 +800,7 @@ function PostRegis(pack){
       })
   })
   }
-  
+  /*
   var DropdownsideskillChoice = {'Technical': ['CAD',
     'Lean manufacturing',
     'Multivariate analysis',
@@ -818,13 +826,6 @@ function PostRegis(pack){
         $('#ch1').hide();
         $('#sideskilllist1').show();
         Getchoicehardskill(chss_now,1);
-        /*DropdownsideskillChoice[chss_now].forEach((entryc1) => {
-          var ch_now1 = entryc1;
-          //console.log('I am Choice:' + ch_now1);
-          $('#ch1').hide();
-          $('#sideskilllist1').show();
-          $('#sideskilllist1').append($('<option />').val(ch_now1).html(ch_now1));
-        })*/
       });
       $('#ch2').on('change', function(){
         var chss_now = $('#ch2').val();
@@ -832,12 +833,6 @@ function PostRegis(pack){
         $('#ch2').hide();
         $('#sideskilllist2').show();
         Getchoicehardskill(chss_now,2);
-        /*DropdownsideskillChoice[chss_now].forEach((entryc2) => {
-          var ch_now2 = entryc2;
-          $('#ch2').hide();
-          $('#sideskilllist2').show();
-          $('#sideskilllist2').append($('<option />').val(ch_now2).html(ch_now2));
-        })*/
       });
       $('#ch3').on('change', function(){
         var chss_now = $('#ch3').val();
@@ -845,15 +840,9 @@ function PostRegis(pack){
         $('#ch3').hide();
         $('#sideskilllist3').show();
         Getchoicehardskill(chss_now,3);
-        /*DropdownsideskillChoice[chss_now].forEach((entryc3) => {
-          var ch_now3 = entryc3;
-          $('#ch3').hide();
-          $('#sideskilllist3').show();
-          $('#sideskilllist3').append($('<option />').val(ch_now3).html(ch_now3));
-        })*/
       });
     });
-    
+    */
     var FormRegis = {
       Email:"kohamatrio@gmail.com",
       Password:"artty678",
@@ -893,7 +882,7 @@ function PostRegis(pack){
       Job_SkillName:[["C","JQuery","HTML"]]
   }
     
- 
+ /*
 var list_of_work = [];
 
 function get_work_id(list_of_work, x) {
@@ -905,7 +894,7 @@ function get_work_id(list_of_work, x) {
   });
   return list_of_work;
 }
-/*
+
 function create_UUID() {
   var dt = new Date().getTime();
   var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
@@ -915,7 +904,7 @@ function create_UUID() {
   });
   return uuid;
 }
-*/
+
 var choose_function4 = -1; //default
 
 function show_all_work() {
@@ -1095,6 +1084,10 @@ $(document).on("change", "#work_jobtype", function () {
 });
 
 document.getElementById("submit-work").addEventListener("click", function () {
+  $("#jobname_work").removeClass("is-invalid");
+  $("#jobtype_work").removeClass("is-invalid");
+  $("#month_startwork").removeClass("is-invalid");
+  $("#year_startwork").removeClass("is-invalid");
   work_jobname = document.getElementById("jobname_work").value;
   work_jobtype = document.getElementById("jobtype_work").value;
   work_startyear = document.getElementById("year_startwork").value;
@@ -1181,4 +1174,4 @@ document.getElementById("submit-work").addEventListener("click", function () {
       $(".list-of-work").empty();
       show_all_work()
   }
-});
+});*/

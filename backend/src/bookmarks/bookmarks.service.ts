@@ -2,10 +2,7 @@ import { Date, Model, Mongoose } from "mongoose";
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 
-import { ObjectId } from "mongodb";
-import { Account, Bookmark, TotalBookmark, UserInfo } from "./bookmarks.schema";
-import * as mongoose from "mongoose";
-import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from "constants";
+import { Account, Bookmark, Portfolio, UserInfo } from "./bookmarks.schema";
 
 import { UserJobSkill } from "src/analytics/analytics.schema";
 
@@ -15,9 +12,6 @@ export class BookmarkService {
     @InjectModel('Bookmark')
     private BookmarkModel: Model<Bookmark>,
 
-    @InjectModel('TotalBookmark')
-    private TotalBookmarkModel: Model<TotalBookmark>,
-
     @InjectModel('UserJobSkill')
     private UserJobSkillModel: Model<UserJobSkill>,
 
@@ -26,139 +20,136 @@ export class BookmarkService {
 
     @InjectModel('Account')
     private AccountModel: Model<Account>,
+
+    @InjectModel('Portfolio')
+    private PortfolioModel: Model<Portfolio>,
   ) {}
-
-  async updateTotalBookmark( method: String, type: String, userId: String, projectName: String ): Promise<void> {
-    /*
-    * Update total number in TotalBookmark table.
-    * method: "add" (total++) or "delete" (total--)
-    * add:    If that document is not found then create a new one.
-    * delete: If total = 0 then delete that document.
-    */
-
-    let bookmark;
-   
-    if (type == "user") {
-      bookmark = await this.TotalBookmarkModel.findOne({ type: type, userId: userId });
-    }
-    else if (type == "project") {
-      bookmark = await this.TotalBookmarkModel.findOne({ type: type, userId: userId, projectName: projectName});
-    }
-
-    // If bookmark is added.
-    if (method == "add") {
-
-      // found
-      if ( bookmark != null) {
-        bookmark.totalBookmarks += 1;
-      }
-
-      // if not found
-      else {
-        bookmark = new this.TotalBookmarkModel({ type: type, userId: userId, projectName: projectName, totalBookmarks: 1});
-        //console.log(bookmark);
-      }
-
-      // save the change
-      await bookmark.save();
-    }
-
-    // If bookmark is deleted.
-    else if (method == "delete") {
-
-      // If this is the last one.
-      if ( bookmark.totalBookmarks == 1 ) {
-        await this.TotalBookmarkModel.deleteOne(bookmark);
-      }
-
-      // if total > 1
-      else {
-        bookmark.totalBookmarks -= 1;
-        await bookmark.save();
-      }
-    }
-  }
-  // ---------------------------- Save Bookmark ---------------------------
   
-  async SaveBookmark(userId: string, link: string, type: string, 
-    thatUserId: string,projectName?: string): Promise<any> {
-    const createBookmark = new this.BookmarkModel({userId, link, type, thatUserId, projectName}) ;
-    //console.log({userId, link, type, thatUserId, projectName});
-    await this.updateTotalBookmark("add", type, thatUserId, projectName);
-    return await createBookmark.save() ;
+  async SaveBookmark(userId: string, link: string, type: string, thatUserId: string, portName?: string): Promise<any> {
+    const success = await this.UpdateBookmark(userId, type, "add", link, thatUserId, portName);
+    let log;
+    if (success) {
+      console.log("Save bookmark succesfully.");
+      log = "Save bookmark succesfully.";
+    }
+    else {
+      console.log("Failed to bookmark. This profile or portfolio might not exist.")
+      log = "Failed to bookmark. This profile or portfolio might not exist.";
+    }
+    return log;
   }
 
   // ---------------------------- Delete Bookmark ---------------------------
   
-  async DeleteBookmark(userId: string, link: string, type: string, 
-    thatUserId: string,projectName?: string): Promise<any> {
-    await this.updateTotalBookmark("delete", type, thatUserId, projectName);
-    return await this.BookmarkModel.deleteMany( { userId: userId, link: link, type: type, thatUserId: thatUserId, projectName: projectName}, 
-      function (err) {
-        if(err) console.log(err);
-        console.log("Successful deletion");
-      }
-    ) ;
+  async DeleteBookmark(userId: string, link: string, type: string, thatUserId: string, portName?: string): Promise<any> {
+    const success = await this.UpdateBookmark(userId, type, "delete", link, thatUserId, portName);
+    let log;
+    if (success) {
+      console.log("Delete bookmark succesfully.");
+      log = "Delete bookmark succesfully.";
+    }
+    else {
+      console.log("Failed to delete. This bookmark might not exist.")
+      log = "Failed to delete. This bookmark might not exist.";
+    }
+    return log;
   }
 
-  // ---------------------------- Find All Bookmark ---------------------------
+  /*
+  * Update method
+  */
 
-  async findBookmark(userId: string) : Promise<any[]> {
-    const All = await this.BookmarkModel.find({userId: userId}).select(['userId','link', 'thatUserId']).sort({updatedAt: -1}).exec() ;
-    console.log(All) ;
-    return All ;
+  async UpdateBookmark(userId: string, type: string, option: string, link: string, thatUserId: string, portName?: string): Promise<any> {
+    if (type=='profile') {
+  
+      if (option=='add') {
+          const found = await this.UserInfoModel.findOne({UserId: thatUserId}).countDocuments();
+          
+          if ( !found ) return 0;
+          
+          await this.UserInfoModel.updateOne({UserId: thatUserId}, { $inc: { totalBookmark: 1 }});
+          const tags = [];
+          const info = await this.UserInfoModel.findOne({ UserId: thatUserId }).select("-_id Firstname Lastname AboutMe totalBookmark").exec();
+          const profilePic = await this.AccountModel.findOne({ _id: thatUserId }).select("-_id ProfilePic").exec();
+          //console.log(bookmark.thatUserId);
+          // console.log(profilePic);
+          const details = { 
+                          name: info.Firstname + " " + info.Lastname, 
+                          pic: profilePic.ProfilePic,
+                          about: info.AboutMe,
+                          tags: tags,
+                        }
+          const newBookmark = new this.BookmarkModel({
+                                                        userId: userId,
+                                                        link: link,
+                                                        thatUserId: thatUserId,
+                                                        type: type,
+                                                        details: details,
+                                                        totalBookmark: info.totalBookmark,
+                                                      });
+          await newBookmark.save()
+          return 1;
+      }
+      else {
+        const found = await this.BookmarkModel.findOne({userId: userId, type: type, thatUserId: thatUserId}).countDocuments();
+        if (!found) return 0;
+
+        await this.BookmarkModel.deleteOne({userId: userId, type: type, thatUserId: thatUserId});
+        await this.UserInfoModel.updateOne({UserId: thatUserId}, { $inc: { totalBookmark: -1 }});
+        return 1;
+      }
+    }
+    else if (type=='work') {
+      const found = await this.PortfolioModel.findOne({UserId: thatUserId, Port_Name: portName}).countDocuments();
+      
+      if ( !found ) return 0;
+      
+      if (option=='add') {
+        await this.PortfolioModel.updateOne({UserId: thatUserId, Port_Name: portName}, { $inc: { totalBookmark: 1 }});
+        const info = await this.PortfolioModel.findOne({UserId: thatUserId, Port_Name: portName})
+                                    .select("-_id Port_Name Port_Info portfolioPictures Owner totalBookmark").exec();
+        
+        const details = {
+                          Port_Info: info.Port_Info,
+                          Port_Pic: info.portfolioPictures[0].Pic[0],
+                          numberOfPic: (info.portfolioPictures[0].Pic).length,
+                          owner: info.Owner,
+        }
+
+        const newBookmark = new this.BookmarkModel({
+                                                      userId: userId,
+                                                      link: link,
+                                                      thatUserId: thatUserId,
+                                                      portName: portName,
+                                                      type: type,
+                                                      details: details,
+                                                      totalBookmark: info.totalBookmark,
+                                                    });
+        await newBookmark.save();
+        return 1;
+      }
+      else {
+        const found = await this.BookmarkModel.findOne({userId: userId, type: type, thatUserId: thatUserId, portName: portName}).countDocuments();
+        if (!found) return 0;
+
+        await this.BookmarkModel.deleteOne({userId: userId, type: type, thatUserId: thatUserId});
+        await this.PortfolioModel.updateOne({UserId: thatUserId, Port_Name: portName}, { $inc: { totalBookmark: -1 }});
+        return 1;
+      }
+    }
   }
 
   async userBookmark(userId: string, sort: string): Promise<any> {
-    const bookmarks = await this.BookmarkModel.find( { userId: userId }).exec();
-    //console.log(bookmarks);
-    let res = {};
-    let i=0;
-    for ( var bookmark of bookmarks) {
-
-      const query = await this.TotalBookmarkModel.findOne( { type: bookmark.type, userId: bookmark.thatUserId , projectName: bookmark.projectName}).exec();
-      const total = query.totalBookmarks;
-
-      if ( bookmark.type == 'user' ) {
-        console.log(bookmark.thatUserId);
-        const jobs = await this.UserJobSkillModel.find( { userId: bookmark.thatUserId }).select("JobName -_id").distinct('JobName').exec();
-        const details = await this.UserInfoModel.findOne({ UserId: bookmark.thatUserId }).select("-_id Firstname Lastname AboutMe").exec();
-        const profilePic = await this.AccountModel.findOne({ _id: bookmark.thatUserId }).select("-_id ProfilePic").exec();
-        console.log(details);
-        console.log(profilePic);
-        res[i] = {  link: bookmark.link,
-                    type: bookmark.type,
-                    thatUserId: bookmark.thatUserId,
-                    name: details.Firstname + " " + details.Lastname,
-                    profilePic: profilePic.ProfilePic,
-                    jobs: jobs,
-                    about: details.AboutMe,
-                    timeUpdated: bookmark.updatedAt,
-                    totalBookmarks: total 
-                  };
-      }
-      else {
-        
-      }
-      i++;
+    let bookmarks;
+    if (sort=='time') {
+      bookmarks = await this.BookmarkModel.find( { userId: userId }).sort( { updatedAt: -1, _id: 1})
+                                                                          .select("-_id -__V").exec();
     }
-
-
-
-    let keysSorted;
-
-    if (sort == 'time'){
-      keysSorted = Object.keys(res).sort(function(a,b) {return res[b].timeUpdated-res[a].timeUpdated});
+    else{
+      bookmarks = await this.BookmarkModel.find( { userId: userId }).sort( { totalBookmark: -1, _id: 1})
+                                                                          .select("-_id -__V").exec();
     }
-    else {
-      keysSorted = Object.keys(res).sort(function(a,b) {return res[b].totalBookmarks-res[a].totalBookmarks});
-    }
-
-    let final = [];
-    for ( var key of keysSorted ) {
-      final.push(res[key]);
-    }
-    console.log(final);
-    return final;
+    return bookmarks;
   }
+  
 }

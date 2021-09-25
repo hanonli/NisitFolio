@@ -49,15 +49,15 @@ function show_all_aca() {
 
   list_of_aca.forEach(ele => {
       var grid_aca1 = '<div class="t3-content1 row">\
-                          <div class="row">\
-                              <div class="col-3 font-titlet3">{degree_aca}</div>\
-                              <div class="col-4 font-titlet3">{field_aca}</div>\
-                              <div class="col-5 font-titlet3">{faculty_aca}</div>\
+                          <div class="col-3">\
+                              <div class="font-titlet3 font-boldt3">{degree_aca}</div>\
+                              <div class="font-titlet3 font-khotboldt3">{year_aca}</div>\
                           </div>\
-                          <div class="row">\
-                              <div class="col-3 font-titlet3">{year_aca}</div>\
-                              <div class="col-4 font-titlet3">เกรด {grade_aca}</div>\
-                              <div class="col-5 font-titlet3">{name_aca}</div>\
+                          <div class="col-9">\
+                              <div class="font-titlet3">{field_aca}</div>\
+                              <div class="font-titlet3">{faculty_aca}</div>\
+                              <div class="font-titlet3">{name_aca}</div>\
+                              <div class="font-titlet3">เกรด {grade_aca}</div>\
                           </div>';
 
       var grid_aca2 = `
@@ -178,6 +178,10 @@ $(document).on('click', "#sub_del_aca", function () {
   console.log(list_of_aca);
   get_aca_id(list_of_aca, 1);
   show_all_aca()
+  if (list_of_aca.length != 3) {
+    $('#aca_danger').text('ท่านสามารถเพิ่มประวัติการศึกษาได้สูงสุด 3 อัน');
+    $('#aca_danger').removeClass('red_markEp1');
+}
 });
 
 
@@ -205,6 +209,9 @@ $(document).on("change", "#aca_degree", function () {
 });
 
 document.getElementById("submit-aca").addEventListener("click", function () {
+  $("#aca_name").removeClass("is-invalid");
+  $("#aca_degree").removeClass("is-invalid");
+  $("#aca_faculty").removeClass("is-invalid");
   name_aca = document.getElementById("aca_name").value;
   degree_aca = document.getElementById("aca_degree").value;
   faculty_aca = document.getElementById("aca_faculty").value;
@@ -212,19 +219,23 @@ document.getElementById("submit-aca").addEventListener("click", function () {
   grade_aca = document.getElementById("aca_grade").value;
   year_aca = document.getElementById("year_secondary").value;
   $('#submit_aca').text = 'ยืนยัน';
+  var checkcase1 = true;
   if (document.getElementById("aca_name").value == '') {
       //alert("submit aca wrong!");
       $("#aca_name").addClass("is-invalid");
+      checkcase1 = false;
   }
   if (document.getElementById("aca_degree").value == 'none') {
     //alert("submit aca wrong!");
     $("#aca_degree").addClass("is-invalid");
+    checkcase1 = false;
   }
   if (document.getElementById("aca_faculty").value == '') {
     //alert("submit aca wrong!");
     $("#aca_faculty").addClass("is-invalid");
+    checkcase1 = false;
   }
-  else {
+  if(checkcase1) {
       if (field_aca == '') {
           field_aca = 'none';
       }
@@ -276,6 +287,10 @@ document.getElementById("submit-aca").addEventListener("click", function () {
       $('#registab3Modal1').modal('hide');
       $(".list-of-aca").empty();
       show_all_aca()
+      if (list_of_aca.length == 3) {
+        $('#aca_danger').text('*ท่านเพิ่มประวัติการศึกษาครบจำนวนแล้ว');
+        $('#aca_danger').addClass('red_markEp1');
+    }
   }
 });
 
@@ -300,17 +315,15 @@ var choose_function3_2 = -1; //default
 function show_all_high() {
 
   list_of_high.forEach(ele => {
-      var grid_high1 = '<div class="t3-content2 row">\
-                          <div class="col mg-left1per">\
-                              <div class="row font-titlet3">{degree_high}</div>\
-                              <div class="row font-titlet3">{year_high}</div>\
+      var grid_high1 = '<div class="t3-content2 row mg-left1per">\
+                          <div class="col-4">\
+                              <div class="row font-titlet3 font-boldt3">{degree_high}</div>\
+                              <div class="row font-titlet3 font-khotboldt3">{year_high}</div>\
                           </div>\
-                          <div class="col">\
+                          <div class="col-8">\
                               <div class="row font-titlet3">{field_high}</div>\
-                              <div class="row font-titlet3">เกรด {grade_high}</div>\
-                          </div>\
-                          <div class="col">\
                               <div class="row font-titlet3">{name_high}</div>\
+                              <div class="row font-titlet3">เกรด {grade_high}</div>\
                           </div>';
 
       var grid_high2 = `
@@ -354,8 +367,8 @@ $(document).ready(function () {
 
 //func add new high form
 $(document).on("click", "#add_high", function () {
-  $("#high_name").removeClass("is-invalid");
   $("#high_degree").removeClass("is-invalid");
+  $("#high_name").removeClass("is-invalid");
   choose_function3_2 = 2;
   $('#registab3Modal2').modal('toggle');
   $('#high_degree').prop('selectedIndex', 0);
@@ -368,9 +381,8 @@ $(document).on("click", "#add_high", function () {
 //func edit high
 var for_edithigh;
 $(document).on("click", "#edit-high", function () {
-  $("#high_name").removeClass("is-invalid");
   $("#high_degree").removeClass("is-invalid");
-  $("#high_faculty").removeClass("is-invalid");
+  $("#high_name").removeClass("is-invalid");
   id_list_high_edit = $(this).parents().attr('id');
   console.log(`edit:`, id_list_high_edit);
   choose_function3_2 = 1;
@@ -421,6 +433,10 @@ $(document).on('click', "#sub_del_high", function () {
   console.log(list_of_high);
   get_high_id(list_of_high, 1);
   show_all_high()
+  if (list_of_high.length != 3) {
+    $('#high_danger').text('ท่านสามารถเพิ่มประวัติการศึกษาได้สูงสุด 3 อัน');
+    $('#high_danger').removeClass('red_markEp1');
+}
 });
 
 
@@ -449,16 +465,19 @@ document.getElementById("submit-high").addEventListener("click", function () {
   grade_high = document.getElementById("high_grade").value;
   year_high = document.getElementById("year_secondary").value;
   $('#submit_high').text = 'ยืนยัน';
+  var checkformT3 = true;
   //console.log('high_name : '+ $("#high_name").val());
   if (document.getElementById("high_name").value == "") {
       //alert("submit high wrong!");
       $("#high_name").addClass("is-invalid");
+      checkformT3 = false;
   }
-  else if (document.getElementById("high_degree").value == 'none') {
+  if (document.getElementById("high_degree").value == 'none') {
     //alert("submit high wrong!");
     $("#high_degree").addClass("is-invalid");
+    checkformT3 = false;
   }
-  else {
+  if(checkformT3) {
       if (field_high == '') {
           field_high = 'none';
       }
@@ -503,6 +522,10 @@ document.getElementById("submit-high").addEventListener("click", function () {
       $('#registab3Modal2').modal('hide');
       $(".list-of-high").empty();
       show_all_high()
+      if (list_of_high.length == 3) {
+        $('#high_danger').text('*ท่านเพิ่มประวัติการศึกษาครบจำนวนแล้ว');
+        $('#high_danger').addClass('red_markEp1');
+    }
   }
 });
 

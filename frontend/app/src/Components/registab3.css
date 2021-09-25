@@ -8,7 +8,7 @@
     background-color: white;
     border: 1px solid black;
     border-radius: 25px;
-    height: 50vh;
+    height: 24vw;
     width: 48%;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -18,8 +18,10 @@
 }
 
 .Registab3 .registab3_formbox .registab3_btnplus{
-    text-align: center;
+    text-align: right;
     justify-content: center;
+    margin-bottom: -0.5vw;
+    margin-top: -0.5vw;
 }
 
 .center3 {
@@ -46,16 +48,38 @@
     padding-left: 40px;
 }
 
+.longlang {
+    margin-top: 1vh;
+}
 .font-titlet3{
     color:black;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 400;
+}
+
+.font-boldt3{
+    font-weight: 600;
+}
+
+.font-khotboldt3{
+    font-weight: 800;
+}
+
+.font-dest3{
+    color:black;
+    font-size: 16px;
+    font-weight: 400;
+    margin-left: 0.5vw;
+    margin-bottom: 1.5vh;
 }
 
 
 .Registab3 .registab3_formbox .font-headert3{
     color:black;
-    font-size: 36px;
+    font-size: 32px;
+    margin-top: 1.2vh;
+    margin-left: 0.5vw;
+    /*margin-bottom: -0.5vw;*/
 }
 
 .t3-content1 {
@@ -118,10 +142,15 @@
     border: 1px solid red;
 }
 
+.dangerzonet3{
+    position: absolute;
+    top:22.5vw;
+    left: 1vw;
+}
 
-
-
-
+.normalformzonet3 {
+    color: #a4a4a4;
+}
 
 
 
@@ -130,7 +159,7 @@
 .Registab4 .registab4_formbox {
     background-color: #b6deea;
     border: 1px solid black;
-    height: 140px;
+    height: 4.5vw;
     /*width: 1470px;*/
     border-radius: 25px;
     margin-top: 5px;
@@ -152,8 +181,8 @@
 
 .Registab4 .registab4_formbox #icon-plus-circle {
     position: relative;
-    width: 115px;
-    height: 115px;
+    width: 50px;
+    height: 50px;
 }
 
 .Registab4 .registab4_formbox .modal-title{
@@ -179,17 +208,29 @@
 
 .modalworkaddH {
     border-radius: 25px;
-    padding-right: 2.1vw;
-    padding-bottom: 1.5vw;
+    /*padding-right: 1vw;*/
+    padding-bottom: 2.7vw;
+}
+
+.modalworkaddH2 {
+    border-radius: 25px;
+    padding-right: 5vw;
+    padding-bottom: 2.7vw;
 }
 
 .button-add-addH1 {
     position: absolute;
-    margin-left: 750px;
+    margin-left: 720px;
     margin-bottom: 15px;
-    margin-top: 380px;
+    margin-top: 390px;
 }
 
+.button-add-addH2 {
+    position: absolute;
+    margin-left: 720px;
+    margin-bottom: 15px;
+    margin-top: 320px;
+}
 /*
     This is for registab3_addSecondary
 
