@@ -27,7 +27,14 @@
 .center3 {
     text-align: center;
 }
-.icon-plus-circle {
+.icon-plus-circleA {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    justify-content: center;
+}
+
+.icon-plus-circleH {
     position: relative;
     width: 50px;
     height: 50px;
@@ -52,10 +59,25 @@
 .longlang {
     margin-top: 1vh;
 }
+
 .font-titlet3{
     color:black;
     font-size: 16px;
     font-weight: 400;
+    white-space: nowrap;
+    width: 19vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.font-titlet4{
+    color:black;
+    font-size: 16px;
+    font-weight: 400;
+    white-space: nowrap;
+    width: 16.9vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .font-boldt3{
@@ -298,10 +320,6 @@
     text-align: left;
     margin-top: 5vh;
     padding: 1%;
-}
-
-.font-titlet4 {
-    color: black;
 }
 
 .layer_icon2 {

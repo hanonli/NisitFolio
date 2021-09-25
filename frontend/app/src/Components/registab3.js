@@ -30,8 +30,8 @@ class Registab3 extends React.Component {
                                             <h2 class="font-headert3">อุดมศึกษา</h2>
                                         </div>
                                         <div class="col-2 transition-component" id="cross-fadegone">
-                                                <img class="registab3_btnplus icon-plus-circle bottom" type='button' id='add_aca' src="assets/images/add_hover.png"></img>
-                                                <img class="registab3_btnplus icon-plus-circle top" type='button' id='add_aca' src="assets/images/add_black.png"></img>
+                                                <img class="registab3_btnplus icon-plus-circleA bottom" type='button' src="assets/images/add_hover.png"></img>
+                                                <img class="registab3_btnplus icon-plus-circleA top" type='button' id='add_aca' src="assets/images/add_black.png"></img>
                                         </div>
                                     </div>
 									<div className=''>
@@ -50,7 +50,7 @@ class Registab3 extends React.Component {
                                                             <form  id='HigherForm'>
                                                             <div class='row'>
                                                                 <div class="col-md-2 chidright">
-										                            <label class="form-f-sex">วุฒิการศึกษา<a class="red_markEp1">*</a></label>
+										                            <label class="form-f-sex">วุฒิการศึกษา<label class="red_markEp1">*</label></label>
 									                            </div>
                                                                 <div class='col-3' >
                                                                     <div class="selectDropdown">
@@ -75,7 +75,7 @@ class Registab3 extends React.Component {
                                                             </div>
                                                                 <div class='row'>
                                                                     <div class="col-md-2 chidright">
-										                                <label class="form-f-sex">สถานศึกษา<a class="red_markEp1">*</a></label>
+										                                <label class="form-f-sex">สถานศึกษา<label class="red_markEp1">*</label></label>
 									                                </div>
                                                                     <div class="col-9 ">
                                                                         <input maxlength="56" type="text" class="form-control dropbtn margin-bottom1 " id="aca_name" required></input>
@@ -83,7 +83,7 @@ class Registab3 extends React.Component {
                                                                 </div>
                                                                 <div class='row'>
                                                                     <div class="col-md-2 chidright">
-										                                <label class="form-f-sex">คณะ<a class="red_markEp1">*</a></label>
+										                                <label class="form-f-sex">คณะ<label class="red_markEp1">*</label></label>
 									                                </div>
                                                                     <div class="col-9">
                                                                         <input maxlength="56" type="text" class="form-control dropbtn margin-bottom1 " id="aca_faculty" required></input>
@@ -123,8 +123,8 @@ class Registab3 extends React.Component {
 									        <h2 class="font-headert3">มัธยมศึกษา</h2>
                                         </div>
                                         <div class="col-2 transition-component" id="cross-fadegone">
-                                                <img class="registab3_btnplus icon-plus-circle bottom" type='button' id='add_high' src="assets/images/add_hover.png"></img>
-                                                <img class="registab3_btnplus icon-plus-circle top" type='button' id='add_high' src="assets/images/add_black.png"></img>
+                                                <img class="registab3_btnplus icon-plus-circleH bottom" type='button' src="assets/images/add_hover.png"></img>
+                                                <img class="registab3_btnplus icon-plus-circleH top" type='button' id='add_high' src="assets/images/add_black.png"></img>
                                         </div>
                                     </div>
 									<div className=''>		
@@ -145,7 +145,7 @@ class Registab3 extends React.Component {
                 <form  id='SecondaryForm'>
                     <div class='row'>
                         <div class="col-3 chidright">
-                            <label class="form-f-sex">วุฒิการศึกษา<a class="red_markEp1">*</a></label>
+                            <label class="form-f-sex">วุฒิการศึกษา<label class="red_markEp1">*</label></label>
                         </div>
                         <div class="col-3">
                             <select class="form-select form-select-lg margin-bottom1 fff dropbtn_year" id='high_degree' aria-labelledby="select1" required>
@@ -155,7 +155,7 @@ class Registab3 extends React.Component {
                             </select>
                         </div>
                         <div class="col-3 chidright">
-                            <label class="form-f-sex">ปีที่จบการศึกษา<a class="red_markEp1"></a></label>
+                            <label class="form-f-sex">ปีที่จบการศึกษา<label class="red_markEp1"></label></label>
                         </div>
                         <div class='col-3' >
                             <select class="form-select form-select-lg dropbtn margin-bottom1 fff" id='year_higher' aria-labelledby="select1">
@@ -166,7 +166,7 @@ class Registab3 extends React.Component {
                     </div>
                     <div class='row'>
                         <div class="col-md-3 chidright">
-							<label class="form-f-sex">สถานศึกษา<a class="red_markEp1">*</a></label>
+							<label class="form-f-sex">สถานศึกษา<label class="red_markEp1">*</label></label>
 						</div>
                         <div class="col-9 ">
                             <input maxlength="56" type="text" class="form-control dropbtn margin-bottom1 fff" id="high_name" required></input>

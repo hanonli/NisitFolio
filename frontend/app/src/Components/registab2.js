@@ -36,8 +36,8 @@ class Registab2 extends React.Component {
 								</div>
 								<div class="row-3">
 									<div class="col-md-12">
-										<textarea maxlength="280" type="text" class="form-control aboutmee margin-bottom2" id="aboutme2" placeholder="บอกเล่าเกี่ยวกับตัวเองสั้น ๆ" autocomplete="off"></textarea>
-										<div id="charactersRemaining">280 characters</div>
+										<textarea maxlength="280" type="text" class="form-control aboutmee margin-bottom2" id="aboutme2" placeholder="อธิบายตัวตนของคุณ เพื่อให้คนอื่นรู้ว่าคุณเป็นคนยังไงและสนใจเรื่องอะไร" autocomplete="off"></textarea>
+										<div id="charactersRemaining">280 อักขระ</div>
 									</div>
 								</div>
 							</div>	
