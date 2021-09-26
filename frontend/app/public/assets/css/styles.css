@@ -23,8 +23,10 @@ af { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 22px; font-wei
 aaf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 32px; font-weight: bold;  color: black; }
 cf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 24px; font-weight: 600;  color: black; }
 hf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 42px; font-weight: bold;  color: black; }
+hff { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 42px; font-weight: 400;  color: grey; }
 hhf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 52px; font-weight: bold;  color: black; }
 mf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 18px; font-weight: 600;  color: black; }
+mff { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 18px; font-weight: 400;  color: grey; }
 
 .text-extra{
 	line-height: 1.2;
@@ -64,6 +66,10 @@ mf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 18px; font-wei
 
 .analytic-spc-s{
 	margin-left: 2%;
+}
+
+.topOvSkl-hide{
+	display: none;
 }
 
 .wrapper-loading {
@@ -395,6 +401,18 @@ a:focus {
 	color: rgba(255,255,255,1) !important;
 }
 
+.blue {
+	border: 1px solid #0d6efd;
+	background: #0d6efd;
+	color: white !important;
+	font-weight: 500;
+}
+
+.blue:hover{
+	border: 1px solid #0d47a1 !important;
+	background: #0d47a1 !important;
+}
+
 .yellow {
 	border: 1px solid #F9DC5C;
 	background: #F9DC5C;
@@ -456,6 +474,15 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
   color: #32383e;
 }
 
+.nav-round{
+	border-radius: 12px;
+	margin: 11px 6px 11px 8px;
+}
+
+.regis-mar{
+	margin-left: 120px;
+}
+
 /* ======= Header ======= */
 .header {
   padding: 30px 0;
@@ -498,6 +525,12 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 .not-found-icon-mini{
 	width:6vw; 
 	height:6vw;
+	display: block;
+}
+
+.not-found-icon-mini2{
+	width:4vw; 
+	height:4vw;
 	display: block;
 }
 
@@ -834,6 +867,14 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 }
 
 .analytics-clickable { cursor: pointer; }
+
+.nf-box-flex{
+	display: flex;
+	flex-flow: column;
+	justify-content: space-between;
+	align-items: center;
+	gap: 15px;
+}
 
 .analytics-clickable:hover{
 	/*background-color: grey;*/
@@ -1386,6 +1427,10 @@ navbar { margin:0; }
 	display: none;
 }
 
+#tpId{
+	display: none;
+}
+
 .icon-bar {
   width: 100%;
   margin-bottom: 5px;
@@ -1554,6 +1599,7 @@ navbar { margin:0; }
 
 @media (max-width: 1280px) {
 	.nvw1{ min-width: 0; }
+	.regis-mar{ margin-right: 0;}
 	
 }
 
@@ -1583,6 +1629,7 @@ navbar { margin:0; }
 
 	justify-content: flex-end;
 }
+
 
 .sm-logo{
 	margin-bottom: 14px;

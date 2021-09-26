@@ -26,22 +26,6 @@ class Home extends React.Component {
 		console.log("YEAHXXX!");
 		var token = cookie.load('login-token');
 		console.log(token);
-		
-		/*fetch("http://localhost:2000/profile/",{
-			method: "GET",
-			headers: {
-				'Authorization': 'Bearer '+token,
-				"Access-Control-Allow-Origin": "*",
-				"Access-Control-Allow-Methods": "*",
-				"Access-Control-Allow-Credentials": true,
-				"Content-Type": "application/json"
-			},
-		})
-		.then(function(response) {
-			return response.text().then(function(text) {
-			  console.log(text);
-			});
-		 });*/
 		 
 		 fetch("http://localhost:2000/profile/",{
 			method: "GET",
@@ -56,7 +40,13 @@ class Home extends React.Component {
 		.then(function(response) {
 			return response.text().then(function(text) {
 			  //alert(text);
-			  cookie.save('login-user', text, { path: '/' })
+			  if(text == '{"statusCode":401,"message":"Unauthorized"}'){
+				 // alert('set cookie as null:');
+				cookie.save('login-user', 'none', { path: '/' })
+			  }else{
+				  // alert('set cookie as '+text);
+				cookie.save('login-user', text, { path: '/' })
+			  }
 			});
 		 });
 		

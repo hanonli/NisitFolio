@@ -157,12 +157,12 @@ function ResetData(){
 function FormatIcon(data,dtype) {
   if(pageName == 'search'){
 		if(data.bookmark == "false") {
-			dtype = dtype.replace("{icon-type}","assets/images/bookmark_1.png").replace("{tooltip}","บันทึก").replace("{status}","false"+"-"+data.thatUserId+'&'+data.type);
+			dtype = dtype.replace("{icon-type}","assets/images/bookmark_1.png").replace("{tooltip}","บันทึก").replace("{status}","false"+"-"+data.thatUserId+'&'+data.type+'&'+data.name);
 		}else {
-			dtype = dtype.replace("{icon-type}","assets/images/bookmark_2.png").replace("{tooltip}","ยกเลิกการบันทึก").replace("{status}","true"+"-"+data.thatUserId+'&'+data.type);
+			dtype = dtype.replace("{icon-type}","assets/images/bookmark_2.png").replace("{tooltip}","ยกเลิกการบันทึก").replace("{status}","true"+"-"+data.thatUserId+'&'+data.type+'&'+data.name);
 		}
 	}else{
-		dtype = dtype.replace("{icon-type}","assets/images/bin.png").replace("{tooltip}","ลบ").replace("{status}",data.thatUserId+'&'+data.type);
+		dtype = dtype.replace("{icon-type}","assets/images/bin.png").replace("{tooltip}","ลบ").replace("{status}",data.thatUserId+'&'+data.type+'&'+data.name);
 	}
 	return dtype;
 }
@@ -572,11 +572,11 @@ var userId = null;
 //userId = '6142fd75f8b2b96640bc542d';
 //alert('userId: '+$('#cachedId').text());
 var sortType = "time";
-setTimeout(function() {
-	userId = $('#cachedId').text();
-	GetSearchBookmarkData();
-	//alert(Cookies.get('login-token'););
-}, 500);
+
+userId = $('#cachedId').text();
+GetSearchBookmarkData();
+//alert(Cookies.get('login-token'););
+
 
 function GetSearchBookmarkData(){
 	var q = Cookies.get('search-entry');
@@ -842,6 +842,7 @@ function DeleteBookmark(id){
 	delData['userId'] = userId;
 	delData['type'] = temp[1];
 	delData['thatUserId'] = temp[0];
+	if(temp[1] != 'profile') delData['projectName'] = temp[2];
 	
 	fetch("http://localhost:2000/bookmark/saveBookmark",{
 		method: "DELETE",
@@ -873,6 +874,7 @@ function AddBookmark(id){
 	addData['userId'] = userId;
 	addData['type'] = temp[1];
 	addData['thatUserId'] = temp[0];
+	if(temp[1] != 'profile') addData['projectName'] = temp[2];
 	
 	fetch("http://localhost:2000/bookmark/saveBookmark",{
 		method: "POST",
@@ -896,6 +898,11 @@ function AddBookmark(id){
 }
 
 function AddListenerToDynamicComponents(){
+	if($('#tpId').text() != 'user'){ // hide for public
+		$('.obj-icon').hide();
+		return;
+	}
+	
 	//alert(pageName);
 	$('.tag').on('click', function(){
        //alert(event.target.text);

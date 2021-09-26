@@ -10,6 +10,7 @@ import BookmarkProfileList from './bookmarkProfileList';
 import BookmarkWorkList from './bookmarkWorkList';
 import LoadingS from './loadingS';
 import TabBookmark from "./TabBookmark"; 
+import cookie from 'react-cookies'
 
 const tooltip_config = {
 	titleFont: { family: "'Nunito','Kanit'", },
@@ -64,6 +65,39 @@ const tooltip_config_vertical = {
 	}
 };
 
+const tooltip_config_vertical_formatted = {
+	titleFont: { family: "'Nunito','Kanit'", },
+	bodyFont: { family: "'Nunito','Kanit'", },
+	footerFont: { family: "'Nunito','Kanit'", },
+	
+	callbacks: {
+		title: function(tooltipItems, data) {
+			var tooltipItem = tooltipItems[0];
+			var txt = tooltipItem.chart.data.hoverLabels[tooltipItem.parsed.y];
+			return txt;
+		},
+		
+		label: function(context) {
+			console.log(context);
+			//var label = context.dataset.label || '';
+			var label = context.chart.data.orders[context.parsed.y] || '';
+			
+			if (label) {
+				label += ': ';
+			}
+			if (context.parsed.x !== null) {
+				//label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed.y);
+				label += context.chart.data.percentages[context.parsed.y];
+			}
+			
+			var res = [label]
+			res.push('  '+context.dataset.data[context.parsed.y]+' คน');
+			
+			return res;
+		}
+	}
+};
+
 class BookmarkTabs extends React.Component {
 	constructor(props) {
 		super(props);
@@ -73,7 +107,7 @@ class BookmarkTabs extends React.Component {
 			allow: true,
 			
 			overviewMainCount: 0,
-			mainFocusName: 'ที่ x',
+			mainFocusName: '',
 			mainFocusCount: 0,
 			mainFocusSkillCount: 0,
 			main1OverallName: 'xx.xx',
@@ -97,10 +131,12 @@ class BookmarkTabs extends React.Component {
 			addRank3: 1,
 			
 			overviewHardCount: 0,
+			addOverviewText: 'ทักษะเสริมของคุณ',
+			addOverSection: 'analytic-spc topOvSkl-hide',
 			hard1Name: 'ที่ 1',
 			hard2Name: 'ที่ 2',
 			hard3Name: 'ที่ 3',
-			hardFocusName: 'ที่ x',
+			hardFocusName: 'รวมทุกอาชีพ',
 			hardFocusCount: 0,
 			hard1OverallName: 'xx.xx',
 			hard2OverallName: 'xx.xx',
@@ -121,6 +157,17 @@ class BookmarkTabs extends React.Component {
 	 }
 	
 	componentDidMount() {
+		var userID = null;
+		//var userID = '614e14097f9f24b335174051'; var x = userID;
+		var x = cookie.load('login-user');
+		if(x == 'none'){
+			//alert(707);
+			this.setState({ redirect: "/landing" });
+		}else{
+			//alert(808);
+			userID = x;
+		}
+		
 		const flag = new Image();
 		const flagRv = new Image();
 		const you = new Image();
@@ -380,7 +427,7 @@ class BookmarkTabs extends React.Component {
 		var norBool = false;
 		
 		var current_tab = 1;
-		var userID = '614e14097f9f24b335174047';
+		//var userID = '614e14097f9f24b335174047';
 		var addJobList = [];
 		var mainJobList = [];
 		var jobMixed = [];
@@ -525,16 +572,20 @@ class BookmarkTabs extends React.Component {
 								hard1MyPercentage: entry.percentage.toFixed(2), hard1MyCount: entry.total});
 							if(index == 0){
 								$('#myOvSklc1').css("color", "rgba(253, 98, 94, 1)");
+								$('#mySklc1').css("color", "rgba(253, 98, 94, 1)");
 								console.log('set-color1 red!');
 							}else if(index == 1){
 								$('#myOvSklc1').css("color", "rgba(1, 184, 170, 1)");
+								$('#mySklc1').css("color", "rgba(1, 184, 170, 1)");
 								console.log('set-color1 green!');
 							}else if(index == 2){
 								$('#myOvSklc1').css("color", "rgba(242, 200, 15, 1)");
+								$('#mySklc1').css("color", "rgba(242, 200, 15, 1)");
 								console.log('set-color1 Yellow!');
 							}else{
 								pickedColor += 1;
 								$('#myOvSklc1').css("color", "rgba(138, 212, 235, 1)");
+								$('#mySklc1').css("color", "rgba(138, 212, 235, 1)");
 								console.log('set-color1 azure!');
 							}
 						}else if(myCount == 1){ // second skill
@@ -544,16 +595,20 @@ class BookmarkTabs extends React.Component {
 								hard2MyPercentage: entry.percentage.toFixed(2), hard1MyCount: entry.total});
 							if(index == 1){
 								$('#myOvSklc2').css("color", "rgba(1, 184, 170, 1)");
+								$('#mySklc2').css("color", "rgba(1, 184, 170, 1)");
 								console.log('set-color2 green!');
 							}else if(index == 2){
 								$('#myOvSklc2').css("color", "rgba(242, 200, 15, 1)");
+								$('#mySklc2').css("color", "rgba(242, 200, 15, 1)");
 								console.log('set-color2 Yellow!');
 							}else{
 								if(pickedColor == 0){
 									$('#myOvSklc2').css("color", "rgba(138, 212, 235, 1)");
+									$('#mySklc2').css("color", "rgba(138, 212, 235, 1)");
 									console.log('set-color2 azure!');
 								}else{
 									$('#myOvSklc2').css("color", "rgba(166, 105, 153, 1)");
+									$('#mySklc2').css("color", "rgba(166, 105, 153, 1)");
 									console.log('set-color2 purple!');
 								}
 								pickedColor += 1;
@@ -565,13 +620,17 @@ class BookmarkTabs extends React.Component {
 								hard3MyPercentage: entry.percentage.toFixed(2), hard1MyCount: entry.total});
 							if(index == 2){
 								$('#myOvSklc3').css("color", "rgba(242, 200, 15, 1)");
+								$('#mySklc3').css("color", "rgba(242, 200, 15, 1)");
 							}else{
 								if(pickedColor == 0){
 									$('#myOvSklc3').css("color", "rgba(138, 212, 235, 1)");
+									$('#mySklc3').css("color", "rgba(138, 212, 235, 1)");
 								}else if(pickedColor == 1){
 									$('#myOvSklc3').css("color", "rgba(166, 105, 153, 1)");
+									$('#mySklc3').css("color", "rgba(166, 105, 153, 1)");
 								}else{
 									$('#myOvSklc3').css("color", "rgba(254, 150, 102, 1)");
+									$('#mySklc3').css("color", "rgba(254, 150, 102, 1)");
 								}
 								pickedColor += 1;
 							}
@@ -1019,8 +1078,11 @@ class BookmarkTabs extends React.Component {
 		function AdditionalSkillManager(){
 			//$('#hardHeader1').text('งานที่ 1'); $('#hardHeader2').text('งานที่ 1');
 			
-			ReuseAbleFuncAdd();
-
+			if(rawAdditional.InterestedJobs.length > 0)
+				ReuseAbleFuncAdd();
+			else
+				ReuseAbleFuncAddOverview();
+			
 			$('.hard-lv1').addClass("animate-hard-lv1");
 			
 			var hardChart2Config = {
@@ -1115,10 +1177,13 @@ class BookmarkTabs extends React.Component {
 							},
 							formatter: function(value, context) {
 								var text = context.chart.data.labels[context.dataIndex];
-								if(text.length < 16){
+								if(context.chart.data.labels.length > 4 )
+									return '';
+								
+								if(text.length < 13){
 									return text;
 								}else{
-									return text.substring(0,16)+'...';
+									return text.substring(0,13)+'...';
 									//return text.substring(0,20)+'\n'+text.substring(20,text.length);
 								}
 							}
@@ -1296,7 +1361,10 @@ class BookmarkTabs extends React.Component {
 					
 					if(scores[i] == youScr){
 						console.log('set you! at: '+i);
-						vPoints.push(you);
+						if(scores[i] == mean)
+							vPoints.push(avgYou);
+						else
+							vPoints.push(you);
 					}else if(scores[i] == mean){
 						console.log('set mean! at: '+i);
 						vPoints.push(avg);
@@ -1544,7 +1612,7 @@ class BookmarkTabs extends React.Component {
 						
 						const [{ index }] = activePoints;
 						console.log('Click bar: '+jobChartConfig.data.labels[index]+',val: '+jobChartConfig.data.datasets[0].data[index]);
-						
+						//alert('bar clicked!');
 						setTimeout(function(){
 							
 							
@@ -1642,10 +1710,13 @@ class BookmarkTabs extends React.Component {
 							},
 							formatter: function(value, context) {
 								var text = context.chart.data.labels[context.dataIndex];
-								if(text.length < 16){
+								if(context.chart.data.labels.length > 4 )
+									return '';
+								
+								if(text.length < 13){
 									return text;
 								}else{
-									return text.substring(0,16)+'...';
+									return text.substring(0,13)+'...';
 									//return text.substring(0,20)+'\n'+text.substring(20,text.length);
 								}
 							}
@@ -1781,10 +1852,13 @@ class BookmarkTabs extends React.Component {
 							},
 							formatter: function(value, context) {
 								var text = context.chart.data.labels[context.dataIndex];
-								if(text.length < 16){
+								if(context.chart.data.labels.length > 4 )
+									return '';
+								
+								if(text.length < 13){
 									return text;
 								}else{
-									return text.substring(0,16)+'...';
+									return text.substring(0,13)+'...';
 									//return text.substring(0,20)+'\n'+text.substring(20,text.length);
 								}
 							}
@@ -2187,8 +2261,9 @@ class BookmarkTabs extends React.Component {
 			$('.job-lv2').removeClass("animate-job-lv2");
 			$('.job-lv3').removeClass("animate-job-lv3");
 			if(currentlyHasNoSkill) $('#analytic-lower-buttons-main-not-found').show();
-				
-			MainSkillManager();
+			
+			if(rawMain.InterestedJobs.length > 0)
+				MainSkillManager();
 		}
 		
 		function ResetChartHard(){
@@ -2222,6 +2297,8 @@ class BookmarkTabs extends React.Component {
 			    AdditionalSkillManager();
 			}else{
 				// no jobs
+				//alert('999');
+				AdditionalSkillManager();
 			}
 			
 			if(mainJobList.length > 0){
@@ -2429,8 +2506,10 @@ class BookmarkTabs extends React.Component {
 			  $('#tab-1').addClass('tab-list-active');
 			  $('#content1').show();
 			  current_tab = 1;
-			  ReuseAbleFuncAdd();
-			  ReuseAbleFuncMainOverview();
+			  if(rawAdditional.InterestedJobs.length > 0)
+				ReuseAbleFuncAdd();
+			  if(rawMain.mySkills.length > 0)
+				ReuseAbleFuncMainOverview();
 			  ReuseAbleFuncAddOverview();
 			  ResetChartSum();
 			  $('.fat').removeClass("animate-fat");
@@ -2511,6 +2590,7 @@ class BookmarkTabs extends React.Component {
 		  $('#tab-5').on('click', function(){
 			  $('.tab-content').hide();
 			  
+			  $('#analytic-lower-buttons-not-found').hide();
 			  ResetChartJob();
 			  
 			  //Reset
@@ -2661,10 +2741,13 @@ class BookmarkTabs extends React.Component {
 							},
 							formatter: function(value, context) {
 								var text = context.chart.data.labels[context.dataIndex];
-								if(text.length < 16){
+								if(context.chart.data.labels.length > 4 )
+									return '';
+								
+								if(text.length < 13){
 									return text;
 								}else{
-									return text.substring(0,16)+'...';
+									return text.substring(0,13)+'...';
 									//return text.substring(0,20)+'\n'+text.substring(20,text.length);
 								}
 							}
@@ -2721,7 +2804,11 @@ class BookmarkTabs extends React.Component {
 						console.log('get %: '+entry.percentage);
 						//remOrders.push('#'+extra);
 						remOrders.push('#'+extra);
-						remPercentages.push(entry.percentage.toFixed(2)+'%');
+						if(entry.percentage == null){ // bugs from bk
+							remPercentages.push(entry.Percentage.toFixed(2)+'%');
+						}else{
+							remPercentages.push(entry.percentage.toFixed(2)+'%');
+						}
 						console.log('pass: '+entry.SkillName);
 						remData.push(entry.total);
 						extra += 1;
@@ -2978,10 +3065,13 @@ class BookmarkTabs extends React.Component {
 									},
 									formatter: function(value, context) {
 										var text = context.chart.data.labels[context.dataIndex];
-										if(text.length < 16){
+										if(context.chart.data.labels.length > 4 )
+											return '';
+										
+										if(text.length < 13){
 											return text;
 										}else{
-											return text.substring(0,16)+'...';
+											return text.substring(0,13)+'...';
 											//return text.substring(0,20)+'\n'+text.substring(20,text.length);
 										}
 									}
@@ -3162,12 +3252,19 @@ class BookmarkTabs extends React.Component {
 				$('.hard-ct1').addClass("animate-hard-ct1");
 				$('.yahaha32').addClass("animate-yahaha32");
 				//hardChart3.destroy();
-				var remJobs = []; var remOrders = []; var remPercentages = []; var remData = [];
+				var remJobs = []; var remJobsFormat = []; var remOrders = []; var remPercentages = []; var remData = [];
 					var extra = jobMixed.length+1;
-					var jList = rawAdditional[addJobList[idd].name].List;
+					var jList;
+					if(rawAdditional.InterestedJobs.length > 0)
+						jList = rawAdditional[addJobList[idd].name].List;
+					else
+						jList = rawAdditional.Overview.List;
 					console.log(jobMixed);
 					jList.forEach((entry) => {
 						if(!jobMixed.includes(entry.AdditionalSkill)){ // this skill wasn't shown
+							var formatJob = entry.AdditionalSkill;
+							if(formatJob.length > 16)  formatJob = formatJob.substring(0,16)+'...';
+							remJobsFormat.push(formatJob);
 							remJobs.push(entry.AdditionalSkill);
 							//remOrders.push('#'+extra);
 							remOrders.push('#'+extra);
@@ -3192,9 +3289,10 @@ class BookmarkTabs extends React.Component {
 					var hardChart3Config = {
 						type: 'bar',
 						data: {
-							  labels: remJobs,
+							  labels: remJobsFormat,
 							  orders: remOrders,
 							  percentages: remPercentages,
+							  hoverLabels: remJobs,
 							  datasets: [
 								{
 								  label: '# จำนวน',
@@ -3268,7 +3366,7 @@ class BookmarkTabs extends React.Component {
 									legend: {
 										display: false
 									},
-									tooltip: tooltip_config_vertical
+									tooltip: tooltip_config_vertical_formatted
 								  }
 						}
 					};
@@ -3300,14 +3398,22 @@ class BookmarkTabs extends React.Component {
 		function OnFetchEnd(){
 				
 				//ShowAdditionalInterfaceLv1
+				refThis.setState({ addOverSection: 'analytic-spc topOvSkl-hide' });
+				if(rawAdditional.mySkills.length < 1){
+					refThis.setState({ addOverviewText: 'ทักษะยอดนิยม ' });
+					refThis.setState({ addOverSection: 'analytic-spc' });
+				}
 				if(addJobList.length == 1){
 					console.log('1 job detected!');
+					refThis.setState({ addOverviewText: 'ทักษะเสริมของคุณ '+rawAdditional.mySkills.length+' ทักษะ'});
 					refThis.setState({ hard1Name: addJobList[0].THname });
 				}else if(addJobList.length == 2){
 					console.log('2 job detected!');
+					refThis.setState({ addOverviewText: 'ทักษะเสริมของคุณ '+rawAdditional.mySkills.length+' ทักษะ'});
 					refThis.setState({ hard1Name: addJobList[0].THname, hard2Name: addJobList[1].THname });
 				}else if(addJobList.length == 3){
 					console.log('3 job detected!');
+					refThis.setState({ addOverviewText: 'ทักษะเสริมของคุณ '+rawAdditional.mySkills.length+' ทักษะ'});
 					refThis.setState({ hard1Name: addJobList[0].THname, hard2Name: addJobList[1].THname,  hard3Name: addJobList[2].THname});
 				}else{
 					console.log('no add job detected!');
@@ -3346,7 +3452,7 @@ class BookmarkTabs extends React.Component {
 				}else{
 					$('.main-found').hide();
 					$('.main-not-found').show();
-					alert('no job detected!');
+					console.log('no job detected!');
 					$('#tab-2').hide();
 					$('#tab-3').hide();
 					$('#tab-4').hide();
@@ -3472,6 +3578,7 @@ class BookmarkTabs extends React.Component {
 				<div class="tab-content" id="content1"> 
 					<div class="container-fluid yahaha">
 						<div class="row no-gutters yahaha24">
+						
 							<div class="col-5 analytics-clickable header round text-center justify-content-center main-found" id="main1" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
 								<div>
 									<hf class="name">เทรนด์ทักษะเฉพาะในทุกงาน<br/>ที่คุณสนใจ<br/></hf>
@@ -3482,24 +3589,28 @@ class BookmarkTabs extends React.Component {
 									<canvas id="sumChart1" width="100" height="450"></canvas>
 								 </div>
 							</div>
-							<div class="col-5 analytics-clickable header round text-center justify-content-center main-not-found" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+							<div class="col-5 analytics-clickable header round text-center justify-content-center main-not-found" >
 								<br></br><br></br><br></br><br></br>
 								<div>
-									<hf class="name">เทรนด์ทักษะเฉพาะในทุกงาน<br/>ที่คุณสนใจ<br/></hf>
+									<hff class="name">เทรนด์ทักษะเฉพาะในทุกงาน<br/>ที่คุณสนใจ<br/></hff>
 								</div>
 								<br></br>
 								<div class="container-fluid text-center">
-								<div class="col d-flex flex-column align-items-center">
-									<img class="not-found-icon-mini" src="assets/images/outline_cancel_grey_24dp 1.png" alt=""/>
-								</div>
-								<br></br>
-								<mf>ขออภัยด้วย แต่เราไม่พบข้อมูลงานที่คุณสนใจ<br/>และคุณสามารถแก้ไขโปรไฟล์เพื่อเพิ่มงานที่คุณสนใจได้ที่นี่<br/></mf>
-								<br></br>
-								<a class="btn btn-cta-primary-yellow round profile-button" href="#" target="_blank">แก้ไขโปรไฟล์</a>
+									<div class="col d-flex flex-column align-items-center">
+										<img class="not-found-icon-mini" src="assets/images/outline_cancel_grey_24dp 1.png" alt=""/>
+									</div>
+									<br></br>
+									<mff>ขออภัยด้วย แต่เราไม่พบข้อมูลงานที่คุณสนใจ<br/>และคุณสามารถแก้ไขโปรไฟล์เพื่อเพิ่มงานที่คุณสนใจได้ที่นี่<br/></mff>
+									<br></br>
+									<Link to="/editprofile">
+										<a class="btn btn-cta-primary-yellow round profile-button" target="_blank">แก้ไขโปรไฟล์</a>
+									</Link>
 								</div>
 							</div>
+							
 							<div class="col-7 ">
-								<div class="col analytics-clickable header round wrapper text-center">
+							
+								<div class="col analytics-clickable header round wrapper text-center main-found">
 									<div>
 										<hf class="name">เทรนด์ทักษะแบ่งตามงานที่คุณสนใจ</hf>
 									</div>
@@ -3507,6 +3618,18 @@ class BookmarkTabs extends React.Component {
 										
 									</div>
 								</div>
+								<div class="col analytics-clickable header round wrapper text-center main-not-found">
+									
+									<div class="nf-box-flex text-center">
+										<hff class="name">เทรนด์ทักษะแบ่งตามงานที่คุณสนใจ</hff>
+											<img class="not-found-icon-mini2" src="assets/images/outline_cancel_grey_24dp 1.png" alt=""/>
+										<mff>ขออภัยด้วย แต่เราไม่พบข้อมูลงานที่คุณสนใจ<br/>และคุณสามารถแก้ไขโปรไฟล์เพื่อเพิ่มงานที่คุณสนใจได้ที่นี่<br/></mff>
+										<Link to="/editprofile">
+											<a class="btn btn-cta-primary-yellow round profile-button" target="_blank">แก้ไขโปรไฟล์</a>
+										</Link>
+									</div>
+								</div>
+								
 								<div class="col analytics-clickable header round space-alt-1 wrapper">
 									<div class="d-flex">
 										<div class="col-5 container-fluid align-self-end">
@@ -3521,10 +3644,14 @@ class BookmarkTabs extends React.Component {
 												<hr></hr>
 											</div>
 											<div>
-												<af>ทักษะเสริมของคุณ 3 ทักษะ<br/></af>
+												<af>{this.state.addOverviewText}<br/></af>
 												<af class="analytic-spc" id="myOvSkl1"><i class="fas fa-square" id="myOvSklc1"></i> {this.state.hard1MyName} #{this.state.addRank1}<br/></af>
 												<af class="analytic-spc" id="myOvSkl2"><i class="fas fa-square" id="myOvSklc2"></i> {this.state.hard2MyName} #{this.state.addRank2}<br/></af>
 												<af class="analytic-spc" id="myOvSkl3"><i class="fas fa-square" id="myOvSklc3"></i> {this.state.hard3MyName} #{this.state.addRank3}<br/></af>
+												
+												<af class={this.state.addOverSection} id="topOvSkl1"><i class="fas fa-square iAnalytic-red" id="topOvSklc1"></i> {this.state.hard1OverallName} #1<br/></af>
+												<af class={this.state.addOverSection} id="topOvSkl2"><i class="fas fa-square iAnalytic-green" id="topOvSklc2"></i> {this.state.hard2OverallName} #2<br/></af>
+												<af class={this.state.addOverSection} id="topOvSkl3"><i class="fas fa-square iAnalytic-Yellow" id="topyOvSklc3"></i> {this.state.hard3OverallName} #3<br/></af>
 											</div>
 										</div>
 										<div class="col-1 container-fluid">
