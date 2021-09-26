@@ -664,8 +664,11 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 
 .yahaha15 {
 	width: 3vw;
-	margin-left: 3.5vw;
-	margin-right: 0.5vw;
+    margin-left: 3.5vw;
+    margin-right: 0.5vw;
+    height: 100%;
+    display: flex;
+    align-items: end;
 }
 
 .yahaha16 {
@@ -955,7 +958,7 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 
 .vl {
 	border-left: 6px solid #C7C7C7;
-	height: 60vh;
+	height: 600px;
 }
 
 .space-alt-1{

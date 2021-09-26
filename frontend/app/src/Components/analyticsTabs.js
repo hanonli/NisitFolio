@@ -3888,7 +3888,7 @@ class BookmarkTabs extends React.Component {
 												<br></br>
 											</div>
 										</div>
-										<div class="yahaha15 container-fluid align-self-center yh-hide">
+										<div class="yahaha15 container-fluid yh-hide">
 											<div class="vl"></div>
 										</div>
 										<div class="yahaha16 container-fluid">
@@ -4065,7 +4065,7 @@ class BookmarkTabs extends React.Component {
 												<a class="btn btn-cta-primary round profile-button other info-button-hard yahaha37" id="info-hard-button-not-found" target="_blank">คลิกเพื่อดูอันดับอื่น ๆ<br/></a> 
 											</div>
 										</div>
-										<div class="yahaha15 container-fluid align-self-center yh-hide">
+										<div class="yahaha15 container-fluid yh-hide">
 											<div class="vl"></div>
 										</div>
 										<div class="yahaha31 yahaha16 container-fluid">
