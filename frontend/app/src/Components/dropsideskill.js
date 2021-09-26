@@ -87,10 +87,11 @@ const customStyles = {
 			redirect: null
 		}
         var newT = [];
-        this.handleChange = (selectedOption) => {
+        /*this.handleChange = (selectedOption) => {
             this.setState({ selectedOption }, () =>
               console.log(`Option selected:`, this.state.selectedOption),
-              console.log(`Option:`, this.state.selectedOption[0].value),
+              //selectedOption = this.state.selectedOption,
+              //console.log(`Option:`, this.state.selectedOption),
             /*fetch("http://localhost:2000/register/" + this.state.selectedOption.value +"/hardskill",
 		    { method: "GET", })
 		    .then(response => response.json())
@@ -111,14 +112,14 @@ const customStyles = {
 			})
             );
         }
-        this.setState({ opT7: newT});*/
-            )};
+        this.setState({ opT7: newT});
+            )};*/
 }
-	componentDidMount() {
+	/*componentDidMount() {
 		window.addEventListener('load', this.handleLoad);
 		console.log("YEAHXXX!");
         var newT = [];
-        if(this.state.selectedOption.value!='none'){
+        if(this.state.selectedOption[0].value!='none'){
             fetch("http://localhost:2000/register/" + this.state.selectedOption.value +"/hardskill",
                 { method: "GET", })
                 .then(response => response.json())
@@ -133,7 +134,7 @@ const customStyles = {
                         console.log(temp);
                         newT.push(temp);
                 });
-                this.setState({ opT7: newT});
+                //this.setState({ opT7: newT});
             }).catch((error) => {
                 console.log(error);
                 })
@@ -141,7 +142,7 @@ const customStyles = {
         }
 	componentWillUnmount() { 
 	   window.removeEventListener('load', this.handleLoad)  
-	}
+	}*/
 	
 	handleLoad() {
 		console.log("YEAH!");
@@ -150,6 +151,8 @@ const customStyles = {
         const { selectedOption } = this.state;
 		return ( <div>
 		<Select styles={customStyles} options={this.state.opT7} id='selectT7' value={selectedOption}
+        onChange={this.handleChange} placeholder="เลือกหมวดทักษะเสริมที่ถนัด"></Select>
+        <Select styles={customStyles} options={this.state.newT} id='selectT7' value={selectedOption}
         onChange={this.handleChange} placeholder="เลือกหมวดทักษะเสริมที่ถนัด"></Select>
 	</div>
         )};
