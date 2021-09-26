@@ -2020,7 +2020,7 @@ class BookmarkTabs extends React.Component {
 									<canvas id="sumChart2a" width="50" height="215"></canvas>\
 								</div>\
 								<div class="container-fluid p-0">\
-									<cf id="job-name1">งานที่ 1</cf>\
+									<cf class="job-name" id="job-name1">งานที่ 1</cf>\
 								</div>\
 							</div>\
 							<div class="container-fluid col-4">\
@@ -2028,7 +2028,7 @@ class BookmarkTabs extends React.Component {
 									<canvas id="sumChart2b" width="50" height="215"></canvas>\
 								</div>\
 								<div class="container-fluid p-0">\
-									<cf id="job-name2">งานที่ 2</cf>\
+									<cf class="job-name" id="job-name2">งานที่ 2</cf>\
 								</div>\
 							</div>\
 							<div class="container-fluid col-4">\
@@ -2036,7 +2036,7 @@ class BookmarkTabs extends React.Component {
 									<canvas id="sumChart2c" width="50" height="215"></canvas>\
 								</div>\
 								<div class="container-fluid p-0">\
-									<cf id="job-name3">งานที่ 3</cf>\
+									<cf class="job-name" id="job-name3">งานที่ 3</cf>\
 								</div>\
 							</div>'
 							
@@ -3894,6 +3894,7 @@ class BookmarkTabs extends React.Component {
 										<div class="yahaha16 container-fluid">
 											<div class="text-extra">
 												<div class="yahaha17">
+													<br></br>
 													<hhf><br/>เทรนด์ทักษะเฉพาะ<br/></hhf>
 													<hhf id="jobHeader">{this.state.mainFocusName}</hhf>
 													<br></br>
@@ -3959,7 +3960,7 @@ class BookmarkTabs extends React.Component {
 									<a class="btn-close profile-button" id="alv-close-button2" target="_blank"></a> 
 								</div>
 								<div class="text-extra yahaha21 job-lv3">
-									<hf>อันดับอื่น ๆ<br/></hf>
+									<gf>อันดับอื่น ๆ<br/></gf>
 									<br></br>
 								</div>
 								<div class="animate-yahaha13 container-fluid align-self-end job-lv3">
@@ -4071,6 +4072,7 @@ class BookmarkTabs extends React.Component {
 											<div class="hard-ct1">
 												<div class="text-extra">
 													<div class="yahaha17">
+														<br></br>
 														<div class="float-end yahaha6 yahaha33">
 															<a class="btn-close profile-button" id="alv-close-button3" target="_blank"></a> 
 														</div>

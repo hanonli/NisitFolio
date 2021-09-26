@@ -26,16 +26,29 @@ cf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 24px; font-wei
 hf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 42px; font-weight: bold;  color: black; }
 gf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 32px; font-weight: bold;  color: black; }
 hff { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 42px; font-weight: 400;  color: grey; }
-hhf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 52px; font-weight: bold;  color: black; }
+hhf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 42px; font-weight: bold;  color: black; }
 mf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 18px; font-weight: 600;  color: black; }
 mff { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 18px; font-weight: 400;  color: grey; }
+
+
 
 .text-extra{
 	line-height: 1.2;
 }
 
 .ggp{
-	position: relative; top: 10px; 
+	position: relative; 
+	top: 10px; 
+	right: 35px;
+}
+
+.job-name{
+	word-wrap: break-word;
+	overflow: hidden;
+	text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* number of lines to show */
+    -webkit-box-orient: vertical;
 }
 
 textarea {
@@ -239,8 +252,8 @@ option {
 .fat { position: relative; top: 0px; right: 0px; transition: all 0.5s; }
 .fag { position: relative; top: 0px; right: 0px; transition: all 0.5s; }
 .fac { position: relative; top: 0px; right: 0px; transition: all 0.5s; }
-.analytic-md-header { position: relative; right: 0px; transition: all 0.5s; }
-.analytic-md-sub-header { position: relative; transition: all 0.5s; }
+.analytic-md-header { position: relative; right: 0px; top: -30px; transition: all 0.5s; }
+.analytic-md-sub-header { position: relative; top: -25px; transition: all 0.5s; }
 .analytic-right-chart-label { position: relative; top: 0px; transition: all 0.5s; }
 
 
@@ -309,8 +322,14 @@ option {
 }*/
  
 .analytic-arrow-cls.back {
-  transform: rotate(-45deg);
-  left: 0;
+    transform: rotate(-45deg);
+    left: -10px;
+    top: -11px;
+}
+ 
+#alv-close-button3{
+    position: relative;
+    top: -20px;
 }
  
 .analytic-arrow-cls.forward {
@@ -799,7 +818,7 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 
 .chart-container2 { height: 850px; }
 
-.chart-container3 { height: 900px; }
+.chart-container3 { height: 900px !important; }
 
 .job-lv2{ display: none; }
 
