@@ -14,6 +14,7 @@ const customStyles = {
         /*padding: 10,*/
         borderColor: 'transparent',
         fontSize: 20,
+        fontWeight:400,
         backgroundColor: state.isSelected ? 'rgba(249,220,92,1)' : 'transparent',
         ':hover': {
             borderColor: 'transparent',
@@ -40,7 +41,7 @@ const customStyles = {
         ...base, 
             color: 'rgba(78, 82, 100,1)',
     }),
-    placeholder: base => ({ ...base, fontWeight: '400' }),
+    placeholder: base => ({ ...base, fontWeight: 300 }),
     valueContainer: base => ({ ...base, borderRadius: 0,}),
     control: (provided, state) => ({
         ...provided,

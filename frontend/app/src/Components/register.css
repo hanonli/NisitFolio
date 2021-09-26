@@ -347,6 +347,7 @@ datalist {
 
 .red_markEp1 {
   color: red;
+  font-size: 19px;
 }
 
 .red_markEp2 {
@@ -358,6 +359,10 @@ datalist {
   border-style: 1px;
 }
 
+.red_markTitle {
+  color: red;
+  font-size: 24px;
+}
 .is-valid {
   background-image: none;
   padding-right: 0%;
@@ -445,5 +450,13 @@ datalist {
 }
 
 .del-padleft {
-  padding-left: calc(var(--bs-gutter-x) * -.5);;
+  padding-left: calc(var(--bs-gutter-x) * -.5);
+}
+
+.del-padleftbit {
+  padding-left: calc(var(--bs-gutter-x) * -.1);
+}
+
+.del-padrightbit {
+  padding-right: calc(var(--bs-gutter-x) * -.5);
 }

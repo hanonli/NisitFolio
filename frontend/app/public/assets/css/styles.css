@@ -1861,6 +1861,7 @@ a.btn-cta-primary-white:hover, .btn-cta-primary-white:hover {
   margin-bottom: -1px;
   padding-left: 1.5%;
   padding-right: 1.5%;
+  color: black;
 }
 
 .tab-list-item-p {
@@ -2173,8 +2174,9 @@ body {
 }
 
 .MuiFilledInput-root{
-	border-radius: 6vh !important;
-	background-color: #EAEAEA !important;
+	border-radius: 3vh !important;
+  background-color: #EAEAEA !important;
+  /*padding-left: 15px !important;*/
 }
 
 .MuiFilledInput-root:hover{
