@@ -576,6 +576,7 @@ class BookmarkTabs extends React.Component {
 					$('.skill-found').hide();
 					$('#analytic-lower-buttons').hide(); // hide default lower-right buttons
 					$('#info-hard-button-not-found').show();
+					$('#alv-close-button3').hide(); // hide close button
 				}else{
 					currentlyHasNoAddSkill = false;
 					//$('.skill-found').show();
@@ -1010,6 +1011,7 @@ class BookmarkTabs extends React.Component {
 				$('.skill-found').hide();
 				$('#analytic-lower-buttons').hide(); // hide default lower-right buttons
 				$('#analytic-lower-buttons-not-found').show();
+				$('#alv-close-button3').hide(); // hide close button
 			}else{
 				currentlyHasNoAddSkill = false;
 				//alert('add skill found!');
@@ -1741,9 +1743,9 @@ class BookmarkTabs extends React.Component {
 							$("#jobChart1").remove();
 							$("#chart-container-job").append('<canvas id="jobChart1" width="100" height="450"></canvas>');
 							ctxJ = document.getElementById("jobChart1").getContext("2d");
-							setTimeout(function() {
+							//setTimeout(function() {
 								jobChart = new Chart(ctxJ, jobChartConfig);
-							}, 10);
+							//}, 10);
 							
 							GenerateDistributionChartData(jobChartConfig,index,idm);
 							
@@ -2614,7 +2616,6 @@ class BookmarkTabs extends React.Component {
 		//setTimeout(function(){   $("#content1").fadeOut(500); }, 1000);
 
 		function Tab1Func(){
-			triggerAddOverview = false;
 			 $('.tab-content').hide();
 			  $('.tab-list-item').removeClass('tab-list-active');
 			  $('#tab-1').addClass('tab-list-active');
@@ -2659,6 +2660,7 @@ class BookmarkTabs extends React.Component {
 		   });
 		  
 		   $('#tab-2').on('click', function(){
+			   triggerAddOverview = false;
 			  $('.tab-content').hide();
 			  $('.tab-list-item').removeClass('tab-list-active');
 			  $('#tab-2').addClass('tab-list-active');
@@ -2674,6 +2676,7 @@ class BookmarkTabs extends React.Component {
 		   });
 		  
 		  $('#tab-3').on('click', function(){
+			  triggerAddOverview = false;
 			  $('.tab-content').hide();
 			  $('.tab-list-item').removeClass('tab-list-active');
 			  $('#tab-3').addClass('tab-list-active');
@@ -2688,6 +2691,7 @@ class BookmarkTabs extends React.Component {
 		  });
 		  
 		  $('#tab-4').on('click', function(){
+			  triggerAddOverview = false;
 			  $('.tab-content').hide();
 			  $('.tab-list-item').removeClass('tab-list-active');
 			  $('#tab-4').addClass('tab-list-active');
@@ -3534,6 +3538,7 @@ class BookmarkTabs extends React.Component {
 		  });
 		  
 		  $('#alv-close-button3').on('click', function(){
+			    triggerAddOverview = false;
 				ResetChartHard();
 		  });
 		  
@@ -3746,7 +3751,7 @@ class BookmarkTabs extends React.Component {
 									<canvas id="sumChart1" width="100" height="450"></canvas>
 								 </div>
 							</div>
-							<div class="col-5 analytics-clickable header round text-center justify-content-center main-not-found" >
+							<div class="col-5 header round text-center justify-content-center main-not-found" >
 								<br></br><br></br><br></br><br></br>
 								<div>
 									<hff class="name">เทรนด์ทักษะเฉพาะในทุกงาน<br/>ที่คุณสนใจ<br/></hff>
@@ -3767,7 +3772,7 @@ class BookmarkTabs extends React.Component {
 							
 							<div class="col-7 ">
 							
-								<div class="col analytics-clickable header round wrapper text-center main-found">
+								<div class="col header round wrapper text-center main-found">
 									<div>
 										<hf class="name">เทรนด์ทักษะแบ่งตามงานที่คุณสนใจ</hf>
 									</div>
@@ -3775,7 +3780,7 @@ class BookmarkTabs extends React.Component {
 										
 									</div>
 								</div>
-								<div class="col analytics-clickable header round wrapper text-center main-not-found">
+								<div class="col header round wrapper text-center main-not-found">
 									
 									<div class="nf-box-flex text-center">
 										<hff class="name">เทรนด์ทักษะแบ่งตามงานที่คุณสนใจ</hff>
@@ -3830,7 +3835,7 @@ class BookmarkTabs extends React.Component {
 										<div class="row">
 										    <div class="analytic-arrow-cls back" id="main-lv2-back"></div>
 											<hf class="analytic-md-header">เทรนด์ทักษะเฉพาะในทุกงานที่คุณสนใจ<br/></hf>
-											<nnf class="analytic-spc-s analytic-md-sub-header">คุณสามารถคลิกที่แท่งกราฟเพื่อดูรายละเอียดเพิ่มเติม</nnf>
+											<unf class="analytic-spc-s analytic-md-sub-header">คุณสามารถคลิกที่แท่งกราฟเพื่อดูรายละเอียดเพิ่มเติม</unf>
 											<br></br>
 										</div>
 										<div class="row">
@@ -3839,10 +3844,10 @@ class BookmarkTabs extends React.Component {
 											</div>
 											<div class="col-8 container-fluid">
 												<div class="analytic-right-chart-label">
-													<hf>
+													<gf>
 														<i class="fas fa-square iAnalytic-Other yahaha10"></i>
 														<div class="inline" id="arc-label">อื่น ๆ</div>
-													</hf>
+													</gf>
 												</div>
 												<div class="header round">
 													<div class="analytic-md-right-chart scroll-chart-container" id="con-switch-1">
@@ -3879,7 +3884,7 @@ class BookmarkTabs extends React.Component {
 												<div class="text-center" id="analytic-lower-buttons-main-not-found">
 													<a class="btn btn-cta-primary round profile-button other info-button" id="info-button-not-found" target="_blank">คลิกเพื่อดูอันดับอื่น ๆ<br/></a> 
 												</div>
-												<nnf class="analytic-spc-s yh-hide">*คลิกที่แท่งกราฟเพื่อดูรายละเอียดเพิ่มเติม</nnf>
+												<unf class="analytic-spc-s yh-hide">*คลิกที่แท่งกราฟเพื่อดูรายละเอียดเพิ่มเติม</unf>
 												<br></br>
 											</div>
 										</div>
@@ -4111,7 +4116,8 @@ class BookmarkTabs extends React.Component {
 												<div class="float-end yahaha6 yahaha34">
 													<a class="btn-close profile-button" id="alv-close-button4" target="_blank"></a> 
 												</div>
-												<hf>อันดับอื่น ๆ<br/></hf>
+												<br></br>
+												<gf class="ggp">อันดับอื่น ๆ<br/></gf>
 												<br></br>
 											</div>
 											<div class="yahaha30 container-fluid align-self-end hard-ct2">

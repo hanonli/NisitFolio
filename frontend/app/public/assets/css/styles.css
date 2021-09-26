@@ -18,11 +18,13 @@ h1, h2, h3, h4, h5, h6, input, span,label,button,textarea, a, div {
 
 nf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 32px; font-weight: 200;  color: #939393; }
 nnf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 24px; font-weight: 400;  color: #939393; }
+unf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 18px; font-weight: 400;  color: #939393; }
 uf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 24px; font-weight: 200;  color: #939393; }
-af { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 22px; font-weight: lighter;  color: black; }
+af { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 22px; font-weight: lighter;  color: black;}
 aaf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 32px; font-weight: bold;  color: black; }
 cf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 24px; font-weight: 600;  color: black; }
 hf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 42px; font-weight: bold;  color: black; }
+gf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 32px; font-weight: bold;  color: black; }
 hff { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 42px; font-weight: 400;  color: grey; }
 hhf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 52px; font-weight: bold;  color: black; }
 mf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 18px; font-weight: 600;  color: black; }
@@ -30,6 +32,10 @@ mff { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 18px; font-we
 
 .text-extra{
 	line-height: 1.2;
+}
+
+.ggp{
+	position: relative; top: 10px; 
 }
 
 textarea {
@@ -83,6 +89,8 @@ option {
 
 .analytic-spc-s{
 	margin-left: 2%;
+    position: relative;
+    top: 10px;
 }
 
 .topOvSkl-hide{
@@ -225,7 +233,7 @@ option {
 }
 
 .round-s {
-	border-radius: 12px;
+	border-radius: 25px;
 }
 
 .fat { position: relative; top: 0px; right: 0px; transition: all 0.5s; }
@@ -525,8 +533,9 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 
 .bookmark-content-scroll{
 	overflow-y: overlay;
-	width:100%; 
-	height:73vh;
+    width: 100%;
+    height: 700px;
+    margin-top: 15px;
 }
 
 .not-found{
@@ -604,7 +613,12 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 
 .yahaha9 {
 	margin-right: 6vw;
-	width: 80%;
+    width: 80%;
+    display: flex;
+    flex-flow: column;
+    margin: 0 auto 0 auto;
+    justify-content: space-between;
+    gap: 15px;
 }
 
 .yahaha23 {
@@ -731,7 +745,10 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 
 .yahaha30{
 	height: 60vh;
-	width: 38vw;
+    width: 38vw;
+    position: relative;
+    top: 20px;
+    margin-left: -40px;
 }
 
 .yahaha31{
@@ -771,7 +788,7 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 
 .scroll-chart-container3{
 	overflow: scroll;
-	height: 600px;
+	height: 550px;
 }
 
 #mc-container{
@@ -782,7 +799,7 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 
 .chart-container2 { height: 850px; }
 
-.chart-container3 { height: 850px; }
+.chart-container3 { height: 900px; }
 
 .job-lv2{ display: none; }
 
@@ -803,12 +820,12 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 
 .animate-yahaha12 {
 	height: 73vh;
-	width: 3vw;
+	width: 1vw;
 }
 
 .animate-yahaha13 {
 	height: 73vh;
-	width: 48vw;
+	width: 50vw;
 }
 
 .animate-yahaha14 {
@@ -1044,7 +1061,7 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 	margin-right: auto;
 	margin-left: auto;
 	/*height: 98%;*/
-	margin-top: 10px;
+	/*margin-top: 20px;*/
 	display: flex;
 	justify-content: center;
 	text-align: center;
@@ -1535,7 +1552,7 @@ navbar { margin:0; }
 	
 	.tab-dropdown-pad{
 		margin: 0 !important;
-		padding: 3px 3px 3px 3px;
+		padding: 1px 3px 1px 3px;
 	}
 }
 
@@ -1799,7 +1816,8 @@ a.btn-cta-primary-white:hover, .btn-cta-primary-white:hover {
 
 .tab-dropdown-pad{
 	margin-left: 12px;
-	margin-right: 12px;
+    margin-right: 12px;
+    padding: 2px 15px 2px 15px;
 }
 
 .dropdown-toggle::after {
@@ -1821,7 +1839,7 @@ a.btn-cta-primary-white:hover, .btn-cta-primary-white:hover {
 
 .obj-icon{
 	float: right;
-	margin-right: 20px;
+	margin-right: 0px;
 }
 
 .tab-clear-content{
@@ -1851,8 +1869,8 @@ a.btn-cta-primary-white:hover, .btn-cta-primary-white:hover {
   color: black;
   font-size: 24px;
   
-  border: solid #070707;
-  border-width: 0px 0px 1px 0px;
+  /*border: solid #070707;
+  border-width: 0px 0px 1px 0px;*/
 }
 
 .tab-list-item-p:hover {
@@ -2941,6 +2959,15 @@ a.btn-cta-primary-yellowwideE:hover, .btn-cta-primary-yellowwideE:hover {
   font-size: 24px;
   font-family: 'Nunito','Kanit', arial, sans-serif;
   justify-content: center;
+}
+
+.extra-underline{
+	background: linear-gradient(black,black) 0 calc(100% - 3px)/100% 1px no-repeat, white;
+	/*border: solid #070707;
+    border-width: 0px 0px 1px 0px;
+	box-sizing:border-box;*/
+	/*outline-bottom: 1px solid #070707;
+    outline-offset: 0px 0px -4px 0px;*/
 }
 
 .block-right {
