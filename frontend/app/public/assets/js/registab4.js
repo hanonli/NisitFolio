@@ -48,18 +48,18 @@ function show_work() {
         let grid_work1 = `<div class="t4-content" id="{no_work}">\
                             <h5 class="font-titlet4 font-boldt3">{pos_work}</h5>\
                             <div class="row">\
-                                <div class="col font-titlet3">\
-                                    <div class="font-titlet3 font-boldt3">{company_work}</div>\
-                                    <div class="font-titlet3">เริ่มต้น {month_startwork}/{year_startwork}</div>`;
+                                <div class="col font-titlet4_1">\
+                                    <div class="font-titlet4_1 font-boldt3">{company_work}</div>\
+                                    <div class="font-titlet4_1">เริ่มต้น {month_startwork}/{year_startwork}</div>`;
 
-        let grid_work2 =            `<div class="font-titlet3">สิ้นสุด {month_endwork}/{year_endwork}</div>`;
+        let grid_work2 =            `<div class="font-titlet4_1">สิ้นสุด {month_endwork}/{year_endwork}</div>`;
 
         let grid_work3 =        `</div>\
-                                <div class="col-2 font-titlet3">{inform_work}</div>\
+                                <div class="col-2 font-titlet4_1">{inform_work}</div>\
                             </div>\
                             <div class="row">\
-                                <div class="col font-titlet3 font-boldt3">เงินเดือน</div>\
-                                <div class="col-2 font-titlet3">{salary_work} บาท</div>\
+                                <div class="col font-titlet4_1 font-boldt3">เงินเดือน</div>\
+                                <div class="col-2 font-titlet4_1">{salary_work} บาท</div>\
                             </div>\
                             <div class="layer_icon2">\
                                 <div class="set-layer_icon2">\

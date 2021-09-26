@@ -61,6 +61,15 @@
 }
 
 .font-titlet3{
+    font-size: 16px;
+    font-weight: 400;
+    white-space: nowrap;
+    width: 19vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.font-titlet3_1{
     color:black;
     font-size: 16px;
     font-weight: 400;
