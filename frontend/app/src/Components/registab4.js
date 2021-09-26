@@ -107,7 +107,7 @@ class Registab4 extends React.Component {
                                                 </div>
                                                 <div class='col-4'>
                                                     <select class="form-select form-select-lg dropbtn margin-bottom1 fff month_startwork1"  id='month_startwork' aria-labelledby="select1" required>
-                                                        <option selected disabled value="0">เดือน</option>
+                                                        <option value="0">เดือน</option>
                                                         <option value="1">1</option>
                                                         <option value="2">2</option>
                                                         <option value="3">3</option>
@@ -138,7 +138,7 @@ class Registab4 extends React.Component {
                                                 </div>
                                                 <div class='col-4'>
                                                     <select class="form-select form-select-lg dropbtn margin-bottom1 fff salary_work1"  id='month_endwork' aria-labelledby="select1" required>
-                                                        <option selected disabled value="99">เดือน</option>
+                                                        <option value="99">เดือน</option>
                                                         <option value="1">1</option>
                                                         <option value="2">2</option>
                                                         <option value="3">3</option>

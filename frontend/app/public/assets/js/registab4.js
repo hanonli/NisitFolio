@@ -82,18 +82,22 @@ function show_work() {
             grid_work1 = grid_work1.replace("{month_startwork}",ele["month_startwork"]);
         }
         grid_work1 = grid_work1.replace("{year_startwork}",ele["year_startwork"]);
-        if(ele["month_endwork"]=="99" || ele["year_endwork"]=="9999"){
+        if(ele["regist4_cb"]==true){
             grid_work2 = grid_work2.replace("สิ้นสุด {month_endwork}/{year_endwork}",`ยังอยู่ในงาน`);
         }
         else{
-            if(ele["month_endwork"]<10){
-                grid_work2 = grid_work2.replace("{month_endwork}",`0`+ele["month_endwork"]);
+            if(ele["month_endwork"]=="99" || ele["year_endwork"]=="9999"){
+                grid_work2 = "";
             }
             else{
-                grid_work2 = grid_work2.replace("{month_endwork}",ele["month_endwork"]);
+                if(ele["month_endwork"]<10){
+                    grid_work2 = grid_work2.replace("{month_endwork}",`0`+ele["month_endwork"]);
+                }
+                else{
+                    grid_work2 = grid_work2.replace("{month_endwork}",ele["month_endwork"]);
+                }    
+                grid_work2 = grid_work2.replace("{year_endwork}",ele["year_endwork"]);        
             }
-            
-            grid_work2 = grid_work2.replace("{year_endwork}",ele["year_endwork"]);
         }
         grid_work3 = grid_work3.replace("{inform_work}",ele["inform_work"]);
         if(ele["salary_work"]!=""){
@@ -269,12 +273,6 @@ $(document).on('click', "#submit-work", function () {
     }
     else if(document.getElementById("month_startwork").value == "0"){
         $("#month_startwork").addClass("error_select_work");
-    }
-    else if($('#regist4_cb').prop('checked')==false && document.getElementById("year_endwork").selectedIndex == 0){
-        $("#year_endwork").addClass("error_select_work");
-    }
-    else if($('#regist4_cb').prop('checked')==false && document.getElementById("month_endwork").selectedIndex == 0){
-        $("#month_endwork").addClass("error_select_work");
     }
     else if($('#regist4_cb').prop('checked')==false && parseInt(document.getElementById("year_endwork").value) < parseInt(document.getElementById("year_startwork").value)){
         $("#year_endwork").addClass("error_select_work");
