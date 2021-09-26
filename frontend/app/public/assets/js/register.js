@@ -61,7 +61,7 @@ $(function(){
         $('.tab-list-item').removeClass('tab-list-active');
         $('#tab-7').addClass('tab-list-active')
         $('#registab7-content').show();
-        if(sideskill_count == 0){
+        /*if(sideskill_count == 0){
           $('#sideskilllist1').hide();
           $('.ddt7_2').hide();
           $('.ddt7_3').hide();
@@ -72,7 +72,7 @@ $(function(){
         }
         else if(sideskill_count == 2){
           $('#sideskilllist3').hide();
-        }
+        }*/
     });
 
  });
@@ -162,15 +162,15 @@ $('#continue2').click(function () {
   var last_typework=[],last_company=[],last_typesalary=[],last_salary=[],last_yearstart=[],last_monthstart=[],last_yearend=[],last_monthend=[],last_inform=[];
   list_of_work.forEach((entry) => {
     //console.log(entry);
-    last_typework.push(entry.type_work);
-    last_company.push(entry.company_work);
-    last_fos.push(entry.aca_field);
-    last_aca.push(entry.aca_name);
+    //last_typework.push(entry.type_work);
+    //last_company.push(entry.company_work);
+    //last_fos.push(entry.aca_field);
+    //last_aca.push(entry.aca_name);
     //last_grade.push(entry.aca_grade);
-    last_eduyear.push(entry.aca_year);
-    var total_grade_aca = new Float32Array(1);
-      total_grade_aca[0] = entry.grade;
-      last_grade.push(total_grade_aca[0]);
+    //last_eduyear.push(entry.aca_year);
+    //var total_grade_aca = new Float32Array(1);
+    //  total_grade_aca[0] = entry.grade;
+    //  last_grade.push(total_grade_aca[0]);
   });
   if(avatar1.src=="http://localhost:3000/assets/images/Circleuploadprofile.png"){
     avatar1.src="http://localhost:3000/assets/images/profile_uk.png";
@@ -782,3 +782,28 @@ function PostRegis(pack){
       Job_SkillName:[["C","JQuery","HTML"]]
   }
     
+
+  $(document).ready(function(){
+    console.log('script for registab3 loaded')
+  });
+  
+  let startYear3 = 1970;
+  let endYear3 = new Date().getFullYear();
+  for (i = endYear3; i > startYear3; i--) {
+    $('#year_higher').append($('<option />').val(i).html(i));
+    $('#year_secondary').append($('<option />').val(i).html(i));
+    $('#year_startwork').append($('<option />').val(i).html(i));
+    $('#year_endwork').append($('<option />').val(i).html(i));
+  }
+  
+  /*$('handleHigherSubmit').on('click',function() {
+    $("#registab3Modal1").modal("hide");
+  
+  });
+  
+  $('handleSecondaryubmit').on('click',function() {
+    $("#registab3Modal2").modal("hide");
+  });
+  */
+  var list_of_sideskill = [];
+  

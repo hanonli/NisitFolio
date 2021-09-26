@@ -1595,6 +1595,7 @@ body {
 
 .MuiFilledInput-root{
 	border-radius: 3vh !important;
+  background-color: #EAEAEA !important;
   /*padding-left: 15px !important;*/
 }
 
