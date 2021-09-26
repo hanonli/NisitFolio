@@ -3,47 +3,48 @@ import MyresumeWork from './myresumeWorkhistory';
 
 class MyResume2 extends React.Component {
     render() {
-        const workdata = [
-            {
-                "id": "61388f7c34f592a9d7f788e7",
-                "UserId": "613881e534f592a9d7f788cf",
-                "Work_JobName": "FUll time Pro Duel list",
-                "Work_JobType": "Mainjob",
-                "Company": "none",
-                "Work_Start_Month": 7,
-                "Work_End_Month": 6,
-                "Work_Start_Year": 2013,
-                "Work_End_Year": 2021,
-                "Salary": 35000,
-                "Infomation": "Duel"
-            },
-            {
-                "id": "61388f7c34f592a9d7f788e7",
-                "UserId": "613881e534f592a9d7f788cf",
-                "Work_JobName": "Pro Duel list",
-                "Work_JobType": "partime",
-                "Company": "kaiba crop",
-                "Work_Start_Month": 7,
-                "Work_End_Month": 9,
-                "Work_Start_Year": 2013,
-                "Work_End_Year": 2021,
-                "Salary": 35000,
-                "Infomation": "Duel"
-            },
-            {
-                "id": "61388f7c34f592a9d7f788e7",
-                "UserId": "613881e534f592a9d7f788cf",
-                "Work_JobName": "Slave Engineer",
-                "Work_JobType": "partime",
-                "Company": "1024 crop",
-                "Work_Start_Month": 7,
-                "Work_End_Month": 99,
-                "Work_Start_Year": 2021,
-                "Work_End_Year": 9999,
-                "Salary": 35000,
-                "Infomation": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tincidunt, neque vitae eleifend ornare, leo sem hendrerit lorem, vel hendrerit elit elit et libero. Pellentesque auctor ornare sapien sit amet imperdiet. Nam at justo nibh. Aenean mollis ornare lacus, in ornare odio."
-            }
-        ]
+        const workdata = this.props.state.workHistorys;
+        // const workdata = [
+        //     {
+        //         "id": "61388f7c34f592a9d7f788e7",
+        //         "UserId": "613881e534f592a9d7f788cf",
+        //         "Work_JobName": "FUll time Pro Duel list",
+        //         "Work_JobType": "Mainjob",
+        //         "Company": "none",
+        //         "Work_Start_Month": 7,
+        //         "Work_End_Month": 6,
+        //         "Work_Start_Year": 2013,
+        //         "Work_End_Year": 2021,
+        //         "Salary": 35000,
+        //         "Infomation": "Duel"
+        //     },
+        //     {
+        //         "id": "61388f7c34f592a9d7f788e7",
+        //         "UserId": "613881e534f592a9d7f788cf",
+        //         "Work_JobName": "Pro Duel list",
+        //         "Work_JobType": "partime",
+        //         "Company": "kaiba crop",
+        //         "Work_Start_Month": 7,
+        //         "Work_End_Month": 9,
+        //         "Work_Start_Year": 2013,
+        //         "Work_End_Year": 2021,
+        //         "Salary": 35000,
+        //         "Infomation": "Duel"
+        //     },
+        //     {
+        //         "id": "61388f7c34f592a9d7f788e7",
+        //         "UserId": "613881e534f592a9d7f788cf",
+        //         "Work_JobName": "Slave Engineer",
+        //         "Work_JobType": "partime",
+        //         "Company": "1024 crop",
+        //         "Work_Start_Month": 7,
+        //         "Work_End_Month": 99,
+        //         "Work_Start_Year": 2021,
+        //         "Work_End_Year": 9999,
+        //         "Salary": 35000,
+        //         "Infomation": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tincidunt, neque vitae eleifend ornare, leo sem hendrerit lorem, vel hendrerit elit elit et libero. Pellentesque auctor ornare sapien sit amet imperdiet. Nam at justo nibh. Aenean mollis ornare lacus, in ornare odio."
+        //     }
+        // ]
         return (
             <div class="resume2">
                 <div class="myresume-3">

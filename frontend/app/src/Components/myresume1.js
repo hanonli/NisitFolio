@@ -91,7 +91,7 @@ class MyResume1 extends React.Component {
         return (
             
             <div class="resume1">
-                <MyresumeHeading firstname={firstname} lastname={lastname} const occupation={occupation} bio={bio} imagepath={imagepath} colour="#FFCE55" province="กรุงเทพมหานคร" city="มินบุรี"></MyresumeHeading>
+                <MyresumeHeading firstname={firstname} lastname={lastname} const occupation={occupation} bio={bio} imagepath={imagepath} colour={"#FFCE55"} province="กรุงเทพมหานคร" city="มินบุรี"></MyresumeHeading>
 			    <MyresumeHeading firstname={firstname} lastname={lastname} const occupation={occupation} imagepath={imagepath} colour="#FFCE55"></MyresumeHeading>
                 <MyresumeHeading firstname={firstname} lastname={lastname} const occupation={occupation} imagepath={imagepath} colour="#FFCE55" owner={true}></MyresumeHeading>
                 <MyResumeEducation data={educationdata}></MyResumeEducation>

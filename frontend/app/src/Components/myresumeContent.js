@@ -19,8 +19,8 @@ class MyResumeContent extends React.Component {
 		return (
 			<div className="MyResumeContent">
 				<MyResume1 state={this.props.state}></MyResume1>
-				<MyResume2></MyResume2>
-				<MyResume3></MyResume3>
+				<MyResume2 state={this.props.state}></MyResume2>
+				<MyResume3 state={this.props.state}></MyResume3>
 				<MyresumeWorkGoals></MyresumeWorkGoals>
 				<h1>Testing Sharing Space</h1>
 				<SharingPopup></SharingPopup>
