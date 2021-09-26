@@ -138,11 +138,12 @@ $('#continue2').click(function () {
     last_faculty.push(entry.aca_faculty);
     last_fos.push(entry.aca_field);
     last_aca.push(entry.aca_name);
-    //last_grade.push(entry.aca_grade);
+    //last_grade.push(parseFloat(entry.aca_grade));
     last_eduyear.push(entry.aca_year);
     var total_grade_aca = new Float32Array(1);
-      total_grade_aca[0] = entry.grade;
-      last_grade.push(total_grade_aca[0]);
+    total_grade_aca[0] = entry.aca_grade;
+    //console.log(total_grade_aca[0]);
+    last_grade.push(total_grade_aca[0]);
   });
   list_of_high.forEach((entry) => {
     //console.log(entry);
@@ -153,24 +154,35 @@ $('#continue2').click(function () {
     //last_grade.push(entry.high_grade);
     last_eduyear.push(entry.high_year);
     var total_grade_high = new Float32Array(1);
-      total_grade_high[0] = entry.grade;
-      last_grade.push(total_grade_high[0]);
+    total_grade_high[0] = entry.high_grade;
+    last_grade.push(total_grade_high[0]);
   });
   //console.log('grade = ' + last_grade);
   //console.log(last_eduyear);
   //console.log(last_jobname);
-  var last_typework=[],last_company=[],last_typesalary=[],last_salary=[],last_yearstart=[],last_monthstart=[],last_yearend=[],last_monthend=[],last_inform=[];
+  var last_poswork=[],last_typework=[],last_company=[],last_typesalary=[],last_salary=[],last_yearstart=[],last_monthstart=[],last_yearend=[],last_monthend=[],last_inform=[];
   list_of_work.forEach((entry) => {
     //console.log(entry);
-    //last_typework.push(entry.type_work);
-    //last_company.push(entry.company_work);
-    //last_fos.push(entry.aca_field);
-    //last_aca.push(entry.aca_name);
-    //last_grade.push(entry.aca_grade);
-    //last_eduyear.push(entry.aca_year);
-    //var total_grade_aca = new Float32Array(1);
-    //  total_grade_aca[0] = entry.grade;
-    //  last_grade.push(total_grade_aca[0]);
+    last_poswork.push(entry.pos_work);
+    last_typework.push(entry.type_work);
+    last_company.push(entry.company_work);
+    last_typesalary.push(entry.type_salary_work);
+    last_salary.push(entry.salary_work);
+    last_yearstart.push(entry.year_startwork);
+    last_monthstart.push(entry.month_startwork);
+    last_inform.push(entry.inform_work);
+    if(entry.regist4_cb==true){
+      last_yearend.push(9999);
+      last_monthend.push(99);
+    }
+    else if(entry.year_endwork==NaN){
+      last_yearend.push(0);
+      last_monthend.push(0);
+    }
+    else{
+      last_yearend.push(entry.year_endwork);
+      last_monthend.push(entry.month_endwork);
+    }
   });
   if(avatar1.src=="http://localhost:3000/assets/images/Circleuploadprofile.png"){
     avatar1.src="http://localhost:3000/assets/images/profile_uk.png";
@@ -213,16 +225,16 @@ $('#continue2').click(function () {
       Academy:last_aca,
       Grade:last_grade,
       Education_End_Year:last_eduyear,
-      Work_JobName:["เขียนเว็บ"],
-      Work_JobType:["ฟรีแลนซ์"],
-      Company:["freelance.com"],
-      Work_Start_Month:[1],
-      Work_End_Month:[5],
-      Work_Start_Year:[2007],
-      Work_End_Year:[2012],
-      Salary:[15000],
-      SalaryType:["รายได้เป็นงาน"],
-      Infomation:["จะดีมากถ้าลูกค้าไม่เรื่องมาก"],
+      Work_JobName:last_poswork,
+      Work_JobType:last_typework,
+      Company:last_company,
+      Work_Start_Month:last_monthstart,
+      Work_End_Month:last_monthend,
+      Work_Start_Year:last_yearstart,
+      Work_End_Year:last_yearend,
+      Salary:last_salary,
+      SalaryType:last_typesalary,
+      Infomation:last_inform,
       Job_JobName:last_jobname,
       Job_SkillName: last_jobskill,
       Job_Score: last_jobscore,
@@ -234,7 +246,7 @@ $('#continue2').click(function () {
     //console.log(Regis3_form2);
     //console.log(Registab4);
     console.log(JSON.stringify(FormRegis2));
-    PostRegis(FormRegis2);
+    //PostRegis(FormRegis2);
   }
   else{
     console.log('You Wrong!');
@@ -787,9 +799,9 @@ function PostRegis(pack){
     console.log('script for registab3 loaded')
   });
   
-  let startYear3 = 1970;
-  let endYear3 = new Date().getFullYear();
-  for (i = endYear3; i > startYear3; i--) {
+  let startYear4 = 1970;
+  let endYear4 = new Date().getFullYear();
+  for (i = endYear4; i > startYear4; i--) {
     $('#year_higher').append($('<option />').val(i).html(i));
     $('#year_secondary').append($('<option />').val(i).html(i));
     $('#year_startwork').append($('<option />').val(i).html(i));
