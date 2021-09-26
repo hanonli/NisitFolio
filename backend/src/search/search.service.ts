@@ -2,10 +2,12 @@ import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 
+import * as mongoose from 'mongoose' ;
+
 import { ObjectId } from 'mongodb' ;
 import { TotalBookmark, UserInfo, JobTitle, UserJobSkill } from './search.schema';
 import { InterestedJob } from 'src/register/entity/Register.entity';
-import { Bookmark, Portfolio } from 'src/bookmarks/bookmarks.schema';
+import { Account, Bookmark, Portfolio } from 'src/bookmarks/bookmarks.schema';
 
 @Injectable()
 export class SearchService {
@@ -22,6 +24,8 @@ export class SearchService {
     private BookmarkModel: Model<Bookmark>,
     @InjectModel('Portfolio')
     private PortfolioModel: Model<Portfolio> ,
+    @InjectModel('Account')
+    private AccountModel: Model<Account>,
     ) {}
 
   async findJobName(q: string, userId: string): Promise<any[]> {
@@ -29,25 +33,30 @@ export class SearchService {
     const regex = new RegExp(escapeRegex(q), 'gi') ;
     const Job = await this.JobTitleModel.findOne({ $or: [ { Name: regex }, { THName: regex }]}).exec() ;
     if (Job == null) 
-      return result ;
+    return result ;
     console.log("Job Name:", Job.THName, Job.Name) ;
     
     // -------------------------------------- profile ------------------------------------
-
+    
     let type = 'profile' ;
     const id = await this.UserInfoModel.find({tags: {"$in": [Job.Name, Job.THName]}}).exec() ;
     console.log("JobName id:", id) ;
     //let nid = id.sort((a,b) => (a.totalBookmark < b.totalBookmark ? 1 : a.totalBookmark == b.totalBookmark ? (a.AvgScore < b.AvgScore ? 1 : -1) : -1 ));
     for (var obj of id) {
+      const is_pub = await this.AccountModel.findOne({_id: mongoose.Types.ObjectId(obj.UserId)}) ;
       const is_Bookmark = await this.BookmarkModel.find({ userId: userId, thatUserId: obj.UserId, type: type}).exec() ;
-      console.log(is_Bookmark) ;
-      let check ;
-      if (is_Bookmark.length != 0) 
-        check = "true" ;
-      else 
-        check = "false" ;
-      result.push({"name": obj.Firstname + " " + obj.Lastname, "type": type, "thatUserId": obj.UserId, 
-        "pic": obj.ProfilePic, "about": obj.AboutMe, "tags": obj.tags , "bookmark": check, "AvgScore": obj.AvgScore, "totalBookmark": obj.totalBookmark }) ;
+      if (is_pub.Privacy == "Public" || is_Bookmark.length != 0) {
+        console.log(is_Bookmark) ;
+        let check ;
+        if (is_Bookmark.length != 0) {
+          check = "true" ;
+        }
+        else {
+          check = "false" ;
+        }
+        result.push({"name": obj.Firstname + " " + obj.Lastname, "type": type, "thatUserId": obj.UserId, 
+          "pic": obj.ProfilePic, "about": obj.AboutMe, "tags": obj.tags , "bookmark": check, "AvgScore": obj.AvgScore, "totalBookmark": obj.totalBookmark }) ;
+      }
     }
 
     // ------------------------------------ portfolio -----------------------------------
@@ -86,15 +95,18 @@ export class SearchService {
     //let nUser = user.sort((a,b) => (a.totalBookmark < b.totalBookmark ? 1 : a.totalBookmark == b.totalBookmark ? (a.AvgScore < b.AvgScore ? 1 : -1) : -1 ));
     let type = "profile" ;
     for (var obj of user) {
+      const is_pub = await this.AccountModel.findOne({ _id: mongoose.Types.ObjectId(obj.UserId)}) ;
       const is_Bookmark = await this.BookmarkModel.find({ userId: userId, thatUserId: obj.UserId, type: type}).exec() ;
-      console.log(is_Bookmark) ;
-      let check ;
-      if (is_Bookmark.length != 0) 
-        check = "true" ;
-      else 
-        check = "false" ;
-      result.push({"name": obj.Firstname + " " + obj.Lastname, "type": type, "thatUserId": obj.UserId, 
-        "pic": obj.ProfilePic, "about": obj.AboutMe, "tags": obj.tags , "bookmark": check, "AvgScore": obj.AvgScore, "totalBookmark": obj.totalBookmark }) ;
+      if (is_pub.Privacy == "Public" || is_Bookmark.length != 0) {
+        console.log(is_Bookmark) ;
+        let check ;
+        if (is_Bookmark.length != 0) 
+          check = "true" ;
+        else 
+          check = "false" ;
+        result.push({"name": obj.Firstname + " " + obj.Lastname, "type": type, "thatUserId": obj.UserId, 
+          "pic": obj.ProfilePic, "about": obj.AboutMe, "tags": obj.tags , "bookmark": check, "AvgScore": obj.AvgScore, "totalBookmark": obj.totalBookmark }) ;
+      }
     }
 
     // ------------------------------------------ portfolio ----------------------------------------

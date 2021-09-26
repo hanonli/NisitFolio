@@ -10,6 +10,7 @@ import BookmarkProfileList from './bookmarkProfileList';
 import BookmarkWorkList from './bookmarkWorkList';
 import LoadingS from './loadingS';
 import TabBookmark from "./TabBookmark"; 
+import { Redirect } from "react-router-dom";
 import cookie from 'react-cookies'
 
 const tooltip_config = {
@@ -105,6 +106,7 @@ class BookmarkTabs extends React.Component {
 		this.state = {
 			render: false, //Set render state to false
 			allow: true,
+			redirect: null,
 			
 			overviewMainCount: 0,
 			mainFocusName: '',
@@ -158,8 +160,8 @@ class BookmarkTabs extends React.Component {
 	
 	componentDidMount() {
 		var userID = null;
-		var userID = '614e14097f9f24b335174047'; var x = userID;
-		//var x = cookie.load('login-user');
+		//var userID = '614e14097f9f24b335174047'; var x = userID;
+		var x = cookie.load('login-user');
 		if(x == 'none'){
 			//alert(707);
 			this.setState({ redirect: "/landing" });
@@ -180,6 +182,8 @@ class BookmarkTabs extends React.Component {
 		avg.src = 'assets/images/avg-ch.png'; 
 		dummy.src = 'assets/images/dummy.png'; 
 		avgYou.src = 'assets/images/avg-you.png'; 
+		
+		var triggerAddOverview = false;
 		
 		var currentColor = 'grey';
 
@@ -270,9 +274,14 @@ class BookmarkTabs extends React.Component {
 						legend: {
 							display: false
 						},
+						tooltip: {
+							 enabled: false
+						}
 
-						tooltip: tooltip_config
+						//tooltip: tooltip_config
 					  }
+						
+					   
 			}
 		};
 		
@@ -363,8 +372,11 @@ class BookmarkTabs extends React.Component {
 						legend: {
 							display: false
 						},
+						tooltip: {
+							 enabled: false
+						}
 
-						tooltip: tooltip_config
+						//tooltip: tooltip_config
 					  }
 			}
 		};
@@ -498,8 +510,27 @@ class BookmarkTabs extends React.Component {
 				return true
 			});
 			
-			mainJobMixed = [refThis.state.main2OverallName,refThis.state.main1OverallName,refThis.state.main3OverallName];
-			mainData = [refThis.state.main2OverallCount,refThis.state.main1OverallCount,refThis.state.main3OverallCount];
+			mainJobMixed = []; mainData = [];
+			if(jList.length == 1){
+				//alert('Gogog1');
+				mainJobMixed = [refThis.state.main1OverallName];
+				mainData = [refThis.state.main1OverallCount];
+				$('#topSkl2').hide();
+				$('#topSkl3').hide();
+			}
+			if(jList.length == 2){
+				//alert('Gogog2');
+				mainJobMixed = [refThis.state.main1OverallName,refThis.state.main2OverallName];
+				mainData = [refThis.state.main1OverallCount,refThis.state.main2OverallCount];
+				$('#topSkl3').hide();
+			}
+			if(jList.length > 2){
+				//alert('Gogog3');
+				mainJobMixed = [refThis.state.main2OverallName,refThis.state.main1OverallName,refThis.state.main3OverallName];
+				mainData = [refThis.state.main2OverallCount,refThis.state.main1OverallCount,refThis.state.main3OverallCount];
+			}
+			//mainJobMixed = [refThis.state.main2OverallName,refThis.state.main1OverallName,refThis.state.main3OverallName];
+			//mainData = [refThis.state.main2OverallCount,refThis.state.main1OverallCount,refThis.state.main3OverallCount];
 			mainOrd = ['#2', '#1', '#3'];
 			mainPct = [refThis.state.main2OverallPercentage+'%',refThis.state.main1OverallPercentage+'%', refThis.state.main3OverallPercentage+'%'];
 			mainColor = ['rgba(1, 184, 170, 1)','rgba(253, 98, 94, 1)','rgba(242, 200, 15, 1']
@@ -514,8 +545,9 @@ class BookmarkTabs extends React.Component {
 		}
 	
 		function ReuseAbleFuncAddOverview(){
-				//refThis.setState({ hardFocusName: addJobList[idd].THname });
+				refThis.setState({ hardFocusName: 'รวมทุกอาชีพ' });
 				//refThis.setState({ hardFocusCount: rawAdditional[addJobList[idd].name].numberOfUsers });
+				refThis.setState({ hardFocusCount: rawAdditional.Overview.numberOfUsers });
 				
 				var jList = rawAdditional.Overview.List;
 				refThis.setState({ hard1OverallName: jList[0].AdditionalSkill, 
@@ -534,16 +566,22 @@ class BookmarkTabs extends React.Component {
 				$('#myOvSkl1').hide();
 				$('#myOvSkl2').hide();
 				$('#myOvSkl3').hide();
-				refThis.setState({ hard1MyName: 'unknown', hard1MyPercentage: '0.00%', hard1MyCount: 0});
-				refThis.setState({ hard2MyName: 'unknown', hard2MyPercentage: '0.00%', hard2MyCount: 0});
-				refThis.setState({ hard3MyName: 'unknown', hard3MyPercentage: '0.00%', hard3MyCount: 0});
+				refThis.setState({ hard1MyName: 'unknown', hard1MyPercentage: '0.00', hard1MyCount: 0});
+				refThis.setState({ hard2MyName: 'unknown', hard2MyPercentage: '0.00', hard2MyCount: 0});
+				refThis.setState({ hard3MyName: 'unknown', hard3MyPercentage: '0.00', hard3MyCount: 0});
 				if(rawAdditional.mySkills.length == 0){
 					// no skills
 					currentlyHasNoAddSkill = true;
+					$('#skl-not-found-add').removeClass('skill-not-found'); // show lower-right not found block
+					$('.skill-found').hide();
+					$('#analytic-lower-buttons').hide(); // hide default lower-right buttons
+					$('#info-hard-button-not-found').show();
 				}else{
 					currentlyHasNoAddSkill = false;
 					//$('.skill-found').show();
+					$('.skill-found').show();
 				}
+
 				if(rawAdditional.mySkills.length > 0){
 					$('#myOvSkl1').show();
 				}
@@ -655,8 +693,25 @@ class BookmarkTabs extends React.Component {
 					return true
 				});
 				
-				jobMixed = [refThis.state.hard2OverallName,refThis.state.hard1OverallName,refThis.state.hard3OverallName];
-				dataMixed = [refThis.state.hard2OverallCount,refThis.state.hard1OverallCount,refThis.state.hard3OverallCount];
+				jobMixed = []; dataMixed = [];
+				if(jList.length == 1){
+					jobMixed = [refThis.state.hard1OverallName];
+					dataMixed = [refThis.state.hard1OverallCount];
+					$('#topSkl2').hide();
+					$('#topSkl3').hide();
+				}
+				if(jList.length == 2){
+					jobMixed = [refThis.state.hard1OverallName,refThis.state.hard2OverallName];
+					dataMixed = [refThis.state.hard1OverallCount,refThis.state.hard2OverallCount];
+					$('#topSkl3').hide();
+				}
+				if(jList.length > 2){
+					jobMixed = [refThis.state.hard2OverallName,refThis.state.hard1OverallName,refThis.state.hard3OverallName];
+					dataMixed = [refThis.state.hard2OverallCount,refThis.state.hard1OverallCount,refThis.state.hard3OverallCount];
+				}
+				
+				//jobMixed = [refThis.state.hard2OverallName,refThis.state.hard1OverallName,refThis.state.hard3OverallName];
+				//dataMixed = [refThis.state.hard2OverallCount,refThis.state.hard1OverallCount,refThis.state.hard3OverallCount];
 				ord = ['#2', '#1', '#3'];
 				pct = [refThis.state.hard2OverallPercentage+'%',refThis.state.hard1OverallPercentage+'%', refThis.state.hard3OverallPercentage+'%'];
 				bgc = ['rgba(1, 184, 170, 1)','rgba(253, 98, 94, 1)','rgba(242, 200, 15, 1']
@@ -841,8 +896,28 @@ class BookmarkTabs extends React.Component {
 				$('.skill-found').show();
 			}
 			
-			mainJobMixed = [refThis.state.main2OverallName,refThis.state.main1OverallName,refThis.state.main3OverallName];
-			mainData = [refThis.state.main2OverallCount,refThis.state.main1OverallCount,refThis.state.main3OverallCount];
+			mainJobMixed = []; mainData = [];
+			if(jList.length == 1){
+				//alert('Gogog1');
+				mainJobMixed = [refThis.state.main1OverallName];
+				mainData = [refThis.state.main1OverallCount];
+				$('#topSkl2').hide();
+				$('#topSkl3').hide();
+			}
+			if(jList.length == 2){
+				//alert('Gogog2');
+				mainJobMixed = [refThis.state.main1OverallName,refThis.state.main2OverallName];
+				mainData = [refThis.state.main1OverallCount,refThis.state.main2OverallCount];
+				$('#topSkl3').hide();
+			}
+			if(jList.length > 2){
+				//alert('Gogog3');
+				mainJobMixed = [refThis.state.main2OverallName,refThis.state.main1OverallName,refThis.state.main3OverallName];
+				mainData = [refThis.state.main2OverallCount,refThis.state.main1OverallCount,refThis.state.main3OverallCount];
+			}
+			
+			//mainJobMixed = [refThis.state.main2OverallName,refThis.state.main1OverallName,refThis.state.main3OverallName];
+			//mainData = [refThis.state.main2OverallCount,refThis.state.main1OverallCount,refThis.state.main3OverallCount];
 			mainOrd = ['#2', '#1', '#3'];
 			mainPct = [refThis.state.main2OverallPercentage+'%',refThis.state.main1OverallPercentage+'%', refThis.state.main3OverallPercentage+'%'];
 			mainColor = ['rgba(1, 184, 170, 1)','rgba(253, 98, 94, 1)','rgba(242, 200, 15, 1']
@@ -892,16 +967,23 @@ class BookmarkTabs extends React.Component {
 		}
 		
 		function ReuseAbleFuncAdd(){
+			//alert(9999);
 			refThis.setState({ hardFocusName: addJobList[idd].THname });
 			refThis.setState({ hardFocusCount: rawAdditional[addJobList[idd].name].numberOfUsers });
 			
 			var jList = rawAdditional[addJobList[idd].name].List;
-			refThis.setState({ hard1OverallName: jList[0].AdditionalSkill, 
-				hard1OverallPercentage: jList[0].percentage.toFixed(2), hard1OverallCount: jList[0].total});
-			refThis.setState({ hard2OverallName: jList[1].AdditionalSkill, 
-				hard2OverallPercentage: jList[1].percentage.toFixed(2), hard2OverallCount: jList[1].total});
-			refThis.setState({ hard3OverallName: jList[2].AdditionalSkill, 
-				hard3OverallPercentage: jList[2].percentage.toFixed(2), hard3OverallCount: jList[2].total});
+			if(jList.length > 0){
+				refThis.setState({ hard1OverallName: jList[0].AdditionalSkill, 
+					hard1OverallPercentage: jList[0].percentage.toFixed(2), hard1OverallCount: jList[0].total});
+			}
+			if(jList.length > 1){
+				refThis.setState({ hard2OverallName: jList[1].AdditionalSkill, 
+					hard2OverallPercentage: jList[1].percentage.toFixed(2), hard2OverallCount: jList[1].total});
+			}
+			if(jList.length > 2){
+				refThis.setState({ hard3OverallName: jList[2].AdditionalSkill, 
+					hard3OverallPercentage: jList[2].percentage.toFixed(2), hard3OverallCount: jList[2].total});
+			}
 			
 			var myCount = 0; var index = 0; var pickedColor = 0;
 			var unmatchedName = [];
@@ -912,9 +994,9 @@ class BookmarkTabs extends React.Component {
 			$('#mySkl1').hide();
 			$('#mySkl2').hide();
 			$('#mySkl3').hide();
-			refThis.setState({ hard1MyName: 'unknown', hard1MyPercentage: '0.00%', hard1MyCount: 0});
-			refThis.setState({ hard2MyName: 'unknown', hard2MyPercentage: '0.00%', hard2MyCount: 0});
-			refThis.setState({ hard3MyName: 'unknown', hard3MyPercentage: '0.00%', hard3MyCount: 0});
+			refThis.setState({ hard1MyName: 'unknown', hard1MyPercentage: '0.00', hard1MyCount: 0});
+			refThis.setState({ hard2MyName: 'unknown', hard2MyPercentage: '0.00', hard2MyCount: 0});
+			refThis.setState({ hard3MyName: 'unknown', hard3MyPercentage: '0.00', hard3MyCount: 0});
 			//Reset
 			$('#analytic-lower-buttons').show(); // show default lower-right buttons
 			$('#skl-not-found').addClass('skill-not-found'); // hide lower-right not found block
@@ -1031,8 +1113,24 @@ class BookmarkTabs extends React.Component {
 				return true
 			});
 			
-			jobMixed = [refThis.state.hard2OverallName,refThis.state.hard1OverallName,refThis.state.hard3OverallName];
-			dataMixed = [refThis.state.hard2OverallCount,refThis.state.hard1OverallCount,refThis.state.hard3OverallCount];
+			jobMixed = []; dataMixed = [];
+			if(jList.length == 1){
+				jobMixed = [refThis.state.hard1OverallName];
+				dataMixed = [refThis.state.hard1OverallCount];
+				$('#topSkl2').hide();
+				$('#topSkl3').hide();
+			}
+			if(jList.length == 2){
+				jobMixed = [refThis.state.hard1OverallName,refThis.state.hard2OverallName];
+				dataMixed = [refThis.state.hard1OverallCount,refThis.state.hard2OverallCount];
+				$('#topSkl3').hide();
+			}
+			if(jList.length > 2){
+				jobMixed = [refThis.state.hard2OverallName,refThis.state.hard1OverallName,refThis.state.hard3OverallName];
+				dataMixed = [refThis.state.hard2OverallCount,refThis.state.hard1OverallCount,refThis.state.hard3OverallCount];
+			}
+			//jobMixed = [refThis.state.hard2OverallName,refThis.state.hard1OverallName,refThis.state.hard3OverallName];
+			//dataMixed = [refThis.state.hard2OverallCount,refThis.state.hard1OverallCount,refThis.state.hard3OverallCount];
 			ord = ['#2', '#1', '#3'];
 			pct = [refThis.state.hard2OverallPercentage+'%',refThis.state.hard1OverallPercentage+'%', refThis.state.hard3OverallPercentage+'%'];
 			bgc = ['rgba(1, 184, 170, 1)','rgba(253, 98, 94, 1)','rgba(242, 200, 15, 1']
@@ -1082,10 +1180,14 @@ class BookmarkTabs extends React.Component {
 		function AdditionalSkillManager(){
 			//$('#hardHeader1').text('งานที่ 1'); $('#hardHeader2').text('งานที่ 1');
 			
-			if(rawAdditional.InterestedJobs.length > 0)
+			if(rawAdditional.InterestedJobs.length > 0 && !triggerAddOverview){
+				//alert('KUAY');
 				ReuseAbleFuncAdd();
-			else
+			}else{
+				//alert('RIGHT!!');
+				//triggerAddOverview = false;
 				ReuseAbleFuncAddOverview();
+			}
 			
 			$('.hard-lv1').addClass("animate-hard-lv1");
 			
@@ -1211,11 +1313,11 @@ class BookmarkTabs extends React.Component {
 						  },subMiddleLabel: {
 							align: 'end',
 							anchor: 'center',
-							offset: -50,
+							offset: -40,
 							font: function(context) {
 							  var w = context.chart.width;
 							  return {
-								size: w < 512 ? 16 : 24,
+								size: w < 512 ? 12 : 18,
 								weight: 'bold',
 								family: "'Nunito','Kanit'",
 							  };
@@ -1357,10 +1459,10 @@ class BookmarkTabs extends React.Component {
 					}else if(scores[i] == 10){
 						vLabels.push('ยอดเยี่ยม');
 					}else{
-						//if(scores[i] == youScr || scores[i] == mean || scores[i] == mode1 || scores[i] == mode2)
+						if(scores[i] == youScr || scores[i] == mean || scores[i] == mode1 || scores[i] == mode2) // show important score value
 							vLabels.push(scores[i]);
-						//else
-						//	vLabels.push('');
+						else
+							vLabels.push('');
 					}
 					
 					if(scores[i] == youScr){
@@ -1744,11 +1846,11 @@ class BookmarkTabs extends React.Component {
 						  },subMiddleLabel: {
 							align: 'end',
 							anchor: 'center',
-							offset: -50,
+							offset: -40,
 							font: function(context) {
 							  var w = context.chart.width;
 							  return {
-								size: w < 512 ? 16 : 24,
+								size: w < 512 ? 12 : 18,
 								weight: 'bold',
 								family: "'Nunito','Kanit'",
 							  };
@@ -1882,11 +1984,11 @@ class BookmarkTabs extends React.Component {
 						  },subMiddleLabel: {
 							align: 'end',
 							anchor: 'center',
-							offset: -50,
+							offset: -40,
 							font: function(context) {
 							  var w = context.chart.width;
 							  return {
-								size: w < 512 ? 16 : 24,
+								size: w < 512 ? 12 : 18,
 								weight: 'bold',
 								family: "'Nunito','Kanit'",
 							  };
@@ -2284,28 +2386,35 @@ class BookmarkTabs extends React.Component {
 			$("#hardChart1a").remove();
 			$("#hardChart1b").remove();
 			$("#hardChart1c").remove();
-			if(addJobList.length == 3){
-				$("#chart-container-p11").append('<canvas id="hardChart1a" width="100" height="450"></canvas>');
-				$("#chart-container-p12").append('<canvas id="hardChart1b" width="100" height="450"></canvas>');
-				$("#chart-container-p13").append('<canvas id="hardChart1c" width="100" height="450"></canvas>');
-				ctxH1a = document.getElementById("hardChart1a").getContext("2d");
-				ctxH1b = document.getElementById("hardChart1b").getContext("2d");
-				ctxH1c = document.getElementById("hardChart1c").getContext("2d");
-			}else if(addJobList.length == 2){
-				$("#chart-container-p21").append('<canvas id="hardChart1a" width="100" height="450"></canvas>');
-				$("#chart-container-p22").append('<canvas id="hardChart1b" width="100" height="450"></canvas>');
-				ctxH1a = document.getElementById("hardChart1a").getContext("2d");
-				ctxH1b = document.getElementById("hardChart1b").getContext("2d");
-			}else if(addJobList.length == 1){
-				idd = 0;
-			    AdditionalSkillManager();
-			}else{
-				// no jobs
-				//alert('999');
+			if(triggerAddOverview){
+				//alert('Go!');
 				AdditionalSkillManager();
+			}else{
+				if(addJobList.length == 3){
+					$("#chart-container-p11").append('<canvas id="hardChart1a" width="100" height="450"></canvas>');
+					$("#chart-container-p12").append('<canvas id="hardChart1b" width="100" height="450"></canvas>');
+					$("#chart-container-p13").append('<canvas id="hardChart1c" width="100" height="450"></canvas>');
+					ctxH1a = document.getElementById("hardChart1a").getContext("2d");
+					ctxH1b = document.getElementById("hardChart1b").getContext("2d");
+					ctxH1c = document.getElementById("hardChart1c").getContext("2d");
+				}else if(addJobList.length == 2){
+					$("#chart-container-p21").append('<canvas id="hardChart1a" width="100" height="450"></canvas>');
+					$("#chart-container-p22").append('<canvas id="hardChart1b" width="100" height="450"></canvas>');
+					ctxH1a = document.getElementById("hardChart1a").getContext("2d");
+					ctxH1b = document.getElementById("hardChart1b").getContext("2d");
+				}else if(addJobList.length == 1){
+					idd = 0;
+					AdditionalSkillManager();
+				}else{
+					// no jobs
+					//alert('999');
+					AdditionalSkillManager();
+				}
 			}
 			
-			if(mainJobList.length > 0){
+			
+			
+			if(mainJobList.length > 0 && !triggerAddOverview){
 				idd = 0;
 				ReuseAbleFuncAdd();
 				var hardChartPreview1Config = {
@@ -2368,7 +2477,7 @@ class BookmarkTabs extends React.Component {
 			};
 				hardChart1a = new Chart(ctxH1a, hardChartPreview1Config);
 			}
-			if(mainJobList.length > 1){
+			if(mainJobList.length > 1 && !triggerAddOverview){
 				idd = 1;
 				ReuseAbleFuncAdd();
 				var hardChartPreview2Config = {
@@ -2431,7 +2540,7 @@ class BookmarkTabs extends React.Component {
 			};
 				hardChart1b = new Chart(ctxH1b, hardChartPreview2Config);
 			}
-			if(mainJobList.length > 2){
+			if(mainJobList.length > 2 && !triggerAddOverview){
 				idd = 2;
 				ReuseAbleFuncAdd();
 				var hardChartPreview3Config = {
@@ -2494,7 +2603,7 @@ class BookmarkTabs extends React.Component {
 			};
 				hardChart1c = new Chart(ctxH1c, hardChartPreview3Config);
 			}
-
+			
 			$('.hard-ct1').removeClass("animate-hard-ct1");
 			$('.hard-ct2').removeClass("animate-hard-ct2");
 			setTimeout(function() { $('.hard-ct1').css('display', ''); $('.hard-ct2').css('display', 'none'); }, 200);
@@ -2505,6 +2614,7 @@ class BookmarkTabs extends React.Component {
 		//setTimeout(function(){   $("#content1").fadeOut(500); }, 1000);
 
 		function Tab1Func(){
+			triggerAddOverview = false;
 			 $('.tab-content').hide();
 			  $('.tab-list-item').removeClass('tab-list-active');
 			  $('#tab-1').addClass('tab-list-active');
@@ -2595,6 +2705,7 @@ class BookmarkTabs extends React.Component {
 			  $('.tab-content').hide();
 			  
 			  $('#analytic-lower-buttons-not-found').hide();
+			  $('#info-hard-button-not-found').hide();
 			  ResetChartJob();
 			  
 			  //Reset
@@ -2771,11 +2882,11 @@ class BookmarkTabs extends React.Component {
 						  },subMiddleLabel: {
 							align: 'end',
 							anchor: 'center',
-							offset: -50,
+							offset: -40,
 							font: function(context) {
 							  var w = context.chart.width;
 							  return {
-								size: w < 512 ? 16 : 24,
+								size: w < 512 ? 12 : 18,
 								weight: 'bold',
 								family: "'Nunito','Kanit'",
 							  };
@@ -2949,6 +3060,40 @@ class BookmarkTabs extends React.Component {
 		   $('#info-hard-button-not-found').on('click', function(){
 			   $('#analytic-lower-buttons-not-found').hide();
 		   });
+		   
+		   $('#overview-trigger').on('click', function(){
+			   triggerAddOverview = true;
+			   $('.tab-content').hide();
+			  
+			  $('#analytic-lower-buttons-not-found').hide();
+			  $('#info-hard-button-not-found').hide();
+			  ResetChartJob();
+			  
+			  //Reset
+			  $('#preview-3').addClass("hard-pv-3");
+			  $('#preview-2').addClass("hard-pv-2");
+			  
+			  if(addJobList.length == 3){
+				  $('#preview-3').removeClass("hard-pv-3");
+			  }else if(addJobList.length == 2){
+				  $('#preview-2').removeClass("hard-pv-2");
+			  }else if(addJobList.length == 1){
+				  
+			  }else{ // no interested job
+				  
+			  }
+			  
+			  
+			  $('.tab-list-item').removeClass('tab-list-active');
+			  $('#tab-5').addClass('tab-list-active');
+			  $('#content5').show();
+			  current_tab = 5;
+			  $('.fag').addClass("animate-fag");
+			  setTimeout(function(){ $('.fat').addClass("animate-fat"); }, 10);
+			  setTimeout(function(){ $('.fac').addClass("animate-fac"); }, 10);
+			  //setTimeout(function(){ ResetChartHard(); }, 5);
+			  ResetChartHard();
+		   });
 		  
 		  $('.info-button').on('click', function(){
 				$('.yahaha23').addClass("animate-yahaha23");
@@ -3096,11 +3241,11 @@ class BookmarkTabs extends React.Component {
 								  },subMiddleLabel: {
 									align: 'end',
 									anchor: 'center',
-									offset: -50,
+									offset: -40,
 									font: function(context) {
 									  var w = context.chart.width;
 									  return {
-										size: w < 512 ? 16 : 24,
+										size: w < 512 ? 12 : 18,
 										weight: 'bold',
 										family: "'Nunito','Kanit'",
 									  };
@@ -3261,7 +3406,7 @@ class BookmarkTabs extends React.Component {
 				var remJobs = []; var remJobsFormat = []; var remOrders = []; var remPercentages = []; var remData = [];
 					var extra = 0;
 					var jList;
-					if(rawAdditional.InterestedJobs.length > 0)
+					if(rawAdditional.InterestedJobs.length > 0 && !triggerAddOverview)
 						jList = rawAdditional[addJobList[idd].name].List;
 					else
 						jList = rawAdditional.Overview.List;
@@ -3533,6 +3678,10 @@ class BookmarkTabs extends React.Component {
 	 }
 	
 	render (){
+		if(this.state.redirect) {
+			return <Redirect to={this.state.redirect} />
+		}
+		
 		if(!this.state.render) return (
 			<LoadingS />
 		);
@@ -3561,7 +3710,7 @@ class BookmarkTabs extends React.Component {
 						<div class="row">
 							<div class="col">
 								<div class="topDataBk-content">
-									<h1 class="name inline">Analytics (WIP)</h1>
+									<h1 class="name inline">Analytics</h1>
 								</div>
 							</div>
 						</div>        
@@ -3638,7 +3787,7 @@ class BookmarkTabs extends React.Component {
 									</div>
 								</div>
 								
-								<div class="col analytics-clickable header round space-alt-1 wrapper">
+								<div class="col analytics-clickable header round space-alt-1 wrapper" id="overview-trigger">
 									<div class="d-flex">
 										<div class="col-5 container-fluid align-self-end">
 											<div class="container-fluid">
@@ -3758,7 +3907,9 @@ class BookmarkTabs extends React.Component {
 											<aaf>ทักษะของฉัน<br/></aaf>
 											<div class="header2 container-fluid text-center skill-not-found yahaha9" id="skl-not-found-main">
 												<mf>*เนื่องจากเราไม่พบทักษะของคุณ จึงแสดงทักษะโดยรวม<br/>แต่คุณสามารถแก้ไขโปรไฟล์เพื่อเพิ่มงานที่สนใจได้<br/></mf>
-												<a class="btn btn-cta-primary-yellow round profile-button" href="#" target="_blank">เพิ่มทักษะ</a>
+												<Link to="/editprofile">
+													<a class="btn btn-cta-primary-yellow round profile-button" target="_blank">เพิ่มทักษะ</a>
+												</Link>
 											</div>
 											<div class="skill-found">
 												<div class="yahaha8">
@@ -3927,15 +4078,17 @@ class BookmarkTabs extends React.Component {
 												</div>
 												<div class="yahaha8">
 													<aaf>ทักษะยอดนิยม<br/></aaf>
-													<af>#1 <i class="fas fa-square iAnalytic-red"></i> {this.state.hard1OverallName} {this.state.hard1OverallPercentage}%<br/></af>
-													<af>#2 <i class="fas fa-square iAnalytic-green"></i> {this.state.hard2OverallName} {this.state.hard2OverallPercentage}%<br/></af>
-													<af>#3 <i class="fas fa-square iAnalytic-Yellow"></i> {this.state.hard3OverallName} {this.state.hard3OverallPercentage}%<br/></af>
+													<af id="topSkl1">#1 <i class="fas fa-square iAnalytic-red"></i> {this.state.hard1OverallName} {this.state.hard1OverallPercentage}%<br/></af>
+													<af id="topSkl2">#2 <i class="fas fa-square iAnalytic-green"></i> {this.state.hard2OverallName} {this.state.hard2OverallPercentage}%<br/></af>
+													<af id="topSkl3">#3 <i class="fas fa-square iAnalytic-Yellow"></i> {this.state.hard3OverallName} {this.state.hard3OverallPercentage}%<br/></af>
 												</div>
 												<br></br>
 												<aaf>ทักษะของฉัน<br/></aaf>
 												<div class="header2 container-fluid text-center skill-not-found yahaha9" id="skl-not-found-add">
 													<mf>*เนื่องจากเราไม่พบทักษะของคุณ จึงแสดงทักษะโดยรวม<br/>แต่คุณสามารถแก้ไขโปรไฟล์เพื่อเพิ่มงานที่สนใจได้<br/></mf>
-													<a class="btn btn-cta-primary-yellow round profile-button" href="#" target="_blank">เพิ่มทักษะ</a>
+													<Link to="/editprofile">
+														<a class="btn btn-cta-primary-yellow round profile-button" target="_blank">เพิ่มทักษะ</a>
+													</Link>
 												</div>
 												<div class="skill-found">
 													<div class="yahaha8">

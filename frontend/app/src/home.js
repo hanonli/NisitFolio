@@ -96,6 +96,7 @@ class Home extends React.Component {
 			});
 			
 			function UploadProfile(){
+				//alert(111);
 					var data = {
 						"ProfilePic":$('#avatar').attr('src'),
 					}

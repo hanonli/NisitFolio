@@ -3,6 +3,8 @@ import Select, { NonceProvider } from 'react-select'
 import selectEvent from 'react-select-event'
 import AsyncSelect from 'react-select-async-paginate'
 import $ from 'jquery'
+import PropTypes from "prop-types";
+import { AsyncPaginate } from "react-select-async-paginate"
 
 const customStyles = {
     option: (provided, state) => ({
@@ -71,26 +73,27 @@ const customStyles = {
 		this.state = {
             selectedOption: [{ value: 'none', label: 'เลือกหมวดทักษะเสริมที่ถนัด' }],
             opT7 : [
-                { value: 'Computer_Technology', label: 'Computer_Technology' },
-                { value: 'Hard_Communication%20Skills', label: 'Hard_Communication Skills' },
-                { value: 'Data_Analysis', label: 'Data_Analysis' },
-                { value: 'Certifications_and_Licenses', label: 'Certifications_and_Licenses' },
-                { value: 'Marketing', label: 'Marketing' },
-                { value: 'Project_Management', label: 'Project_Management' },
-                { value: 'Design', label: 'Design' },
-                { value: 'Cloud_Computing', label: 'Cloud_Computing' },
-                { value: 'Mobile_&_Web_Development', label: 'Mobile_&_Web_Development' },
-                { value: 'Network_Structure&_Security', label: 'Network_Structure&_Security' },
+                { value: 'Computer_Technology', label: 'ทักษะคอมพิวเตอร์' },
+                { value: 'Hard_Communication%20Skills', label: 'ทักษะการสื่อสาร' },
+                { value: 'Data_Analysis', label: 'ทักษะการวิเคราะห์ดาต้า' },
+                { value: 'Certifications_and_Licenses', label: 'ทักษะที่ใช้ใบประกอบวิชาชีพ' },
+                { value: 'Marketing', label: 'ทักษะการตลาด' },
+                { value: 'Project_Management', label: 'ทักษะการบริหารโปรเจค' },
+                { value: 'Design', label: 'ทักษะการออกแบบ' },
+                { value: 'Cloud_Computing', label: 'ทักษะเกี่ยวกับ Cloud_Computing' },
+                { value: 'Mobile_&_Web_Development', label: 'การพัฒนาเว็ปแอปพลิเคชั่นและ Mobile App' },
+                { value: 'Network_Structure_&_Security', label: 'เน็ตเวิร์คและซีเคียวริตี้' },
                 
               ],
 			render: false, //Set render state to false
 			redirect: null
 		}
         var newT = [];
-        this.handleChange = (selectedOption) => {
+        /*this.handleChange = (selectedOption) => {
             this.setState({ selectedOption }, () =>
               console.log(`Option selected:`, this.state.selectedOption),
-              console.log(`Option:`, this.state.selectedOption[0].value),
+              //selectedOption = this.state.selectedOption,
+              //console.log(`Option:`, this.state.selectedOption),
             /*fetch("http://localhost:2000/register/" + this.state.selectedOption.value +"/hardskill",
 		    { method: "GET", })
 		    .then(response => response.json())
@@ -111,14 +114,14 @@ const customStyles = {
 			})
             );
         }
-        this.setState({ opT7: newT});*/
-            )};
+        this.setState({ opT7: newT});
+            )};*/
 }
-	componentDidMount() {
+	/*componentDidMount() {
 		window.addEventListener('load', this.handleLoad);
 		console.log("YEAHXXX!");
         var newT = [];
-        if(this.state.selectedOption.value!='none'){
+        if(this.state.selectedOption[0].value!='none'){
             fetch("http://localhost:2000/register/" + this.state.selectedOption.value +"/hardskill",
                 { method: "GET", })
                 .then(response => response.json())
@@ -133,7 +136,7 @@ const customStyles = {
                         console.log(temp);
                         newT.push(temp);
                 });
-                this.setState({ opT7: newT});
+                //this.setState({ opT7: newT});
             }).catch((error) => {
                 console.log(error);
                 })
@@ -141,7 +144,7 @@ const customStyles = {
         }
 	componentWillUnmount() { 
 	   window.removeEventListener('load', this.handleLoad)  
-	}
+	}*/
 	
 	handleLoad() {
 		console.log("YEAH!");
@@ -151,6 +154,8 @@ const customStyles = {
 		return ( <div>
 		<Select styles={customStyles} options={this.state.opT7} id='selectT7' value={selectedOption}
         onChange={this.handleChange} placeholder="เลือกหมวดทักษะเสริมที่ถนัด"></Select>
+        <Select styles={customStyles} options={this.state.newT} id='selectT7_2' value={selectedOption}
+        onChange={this.handleChange} placeholder="เลือกทักษะเสริมที่ถนัด"></Select>
 	</div>
         )};
 }

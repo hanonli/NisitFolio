@@ -1,5 +1,5 @@
 .Registab4 .registab4_formbox {
-    background-color: #52B1CE;
+    background-color: #E4F7FF;
     border: 1px solid black;
     height: 106px;
     
@@ -136,7 +136,7 @@
 .content-work1111{
     display: grid;
     grid-template-columns: repeat(2,1fr);
-    gap: 5px;
+    gap: 0.1vw;
 }
 
 .t4-content {
@@ -144,15 +144,39 @@
     border: 1px solid black;
     border-radius: 25px;
     height: 20vh;
+    width: 29vw;
     position: relative;
     text-align: left;
+    justify-content: space-between;
     margin-top: 5vh;
-    padding: 4%;
-    width: 29vw;
+    padding: 6%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    left: 4px;
 }
 
-.font-titlet4 {
-    color: black;
+.font-titlet3{
+    color:black;
+    font-size: 16px;
+    font-weight: 400;
+    white-space: nowrap;
+    width: 19vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.font-titlet4{
+    color:black;
+    font-size: 24px;
+    font-weight: 400;
+    white-space: nowrap;
+    width: 16.9vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.font-boldt3{
+    font-weight: 600;
 }
 
 .layer_icon2 {
@@ -187,8 +211,8 @@
 
 .set-layer_icon2{
     position: absolute;
-    left: 195px;
-    top: 36px;
+    left: 9.5vw;
+    top: 4.5vh;
 }
 
 .jobname_work1{
@@ -251,7 +275,8 @@
     color: black;
     font-size: 32px;
     margin-bottom: 20px;
-    padding-left: 5px;
+    /*padding-left: 5px;*/
+    margin-top: 5px;
 }
 
 .error_select_work{
@@ -270,4 +295,12 @@
     padding-left: 30px;
     pointer-events: none;
     /*---*/
+}
+
+#textOfyear_work{
+    color: black;
+    font-size: 24px;
+    margin-top: 35px;
+    margin-bottom: 10px;
+    padding-left: 5px;
 }

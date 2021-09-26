@@ -185,8 +185,8 @@ function set_slider_range1(value1) {
 
     slider1.oninput = function (event) {
         //console.log('skill1:', slider1.value);
-        //score_slider1 = parseFloat(slider1.value).toFixed(2);
-        score_slider1 = slider1.value;
+        score_slider1 = parseFloat(slider1.value).toFixed(1);
+        //score_slider1 = slider1.value;
         slider1.style.background = 'linear-gradient(to right, #f0a143 0%, #f0a143 ' + (slider1.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 ' + (slider1.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 100%)';
     }
 }
@@ -221,7 +221,8 @@ function set_slider_range2(value2) {
     slider2.style.background = 'linear-gradient(to right, #0fe17c 0%, #0fe17c ' + (slider2.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 ' + (slider2.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 100%)';
     slider2.oninput = function (event) {
         //console.log('skill2:', slider2.value);
-        score_slider2 = slider2.value;
+        //score_slider2 = slider2.value;
+        score_slider2 = parseFloat(slider2.value).toFixed(1);
         slider2.style.background = 'linear-gradient(to right, #0fe17c 0%, #0fe17c ' + (slider2.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 ' + (slider2.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 100%)';
     }
 }
@@ -256,7 +257,8 @@ function set_slider_range3(value3) {
     slider3.style.background = 'linear-gradient(to right, #c98a11 0%, #c98a11 ' + (slider3.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 ' + (slider3.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 100%)';
     slider3.oninput = function (event) {
         //console.log('skill3:', slider3.value);
-        score_slider3 = slider3.value;
+        //score_slider3 = slider3.value;
+        score_slider3 = parseFloat(slider3.value).toFixed(1);
         slider3.style.background = 'linear-gradient(to right, #c98a11 0%, #c98a11 ' + (slider3.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 ' + (slider3.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 100%)';
     }
 }
@@ -781,8 +783,7 @@ $(document).on("click", "#pos-del-obj-button1", function () {
         $("#pos-del-obj-button1").hide();
         $('#obj-job-02').prop("disabled", true);
         $("#obj-job-02").addClass("dis_input3");
-        $('#obj-job-03').prop("disabled", true);
-        $("#obj-job-03").addClass("dis_input3");
+
     }
     else {
         if ($("#obj-job-02").val() != "" && $("#obj-job-03").val() != "") {
@@ -790,6 +791,8 @@ $(document).on("click", "#pos-del-obj-button1", function () {
             $("#obj-job-02").val($("#obj-job-03").val());
             $("#obj-job-03").val('');
             $("#pos-del-obj-button3").hide();
+            $('#obj-job-03').prop("disabled", true);
+            $("#obj-job-03").addClass("dis_input3");            
         }
         else if ($("#obj-job-02").val() != "" && $("#obj-job-03").val() == "") {
             $("#obj-job-01").val($("#obj-job-02").val());
@@ -805,13 +808,13 @@ $(document).on("click", "#pos-del-obj-button2", function () {
     if ($("#obj-job-01").val() != "" && $("#obj-job-03").val() != "") {
         $("#obj-job-02").val($("#obj-job-03").val());
         $("#obj-job-03").val('');
-        $("#pos-del-obj-button3").hide();
-        $('#obj-job-03').prop("disabled", true);
-        $("#obj-job-03").addClass("dis_input3");        
+        $("#pos-del-obj-button3").hide();  
     }
     else if ($("#obj-job-01").val() != "" && $("#obj-job-03").val() == "") {
         $("#obj-job-02").val('');
         $("#pos-del-obj-button2").hide();
+        $('#obj-job-03').prop("disabled", true);
+        $("#obj-job-03").addClass("dis_input3");         
     }
 });
 
@@ -858,7 +861,7 @@ $(document).on("change", "#obj-job-03", function () {
 });
 
 function testPost6() {
-    var Job_Score = [], Job_Jobname = [], Job_Objective = [], Job_SkillName = []; //variable for send to backend 
+    var Job_Score1 = [], Job_Jobname = [], Job_Objective = [], Job_SkillName = []; //variable for send to backend 
     var i = 0;
     list_of_job.forEach(ele => {
         //post job name
@@ -871,21 +874,21 @@ function testPost6() {
             total_skill_score[0] = ele["score_skill1"];
         }
         else {
-            total_skill_score[0] = "none";
+            total_skill_score[0] = 0;
         }
         if (ele["skill2"] != "none") {
             total_skill_score[1] = ele["score_skill2"];
         }
         else {
-            total_skill_score[1] = "none";
+            total_skill_score[1] = 0;
         }
         if (ele["skill3"] != "none") {
             total_skill_score[2] = ele["score_skill3"];
         }
         else {
-            total_skill_score[2] = "none";
+            total_skill_score[2] = 0;
         }
-        Job_Score.push(total_skill_score);
+        Job_Score1.push(total_skill_score);
         //post job objective
         var listofObj = [];
         listofObj.push(ele["obj1"]);
@@ -895,6 +898,6 @@ function testPost6() {
     });
     console.log("Job_Jobname:", Job_Jobname);
     console.log("Job_SkillName:", Job_SkillName);
-    console.log("Job_Score:", Job_Score);
+    console.log("Job_Score:", Job_Score1);
     console.log("Job_Objective:", Job_Objective);
 }

@@ -898,7 +898,7 @@ function AddBookmark(id){
 }
 
 function AddListenerToDynamicComponents(){
-	if($('#tpId').text() != 'user'){ // hide for public
+	if($('#tpId').text() != 'user' && pageName == 'search'){ // hide for public
 		$('.obj-icon').hide();
 		return;
 	}

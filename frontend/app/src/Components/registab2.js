@@ -21,12 +21,12 @@ class Registab2 extends React.Component {
 								<div class="row">
 									<div class="col-md-2"></div>
 									<div class="col-md-5">
-										<select class="form-select dropbtn margin-bottom1 fff" id="province">
+										<select class="form-select dropbtn margin-bottom1 fff" id="province" required>
 											<option selected disabled value="">จังหวัด</option>
 										</select>
 									</div>
 									<div class="col-md-5">
-										<select class="form-select dropbtn margin-bottom1 fff" id="townny">
+										<select class="form-select dropbtn margin-bottom1 fff" id="townny" required>
 											<option selected disabled value="">เมือง</option>
 										</select>
 									</div>

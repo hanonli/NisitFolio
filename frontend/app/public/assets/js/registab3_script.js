@@ -243,7 +243,7 @@ document.getElementById("submit-aca").addEventListener("click", function () {
       $("#aca_name").addClass("is-invalid");
       checkcase1 = false;
   }
-  if (document.getElementById("aca_degree").value == 'none') {
+  if (document.getElementById("aca_degree").value == '') {
     //alert("submit aca wrong!");
     $("#aca_degree").addClass("is-invalid");
     checkcase1 = false;
@@ -339,13 +339,13 @@ function show_all_high() {
   list_of_high.forEach(ele => {
       var grid_high1 = '<div class="t3-content1 row">\
                           <div class="col-4">\
-                              <div class="font-titlet4 font-boldt3">{degree_high}</div>\
-                              <div class="font-titlet4 font-khotboldt3">{year_high}</div>\
+                              <div class="font-titlet3_2 font-boldt3">{degree_high}</div>\
+                              <div class="font-titlet3_2 font-khotboldt3">{year_high}</div>\
                           </div>\
                           <div class="col-8">\
-                              <div class="font-titlet4">{field_high}</div>\
-                              <div class="font-titlet4">{name_high}</div>\
-                              <div class="font-titlet4">เกรด {grade_high}</div>\
+                              <div class="font-titlet3_2">{field_high}</div>\
+                              <div class="font-titlet3_2">{name_high}</div>\
+                              <div class="font-titlet3_2">เกรด {grade_high}</div>\
                           </div>';
 
       var grid_high2 = `
@@ -506,7 +506,7 @@ document.getElementById("submit-high").addEventListener("click", function () {
       $("#high_name").addClass("is-invalid");
       checkformT3 = false;
   }
-  if (document.getElementById("high_degree").value == 'none') {
+  if (document.getElementById("high_degree").value == '') {
     //alert("submit high wrong!");
     $("#high_degree").addClass("is-invalid");
     checkformT3 = false;

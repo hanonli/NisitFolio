@@ -3,7 +3,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { SearchController } from './search.controller';
 import { SearchService } from './search.service';
 
-import { BookmarkSchema, PortfolioSchema, UserInfoSchema } from 'src/bookmarks/bookmarks.schema';
+import { AccountSchema, BookmarkSchema, PortfolioSchema, UserInfoSchema } from 'src/bookmarks/bookmarks.schema';
 import { JobTitleSchema, UserJobSkillSchema } from 'src/analytics/analytics.schema';
 import { InterestedJobSchema } from './search.schema' ;
 
@@ -16,6 +16,7 @@ import { InterestedJobSchema } from './search.schema' ;
       { name: 'InterestedJob', schema: InterestedJobSchema } ,
       { name: 'Bookmark', schema: BookmarkSchema } ,
       { name: 'Portfolio', schema: PortfolioSchema } ,
+      { name: 'Account', schema: AccountSchema } ,
     ]),
   ],
   controllers: [ SearchController ],

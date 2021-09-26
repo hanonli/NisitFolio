@@ -32,6 +32,23 @@ mff { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 18px; font-we
 	line-height: 1.2;
 }
 
+textarea {
+  resize: none;
+}
+
+select{
+  -webkit-appearance: menulist-button;
+  color:#000;
+}
+
+select:invalid{
+  color:#7A8492;
+}
+
+option {
+  color: black;
+}
+
 .iAnalytic-green{
 	color: rgba(1, 184, 170, 1);
 }
@@ -190,7 +207,7 @@ mff { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 18px; font-we
 }
 
 .yahaha8{
-	word-spacing: 1.2em;
+	word-spacing: 0.5em;
 }
 
 .yahaha10{
@@ -305,7 +322,7 @@ mff { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 18px; font-we
 
 .yahaha37{
 	position: relative;
-	top: -40px; 
+	top: -50px; 
 }
 
 .yahaha6{
@@ -974,8 +991,8 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
  */
 *, *::after, *::before {
 	-webkit-user-select: none;
-	/*-webkit-user-drag: none;
-	-webkit-app-region: no-drag;*/
+	-webkit-user-drag: none;
+	-webkit-app-region: no-drag;
 	/*cursor: default;*/
 }
 
