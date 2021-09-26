@@ -84,6 +84,7 @@ class MyResume1 extends React.Component {
             "CertPic": "assets/images/testlongimage.jpg",
             "CertYear": 2003
         }];
+        const colour_red = "#FF7370";
         return (
             
             <div class="resume1">
@@ -95,6 +96,16 @@ class MyResume1 extends React.Component {
                 <MyresumeCertificate data={certdata}></MyresumeCertificate>
                 <MyresumeCertificate data={[]}></MyresumeCertificate>
                 
+                <h1> try change colour function</h1>
+
+                <MyresumeHeading firstname={firstname} lastname={lastname} const occupation={occupation} bio={bio} imagepath={imagepath} colour={colour_red} province="กรุงเทพมหานคร" city="มินบุรี"></MyresumeHeading>
+			    <MyresumeHeading firstname={firstname} lastname={lastname} const occupation={occupation} imagepath={imagepath} colour={colour_red}></MyresumeHeading>
+                <MyresumeHeading firstname={firstname} lastname={lastname} const occupation={occupation} imagepath={imagepath} colour={colour_red} owner={true}></MyresumeHeading>
+                <MyResumeEducation data={educationdata} colour={colour_red}></MyResumeEducation>
+                <MyResumeEducation data={[]} owner={true} colour={colour_red}></MyResumeEducation>
+                <MyresumeCertificate data={certdata} colour={colour_red}></MyresumeCertificate>
+                <MyresumeCertificate data={[]} colour={colour_red}></MyresumeCertificate>
+
             </div>
 
         );

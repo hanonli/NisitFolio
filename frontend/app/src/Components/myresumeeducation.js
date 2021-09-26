@@ -241,14 +241,11 @@ class MyResumeEducation extends React.Component {
                                     <div class="educationcontentLine3"><p>สถานศึกษา</p></div>
                                     <div class="educationcontentLine4"><p class="grade-label inline2">เกรด</p><div class="centerbreak inline2"><div class="breakline inline2"> </div></div><h4 class="grade inline2">X.XX</h4></div></div></div></div>
                         <div class="timeline-block">
-                            <div class="timeline-dot-pointer" style={dummylinestyle}></div>
-                            <div class="right-row">
-                                <div class="educationdummycontent">
-                                    <div class="educationcontentLine1"><p class="year inline2">ปีที่จบการศึกษา</p><div class="centerbreak inline2"><div class="breakline inline2">|</div></div><p class="degree inline2">วุฒิศึกษา</p></div>
-                                    <div class="educationcontentLine2"><h3 class="field">สาขาวิชา</h3></div>
-                                    <div class="educationcontentLine3"><p>คณะ</p></div>
-                                    <div class="educationcontentLine3"><p>สถานศึกษา</p></div>
-                                    <div class="educationcontentLine4"><p class="grade-label inline2">เกรด</p><div class="centerbreak inline2"><div class="breakline inline2"> </div></div><h4 class="grade inline2">X.XX</h4></div></div></div></div>
+                            <div class="timeline-dummy">
+                                <p>ตอนนี้คุณยังไม่มีข้อมูลประวัติการศึกษา สำหรับตำแหน่งงาน{occupation}</p>
+                                <button onClick={this.handleRoute}>แก้ไขโปรไฟล์</button>
+                            </div>
+                        </div>
                         <div class="timeline-block">
                             <div class="timeline-dot-pointer" style={dummylinestyle}></div>
                             <div class="right-row">
@@ -259,10 +256,7 @@ class MyResumeEducation extends React.Component {
                                     <div class="educationcontentLine3"><p>สถานศึกษา</p></div>
                                     <div class="educationcontentLine4"><p class="grade-label inline2">เกรด</p><div class="centerbreak inline2"><div class="breakline inline2"> </div></div><h4 class="grade inline2">X.XX</h4></div></div></div></div>
                         </div>
-                    <div class="ed-dummy">
-                        <p>ตอนนี้คุณยังไม่มีข้อมูลประวัติการศึกษา สำหรับตำแหน่งงาน{occupation}</p>
-                        <button onClick={this.handleRoute}>แก้ไขโปรไฟล์</button>
-                    </div>
+                    
                 </div>
                 );
         /*console.log(sortdata);*/

@@ -34,6 +34,7 @@
 }
 .timeline-block{
     position: relative;
+    padding: 1vw;
 }
 .timeline-dot-pointer{
     height: 2vw;
@@ -59,4 +60,30 @@
     padding-inline: 2vw;
     text-align: left;
     margin-left: 50%;
+}
+
+.timeline-dummy{
+    background: white;
+    /*position: absolute;
+    top: 50%;
+    left: 50%;
+    */transform: translate(0%, -50%);
+    /*width: 100%;
+    */
+    padding: 0.5vw;
+}
+
+.timeline-dummy p{
+    color: #939393;
+    font-size: 1vw;
+}
+
+.timeline-dummy button{
+    font-size: 1.4vw;
+    background: #F9DC5C;
+    border-radius: 2vw;
+    padding: 0.9vw;
+    color: black;
+    padding-inline: 3.6vw;
+    border: rgba(0,0,0,0);
 }
