@@ -158,8 +158,8 @@ class BookmarkTabs extends React.Component {
 	
 	componentDidMount() {
 		var userID = null;
-		//var userID = '614e14097f9f24b335174051'; var x = userID;
-		var x = cookie.load('login-user');
+		var userID = '614e14097f9f24b335174047'; var x = userID;
+		//var x = cookie.load('login-user');
 		if(x == 'none'){
 			//alert(707);
 			this.setState({ redirect: "/landing" });
@@ -506,7 +506,8 @@ class BookmarkTabs extends React.Component {
 
 			formattedJobMixed = [];
 			for(var k in mainJobMixed) {
-			   formattedJobMixed.push(mainJobMixed[k].replace(' ','\n'));
+				formattedJobMixed.push(mainJobMixed[k]);
+			  // formattedJobMixed.push(mainJobMixed[k].replace(' ','\n'));
 			}
 
 			//$('.hard-lv1').addClass("animate-hard-lv1");
@@ -697,7 +698,8 @@ class BookmarkTabs extends React.Component {
 				}
 				formattedJobMixed = [];
 				for(var k in jobMixed) {
-				   formattedJobMixed.push(jobMixed[k].replace(' ','\n'));
+				   //formattedJobMixed.push(jobMixed[k].replace(' ','\n'));
+				    formattedJobMixed.push(jobMixed[k]);
 				}
 			}
 			
@@ -882,7 +884,8 @@ class BookmarkTabs extends React.Component {
 			}
 			formattedJobMixed = [];
 			for(var k in mainJobMixed) {
-			   formattedJobMixed.push(mainJobMixed[k].replace(' ','\n'));
+			   //formattedJobMixed.push(mainJobMixed[k].replace(' ','\n'));
+			   formattedJobMixed.push(mainJobMixed[k]);
 			}
 
 			//$('.hard-lv1').addClass("animate-hard-lv1");
@@ -1071,7 +1074,8 @@ class BookmarkTabs extends React.Component {
 			}
 			formattedJobMixed = [];
 			for(var k in jobMixed) {
-			   formattedJobMixed.push(jobMixed[k].replace(' ','\n'));
+			  // formattedJobMixed.push(jobMixed[k].replace(' ','\n'));
+			  formattedJobMixed.push(jobMixed[k]);
 			}
 		}
 			
@@ -1180,7 +1184,7 @@ class BookmarkTabs extends React.Component {
 								if(context.chart.data.labels.length > 4 )
 									return '';
 								
-								if(text.length < 13){
+								if(text.length <= 13){
 									return text;
 								}else{
 									return text.substring(0,13)+'...';
@@ -1713,7 +1717,7 @@ class BookmarkTabs extends React.Component {
 								if(context.chart.data.labels.length > 4 )
 									return '';
 								
-								if(text.length < 13){
+								if(text.length <= 13){
 									return text;
 								}else{
 									return text.substring(0,13)+'...';
@@ -1855,7 +1859,7 @@ class BookmarkTabs extends React.Component {
 								if(context.chart.data.labels.length > 4 )
 									return '';
 								
-								if(text.length < 13){
+								if(text.length <= 13){
 									return text;
 								}else{
 									return text.substring(0,13)+'...';
@@ -2744,7 +2748,7 @@ class BookmarkTabs extends React.Component {
 								if(context.chart.data.labels.length > 4 )
 									return '';
 								
-								if(text.length < 13){
+								if(text.length <= 13){
 									return text;
 								}else{
 									return text.substring(0,13)+'...';
@@ -2794,10 +2798,12 @@ class BookmarkTabs extends React.Component {
 			  sumChart5.destroy();
 			  
 			    var remJobs = []; var remOrders = []; var remPercentages = []; var remData = [];
-				var extra = mainJobMixed.length+1;
+				//var extra = mainJobMixed.length+1;
+				var extra = 0;
 				var jList = rawMain.Overview.List;
 				//console.log(mainJobMixed);
 				jList.forEach((entry) => {
+					extra += 1;
 					if(!mainJobMixed.includes(entry.SkillName)){ // this skill wasn't shown
 						remJobs.push(entry.SkillName);
 						console.log('find error: '+entry.SkillName);
@@ -2811,7 +2817,6 @@ class BookmarkTabs extends React.Component {
 						}
 						console.log('pass: '+entry.SkillName);
 						remData.push(entry.total);
-						extra += 1;
 					}
 				});
 
@@ -3068,7 +3073,7 @@ class BookmarkTabs extends React.Component {
 										if(context.chart.data.labels.length > 4 )
 											return '';
 										
-										if(text.length < 13){
+										if(text.length <= 13){
 											return text;
 										}else{
 											return text.substring(0,13)+'...';
@@ -3111,10 +3116,12 @@ class BookmarkTabs extends React.Component {
 					};
 				
 				var remJobs = []; var remOrders = []; var remPercentages = []; var remData = [];
-				var extra = mainJobMixed.length+1;
+				//var extra = mainJobMixed.length+1;
+				var extra = 0;
 				var jList = rawMain[mainJobList[idm].name].List;
 				console.log(mainJobMixed);
 				jList.forEach((entry) => {
+					extra += 1;
 					//alert(entry.SkillName);
 					if(!mainJobMixed.includes(entry.SkillName)){ // this skill wasn't shown
 						//alert('was not show: '+entry.SkillName);
@@ -3123,7 +3130,6 @@ class BookmarkTabs extends React.Component {
 						remOrders.push('#'+extra);
 						remPercentages.push(entry.percentage.toFixed(2)+'%');
 						remData.push(entry.total);
-						extra += 1;
 					}
 				});
 				
@@ -3253,24 +3259,26 @@ class BookmarkTabs extends React.Component {
 				$('.yahaha32').addClass("animate-yahaha32");
 				//hardChart3.destroy();
 				var remJobs = []; var remJobsFormat = []; var remOrders = []; var remPercentages = []; var remData = [];
-					var extra = jobMixed.length+1;
+					var extra = 0;
 					var jList;
 					if(rawAdditional.InterestedJobs.length > 0)
 						jList = rawAdditional[addJobList[idd].name].List;
 					else
 						jList = rawAdditional.Overview.List;
 					console.log(jobMixed);
+					
 					jList.forEach((entry) => {
+						extra += 1;
 						if(!jobMixed.includes(entry.AdditionalSkill)){ // this skill wasn't shown
 							var formatJob = entry.AdditionalSkill;
 							if(formatJob.length > 16)  formatJob = formatJob.substring(0,16)+'...';
 							remJobsFormat.push(formatJob);
 							remJobs.push(entry.AdditionalSkill);
 							//remOrders.push('#'+extra);
+							//remOrders.push('#'+extra);
 							remOrders.push('#'+extra);
 							remPercentages.push(entry.percentage.toFixed(2)+'%');
 							remData.push(entry.total);
-							extra += 1;
 						}
 					});
 					
