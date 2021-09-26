@@ -34,6 +34,19 @@ textarea {
   resize: none;
 }
 
+select{
+  -webkit-appearance: menulist-button;
+  color:#000;
+}
+
+select:invalid{
+  color:#7A8492;
+}
+
+option {
+  color: black;
+}
+
 .iAnalytic-green{
 	color: rgba(1, 184, 170, 1);
 }

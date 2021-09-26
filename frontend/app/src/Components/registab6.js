@@ -48,7 +48,7 @@ class Registab6 extends React.Component {
 										<h1 id="topic_pop">เพิ่มตำแหน่งงานที่สนใจ</h1>
 									</div>
 									<div class="col-md-5 select-job4">
-										<select id="nm_job" class="form-select dropbtn-job4 margin-bottom-job4 fff" >
+										<select id="nm_job" class="form-select dropbtn-job4 margin-bottom-job4 fff" required>
 											<option selected disabled value="">เลือกหรือพิมพ์ตำแหน่งงานที่คุณสนใจ*</option>
 										</select>
 									</div>

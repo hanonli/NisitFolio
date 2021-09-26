@@ -82,18 +82,22 @@ function show_work() {
             grid_work1 = grid_work1.replace("{month_startwork}",ele["month_startwork"]);
         }
         grid_work1 = grid_work1.replace("{year_startwork}",ele["year_startwork"]);
-        if(ele["month_endwork"]=="99" || ele["year_endwork"]=="9999"){
+        if(ele["regist4_cb"]==true){
             grid_work2 = grid_work2.replace("สิ้นสุด {month_endwork}/{year_endwork}",`ยังอยู่ในงาน`);
         }
         else{
-            if(ele["month_endwork"]<10){
-                grid_work2 = grid_work2.replace("{month_endwork}",`0`+ele["month_endwork"]);
+            if(ele["month_endwork"]=="99" || ele["year_endwork"]=="9999"){
+                grid_work2 = "";
             }
             else{
-                grid_work2 = grid_work2.replace("{month_endwork}",ele["month_endwork"]);
+                if(ele["month_endwork"]<10){
+                    grid_work2 = grid_work2.replace("{month_endwork}",`0`+ele["month_endwork"]);
+                }
+                else{
+                    grid_work2 = grid_work2.replace("{month_endwork}",ele["month_endwork"]);
+                }    
+                grid_work2 = grid_work2.replace("{year_endwork}",ele["year_endwork"]);        
             }
-            
-            grid_work2 = grid_work2.replace("{year_endwork}",ele["year_endwork"]);
         }
         grid_work3 = grid_work3.replace("{inform_work}",ele["inform_work"]);
         if(ele["salary_work"]!=""){
@@ -264,17 +268,11 @@ $(document).on('click', "#submit-work", function () {
     else if(document.getElementById("jobname_work").value == ""){
         $("#jobname_work").addClass("error_select_work");
     }
-    else if(document.getElementById("year_startwork").value == "0"){
+    else if(document.getElementById("year_startwork").value == ""){
         $("#year_startwork").addClass("error_select_work");
     }
-    else if(document.getElementById("month_startwork").value == "0"){
+    else if(document.getElementById("month_startwork").value == ""){
         $("#month_startwork").addClass("error_select_work");
-    }
-    else if($('#regist4_cb').prop('checked')==false && document.getElementById("year_endwork").selectedIndex == 0){
-        $("#year_endwork").addClass("error_select_work");
-    }
-    else if($('#regist4_cb').prop('checked')==false && document.getElementById("month_endwork").selectedIndex == 0){
-        $("#month_endwork").addClass("error_select_work");
     }
     else if($('#regist4_cb').prop('checked')==false && parseInt(document.getElementById("year_endwork").value) < parseInt(document.getElementById("year_startwork").value)){
         $("#year_endwork").addClass("error_select_work");
@@ -290,14 +288,14 @@ $(document).on('click', "#submit-work", function () {
             for_edit["company_work"] = company_work;
             for_edit["type_salary_work"] = type_salary_work;
             for_edit["type_salary_work_select"] = document.getElementById("salarytype_work").selectedIndex;
-            for_edit["salary_work"] = salary_work;
-            for_edit["year_startwork"] = year_startwork;
+            for_edit["salary_work"] = parseInt(salary_work);
+            for_edit["year_startwork"] = parseInt(year_startwork);
             for_edit["year_startwork_select"] = document.getElementById("year_startwork").selectedIndex;
-            for_edit["month_startwork"] = month_startwork;
+            for_edit["month_startwork"] = parseInt(month_startwork);
             for_edit["month_startwork_select"] = document.getElementById("month_startwork").selectedIndex;
-            for_edit["year_endwork"] = year_endwork;
+            for_edit["year_endwork"] = parseInt(year_endwork);
             for_edit["year_endwork_select"] = document.getElementById("year_endwork").selectedIndex;
-            for_edit["month_endwork"] = month_endwork;
+            for_edit["month_endwork"] = parseInt(month_endwork);
             for_edit["month_endwork_select"] = document.getElementById("month_endwork").selectedIndex;
             for_edit["regist4_cb"] = regist4_cb;
             for_edit["inform_work"] = inform_work;
@@ -312,14 +310,14 @@ $(document).on('click', "#submit-work", function () {
                 company_work: company_work,
                 type_salary_work: type_salary_work,
                 type_salary_work_select: document.getElementById("salarytype_work").selectedIndex,
-                salary_work: salary_work,
-                year_startwork: year_startwork,
+                salary_work: parseInt(salary_work),
+                year_startwork: parseInt(year_startwork),
                 year_startwork_select: document.getElementById("year_startwork").selectedIndex,
-                month_startwork: month_startwork,
+                month_startwork: parseInt(month_startwork),
                 month_startwork_select: document.getElementById("month_startwork").selectedIndex,
-                year_endwork: year_endwork,
+                year_endwork: parseInt(year_endwork),
                 year_endwork_select: document.getElementById("year_endwork").selectedIndex,
-                month_endwork: month_endwork,
+                month_endwork: parseInt(month_endwork),
                 month_endwork_select: document.getElementById("month_endwork").selectedIndex,
                 regist4_cb: regist4_cb,
                 inform_work: inform_work
