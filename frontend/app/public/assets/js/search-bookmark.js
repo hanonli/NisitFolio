@@ -590,10 +590,8 @@ function ClearCache(){
 function InitializeSBM(cacheData){
 	profileCount = 0; workCount = 0;
 	cacheData.forEach((data) => {
-		if(data.type == "profile") 
-			profileCount += 1;
-		else 
-			workCount += 1;
+		if(data.type == "profile") profileCount += 1;
+		else workCount += 1;
 	});
 	max = cacheData.length;
 	
@@ -850,6 +848,12 @@ function AddListenerToDynamicComponents(){
 	if($('#tpId').text() != 'user' && pageName == 'search'){ // hide for public
 		$('.obj-icon').hide();
 		return;
+	}
+	
+	if(view_type != 'grid'){
+		$('.obj-icon').addClass('ic-margin');
+	}else{
+		$('.obj-icon').removeClass('ic-margin');
 	}
 	
 	//alert(pageName);

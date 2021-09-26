@@ -1864,6 +1864,10 @@ a.btn-cta-primary-white:hover, .btn-cta-primary-white:hover {
 	margin-right: 0px;
 }
 
+.ic-margin{
+	margin-right: 20px;
+}
+
 .tab-clear-content{
 	display: block;
 }
