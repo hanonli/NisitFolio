@@ -156,9 +156,10 @@ $('#continue2').click(function () {
       total_grade_high[0] = entry.grade;
       last_grade.push(total_grade_high[0]);
   });
-  console.log('grade = ' + last_grade);
-  console.log(last_eduyear);
+  //console.log('grade = ' + last_grade);
+  //console.log(last_eduyear);
   //console.log(last_jobname);
+  var last_typework=[],last_company=[],last_typesalary=[],last_salary=[],last_yearstart=[],last_monthstart=[],last_yearend=[],last_monthend=[],last_inform=[];
   if(avatar1.src=="http://localhost:3000/assets/images/Circleuploadprofile.png"){
     avatar1.src="http://localhost:3000/assets/images/profile_uk.png";
   }
