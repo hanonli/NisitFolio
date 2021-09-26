@@ -5,18 +5,10 @@ import Myresumetimeline from './myresumeTimeline';
 class EducationContent extends React.Component {
     render(){
         const data = this.props.data;
-
-        let classofed;
         let content = [];
         let year;
         let line3;
         let line3x;
-        if(data.id === "dummydummyeducation"){
-            classofed = "educationdummycontent";
-        }
-        else{
-            classofed = "educationonecontent";
-        }
         if(data.Education_End_Year === 0){
             content.push(
                 <div class="educationcontentLine1">
@@ -114,7 +106,7 @@ class EducationContent extends React.Component {
         );
         }
         return(
-            <div class ={classofed}>
+            <div class ="educationonecontent">
                 {content}
             </div>
         )
@@ -194,39 +186,6 @@ class MyResumeEducation extends React.Component {
             EducationCon = (<Myresumetimeline data={content} colour={this.props.colour}></Myresumetimeline>);
         }
         else if(owner){
-            const educationdummydata = [
-                {
-                    "id": "dummydummyeducation",
-                    "Degree": "วุฒิศึกษา",
-                    "Facalty": "คณะ",
-                    "Field_of_study": "สาขาวิชา",
-                    "Academy": "สถานศึกษา",
-                    "Grade": 1.11,
-                    "Education_End_Year": "ปีที่จบการศึกษา"
-                },
-                {
-                    "id": "dummydummyeducation",
-                    "Degree": "วุฒิศึกษา",
-                    "Facalty": "คณะ",
-                    "Field_of_study": "สาขาวิชา",
-                    "Academy": "สถานศึกษา",
-                    "Grade": 1.11,
-                    "Education_End_Year": "ปีที่จบการศึกษา"
-                },
-                {
-                    "id": "dummydummyeducation",
-                    "Degree": "วุฒิศึกษา",
-                    "Facalty": "คณะ",
-                    "Field_of_study": "สาขาวิชา",
-                    "Academy": "สถานศึกษา",
-                    "Grade": 1.11,
-                    "Education_End_Year": "ปีที่จบการศึกษา"
-                },
-                
-            ];
-            for (var i = 0; i < educationdummydata.length; i++) {
-                content.push(<EducationContent data={educationdummydata[i]}></EducationContent>);
-            }
             EducationCon = (
                 <div class="education-dummyshow">
                     <div class="resumetimeline">
