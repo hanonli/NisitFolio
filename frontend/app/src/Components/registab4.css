@@ -48,40 +48,6 @@
 
 }
 
-.modalworkaddH {
-    border-radius: 25px;
-    /*padding-right: 1vw;*/
-    padding-bottom: 2.7vw;
-}
-
-.modalworkaddH2 {
-    border-radius: 25px;
-    padding-right: 5vw;
-    padding-bottom: 2.7vw;
-}
-
-.button-add-addH1 {
-    position: absolute;
-    margin-left: 720px;
-    margin-bottom: 15px;
-    margin-top: 390px;
-}
-
-.button-add-addH2 {
-    position: absolute;
-    margin-left: 720px;
-    margin-bottom: 15px;
-    margin-top: 320px;
-}
-/*
-    This is for registab3_addSecondary
-
-*/
-
-/*
-    This is for registab4_addWorkHistory
-*/
-
 
 #registab4_textOr{ 
     margin-top: 14px;
@@ -111,13 +77,13 @@
     border-radius: 25px;
     padding-right: 2vw;
     padding-bottom: 2.6vw;
-    height: 760px;
+    height: 790px;
 }
 
 .button-add-work1 {
     position: absolute;
-    top: 40px;
-    right: 40px;
+    top: 60px;
+    right: 50px;
 }
 
 #regisModallabelt4_1 {
@@ -173,10 +139,6 @@
     width: 16.9vw;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-
-.font-boldt3{
-    font-weight: 600;
 }
 
 .layer_icon2 {

@@ -382,7 +382,7 @@ $(document).on('hide.bs.modal', "#registab4Modal", function () {
                 id: create_UUID(),
                 type_work: type_work, //use Work_JobType
                 type_work_select: type_work_select,
-                pos_work: pos_work, //use Work_JonName
+                pos_work: pos_work, //use Work_JobName
                 company_work: company_work, //use Company
                 type_salary_work: type_salary_work, //use SalaryType
                 type_salary_work_select: type_salary_work_select,
