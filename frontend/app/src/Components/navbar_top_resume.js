@@ -7,26 +7,85 @@ import './navbar_resume.css'
 
 
 class Resume_topNavbar extends React.Component {
-	state = {
-		userID : '',
-		resumeID : '6142398e3e8c5c1df01304cc',
-		workHistorys : [],
-		educationHistorys : [],
-		certificates : [],
-		additionalskill : [],
-		interestedjob : [],
-		privacy : '',
-		color : '',
-	}
+	
 	
 	constructor(props) {
 		super(props);
+
+		this.state = {
+			userID : '',
+			resumeID : '',
+			workHistorys : [],
+			educationHistorys : [],
+			certificates : [],
+			additionalskill : [],
+			interestedjob : [],
+			privacy : '',
+			color : '',
+		}
+
+		// console.log('in contructs'+this.state.userID)
 		// var userID
 		// var resumeID = '6142398e3e8c5c1df01304cc'
 		// var workHistorys
 		// var educationHistorys
-		var token = cookie.load('login-token')
+	}
 		
+	getDatas(){
+		fetch("http://localhost:2000/myresume/"+this.state.resumeID,{
+			method: "GET",
+			headers: {
+				"Access-Control-Allow-Origin": "*",
+				"Access-Control-Allow-Methods": "*",
+				"Access-Control-Allow-Credentials": true,
+				"Content-Type": "application/json"
+			},
+		})
+		.then(response => response.json())
+		.then((datas) => {
+			this.setState({
+				workHistorys : datas.workHistorys,
+				educationHistorys : datas.educationHistorys,
+				certificates : datas.certificates,
+				additionalskill : datas.additionalskill,
+				interestedjob : datas.interestedjob,
+				color : datas.Color,
+				privacy : datas.Privacy,
+			})
+		});
+
+	}
+		
+	getResumeID(){
+		const userid = this.state.userID
+		fetch("http://localhost:2000/portfolio/user/"+ userid,{
+			method: "GET",
+			headers: {
+				"Access-Control-Allow-Origin": "*",
+				"Access-Control-Allow-Methods": "*",
+				"Access-Control-Allow-Credentials": true,
+				"Content-Type": "application/json"
+			},
+		})
+		.then(response => response.json())
+		.then((datas) => {
+			// console.log('real resumeID:' + JSON.stringify(datas[0].ResumeId[0]))
+			this.setState({
+				resumeID : datas[0].ResumeId[0]
+			})
+		});
+	}
+
+	
+	componentDidMount() {
+
+		console.log('topnav start mount')
+		window.addEventListener('load', this.handleLoad);
+		const script = document.createElement("script");
+		script.src = "assets/js/navbar_top_resume_script.js";
+		document.body.appendChild(script);
+
+		var token = cookie.load('login-token')
 		fetch("http://localhost:2000/profile/",{
 			method: "GET",
 			headers: {
@@ -42,55 +101,45 @@ class Resume_topNavbar extends React.Component {
 			this.setState({
 				userID : datas,
 			})
-			console.log(this.state.userID)
-		});
-		
-
-		fetch("http://localhost:2000/myresume/"+this.state.resumeID,{
-			method: "GET",
-			headers: {
-				"Access-Control-Allow-Origin": "*",
-				"Access-Control-Allow-Methods": "*",
-				"Access-Control-Allow-Credentials": true,
-				"Content-Type": "application/json"
-			},
-		})
-		.then(response => response.json())
-		.then((datas) => {
-
-			this.setState({
-				workHistorys : datas.workHistorys,
-				educationHistorys : datas.educationHistorys,
-				certificates : datas.certificates,
-				additionalskill : datas.additionalskill,
-				interestedjob : datas.interestedjob,
-				color : datas.Color,
-				privacy : datas.Privacy,
-			})
-
+			// console.log('this.state.userID1 :'+this.state.userID)
 		});
 
+		// console.log('topnav stop mount')
 		
-	 }
-
-	 
+	}
 	
-	
-	componentDidMount() {
-		const script = document.createElement("script");
-		script.src = "assets/js/navbar_top_resume_script.js";
-		document.body.appendChild(script);
+	shouldComponentUpdate(nextProps, nextState){
+		if(nextState.resumeID != this.state.resumeID){
+			console.log('no need to re-render')
+			return false
+		}else{
+			console.log('need update')
+			return true
+		}
 	}
 
 	
+
+
 	render (){
-		if(!this.state){
-			console.log('still no data');
+
+		if(this.state.userID != ''  && this.state.resumeID == ''  ){
+			// console.log('call getResumeID');
+			this.getResumeID();
 		}else{
-			console.log('data recieve')
+			// console.log('getResumeID not called')
+			// console.log(this.state.resumeID)
 		}
-		
-		console.log('certi: ' + JSON.stringify(this.state))
+		if(this.state.resumeID != ''){
+			// console.log('call getDatas');
+			this.getDatas();
+		}else{
+			// console.log('getDatas not called')
+		}
+
+
+		console.log('state : ' + JSON.stringify(this.state))
+
 		return (
 			
 			<div className="Resume_topNavbar" id='topNav'>
