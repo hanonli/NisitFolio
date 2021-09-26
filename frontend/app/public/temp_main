@@ -309,18 +309,20 @@
                 "SkillName": "DataStructer",
                 "total": 3,
                 "AllScore": [
+					4,
                     8,
                     8.4,
                     8.7
                 ],
                 "UserScore": 8.4,
                 "Count": [
-                    1,
-                    1,
+					2,
+                    5,
+                    2,
                     1
                 ],
-                "Mean": 8.366666666666667,
-                "Mode": [],
+                "Mean": 5.6,
+                "Mode": [4,8],
                 "percentage": 60
             },
             {
@@ -376,27 +378,27 @@
             {
                 "SkillName": "Blockchain",
                 "total": 1,
-                "Percentage": 20
+                "percentage": 20
             },
             {
                 "SkillName": "C++",
                 "total": 1,
-                "Percentage": 20
+                "percentage": 20
             },
             {
                 "SkillName": "Data_Analytics",
                 "total": 1,
-                "Percentage": 20
+                "percentage": 20
             },
             {
                 "SkillName": "Data_Analytis",
                 "total": 1,
-                "Percentage": 20
+                "percentage": 20
             },
             {
                 "SkillName": "Database",
                 "total": 1,
-                "Percentage": 20
+                "percentage": 20
             },
             {
                 "SkillName": "HTML/CSS",
@@ -433,7 +435,7 @@
             {
                 "SkillName": "OOD",
                 "total": 1,
-                "Percentage": 20
+                "percentage": 20
             },
             {
                 "SkillName": "Os",
@@ -470,22 +472,22 @@
             {
                 "SkillName": "Python",
                 "total": 1,
-                "Percentage": 20
+                "percentage": 20
             },
             {
                 "SkillName": "Research",
                 "total": 1,
-                "Percentage": 20
+                "percentage": 20
             },
             {
                 "SkillName": "SQL",
                 "total": 1,
-                "Percentage": 20
+                "percentage": 20
             },
             {
                 "SkillName": "Smartcontract",
                 "total": 1,
-                "Percentage": 20
+                "percentage": 20
             },
             {
                 "SkillName": "Testing",
@@ -506,7 +508,7 @@
             {
                 "SkillName": "Typescripts",
                 "total": 1,
-                "Percentage": 20
+                "percentage": 20
             }
         ]
     }

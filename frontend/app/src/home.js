@@ -24,10 +24,10 @@ class Home extends React.Component {
 	componentDidMount() {
 		window.addEventListener('load', this.handleLoad);
 		console.log("YEAHXXX!");
-		var token = cookie.load('login-token')
+		var token = cookie.load('login-token');
 		console.log(token);
-		
-		/*fetch("http://localhost:2000/profile/",{
+		 
+		 fetch("http://localhost:2000/profile/",{
 			method: "GET",
 			headers: {
 				'Authorization': 'Bearer '+token,
@@ -39,10 +39,16 @@ class Home extends React.Component {
 		})
 		.then(function(response) {
 			return response.text().then(function(text) {
-			  console.log(text);
+			  //alert(text);
+			  if(text == '{"statusCode":401,"message":"Unauthorized"}'){
+				 // alert('set cookie as null:');
+				cookie.save('login-user', 'none', { path: '/' })
+			  }else{
+				  // alert('set cookie as '+text);
+				cookie.save('login-user', text, { path: '/' })
+			  }
 			});
-		 });*/
-		
+		 });
 		
 		fetch("http://localhost:2000/homepage/",{
 			method: "GET",
@@ -81,38 +87,39 @@ class Home extends React.Component {
 				$.getScript('assets/js/home.js');
 				
 				$('#crop').on('click', function(){
-				 //alert('Crop!');
-				setTimeout(function() { UploadProfile(); }, 300);
+					 //alert('Crop!');
+					setTimeout(function() { UploadProfile(); }, 300);
 				});
 			}).catch((error) => {
 				console.log('Token Error!');
-				//this.setState({ redirect: "/landing" });
+				this.setState({ redirect: "/landing" });
 			});
 			
 			function UploadProfile(){
-				var data = {
-					"ProfilePic":$('#avatar').attr('src'),
-				}
-				
-				fetch("http://localhost:2000/register/",{
-				method: "PATCH",
-				headers: {
-					'Authorization': 'Bearer '+token,
-					"Access-Control-Allow-Origin": "*",
-					"Access-Control-Allow-Methods": "*",
-					"Access-Control-Allow-Credentials": true,
-					"Content-Type": "application/json"
-				},
-				body: JSON.stringify(data),
-			})
-				.then(response => response.json())
-				.then((datas) => {
-					//console.log(datas);
-					console.log('patch complete!');
-				}).catch((error) => {
-					console.log('Token Error!');
-					//this.setState({ redirect: "/landing" });
-				});
+				//alert(111);
+					var data = {
+						"ProfilePic":$('#avatar').attr('src'),
+					}
+					
+					fetch("http://localhost:2000/register/",{
+					method: "PATCH",
+					headers: {
+						'Authorization': 'Bearer '+token,
+						"Access-Control-Allow-Origin": "*",
+						"Access-Control-Allow-Methods": "*",
+						"Access-Control-Allow-Credentials": true,
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify(data),
+				})
+					.then(response => response.json())
+					.then((datas) => {
+						//console.log(datas);
+						console.log('patch complete!');
+					}).catch((error) => {
+						console.log('Token Error!');
+						//this.setState({ redirect: "/landing" });
+					});
 			}
 			
 			 
@@ -194,7 +201,7 @@ class Home extends React.Component {
 						</header>
 					</div>
 					
-					<div class="container-fluid" id="inner-home">
+					<div class="container-fluid md-view" id="inner-home">
 						<div class="d-flex df-f justify-content-center align-items-center">
 							<div class="row">
 								<div class="col-md-auto">

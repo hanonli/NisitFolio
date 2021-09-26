@@ -246,7 +246,7 @@ $('#continue2').click(function () {
     //console.log(Regis3_form2);
     //console.log(Registab4);
     console.log(JSON.stringify(FormRegis2));
-    //PostRegis(FormRegis2);
+    PostRegis(FormRegis2);
   }
   else{
     console.log('You Wrong!');
