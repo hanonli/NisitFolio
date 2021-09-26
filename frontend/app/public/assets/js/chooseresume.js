@@ -1,7 +1,7 @@
 /*Fetch for all*/
 $(function(){
-    
-}
+
+});
 /*Tab1*/
   let startYear3 = 1970;
   let endYear3 = new Date().getFullYear();
@@ -156,7 +156,7 @@ $(function(){
   }
   });
   
-  document.getElementById("submit-aca").addEventListener("click", function () {
+  document.getElementById("check-aca").addEventListener("click", function () {
     $("#aca_name").removeClass("is-invalid");
     $("#aca_degree").removeClass("is-invalid");
     $("#aca_faculty").removeClass("is-invalid");

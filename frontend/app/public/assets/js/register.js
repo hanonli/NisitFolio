@@ -817,5 +817,3 @@ function PostRegis(pack){
     $("#registab3Modal2").modal("hide");
   });
   */
-  var list_of_sideskill = [];
-  

@@ -14,11 +14,11 @@ class Editprofile extends React.Component {
 			<div className="Editprofile">
 				<Navbar />
 				<DataHeader />
-				<Link to="/home">
-					<div class="col block-right">
+				<div class="col block-right">
+					<Link to="/home">
 						<a class="btn btn-cta-primary-yellowwide round profile-button" href="#" target="_blank">ยืนยัน</a>
-					</div>
-				</Link>
+					</Link>
+				</div>
 			</div>
 		);
 	}
