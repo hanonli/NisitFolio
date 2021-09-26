@@ -55,6 +55,7 @@ class MyResume2 extends React.Component {
                 <h1>กลัวจะไม่ทัน จะขึ้นโครง WORK HISTORY ให้ มาปรับ css ให้เข้า กับเก็บ detail เองนะ ตอนนี่ยังไม่ทำรองรับเงื่อนไขไม่มีข้อมูลแต่เป็นเจ้าของ ลองก็อบ html ใน inspect มาทำๆ ดู -PUN-</h1>
                 
                 <MyresumeWork data={workdata}></MyresumeWork>
+                <MyresumeWork data={[]} owner={true}></MyresumeWork>
                 
             </div>
                 
