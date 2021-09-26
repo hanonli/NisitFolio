@@ -224,14 +224,14 @@ $(document).on("change", "#yearpicker_111", function () {
 
 $(document).on('click', "#submit-certi", function () {
     name_certi = document.getElementById("nm_certi").value;
-    year_certi = parseInt(document.getElementById("yearpicker_111").value);
+    year_certi = document.getElementById("yearpicker_111").value;
     //file_pic_certi = document.getElementById("image-upload112");
-    if (document.getElementById("nm_certi").value == "" && year_certi == 0 && picOfCerti == '') {
+    if (document.getElementById("nm_certi").value == "" && year_certi == "" && picOfCerti == '') {
         $("#nm_certi").addClass("error_select_certi");
         $("#yearpicker_111").addClass("error_select_certi");
         $("#to_upload112").addClass("error_select_certi");
     }
-    else if (year_certi == 0) {
+    else if (year_certi == "") {
         $("#yearpicker_111").addClass("error_select_certi");
     }
     else if (document.getElementById("nm_certi").value == "") {
@@ -249,7 +249,7 @@ $(document).on('click', "#submit-certi", function () {
             //console.log('pic: ', file_pic_certi.files[0]);
             console.log(`list_of_certi:`, list_of_certi);
             for_edit["name_certi"] = name_certi;
-            for_edit["year_certi"] = year_certi;
+            for_edit["year_certi"] = parseInt(year_certi);
             for_edit["path_file_certi"] = picOfCerti;
             for_edit["year_certi_select"] = $("#yearpicker_111").prop('selectedIndex');
             var list_edit11 = document.getElementById(id_list_certi_edit);
@@ -265,7 +265,7 @@ $(document).on('click', "#submit-certi", function () {
             list_of_certi.push({
                 id: id_of_certi,
                 name_certi: name_certi,
-                year_certi: year_certi,
+                year_certi: parseInt(year_certi),
                 year_certi_select: $("#yearpicker_111").prop('selectedIndex'),
                 path_file_certi: picOfCerti
             });
