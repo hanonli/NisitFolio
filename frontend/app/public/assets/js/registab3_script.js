@@ -50,14 +50,14 @@ function show_all_aca() {
   list_of_aca.forEach(ele => {
       var grid_aca1 = '<div class="t3-content1 row">\
                           <div class="col-3">\
-                              <div class="font-titlet3 font-boldt3">{degree_aca}</div>\
-                              <div class="font-titlet3 font-khotboldt3">{year_aca}</div>\
+                              <div class="font-titlet3_1 font-boldt3">{degree_aca}</div>\
+                              <div class="font-titlet3_1 font-khotboldt3">{year_aca}</div>\
                           </div>\
                           <div class="col-9">\
-                              <div class="font-titlet3">{field_aca}</div>\
-                              <div class="font-titlet3">{faculty_aca}</div>\
-                              <div class="font-titlet3">{name_aca}</div>\
-                              <div class="font-titlet3">เกรด {grade_aca}</div>\
+                              <div class="font-titlet3_1">{field_aca}</div>\
+                              <div class="font-titlet3_1">{faculty_aca}</div>\
+                              <div class="font-titlet3_1">{name_aca}</div>\
+                              <div class="font-titlet3_1">เกรด {grade_aca}</div>\
                           </div>';
 
       var grid_aca2 = `

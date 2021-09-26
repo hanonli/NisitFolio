@@ -505,3 +505,16 @@ li.current2{
     pointer-events: none;
     /*---*/
 }
+
+.dis_input3::placeholder {
+    color: #cfcfcf;
+    opacity: 1; /* Firefox */
+  }
+  
+.dis_input3:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #cfcfcf;
+}
+  
+.dis_input3::-ms-input-placeholder { /* Microsoft Edge */
+    color: #cfcfcf;
+}

@@ -33,7 +33,7 @@ function compareValues(key, order = 'asc') {
         );
     };
 }
-
+var backup_year_endwork=0,backup_month_endwork=0;
 var list_of_work = []; //list of work
 var list_of_year_work = {}; //check year
 var year_before_work;
@@ -48,18 +48,18 @@ function show_work() {
         let grid_work1 = `<div class="t4-content" id="{no_work}">\
                             <h5 class="font-titlet4 font-boldt3">{pos_work}</h5>\
                             <div class="row">\
-                                <div class="col font-titlet3">\
-                                    <div class="font-titlet3 font-boldt3">{company_work}</div>\
-                                    <div class="font-titlet3">เริ่มต้น {month_startwork}/{year_startwork}</div>`;
+                                <div class="col font-titlet4_1">\
+                                    <div class="font-titlet4_1 font-boldt3">{company_work}</div>\
+                                    <div class="font-titlet4_1">เริ่มต้น {month_startwork}/{year_startwork}</div>`;
 
-        let grid_work2 =            `<div class="font-titlet3">สิ้นสุด {month_endwork}/{year_endwork}</div>`;
+        let grid_work2 =            `<div class="font-titlet4_1">สิ้นสุด {month_endwork}/{year_endwork}</div>`;
 
         let grid_work3 =        `</div>\
-                                <div class="col-2 font-titlet3">{inform_work}</div>\
+                                <div class="col-2 font-titlet4_1">{inform_work}</div>\
                             </div>\
                             <div class="row">\
-                                <div class="col font-titlet3 font-boldt3">เงินเดือน</div>\
-                                <div class="col-2 font-titlet3">{salary_work} บาท</div>\
+                                <div class="col font-titlet4_1 font-boldt3">เงินเดือน</div>\
+                                <div class="col-2 font-titlet4_1">{salary_work} บาท</div>\
                             </div>\
                             <div class="layer_icon2">\
                                 <div class="set-layer_icon2">\
@@ -86,8 +86,21 @@ function show_work() {
             grid_work2 = grid_work2.replace("สิ้นสุด {month_endwork}/{year_endwork}",`ยังอยู่ในงาน`);
         }
         else{
-            if(ele["month_endwork"]=="99" || ele["year_endwork"]=="9999"){
+            if(Number.isNaN(ele["month_endwork"])==true && Number.isNaN(ele["year_endwork"])==true){
                 grid_work2 = "";
+            }
+            else if(Number.isNaN(ele["month_endwork"])==true && Number.isNaN(ele["year_endwork"])==false){
+                grid_work2 = grid_work2.replace("{month_endwork}",`-`);
+                grid_work2 = grid_work2.replace("{year_endwork}",ele["year_endwork"]);     
+            }
+            else if(Number.isNaN(ele["year_endwork"])==true && Number.isNaN(ele["month_endwork"])==false){
+                grid_work2 = grid_work2.replace("{year_endwork}",`-`);
+                if(ele["month_endwork"]<10){
+                    grid_work2 = grid_work2.replace("{month_endwork}",`0`+ele["month_endwork"]);
+                }
+                else{
+                    grid_work2 = grid_work2.replace("{month_endwork}",ele["month_endwork"]);
+                }    
             }
             else{
                 if(ele["month_endwork"]<10){
@@ -100,7 +113,7 @@ function show_work() {
             }
         }
         grid_work3 = grid_work3.replace("{inform_work}",ele["inform_work"]);
-        if(ele["salary_work"]!=""){
+        if(Number.isNaN(ele["salary_work"])==false){
             grid_work3 = grid_work3.replace("{salary_work}",ele["salary_work"]);
         }
         else{
@@ -130,7 +143,7 @@ $(document).on("click", ".registab4_formbox", function () {
     document.querySelector('#submit-work').innerText = 'เพิ่ม';
 });
 
-var id_list_certi_edit;
+var id_list_work_edit;
 
 //open modal to edit work
 $(document).on("click", "#edit-work", function () {
@@ -158,6 +171,8 @@ $(document).on("click", "#edit-work", function () {
     document.getElementById("year_endwork").selectedIndex = for_edit.year_endwork_select;
     //document.getElementById("month_endwork").value = for_edit.month_endwork;
     document.getElementById("month_endwork").selectedIndex = for_edit.month_endwork_select;
+    backup_year_endwork = for_edit["backup_year_endwork"];
+    backup_month_endwork = for_edit["backup_month_endwork"];
     $('#regist4_cb').prop('checked', for_edit.regist4_cb);
     if(for_edit.regist4_cb == true){
         $("#year_endwork").addClass("dis_input4");
@@ -192,10 +207,13 @@ $(document).on("click", "#can_del_work", function () {
 }); 
 
 //change status 
+
 $(document).on('change', "#regist4_cb", function () {
     if($('#regist4_cb').prop('checked')==true){
         $("#year_endwork").addClass("dis_input4");
         $("#month_endwork").addClass("dis_input4");
+        backup_year_endwork = document.getElementById("year_endwork").selectedIndex;
+        backup_month_endwork = document.getElementById("month_endwork").selectedIndex;
         document.getElementById("year_endwork").selectedIndex = "0";
         document.getElementById("month_endwork").selectedIndex = "0";
     }
@@ -204,6 +222,8 @@ $(document).on('change', "#regist4_cb", function () {
         $("#month_endwork").removeClass("dis_input4");
         $("#year_endwork").removeClass("error_select_work");
         $("#month_endwork").removeClass("error_select_work");
+        document.getElementById("year_endwork").selectedIndex = backup_year_endwork;
+        document.getElementById("month_endwork").selectedIndex = backup_month_endwork;        
     }
 });
 
@@ -299,6 +319,8 @@ $(document).on('click', "#submit-work", function () {
             for_edit["month_endwork_select"] = document.getElementById("month_endwork").selectedIndex;
             for_edit["regist4_cb"] = regist4_cb;
             for_edit["inform_work"] = inform_work;
+            for_edit["backup_year_endwork"] = backup_year_endwork;
+            for_edit["backup_month_endwork"] = backup_month_endwork;
         }
         else if (choose_function == 2) {
             //console.log(`add!!!!!`);
@@ -320,7 +342,9 @@ $(document).on('click', "#submit-work", function () {
                 month_endwork: parseInt(month_endwork),
                 month_endwork_select: document.getElementById("month_endwork").selectedIndex,
                 regist4_cb: regist4_cb,
-                inform_work: inform_work
+                inform_work: inform_work,
+                backup_year_endwork: backup_year_endwork,
+                backup_month_endwork: backup_month_endwork
             });
         }
         console.log(`list_of_work:`,list_of_work);
@@ -350,6 +374,7 @@ $(document).on('hide.bs.modal', "#registab4Modal", function () {
     $("#year_endwork").removeClass("dis_input4");
     $("#month_endwork").removeClass("dis_input4");
     document.getElementById("inform_work").value = "";
+    backup_year_endwork=0,backup_month_endwork=0;
 });
 
 /*

@@ -36,7 +36,6 @@ class MyResume extends React.Component {
 				<Navbar />
 				<Resume_sideNavbar/>
 				<Resume_topNavbar/>
-				<MyResumeContent />
 			</div>
 		);
 	}

@@ -156,9 +156,22 @@ $('#continue2').click(function () {
       total_grade_high[0] = entry.grade;
       last_grade.push(total_grade_high[0]);
   });
-  console.log('grade = ' + last_grade);
-  console.log(last_eduyear);
+  //console.log('grade = ' + last_grade);
+  //console.log(last_eduyear);
   //console.log(last_jobname);
+  var last_typework=[],last_company=[],last_typesalary=[],last_salary=[],last_yearstart=[],last_monthstart=[],last_yearend=[],last_monthend=[],last_inform=[];
+  list_of_work.forEach((entry) => {
+    //console.log(entry);
+    last_typework.push(entry.type_work);
+    last_company.push(entry.company_work);
+    last_fos.push(entry.aca_field);
+    last_aca.push(entry.aca_name);
+    //last_grade.push(entry.aca_grade);
+    last_eduyear.push(entry.aca_year);
+    var total_grade_aca = new Float32Array(1);
+      total_grade_aca[0] = entry.grade;
+      last_grade.push(total_grade_aca[0]);
+  });
   if(avatar1.src=="http://localhost:3000/assets/images/Circleuploadprofile.png"){
     avatar1.src="http://localhost:3000/assets/images/profile_uk.png";
   }
