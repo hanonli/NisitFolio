@@ -1,6 +1,8 @@
 @import "myresumeTimeline.css";
 @import "myresumeEducation.css";
 @import "myresumeCertificate.css";
+@import "myresumework.css";
+
 /* Zone Decoration */
 .MyResumeContent *{
     font-weight: normal;

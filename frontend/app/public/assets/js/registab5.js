@@ -81,12 +81,14 @@ function show_certi() {
 
         grid_certi = grid_certi.replace("{no_certi}", ele["id"]);
         //grid_certi = grid_certi.replace("{name-certi}", ele["name_certi"]);
-        if (ele["name_certi"].length > 15) {
-            grid_certi = grid_certi.replace("{name-certi}", ele["name_certi"].slice(0, 14) + "...");
-        }
-        else {
-            grid_certi = grid_certi.replace("{name-certi}", ele["name_certi"]);
-        }
+        // if (ele["name_certi"].length > 15) {
+        //     grid_certi = grid_certi.replace("{name-certi}", ele["name_certi"].slice(0, 14) + "...");
+        //     grid_certi = grid_certi.replace("{name-certi}", ele["name_certi"]);
+        // }
+        // else {
+        //     grid_certi = grid_certi.replace("{name-certi}", ele["name_certi"]);
+        // }
+        grid_certi = grid_certi.replace("{name-certi}", ele["name_certi"]);
         grid_certi = grid_certi.replace("{year-certi}", ele["year_certi"]);
         grid_certi = grid_certi.replace("{pic-of-certi}", ele["path_file_certi"]);
 

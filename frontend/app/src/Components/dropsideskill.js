@@ -69,6 +69,7 @@ const customStyles = {
 		super(props);
 		this.handleLoad = this.handleLoad.bind(this);
 		this.state = {
+            selectedOption: [{ value: 'none', label: 'เลือกหมวดทักษะเสริมที่ถนัด' }],
             opT7 : [
                 { value: 'Computer_Technology', label: 'Computer_Technology' },
                 { value: 'Hard_Communication%20Skills', label: 'Hard_Communication Skills' },
@@ -85,40 +86,59 @@ const customStyles = {
 			render: false, //Set render state to false
 			redirect: null
 		}
-	 }
-	
+        var newT = [];
+        this.handleChange = (selectedOption) => {
+            this.setState({ selectedOption }, () =>
+              console.log(`Option selected:`, this.state.selectedOption),
+              console.log(`Option:`, this.state.selectedOption[0].value),
+            /*fetch("http://localhost:2000/register/" + this.state.selectedOption.value +"/hardskill",
+		    { method: "GET", })
+		    .then(response => response.json())
+		    //.then(response => response.result)
+		    .then((raws) => {
+                console.log("http://localhost:2000/register/" + this.state.selectedOption.value +"/hardskill");
+                //console.log(raws);
+                raws.forEach((entryss) => {
+                    console.log(entryss);
+                    console.log(entryss.THName);
+                    var temp = {value: entryss.THName, label: entryss.Name};
+                    console.log(temp);
+                    newT.push(temp);
+			});
+            this.setState({ opT7: newT});
+        }).catch((error) => {
+			  console.log(error);
+			})
+            );
+        }
+        this.setState({ opT7: newT});*/
+            )};
+}
 	componentDidMount() {
 		window.addEventListener('load', this.handleLoad);
 		console.log("YEAHXXX!");
         var newT = [];
-        /*loop from fetch=>entry{
-            var temp = {'value': entry.THname, 'label': entry.name};
-            newT.push(temp);
+        if(this.state.selectedOption.value!='none'){
+            fetch("http://localhost:2000/register/" + this.state.selectedOption.value +"/hardskill",
+                { method: "GET", })
+                .then(response => response.json())
+                //.then(response => response.result)
+                .then((raws) => {
+                    console.log("http://localhost:2000/register/" + this.state.selectedOption.value +"/hardskill");
+                    //console.log(raws);
+                    raws.forEach((entryss) => {
+                        console.log(entryss);
+                        console.log(entryss.THName);
+                        var temp = {value: entryss.THName, label: entryss.Name};
+                        console.log(temp);
+                        newT.push(temp);
+                });
+                this.setState({ opT7: newT});
+            }).catch((error) => {
+                console.log(error);
+                })
+            }
         }
-        */
-        $('#selectT7').select(function () {
-            alert('หิวข้าว');
-            console.log($('#selectT7').val());
-            var typeSS = $('#selectT7').val();
-        fetch("http://localhost:2000/register/" + typeSS +"/hardskill",
-		{ method: "GET", })
-		.then(response => response.json())
-		//.then(response => response.result)
-		.then((raws) => {
-            console.log("http://localhost:2000/register/" + typeSS +"/hardskill");
-			//console.log(raws);
-			raws.forEach((entryss) => {
-				//console.log(entryss);
-                //console.log(entryss.THName);
-                var temp = {value: entryss.THName, label: entryss.Name};
-                newT.push(temp);
-			});
-        }).catch((error) => {
-			  console.log(error);
-			});
-        this.setState({ opT7: newT});
-	}); 
-}
 	componentWillUnmount() { 
 	   window.removeEventListener('load', this.handleLoad)  
 	}
@@ -127,8 +147,10 @@ const customStyles = {
 		console.log("YEAH!");
 	}
 	render (){
+        const { selectedOption } = this.state;
 		return ( <div>
-		<Select styles={customStyles} options={this.state.opT7} id='selectT7' placeholder="เลือกหมวดทักษะเสริมที่ถนัด"></Select>
+		<Select styles={customStyles} options={this.state.opT7} id='selectT7' value={selectedOption}
+        onChange={this.handleChange} placeholder="เลือกหมวดทักษะเสริมที่ถนัด"></Select>
 	</div>
         )};
 }
