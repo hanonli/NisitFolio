@@ -50,7 +50,7 @@ class Registab5 extends React.Component {
 									</div>
 									<div class="col-md-10">
 										<select class="form-select dropbtn_year margin-bottom1 fff" id="yearpicker_111" required>
-											<option selected disabled value="0">ปี*</option>
+											<option selected disabled value="">ปี*</option>
 										</select>
 									</div>
 								</div>
