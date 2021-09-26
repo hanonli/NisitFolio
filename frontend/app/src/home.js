@@ -24,7 +24,7 @@ class Home extends React.Component {
 	componentDidMount() {
 		window.addEventListener('load', this.handleLoad);
 		console.log("YEAHXXX!");
-		var token = cookie.load('login-token')
+		var token = cookie.load('login-token');
 		console.log(token);
 		
 		/*fetch("http://localhost:2000/profile/",{
@@ -42,9 +42,25 @@ class Home extends React.Component {
 			  console.log(text);
 			});
 		 });*/
+		 
+		 fetch("http://localhost:2000/profile/",{
+			method: "GET",
+			headers: {
+				'Authorization': 'Bearer '+token,
+				"Access-Control-Allow-Origin": "*",
+				"Access-Control-Allow-Methods": "*",
+				"Access-Control-Allow-Credentials": true,
+				"Content-Type": "application/json"
+			},
+		})
+		.then(function(response) {
+			return response.text().then(function(text) {
+			  //alert(text);
+			  cookie.save('login-user', text, { path: '/' })
+			});
+		 });
 		
-		
-		fetch("http://192.168.1.3:2000/homepage/",{
+		fetch("http://localhost:2000/homepage/",{
 			method: "GET",
 			headers: {
 				'Authorization': 'Bearer '+token,
@@ -86,33 +102,33 @@ class Home extends React.Component {
 				});
 			}).catch((error) => {
 				console.log('Token Error!');
-				//this.setState({ redirect: "/landing" });
+				this.setState({ redirect: "/landing" });
 			});
 			
 			function UploadProfile(){
-				var data = {
-					"ProfilePic":$('#avatar').attr('src'),
-				}
-				
-				fetch("http://localhost:2000/register/",{
-				method: "PATCH",
-				headers: {
-					'Authorization': 'Bearer '+token,
-					"Access-Control-Allow-Origin": "*",
-					"Access-Control-Allow-Methods": "*",
-					"Access-Control-Allow-Credentials": true,
-					"Content-Type": "application/json"
-				},
-				body: JSON.stringify(data),
-			})
-				.then(response => response.json())
-				.then((datas) => {
-					//console.log(datas);
-					console.log('patch complete!');
-				}).catch((error) => {
-					console.log('Token Error!');
-					//this.setState({ redirect: "/landing" });
-				});
+					var data = {
+						"ProfilePic":$('#avatar').attr('src'),
+					}
+					
+					fetch("http://localhost:2000/register/",{
+					method: "PATCH",
+					headers: {
+						'Authorization': 'Bearer '+token,
+						"Access-Control-Allow-Origin": "*",
+						"Access-Control-Allow-Methods": "*",
+						"Access-Control-Allow-Credentials": true,
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify(data),
+				})
+					.then(response => response.json())
+					.then((datas) => {
+						//console.log(datas);
+						console.log('patch complete!');
+					}).catch((error) => {
+						console.log('Token Error!');
+						//this.setState({ redirect: "/landing" });
+					});
 			}
 			
 			 

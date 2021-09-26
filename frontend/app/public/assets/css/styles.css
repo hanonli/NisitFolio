@@ -1382,6 +1382,10 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 
 navbar { margin:0; }
 
+#cachedId{
+	display: none;
+}
+
 .icon-bar {
   width: 100%;
   margin-bottom: 5px;
@@ -1782,6 +1786,9 @@ a.btn-cta-primary-white:hover, .btn-cta-primary-white:hover {
   font-weight: 300;
   color: black;
   font-size: 24px;
+  
+  border: solid #070707;
+  border-width: 0px 0px 1px 0px;
 }
 
 .tab-list-item-p:hover {
@@ -1819,6 +1826,15 @@ a.btn-cta-primary-white:hover, .btn-cta-primary-white:hover {
   height: 0.1px;
   background-color: #c4c4c4;
   margin: -2vh auto 0;
+}
+
+.underline-sbm{
+  position: relative;
+  width: 40%;
+  display: block;
+  height: 0.1px;
+  background-color: #c4c4c4;
+  /*margin: -2vh auto 0;*/
 }
 
 .cropper-crop-box, .cropper-view-box {
@@ -2852,6 +2868,15 @@ a.btn-cta-primary-yellowwideE:hover, .btn-cta-primary-yellowwideE:hover {
   font-family: 'Nunito','Kanit', arial, sans-serif;
   justify-content: center;
   margin-left: -2rem;
+}
+
+.tabs-list-sbm {
+  max-width: 1920px;
+  text-align: center;
+  font-weight: 300;
+  font-size: 24px;
+  font-family: 'Nunito','Kanit', arial, sans-serif;
+  justify-content: center;
 }
 
 .block-right {

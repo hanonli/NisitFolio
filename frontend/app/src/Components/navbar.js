@@ -21,6 +21,7 @@ class Navbar extends React.Component {
 			$("#logout").click(function(){
 			  //alert('logout!');
 			  cookie.save('login-token', null, { path: '/' })
+			   cookie.save('login-user', null, { path: '/' })
 		   });
 		});
 		

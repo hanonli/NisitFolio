@@ -568,8 +568,15 @@ function GetFormattedSearchData(datas){
 	return fData;
 }
 
-var userId = "610d3832ca49ebf4cdfed03a";
+var userId = null;
+//userId = '6142fd75f8b2b96640bc542d';
+//alert('userId: '+$('#cachedId').text());
 var sortType = "time";
+setTimeout(function() {
+	userId = $('#cachedId').text();
+	GetSearchBookmarkData();
+	//alert(Cookies.get('login-token'););
+}, 500);
 
 function GetSearchBookmarkData(){
 	var q = Cookies.get('search-entry');
@@ -763,8 +770,6 @@ function GetSearchBookmarkData(){
 			});
 		
 }
-
-GetSearchBookmarkData();
 
 $(function(){
    $('.tab-content').hide();

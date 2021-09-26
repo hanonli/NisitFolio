@@ -5,12 +5,44 @@ import BookmarkWorkGrid from './bookmarkWorkGrid';
 import BookmarkProfileList from './bookmarkProfileList';
 import BookmarkWorkList from './bookmarkWorkList';
 import TabBookmark from "./TabBookmark"; 
+import cookie from 'react-cookies'
 
 class BookmarkTabs extends React.Component {
+	constructor(props) {
+		super(props);
+		this.handleLoad = this.handleLoad.bind(this);
+		this.state = {
+			render: false, //Set render state to false
+			redirect: null,
+			userId: '0'
+		}
+	 }
+	
+	componentDidMount() {
+		window.addEventListener('load', this.handleLoad);
+		console.log("YEAHXXX!");
+		//var token = cookie.load('login-token')
+		//console.log(token);
+		//alert(cookie.load('login-user'));
+		this.setState({userId : cookie.load('login-user')});
+			
+	}
+	
+	componentWillUnmount() { 
+	   window.removeEventListener('load', this.handleLoad)  
+	}
+	
+	handleLoad() {
+		console.log("YEAH!");
+	}
+	
+	
 	render (){
 		return (
 			<div className="BookmarkTabs">
-				<div class="sbm-flex">
+				<div id='cachedId'>{this.state.userId}</div>
+			
+				<div class="sbm-flex tabs-list-sbm">
 					<div class="smb-1a">
 						<li class="tab-list-item-p tab-list-active" id="tab-1" type="button">ทั้งหมด</li> 
 					</div>
@@ -32,6 +64,7 @@ class BookmarkTabs extends React.Component {
 						</div>
 					</div>
 				</div>
+				
 	
 				<div class="tab-content bookmark-content-scroll" id="content1"> 
 					<div class="">
