@@ -3090,3 +3090,24 @@ a.btn-cta-primary-yellowwideE:hover, .btn-cta-primary-yellowwideE:hover {
 #cross-fadegone img.top:hover {
   opacity:0;
 }
+
+.alt-fadegone{
+	left: -35px !important;
+    top: -15px !important;
+}
+
+.alt-fadegone2{
+	left: -40px !important;
+    top: -4px !important;
+}
+
+.alt-fadegone3{
+	left: -35px !important;
+    top: -15px !important;
+}
+
+.alt-fadegone4{
+	left: 76vw !important;
+    top: -9px !important;
+    z-index: 5;
+}

@@ -3828,7 +3828,12 @@ class BookmarkTabs extends React.Component {
 							  <div class="modal-dialog modal-dialog-centered modal-ku">
 								<div class="modal-content round-s">
 								  <div class="modal-header no-bottom-line">
-									<button type="button" class="btn-close" id="pop-up-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									<div id="pop-up-close" data-bs-dismiss="modal" aria-label="Close">
+									<div class="transition-component" id="cross-fadegone">
+										<img class="registab3_btnplus icon-plus-circleA bottom alt-fadegone4" type="button" src="assets/images/close_hover.png" />
+										<img class="registab3_btnplus icon-plus-circleA top alt-fadegone4" type="button" id="add_aca" src="assets/images/close_normal.png" />
+									</div>
+									</div>
 								  </div>
 								  <div class="modal-body">
 									<div class="container-fluid align-self-end">
@@ -3956,8 +3961,11 @@ class BookmarkTabs extends React.Component {
 									</div>
 								</div>
 
-								<div class="float-end yahaha6 job-lv3 yahaha19">
-									<a class="btn-close profile-button" id="alv-close-button2" target="_blank"></a> 
+								<div class="float-end yahaha6 job-lv3 yahaha19" id="alv-close-button2">
+									<div class="transition-component" id="cross-fadegone">
+										<img class="registab3_btnplus icon-plus-circleA bottom alt-fadegone2" type="button" src="assets/images/close_hover.png" />
+										<img class="registab3_btnplus icon-plus-circleA top alt-fadegone2" type="button" id="add_aca" src="assets/images/close_normal.png" />
+									</div> 
 								</div>
 								<div class="text-extra yahaha21 job-lv3">
 									<gf>อันดับอื่น ๆ<br/></gf>
@@ -4073,8 +4081,11 @@ class BookmarkTabs extends React.Component {
 												<div class="text-extra">
 													<div class="yahaha17">
 														<br></br>
-														<div class="float-end yahaha6 yahaha33">
-															<a class="btn-close profile-button" id="alv-close-button3" target="_blank"></a> 
+														<div class="float-end yahaha6 yahaha33" id="alv-close-button3">
+															<div class="transition-component" id="cross-fadegone">
+																<img class="registab3_btnplus icon-plus-circleA bottom alt-fadegone3" type="button" src="assets/images/close_hover.png" />
+																<img class="registab3_btnplus icon-plus-circleA top alt-fadegone3" type="button" id="add_aca" src="assets/images/close_normal.png" />
+															</div>
 														</div>
 														<hhf><br/>เทรนด์ทักษะเสริม<br/></hhf>
 														<hhf id="hardHeader1">{this.state.hardFocusName}</hhf>
@@ -4115,8 +4126,11 @@ class BookmarkTabs extends React.Component {
 												</div>
 											</div>
 											<div class="text-extra yahaha21 hard-ct2">
-												<div class="float-end yahaha6 yahaha34">
-													<a class="btn-close profile-button" id="alv-close-button4" target="_blank"></a> 
+												<div class="float-end yahaha6 yahaha34" id="alv-close-button4">
+													<div class="transition-component" id="cross-fadegone">
+														<img class="registab3_btnplus icon-plus-circleA bottom alt-fadegone" type="button" src="assets/images/close_hover.png" />
+														<img class="registab3_btnplus icon-plus-circleA top alt-fadegone" type="button" id="add_aca" src="assets/images/close_normal.png" />
+													</div> 
 												</div>
 												<br></br>
 												<gf class="ggp">อันดับอื่น ๆ<br/></gf>
