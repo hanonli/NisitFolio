@@ -18,10 +18,11 @@ export class PortController {
   }
 
   
-  @UseGuards(JwtAuthGuard)
+  //@UseGuards(JwtAuthGuard)
   @Get('/header/:x')
   async getheadert(@Param('x') x: string,@Request() req){
-    const userid= req.user.userId;
+    //const userid= req.user.userId;
+    const userid= "6140f1ced22c5b5464501886";
     return this.portService.getportheader(userid);
   }
 

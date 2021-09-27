@@ -46,7 +46,7 @@ export class PortService {
     get_header.AboutMe=userinfo.AboutMe;
     get_header.Province=userinfo.Province;
     get_header.Port_Date=port.Port_Date;
-
+    get_header.Privacy=account.Privacy;
     //*/
     return get_header;
     
