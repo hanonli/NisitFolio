@@ -5,7 +5,7 @@ import Navbarlogo from './Components/navbarlogo';
 import InformationHeader from './Components/informationHeader';
 import reportWebVitals from './reportWebVitals';
 import { Link } from "react-router-dom";
-import Registab1 from "./Components/registab1";
+import Chooseresume1 from "./Components/chooseresume1";
 import Registab2 from "./Components/registab2";
 import Registab3 from "./Components/registab3";
 import Registab4 from "./Components/registab4";
@@ -86,7 +86,7 @@ class Register extends React.Component {
 				<form class="needs-validation" novalidate>
 				<div>
 					<div class="tab-content" id="registab1-content">
-						<Registab3 />
+						<Chooseresume1 />
 					</div>
 					<div class="tab-content" id="registab2-content">
 						<Registab4 />

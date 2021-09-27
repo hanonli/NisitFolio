@@ -1,0 +1,251 @@
+{
+    "InterestedJobs": [
+        {
+            "name": "Big_Data",
+            "THname": "วิเคราะห์ข้อมูลระดับใหญ่"
+        },
+        {
+            "name": "Software_Developer",
+            "THname": "นักพัฒนาซอฟต์แวร์"
+        },
+        {
+            "name": "Software_Engineer",
+            "THname": "วิศวกรซอฟต์แวร์"
+        }
+    ],
+    "mySkills": [
+        "Copywriting",
+        "Digital communication",
+        "Graphic Design"
+    ],
+    "Big_Data": {
+        "numberOfUsers": 3,
+        "List": [
+            {
+                "AdditionalSkill": "Copywriting",
+                "total": 2,
+                "percentage": 66.66666666666666
+            },
+            {
+                "AdditionalSkill": "Graphic Design",
+                "total": 2,
+                "percentage": 66.66666666666666
+            },
+            {
+                "AdditionalSkill": "Digital Marketing",
+                "total": 1,
+                "percentage": 33.33333333333333
+            },
+            {
+                "AdditionalSkill": "Digital communication",
+                "total": 1,
+                "percentage": 33.33333333333333
+            },
+            {
+                "AdditionalSkill": "Photoshop",
+                "total": 1,
+                "percentage": 33.33333333333333
+            },
+            {
+                "AdditionalSkill": "Presentations",
+                "total": 1,
+                "percentage": 33.33333333333333
+            }
+        ]
+    },
+    "Software_Developer": {
+        "numberOfUsers": 3,
+        "List": [
+            {
+                "AdditionalSkill": "Graphic Design",
+                "total": 2,
+                "percentage": 66.66666666666666
+            },
+            {
+                "AdditionalSkill": "Reporting",
+                "total": 2,
+                "percentage": 66.66666666666666
+            },
+            {
+                "AdditionalSkill": "Copywriting",
+                "total": 1,
+                "percentage": 33.33333333333333
+            },
+            {
+                "AdditionalSkill": "Digital communication",
+                "total": 1,
+                "percentage": 33.33333333333333
+            },
+            {
+                "AdditionalSkill": "Photoshop",
+                "total": 1,
+                "percentage": 33.33333333333333
+            }
+        ]
+    },
+    "Software_Engineer": {
+        "numberOfUsers": 2,
+        "List": [
+            {
+                "AdditionalSkill": "Graphic Design",
+                "total": 2,
+                "percentage": 100
+            },
+            {
+                "AdditionalSkill": "Copywriting",
+                "total": 1,
+                "percentage": 50
+            },
+            {
+                "AdditionalSkill": "Digital communication",
+                "total": 1,
+                "percentage": 50
+            },
+            {
+                "AdditionalSkill": "Reporting",
+                "total": 1,
+                "percentage": 50
+            }
+        ]
+    },
+    "Overview": {
+        "numberOfUsers": 11,
+        "List": [
+            {
+                "AdditionalSkill": "Photoshop",
+                "total": 7,
+                "percentage": 63.63636363636363
+            },
+            {
+                "AdditionalSkill": "C",
+                "total": 5,
+                "percentage": 45.45454545454545
+            },
+            {
+                "AdditionalSkill": "Painting",
+                "total": 5,
+                "percentage": 45.45454545454545
+            },
+            {
+                "AdditionalSkill": "Web",
+                "total": 5,
+                "percentage": 45.45454545454545
+            },
+            {
+                "AdditionalSkill": "Graphic Design",
+                "total": 4,
+                "percentage": 36.36363636363637
+            },
+            {
+                "AdditionalSkill": "Reporting",
+                "total": 4,
+                "percentage": 36.36363636363637
+            },
+            {
+                "AdditionalSkill": "Copywriting",
+                "total": 3,
+                "percentage": 27.27272727272727
+            },
+            {
+                "AdditionalSkill": "Digital communication",
+                "total": 3,
+                "percentage": 27.27272727272727
+            },
+            {
+                "AdditionalSkill": "Presentations",
+                "total": 3,
+                "percentage": 27.27272727272727
+            },
+            {
+                "AdditionalSkill": "กำจัดเหล่าร้าย",
+                "total": 3,
+                "percentage": 27.27272727272727
+            },
+            {
+                "AdditionalSkill": "Python",
+                "total": 2,
+                "percentage": 18.181818181818183
+            },
+            {
+                "AdditionalSkill": "ช่วยเหลือชาวบ้าน",
+                "total": 2,
+                "percentage": 18.181818181818183
+            },
+            {
+                "AdditionalSkill": "A/B testing",
+                "total": 1,
+                "percentage": 9.090909090909092
+            },
+            {
+                "AdditionalSkill": "CAD",
+                "total": 1,
+                "percentage": 9.090909090909092
+            },
+            {
+                "AdditionalSkill": "Diagnostics",
+                "total": 1,
+                "percentage": 9.090909090909092
+            },
+            {
+                "AdditionalSkill": "Digital Marketing",
+                "total": 1,
+                "percentage": 9.090909090909092
+            },
+            {
+                "AdditionalSkill": "Drawing",
+                "total": 1,
+                "percentage": 9.090909090909092
+            },
+            {
+                "AdditionalSkill": "Multivariate analysis",
+                "total": 1,
+                "percentage": 9.090909090909092
+            },
+            {
+                "AdditionalSkill": "Storytelling",
+                "total": 1,
+                "percentage": 9.090909090909092
+            },
+            {
+                "AdditionalSkill": "Video Cutting",
+                "total": 1,
+                "percentage": 9.090909090909092
+            },
+            {
+                "AdditionalSkill": "Video Editing",
+                "total": 1,
+                "percentage": 9.090909090909092
+            },
+            {
+                "AdditionalSkill": "การจัดทำโฆษณาแบบ Search Engine Marketing (SEM)",
+                "total": 1,
+                "percentage": 9.090909090909092
+            },
+            {
+                "AdditionalSkill": "การสื่อสารดิจิทัล",
+                "total": 1,
+                "percentage": 9.090909090909092
+            },
+            {
+                "AdditionalSkill": "การใช้สื่อสังคมออนไลน์",
+                "total": 1,
+                "percentage": 9.090909090909092
+            },
+            {
+                "AdditionalSkill": "ช่วยเหลือคุณยาย",
+                "total": 1,
+                "percentage": 9.090909090909092
+            },
+            {
+                "AdditionalSkill": "วิศวกรรมข้อมูล",
+                "total": 1,
+                "percentage": 9.090909090909092
+            },
+            {
+                "AdditionalSkill": "แต่งเพลง",
+                "total": 1,
+                "percentage": 9.090909090909092
+            }
+        ]
+    }
+}

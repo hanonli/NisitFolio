@@ -185,8 +185,8 @@ function set_slider_range1(value1) {
 
     slider1.oninput = function (event) {
         //console.log('skill1:', slider1.value);
-        //score_slider1 = parseFloat(slider1.value).toFixed(2);
-        score_slider1 = slider1.value;
+        score_slider1 = parseFloat(slider1.value).toFixed(1);
+        //score_slider1 = slider1.value;
         slider1.style.background = 'linear-gradient(to right, #f0a143 0%, #f0a143 ' + (slider1.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 ' + (slider1.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 100%)';
     }
 }
@@ -221,7 +221,8 @@ function set_slider_range2(value2) {
     slider2.style.background = 'linear-gradient(to right, #0fe17c 0%, #0fe17c ' + (slider2.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 ' + (slider2.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 100%)';
     slider2.oninput = function (event) {
         //console.log('skill2:', slider2.value);
-        score_slider2 = slider2.value;
+        //score_slider2 = slider2.value;
+        score_slider2 = parseFloat(slider2.value).toFixed(1);
         slider2.style.background = 'linear-gradient(to right, #0fe17c 0%, #0fe17c ' + (slider2.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 ' + (slider2.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 100%)';
     }
 }
@@ -256,7 +257,8 @@ function set_slider_range3(value3) {
     slider3.style.background = 'linear-gradient(to right, #c98a11 0%, #c98a11 ' + (slider3.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 ' + (slider3.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 100%)';
     slider3.oninput = function (event) {
         //console.log('skill3:', slider3.value);
-        score_slider3 = slider3.value;
+        //score_slider3 = slider3.value;
+        score_slider3 = parseFloat(slider3.value).toFixed(1);
         slider3.style.background = 'linear-gradient(to right, #c98a11 0%, #c98a11 ' + (slider3.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 ' + (slider3.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 100%)';
     }
 }
@@ -403,6 +405,10 @@ $(document).on("click", ".frame_add_job_interest", function () {
     $("#pos-del-obj-button2").hide();
     $("#obj-job-03").val('');
     $("#pos-del-obj-button3").hide();
+    $('#obj-job-02').prop("disabled", true);
+    $("#obj-job-02").addClass("dis_input3");
+    $('#obj-job-03').prop("disabled", true);
+    $("#obj-job-03").addClass("dis_input3");
 });
 
 var for_edit;
@@ -731,26 +737,8 @@ $(document).on('click', "#summit-to-delete", function () {
 
 $(document).on('click', "#hide-modal-tab6", function () {
     $('#exampleModalJob').modal('hide');
-    /*$("#obj-job-01").val('');
-    $("#obj-job-02").val('');
-    $("#obj-job-03").val('');
-    $('#nm_job').prop('selectedIndex', 0);
-    $("#each_skill1").prop('selectedIndex', 0);
-    $("#each_skill2").prop('selectedIndex', 0);
-    $("#each_skill3").prop('selectedIndex', 0);
-    $(".step-marks").remove();
-    $(".step-labels").remove();
-    $("#input_mySlider1").remove();
-    $("#input_mySlider2").remove();
-    $("#input_mySlider3").remove();*/
+
 });
-
-
-/*$(document).on('show.bs.modal', "#exampleModalJob", function () {
-    $('#each_skill1').append($('<option />').val('เลือกทักษะของคุณที่เหมาะกับงาน').html('เลือกทักษะของคุณที่เหมาะกับงาน'));
-    $('#each_skill2').append($('<option />').val('เลือกทักษะของคุณที่เหมาะกับงาน').html('เลือกทักษะของคุณที่เหมาะกับงาน'));
-    $('#each_skill3').append($('<option />').val('เลือกทักษะของคุณที่เหมาะกับงาน').html('เลือกทักษะของคุณที่เหมาะกับงาน'));
-});*/
 
 $(document).on('hide.bs.modal', "#exampleModalJob", function () {
     $("#obj-job-01").val('');
@@ -793,6 +781,9 @@ $(document).on("click", "#pos-del-obj-button1", function () {
     if ($("#obj-job-02").val() == "" && $("#obj-job-03").val() == "") {
         $("#obj-job-01").val('');
         $("#pos-del-obj-button1").hide();
+        $('#obj-job-02').prop("disabled", true);
+        $("#obj-job-02").addClass("dis_input3");
+
     }
     else {
         if ($("#obj-job-02").val() != "" && $("#obj-job-03").val() != "") {
@@ -800,11 +791,15 @@ $(document).on("click", "#pos-del-obj-button1", function () {
             $("#obj-job-02").val($("#obj-job-03").val());
             $("#obj-job-03").val('');
             $("#pos-del-obj-button3").hide();
+            $('#obj-job-03').prop("disabled", true);
+            $("#obj-job-03").addClass("dis_input3");            
         }
         else if ($("#obj-job-02").val() != "" && $("#obj-job-03").val() == "") {
             $("#obj-job-01").val($("#obj-job-02").val());
             $("#obj-job-02").val('');
             $("#pos-del-obj-button2").hide();
+            $('#obj-job-03').prop("disabled", true);
+            $("#obj-job-03").addClass("dis_input3");
         }
     }
 });
@@ -813,11 +808,13 @@ $(document).on("click", "#pos-del-obj-button2", function () {
     if ($("#obj-job-01").val() != "" && $("#obj-job-03").val() != "") {
         $("#obj-job-02").val($("#obj-job-03").val());
         $("#obj-job-03").val('');
-        $("#pos-del-obj-button3").hide();
+        $("#pos-del-obj-button3").hide();  
     }
     else if ($("#obj-job-01").val() != "" && $("#obj-job-03").val() == "") {
         $("#obj-job-02").val('');
         $("#pos-del-obj-button2").hide();
+        $('#obj-job-03').prop("disabled", true);
+        $("#obj-job-03").addClass("dis_input3");         
     }
 });
 
@@ -826,96 +823,32 @@ $(document).on("click", "#pos-del-obj-button3", function () {
     $("#pos-del-obj-button3").hide();
 });
 
-/*$(document).on("change", "#obj-job-01", function () {
-    if ($("#obj-job-01").val() != "") {
-        $("#pos-del-obj-button1").show();
-    }
-    else {
-        if ($("#obj-job-02").val() != "" && $("#obj-job-03").val() != "") {
-            $("#obj-job-01").val($("#obj-job-02").val());
-            $("#obj-job-02").val($("#obj-job-03").val());
-            $("#pos-del-obj-button1").show();
-            $("#obj-job-03").val('');
-            $("#pos-del-obj-button3").hide();
-        }
-        else if ($("#obj-job-02").val() != "" && $("#obj-job-03").val() == "") {
-            $("#obj-job-01").val($("#obj-job-02").val());
-            $("#obj-job-02").val('');
-            $("#pos-del-obj-button2").hide();
-        }
-        else {
-            $("#pos-del-obj-button1").hide();
-        }
-    }
-});
-$(document).on("change", "#obj-job-02", function () {
-    if ($("#obj-job-02").val() != "") {
-        if ($("#obj-job-01").val() == "" && $("#obj-job-03").val() != "") {
-            $("#obj-job-01").val($("#obj-job-02").val());
-            $("#pos-del-obj-button1").show();
-            $("#obj-job-02").val($("#obj-job-03").val());
-            $("#pos-del-obj-button2").show();
-            $("#obj-job-03").val('');
-            $("#pos-del-obj-button3").hide();
-        }
-        else if ($("#obj-job-01").val() == "" && $("#obj-job-03").val() == "") {
-            $("#obj-job-01").val($("#obj-job-02").val());
-            $("#pos-del-obj-button1").show();
-            $("#obj-job-02").val('');
-            $("#pos-del-obj-button2").hide();
-        }
-        else {
-            $("#pos-del-obj-button2").show();
-        }
-    }
-    else {
-        if ($("#obj-job-01").val() != "" && $("#obj-job-03").val() != "") {
-            $("#obj-job-02").val($("#obj-job-03").val());
-            $("#obj-job-03").val('');
-            $("#pos-del-obj-button3").hide();
-        }
-        else {
-            $("#pos-del-obj-button2").hide();
-        }
-    }
-});
-$(document).on("change", "#obj-job-03", function () {
-    if ($("#obj-job-03").val() != "") {
-        if ($("#obj-job-01").val() == "" && $("#obj-job-02").val() == "") {
-            $("#obj-job-01").val($("#obj-job-03").val());
-            $("#pos-del-obj-button1").show();
-            $("#obj-job-03").val('');
-            $("#pos-del-obj-button3").hide();
-        }
-        else if ($("#obj-job-01").val() != "" && $("#obj-job-02").val() == "") {
-            $("#obj-job-02").val($("#obj-job-03").val());
-            $("#pos-del-obj-button2").show();
-            $("#obj-job-03").val('');
-            $("#pos-del-obj-button3").hide();
-        }
-        else {
-            $("#pos-del-obj-button3").show();
-        }
-    }
-    else {
-        $("#pos-del-obj-button3").hide();
-    }
-});*/
-
 $(document).on("change", "#obj-job-01", function () {
     if ($("#obj-job-01").val() != "") {
         $("#pos-del-obj-button1").show();
+        $('#obj-job-02').prop("disabled", false);
+        $("#obj-job-02").removeClass("dis_input3");
     }
     else {
         $("#pos-del-obj-button1").hide();
+        if($("#obj-job-02").val() == ""){
+            $('#obj-job-02').prop("disabled", true);
+            $("#obj-job-02").addClass("dis_input3");                
+        }
     }
 });
 $(document).on("change", "#obj-job-02", function () {
     if ($("#obj-job-02").val() != "") {
         $("#pos-del-obj-button2").show();
+        $('#obj-job-03').prop("disabled", false);
+        $("#obj-job-03").removeClass("dis_input3");
     }
     else {
         $("#pos-del-obj-button2").hide();
+        if($("#obj-job-03").val() == ""){
+            $('#obj-job-03').prop("disabled", true);
+            $("#obj-job-03").addClass("dis_input3");  
+        }
     }
 });
 $(document).on("change", "#obj-job-03", function () {
@@ -928,7 +861,7 @@ $(document).on("change", "#obj-job-03", function () {
 });
 
 function testPost6() {
-    var Job_Score = [], Job_Jobname = [], Job_Objective = [], Job_SkillName = []; //variable for send to backend 
+    var Job_Score1 = [], Job_Jobname = [], Job_Objective = [], Job_SkillName = []; //variable for send to backend 
     var i = 0;
     list_of_job.forEach(ele => {
         //post job name
@@ -941,21 +874,21 @@ function testPost6() {
             total_skill_score[0] = ele["score_skill1"];
         }
         else {
-            total_skill_score[0] = "none";
+            total_skill_score[0] = 0;
         }
         if (ele["skill2"] != "none") {
             total_skill_score[1] = ele["score_skill2"];
         }
         else {
-            total_skill_score[1] = "none";
+            total_skill_score[1] = 0;
         }
         if (ele["skill3"] != "none") {
             total_skill_score[2] = ele["score_skill3"];
         }
         else {
-            total_skill_score[2] = "none";
+            total_skill_score[2] = 0;
         }
-        Job_Score.push(total_skill_score);
+        Job_Score1.push(total_skill_score);
         //post job objective
         var listofObj = [];
         listofObj.push(ele["obj1"]);
@@ -965,30 +898,6 @@ function testPost6() {
     });
     console.log("Job_Jobname:", Job_Jobname);
     console.log("Job_SkillName:", Job_SkillName);
-    console.log("Job_Score:", Job_Score);
+    console.log("Job_Score:", Job_Score1);
     console.log("Job_Objective:", Job_Objective);
 }
-/*---------------- disable slider range ----------------*/
-
-/*document.getElementById("input_mySlider1").disabled = true;
-document.getElementById("input_mySlider2").disabled = true;
-document.getElementById("input_mySlider3").disabled = true;*/
-
-/*document.getElementById("each_skill1").addEventListener("click", function () {
-    var skill_job_1 = document.getElementById("each_skill1").value;
-    //console.log(`click skill_job_1: `, skill_job_1);
-    if (skill_job_1 != null || skill_job_1 == 'เลือกทักษะของคุณที่เหมาะกับงาน') document.getElementById("input_mySlider1").disabled = false;
-});*/
-
-/*document.getElementById("each_skill2").addEventListener("click", function () {
-    var skill_job_2 = document.getElementById("each_skill2").value;
-    //console.log(`click skill_job_2: `, skill_job_2);
-    if (skill_job_2 != null || skill_job_2 == 'เลือกทักษะของคุณที่เหมาะกับงาน') document.getElementById("input_mySlider2").disabled = false;
-});*/
-
-/*document.getElementById("each_skill3").addEventListener("click", function () {
-    var skill_job_3 = document.getElementById("each_skill3").value;
-    //console.log(`click skill_job_3: `, skill_job_3);
-    if (skill_job_3 != null || skill_job_3 == 'เลือกทักษะของคุณที่เหมาะกับงาน') document.getElementById("input_mySlider3").disabled = false;
-});*/
-/*---*/

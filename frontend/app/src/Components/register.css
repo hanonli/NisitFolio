@@ -20,8 +20,8 @@
     height: 26vw;
     width: 60vw;
     margin-left:20%;
-    margin-bottom: 1%;
-    padding-top: 1%;
+    /*margin-bottom: 0.5vw;*/
+    margin-top: 1.5vw;
     /*padding: 1%;*/
     margin-right: 20%;
     overflow-y: scroll;
@@ -347,6 +347,7 @@ datalist {
 
 .red_markEp1 {
   color: red;
+  font-size: 19px;
 }
 
 .red_markEp2 {
@@ -358,6 +359,10 @@ datalist {
   border-style: 1px;
 }
 
+.red_markTitle {
+  color: red;
+  font-size: 24px;
+}
 .is-valid {
   background-image: none;
   padding-right: 0%;
@@ -400,7 +405,9 @@ datalist {
 }
 
 #basic-date-picker1{
-  padding: 1.5vh;
+  padding-top: 1.5vh;
+  padding-left: 1.5vh;
+  padding-bottom: 1.5vh;
   border-radius: 48px;
 }
 
@@ -443,5 +450,13 @@ datalist {
 }
 
 .del-padleft {
-  padding-left: calc(var(--bs-gutter-x) * -.5);;
+  padding-left: calc(var(--bs-gutter-x) * -.5);
+}
+
+.del-padleftbit {
+  padding-left: calc(var(--bs-gutter-x) * -.1);
+}
+
+.del-padrightbit {
+  padding-right: calc(var(--bs-gutter-x) * -.5);
 }

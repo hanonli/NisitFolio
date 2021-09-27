@@ -21,12 +21,12 @@ class Registab2 extends React.Component {
 								<div class="row">
 									<div class="col-md-2"></div>
 									<div class="col-md-5">
-										<select class="form-select dropbtn margin-bottom1 fff" id="province">
+										<select class="form-select dropbtn margin-bottom1 fff" id="province" required>
 											<option selected disabled value="">จังหวัด</option>
 										</select>
 									</div>
 									<div class="col-md-5">
-										<select class="form-select dropbtn margin-bottom1 fff" id="townny">
+										<select class="form-select dropbtn margin-bottom1 fff" id="townny" required>
 											<option selected disabled value="">เมือง</option>
 										</select>
 									</div>
@@ -36,8 +36,8 @@ class Registab2 extends React.Component {
 								</div>
 								<div class="row-3">
 									<div class="col-md-12">
-										<textarea maxlength="280" type="text" class="form-control aboutmee margin-bottom2" id="aboutme2" placeholder="บอกเล่าเกี่ยวกับตัวเองสั้น ๆ" autocomplete="off"></textarea>
-										<div id="charactersRemaining">280 characters</div>
+										<textarea maxlength="280" type="text" class="form-control aboutmee margin-bottom2" id="aboutme2" placeholder="อธิบายตัวตนของคุณ เพื่อให้คนอื่นรู้ว่าคุณเป็นคนยังไงและสนใจเรื่องอะไร" autocomplete="off"></textarea>
+										<div id="charactersRemaining">280 อักขระ</div>
 									</div>
 								</div>
 							</div>	

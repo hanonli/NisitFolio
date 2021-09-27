@@ -1,4 +1,10 @@
 /*For Javascript Desu*/
+window.onload = () => {
+  const myInput1 = document.getElementById('pass05');
+  const myInput2 = document.getElementById('pass06');
+  myInput1.onpaste = e => e.preventDefault();
+  myInput2.onpaste = e => e.preventDefault();
+ }
 
 /*Tabs New*/
 $(function(){
@@ -55,7 +61,7 @@ $(function(){
         $('.tab-list-item').removeClass('tab-list-active');
         $('#tab-7').addClass('tab-list-active')
         $('#registab7-content').show();
-        if(sideskill_count == 0){
+        /*if(sideskill_count == 0){
           $('#sideskilllist1').hide();
           $('.ddt7_2').hide();
           $('.ddt7_3').hide();
@@ -66,7 +72,7 @@ $(function(){
         }
         else if(sideskill_count == 2){
           $('#sideskilllist3').hide();
-        }
+        }*/
     });
 
  });
@@ -75,14 +81,46 @@ $(function(){
 
 $('#continue2').click(function () {
   var BDDate= $('#basic-date-picker1').val();
+  var last_province= $('#province').val();
+  var last_city = $('#townny').val();
+  var last_aboutme = $('#aboutme2').val();
   var last_sideskill = list_sideskill;
+  if(last_province==null){
+    last_province='';
+  }
+  if(last_city==null){
+    last_city='';
+  }
+  if(last_aboutme==null){
+    last_aboutme='';
+  }
   var last_jobname=[],last_jobskill=[],last_jobscore=[],last_jobobj=[];
   //console.log(list_of_job);
   list_of_job.forEach((entry) => {
     //console.log(entry);
     last_jobname.push(entry.name_job);
     last_jobskill.push([entry.skill1,entry.skill2,entry.skill3]);
-    last_jobscore.push([entry.score_skill1,entry.score_skill2,entry.score_skill3]);
+    //last_jobscore.push([parseFloat(entry.score_skill1).toFixed(1),parseFloat(entry.score_skill2).toFixed(1),parseFloat(entry.score_skill3).toFixed(1)]);
+    var total_skill_score = new Float32Array(3);
+        if (entry.skill1 != "none") {
+            total_skill_score[0] = entry.score_skill1;
+        }
+        else {
+            total_skill_score[0] = 0;
+        }
+        if (entry.skill2 != "none") {
+            total_skill_score[1] = entry.score_skill2;
+        }
+        else {
+            total_skill_score[1] = 0;
+        }
+        if (entry.skill3 != "none") {
+            total_skill_score[2] = entry.score_skill3;
+        }
+        else {
+            total_skill_score[2] = 0;
+        }
+    last_jobscore.push([total_skill_score[0],total_skill_score[1],total_skill_score[2]]);
     last_jobobj.push([entry.obj1,entry.obj2,entry.obj3]);
   });
   var last_certname=[],last_certpic=[],last_certyear=[];
@@ -93,7 +131,59 @@ $('#continue2').click(function () {
     last_certpic.push(entryy.path_file_certi);
     last_certyear.push(entryy.year_certi);
   });
+  var last_degree=[],last_faculty=[],last_fos=[],last_aca=[],last_grade=[],last_eduyear=[];
+  list_of_aca.forEach((entry) => {
+    //console.log(entry);
+    last_degree.push(entry.aca_degree);
+    last_faculty.push(entry.aca_faculty);
+    last_fos.push(entry.aca_field);
+    last_aca.push(entry.aca_name);
+    //last_grade.push(parseFloat(entry.aca_grade));
+    last_eduyear.push(entry.aca_year);
+    var total_grade_aca = new Float32Array(1);
+    total_grade_aca[0] = entry.aca_grade;
+    //console.log(total_grade_aca[0]);
+    last_grade.push(total_grade_aca[0]);
+  });
+  list_of_high.forEach((entry) => {
+    //console.log(entry);
+    last_degree.push(entry.high_degree);
+    last_faculty.push(entry.high_faculty);
+    last_fos.push(entry.high_field);
+    last_aca.push(entry.high_name);
+    //last_grade.push(entry.high_grade);
+    last_eduyear.push(entry.high_year);
+    var total_grade_high = new Float32Array(1);
+    total_grade_high[0] = entry.high_grade;
+    last_grade.push(total_grade_high[0]);
+  });
+  //console.log('grade = ' + last_grade);
+  //console.log(last_eduyear);
   //console.log(last_jobname);
+  var last_poswork=[],last_typework=[],last_company=[],last_typesalary=[],last_salary=[],last_yearstart=[],last_monthstart=[],last_yearend=[],last_monthend=[],last_inform=[];
+  list_of_work.forEach((entry) => {
+    //console.log(entry);
+    last_poswork.push(entry.pos_work);
+    last_typework.push(entry.type_work);
+    last_company.push(entry.company_work);
+    last_typesalary.push(entry.type_salary_work);
+    last_salary.push(entry.salary_work);
+    last_yearstart.push(entry.year_startwork);
+    last_monthstart.push(entry.month_startwork);
+    last_inform.push(entry.inform_work);
+    if(entry.regist4_cb==true){
+      last_yearend.push(9999);
+      last_monthend.push(99);
+    }
+    else if(entry.year_endwork==NaN){
+      last_yearend.push(0);
+      last_monthend.push(0);
+    }
+    else{
+      last_yearend.push(entry.year_endwork);
+      last_monthend.push(entry.month_endwork);
+    }
+  });
   if(avatar1.src=="http://localhost:3000/assets/images/Circleuploadprofile.png"){
     avatar1.src="http://localhost:3000/assets/images/profile_uk.png";
   }
@@ -117,37 +207,37 @@ $('#continue2').click(function () {
       Lastname: $('#re02').val(),
       Birthday: BDDate,
       Gender: $('#sexgen').val(),
-      Aboutme: $('#aboutme2').val(),
+      Aboutme: last_aboutme,
       Email2nd:"-",
       Country:"ประเทศไทย",
-      Province:$('#province').val(),
-      City:$('#townny').val(),
-      SoftSkill:last_sideskill,
+      Province:last_province,
+      City:last_city,
+      SoftSkill:[],
       CertName:last_certname,
       CertPic:last_certpic,
       CertYear:last_certyear,
       //Degree:[],
       //Work_JobName: [],
       //Work_JobType:[],
-      Degree:["อาชีวะศึกษา"],
-      Facalty:["การเย็บปักถักร้อย"],
-      Field_of_study:["ซ่อมตุ๊กตา"],
-      Academy:["โรงเรียนหมีน้อย"],
-      Grade:[3.01],
-      Education_End_Year:[2017],
-      Work_JobName:["เขียนเว็บ"],
-      Work_JobType:["ฟรีแลนซ์"],
-      Company:["freelance.com"],
-      Work_Start_Month:[1],
-      Work_End_Month:[5],
-      Work_Start_Year:[2007],
-      Work_End_Year:[2012],
-      Salary:[15000],
-      SalaryType:["รายได้เป็นงาน"],
-      Infomation:["จะดีมากถ้าลูกค้าไม่เรื่องมาก"],
+      Degree:last_degree,
+      Facalty:last_faculty,
+      Field_of_study:last_fos,
+      Academy:last_aca,
+      Grade:last_grade,
+      Education_End_Year:last_eduyear,
+      Work_JobName:last_poswork,
+      Work_JobType:last_typework,
+      Company:last_company,
+      Work_Start_Month:last_monthstart,
+      Work_End_Month:last_monthend,
+      Work_Start_Year:last_yearstart,
+      Work_End_Year:last_yearend,
+      Salary:last_salary,
+      SalaryType:last_typesalary,
+      Infomation:last_inform,
       Job_JobName:last_jobname,
       Job_SkillName: last_jobskill,
-      Job_Score: [[9.0,8.0,7.0]],
+      Job_Score: last_jobscore,
       //Job_Score: last_jobscore,
       Job_Objective:last_jobobj,
     }
@@ -434,6 +524,14 @@ $('.aboutmee').on('change', 'input', function(){
 
 /*Tab7*/
 var list_sideskill = ["","",""];
+/*
+$(document).on("change", "#selectT7", function () {
+  if (document.getElementById("selectT7").selectedIndex != 0) {
+      $("#selectT7").removeClass("is-invalid");
+      removeOptions('selectT7');
+  }
+});
+*/
 var sskdd1 = '<div class="col-2">\
                 <div class="delbtn">\
                 <img class="obj-icon tooltips-item" src="assets/images/bin.png" type="button" data-bs-toggle="modal" toggle-type="dynamic"data-bs-target="#Modaltab7-1" id="valss1" alt="" width="30" height="30"/>\
@@ -553,142 +651,6 @@ var Dropdownsideskill3 = '<div class="row ddt7_3">\
 </div>\
 ';
 
-$(function(){
-  $('#del_sideskill1').on('click', function(){
-    console.log('EiEi this is Del1');
-    console.log(list_sideskill);
-    $('#ssl_1').remove();
-    $('.ddt7_1').remove();
-    if(sideskill_count==1){
-      sumsideskill = Dropdownsideskill1;
-      list_sideskill[0]=list_sideskill[1];
-      list_sideskill[1]="";
-      $('.dropdowntap7_1').append(sumsideskill);
-      sumsideskill = '';
-      $('#sideskilllist1').hide();
-      $('.ddt7_2').hide();
-    }
-    else if(sideskill_count==2){
-      $('.ddt7_2').remove();
-      sumsideskill = sideskilldropdown1_1 + list_sideskill[1] + sideskilldropdown2 + sskdd1;
-      console.log(sumsideskill);
-      $('.dropdowntap7_1').append(sumsideskill);
-      list_sideskill[0]=list_sideskill[1];
-      list_sideskill[1]="";
-      $('#ssl_2').remove();
-      sumsideskill = Dropdownsideskill2;
-      $('.dropdowntap7_2').append(sumsideskill);
-      $('#sideskilllist2').hide();
-      sumsideskill = '';
-      $('.ddt7_3').hide();
-    }
-    else if(sideskill_count==3){
-      $('.ddt7_2').remove();
-      $('.ddt7_3').remove();
-      sumsideskill = sideskilldropdown1_1 + list_sideskill[1] + sideskilldropdown2 + sskdd1;
-      $('.dropdowntap7_1').append(sumsideskill);
-      sumsideskill = sideskilldropdown1_2 + list_sideskill[2] + sideskilldropdown2 + sskdd2;
-      $('.dropdowntap7_2').append(sumsideskill);
-      list_sideskill[0]=list_sideskill[1];
-      list_sideskill[1]=list_sideskill[2];
-      list_sideskill[2]="";
-      $('#ssl_2').remove();
-      $('#ssl_3').remove();
-      sumsideskill = Dropdownsideskill3;
-      $('.dropdowntap7_3').append(sumsideskill);
-      sumsideskill = '';
-      $('#sideskilllist3').hide();
-    }
-    console.log(list_sideskill);
-    sideskill_count -= 1;
-    console.log('Sum SSK :' + sideskill_count + '!!!');
-  });
-  $('#del_sideskill2').on('click', function(){
-    console.log('EiEi this is Del2');
-    $('#ssl_2').remove();
-    $('.ddt7_2').remove();
-    if(sideskill_count==2){
-      $('.ddt7_2').remove();
-      list_sideskill[1]="";
-      sumsideskill = Dropdownsideskill2;
-      $('.dropdowntap7_2').append(sumsideskill);
-      $('#sideskilllist2').hide();
-      sumsideskill = '';
-      $('.ddt7_3').hide();
-    }
-    else if(sideskill_count==3){
-      sumsideskill = sideskilldropdown1_2 + list_sideskill[2] + sideskilldropdown2 + sskdd2;
-      $('.dropdowntap7_2').append(sumsideskill);
-      list_sideskill[1]=list_sideskill[2];
-      list_sideskill[2]="";
-      $('#ssl_3').remove();
-      sumsideskill = Dropdownsideskill3;
-      $('.dropdowntap7_3').append(sumsideskill);
-      sumsideskill = '';
-      $('#sideskilllist3').hide();
-    }
-    console.log(list_sideskill);
-    sideskill_count -= 1;
-    console.log('Sum SSK :' + sideskill_count + '!!!');
-  });
-  $('#del_sideskill3').on('click', function(){
-    console.log('EiEi this is Del3');
-    $('#ssl_3').remove();
-    $('.ddt7_3').remove();
-    list_sideskill[2]="";
-    sumsideskill = Dropdownsideskill3;
-    $('.dropdowntap7_3').append(sumsideskill);
-    $('#sideskilllist3').hide();
-    sumsideskill = '';
-    console.log(list_sideskill);
-    sideskill_count -= 1;
-    console.log('Sum SSK :' + sideskill_count + '!!!');
-  });
-});
-
-$(function(){
-  $('#sideskilllist1').on('change', function(){
-    console.log('EiEi this is Sel1');
-    valss_now = $('#sideskilllist1').val();
-    list_sideskill[0]=valss_now;
-    //console.log(valss_now);
-    sumsideskill = sideskilldropdown1_1 + valss_now + sideskilldropdown2 + sskdd1;
-    $('.dropdowntap7_1').append(sumsideskill);
-    sumsideskill = '';
-    $('.ddt7_1').remove();
-    $('.ddt7_2').show();
-    $('#sideskilllist2').hide();
-    sideskill_count += 1;
-    console.log('Sum SSK ++:' + sideskill_count + '!');
-  });
-  $('#sideskilllist2').on('change', function(){
-    console.log('EiEi this is Sel2');
-    valss_now = $('#sideskilllist2').val();
-    list_sideskill[1]=valss_now;
-    //console.log(valss_now);
-    sumsideskill = sideskilldropdown1_2 + valss_now + sideskilldropdown2 + sskdd2;
-    $('.dropdowntap7_2').append(sumsideskill);
-    sumsideskill = '';
-    $('.ddt7_2').hide();
-    $('.ddt7_3').show();
-    $('#sideskilllist3').hide();
-    sideskill_count += 1;
-    console.log('Sum SSK ++:' + sideskill_count + '!!');
-  });
-  $('#sideskilllist3').on('change', function(){
-    console.log('EiEi this is Sel3');
-    valss_now = $('#sideskilllist3').val();
-    list_sideskill[2]=valss_now;
-    //console.log(valss_now);
-    sumsideskill = sideskilldropdown1_3 + valss_now + sideskilldropdown2 + sskdd3;
-    $('.dropdowntap7_3').append(sumsideskill);
-    sumsideskill = '';
-    $('.ddt7_3').hide();
-    sideskill_count += 1;
-    console.log('Sum SSK ++:' + sideskill_count + '!!!');
-  });
-});
-
 function GetProvince(){
 	fetch("https://thaiaddressapi-thaikub.herokuapp.com/v1/thailand/provinces",
 		{ method: "GET", })
@@ -778,8 +740,8 @@ function PostRegis(pack){
 		  body: JSON.stringify(pack)}
   )
     .then(function (response) {
-        window.location.pathname = '/emailverify'
-        //setInterval(window.location = "http://localhost:3000/emailverify", 3000);
+        //window.location.pathname = '/emailverify'
+        setInterval(window.location = "http://localhost:3000/emailverify", 10000);
         return response.json();
     })
     .then(function (result) {
@@ -792,68 +754,7 @@ function PostRegis(pack){
       })
   })
   }
-  
-  var DropdownsideskillChoice = {'Technical': ['CAD',
-    'Lean manufacturing',
-    'Multivariate analysis',
-    'Linear regression',
-    'Prototyping',
-    'Workflow development',
-    'STEM skills',
-    'Web: HTML, CSS, Javascript',
-    'Payment processing',
-    'Automated Billing Systems',
-    'CRM Platforms',
-    'Research',
-    'Troubleshooting'],
-     Computer: ['Python','C']};
 
-    $(function(){
-      $('#ch1').on('change', function(){
-        console.log('Checkkaaaa');
-        var chss_now = $('#ch1').val();
-        cht7_1 = chss_now;
-        console.log('I am :' + chss_now);
-        //console.log(DropdownsideskillChoice[chss_now]);
-        $('#ch1').hide();
-        $('#sideskilllist1').show();
-        Getchoicehardskill(chss_now,1);
-        /*DropdownsideskillChoice[chss_now].forEach((entryc1) => {
-          var ch_now1 = entryc1;
-          //console.log('I am Choice:' + ch_now1);
-          $('#ch1').hide();
-          $('#sideskilllist1').show();
-          $('#sideskilllist1').append($('<option />').val(ch_now1).html(ch_now1));
-        })*/
-      });
-      $('#ch2').on('change', function(){
-        var chss_now = $('#ch2').val();
-        cht7_2 = chss_now;
-        $('#ch2').hide();
-        $('#sideskilllist2').show();
-        Getchoicehardskill(chss_now,2);
-        /*DropdownsideskillChoice[chss_now].forEach((entryc2) => {
-          var ch_now2 = entryc2;
-          $('#ch2').hide();
-          $('#sideskilllist2').show();
-          $('#sideskilllist2').append($('<option />').val(ch_now2).html(ch_now2));
-        })*/
-      });
-      $('#ch3').on('change', function(){
-        var chss_now = $('#ch3').val();
-        cht7_3 = chss_now;
-        $('#ch3').hide();
-        $('#sideskilllist3').show();
-        Getchoicehardskill(chss_now,3);
-        /*DropdownsideskillChoice[chss_now].forEach((entryc3) => {
-          var ch_now3 = entryc3;
-          $('#ch3').hide();
-          $('#sideskilllist3').show();
-          $('#sideskilllist3').append($('<option />').val(ch_now3).html(ch_now3));
-        })*/
-      });
-    });
-    
     var FormRegis = {
       Email:"kohamatrio@gmail.com",
       Password:"artty678",
@@ -893,296 +794,26 @@ function PostRegis(pack){
       Job_SkillName:[["C","JQuery","HTML"]]
   }
     
- /*
-var list_of_work = [];
 
-function get_work_id(list_of_work, x) {
-  //var x = 1;
-  list_of_work.forEach(ele => {
-      ele["work_pos"] = x;
-      console.log("x:", x);
-      x++;
+  $(document).ready(function(){
+    console.log('script for registab3 loaded')
   });
-  return list_of_work;
-}
-
-function create_UUID() {
-  var dt = new Date().getTime();
-  var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-      var r = (dt + Math.random() * 16) % 16 | 0;
-      dt = Math.floor(dt / 16);
-      return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+  
+  let startYear4 = 1970;
+  let endYear4 = new Date().getFullYear();
+  for (i = endYear4; i > startYear4; i--) {
+    $('#year_higher').append($('<option />').val(i).html(i));
+    $('#year_secondary').append($('<option />').val(i).html(i));
+    $('#year_startwork').append($('<option />').val(i).html(i));
+    $('#year_endwork').append($('<option />').val(i).html(i));
+  }
+  
+  /*$('handleHigherSubmit').on('click',function() {
+    $("#registab3Modal1").modal("hide");
+  
   });
-  return uuid;
-}
-
-var choose_function4 = -1; //default
-
-function show_all_work() {
-
-  list_of_work.forEach(ele => {
-      var grid_work1 = '<div class="t4-content col-6">\
-                          <h5 class="font-titlet4">{jobname_work}</h5>\
-                          <div class="row">\
-                              <div class="col-3 font-titlet3">\
-                              <div class="font-titlet4">{company_work}</div>\
-                              <div class="font-titlet3">เริ่มต้น {month_startwork}/{year_startwork}</div>\
-                              <div class="font-titlet3">สิ้นสุด {month_endwork}/{year_endwork}</div>\
-                              </div>\
-                              <div class="col-9 font-titlet3">{inform_work}</div>\
-                          </div>\
-                          <div class="row">\
-                              <div class="col-3 font-titlet3">เงินเดือน</div>\
-                              <div class="col-9 font-titlet3">{salary_work} บาท</div>\
-                          </div>';
-
-      var grid_work2 = `
-                          <div class="layer_icon2" id={no-list-work}>\
-                             <button type="button" class="btn button1" id="edit-work"><img src="assets/images/blackedit.png" width="27" height="27"></img></button>\
-                             <button type="button" class="btn button2" id="del-work"><img src="assets/images/bin.png" width="30" height="30"></img></button>\
-                          </div>\
-                      </div>`;
-      grid_work2 = grid_work2.replace("{no-list-work}", ele["id"]);
-      grid_work1 = grid_work1.replace("{no_work}", ele["work_pos"]);
-      grid_work1 = grid_work1.replace("{jobname_work}", ele["work_jobname"]);
-      grid_work1 = grid_work1.replace("{month_startwork}", ele["work_startmonth"]);
-      grid_work1 = grid_work1.replace("{year_startwork}", ele["work_startyear"]);
-      if(ele["work_company"]==""){
-        grid_work1 = grid_work1.replace("{company_work}", '-');
-      }
-      else{
-        grid_work1 = grid_work1.replace("{company_work}", ele["work_company"]);
-      }
-      if(ele["work_inform"]==""){
-        grid_work1 = grid_work1.replace("{inform_work}", '-');
-      }
-      else{
-        grid_work1 = grid_work1.replace("{inform_work}", ele["work_inform"]);
-      }
-      if(ele["work_salary"]=="0"){
-        grid_work1 = grid_work1.replace("{salary_work}", '-');
-      }
-      else{
-        grid_work1 = grid_work1.replace("{salary_work}", ele["work_salary"]);
-      }
-      if(ele["work_endyear"]=="0"){
-        grid_work1 = grid_work1.replace("{year_endwork}", '-');
-      }
-      else{
-        grid_work1 = grid_work1.replace("{year_endwork}", ele["work_endyear"]);
-      }
-      if(ele["work_endmonth"]=="0"){
-        grid_work1 = grid_work1.replace("{month_endwork}", '-');
-      }
-      else{
-        grid_work1 = grid_work1.replace("{month_endwork}", ele["work_endmonth"]);
-      }
-      $(".list-of-work").append(grid_work1 + grid_work2);
-      console.log(grid_work1 + grid_work2);
-      console.log(`list_of_work:`, list_of_work);
+  
+  $('handleSecondaryubmit').on('click',function() {
+    $("#registab3Modal2").modal("hide");
   });
-}
-$(document).ready(function () {
-  show_all_work();
-});
-
-//func add new work form
-$(document).on("click", "#add_work", function () {
-  $("#jobname_work").removeClass("is-invalid");
-  $("#jobtype_work").removeClass("is-invalid");
-  $("#month_startwork").removeClass("is-invalid");
-  $("#year_startwork").removeClass("is-invalid");
-  choose_function4 = 2;
-  //$('#registab4Modal').modal('toggle');
-  $('#jobtype_work').prop('selectedIndex', 0);
-  $('#year_startwork').prop('selectedIndex', 0);
-  $('#year_endwork').prop('selectedIndex', 0);
-  $('#month_startwork').prop('selectedIndex', 0);
-  $('#month_endwork').prop('selectedIndex', 0);
-  $('#salarytype_work').prop('selectedIndex', 0);
-  $('#jobname_work').val('');
-  $('#salary_work').val('');
-  $('#inform_work').val('');
-  $('#company_work').val('');
-  //not sure
-});
-
-//func edit work
-var for_editwork;
-$(document).on("click", "#edit-work", function () {
-  $("#jobname_work").removeClass("is-invalid");
-  $("#jobtype_work").removeClass("is-invalid");
-  $("#month_startwork").removeClass("is-invalid");
-  $("#year_startwork").removeClass("is-invalid");
-  id_list_work_edit = $(this).parents().attr('id');
-  console.log(`edit:`, id_list_work_edit);
-  choose_function4 = 1;
-  $('#registab4Modal').modal('toggle');
-  $('#submit-work').text('ยืนยัน');
-  console.log(`choose: ${choose_function4}`);
-  for_editwork = list_of_work.find(function (post, index_del) {
-      if (post.id == id_list_work_edit){
-        //console.log("Wow!!");
-        return true;
-      }
-  });
-  console.log(`for_editwork:`, for_editwork);
-  $("#jobname_work").val(for_editwork["work_jobname"]);
-  $("#aca_faculty").val(for_editwork["aca_faculty"]);
-  if(for_editwork["work_inform"]=='none'){
-    $("#work_inform").val('');
-  }
-  else{
-    $("#work_inform").val(for_editwork["work_inform"]);
-  }
-  if(for_editwork["aca_grade"]=='0.00'){
-    $("#aca_grade").val('');
-  }
-  else{
-    $("#aca_grade").val(for_editwork["aca_grade"]);
-  }
-  document.getElementById("work_jobtype").selectedIndex = for_editwork["work_jobtype_select"];
-  document.getElementById("work_salarytype").selectedIndex = for_editwork["work_salarytype_select"];
-  document.getElementById("work_startyear").selectedIndex = for_editwork["work_startyear_select"];
-  document.getElementById("work_startmonth").selectedIndex = for_editwork["work_startmonth_select"];
-});
-
-
-$(document).on("click", "#del-work", function () {
-  id_list_work_del = $(this).parents().attr('id');
-  console.log("id_list_work4:", id_list_work_del);
-  $('#Modal_remove_work').modal('toggle');
-});
-
-$(document).on('click', "#sub_del_work", function () {
-  var removeIndexA = list_of_work.findIndex(function (post, index_del) {
-      if (post.id == id_list_work_del)
-          return true;
-  });
-  console.log("id_list_work:", id_list_work_del);
-  list_of_work.splice(removeIndexA, 1);
-  console.log(`delete work id:`, removeIndexA);
-  $('#Modal_remove_work').modal('hide');
-  $(".list-of-work").empty();
-  console.log(list_of_work);
-  get_work_id(list_of_work, 1);
-  show_all_work()
-});
-
-
-$(document).on('hide.bs.modal', "#registab4Modal", function () {
-  //$('#registab4Modal').modal('toggle');
-  $('#work_jobtype').prop('selectedIndex', 0);
-  $('#year_startwork').prop('selectedIndex', 0);
-  $('#year_endwork').prop('selectedIndex', 0);
-  $('#month_startwork').prop('selectedIndex', 0);
-  $('#month_endwork').prop('selectedIndex', 0);
-  $('#work_salarytype').prop('selectedIndex', 0);
-  $('#work_jobname').val('');
-  $('#work_salary').val('');
-  $('#work_inform').val('');
-  $('#work_company').val('');
-});
-
-$(document).on('click', "#can_work_del", function () {
-  $('#Modal_remove_work').modal('hide');
-});
-
-$(document).on("change", "#work_jobtype", function () {
-  if (document.getElementById("work_jobtype").selectedIndex != 0) {
-      $("#work_jobtype").removeClass("is-invalid");
-  }
-});
-
-document.getElementById("submit-work").addEventListener("click", function () {
-  $("#jobname_work").removeClass("is-invalid");
-  $("#jobtype_work").removeClass("is-invalid");
-  $("#month_startwork").removeClass("is-invalid");
-  $("#year_startwork").removeClass("is-invalid");
-  work_jobname = document.getElementById("jobname_work").value;
-  work_jobtype = document.getElementById("jobtype_work").value;
-  work_startyear = document.getElementById("year_startwork").value;
-  work_endyear = document.getElementById("year_endwork").value;
-  work_startmonth = document.getElementById("month_startwork").value;
-  work_endmonth = document.getElementById("month_endwork").value;
-  $('#submit_work').text = 'ยืนยัน';
-  var checkcase1 = true;
-  if (document.getElementById("jobname_work").value == '') {
-      $("#jobname_work").addClass("is-invalid");
-      checkcase1 = false;
-  }
-  if (document.getElementById("jobtype_work").value == 'none') {
-    $("#jobtype_work").addClass("is-invalid");
-      checkcase1 = false;
-  }
-  if (document.getElementById("year_startwork").value == '0') {
-    $("#year_startwork").addClass("is-invalid");
-      checkcase1 = false;
-  }
-  if (document.getElementById("month_startwork").value == '0') {
-    $("#month_startwork").addClass("is-invalid");
-      checkcase1 = false;
-  }
-  if(checkcase1){
-      if (inform_work == '') {
-          inform_work = 'none';
-      }
-      if (month_endwork == '') {
-          month_endwork = 0;
-      }
-      if (year_endwork == '') {
-          year_endwork = 0;
-      }
-      if (choose_function4 == 1) { //edit work after add
-          console.log("edit!!!!!!");
-          for_editwork["work_jobname"] = jobname_work;
-          for_editwork["work_jobtype_select"] = $("#work_jobtype").prop('selectedIndex');
-          for_editwork["work_salarytype_select"] = $("#work_salarytype").prop('selectedIndex');
-          for_editwork["work_startyear_select"] = $("#work_startyear").prop('selectedIndex');
-          for_editwork["work_endyear_select"] = $("#work_endyear").prop('selectedIndex');
-          for_editwork["work_startmonth_select"] = $("#work_endyear").prop('selectedIndex');
-          for_editwork["work_endmonth_select"] = $("#work_endmonth").prop('selectedIndex');
-          for_editwork["work_inform"] = inform_work;
-          for_editwork["work_salary"] = salary_work;
-          //for_editwork["year_secondary"] = parseInt(year_work);
-      }
-      else if (choose_function4 == 2) { //add work in list
-          list_of_aca.push({
-              id: create_UUID(),
-              work_pos: 0,
-              work_jobname: jobname_work,
-              work_jobtype: jobtype_work,
-              work_company: company_work,
-              work_jobtype_select: $("#jobtype_work").prop('selectedIndex'),
-              work_salary: salary_work,
-              work_salarytype: salarytype_work,
-              work_salarytype_select: $("#salarytype_work").prop('selectedIndex'),
-              work_startyear: year_startwork,
-              work_startyear_select: $("#year_startwork").prop('selectedIndex'),
-              work_startmonth: month_startwork,
-              work_startmonth_select: $("#month_startwork").prop('selectedIndex'),
-              work_endyear: year_endwork,
-              work_endyear_select: $("#year_endwork").prop('selectedIndex'),
-              work_endmonth: year_startwork,
-              work_endmonth_select: $("#month_endwork").prop('selectedIndex'),
-              work_inform: inform_work
-          });
-          get_work_id(list_of_work, 1);
-          console.log(list_of_work);
-      }
-      $('#work_jobtype').prop('selectedIndex', 0);
-      $('#year_startwork').prop('selectedIndex', 0);
-      $('#year_endwork').prop('selectedIndex', 0);
-      $('#month_endwork').prop('selectedIndex', 0);
-      $('#month_startwork').prop('selectedIndex', 0);
-      $('#work_salarytype').prop('selectedIndex', 0);
-      $('#work_jobname').val('');
-      $('#work_salary').val('');
-      $('#work_inform').val('');
-      $('#work_company').val('');
-      $('#regist4_cb').empty();
-      $('#registab4Modal').modal('hide');
-      $(".list-of-work").empty();
-      show_all_work()
-  }
-});*/
+  */

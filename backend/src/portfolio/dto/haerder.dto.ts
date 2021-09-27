@@ -23,4 +23,6 @@ export class hearderDto {
 
     Port_Date: string;
 
+    Privacy: string;
+
 }

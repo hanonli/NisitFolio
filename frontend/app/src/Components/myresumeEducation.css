@@ -90,28 +90,3 @@
     position: relative;
 }
 
-.ed-dummy{
-    background: white;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -57%);
-    width: 100%;
-    
-    padding: 1vw;
-}
-
-.ed-dummy p{
-    color: #939393;
-    font-size: 1vw;
-}
-
-.ed-dummy button{
-    font-size: 1.4vw;
-    background: #F9DC5C;
-    border-radius: 2vw;
-    padding: 0.9vw;
-    color: black;
-    padding-inline: 3.6vw;
-    border: rgba(0,0,0,0);
-}

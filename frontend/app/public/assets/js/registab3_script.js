@@ -50,14 +50,14 @@ function show_all_aca() {
   list_of_aca.forEach(ele => {
       var grid_aca1 = '<div class="t3-content1 row">\
                           <div class="col-3">\
-                              <div class="font-titlet3 font-boldt3">{degree_aca}</div>\
-                              <div class="font-titlet3 font-khotboldt3">{year_aca}</div>\
+                              <div class="font-titlet3_1 font-boldt3">{degree_aca}</div>\
+                              <div class="font-titlet3_1 font-khotboldt3">{year_aca}</div>\
                           </div>\
                           <div class="col-9">\
-                              <div class="font-titlet3">{field_aca}</div>\
-                              <div class="font-titlet3">{faculty_aca}</div>\
-                              <div class="font-titlet3">{name_aca}</div>\
-                              <div class="font-titlet3">เกรด {grade_aca}</div>\
+                              <div class="font-titlet3_1">{field_aca}</div>\
+                              <div class="font-titlet3_1">{faculty_aca}</div>\
+                              <div class="font-titlet3_1">{name_aca}</div>\
+                              <div class="font-titlet3_1">เกรด {grade_aca}</div>\
                           </div>';
 
       var grid_aca2 = `
@@ -68,11 +68,25 @@ function show_all_aca() {
                       </div>`;
       grid_aca2 = grid_aca2.replace("{no-list-aca}", ele["id"]);
       grid_aca1 = grid_aca1.replace("{no_aca}", ele["aca_pos"]);
-      grid_aca1 = grid_aca1.replace("{name_aca}", ele["aca_name"]);
+      //grid_aca1 = grid_aca1.replace("{name_aca}", ele["aca_name"]);
       grid_aca1 = grid_aca1.replace("{degree_aca}", ele["aca_degree"]);
       //grid_aca1 = grid_aca1.replace("{field_aca}", ele["aca_field"]);
-      grid_aca1 = grid_aca1.replace("{faculty_aca}", ele["aca_faculty"]);
+      //grid_aca1 = grid_aca1.replace("{faculty_aca}", ele["aca_faculty"]);
       //grid_aca1 = grid_aca1.replace("{year_aca}", ele["aca_year"]);
+      // if (ele["aca_name"].length > 38) {
+      //   grid_aca1 = grid_aca1.replace("{name_aca}", ele["aca_name"].slice(0, 38) + "...");
+      // }
+      // else {
+      //   grid_aca1 = grid_aca1.replace("{name_aca}", ele["aca_name"]);
+      // }
+      grid_aca1 = grid_aca1.replace("{name_aca}", ele["aca_name"]);
+      // if (ele["aca_faculty"].length > 38) {
+      //   grid_aca1 = grid_aca1.replace("{faculty_aca}", ele["aca_faculty"].slice(0, 38) + "...");
+      // }
+      // else {
+      //   grid_aca1 = grid_aca1.replace("{faculty_aca}", ele["aca_faculty"]);
+      // }
+      grid_aca1 = grid_aca1.replace("{faculty_aca}", ele["aca_faculty"]);
       if(ele["aca_grade"]=="0.00"){
         grid_aca1 = grid_aca1.replace("{grade_aca}", '-');
       }
@@ -82,6 +96,9 @@ function show_all_aca() {
       if(ele["aca_field"]=="none"){
         grid_aca1 = grid_aca1.replace("{field_aca}", '-');
       }
+      /*else if(ele["aca_field"].length > 38){
+        grid_aca1 = grid_aca1.replace("{field_aca}", ele["aca_field"].slice(0, 38) + "...");
+      }*/
       else{
         grid_aca1 = grid_aca1.replace("{field_aca}", ele["aca_field"]);
       }
@@ -181,6 +198,7 @@ $(document).on('click', "#sub_del_aca", function () {
   if (list_of_aca.length != 3) {
     $('#aca_danger').text('ท่านสามารถเพิ่มประวัติการศึกษาได้สูงสุด 3 อัน');
     $('#aca_danger').removeClass('red_markEp1');
+    $('.icon-plus-circleA').show();
 }
 });
 
@@ -225,7 +243,7 @@ document.getElementById("submit-aca").addEventListener("click", function () {
       $("#aca_name").addClass("is-invalid");
       checkcase1 = false;
   }
-  if (document.getElementById("aca_degree").value == 'none') {
+  if (document.getElementById("aca_degree").value == '') {
     //alert("submit aca wrong!");
     $("#aca_degree").addClass("is-invalid");
     checkcase1 = false;
@@ -286,10 +304,14 @@ document.getElementById("submit-aca").addEventListener("click", function () {
       //$("#pos-del-obj-button1").hide();
       $('#registab3Modal1').modal('hide');
       $(".list-of-aca").empty();
+      list_of_aca.sort(function (x, y) {
+        return  y.aca_year - x.aca_year;
+      });
       show_all_aca()
       if (list_of_aca.length == 3) {
         $('#aca_danger').text('*ท่านเพิ่มประวัติการศึกษาครบจำนวนแล้ว');
         $('#aca_danger').addClass('red_markEp1');
+        $('.icon-plus-circleA').hide();
     }
   }
 });
@@ -315,15 +337,15 @@ var choose_function3_2 = -1; //default
 function show_all_high() {
 
   list_of_high.forEach(ele => {
-      var grid_high1 = '<div class="t3-content2 row mg-left1per">\
+      var grid_high1 = '<div class="t3-content1 row">\
                           <div class="col-4">\
-                              <div class="row font-titlet3 font-boldt3">{degree_high}</div>\
-                              <div class="row font-titlet3 font-khotboldt3">{year_high}</div>\
+                              <div class="font-titlet3_2 font-boldt3">{degree_high}</div>\
+                              <div class="font-titlet3_2 font-khotboldt3">{year_high}</div>\
                           </div>\
                           <div class="col-8">\
-                              <div class="row font-titlet3">{field_high}</div>\
-                              <div class="row font-titlet3">{name_high}</div>\
-                              <div class="row font-titlet3">เกรด {grade_high}</div>\
+                              <div class="font-titlet3_2">{field_high}</div>\
+                              <div class="font-titlet3_2">{name_high}</div>\
+                              <div class="font-titlet3_2">เกรด {grade_high}</div>\
                           </div>';
 
       var grid_high2 = `
@@ -334,8 +356,15 @@ function show_all_high() {
                       </div>`;
       grid_high2 = grid_high2.replace("{no-list-high}", ele["id"]);
       grid_high1 = grid_high1.replace("{no_high}", ele["high_pos"]);
-      grid_high1 = grid_high1.replace("{name_high}", ele["high_name"]);
       grid_high1 = grid_high1.replace("{degree_high}", ele["high_degree"]);
+        // if (ele["high_name"].length > 34) {
+        //   grid_high1 = grid_high1.replace("{name_high}", ele["high_name"].slice(0, 34) + "...");
+        // }
+        // else {
+        //   grid_high1 = grid_high1.replace("{name_high}", ele["high_name"]);
+        // }
+
+      grid_high1 = grid_high1.replace("{name_high}", ele["high_name"]);
       if(ele["high_grade"]=="0.00"){
         grid_high1 = grid_high1.replace("{grade_high}", '-');
       }
@@ -345,9 +374,13 @@ function show_all_high() {
       if(ele["high_field"]=="none"){
         grid_high1 = grid_high1.replace("{field_high}", '-');
       }
-      else{
-        grid_high1 = grid_high1.replace("{field_high}", ele["high_field"]);
-      }
+      // else if(ele["high_field"].length > 34){
+      //   grid_high1 = grid_high1.replace("{field_high}", ele["high_field"].slice(0, 34) + "...");
+      // }
+      // else{
+      //   grid_high1 = grid_high1.replace("{field_high}", ele["high_field"]);
+      // }
+      grid_high1 = grid_high1.replace("{field_high}", ele["high_field"]);
       if(ele["high_year"]=="0"){
         grid_high1 = grid_high1.replace("{year_high}", '-');
       }
@@ -436,6 +469,7 @@ $(document).on('click', "#sub_del_high", function () {
   if (list_of_high.length != 3) {
     $('#high_danger').text('ท่านสามารถเพิ่มประวัติการศึกษาได้สูงสุด 3 อัน');
     $('#high_danger').removeClass('red_markEp1');
+    $('.icon-plus-circleH').show();
 }
 });
 
@@ -463,7 +497,7 @@ document.getElementById("submit-high").addEventListener("click", function () {
   degree_high = document.getElementById("high_degree").value;
   field_high = document.getElementById("high_field").value;
   grade_high = document.getElementById("high_grade").value;
-  year_high = document.getElementById("year_secondary").value;
+  year_high = document.getElementById("year_higher").value;
   $('#submit_high').text = 'ยืนยัน';
   var checkformT3 = true;
   //console.log('high_name : '+ $("#high_name").val());
@@ -472,7 +506,7 @@ document.getElementById("submit-high").addEventListener("click", function () {
       $("#high_name").addClass("is-invalid");
       checkformT3 = false;
   }
-  if (document.getElementById("high_degree").value == 'none') {
+  if (document.getElementById("high_degree").value == '') {
     //alert("submit high wrong!");
     $("#high_degree").addClass("is-invalid");
     checkformT3 = false;
@@ -505,7 +539,6 @@ document.getElementById("submit-high").addEventListener("click", function () {
               high_faculty: 'none',
               high_degree: degree_high,
               high_degree_select: $("#high_degree").prop('selectedIndex'),
-              high_year: parseInt(year_high),
               high_year_select: $("#year_higher").prop('selectedIndex'),
               high_grade: parseFloat(grade_high).toFixed(2),
               high_field: field_high,
@@ -521,10 +554,15 @@ document.getElementById("submit-high").addEventListener("click", function () {
       $('#high_grade').val('');
       $('#registab3Modal2').modal('hide');
       $(".list-of-high").empty();
+      list_of_high.sort(function (x, y) {
+        return  y.high_year - x.high_year;
+      });
+      //console.table(list_of_high);
       show_all_high()
       if (list_of_high.length == 3) {
         $('#high_danger').text('*ท่านเพิ่มประวัติการศึกษาครบจำนวนแล้ว');
         $('#high_danger').addClass('red_markEp1');
+        $('.icon-plus-circleH').hide();
     }
   }
 });

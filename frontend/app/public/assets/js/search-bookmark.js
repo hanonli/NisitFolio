@@ -2,180 +2,133 @@ console.log("Run bookmark script!");
 Cookies.set('username','worames'); 
 console.log('Currently login as: '+Cookies.get('username'));
 
-var profile_grid = '<header class="header round">\
-					<div class="container-fluid bookmark-margin">\
-						<div class="row">\
-							<div class="col-2">\
-								<img class="bookmark-profile-image img-fluid float-start rounded-circle" type="button" id="avatar" src="{img}" alt="profile image" width="100" height="100" />\
+var profile_grid = '<header class="header hsbm-pad round">\
+						<div class="pf-entity-flex">\
+							<div class="pf-start">\
+								<img class=" pf-image rounded-circle" type="button" id="avatar" src="{img}" alt="profile image" />\
 							</div>\
-							<div class="col-9">\
-								<div class="bookmark-content">\
-									<h1 class="name">{name}</h1>\<div></div>\
-									<a class="btn btn-cta-secondary btn-small round" target="_blank">{tag1}</a>\
-									<a class="btn btn-cta-secondary btn-small round" target="_blank">{tag2}</a>\
-									<a class="btn btn-cta-secondary btn-small round" target="_blank">{tag3}</a>\
-								</div>\
+							<div class="pf-center">\
+								<div class="pf-name pf-name-wt">{name}</div>\
+								{tags}\
 							</div>\
-							<div class="col-1">\
-								<img class="obj-icon tooltips-item" src="{icon-type}" type="button" data-bs-toggle="tooltip" toggle-type="dynamic" data-bs-placement="bottom" title="{tooltip}" alt="" width="30" height="30"/>\
+							<div class="pf-end">\
+								<img class="tooltips-item obj-icon" src="{icon-type}" id="{status}" type="button" data-bs-toggle="tooltip" toggle-type="dynamic" data-bs-placement="bottom" title="{tooltip}" alt="" width="30" height="30"/>\
 							</div>\
 						</div>\
-					</div>\
-				</header>';
+					</header>';
 
-var profile_list = '<div class="col-12">\
-							<header class="header round">\
-							<div class="container-fluid bookmark-margin">\
-								<div class="row">\
-									<div class="col-1">\
-										<img class="bookmark-profile-image img-fluid float-start rounded-circle" type="button" id="avatar" src="{img}" alt="profile image" width="100" height="100" />\
-									</div>\
-									<div class="col-5 bk-pad">\
-										<div class="bookmark-content">\
-											<h1 class="name">{name}</h1>\<div></div>\
-											<a class="btn btn-cta-secondary btn-small round" target="_blank">{tag1}</a>\
-											<a class="btn btn-cta-secondary btn-small round" target="_blank">{tag2}</a>\
-											<a class="btn btn-cta-secondary btn-small round" target="_blank">{tag3}</a>\
-										</div>\
-									</div>\
-									<div class="col-4 bookmark-list-column d-flex align-items-center justify-content-center">\
-										<div class="bookmark-content">\
-											<h2 class="bookmark-desc" >{desc}</h2>\
-										</div>\
-									</div>\
-									<div class="col-2">\
-										<div class="bookmark-content">\
-											<img class="obj-icon tooltips-item" src="{icon-type}" type="button" data-bs-toggle="tooltip" toggle-type="dynamic" data-bs-placement="bottom" title="{tooltip}" alt="" width="30" height="30"/>\
-											<br></br>\
-										</div>\
-									</div>\
+var profile_list = '<div class="sbm-list-entity">\
+						<header class="header hsbm-pad round">\
+							<div class="pf-entity-flex">\
+								<div class="pf-start-list">\
+									<img class=" pf-image rounded-circle" type="button" id="avatar" src="{img}" alt="profile image" />\
+								</div>\
+								<div class="pf-center-list">\
+									<div class="pf-name pf-name-wt">{name}</div>\
+									{tags}\
+								</div>\
+								<div class="pf-list-info">\
+									<div class="bookmark-desc" >{desc}</div>\
+								</div>\
+								<div class="pf-end-list">\
+									<img class="tooltips-item obj-icon" src="{icon-type}" id="{status}" type="button" data-bs-toggle="tooltip" toggle-type="dynamic" data-bs-placement="bottom" title="{tooltip}" alt="" width="30" height="30"/>\
 								</div>\
 							</div>\
 						</header>\
 					</div>';
-					
-var profile_grid_no_tag = '<header class="header round">\
-					<div class="container-fluid bookmark-margin">\
-						<div class="row">\
-							<div class="col-2">\
-								<img class="bookmark-profile-image img-fluid float-start rounded-circle" type="button" id="avatar" src="{img}" alt="profile image" width="100" height="100" />\
-							</div>\
-							<div class="col-7">\
-								<div class="bookmark-content">\
-									<h1 class="name">{name}</h1>\<div></div>\
-									<h2 class="bookmark-desc">ผู้ใช้นี้ยังไม่มีตำแหน่งงานที่<br>ต้องการ หรือหน้า MyResume</h2>\<div></div>\
-								</div>\
-							</div>\
-							<div class="col-3">\
-								<img class="" src="assets/images/outline_cancel_black_24dp 1.png" alt="" width="100" height="100"/>\
-							</div>\
-						</div>\
-					</div>\
-				</header>';
-				
-var profile_list_no_tag = '<div class="col-12">\
-							<header class="header round">\
-							<div class="container-fluid bookmark-margin">\
-								<div class="row">\
-									<div class="col-1">\
-										<img class="bookmark-profile-image img-fluid float-start rounded-circle" type="button" id="avatar" src="{img}" alt="profile image" width="100" height="100" />\
-									</div>\
-									<div class="col-5 bk-pad">\
-										<div class="bookmark-content">\
-											<h1 class="name">{name}</h1>\<div></div>\
-											<h2 class="bookmark-desc" >{desc}</h2>\
-										</div>\
-									</div>\
-									<div class="col-4 bookmark-list-column d-flex align-items-center justify-content-center">\
-										<img class="" src="assets/images/outline_cancel_black_24dp 1.png" alt="" width="100" height="100"/>\
-										<div class="bookmark-content">\
-											<h2 class="bookmark-desc">ผู้ใช้นี้ยังไม่มีตำแหน่งงานที่<br>ต้องการ หรือหน้า MyResume</h2>\<div></div>\
-										</div>\
-									</div>\
-									<div class="col-2">\
-									</div>\
-								</div>\
-							</div>\
-						</header>\
-					</div>';
-					
-var work_grid = '<header class="header round">\
-					<div class="container-fluid bookmark-margin">\
-						<div class="row">\
-							<div class="col-3">\
-								<img class="bookmark-profile-image img-fluid float-start round" type="button" id="avatar" src="{img}" alt="profile image" width="150" height="100"/>\
-							</div>\
-							<div class="col-8">\
-								<div class="bookmark-content">\
-									<h1 class="name">{name}</h1>\
-									<h2 class="bookmark-work-desc" >Portfolio - {desc} รูปภาพ</h2>\
-									<h2 class="bookmark-work-desc" >ผลงานของ {owner}</h2>\
-								</div>\
-							</div>\
-							<div class="col-1">\
-								<div class="bookmark-content">\
-									<img class="obj-icon tooltips-item" src="{icon-type}" type="button" data-bs-toggle="tooltip" toggle-type="dynamic" data-bs-placement="bottom" title="{tooltip}" alt="" width="30" height="30"/>\
-								</div>\
-							</div>\
-						</div>\
-					</div>\
-				</header>';
-				
-var work_list = '<div class="col-12">\
-							<header class="header round">\
-					<div class="container-fluid bookmark-margin">\
-						<div class="row">\
-							<div class="col-10">\
-								<img class="bookmark-profile-image float-start round" type="button" id="avatar" src="{img}" alt="profile image" width="150" height="100"/>\
-								<div class="bookmark-content">\
-									<h1 class="name">{name}</h1>\
-									<h2 class="bookmark-work-desc" >{desc}</h2>\
-									<h2 class="bookmark-work-desc" >ผลงานของ {owner}</h2>\
-								</div>\
-							</div>\
-							<div class="col-2">\
-								<div class="bookmark-content">\
-									<img class="obj-icon tooltips-item" src="{icon-type}" type="button" data-bs-toggle="tooltip" toggle-type="dynamic" data-bs-placement="bottom" title="{tooltip}" alt="" width="35" height="35"/>\
-								</div>\
-							</div>\
-						</div>\
-					</div>\
-				</header>\
-					</div>';
-					
-var not_found_search = '<header class="header round remove">\
-							<div class="container-fluid d-flex flex-column justify-content-center not-found">\
-								<div class="row">\
-									<div class="col d-flex flex-column align-items-center">\
-										<img class="not-found-icon" src="assets/images/outline_cancel_black_24dp 1.png" alt=""/>\
-									</div>\
-								</div>\
-								<div class="row">\
-									<div class="col d-flex flex-column align-items-center">\
-										<h1>ขออภัยด้วยแต่เราไม่พบข้อมูลการค้นหาของคุณ</h1>\
-									</div>\
-								</div>\
-							</div>\
-						</header>'
 
-var not_found_bookmark = '<header class="header round remove">\
-							<div class="container-fluid d-flex flex-column justify-content-center not-found">\
-								<div class="row">\
-									<div class="col d-flex flex-column align-items-center">\
-										<img class="not-found-icon" src="assets/images/outline_cancel_black_24dp 1.png" alt=""/>\
-									</div>\
-								</div>\
-								<div class="row">\
-									<div class="col d-flex flex-column align-items-center">\
-										<h1>ขออภัยด้วยแต่เราไม่พบข้อมูล bookmark ของคุณ</h1>\
-									</div>\
-								</div>\
-							</div>\
-						</header>'
+var tag_entity = '<a class="lg-view pft btn btn-cta-secondary btn-small round no-margin tag" target="_blank">{tag}</a>';
 					
-var profile_count=0;
-var work_count=0;
-var mixed_count=0;
+var profile_grid_no_tag = '<header class="header hsbm-pad round">\
+								<div class="pf-entity-flex">\
+									<div class="pf-start">\
+										<img class=" pf-image rounded-circle" type="button" id="avatar" src="{img}" alt="profile image" />\
+									</div>\
+									<div class="pf-center">\
+										<div class="pf-name">{name}</div>\
+										<div class="no-tag-desc lg-view">ผู้ใช้นี้ยังไม่มีตำแหน่งงานที่<br>ต้องการ หรือหน้า MyResume</div>\
+									</div>\
+									<div class="pf-end">\
+										<img class="nt-image lg-view" src="assets/images/outline_cancel_black_24dp 1.png" alt=""/>\
+									</div>\
+								</div>\
+							</header>';
+				
+var profile_list_no_tag = '<div class="sbm-list-entity">\
+								<header class="header hsbm-pad round">\
+									<div class="pf-entity-flex">\
+										<div class="pf-start-list">\
+											<img class=" pf-image rounded-circle" type="button" id="avatar" src="{img}" alt="profile image" />\
+										</div>\
+										<div class="pf-center-list">\
+											<div class="pf-name">{name}</div>\
+										</div>\
+										<div class="nfnf-i md-view">\
+											<img class="" src="assets/images/outline_cancel_black_24dp 1.png" alt="" width="100" height="100"/>\
+										</div>\
+										<div class="pf-list-info nfnf">\
+											<div class=" md-view bookmark-desc" >ผู้ใช้นี้ยังไม่มีตำแหน่งงานที่ต้องการ หรือหน้า MyResume</div>\
+										</div>\
+										<div class="pf-end-list">\
+										</div>\
+									</div>\
+								</header>\
+							</div>';
+					
+var work_grid = '<header class="header hsbm-pad round">\
+					<div class="pf-entity-flex">\
+						<div class="pf-start-port">\
+							<img class="pf-port-image round" type="button" id="avatar" src="{img}" />\
+						</div>\
+						<div class="pf-center-port">\
+							<div class="pf-port-name">{name}</div>\
+							<div class="pf-port-desc lg-view">Portfolio - {desc} รูปภาพ</div>\
+							<div class="pf-port-desc" >ผลงานของ {owner}</div>\
+						</div>\
+						<div class="pf-end">\
+							<img class="tooltips-item obj-icon" src="{icon-type}" id="{status}" type="button" data-bs-toggle="tooltip" toggle-type="dynamic" data-bs-placement="bottom" title="{tooltip}" alt="" width="30" height="30"/>\
+						</div>\
+					</div>\
+				</header>';
+				
+var work_list = '<div class="sbm-list-entity">\
+					<header class="header hsbm-pad round">\
+						<div class="pf-entity-flex">\
+							<div class="pf-start-port-list">\
+								<img class="pf-port-image round" type="button" id="avatar" src="{img}" />\
+							</div>\
+							<div class="pf-center-port-list">\
+								<div class="pf-port-name-list">{name}</div>\
+								<div class="pf-port-desc-list lg-view">{desc}</div>\
+								<div class="pf-port-desc-list" >ผลงานของ {owner}</div>\
+							</div>\
+							<div class="pf-end-list">\
+								<img class="tooltips-item obj-icon" src="{icon-type}" id="{status}" type="button" data-bs-toggle="tooltip" toggle-type="dynamic" data-bs-placement="bottom" title="{tooltip}" alt="" width="30" height="30"/>\
+							</div>\
+						</div>\
+					</header>\
+				</div>';
+					
+var not_found_search = '<div class="nf-flex">\
+							<header class="header header-white nf-header round remove">\
+								<img class="nf-i" src="assets/images/outline_cancel_grey_24dp hd.png" alt=""/>\
+								<agf class="nf-n">ขออภัยด้วยแต่เราไม่พบข้อมูลการค้นหาของคุณ</agf>\
+							</header>\
+						</div>'
+
+var not_found_bookmark = '<div class="nf-flex">\
+							<header class="header header-white nf-header round remove">\
+								<img class="nf-i" src="assets/images/outline_cancel_grey_24dp hd.png" alt=""/>\
+								<agf class="nf-n">ขออภัยด้วยแต่เราไม่พบข้อมูล Bookmark ของคุณ</agf>\
+							</header>\
+						</div>'
+
+var profileCount=0;
+var workCount=0;
+
+var profileIndex=0;
+var workIndex=0;
+
 var index=0;
 var max=0;
 var max_col=2;
@@ -187,11 +140,14 @@ var view_type = "grid";
 var current_tab = 1;
 var pageName = location.href.split("/").slice(-1); 
 
+var currentTooltip = null;
+
+ClearCache(); // gotta need this line for changing between search & bookmark
+
 function ResetData(){
-	profile_count=0;
-	work_count=0;
-	mixed_count=0;
 	index=0;
+	profileIndex=0;
+	workIndex=0;
 	temp = [];
 	raw_html = "";
 	$('.mixed-grid-container').empty(); $('.mixed-list-container').empty();
@@ -202,15 +158,20 @@ function ResetData(){
 
 function FormatIcon(data,dtype) {
   if(pageName == 'search'){
-		if(!data.bookmark) dtype = dtype.replace("{icon-type}","assets/images/bookmark_1.png").replace("{tooltip}","บันทึก");
-		else dtype = dtype.replace("{icon-type}","assets/images/bookmark_2.png").replace("{tooltip}","ยกเลิกการบันทึก");
+		if(data.bookmark == "false") {
+			dtype = dtype.replace("{icon-type}","assets/images/bookmark_1.png").replace("{tooltip}","บันทึก").replace("{status}","false"+"-"+data.thatUserId+'&'+data.type+'&'+data.name);
+		}else {
+			dtype = dtype.replace("{icon-type}","assets/images/bookmark_2.png").replace("{tooltip}","ยกเลิกการบันทึก").replace("{status}","true"+"-"+data.thatUserId+'&'+data.type+'&'+data.name);
+		}
 	}else{
-		dtype = dtype.replace("{icon-type}","assets/images/bin.png").replace("{tooltip}","ลบ");;
+		dtype = dtype.replace("{icon-type}","assets/images/bin.png").replace("{tooltip}","ลบ").replace("{status}",data.thatUserId+'&'+data.type+'&'+data.name);
 	}
 	return dtype;
 }
 
 function FormatEllipsis(type,text){
+	if(text === null) return '';
+	
 	if(type == 'desc-list'){
 		if(text.length > max_list_desc_char_count) text = text.substring(0,max_list_desc_char_count)+'...';
 	}else if(type == 'desc-grid'){
@@ -221,28 +182,30 @@ function FormatEllipsis(type,text){
 
 function AddMixedListEntity(data){
 	console.log("Add new list");
-	if(mixed_count > 0) 
-			raw_html += '<div class="row bookmark-row-top-buffer">'; //row start
-		else
-			raw_html += '<div class="row">'; //first row start
 		
 	var dtype = "";
 	var valid_desc = FormatEllipsis('desc-list',data.about);
 	
-	if(data.type == "user") {
-		if(data.jobs.length > 0)
-			dtype = profile_list.replace("{name}", data.name).replace("{img}", data.profilePic).replace("{desc}", valid_desc).replace("{tag1}", data.jobs[0]).replace("{tag2}", data.jobs[1]).replace("{tag3}", data.jobs[2]);
-		else
-			dtype = profile_list_no_tag.replace("{name}", data.name).replace("{img}", data.profilePic).replace("{desc}", valid_desc);
+	var pcc = data.profilePic;
+	if(pcc === null) pcc = "assets/images/profile_uk.png";
+	
+	if(data.type == "profile") {
+		if(data.jobs.length > 0){
+			//prepare tags
+			var tags = tag_entity.replace('{tag}',data.jobs[0]);
+			if(data.jobs.length > 1)  tags += tag_entity.replace('{tag}',data.jobs[1]);
+			if(data.jobs.length > 2)  tags += tag_entity.replace('{tag}',data.jobs[2]);
+			dtype = profile_list.replace("{name}", data.name).replace("{img}", pcc).replace("{desc}", valid_desc).replace("{tags}", tags);
+		}else{
+			dtype = profile_list_no_tag.replace("{name}", data.name).replace("{img}", pcc).replace("{desc}", valid_desc);
+		}
 	}else{
 		dtype = work_list.replace("{name}", data.name).replace("{img}", data.profilePic).replace("{desc}", valid_desc).replace("{owner}", data.owner);
 	}
 	dtype = FormatIcon(data,dtype);
 	
 	raw_html += dtype;
-	raw_html += '</div>'; // row close
 	$('.mixed-list-container').append(raw_html);
-	mixed_count += 1;
 	raw_html = "";
 }
 
@@ -257,67 +220,84 @@ function AddMixedGridEntity(data){
 	var valid_desc = FormatEllipsis('desc-grid',data.about);
 	var dtype = "";
 	
-	if(data.type == "user") {
-		if(data.jobs.length > 0)
-			dtype = profile_grid.replace("{name}", data.name).replace("{img}", data.profilePic).replace("{tag1}", data.jobs[0]).replace("{tag2}", data.jobs[1]).replace("{tag3}", data.jobs[2]);
-		else
-			dtype = profile_grid_no_tag.replace("{name}", data.name).replace("{img}", data.profilePic);
+	var pcc = data.profilePic;
+	if(pcc === null) pcc = "assets/images/profile_uk.png";
+		
+	
+	if(data.type == "profile") {
+		if(data.jobs.length > 0){
+			//prepare tags
+			var tags = tag_entity.replace('{tag}',data.jobs[0]);
+			if(data.jobs.length > 1)  tags += tag_entity.replace('{tag}',data.jobs[1]);
+			if(data.jobs.length > 2)  tags += tag_entity.replace('{tag}',data.jobs[2]);
+			dtype = profile_grid.replace("{name}", data.name).replace("{img}", pcc).replace("{tags}", tags);
+			//console.log('replaced: '+tags);
+		}else{
+			dtype = profile_grid_no_tag.replace("{name}", data.name).replace("{img}", pcc);
+		}
 	}else{
-		dtype = work_grid.replace("{name}", data.name).replace("{img}", data.profilePic).replace("{desc}", data.port).replace("{owner}", data.owner);
+		dtype = work_grid.replace("{name}", data.name).replace("{img}", pcc).replace("{desc}", data.port).replace("{owner}", data.owner);
 	}
 	
-	if(row_filled || (index == max)){// add 2 data as new row
+	if(row_filled || (index == max)){// add 2 data as new row || add last entity to last row
 		console.log("add new GRID: "+index+" : "+data.name + " max: " + max);
 		raw_html = "";
-		if(mixed_count > max_col-1) 
-			raw_html += '<div class="row bookmark-row-top-buffer">'; //row start
-		else
-			raw_html += '<div class="row">'; //first row start
+
 		if(row_filled){
 			for (let i = 0; i < temp.length; i++) {
-				if(temp[i].type == "user") {
-					if(temp[i].jobs.length > 0)
-						ttype = profile_grid.replace("{name}", temp[i].name).replace("{img}", temp[i].profilePic).replace("{tag1}", temp[i].jobs[0]).replace("{tag2}", temp[i].jobs[1]).replace("{tag3}", temp[i].jobs[2]);
-					else
-						ttype = profile_grid_no_tag.replace("{name}", temp[i].name).replace("{img}", temp[i].profilePic);
+				var tcc = temp[i].profilePic;
+				if(tcc === null) tcc = "assets/images/profile_uk.png";
+				if(temp[i].type == "profile") {
+					if(temp[i].jobs.length > 0){
+						//prepare tags
+						var tags = tag_entity.replace('{tag}',temp[i].jobs[0]);
+						if(temp[i].jobs.length > 1)  tags += tag_entity.replace('{tag}',temp[i].jobs[1]);
+						if(temp[i].jobs.length > 2)  tags += tag_entity.replace('{tag}',temp[i].jobs[2]);
+						ttype = profile_grid.replace("{name}", temp[i].name).replace("{img}", tcc).replace("{tags}", tags);
+					}else{
+						ttype = profile_grid_no_tag.replace("{name}", temp[i].name).replace("{img}", tcc);
+					}
 				}else{
-					ttype = work_grid.replace("{name}", temp[i].name).replace("{img}", temp[i].profilePic).replace("{desc}", data.port).replace("{owner}", data.owner);
+					ttype = work_grid.replace("{name}", temp[i].name).replace("{img}", tcc).replace("{desc}", temp[i].port).replace("{owner}", temp[i].owner);
 				}
 				ttype = FormatIcon(temp[i],ttype);
-				raw_html += '<div class="col-md-'+12/max_col+'">' + ttype + '</div>';
+				raw_html += '<div class="sbm-grid-entity">' + ttype + '</div>';
 			}
 		}
 		
 		dtype = FormatIcon(data,dtype);
 		
-		raw_html += '<div class="col-md-'+12/max_col+'">' + dtype + '</div>';
+		raw_html += '<div class="sbm-grid-entity">' + dtype + '</div>';
 		
-		raw_html += '</div>'; // row close
+		if(!row_filled && index == max) //last row has only single item, add a dummy to even the row
+			raw_html += '<div class="sbm-grid-entity" />';
 		
-		$('.mixed-grid-container').append(raw_html); 
+		console.log(raw_html);
+		$('#fffuuu').append(raw_html); 
 		temp = [];
 		raw_html = "";
 	}
-	mixed_count += 1;
 }
 
 function AddProfileListEntity(data){
 	console.log("Add new list");
-	if(profile_count > 0) 
-			raw_html += '<div class="row bookmark-row-top-buffer">'; //row start
-		else
-			raw_html += '<div class="row">'; //first row start
 	var valid_desc = FormatEllipsis('desc-list',data.about);
 	var dtype = null;
-	if(data.jobs.length > 0)
-		dtype = profile_list.replace("{name}", data.name).replace("{img}", data.profilePic).replace("{desc}", valid_desc).replace("{tag1}", data.jobs[0]).replace("{tag2}", data.jobs[1]).replace("{tag3}", data.jobs[2]);
-	else
-		dtype = profile_list_no_tag.replace("{name}", data.name).replace("{img}", data.profilePic).replace("{desc}", valid_desc);
+	var pcc = data.profilePic;
+	if(pcc === null) pcc = "assets/images/profile_uk.png";
+	
+	if(data.jobs.length > 0){
+		//prepare tags
+		var tags = tag_entity.replace('{tag}',data.jobs[0]);
+		if(data.jobs.length > 1)  tags += tag_entity.replace('{tag}',data.jobs[1]);
+		if(data.jobs.length > 2)  tags += tag_entity.replace('{tag}',data.jobs[2]);
+		dtype = profile_list.replace("{name}", data.name).replace("{img}", pcc).replace("{desc}", valid_desc).replace("{tags}", tags);
+	}else{
+		dtype = profile_list_no_tag.replace("{name}", data.name).replace("{img}", pcc).replace("{desc}", valid_desc);
+	}
 	dtype = FormatIcon(data,dtype);
 	raw_html += dtype;
-	raw_html += '</div>'; // row close
 	$('.profile-list-container').append(raw_html);
-	profile_count += 1;
 	raw_html = "";
 }
 
@@ -332,56 +312,63 @@ function AddProfileGridEntity(data){
 	
 	var valid_desc = FormatEllipsis('desc-grid',data.about);
 	
-	if(row_filled || (index == max)){// add 2 data as new row
-		console.log("add new GRID: "+index+" : "+data.name + " max: " + max);
+	var pcc = data.profilePic;
+	if(pcc === null) pcc = "assets/images/profile_uk.png";
+	
+	if(row_filled || (profileIndex == profileCount)){// add 2 data as new row
+		console.log("add new GRID: "+profileIndex+" : "+data.name + " max: " + profileCount);
 		raw_html = "";
-		if(profile_count > 1) 
-			raw_html += '<div class="row bookmark-row-top-buffer">'; //row start
-		else
-			raw_html += '<div class="row">'; //first row start
 		if(row_filled){
 			for (let i = 0; i < temp.length; i++) {
+				var tcc = temp[i].profilePic;
+				if(tcc === null) tcc = "assets/images/profile_uk.png";
 				var ttype = null;
-				if(temp[i].jobs.length > 0)
-						ttype = profile_grid.replace("{name}", temp[i].name).replace("{img}", temp[i].profilePic).replace("{tag1}", temp[i].jobs[0]).replace("{tag2}", temp[i].jobs[1]).replace("{tag3}", temp[i].jobs[2]);
-					else
-						ttype = profile_grid_no_tag.replace("{name}", temp[i].name).replace("{img}", temp[i].profilePic);
+				if(temp[i].jobs.length > 0){
+					//prepare tags
+					var tags = tag_entity.replace('{tag}',temp[i].jobs[0]);
+					if(temp[i].jobs.length > 1)  tags += tag_entity.replace('{tag}',temp[i].jobs[1]);
+					if(temp[i].jobs.length > 2)  tags += tag_entity.replace('{tag}',temp[i].jobs[2]);
+					ttype = profile_grid.replace("{name}", temp[i].name).replace("{img}", tcc).replace("{tags}", tags);
+				}else{
+					ttype = profile_grid_no_tag.replace("{name}", temp[i].name).replace("{img}", tcc);
+				}
 				ttype = FormatIcon(temp[i],ttype);
-				raw_html += '<div class="col-md-6">' + ttype + '</div>';
+				raw_html += '<div class="sbm-grid-entity">' + ttype + '</div>';
 			}
 		}
 		var dtype = null;
-		if(data.jobs.length > 0)
-			dtype = profile_grid.replace("{name}", data.name).replace("{img}", data.profilePic).replace("{tag1}", data.jobs[0]).replace("{tag2}", data.jobs[1]).replace("{tag3}", data.jobs[2]);
-		else
-			dtype = profile_grid_no_tag.replace("{name}", data.name).replace("{img}", data.profilePic);
-		
+		if(data.jobs.length > 0){
+			//prepare tags
+			var tags = tag_entity.replace('{tag}',data.jobs[0]);
+			if(data.jobs.length > 1)  tags += tag_entity.replace('{tag}',data.jobs[1]);
+			if(data.jobs.length > 2)  tags += tag_entity.replace('{tag}',data.jobs[2]);
+			dtype = profile_grid.replace("{name}", data.name).replace("{img}", pcc).replace("{tags}", tags);
+		}else{
+			dtype = profile_grid_no_tag.replace("{name}", data.name).replace("{img}", pcc);
+		}
 		dtype = FormatIcon(data,dtype);
-		raw_html += '<div class="col-md-6">' + dtype + '</div>';
+		raw_html += '<div class="sbm-grid-entity">' + dtype + '</div>';
 		
-		raw_html += '</div>'; // row close
+		if(!row_filled && profileIndex == profileCount) //last row has only single item, add a dummy to even the row
+			raw_html += '<div class="sbm-grid-entity" />';
 		
 		$('.profile-grid-container').append(raw_html); 
 		temp = [];
 		raw_html = "";
 	}
-	profile_count += 1;
 }
 
 function AddWorkListEntity(data){
 	console.log("Add new list");
-	if(work_count > 0) 
-			raw_html += '<div class="row bookmark-row-top-buffer">'; //row start
-		else
-			raw_html += '<div class="row">'; //first row start
-		
-	var valid_desc = FormatEllipsis('desc-list',data.desc);
-	var dtype = work_list.replace("{name}", data.name).replace("{img}", data.pic).replace("{desc}", valid_desc).replace("{owner}", data.owner);
+	var pcc = data.profilePic;
+	if(pcc === null) pcc = "assets/images/profile_uk.png";
+	
+	var valid_desc = FormatEllipsis('desc-list',data.about);
+	var dtype = work_list.replace("{name}", data.name).replace("{img}", pcc).replace("{desc}", valid_desc).replace("{owner}", data.owner);
 	dtype = FormatIcon(data,dtype);
 	raw_html += dtype;
-	raw_html += '</div>'; // row close
+
 	$('.work-list-container').append(raw_html);
-	work_count += 1;
 	raw_html = "";
 }
 
@@ -392,41 +379,51 @@ function AddWorkGridEntity(data){
 		temp.push(data);
 		row_filled = false;
 	}
-	var valid_desc = FormatEllipsis('desc-grid',data.desc);
+	var valid_desc = FormatEllipsis('desc-grid',data.about);
+	var pcc = data.profilePic;
+	if(pcc === null) pcc = "assets/images/profile_uk.png";
 	
-	if(row_filled || (index == max)){// add 2 data as new row
-		console.log("add new GRID: "+index+" : "+data.name + " max: " + max);
+	if(row_filled || (workIndex == workCount)){// add 2 data as new row
+		console.log("add new GRID: "+workIndex+" : "+data.name + " max: " + workCount);
 		raw_html = "";
-		if(work_count > 1) 
-			raw_html += '<div class="row bookmark-row-top-buffer">'; //row start
-		else
-			raw_html += '<div class="row">'; //first row start
+		
 		if(row_filled){
 			for (let i = 0; i < temp.length; i++) {
-				var ttype = work_grid.replace("{name}", temp[i].name).replace("{img}", temp[i].pic).replace("{desc}", temp[i].port).replace("{owner}", temp[i].owner);
+				var pcc = temp[i].profilePic;
+				if(pcc === null) pcc = "assets/images/profile_uk.png";
+				var ttype = work_grid.replace("{name}", temp[i].name).replace("{img}", pcc).replace("{desc}", temp[i].port).replace("{owner}", temp[i].owner);
 				ttype = FormatIcon(temp[i],ttype);
-				raw_html += '<div class="col-md-6">' + ttype +'</div>';
+				raw_html += '<div class="sbm-grid-entity">' + ttype +'</div>';
 			}
 		}
-		var dtype = work_grid.replace("{name}", data.name).replace("{img}", data.pic).replace("{desc}", data.port).replace("{owner}", data.owner);
+		var dtype = work_grid.replace("{name}", data.name).replace("{img}", pcc).replace("{desc}", data.port).replace("{owner}", data.owner);
 		dtype = FormatIcon(data,dtype);
-		raw_html += '<div class="col-md-6">' + dtype + '</div>';
+		raw_html += '<div class="sbm-grid-entity">' + dtype + '</div>';
 		
-		raw_html += '</div>'; // row close
+		if(!row_filled && workIndex == workCount) //last row has only single item, add a dummy to even the row
+			raw_html += '<div class="sbm-grid-entity" />';
+		
 		
 		$('.work-grid-container').append(raw_html); 
 		temp = [];
 		raw_html = "";
 	}
-	work_count += 1;
 }
 
 function DisplayNotFound(){
 	$('#result-count').text('จำนวน 0 รายการ');
-	if(pageName == 'search')
-		$('#content'+current_tab).find(">:first-child").append(not_found_search);
-	else
-		$('#content'+current_tab).find(">:first-child").append(not_found_bookmark);
+	if(pageName == 'search'){
+		if(view_type == 'grid')
+			$('#content'+current_tab).find(">:first-child").append(not_found_search);
+		else
+			$('#content'+current_tab).find(">:last-child").append(not_found_search);
+			
+	}else{
+		if(view_type == 'grid')
+			$('#content'+current_tab).find(">:first-child").append(not_found_bookmark);
+		else
+			$('#content'+current_tab).find(">:last-child").append(not_found_bookmark);
+	}
 }
 
 function ReinitializeTooltips(){
@@ -438,7 +435,7 @@ function ReinitializeTooltips(){
 }
 
 //Load data from backend
-/*function GetBookmarkData(request){
+/*function GetSearchBookmarkData(request){
 	var key = pageName
 	if(key == 'search'){
 		key += "_"+Cookies.get('search-entry').toLowerCase();
@@ -511,13 +508,175 @@ function ReinitializeTooltips(){
 		setTimeout(function() { ReinitializeTooltips(); }, 500);
 }
 
-GetBookmarkData("data");*/
+GetSearchBookmarkData("data");*/
 
-var id = "610d3832ca49ebf4cdfed02a";
+function GetFormattedBookmarkData(datas){
+	//alert('Format Bookmark!');
+	//console.log(datas);
+	var fData = [];
+	datas.forEach((data) => {
+		//alert(data.thatUserId);
+		var datt = {};
+		if(data.type == "profile") {
+			datt['type'] = data.type;
+			datt['thatUserId'] = data.thatUserId;
+			datt['name'] = data.details.name;
+			datt['profilePic'] = data.details.pic;
+			datt['about'] = data.details.about;
+			datt['jobs'] = data.details.tags;
+			datt['totalBookmarks'] = data.totalBookmark;
+			fData.push(datt);
+		}else{
+			datt['type'] = data.type;
+			datt['thatUserId'] = data.thatUserId;
+			datt['name'] = data.projectName;
+			datt['profilePic'] = data.details.Port_Pic;
+			datt['about'] = data.details.Port_Info;
+			datt['owner'] = data.details.owner;
+			datt['port'] = data.details.numberOfPic;
+			datt['totalBookmarks'] = data.totalBookmark;
+			fData.push(datt);
+		}
+	});
+	return fData;
+}
+
+function GetFormattedSearchData(datas){
+	var fData = [];
+	datas.forEach((data) => {
+		//alert(data.thatUserId);
+		var datt = {};
+		if(data.type == "profile") {
+			datt['type'] = data.type;
+			datt['thatUserId'] = data.thatUserId;
+			datt['name'] = data.name;
+			datt['profilePic'] = data.pic;
+			datt['about'] = data.about;
+			datt['jobs'] = data.tags;
+			datt['bookmark'] = data.bookmark;
+			fData.push(datt);
+		}else{
+			datt['type'] = data.type;
+			datt['thatUserId'] = data.thatUserId;
+			datt['name'] = data.name;
+			datt['profilePic'] = data.pic[0].Pic[0];
+			datt['about'] = data.about;
+			datt['owner'] = data.owner;
+			datt['port'] = data.pic.length;
+			datt['bookmark'] = data.bookmark;
+			fData.push(datt);
+		}
+	});
+	return fData;
+}
+
+var userId = null;
+//userId = '6142fd75f8b2b96640bc542d';
+//alert('userId: '+$('#cachedId').text());
 var sortType = "time";
 
-function GetBookmarkData(){
-	fetch("http://localhost:2000/bookmark/"+id+"&&"+sortType,{
+userId = $('#cachedId').text();
+GetSearchBookmarkData();
+//alert(Cookies.get('login-token'););
+
+var cacheDataTime = null;
+var cacheDataTotal = null;
+
+function ClearCache(){
+	cacheDataTime = null; 
+	cacheDataTotal = null;
+}
+
+function InitializeSBM(cacheData){
+	profileCount = 0; workCount = 0;
+	cacheData.forEach((data) => {
+		if(data.type == "profile") profileCount += 1;
+		else workCount += 1;
+	});
+	max = cacheData.length;
+	
+	var found = false;
+	console.log(cacheData);
+	console.log('BYAAA!!!!');
+	ResetData();
+	if(current_tab == 1) $('#result-count').text('จำนวน '+max+' รายการ');
+	else if(current_tab == 2) $('#result-count').text('จำนวน '+profileCount+' รายการ');
+	else  $('#result-count').text('จำนวน '+workCount+' รายการ');
+	console.log(cacheData);
+	cacheData.forEach((data) => {
+		index += 1;
+		console.log("check: "+data.name);
+		if(data.type == "profile"){
+			if(current_tab == 1){
+				found = true;
+				profileIndex += 1;
+				if(view_type == 'grid'){
+					AddMixedGridEntity(data);
+				}else{
+					AddMixedListEntity(data);
+				}
+			}else if(current_tab == 2){
+				found = true;
+				profileIndex += 1;
+				if(view_type == 'grid'){
+					AddProfileGridEntity(data);
+				}else{
+					AddProfileListEntity(data);
+				}
+			}else{
+				// This is a profile & user is viewing work, skip it
+				console.log("skip: "+data.name);
+			}
+		}else{
+			if(current_tab == 1){
+				found = true;
+				workIndex += 1;
+				if(view_type == 'grid'){
+					AddMixedGridEntity(data);
+				}else{
+					AddMixedListEntity(data);
+				}
+			}else if(current_tab == 3){
+				found = true;
+				workIndex += 1;
+				if(view_type == 'grid'){
+					AddWorkGridEntity(data);
+				}else{
+					AddWorkListEntity(data);
+				}
+			}else{
+				// This is a work & user is viewing profile, skip it
+				console.log("skip: "+data.name);
+			}
+		}
+	});
+	
+	if(!found){
+		DisplayNotFound();
+	}
+	if(currentTooltip != null)
+		currentTooltip.tooltip('hide');
+	
+	ReinitializeTooltips();
+	AddListenerToDynamicComponents();
+	//setTimeout(function() { ReinitializeTooltips(); }, 500);
+	//setTimeout(function() { AddListenerToDynamicComponents(); }, 500);
+}
+
+function GetSearchBookmarkData(){
+	if(sortType == 'time' && cacheDataTime != null){ // already fetch once
+		InitializeSBM(cacheDataTime);
+		return;
+	}
+	if(sortType == 'total' && cacheDataTotal != null){ // already fetch once
+		InitializeSBM(cacheDataTotal);
+		return;
+	}
+	
+	var q = Cookies.get('search-entry');
+	var path = pageName == 'search' ? "http://localhost:2000/search/top?q="+q+"&userId="+userId : "http://localhost:2000/bookmark/"+userId+"&&"+sortType;
+	
+	fetch(path,{
         method: "GET",
         headers: {
 			"Access-Control-Allow-Origin": "*",
@@ -528,58 +687,25 @@ function GetBookmarkData(){
 		.then(response => response.json())
 		//.then(response => response.result)
 		.then((datas) => {
-			var found = false;
-			console.log(datas);
-			console.log('BYAAA!!!!');
-			ResetData();
-			max = datas.length;
-			$('#result-count').text('จำนวน '+max+' รายการ');
-			datas.forEach((data) => {
-				index += 1;
-				console.log("check: "+data.name);
-				if(data.type == "user"){
-					if(current_tab == 1){
-						found = true;
-						if(view_type == 'grid'){
-							AddMixedGridEntity(data);
-						}else{
-							AddMixedListEntity(data);
-						}
-					}else if(current_tab == 2){
-						found = true;
-						if(view_type == 'grid'){
-							AddProfileGridEntity(data);
-						}else{
-							AddProfileListEntity(data);
-						}
-					}else{
-						// This is a profile & user is viewing work, skip it
-						console.log("skip: "+data.name);
-					}
-				}else{
-					if(current_tab == 1){
-						found = true;
-						if(view_type == 'grid'){
-							AddMixedGridEntity(data);
-						}else{
-							AddMixedListEntity(data);
-						}
-					}else if(current_tab == 3){
-						found = true;
-						if(view_type == 'grid'){
-							AddWorkGridEntity(data);
-						}else{
-							AddWorkListEntity(data);
-						}
-					}else{
-						// This is a work & user is viewing profile, skip it
-						console.log("skip: "+data.name);
-					}
+
+			if(pageName == "search"){
+				if(sortType == 'time'){
+					cacheDataTime = GetFormattedSearchData(datas);
+					InitializeSBM(cacheDataTime);
 				}
-			});
-			
-			if(!found){
-				DisplayNotFound();
+				else{
+					cacheDataTotal = GetFormattedSearchData(datas);
+					InitializeSBM(cacheDataTotal);
+				}
+			}else{
+				if(sortType == 'time'){
+					cacheDataTime = GetFormattedBookmarkData(datas);
+					InitializeSBM(cacheDataTime);
+				}
+				else{
+					cacheDataTotal = GetFormattedBookmarkData(datas);
+					InitializeSBM(cacheDataTotal);
+				}
 			}
 			
         }).catch((error) => {
@@ -587,39 +713,37 @@ function GetBookmarkData(){
 			  ResetData();
 			  DisplayNotFound();
 			});
-		setTimeout(function() { ReinitializeTooltips(); }, 500);
+		
 }
-
-GetBookmarkData();
 
 $(function(){
    $('.tab-content').hide();
    $('#content1').show();
   $('#tab-1').on('click', function(){
 	  $('.tab-content').hide();
-	  $('.tab-list-item').removeClass('tab-list-active');
+	  $('.tab-list-item-p').removeClass('tab-list-active');
 	  $('#tab-1').addClass('tab-list-active')
 	  $('#content1').show();
 	  current_tab = 1;
-	  GetBookmarkData();
+	  GetSearchBookmarkData();
   });
   
   $('#tab-2').on('click', function(){
 	  $('.tab-content').hide();
-	  $('.tab-list-item').removeClass('tab-list-active');
+	  $('.tab-list-item-p').removeClass('tab-list-active');
 	  $('#tab-2').addClass('tab-list-active')
 	  $('#content2').show();
 	  current_tab = 2;
-	  GetBookmarkData();
+	  GetSearchBookmarkData();
   });
   
   $('#tab-3').on('click', function(){
 	  $('.tab-content').hide();
-	  $('.tab-list-item').removeClass('tab-list-active');
+	  $('.tab-list-item-p').removeClass('tab-list-active');
 	  $('#tab-3').addClass('tab-list-active')
 	  $('#content3').show();
 	  current_tab = 3;
-	  GetBookmarkData();
+	  GetSearchBookmarkData();
   });
 });
 
@@ -629,8 +753,8 @@ $(function(){
       $("#dropdownMenuButton1").val($(this).text());
    });
 
-   $("#sort-time").click(function(){ sortType = 'time'; GetBookmarkData(); });
-   $("#sort-total").click(function(){ sortType = 'total'; GetBookmarkData(); });
+   $("#sort-time").click(function(){ sortType = 'time'; ClearCache(); GetSearchBookmarkData(); });
+   $("#sort-total").click(function(){ sortType = 'total'; ClearCache(); GetSearchBookmarkData(); });
 });
 
 $(function(){
@@ -651,6 +775,135 @@ $(function(){
 		console.log("show list!");
 		view_type = "list";
       }
-	  GetBookmarkData();
+	  GetSearchBookmarkData();
   });
 });
+
+function DeleteBookmark(id){
+	console.log('DeleteBookmark: '+id);
+	
+	var delData = {};
+	var temp = id.split("&");
+	delData['userId'] = userId;
+	delData['type'] = temp[1];
+	delData['thatUserId'] = temp[0];
+	if(temp[1] != 'profile') delData['projectName'] = temp[2];
+	
+	fetch("http://localhost:2000/bookmark/saveBookmark",{
+		method: "DELETE",
+		headers: {
+			"Access-Control-Allow-Origin": "*",
+			"Access-Control-Allow-Methods": "*",
+			"Access-Control-Allow-Credentials": true,
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify(delData),
+	})
+		.then(response =>  {
+			//console.log(datas);
+			console.log(response);
+			if(pageName == "bookmark"){
+				ClearCache();
+				GetSearchBookmarkData();
+			}
+		})
+		.catch((error) => {
+			console.log('delete Error!');
+			//this.setState({ redirect: "/landing" });
+		});
+}
+
+function AddBookmark(id){
+	console.log('AddBookmark: '+id);
+	
+	var addData = {};
+	var temp = id.split("&");
+	addData['userId'] = userId;
+	addData['type'] = temp[1];
+	addData['thatUserId'] = temp[0];
+	if(temp[1] != 'profile') addData['projectName'] = temp[2];
+	
+	fetch("http://localhost:2000/bookmark/saveBookmark",{
+		method: "POST",
+		headers: {
+			"Access-Control-Allow-Origin": "*",
+			"Access-Control-Allow-Methods": "*",
+			"Access-Control-Allow-Credentials": true,
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify(addData),
+	})
+		.then(response =>  {
+			//console.log(datas);
+			console.log(response);
+			//GetSearchBookmarkData();
+		})
+		.catch((error) => {
+			console.log('add Error!');
+			//this.setState({ redirect: "/landing" });
+		});
+}
+
+function AddListenerToDynamicComponents(){
+	if($('#tpId').text() != 'user' && pageName == 'search'){ // hide for public
+		$('.obj-icon').hide();
+		return;
+	}
+	
+	if(view_type != 'grid'){
+		$('.obj-icon').addClass('ic-margin');
+	}else{
+		$('.obj-icon').removeClass('ic-margin');
+	}
+	
+	//alert(pageName);
+	$('.tag').on('click', function(){
+       //alert(event.target.text);
+	   SearchByTag(event.target.text);
+   });
+   
+   $(".obj-icon").unbind('click');
+   $('.obj-icon').click(function() {
+	  // alert(pageName);
+	   if(pageName == "search"){
+		  //console.log("change icon--!!!");
+		  //alert(this.id);
+		  var nId = $(this).attr('id').split("-");
+		  
+		  if (nId[0] == 'true') {
+			  //alert('remove!');
+			$(this).attr('src', 'assets/images/bookmark_1.png');
+			$(this).attr('data-bs-original-title', 'บันทึก');
+			$(this).attr('id', $(this).attr('id').replace('true','false'));
+			//console.log("Remove bookmark!");
+			DeleteBookmark(nId[1]);
+		  }else if(nId[0] == 'false'){
+			  //alert('add!');
+			$(this).attr('src', 'assets/images/bookmark_2.png');
+			$(this).attr('data-bs-original-title', 'ยกเลิกการบันทึก');
+			$(this).attr('id', $(this).attr('id').replace('false','true'));
+			console.log("Add bookmark!");
+			AddBookmark(nId[1]);
+		  }
+	   }else{
+		   DeleteBookmark($(this).attr('id'));
+	   }
+	  $(this).tooltip('hide');
+	  //setTimeout(function() { ReinitializeTooltips();  }, 500);
+	  //$(this).tooltip('show'); });
+
+	});
+	
+	$('.obj-icon').mouseover(function() {
+		console.log('mouseover icon!');
+		currentTooltip = $(this);
+	});
+}
+
+
+function SearchByTag(text){
+	console.log("tag clicked!");
+	Cookies.set('search-entry', text);
+	console.log("saved user's input: "+Cookies.get('search-entry')+"as cookies!");
+	window.location.assign("/search");
+}

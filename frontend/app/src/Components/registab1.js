@@ -9,46 +9,46 @@ class Registab1 extends React.Component {
 					<div class="row">
 						<div class="col-9 container-fluid">
 								<div class="row">
-									<div class="col-2 chidright">
-										<label class=" form-f-sex">ชื่อ<a class="red_markEp1">*</a></label>
+									<div class="col-2 chidright del-padrightbit">
+										<label class=" form-f-sex">ชื่อภาษาไทย<label class="red_markEp1">*</label></label>
 									</div>
-									<div class="col-4">
+									<div class="col-4 ">
 										<input maxlength="100" type="text" class="form-control dropbtn margin-bottom1 " id="re01" required></input>
 									</div>
-									<div class="col-2 chidright">
-										<label class=" form-f-sex">นามสกุล<a class="red_markEp1">*</a></label>
+									<div class="col-2 chidright del-padleft del-padrightbit">
+										<label class=" form-f-sex">นามสกุลภาษาไทย<label class="red_markEp1">*</label></label>
 									</div>
 									<div class="col-4">
 										<input maxlength="100" type="text" class="form-control dropbtn margin-bottom1 " id="re02" required></input>
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-md-2 chidright">
-										<label class="form-f-sex">อีเมล<a class="red_markEp1">*</a></label>
+									<div class="col-md-2 chidright del-padrightbit">
+										<label class="form-f-sex">อีเมล<label class="red_markEp1">*</label></label>
 									</div>
 									<div class="col-10">
 										<input maxlength="60" type="text" class="form-control dropbtn margin-bottom1 " id="re03" required></input>
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-md-2 chidright">
-										<label class="form-f-sex">รหัสผ่าน<a class="red_markEp1">*</a></label>
+									<div class="col-md-2 chidright del-padrightbit">
+										<label class="form-f-sex disablecopypaste">รหัสผ่าน<label class="red_markEp1">*</label></label>
 									</div>
 									<div class="col-10">
 										<input maxlength="100" type="password" class="form-control dropbtn margin-bottom1 " id="pass05" aria-describedby="passwordHelpInline" required></input>
 									</div>
 								</div>
 								<div class="row triggerRed1 chidright">
-									<div class="col-md-2 del-padleft">
-										<label class="form-f-cfp">ยืนยันรหัสผ่าน<a class="red_markEp1">*</a></label>
+									<div class="col-md-2 del-padleft del-padrightbit">
+										<label class="form-f-cfp disablecopypaste">ยืนยันรหัสผ่าน<label class="red_markEp1">*</label></label>
 									</div>
 									<div class="col-10">
 										<input maxlength="100" type="password" class="form-control dropbtn margin-bottom1 " id="pass06" required></input>
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-md-2 chidright">
-										<label class="form-f-cfp">เพศ<a class="red_markEp1">*</a></label>
+									<div class="col-md-2 chidright del-padrightbit">
+										<label class="form-f-cfp">เพศ<label class="red_markEp1">*</label></label>
 									</div>
 									<div class="col-4">
 										<select class="form-select dropbtn margin-bottom1 fff" id ="sexgen" required>
@@ -58,10 +58,10 @@ class Registab1 extends React.Component {
 											<option value="ไม่ระบุ">ไม่ระบุ</option>
 										</select>
 									</div>
-									<div class="col-md-2 chidright">
-										<label class="sexdistance form-f-sex ">วันเกิด<a class="red_markEp1">*</a></label>
+									<div class="col-md-2 chidright del-padrightbit">
+										<label class="sexdistance form-f-sex ">วันเกิด<label class="red_markEp1">*</label></label>
 									</div>
-									<div class="col-4">
+									<div class="col-4 del-padleft">
 										<DatePickerBD />
 									</div>
 								</div>

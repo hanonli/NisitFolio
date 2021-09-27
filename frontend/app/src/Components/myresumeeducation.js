@@ -5,18 +5,10 @@ import Myresumetimeline from './myresumeTimeline';
 class EducationContent extends React.Component {
     render(){
         const data = this.props.data;
-
-        let classofed;
         let content = [];
         let year;
         let line3;
         let line3x;
-        if(data.id === "dummydummyeducation"){
-            classofed = "educationdummycontent";
-        }
-        else{
-            classofed = "educationonecontent";
-        }
         if(data.Education_End_Year === 0){
             content.push(
                 <div class="educationcontentLine1">
@@ -114,7 +106,7 @@ class EducationContent extends React.Component {
         );
         }
         return(
-            <div class ={classofed}>
+            <div class ="educationonecontent">
                 {content}
             </div>
         )
@@ -150,7 +142,7 @@ class MyResumeEducation extends React.Component {
                     console.log("a more than b");*/
                     return -1;  
                 } 
-                else if (educationlevel[[a.firstKey]] < educationlevel[b[firstKey]]) {  
+                else if (educationlevel[[a[firstKey]]] < educationlevel[b[firstKey]]) {  
                     /*console.log(vala);
                     console.log(valb);
                     console.log("a less than b");*/
@@ -159,10 +151,10 @@ class MyResumeEducation extends React.Component {
                 else {
                     /*console.log(vala);
                     console.log(valb);*/
-                    if (a.secondKey < b.secondKey) {  
+                    if (a[secondKey] < b[secondKey]) {  
                         
                         return 1;  
-                    } else if (a.secondKey > b.secondKey) {  
+                    } else if (a[secondKey] > b[secondKey]) {  
                         return -1;  
                     } else {
                         return 0;
@@ -194,39 +186,6 @@ class MyResumeEducation extends React.Component {
             EducationCon = (<Myresumetimeline data={content} colour={this.props.colour}></Myresumetimeline>);
         }
         else if(owner){
-            const educationdummydata = [
-                {
-                    "id": "dummydummyeducation",
-                    "Degree": "วุฒิศึกษา",
-                    "Facalty": "คณะ",
-                    "Field_of_study": "สาขาวิชา",
-                    "Academy": "สถานศึกษา",
-                    "Grade": 1.11,
-                    "Education_End_Year": "ปีที่จบการศึกษา"
-                },
-                {
-                    "id": "dummydummyeducation",
-                    "Degree": "วุฒิศึกษา",
-                    "Facalty": "คณะ",
-                    "Field_of_study": "สาขาวิชา",
-                    "Academy": "สถานศึกษา",
-                    "Grade": 1.11,
-                    "Education_End_Year": "ปีที่จบการศึกษา"
-                },
-                {
-                    "id": "dummydummyeducation",
-                    "Degree": "วุฒิศึกษา",
-                    "Facalty": "คณะ",
-                    "Field_of_study": "สาขาวิชา",
-                    "Academy": "สถานศึกษา",
-                    "Grade": 1.11,
-                    "Education_End_Year": "ปีที่จบการศึกษา"
-                },
-                
-            ];
-            for (var i = 0; i < educationdummydata.length; i++) {
-                content.push(<EducationContent data={educationdummydata[i]}></EducationContent>);
-            }
             EducationCon = (
                 <div class="education-dummyshow">
                     <div class="resumetimeline">
@@ -241,14 +200,11 @@ class MyResumeEducation extends React.Component {
                                     <div class="educationcontentLine3"><p>สถานศึกษา</p></div>
                                     <div class="educationcontentLine4"><p class="grade-label inline2">เกรด</p><div class="centerbreak inline2"><div class="breakline inline2"> </div></div><h4 class="grade inline2">X.XX</h4></div></div></div></div>
                         <div class="timeline-block">
-                            <div class="timeline-dot-pointer" style={dummylinestyle}></div>
-                            <div class="right-row">
-                                <div class="educationdummycontent">
-                                    <div class="educationcontentLine1"><p class="year inline2">ปีที่จบการศึกษา</p><div class="centerbreak inline2"><div class="breakline inline2">|</div></div><p class="degree inline2">วุฒิศึกษา</p></div>
-                                    <div class="educationcontentLine2"><h3 class="field">สาขาวิชา</h3></div>
-                                    <div class="educationcontentLine3"><p>คณะ</p></div>
-                                    <div class="educationcontentLine3"><p>สถานศึกษา</p></div>
-                                    <div class="educationcontentLine4"><p class="grade-label inline2">เกรด</p><div class="centerbreak inline2"><div class="breakline inline2"> </div></div><h4 class="grade inline2">X.XX</h4></div></div></div></div>
+                            <div class="timeline-dummy">
+                                <p>ตอนนี้คุณยังไม่มีข้อมูลประวัติการศึกษา สำหรับตำแหน่งงาน{occupation}</p>
+                                <button onClick={this.handleRoute}>แก้ไขโปรไฟล์</button>
+                            </div>
+                        </div>
                         <div class="timeline-block">
                             <div class="timeline-dot-pointer" style={dummylinestyle}></div>
                             <div class="right-row">
@@ -259,10 +215,7 @@ class MyResumeEducation extends React.Component {
                                     <div class="educationcontentLine3"><p>สถานศึกษา</p></div>
                                     <div class="educationcontentLine4"><p class="grade-label inline2">เกรด</p><div class="centerbreak inline2"><div class="breakline inline2"> </div></div><h4 class="grade inline2">X.XX</h4></div></div></div></div>
                         </div>
-                    <div class="ed-dummy">
-                        <p>ตอนนี้คุณยังไม่มีข้อมูลประวัติการศึกษา สำหรับตำแหน่งงาน{occupation}</p>
-                        <button onClick={this.handleRoute}>แก้ไขโปรไฟล์</button>
-                    </div>
+                    
                 </div>
                 );
         /*console.log(sortdata);*/
