@@ -110,16 +110,16 @@ var work_list = '<div class="sbm-list-entity">\
 				</div>';
 					
 var not_found_search = '<div class="nf-flex">\
-							<header class="header nf-header round remove">\
-								<img class="nf-i" src="assets/images/outline_cancel_black_24dp hd.png" alt=""/>\
-								<h1 class="nf-n">ขออภัยด้วยแต่เราไม่พบข้อมูลการค้นหาของคุณ</h1>\
+							<header class="header header-white nf-header round remove">\
+								<img class="nf-i" src="assets/images/outline_cancel_grey_24dp hd.png" alt=""/>\
+								<agf class="nf-n">ขออภัยด้วยแต่เราไม่พบข้อมูลการค้นหาของคุณ</agf>\
 							</header>\
 						</div>'
 
 var not_found_bookmark = '<div class="nf-flex">\
-							<header class="header nf-header round remove">\
-								<img class="nf-i" src="assets/images/outline_cancel_black_24dp hd.png" alt=""/>\
-								<h1 class="nf-n">ขออภัยด้วยแต่เราไม่พบข้อมูล bookmark ของคุณ</h1>\
+							<header class="header header-white nf-header round remove">\
+								<img class="nf-i" src="assets/images/outline_cancel_grey_24dp hd.png" alt=""/>\
+								<agf class="nf-n">ขออภัยด้วยแต่เราไม่พบข้อมูล Bookmark ของคุณ</agf>\
 							</header>\
 						</div>'
 
