@@ -69,7 +69,7 @@ export class PortService {
     port.UserId = CreateDto.UserId;
     port.Port_Name = CreateDto.Port_Name;
     port.Port_Info = CreateDto.Port_Info;
-    port.onwner = user.Firstname + user.Lastname;
+    port.ownner = user.Firstname + user.Lastname;
     port.totalBookmark = 0;
     port.Port_Tag = CreateDto.Port_Tag;
     port.Port_Privacy = CreateDto.Port_Privacy;
