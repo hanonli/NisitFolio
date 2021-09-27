@@ -162,7 +162,12 @@ $(document).on("click", "#edit-work", function () {
     document.getElementById("company_work").value = for_edit.company_work;
     //document.getElementById("salarytype_work").value = for_edit.type_salary_work;
     document.getElementById("salarytype_work").selectedIndex = for_edit.type_salary_work_select;
-    document.getElementById("salary_work").value = for_edit.salary_work;
+    if(Number.isNaN(for_edit.salary_work)==false){
+        document.getElementById("salary_work").value = for_edit.salary_work;
+    }
+    else{
+        document.getElementById("salary_work").value = '';
+    }
     //document.getElementById("year_startwork").value = for_edit.year_startwork;
     document.getElementById("year_startwork").selectedIndex = for_edit.year_startwork_select;
     //document.getElementById("month_startwork").value = for_edit.month_startwork;
@@ -282,7 +287,57 @@ $(document).on('click', "#submit-work", function () {
     //var month_endwork_select = document.getElementById("month_endwork").selectedIndex;
     var regist4_cb = $('#regist4_cb').prop('checked');
     var inform_work = document.getElementById("inform_work").value; 
-    if(document.getElementById("jobtype_work").selectedIndex == 0){
+    if(document.getElementById("jobtype_work").selectedIndex == 0&&document.getElementById("jobname_work").value == ""&&document.getElementById("year_startwork").value == ""&&document.getElementById("month_startwork").value == ""){
+        $("#jobtype_work").addClass("error_select_work");
+        $("#jobname_work").addClass("error_select_work");
+        $("#year_startwork").addClass("error_select_work");
+        $("#month_startwork").addClass("error_select_work");
+    }
+    else if(document.getElementById("jobname_work").value == ""&&document.getElementById("year_startwork").value == ""&&document.getElementById("month_startwork").value == ""){
+        $("#jobname_work").addClass("error_select_work");
+        $("#year_startwork").addClass("error_select_work");
+        $("#month_startwork").addClass("error_select_work");
+    }
+    else if(document.getElementById("jobtype_work").selectedIndex == 0&&document.getElementById("year_startwork").value == ""&&document.getElementById("month_startwork").value == ""){
+        $("#jobtype_work").addClass("error_select_work");
+        $("#year_startwork").addClass("error_select_work");
+        $("#month_startwork").addClass("error_select_work");
+    }
+    else if(document.getElementById("jobtype_work").selectedIndex == 0&&document.getElementById("jobname_work").value == ""&&document.getElementById("year_startwork").value == ""&&document.getElementById("month_startwork").value == ""){
+        $("#jobtype_work").addClass("error_select_work");
+        $("#jobname_work").addClass("error_select_work");
+        $("#month_startwork").addClass("error_select_work");
+    }
+    else if(document.getElementById("jobtype_work").selectedIndex == 0&&document.getElementById("jobname_work").value == ""&&document.getElementById("year_startwork").value == ""){
+        $("#jobtype_work").addClass("error_select_work");
+        $("#jobname_work").addClass("error_select_work");
+        $("#year_startwork").addClass("error_select_work");
+    }
+    else if(document.getElementById("jobtype_work").selectedIndex == 0&&document.getElementById("jobname_work").value == ""){
+        $("#jobtype_work").addClass("error_select_work");
+        $("#jobname_work").addClass("error_select_work");
+    }
+    else if(document.getElementById("jobtype_work").selectedIndex == 0&&document.getElementById("year_startwork").value == ""){
+        $("#jobtype_work").addClass("error_select_work");
+        $("#year_startwork").addClass("error_select_work");
+    }
+    else if(document.getElementById("jobtype_work").selectedIndex == 0&&document.getElementById("month_startwork").value == ""){
+        $("#jobtype_work").addClass("error_select_work");
+        $("#month_startwork").addClass("error_select_work");
+    }
+    else if(document.getElementById("jobname_work").value == ""&&document.getElementById("year_startwork").value == ""){
+        $("#jobname_work").addClass("error_select_work");
+        $("#year_startwork").addClass("error_select_work");
+    }
+    else if(document.getElementById("jobname_work").value == ""&&document.getElementById("month_startwork").value == ""){
+        $("#jobname_work").addClass("error_select_work");
+        $("#month_startwork").addClass("error_select_work");
+    }
+    else if(document.getElementById("year_startwork").value == ""&&document.getElementById("month_startwork").value == ""){
+        $("#year_startwork").addClass("error_select_work");
+        $("#month_startwork").addClass("error_select_work");
+    }   
+    else if(document.getElementById("jobtype_work").selectedIndex == 0){
         $("#jobtype_work").addClass("error_select_work");
     }
     else if(document.getElementById("jobname_work").value == ""){
@@ -373,6 +428,10 @@ $(document).on('hide.bs.modal', "#registab4Modal", function () {
     $('#regist4_cb').prop('checked',false);
     $("#year_endwork").removeClass("dis_input4");
     $("#month_endwork").removeClass("dis_input4");
+    $("#jobtype_work").removeClass("error_select_work");
+    $("#jobname_work").removeClass("error_select_work");
+    $("#year_startwork").removeClass("error_select_work");
+    $("#month_startwork").removeClass("error_select_work");
     document.getElementById("inform_work").value = "";
     backup_year_endwork=0,backup_month_endwork=0;
 });
