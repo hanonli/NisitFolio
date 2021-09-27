@@ -14,8 +14,8 @@ class MyResume3 extends React.Component {
 
         return (
             <>
-                <div class="myresume-mywork-woNb"></div>
-                <div class="educationtopic"><h2 class="myresume-head-woNb">ผลงานของฉัน</h2></div>
+                <div class="myresume-mywork-woNb" id='resume-resume'></div>
+                <div class="educationtopic" ><h2 class="myresume-head-woNb">ผลงานของฉัน</h2></div>
                 <div class="resumesectionline" style={linestyle}></div>
                 <div class="showmywork-woNb">
                     <div class="showmywork">

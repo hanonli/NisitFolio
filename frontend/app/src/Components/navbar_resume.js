@@ -43,7 +43,7 @@ class Resume_sideNavbar extends React.Component {
 						</div>
 
 						<div className='resumeblock'>
-							<a className='resumeicon' href="#"> <img id='icon-myresume-work'  src="assets/images/ประวัติการทำงาน.png"></img>  </a>
+							<a className='resumeicon' href="#resume-work"> <img id='icon-myresume-work'  src="assets/images/ประวัติการทำงาน.png"></img>  </a>
 							<h1 id='resumetext'>ประวัติการทำงาน</h1>
 						</div>
 
@@ -54,11 +54,11 @@ class Resume_sideNavbar extends React.Component {
 
 
 						<div className='resumeblock'>
-							<a className='resumeicon' href="#"> <img id='icon-myresume-resume'  src="assets/images/ผลงานของฉัน.png"></img>  </a>
+							<a className='resumeicon' href="#resume-resume"> <img id='icon-myresume-resume'  src="assets/images/ผลงานของฉัน.png"></img>  </a>
 							<h1 id='resumetext'>ผลงาน</h1>
 						</div>
 						<div className='resumeblock'>
-							<a className='resumeicon' href="#"> <img id='icon-myresume-goal'  src="assets/images/เป้าหมายการทำงาน.png"></img>  </a>
+							<a className='resumeicon' href="#resume-goal"> <img id='icon-myresume-goal'  src="assets/images/เป้าหมายการทำงาน.png"></img>  </a>
 							<h1 id='resumetext'>เป้าหมายการทำงาน</h1>
 						</div>
 						
