@@ -143,7 +143,10 @@ export class RegisterService {
       await this.WorkHistoryRepository.save(workHistory);
     }
 
-    
+    const tag_arr=[];
+    let sum_score = 0.00;
+    let count_skill = 0;
+
     for (var _i = 0; _i < createDto.Job_JobName.length; _i++) {
       const interestedJob = new InterestedJob();
       interestedJob.UserId = accountid;
@@ -154,16 +157,11 @@ export class RegisterService {
       interestedJob.create_time = isoTime ;
       interestedJob.last_modified =  [isoTime] ;
       interestedJob.ResumeId = new Array();
-      await this.InterestedJobRepository.save(interestedJob);
-    }
-
-    const tag_arr=[];
-    let sum_score = 0.00;
-    let count_skill = 0;
-    for (var _i = 0; _i < createDto.Job_JobName.length; _i++) {
+      const Parentid = (await this.InterestedJobRepository.save(interestedJob))._id.toString()
       tag_arr.push(createDto.Job_JobName[_i]);
       for (var _j = 0; _j < createDto.Job_Score[_i].length; _j++) {
         const userJobSkill = new UserJobSkill();
+        userJobSkill.ParentId = Parentid;
         userJobSkill.UserId = accountid;
         userJobSkill.Job_JobName = createDto.Job_JobName[_i];
         userJobSkill.Job_Score = createDto.Job_Score[_i][_j];
@@ -180,6 +178,7 @@ export class RegisterService {
     userinfo.AvgScore = avg_score;
     userinfo.totalBookmark = 0;
     userinfo.tags = tag_arr;
+    userinfo.countSkill = count_skill;
     return (this.userinfoRepository.save(userinfo));
 
   }
@@ -239,8 +238,11 @@ export class RegisterService {
       userinfo.Province = patchDto.Province;
     if (patchDto.City != null)
       userinfo.City = patchDto.City;
+    if (patchDto.ProfilePic != null)
+      userinfo.ProfilePic = patchDto.City;
+
     
-      return await this.userInfoModel.create(userinfo);
+    return await this.userInfoModel.create(userinfo);
 
   }
 
@@ -499,6 +501,7 @@ export class RegisterService {
     const isoTime = time.toLocaleDateString('th-TH',{ year:'numeric',month: 'long',day:'numeric',hour:"2-digit",minute:"2-digit"});
     const ID = new ObjectID(id);
     const interestedJob  = await this.InterestedJobRepository.findOne({where:{ _id: ID}});
+    const userinfo =  await this.userInfoModel.findOne({UserId: UserId });
     if (!interestedJob){
       throw new BadRequestException('Invalid oject');
     }
@@ -508,20 +511,50 @@ export class RegisterService {
         error: 'Can not Patch Other Data',
       }, HttpStatus.UNAUTHORIZED);
     }
-    if (patchDto.Job_JobName || patchDto.Job_Objective || patchDto.Job_Score || patchDto.Job_SkillName ){
-      interestedJob.last_modified.push(isoTime);
-      if (patchDto.Job_JobName)
-        interestedJob.Job_JobName = patchDto.Job_JobName;
-      if (patchDto.Job_Objective)
-        interestedJob.Job_Objective = patchDto.Job_Objective;
-      if (patchDto.Job_Score)
-        interestedJob.Job_Score = patchDto.Job_Score;
-      if (patchDto.Job_SkillName)
-        interestedJob.Job_SkillName = patchDto.Job_SkillName;
-      return await this.InterestedJobRepository.save(interestedJob);
+    interestedJob.last_modified.push(isoTime);
+    const oldname = interestedJob.Job_JobName;
+    console.log(userinfo.countSkill);
+    let oldscore = 0;
+    let newscore = 0;
+    for (var _i = 0; _i < interestedJob.Job_Score.length; _i++) {
+      oldscore = oldscore + interestedJob.Job_Score[_i];
     }
-    throw new BadRequestException('Dto error');
+    interestedJob.Job_JobName = patchDto.Job_JobName;
+    interestedJob.Job_Objective = patchDto.Job_Objective;
+    let add = patchDto.Job_Score.length - interestedJob.Job_Score.length;
+    for (var _i = 0; _i < patchDto.Job_Score.length; _i++) {
+      newscore = newscore + patchDto.Job_Score[_i];
+    }
+    interestedJob.Job_Score = patchDto.Job_Score;
+    interestedJob.Job_SkillName = patchDto.Job_SkillName;
+
+    let tag_arr = [...userinfo.tags];
+    tag_arr[tag_arr.indexOf(oldname)] = patchDto.Job_JobName;
+    let sum_score = userinfo.AvgScore * userinfo.countSkill;
+    sum_score = sum_score - oldscore + newscore;
+    let avg_score = sum_score / (userinfo.countSkill + add);
+    console.log(userinfo.countSkill);
+    userinfo.countSkill = userinfo.countSkill + add;
+    userinfo.tags = tag_arr;
+    userinfo.AvgScore = avg_score;
       
+    await this.userInfoModel.create(userinfo);
+
+    const userJobSkill  = await this.userJobSkillRepository.find({where:{ ParentId: id}});
+    for (var _i = 0; _i < userJobSkill.length; _i++) {
+      await this.userJobSkillRepository.remove(userJobSkill[_i]);
+    }
+
+    for (var _i = 0; _i < patchDto.Job_Score.length; _i++) {
+      const userJobSkill = new UserJobSkill();
+      userJobSkill.ParentId = id;
+      userJobSkill.UserId = UserId;
+      userJobSkill.Job_JobName = patchDto.Job_JobName;
+      userJobSkill.Job_Score = patchDto.Job_Score[_i];
+      userJobSkill.Job_SkillName = patchDto.Job_SkillName[_i];
+      await this.userJobSkillRepository.save(userJobSkill);
+    }
+    return await this.InterestedJobRepository.save(interestedJob);      
 
   }
 

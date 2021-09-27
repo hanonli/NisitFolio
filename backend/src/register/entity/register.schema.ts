@@ -39,6 +39,18 @@ export class UserInfoMongoose {
 
   @Prop()
   last_modified: string[];
+
+  @Prop()
+  ProfilePic: string;
+
+  @Prop()
+  tags: string[];
+  
+  @Prop()
+  AvgScore: number;
+
+  @Prop()
+  countSkill: number;
   
 }
 
