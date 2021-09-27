@@ -26,6 +26,7 @@ class Registab6 extends React.Component {
 							</button>
 						</div>
 					</div>
+					<h1 class="limit-job-pos-3">ท่านสามารถเพิ่มตำแหน่งงานที่สนใจได้สูงสุด 3 อัน</h1>
 
 
 					<div class="modal fade" id="exampleModal_remove_job" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -106,33 +107,49 @@ class Registab6 extends React.Component {
 										</div>
 
 										<div class="tab-pane_pop" id="tab02">
-											<div class="col-md-lg">
-												<div class="contend-of-obj" >
-													<div class="pos-del-obj-button" id="pos-del-obj-button1">
-														<button type="button" class="btn del-obj-icon"><img src="assets/images/bin.png" width="25" height="25"></img></button>
-													</div>
-													<textarea maxlength="280" type="text" class="form-control dropbtn margin-bottom1 height-job1" id="obj-job-01" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
+											<div class="row">
+												<div class="col-2">
+													<h1 id="number-obj-job">1</h1>
 												</div>
+												<div class="col-4">
+													<div class="contend-of-obj" >
+														<div class="pos-del-obj-button" id="pos-del-obj-button1">
+															<button type="button" class="btn del-obj-icon"><img src="assets/images/bin.png" width="25" height="25"></img></button>
+														</div>
+														<textarea maxlength="280" type="text" class="form-control dropbtn margin-bottom1 height-job1" id="obj-job-01" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
+													</div>
+												</div>												
 											</div>
-											<div class="col-md-lg">
-												<div class="contend-of-obj" >
-													<div class="pos-del-obj-button" id="pos-del-obj-button2">
-														<button type="button" class="btn del-obj-icon"><img src="assets/images/bin.png" width="25" height="25"></img></button>
-													</div>
-													<textarea maxlength="280" type="text" class="form-control dropbtn margin-bottom1 height-job2" id="obj-job-02" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
-												</div>
-											</div>
-											<div class="col-md-lg">
-												<div class="contend-of-obj" >
-													<div class="pos-del-obj-button" id="pos-del-obj-button3">
-														<button type="button" class="btn del-obj-icon"><img src="assets/images/bin.png" width="25" height="25"></img></button>
-													</div>
-													<textarea maxlength="280" type="text" class="form-control dropbtn margin-bottom1 height-job3" id="obj-job-03" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
-												</div>
 
+											<div class="row">
+												<div class="col-2">
+													<h1 id="number-obj-job">2</h1>
+												</div>		
+												<div class="col-4">
+													<div class="contend-of-obj" >
+														<div class="pos-del-obj-button" id="pos-del-obj-button2">
+															<button type="button" class="btn del-obj-icon"><img src="assets/images/bin.png" width="25" height="25"></img></button>
+														</div>
+														<textarea maxlength="280" type="text" class="form-control dropbtn margin-bottom1 height-job2" id="obj-job-02" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
+													</div>
+												</div>																						
 											</div>
+
+											<div class="row">
+												<div class="col-2">
+													<h1 id="number-obj-job">3</h1>
+												</div>	
+												<div class="col-4">
+													<div class="contend-of-obj" >
+														<div class="pos-del-obj-button" id="pos-del-obj-button3">
+															<button type="button" class="btn del-obj-icon"><img src="assets/images/bin.png" width="25" height="25"></img></button>
+														</div>
+														<textarea maxlength="280" type="text" class="form-control dropbtn margin-bottom1 height-job3" id="obj-job-03" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
+													</div>
+												</div>
+											</div>
+
 										</div>
-
 									</div>
 								</div>
 

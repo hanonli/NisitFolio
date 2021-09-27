@@ -350,9 +350,7 @@ $(document).on("change", "#each_skill3", function () {
     else {
         $("#each_skill3").removeClass("error_select_job");
     }
-
 });
-
 
 $(document).on("change", "#nm_job", function () {
     if (document.getElementById("nm_job").selectedIndex != 0) {
@@ -700,8 +698,14 @@ document.getElementById("submit-job11").addEventListener("click", function () {
         $("#input_mySlider1").remove();
         $("#input_mySlider2").remove();
         $("#input_mySlider3").remove();
-        if (list_of_job.length == 3) {
+        if (list_of_job.length < 3) {
+            $(".limit-job-pos-3").removeClass("limit-job-pos-3-red");
+            $('.limit-job-pos-3').text('ท่านสามารถเพิ่มตำแหน่งงานที่สนใจได้สูงสุด 3 อัน');            
+        }
+        else{
             $(".frame_add_job_interest").hide();
+            $(".limit-job-pos-3").addClass("limit-job-pos-3-red");
+            $('.limit-job-pos-3').text('ท่านเพิ่มตำแหน่งงานที่สนใจครบจำนวนแล้ว');
         }
     }
 });
@@ -732,6 +736,8 @@ $(document).on('click', "#summit-to-delete", function () {
     $("#input_mySlider3").remove();
     if (list_of_job.length < 3) {
         $(".frame_add_job_interest").show();
+        $(".limit-job-pos-3").removeClass("limit-job-pos-3-red");
+        $('.limit-job-pos-3').text('ท่านสามารถเพิ่มตำแหน่งงานที่สนใจได้สูงสุด 3 อัน');              
     }
 });
 
