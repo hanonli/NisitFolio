@@ -253,7 +253,7 @@ option {
 .fat { position: relative; top: 0px; right: 0px; transition: all 0.5s; }
 .fag { position: relative; top: 0px; right: 0px; transition: all 0.5s; }
 .fac { position: relative; top: 0px; right: 0px; transition: all 0.5s; }
-.analytic-md-header { position: relative; right: 0px; top: -30px; transition: all 0.5s; }
+.analytic-md-header { position: relative; right: 0px; top: -25px; transition: all 0.5s; }
 .analytic-md-sub-header { position: relative; top: -25px; transition: all 0.5s; }
 .analytic-right-chart-label { position: relative; top: 0px; transition: all 0.5s; }
 
@@ -325,7 +325,7 @@ option {
 .analytic-arrow-cls.back {
     transform: rotate(-45deg);
     left: -10px;
-    top: -11px;
+    top: -6px;
 }
  
 #alv-close-button3{
