@@ -3909,7 +3909,7 @@ class BookmarkTabs extends React.Component {
 												<af id="overallMainSkl2">#2 <i class="fas fa-square iAnalytic-green" id="overallMainSklc2"></i> {this.state.main2OverallName} {this.state.main2OverallPercentage}%<br/></af>
 												<af id="overallMainSkl3">#3 <i class="fas fa-square iAnalytic-Yellow" id="overallMainSklc3"></i> {this.state.main3OverallName} {this.state.main3OverallPercentage}%<br/></af>
 											</div>
-											<br></br><br></br>
+											<br></br>
 											<aaf>ทักษะของฉัน<br/></aaf>
 											<div class="header2 container-fluid text-center skill-not-found yahaha9" id="skl-not-found-main">
 												<mf>*เนื่องจากเราไม่พบทักษะของคุณ จึงแสดงทักษะโดยรวม<br/>แต่คุณสามารถแก้ไขโปรไฟล์เพื่อเพิ่มงานที่สนใจได้<br/></mf>
@@ -3924,7 +3924,7 @@ class BookmarkTabs extends React.Component {
 													<af id="myMainSkl2"><i class="fas fa-square" id="myMainSklc2"></i> {this.state.main2MyName} {this.state.main2MyPercentage}%</af>
 													<br></br>
 													<af id="myMainSkl3"><i class="fas fa-square" id="myMainSklc3"></i> {this.state.main3MyName} {this.state.main3MyPercentage}%</af>
-													<br></br><br></br>
+													<br></br><br></br><br></br>
 												</div>
 												<div class="yahaha6" id="analytic-lower-buttons-main">
 													<a class="btn btn-cta-primary round profile-button other margin-right-m info-button" target="_blank">คลิกเพื่อดูอันดับอื่น ๆ</a> 
