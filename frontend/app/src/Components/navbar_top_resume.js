@@ -58,6 +58,7 @@ class Resume_topNavbar extends React.Component {
 		
 	getResumeID(){
 		const userid = this.state.userID
+		console.log(userid);
 		fetch("http://localhost:2000/portfolio/user/"+ userid,{
 			method: "GET",
 			headers: {
@@ -69,7 +70,8 @@ class Resume_topNavbar extends React.Component {
 		})
 		.then(response => response.json())
 		.then((datas) => {
-			// console.log('real resumeID:' + JSON.stringify(datas[0].ResumeId[0]))
+			console.log(datas);
+			console.log('real resumeID:' + JSON.stringify(datas[0].ResumeId[0]));
 			this.setState({
 				resumeID : datas[0].ResumeId[0]
 			})
