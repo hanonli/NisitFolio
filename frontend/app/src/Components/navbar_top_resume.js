@@ -79,12 +79,8 @@ class Resume_topNavbar extends React.Component {
 		
 	getResumeID(e){
 		const userid = this.state.userID
-<<<<<<< HEAD
-		console.log(userid);
-=======
 		const index = e
 		console.log('in getResumeID index is :' + index + ' userid is: ' + userid )
->>>>>>> fb253852b3fdc4a9a2141f695ae7b9d083e908bf
 		fetch("http://localhost:2000/portfolio/user/"+ userid,{
 			method: "GET",
 			headers: {
