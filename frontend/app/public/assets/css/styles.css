@@ -1475,16 +1475,12 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 
 #analytic-lower-buttons-main{
 	display: flex;
-    justify-content: end;
-    position: relative;
-    top: 40px;
+	justify-content: end;
 }
 
 #analytic-lower-buttons{
 	display: flex;
 	justify-content: end;
-	position: relative;
-    top: 40px;
 }
 
 navbar { margin:0; }
