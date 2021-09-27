@@ -1,5 +1,6 @@
-import { Controller, Get, Post, Body, Param, Request, Patch, UseGuards, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Request, Patch, UseGuards, Delete, Header, Res } from '@nestjs/common';
 
+import { HttpService } from '@nestjs/axios';
 import { RegisterService } from './register.service';
 import { CreateRegisDto } from './dto/create-register.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
@@ -8,7 +9,7 @@ import { PatchRegisDto } from './dto/patch-register.dto';
 
 @Controller('register')
 export class RegisterController {
-  constructor(private registerService: RegisterService) {}
+  constructor(private registerService: RegisterService,private httpService: HttpService,) {}
 
   @Post()
   async CreateRegister(@Body() CreateDto: CreateRegisDto ) {
@@ -109,6 +110,24 @@ export class RegisterController {
   @Get("getinfo")
   async GetInfo(@Request() req) {
     return this.registerService.GetInfo(req.user.userId);
+  }
+
+  @Get('/random')
+  //@Header('Content-Type', 'image/jpeg')
+  async RandomRegis()
+  {
+    const respone = await this.httpService.get('https://hilight.kapook.com/img_cms2/user/juthamat/jutha03/3_28.jpg').toPromise();
+    //console.log(Buffer.from(respone.data, 'binary').toString('base64',))
+    // console.log(respone.headers)
+    //console.log(respone.config)
+    return Buffer.from(respone.data, 'binary').toString('base64');
+    //return respone.data;
+
+    //console.log(respone.data)
+    //const encode = (str: string):string => Buffer.from(str, 'binary').toString('base64');
+    //console.log(encode(respone.data));
+    //return encode(respone.data).slice(0, 20);
+    
   }
   
 }
