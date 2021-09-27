@@ -1,4 +1,4 @@
-import $, { data } from 'jquery';
+import $, { data, get } from 'jquery';
 import cookie from 'react-cookies';
 import React from 'react';
 import MyResumeContent from './myresumeContent.js';
@@ -22,8 +22,29 @@ class Resume_topNavbar extends React.Component {
 			interestedjob : [],
 			privacy : '',
 			color : '',
+			index : 0,
+			stat  : 'unready'
 		}
 
+		var token = cookie.load('login-token')
+		fetch("http://localhost:2000/profile/",{
+			method: "GET",
+			headers: {
+				'Authorization': 'Bearer '+token,	
+				"Access-Control-Allow-Origin": "*",
+				"Access-Control-Allow-Methods": "*",
+				"Access-Control-Allow-Credentials": true,
+				"Content-Type": "application/json"
+			},
+		})
+		.then(response => response.text())
+		.then((datas) => {
+			this.setState({
+				userID : datas
+			})
+			// console.log('this.state.userID1 :'+this.state.userID)
+		});
+		
 		// console.log('in contructs'+this.state.userID)
 		// var userID
 		// var resumeID = '6142398e3e8c5c1df01304cc'
@@ -56,8 +77,10 @@ class Resume_topNavbar extends React.Component {
 
 	}
 		
-	getResumeID(){
+	getResumeID(e){
 		const userid = this.state.userID
+		const index = e
+		console.log('in getResumeID index is :' + index + ' userid is: ' + userid )
 		fetch("http://localhost:2000/portfolio/user/"+ userid,{
 			method: "GET",
 			headers: {
@@ -71,9 +94,40 @@ class Resume_topNavbar extends React.Component {
 		.then((datas) => {
 			// console.log('real resumeID:' + JSON.stringify(datas[0].ResumeId[0]))
 			this.setState({
-				resumeID : datas[0].ResumeId[0]
+				resumeID : datas[index].ResumeId[0],
+				stat : 'ready',
 			})
 		});
+	}
+
+	portfoliotab1 = () => {
+		var index = 0;
+		this.setState({
+			index : 0,
+		});
+		this.getResumeID(index);
+		this.getDatas();
+	}
+
+	portfoliotab2 = () => {
+		var index = 1;
+		this.setState({
+			index : 1,
+		})
+		console.log('indexfff',index)
+		this.getResumeID(index);
+		this.getDatas();
+
+	}
+
+	portfoliotab3 = () => {
+		var index = 2;
+		this.setState({
+			index : 2,
+		})
+		this.getResumeID(index);
+		this.getDatas();
+
 	}
 
 	
@@ -85,57 +139,49 @@ class Resume_topNavbar extends React.Component {
 		script.src = "assets/js/navbar_top_resume_script.js";
 		document.body.appendChild(script);
 
-		var token = cookie.load('login-token')
-		fetch("http://localhost:2000/profile/",{
-			method: "GET",
-			headers: {
-				'Authorization': 'Bearer '+token,	
-				"Access-Control-Allow-Origin": "*",
-				"Access-Control-Allow-Methods": "*",
-				"Access-Control-Allow-Credentials": true,
-				"Content-Type": "application/json"
-			},
-		})
-		.then(response => response.text())
-		.then((datas) => {
-			this.setState({
-				userID : datas,
-			})
-			// console.log('this.state.userID1 :'+this.state.userID)
-		});
-
-		// console.log('topnav stop mount')
+		console.log('topnav stop mount')
 		
 	}
 	
 	shouldComponentUpdate(nextProps, nextState){
-		if(nextState.resumeID != this.state.resumeID){
-			console.log('no need to re-render')
-			return false
-		}else{
-			console.log('need update')
+		// alert( nextState == this.state )
+		if(this.state.resumeID===''){
+			// console.log(1)
 			return true
-		}
-	}
+		}else if(this.state.color === '' ){
+			// console.log(2)
+			return true
 
+		}else if(this.state.resumeID !== nextState.resumeID){
+			// console.log(3)
+			return true
+		}else if(this.state.color !== nextState.color){
+			// console.log(3)
+			return true
+		}else{
+			// console.log(4)
+			return false
+		}
 	
+	}
 
 
 	render (){
 
-		if(this.state.userID != ''  && this.state.resumeID == ''  ){
+		if(this.state.userID !== ''  && this.state.resumeID === ''  ){
 			// console.log('call getResumeID');
-			this.getResumeID();
+			this.getResumeID(this.state.index);
 		}else{
 			// console.log('getResumeID not called')
 			// console.log(this.state.resumeID)
 		}
-		if(this.state.resumeID != ''){
+		if(this.state.resumeID !== ''){
 			// console.log('call getDatas');
 			this.getDatas();
 		}else{
 			// console.log('getDatas not called')
 		}
+
 
 
 		console.log('state : ' + JSON.stringify(this.state))
@@ -145,7 +191,6 @@ class Resume_topNavbar extends React.Component {
 			<div className="Resume_topNavbar" id='topNav'>
 				
 				<div  className='myresumetoppath'> 
-
 					<div className='resume_topnav' >
 						<a className='topnav_lock' href='#' > 
 							<img id='icon-myresume-lock'  src="assets/images/outline_lock_black_24dp.png"/> 
@@ -155,13 +200,13 @@ class Resume_topNavbar extends React.Component {
 					<div className='resume_topnav' >
 						<div className='resume_selectjob'> 
 							<h1 className='resume_selectjob_block'> 
-								&nbsp;<a className='active' href='#' id='resume_selectjob1'>ตำแหน่งงานที่ 1</a>&nbsp; <span className="resume_verticalline"></span> 
+								&nbsp;<a className='active' href='#' onClick={this.portfoliotab1} id='resume_selectjob1'>ตำแหน่งงานที่ 1</a>&nbsp; <span className="resume_verticalline"></span> 
 							</h1>
 							<h1 className='resume_selectjob_block'> 
-								&nbsp;<a href='#' id='resume_selectjob2'>ตำแหน่งงานที่ 2</a>&nbsp; <span className="resume_verticalline"></span> 
+								&nbsp;<a href='#'  onClick={this.portfoliotab2} id='resume_selectjob2'>ตำแหน่งงานที่ 2</a>&nbsp; <span className="resume_verticalline"></span> 
 							</h1>
 							<h1 className='resume_selectjob_block'> 
-								&nbsp;<a href='#' id='resume_selectjob3'>ตำแหน่งงานที่ 3</a>&nbsp;
+								&nbsp;<a href='#'  onClick={this.portfoliotab3} id='resume_selectjob3'>ตำแหน่งงานที่ 3</a>&nbsp;
 							</h1>
 						</div>
 						

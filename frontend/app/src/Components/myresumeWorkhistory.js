@@ -168,7 +168,7 @@ class MyresumeWork extends React.Component{
             }
         }
         return(
-            <div class="resume-education" id="resume-education">
+            <div class="resume-education" id="resume-work">
                 <div class="educationtopic"><h2 class="resumetopic">ประวัติการการทำงาน</h2></div>
                 <div class="resumesectionline" style={linestyle}></div>
                 {workCon}
