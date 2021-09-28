@@ -124,6 +124,7 @@ $(document).on("click", "#add_aca", function () {
   $("#aca_name").removeClass("is-invalid");
   $("#aca_degree").removeClass("is-invalid");
   $("#aca_faculty").removeClass("is-invalid");
+  $('#aca_grade').removeClass('is_invalid');
   choose_function3 = 2;
   $('#registab3Modal1').modal('toggle');
   $('#aca_degree').prop('selectedIndex', 0);
@@ -144,6 +145,7 @@ $(document).on("click", "#edit-aca", function () {
   $("#aca_name").removeClass("is-invalid");
   $("#aca_degree").removeClass("is-invalid");
   $("#aca_faculty").removeClass("is-invalid");
+  $('#aca_grade').removeClass('is_invalid');
   id_list_aca_edit = $(this).parents().attr('id');
   console.log(`edit:`, id_list_aca_edit);
   choose_function3 = 1;
@@ -197,7 +199,7 @@ $(document).on('click', "#sub_del_aca", function () {
   show_all_aca()
   if (list_of_aca.length != 3) {
     $('#aca_danger').text('ท่านสามารถเพิ่มประวัติการศึกษาได้สูงสุด 3 อัน');
-    $('#aca_danger').removeClass('red_markEp1');
+    $('#aca_danger').removeClass('red_markOnly');
     $('.icon-plus-circleA').show();
 }
 });
@@ -230,6 +232,7 @@ document.getElementById("submit-aca").addEventListener("click", function () {
   $("#aca_name").removeClass("is-invalid");
   $("#aca_degree").removeClass("is-invalid");
   $("#aca_faculty").removeClass("is-invalid");
+  $('#aca_grade').removeClass('is_invalid');
   name_aca = document.getElementById("aca_name").value;
   degree_aca = document.getElementById("aca_degree").value;
   faculty_aca = document.getElementById("aca_faculty").value;
@@ -253,6 +256,10 @@ document.getElementById("submit-aca").addEventListener("click", function () {
     $("#aca_faculty").addClass("is-invalid");
     checkcase1 = false;
   }
+  if (grade_aca > 4 || grade_aca < 0) {
+    $("#aca_grade").addClass("is-invalid");
+    checkcase1 = false;
+  }
   if(checkcase1) {
       if (field_aca == '') {
           field_aca = 'none';
@@ -273,6 +280,7 @@ document.getElementById("submit-aca").addEventListener("click", function () {
           for_editaca["aca_grade"] = parseFloat(grade_aca).toFixed(2);
           for_editaca["aca_field"] = field_aca;
           for_editaca["year_secondary"] = parseInt(year_aca);
+          for_editaca["aca_year"] = parseInt(year_aca);
       }
       else if (choose_function3 == 2) { //add aca in list
           list_of_aca.push({
@@ -286,7 +294,7 @@ document.getElementById("submit-aca").addEventListener("click", function () {
               aca_year_select: $("#year_secondary").prop('selectedIndex'),
               aca_grade: parseFloat(grade_aca).toFixed(2),
               aca_field: field_aca,
-              aca_year: parseInt(year_aca),
+              //aca_year: parseInt(year_aca),
           });
           get_aca_id(list_of_aca, 1);
           console.log(list_of_aca);
@@ -310,7 +318,7 @@ document.getElementById("submit-aca").addEventListener("click", function () {
       show_all_aca()
       if (list_of_aca.length == 3) {
         $('#aca_danger').text('*ท่านเพิ่มประวัติการศึกษาครบจำนวนแล้ว');
-        $('#aca_danger').addClass('red_markEp1');
+        $('#aca_danger').addClass('red_markOnly');
         $('.icon-plus-circleA').hide();
     }
   }
@@ -385,7 +393,7 @@ function show_all_high() {
         grid_high1 = grid_high1.replace("{year_high}", '-');
       }
       else if(ele["high_year"]=="9999"){
-        grid_aca1 = grid_aca1.replace("{year_high}", 'กำลังศึกษา');
+        grid_high1 = grid_high1.replace("{year_high}", 'กำลังศึกษา');
       }
       else{
         grid_high1 = grid_high1.replace("{year_high}", ele["high_year"]);
@@ -402,6 +410,7 @@ $(document).ready(function () {
 $(document).on("click", "#add_high", function () {
   $("#high_degree").removeClass("is-invalid");
   $("#high_name").removeClass("is-invalid");
+  $("#high_grade").removeClass("is-invalid");
   choose_function3_2 = 2;
   $('#registab3Modal2').modal('toggle');
   $('#high_degree').prop('selectedIndex', 0);
@@ -416,6 +425,7 @@ var for_edithigh;
 $(document).on("click", "#edit-high", function () {
   $("#high_degree").removeClass("is-invalid");
   $("#high_name").removeClass("is-invalid");
+  $("#high_grade").removeClass("is-invalid");
   id_list_high_edit = $(this).parents().attr('id');
   console.log(`edit:`, id_list_high_edit);
   choose_function3_2 = 1;
@@ -468,7 +478,7 @@ $(document).on('click', "#sub_del_high", function () {
   show_all_high()
   if (list_of_high.length != 3) {
     $('#high_danger').text('ท่านสามารถเพิ่มประวัติการศึกษาได้สูงสุด 3 อัน');
-    $('#high_danger').removeClass('red_markEp1');
+    $('#high_danger').removeClass('red_markOnly');
     $('.icon-plus-circleH').show();
 }
 });
@@ -511,6 +521,10 @@ document.getElementById("submit-high").addEventListener("click", function () {
     $("#high_degree").addClass("is-invalid");
     checkformT3 = false;
   }
+  if (grade_high > 4 || grade_high < 0) {
+    $("#high_grade").addClass("is-invalid");
+    checkformT3 = false;
+  }
   if(checkformT3) {
       if (field_high == '') {
           field_high = 'none';
@@ -529,7 +543,8 @@ document.getElementById("submit-high").addEventListener("click", function () {
           for_edithigh["high_degree"] = degree_high;
           for_edithigh["high_grade"] = parseFloat(grade_high).toFixed(2);
           for_edithigh["high_field"] = field_high;
-          for_edithigh["year_higher"] = parseInt(year_high);
+          //for_edithigh["year_higher"] = parseInt(year_high);
+          for_edithigh["high_year"] = parseInt(year_high);
       }
       else if (choose_function3_2 == 2) { //add high in list
           list_of_high.push({
@@ -561,7 +576,7 @@ document.getElementById("submit-high").addEventListener("click", function () {
       show_all_high()
       if (list_of_high.length == 3) {
         $('#high_danger').text('*ท่านเพิ่มประวัติการศึกษาครบจำนวนแล้ว');
-        $('#high_danger').addClass('red_markEp1');
+        $('#high_danger').addClass('red_markOnly');
         $('.icon-plus-circleH').hide();
     }
   }

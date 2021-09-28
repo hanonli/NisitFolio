@@ -363,6 +363,10 @@ datalist {
   color: red;
   font-size: 24px;
 }
+
+.red_markOnly {
+  color: red;
+}
 .is-valid {
   background-image: none;
   padding-right: 0%;
