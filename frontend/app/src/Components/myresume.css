@@ -2,6 +2,7 @@
 @import "myresumeEducation.css";
 @import "myresumeCertificate.css";
 @import "myresumework.css";
+@import "myresumeSkill.css";
 
 /* Zone Decoration */
 .MyResumeContent *{
@@ -191,6 +192,7 @@
     padding: 0vw;
     font-weight: 500;
     margin-bottom: 0%;
+    text-align: center;
 }
 
 .resumesectionline{

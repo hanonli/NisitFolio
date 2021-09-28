@@ -1,0 +1,93 @@
+.myresumeskill{
+    background-color: #161513;
+    padding: 2%;
+}
+
+.myresumeskill .resumetopic{
+    color: #FFFFFF;
+}
+
+.softskill-topic{
+    padding: 1%;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 1.2vw;
+}
+
+.softskill-body{
+    width: 80%;
+    margin-left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.softskill-body:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+.softskill-child {
+    float: left;
+    width: 33.33%;
+    padding: 1vw;
+    height: 8vw;
+     /* Should be removed. Only for demonstration */
+    position: relative;
+    
+    
+}
+
+.softskill-child-left{
+    border-color: white;
+    border-style: solid;
+    border-width: 0px 0.1vw 0px 0px;
+}
+  
+.softskill-child-right{
+    border-color: white;
+    border-style: solid;
+    border-width: 0px 0px 0px 0.1vw;
+}
+
+.softskill-body *{
+    color: white;  
+}
+
+.softskill-child *{
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    font-size: 1vw;
+    text-align: center;
+}
+
+.inline2 { 
+    display: inline; 
+}
+
+.point{
+    height: 1.4vw;
+    width: 1.4vw;
+    border-radius: 0.7vw;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    
+}
+
+.skill-Score:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.skill-point{
+    float: left;
+    width: 10%;
+    padding: 1vw;
+    height: 2vw;
+     /* Should be removed. Only for demonstration */
+    position: relative;  
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 import MyresumeWork from './myresumeWorkhistory';
+import MyResumeSkill from './myresumeSkill';
 
 class MyResume2 extends React.Component {
     render() {
@@ -57,7 +58,7 @@ class MyResume2 extends React.Component {
                 
                 <MyresumeWork data={workdata}></MyresumeWork>
                 <MyresumeWork data={[]} owner={true}></MyresumeWork>
-                
+                <MyResumeSkill></MyResumeSkill>
             </div>
                 
         );
