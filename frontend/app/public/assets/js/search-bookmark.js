@@ -140,6 +140,9 @@ var view_type = "grid";
 var current_tab = 1;
 var pageName = location.href.split("/").slice(-1); 
 
+var entityId = 0;
+var entityIdInfo = [];
+
 var currentTooltip = null;
 
 ClearCache(); // gotta need this line for changing between search & bookmark
@@ -159,13 +162,17 @@ function ResetData(){
 function FormatIcon(data,dtype) {
   if(pageName == 'search'){
 		if(data.bookmark == "false") {
-			dtype = dtype.replace("{icon-type}","assets/images/bookmark_1.png").replace("{tooltip}","บันทึก").replace("{status}","false"+"-"+data.thatUserId+'&'+data.type+'&'+data.name);
+			entityIdInfo.push("false"+"-"+data.thatUserId+'&'+data.type+'&'+data.name);
+			dtype = dtype.replace("{icon-type}","assets/images/bookmark_1.png").replace("{tooltip}","บันทึก").replace("{status}",entityId);
 		}else {
-			dtype = dtype.replace("{icon-type}","assets/images/bookmark_2.png").replace("{tooltip}","ยกเลิกการบันทึก").replace("{status}","true"+"-"+data.thatUserId+'&'+data.type+'&'+data.name);
+			entityIdInfo.push("true"+"-"+data.thatUserId+'&'+data.type+'&'+data.name);
+			dtype = dtype.replace("{icon-type}","assets/images/bookmark_2.png").replace("{tooltip}","ยกเลิกการบันทึก").replace("{status}",entityId);
 		}
 	}else{
-		dtype = dtype.replace("{icon-type}","assets/images/bin.png").replace("{tooltip}","ลบ").replace("{status}",data.thatUserId+'&'+data.type+'&'+data.name);
+		entityIdInfo.push(data.thatUserId+'&'+data.type+'&'+data.name);
+		dtype = dtype.replace("{icon-type}","assets/images/bin.png").replace("{tooltip}","ลบ").replace("{status}",entityId);
 	}
+	entityId += 1;
 	return dtype;
 }
 
@@ -585,6 +592,8 @@ var cacheDataTotal = null;
 function ClearCache(){
 	cacheDataTime = null; 
 	cacheDataTotal = null;
+	entityId=0;
+	entityIdInfo=[];
 }
 
 function InitializeSBM(cacheData){
@@ -664,6 +673,8 @@ function InitializeSBM(cacheData){
 }
 
 function GetSearchBookmarkData(){
+	entityId = 0;
+	
 	if(sortType == 'time' && cacheDataTime != null){ // already fetch once
 		InitializeSBM(cacheDataTime);
 		return;
@@ -783,6 +794,7 @@ function DeleteBookmark(id){
 	console.log('DeleteBookmark: '+id);
 	
 	var delData = {};
+	alert(id);
 	var temp = id.split("&");
 	delData['userId'] = userId;
 	delData['type'] = temp[1];
@@ -868,25 +880,38 @@ function AddListenerToDynamicComponents(){
 	   if(pageName == "search"){
 		  //console.log("change icon--!!!");
 		  //alert(this.id);
-		  var nId = $(this).attr('id').split("-");
-		  
+		  var id = $(this).attr('id');
+		  var nId = entityIdInfo[id].split("-");
+		  console.log(entityIdInfo[id]);
+		  //alert(id);
+		   //console.log(cacheDataTime);
+		  //console.log(cacheDataTime[id]);
 		  if (nId[0] == 'true') {
 			  //alert('remove!');
 			$(this).attr('src', 'assets/images/bookmark_1.png');
 			$(this).attr('data-bs-original-title', 'บันทึก');
-			$(this).attr('id', $(this).attr('id').replace('true','false'));
-			//console.log("Remove bookmark!");
+			entityIdInfo[id] = entityIdInfo[id].replace('true','false');
+			if(sortType == 'total')
+				cacheDataTotal[id].bookmark = 'false';
+			else
+				cacheDataTime[id].bookmark = 'false';
+			console.log("Remove bookmark!");
 			DeleteBookmark(nId[1]);
 		  }else if(nId[0] == 'false'){
 			  //alert('add!');
 			$(this).attr('src', 'assets/images/bookmark_2.png');
 			$(this).attr('data-bs-original-title', 'ยกเลิกการบันทึก');
-			$(this).attr('id', $(this).attr('id').replace('false','true'));
+			entityIdInfo[id] = entityIdInfo[id].replace('false','true');
+			if(sortType == 'total')
+				cacheDataTotal[id].bookmark = 'true';
+			else
+				cacheDataTime[id].bookmark = 'true';
 			console.log("Add bookmark!");
 			AddBookmark(nId[1]);
 		  }
 	   }else{
-		   DeleteBookmark($(this).attr('id'));
+		   var id = $(this).attr('id');
+		   DeleteBookmark(entityIdInfo[id]);
 	   }
 	  $(this).tooltip('hide');
 	  //setTimeout(function() { ReinitializeTooltips();  }, 500);
