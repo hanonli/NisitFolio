@@ -3,6 +3,10 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Md5 } from 'ts-md5/dist/md5';
 import { ObjectID } from 'mongodb';
+import { XMLHttpRequest } from 'xmlhttprequest-ts';
+import { HttpService } from '@nestjs/axios';
+import { AxiosResponse } from 'axios';
+import { Observable } from 'rxjs';
 
 import { Account, Userinfo, AdditionalSkill, Certificate, EducationHistory, InterestedJob, WorkHistory,Portfolio,PortfolioPicture,Resume,UserJobSkill} from './entity/Register.entity'
 import { CreateRegisDto } from './dto/create-register.dto';
@@ -53,9 +57,11 @@ export class RegisterService {
     @InjectRepository(UserJobSkill)
     private userJobSkillRepository: Repository<UserJobSkill>,
     
-    private readonly emailConfirmationService: EmailConfirmationService
+    private readonly emailConfirmationService: EmailConfirmationService,
+    private httpService: HttpService,
 
   ) {}
+
   async createRegis(createDto: CreateRegisDto)
   {
     const time =  new Date();
@@ -239,7 +245,7 @@ export class RegisterService {
     if (patchDto.City != null)
       userinfo.City = patchDto.City;
     if (patchDto.ProfilePic != null)
-      userinfo.ProfilePic = patchDto.City;
+      userinfo.ProfilePic = patchDto.ProfilePic;
 
     
     return await this.userInfoModel.create(userinfo);
@@ -513,7 +519,6 @@ export class RegisterService {
     }
     interestedJob.last_modified.push(isoTime);
     const oldname = interestedJob.Job_JobName;
-    console.log(userinfo.countSkill);
     let oldscore = 0;
     let newscore = 0;
     for (var _i = 0; _i < interestedJob.Job_Score.length; _i++) {
@@ -533,7 +538,7 @@ export class RegisterService {
     let sum_score = userinfo.AvgScore * userinfo.countSkill;
     sum_score = sum_score - oldscore + newscore;
     let avg_score = sum_score / (userinfo.countSkill + add);
-    console.log(userinfo.countSkill);
+
     userinfo.countSkill = userinfo.countSkill + add;
     userinfo.tags = tag_arr;
     userinfo.AvgScore = avg_score;

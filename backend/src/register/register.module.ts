@@ -4,7 +4,7 @@ import { MulterModule } from '@nestjs/platform-express';
 import { MongooseModule } from '@nestjs/mongoose';
 import { EmailConfirmationModule } from 'src/emailconfirmation/emailConfirmation.module';
 import { EmailModule } from 'src/email/email.module';
-
+import { HttpModule } from '@nestjs/axios';
 import { RegisterController } from './register.controller';
 import { RegisterService } from './register.service';
 import { Account, Userinfo, AdditionalSkill, Certificate, EducationHistory, InterestedJob, WorkHistory,Portfolio,PortfolioPicture,Resume,UserJobSkill} from './entity/Register.entity'
@@ -23,7 +23,8 @@ import { UserInfoSchema } from './entity/register.schema';
             dest: './upload',
           }),
           EmailConfirmationModule,
-          EmailModule                                                                                                           ],
+          EmailModule,
+          HttpModule,                                                                                                           ],
   
   controllers: [RegisterController],
   providers: [RegisterService],
