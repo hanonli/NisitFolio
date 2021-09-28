@@ -273,6 +273,7 @@ document.getElementById("submit-aca").addEventListener("click", function () {
           for_editaca["aca_grade"] = parseFloat(grade_aca).toFixed(2);
           for_editaca["aca_field"] = field_aca;
           for_editaca["year_secondary"] = parseInt(year_aca);
+          for_editaca["aca_year"] = parseInt(year_aca);
       }
       else if (choose_function3 == 2) { //add aca in list
           list_of_aca.push({
@@ -286,7 +287,7 @@ document.getElementById("submit-aca").addEventListener("click", function () {
               aca_year_select: $("#year_secondary").prop('selectedIndex'),
               aca_grade: parseFloat(grade_aca).toFixed(2),
               aca_field: field_aca,
-              aca_year: parseInt(year_aca),
+              //aca_year: parseInt(year_aca),
           });
           get_aca_id(list_of_aca, 1);
           console.log(list_of_aca);
@@ -385,7 +386,7 @@ function show_all_high() {
         grid_high1 = grid_high1.replace("{year_high}", '-');
       }
       else if(ele["high_year"]=="9999"){
-        grid_aca1 = grid_aca1.replace("{year_high}", 'กำลังศึกษา');
+        grid_high1 = grid_high1.replace("{year_high}", 'กำลังศึกษา');
       }
       else{
         grid_high1 = grid_high1.replace("{year_high}", ele["high_year"]);
@@ -529,7 +530,8 @@ document.getElementById("submit-high").addEventListener("click", function () {
           for_edithigh["high_degree"] = degree_high;
           for_edithigh["high_grade"] = parseFloat(grade_high).toFixed(2);
           for_edithigh["high_field"] = field_high;
-          for_edithigh["year_higher"] = parseInt(year_high);
+          //for_edithigh["year_higher"] = parseInt(year_high);
+          for_edithigh["high_year"] = parseInt(year_high);
       }
       else if (choose_function3_2 == 2) { //add high in list
           list_of_high.push({
