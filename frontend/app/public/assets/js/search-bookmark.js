@@ -207,7 +207,7 @@ function AddMixedListEntity(data){
 			dtype = profile_list_no_tag.replace("{name}", data.name).replace("{img}", pcc).replace("{desc}", valid_desc);
 		}
 	}else{
-		dtype = work_list.replace("{name}", data.name).replace("{img}", data.profilePic).replace("{desc}", valid_desc).replace("{owner}", data.owner);
+		dtype = work_list.replace("{name}", data.name).replace("{img}", pcc).replace("{desc}", valid_desc).replace("{owner}", data.owner);
 	}
 	dtype = FormatIcon(data,dtype);
 	
@@ -396,9 +396,9 @@ function AddWorkGridEntity(data){
 		
 		if(row_filled){
 			for (let i = 0; i < temp.length; i++) {
-				var pcc = temp[i].profilePic;
-				if(pcc === null) pcc = "assets/images/profile_uk.png";
-				var ttype = work_grid.replace("{name}", temp[i].name).replace("{img}", pcc).replace("{desc}", temp[i].port).replace("{owner}", temp[i].owner);
+				var tcc = temp[i].profilePic;
+				if(tcc === null) tcc = "assets/images/profile_uk.png";
+				var ttype = work_grid.replace("{name}", temp[i].name).replace("{img}", tcc).replace("{desc}", temp[i].port).replace("{owner}", temp[i].owner);
 				ttype = FormatIcon(temp[i],ttype);
 				raw_html += '<div class="sbm-grid-entity">' + ttype +'</div>';
 			}
