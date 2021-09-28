@@ -124,6 +124,7 @@ $(document).on("click", "#add_aca", function () {
   $("#aca_name").removeClass("is-invalid");
   $("#aca_degree").removeClass("is-invalid");
   $("#aca_faculty").removeClass("is-invalid");
+  $('#aca_grade').removeClass('is_invalid');
   choose_function3 = 2;
   $('#registab3Modal1').modal('toggle');
   $('#aca_degree').prop('selectedIndex', 0);
@@ -144,6 +145,7 @@ $(document).on("click", "#edit-aca", function () {
   $("#aca_name").removeClass("is-invalid");
   $("#aca_degree").removeClass("is-invalid");
   $("#aca_faculty").removeClass("is-invalid");
+  $('#aca_grade').removeClass('is_invalid');
   id_list_aca_edit = $(this).parents().attr('id');
   console.log(`edit:`, id_list_aca_edit);
   choose_function3 = 1;
@@ -197,7 +199,7 @@ $(document).on('click', "#sub_del_aca", function () {
   show_all_aca()
   if (list_of_aca.length != 3) {
     $('#aca_danger').text('ท่านสามารถเพิ่มประวัติการศึกษาได้สูงสุด 3 อัน');
-    $('#aca_danger').removeClass('red_markEp1');
+    $('#aca_danger').removeClass('red_markOnly');
     $('.icon-plus-circleA').show();
 }
 });
@@ -230,6 +232,7 @@ document.getElementById("submit-aca").addEventListener("click", function () {
   $("#aca_name").removeClass("is-invalid");
   $("#aca_degree").removeClass("is-invalid");
   $("#aca_faculty").removeClass("is-invalid");
+  $('#aca_grade').removeClass('is_invalid');
   name_aca = document.getElementById("aca_name").value;
   degree_aca = document.getElementById("aca_degree").value;
   faculty_aca = document.getElementById("aca_faculty").value;
@@ -251,6 +254,10 @@ document.getElementById("submit-aca").addEventListener("click", function () {
   if (document.getElementById("aca_faculty").value == '') {
     //alert("submit aca wrong!");
     $("#aca_faculty").addClass("is-invalid");
+    checkcase1 = false;
+  }
+  if (grade_aca > 4 || grade_aca < 0) {
+    $("#aca_grade").addClass("is-invalid");
     checkcase1 = false;
   }
   if(checkcase1) {
@@ -311,7 +318,7 @@ document.getElementById("submit-aca").addEventListener("click", function () {
       show_all_aca()
       if (list_of_aca.length == 3) {
         $('#aca_danger').text('*ท่านเพิ่มประวัติการศึกษาครบจำนวนแล้ว');
-        $('#aca_danger').addClass('red_markEp1');
+        $('#aca_danger').addClass('red_markOnly');
         $('.icon-plus-circleA').hide();
     }
   }
@@ -403,6 +410,7 @@ $(document).ready(function () {
 $(document).on("click", "#add_high", function () {
   $("#high_degree").removeClass("is-invalid");
   $("#high_name").removeClass("is-invalid");
+  $("#high_grade").removeClass("is-invalid");
   choose_function3_2 = 2;
   $('#registab3Modal2').modal('toggle');
   $('#high_degree').prop('selectedIndex', 0);
@@ -417,6 +425,7 @@ var for_edithigh;
 $(document).on("click", "#edit-high", function () {
   $("#high_degree").removeClass("is-invalid");
   $("#high_name").removeClass("is-invalid");
+  $("#high_grade").removeClass("is-invalid");
   id_list_high_edit = $(this).parents().attr('id');
   console.log(`edit:`, id_list_high_edit);
   choose_function3_2 = 1;
@@ -469,7 +478,7 @@ $(document).on('click', "#sub_del_high", function () {
   show_all_high()
   if (list_of_high.length != 3) {
     $('#high_danger').text('ท่านสามารถเพิ่มประวัติการศึกษาได้สูงสุด 3 อัน');
-    $('#high_danger').removeClass('red_markEp1');
+    $('#high_danger').removeClass('red_markOnly');
     $('.icon-plus-circleH').show();
 }
 });
@@ -510,6 +519,10 @@ document.getElementById("submit-high").addEventListener("click", function () {
   if (document.getElementById("high_degree").value == '') {
     //alert("submit high wrong!");
     $("#high_degree").addClass("is-invalid");
+    checkformT3 = false;
+  }
+  if (grade_high > 4 || grade_high < 0) {
+    $("#high_grade").addClass("is-invalid");
     checkformT3 = false;
   }
   if(checkformT3) {
@@ -563,7 +576,7 @@ document.getElementById("submit-high").addEventListener("click", function () {
       show_all_high()
       if (list_of_high.length == 3) {
         $('#high_danger').text('*ท่านเพิ่มประวัติการศึกษาครบจำนวนแล้ว');
-        $('#high_danger').addClass('red_markEp1');
+        $('#high_danger').addClass('red_markOnly');
         $('.icon-plus-circleH').hide();
     }
   }
