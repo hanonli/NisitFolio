@@ -798,7 +798,7 @@ function PostRegis(pack){
   $(document).ready(function(){
     console.log('script for registab3 loaded')
   });
-  
+  /*
   let startYear4 = 1970;
   let endYear4 = new Date().getFullYear();
   for (i = endYear4; i > startYear4; i--) {
@@ -808,7 +808,7 @@ function PostRegis(pack){
     $('#year_endwork').append($('<option />').val(i).html(i));
   }
   
-  /*$('handleHigherSubmit').on('click',function() {
+  $('handleHigherSubmit').on('click',function() {
     $("#registab3Modal1").modal("hide");
   
   });

@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import Select, { NonceProvider } from 'react-select'
-import AsyncSelect from 'react-select-async-paginate'
+import AsyncSelectP from 'react-select-async-paginate'
+import { useState } from 'react';
+import AsyncSelect from 'react-select/async';
+import axios from 'axios'
 
 const options = [
   { value: 'Technical', label: 'Technical' },
@@ -77,32 +80,14 @@ const customStyles = {
         backgroundColor: 'rgba(205,205,205,1)',
       }
     }),
-  
-    singleValue: (provided, state) => {
-      const opacity = state.isDisabled ? 0.5 : 1;
-      const transition = 'opacity 300ms';
-  
-      return { ...provided, opacity, transition };
-    }
   }
-
-
-function CustomSelect(props){
+  
+function dropdownt7 (props){
+  
 	return <div>
-		<Select styles={customStyles} id='selectT7' placeholder="เลือกหมวดทักษะเสริมที่ถนัด">
-									<option value='Computer_Technology'>Computer_Technology</option>
-									<option value='Hard_Communication%20Skills'>Hard_Communication Skills</option>
-									<option value='Data_Analysis'>Data_Analysis</option>
-									<option value='Certifications_and_Licenses'>Certifications_and_Licenses</option>
-									<option value='Marketing'>Marketing</option>
-									<option value='Project_Management'>Project_Management</option>
-									<option value='Design'>Design</option>
-									<option value='Cloud_Computing'>Cloud_Computing</option>
-									<option value='Writing'>Writing</option>
-									<option value='Mobile_&_Web_Development'>Mobile_&_Web_Development</option>
-									<option value='Network_Structure&_Security'>NetworkStructure&_Security</option>
+		<Select styles={customStyles} id='selectT7' placeholder="เลือกหมวดทักษะเสริมที่ถนัด" options={opT7}>
         </Select>
 	</div>
 }
 
-export default CustomSelect;
+export default dropdownt7;
