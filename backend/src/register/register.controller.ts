@@ -1,5 +1,6 @@
-import { Controller, Get, Post, Body, Param, Request, Patch, UseGuards, Delete, Header, Res } from '@nestjs/common';
-
+import { Controller, Get, Post, Body, Param, Request, Patch, UseGuards, Delete, Header, Res, StreamableFile, Response } from '@nestjs/common';
+import { createWriteStream , createReadStream} from 'fs';
+import { join } from 'path';
 import { HttpService } from '@nestjs/axios';
 import { RegisterService } from './register.service';
 import { CreateRegisDto } from './dto/create-register.dto';
@@ -112,22 +113,45 @@ export class RegisterController {
     return this.registerService.GetInfo(req.user.userId);
   }
 
-  @Get('/random')
+  @Get('/roar10')
   //@Header('Content-Type', 'image/jpeg')
   async RandomRegis()
   {
-    const respone = await this.httpService.get('https://hilight.kapook.com/img_cms2/user/juthamat/jutha03/3_28.jpg').toPromise();
-    //console.log(Buffer.from(respone.data, 'binary').toString('base64',))
-    // console.log(respone.headers)
-    //console.log(respone.config)
-    return Buffer.from(respone.data, 'binary').toString('base64');
-    //return respone.data;
-
-    //console.log(respone.data)
-    //const encode = (str: string):string => Buffer.from(str, 'binary').toString('base64');
-    //console.log(encode(respone.data));
-    //return encode(respone.data).slice(0, 20);
     
+    const response = await this.httpService.axiosRef({
+      url: 'https://hilight.kapook.com/img_cms2/user/juthamat/jutha03/3_28.jpg',
+      method: 'GET',
+    });
+
+    return response.data;
+
   }
+
+  /*@Get('/random')
+  //@Header('Content-Type', 'image/jpeg')
+  async RandomRegis()
+  {
+    const writer = createWriteStream('./image.jpg');
+    const response = await this.httpService.axiosRef({
+      url: 'c',
+      method: 'GET',
+      responseType: 'stream',
+    });
+
+    
+    response.data.pipe(writer);
+    return new Promise((resolve, reject) => {
+      writer.on('finish', resolve);
+      writer.on('error', reject);
+    });
+  }*/ 
   
+  @Get('/random')
+  @Header('Content-Type', 'image/jpeg')
+  getFile(): StreamableFile {
+    const file = createReadStream(join(process.cwd(), 'image.jpg'));
+    console.log(file);
+    return new StreamableFile(file);
+  }
+
 }
