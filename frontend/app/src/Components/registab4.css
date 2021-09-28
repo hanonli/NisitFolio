@@ -109,13 +109,13 @@
     background-color: white;
     border: 1px solid black;
     border-radius: 25px;
-    height: 20vh;
+    height: 22.8vh;
     width: 29vw;
     position: relative;
     text-align: left;
     justify-content: space-between;
     margin-top: 5vh;
-    padding: 6%;
+    padding: 5%;
     margin-top: 5px;
     margin-bottom: 5px;
     left: 4px;
@@ -129,6 +129,28 @@
     width: 19vw;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.font-boldt3{
+    font-weight: bold;
+}
+
+.font-boldt31{
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.newline-text123{
+    color:black;
+    font-size: 16px;
+    font-weight: 400;
+    width: 19vw;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    white-space: normal;
 }
 
 .font-titlet4{
@@ -246,6 +268,20 @@
 }
 
 .dis_input4{
+    background-color: #EAEAEA;
+    color: #cfcfcf;
+    padding: 10px;
+    font-size: 20px;
+    /*border: none;*/
+    border-color: #EAEAEA;
+    /*cursor: pointer;*/
+    border-radius: 2.5vh;
+    padding-left: 30px;
+    pointer-events: none;
+    /*---*/
+}
+
+.dis_input444{
     background-color: #EAEAEA;
     color: #cfcfcf;
     padding: 10px;

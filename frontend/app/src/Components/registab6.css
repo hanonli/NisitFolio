@@ -539,6 +539,8 @@ li.current2{
     color: #A4A4A4;
     font-size: 18px;
     font-weight: 300;
+    position: absolute;
+    bottom: 20vh;
 }
 
 .limit-job-pos-3-red{
