@@ -16,6 +16,20 @@ h1, h2, h3, h4, h5, h6, input, span,label,button,textarea, a, div {
   color: #7A8492;
 }
 
+select:disabled,select[disabled]{
+    background-color: #EAEAEA;
+    color: #cfcfcf;
+    /*padding: 10px;
+    font-size: 20px;*/
+    /*border: none;*/
+    border-color: #EAEAEA;
+    /*cursor: pointer;*/
+    /*border-radius: 2.5vh;
+    padding-left: 30px;*/
+    /*pointer-events: none;*/
+    /*---*/
+}
+
 nf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 32px; font-weight: 200;  color: #939393; }
 nnf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 24px; font-weight: 400;  color: #939393; }
 unf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 18px; font-weight: 400;  color: #939393; }

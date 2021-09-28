@@ -335,25 +335,25 @@ $(document).on("change", "#each_skill2", function () {
     //$('#each_skill3').addClass("dis_input3");
 
     if (document.getElementById("each_skill2").value == document.getElementById("each_skill1").value) {
-        $("#each_skill2").addClass("error_select_job");
+        $("#each_skill2").addClass("is-invalid");
     }
     else {
-        $("#each_skill2").removeClass("error_select_job");
+        $("#each_skill2").removeClass("is-invalid");
     }
 });
 
 $(document).on("change", "#each_skill3", function () {
     if (document.getElementById("each_skill3").value == document.getElementById("each_skill1").value || document.getElementById("each_skill3").value == document.getElementById("each_skill2").value) {
-        $("#each_skill3").addClass("error_select_job");
+        $("#each_skill3").addClass("is-invalid");
     }
     else {
-        $("#each_skill3").removeClass("error_select_job");
+        $("#each_skill3").removeClass("is-invalid");
     }
 });
 
 $(document).on("change", "#nm_job", function () {
     if (document.getElementById("nm_job").selectedIndex != 0) {
-        $("#nm_job").removeClass("error_select_job");
+        $("#nm_job").removeClass("is-invalid");
         $('#each_skill1').prop("disabled", false);
         $('#each_skill1').removeClass("dis_input3");
         $('#each_skill2').prop("disabled", false);
@@ -391,7 +391,7 @@ $(document).on("click", ".frame_add_job_interest", function () {
     $('#each_skill2').addClass("dis_input3");
     $('#each_skill3').prop("disabled", true);
     $('#each_skill3').addClass("dis_input3");
-    $("#nm_job").removeClass("error_select_job");
+    $("#nm_job").removeClass("is-invalid");
     choose_function = 2;
     if (list_of_job.length < 3) {
         $('#exampleModalJob').modal('toggle');
@@ -419,7 +419,7 @@ $(document).on("click", ".frame_add_job_interest", function () {
 
 var for_edit;
 $(document).on("click", "#edit-job", function () {
-    $("#nm_job").removeClass("error_select_job");
+    $("#nm_job").removeClass("is-invalid");
     id_list_job_edit = $(this).parents().parents().attr('id');
     //console.log(`edit:`, id_list_job_edit);
     for_edit = list_of_job.find(function (post, index_del) {
@@ -548,14 +548,14 @@ document.getElementById("submit-job11").addEventListener("click", function () {
     var push2list = {};
     if (document.getElementById("nm_job").value == '') {
         //alert("kuay");
-        $("#nm_job").addClass("error_select_job");
+        $("#nm_job").addClass("is-invalid");
     }
     else if ((skill_job_2 == skill_job_1 || skill_job_3 == skill_job_1 || skill_job_2 == skill_job_3) && skill_job_1 != 'none' && skill_job_2 != 'none' && skill_job_3 != 'none') {
-        //$("#each_skill2").addClass("error_select_job");
+        //$("#each_skill2").addClass("is-invalid");
         //can't submit
     }
     else if (list_of_job.findIndex(e => e.name_job === document.getElementById("nm_job").value) != -1 && choose_function == 2) {
-        $("#nm_job").addClass("error_select_job");
+        $("#nm_job").addClass("is-invalid");
     }
     else {
         if (skill_job_1 == 'none') {
