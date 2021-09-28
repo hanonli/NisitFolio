@@ -46,6 +46,26 @@ class MyResume2 extends React.Component {
         //         "Infomation": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tincidunt, neque vitae eleifend ornare, leo sem hendrerit lorem, vel hendrerit elit elit et libero. Pellentesque auctor ornare sapien sit amet imperdiet. Nam at justo nibh. Aenean mollis ornare lacus, in ornare odio."
         //     }
         // ]
+        const additionalSkills = [
+            {
+                "id": "61358059d633f137e455925d",
+                "UserId": "61358059d633f137e455925c",
+                "SoftSkill": "Photoshop"
+            },
+            {
+                "id": "6135805ad633f137e455925e",
+                "UserId": "61358059d633f137e455925c",
+                "SoftSkill": "Video Cutting"
+            }
+        ];
+        const interestedJob = {
+                "id": "6135805cd633f137e4559264",
+                "UserId": "61358059d633f137e455925c",
+                "Job_Objective": ["อยากหวั่นไหว"],
+                "Job_Score": [10, 6.8, 4.5],
+                "Job_JobName": "กวาดพื้นที่ logger room",
+                "Job_SkillName": ["มวยปล้ำ", "ชักกะเย่อ", "การซ่อมแซมหรือเปลี่ยนวาล์ว ปั๊ม เครื่องแลกเปลี่ยนความร้อน คอมเพรสเซอร์ กังหันไอน้ำ และอุปกรณ์ควบคุมไฮดรอลิกหรือนิวแมติก "]
+        }; //มันควรชื่อ jobskill มากกว่าป่าววะ
         return (
             <div class="resume2">
                 <div class="myresume-3">
@@ -58,7 +78,8 @@ class MyResume2 extends React.Component {
                 
                 <MyresumeWork data={workdata}></MyresumeWork>
                 <MyresumeWork data={[]} owner={true}></MyresumeWork>
-                <MyResumeSkill></MyResumeSkill>
+                <MyResumeSkill addSkill={additionalSkills} intJob={interestedJob}></MyResumeSkill>
+                <MyResumeSkill addSkill={[]} owner={true}></MyResumeSkill>
             </div>
                 
         );
