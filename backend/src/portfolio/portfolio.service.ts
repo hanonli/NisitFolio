@@ -35,7 +35,7 @@ export class PortService {
     const get_header=new hearderDto;
     const account=await this.accountRepository.findOne({where:{_id:id}});
     const userinfo=await this.userInfoRepository.findOne({where:{UserId:UserID}});
-    const port=await this.portModel.findOne({UserId : UserID});
+    //const port=await this.portModel.findOne({UserId : UserID});
 
     get_header.Email=account.Email;
     get_header.Firstname=userinfo.Firstname;
@@ -45,8 +45,8 @@ export class PortService {
     get_header.City=userinfo.City;
     get_header.AboutMe=userinfo.AboutMe;
     get_header.Province=userinfo.Province;
-    get_header.Port_Date=port.Port_Date;
-
+    //get_header.Port_Date=port.Port_Date;
+    get_header.Privacy=account.Privacy;
     //*/
     return get_header;
     
@@ -69,7 +69,7 @@ export class PortService {
     port.UserId = CreateDto.UserId;
     port.Port_Name = CreateDto.Port_Name;
     port.Port_Info = CreateDto.Port_Info;
-    port.onwner = user.Firstname + user.Lastname;
+    port.owner = user.Firstname + " " + user.Lastname;
     port.totalBookmark = 0;
     port.Port_Tag = CreateDto.Port_Tag;
     port.Port_Privacy = CreateDto.Port_Privacy;

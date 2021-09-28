@@ -92,6 +92,9 @@ export class Userinfo {
   @Column()
   totalBookmark:number;
 
+  @Column()
+  countSkill:number;
+
 }
 
 //--------------------AdditionalSkill--------------------------//
@@ -250,7 +253,7 @@ export class WorkHistory {
 @Entity("InterestedJob")
 export class InterestedJob {
   @ObjectIdColumn()
-  id?: ObjectId;
+  _id?: ObjectId;
   
   @Column()
   ResumeId: string[];
@@ -394,6 +397,9 @@ export class UserJobSkill {
   @ObjectIdColumn()
   id?: ObjectId;
   
+  @Column()
+  ParentId: string;
+
   @Column()
   UserId: string;
 

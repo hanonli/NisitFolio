@@ -30,38 +30,48 @@ class Resume_sideNavbar extends React.Component {
 			<div className="Resume_sideNavbar" id='sideNav'>
 				
 				<div  id='myresumepath'> 
+					<a className='resumeicon' href="#resume-education">
 						<div className='resumeblock' >
-							<a className='resumeicon' href="#resume-education"> 
-								<img id='icon-myresume-education'  src="assets/images/ประวัติการศึกษา.png"/> 
-							</a>
-							<h1 id='resumetext'>ประวัติการศึกษา</h1>
+							<img id='icon-myresume-education'  src="assets/images/ประวัติการศึกษา.png"/> 
+							<h1 id='resumetext'>&nbsp;ประวัติการศึกษา</h1>
 						</div>
+					</a>
 
+					<a className='resumeicon' href="#resume-certificate">
 						<div className='resumeblock'>
-							<a className='resumeicon' href="#"> <img id='icon-myresume-skill'  src="assets/images/ความถนัดและทักษะ.png"></img>  </a>
-							<h1 id='resumetext'>ทักษะที่โดดเด่น</h1>
-						</div>
-
-						<div className='resumeblock'>
-							<a className='resumeicon' href="#"> <img id='icon-myresume-work'  src="assets/images/ประวัติการทำงาน.png"></img>  </a>
-							<h1 id='resumetext'>ประวัติการทำงาน</h1>
-						</div>
-
-						<div className='resumeblock'>
-							<a className='resumeicon' href="#resume-certificate"> <img id='icon-myresume-certi'  src="assets/images/เกียรติบัตรและใบรับรอง.png"></img>  </a>
+							 <img id='icon-myresume-certi'  src="assets/images/เกียรติบัตรและใบรับรอง.png"></img>  
 							<h1 id='resumetext'>ใบรับรอง</h1>
 						</div>
+					</a>
 
-
+					<a className='resumeicon' href="#">
 						<div className='resumeblock'>
-							<a className='resumeicon' href="#"> <img id='icon-myresume-resume'  src="assets/images/ผลงานของฉัน.png"></img>  </a>
-							<h1 id='resumetext'>ผลงาน</h1>
+							 <img id='icon-myresume-skill'  src="assets/images/ความถนัดและทักษะ.png"></img>  
+							<h1 id='resumetext'>ทักษะที่โดดเด่น</h1>
 						</div>
+					</a>
+
+					<a className='resumeicon' href="#resume-work">
 						<div className='resumeblock'>
-							<a className='resumeicon' href="#"> <img id='icon-myresume-goal'  src="assets/images/เป้าหมายการทำงาน.png"></img>  </a>
+							 <img id='icon-myresume-work'  src="assets/images/ประวัติการทำงาน.png"></img>  
+							<h1 id='resumetext'>ประวัติการทำงาน</h1>
+						</div>
+					</a>
+
+					<a className='resumeicon' href="#resume-resume">
+						<div className='resumeblock'>
+							 <img id='icon-myresume-resume'  src="assets/images/ผลงานของฉัน.png"></img> 
+							<h1 id='resumetext'>ผลงาน</h1>
+						</div> 
+					</a>
+
+					<a className='resumeicon' href="#resume-goal">
+						<div className='resumeblock'>
+							 <img id='icon-myresume-goal'  src="assets/images/เป้าหมายการทำงาน.png"></img> 
 							<h1 id='resumetext'>เป้าหมายการทำงาน</h1>
 						</div>
-						
+					</a>
+					
 				</div>
 				{/* <div className='sidenav-centered'>
 					<button type="button" class="slide_button" id='slidenav'>

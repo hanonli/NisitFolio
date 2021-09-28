@@ -3,6 +3,10 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Md5 } from 'ts-md5/dist/md5';
 import { ObjectID } from 'mongodb';
+import { XMLHttpRequest } from 'xmlhttprequest-ts';
+import { HttpService } from '@nestjs/axios';
+import { AxiosResponse } from 'axios';
+import { Observable } from 'rxjs';
 
 import { Account, Userinfo, AdditionalSkill, Certificate, EducationHistory, InterestedJob, WorkHistory,Portfolio,PortfolioPicture,Resume,UserJobSkill} from './entity/Register.entity'
 import { CreateRegisDto } from './dto/create-register.dto';
@@ -18,6 +22,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { UserInfoMongoose } from './entity/register.schema';
 import { UserInfoDocument } from './entity/register.schema';
+import { GetRegisDto } from './dto/get-register.dto';
 
 @Injectable()
 export class RegisterService {
@@ -53,9 +58,11 @@ export class RegisterService {
     @InjectRepository(UserJobSkill)
     private userJobSkillRepository: Repository<UserJobSkill>,
     
-    private readonly emailConfirmationService: EmailConfirmationService
+    private readonly emailConfirmationService: EmailConfirmationService,
+    private httpService: HttpService,
 
   ) {}
+
   async createRegis(createDto: CreateRegisDto)
   {
     const time =  new Date();
@@ -143,7 +150,10 @@ export class RegisterService {
       await this.WorkHistoryRepository.save(workHistory);
     }
 
-    
+    const tag_arr=[];
+    let sum_score = 0.00;
+    let count_skill = 0;
+
     for (var _i = 0; _i < createDto.Job_JobName.length; _i++) {
       const interestedJob = new InterestedJob();
       interestedJob.UserId = accountid;
@@ -154,16 +164,11 @@ export class RegisterService {
       interestedJob.create_time = isoTime ;
       interestedJob.last_modified =  [isoTime] ;
       interestedJob.ResumeId = new Array();
-      await this.InterestedJobRepository.save(interestedJob);
-    }
-
-    const tag_arr=[];
-    let sum_score = 0.00;
-    let count_skill = 0;
-    for (var _i = 0; _i < createDto.Job_JobName.length; _i++) {
+      const Parentid = (await this.InterestedJobRepository.save(interestedJob))._id.toString()
       tag_arr.push(createDto.Job_JobName[_i]);
       for (var _j = 0; _j < createDto.Job_Score[_i].length; _j++) {
         const userJobSkill = new UserJobSkill();
+        userJobSkill.ParentId = Parentid;
         userJobSkill.UserId = accountid;
         userJobSkill.Job_JobName = createDto.Job_JobName[_i];
         userJobSkill.Job_Score = createDto.Job_Score[_i][_j];
@@ -180,6 +185,7 @@ export class RegisterService {
     userinfo.AvgScore = avg_score;
     userinfo.totalBookmark = 0;
     userinfo.tags = tag_arr;
+    userinfo.countSkill = count_skill;
     return (this.userinfoRepository.save(userinfo));
 
   }
@@ -239,8 +245,11 @@ export class RegisterService {
       userinfo.Province = patchDto.Province;
     if (patchDto.City != null)
       userinfo.City = patchDto.City;
+    if (patchDto.ProfilePic != null)
+      userinfo.ProfilePic = patchDto.ProfilePic;
+
     
-      return await this.userInfoModel.create(userinfo);
+    return await this.userInfoModel.create(userinfo);
 
   }
 
@@ -499,6 +508,7 @@ export class RegisterService {
     const isoTime = time.toLocaleDateString('th-TH',{ year:'numeric',month: 'long',day:'numeric',hour:"2-digit",minute:"2-digit"});
     const ID = new ObjectID(id);
     const interestedJob  = await this.InterestedJobRepository.findOne({where:{ _id: ID}});
+    const userinfo =  await this.userInfoModel.findOne({UserId: UserId });
     if (!interestedJob){
       throw new BadRequestException('Invalid oject');
     }
@@ -508,20 +518,49 @@ export class RegisterService {
         error: 'Can not Patch Other Data',
       }, HttpStatus.UNAUTHORIZED);
     }
-    if (patchDto.Job_JobName || patchDto.Job_Objective || patchDto.Job_Score || patchDto.Job_SkillName ){
-      interestedJob.last_modified.push(isoTime);
-      if (patchDto.Job_JobName)
-        interestedJob.Job_JobName = patchDto.Job_JobName;
-      if (patchDto.Job_Objective)
-        interestedJob.Job_Objective = patchDto.Job_Objective;
-      if (patchDto.Job_Score)
-        interestedJob.Job_Score = patchDto.Job_Score;
-      if (patchDto.Job_SkillName)
-        interestedJob.Job_SkillName = patchDto.Job_SkillName;
-      return await this.InterestedJobRepository.save(interestedJob);
+    interestedJob.last_modified.push(isoTime);
+    const oldname = interestedJob.Job_JobName;
+    let oldscore = 0;
+    let newscore = 0;
+    for (var _i = 0; _i < interestedJob.Job_Score.length; _i++) {
+      oldscore = oldscore + interestedJob.Job_Score[_i];
     }
-    throw new BadRequestException('Dto error');
+    interestedJob.Job_JobName = patchDto.Job_JobName;
+    interestedJob.Job_Objective = patchDto.Job_Objective;
+    let add = patchDto.Job_Score.length - interestedJob.Job_Score.length;
+    for (var _i = 0; _i < patchDto.Job_Score.length; _i++) {
+      newscore = newscore + patchDto.Job_Score[_i];
+    }
+    interestedJob.Job_Score = patchDto.Job_Score;
+    interestedJob.Job_SkillName = patchDto.Job_SkillName;
+
+    let tag_arr = [...userinfo.tags];
+    tag_arr[tag_arr.indexOf(oldname)] = patchDto.Job_JobName;
+    let sum_score = userinfo.AvgScore * userinfo.countSkill;
+    sum_score = sum_score - oldscore + newscore;
+    let avg_score = sum_score / (userinfo.countSkill + add);
+
+    userinfo.countSkill = userinfo.countSkill + add;
+    userinfo.tags = tag_arr;
+    userinfo.AvgScore = avg_score;
       
+    await this.userInfoModel.create(userinfo);
+
+    const userJobSkill  = await this.userJobSkillRepository.find({where:{ ParentId: id}});
+    for (var _i = 0; _i < userJobSkill.length; _i++) {
+      await this.userJobSkillRepository.remove(userJobSkill[_i]);
+    }
+
+    for (var _i = 0; _i < patchDto.Job_Score.length; _i++) {
+      const userJobSkill = new UserJobSkill();
+      userJobSkill.ParentId = id;
+      userJobSkill.UserId = UserId;
+      userJobSkill.Job_JobName = patchDto.Job_JobName;
+      userJobSkill.Job_Score = patchDto.Job_Score[_i];
+      userJobSkill.Job_SkillName = patchDto.Job_SkillName[_i];
+      await this.userJobSkillRepository.save(userJobSkill);
+    }
+    return await this.InterestedJobRepository.save(interestedJob);      
 
   }
 
@@ -543,7 +582,7 @@ export class RegisterService {
   }
 
   async GetInfo(UserId:string) {
-    const result = new CreateRegisDto;
+    const result = new GetRegisDto;
     
     
     const userid = new ObjectID(UserId);
@@ -565,19 +604,15 @@ export class RegisterService {
     result.Province=userinfo.Province;
     result.City=userinfo.City;
 
-    const softskill_arr=[];
-    const additionalskill=await this.AdditionalSkillRepository.find({where:{UserId:UserId}});
-    for (var _i = 0; _i < additionalskill.length; _i++) {
-      softskill_arr.push(additionalskill[_i].AdditionalSkill);
-    }
-    result.SoftSkill=softskill_arr;
     
-   
+    result.Additionalskill=await this.AdditionalSkillRepository.find({where:{UserId:UserId}});
+
+
     
-    const CertName_arr=[];
-    const CertPic_arr=[];
-    const CertYear_arr=[];
+
     const Certificate=await this.CertificateRepository.find({where:{UserId:UserId}});
+
+    const Certificate_arr=[]
 
     const Certificate_sortlist=[];
     const Certificate_Dictionary = {};
@@ -592,24 +627,20 @@ export class RegisterService {
     for (var _i = 0; _i < Certificate_sortlist.length; _i++) {
       const key_Certificate_sortlist=Certificate_sortlist[_i];
       const Certificate_NUM_Dictionary=Certificate_Dictionary[key_Certificate_sortlist];
-      CertName_arr.push(Certificate[Certificate_NUM_Dictionary].CertName);
-      CertPic_arr.push(Certificate[Certificate_NUM_Dictionary].CertPic);
-      CertYear_arr.push(Certificate[Certificate_NUM_Dictionary].CertYear);
+
+      Certificate_arr.push(Certificate[Certificate_NUM_Dictionary]);
 
     }
-    
-    result.CertName=CertName_arr;
-    result.CertPic=CertPic_arr;
-    result.CertYear=CertYear_arr;
 
-    
-    const Degree_arr=[];
-    const Facalty_arr=[];
-    const Field_of_study_arr=[];
-    const Academy_arr=[];
-    const Grade_arr=[];
-    const Education_End_Year_arr=[];
+    result.Certificate=Certificate_arr;
+
+
+
+
     const educationHistory=await this.EducationHistoryRepository.find({where:{UserId:UserId}});
+
+    const EducationHistory_arr=[]
+
     const educationHistory_sortlist=[];
     const educationHistory_Dictionary={};
 
@@ -624,32 +655,19 @@ export class RegisterService {
     for (var _i = 0; _i < educationHistory.length; _i++) {
       const key_educationHistory_Dictionary=educationHistory_sortlist[_i];
       const educationHistory_Num_sort=educationHistory_Dictionary[key_educationHistory_Dictionary];
-      Degree_arr.push(educationHistory[educationHistory_Num_sort].Degree);
-      Facalty_arr.push(educationHistory[educationHistory_Num_sort].Facalty);
-      Field_of_study_arr.push(educationHistory[educationHistory_Num_sort].Field_of_study);
-      Academy_arr.push(educationHistory[educationHistory_Num_sort].Academy);
-      Grade_arr.push(educationHistory[educationHistory_Num_sort].Grade);
-      Education_End_Year_arr.push(educationHistory[educationHistory_Num_sort].Education_End_Year);
+
+      EducationHistory_arr.push(educationHistory[educationHistory_Num_sort]);
+      
     }
-    result.Degree=Degree_arr;
-    result.Facalty=Facalty_arr;
-    result.Field_of_study=Field_of_study_arr;
-    result.Academy=Academy_arr;
-    result.Grade=Grade_arr;
-    result.Education_End_Year=Education_End_Year_arr;
-    
-    
-    const Work_JobName_arr=[];
-    const Work_JobType_arr=[];
-    const Company_arr=[];
-    const Work_Start_Month_arr=[];
-    const Work_End_Month_arr=[];
-    const Work_Start_Year_arr=[];
-    const Work_End_Year_arr=[];
-    const Salary_arr=[];
-    const Infomation_arr=[];
-    const SalaryType_arr=[];
+
+    result.EducationHistory=EducationHistory_arr;
+
+
+
+  
     const workHistory =await this.WorkHistoryRepository.find({where:{UserId:UserId}});
+
+    const workHistory_arr=[]
     //return workHistory;
 
     const workHistory_sortlist=[];
@@ -662,58 +680,27 @@ export class RegisterService {
     }
     workHistory_sortlist.sort();
     workHistory_sortlist.reverse();
-    //return workHistory_Dictionary;
     
     for (var _i = 0; _i < workHistory.length; _i++) {
       const key_workHistory_Dictionary=workHistory_sortlist[_i];
       const workHistory_Num_Sort=workHistory_Dictionary[key_workHistory_Dictionary];
 
-      Work_JobName_arr.push(workHistory[workHistory_Num_Sort].Work_JobName);
-      Work_JobType_arr.push(workHistory[workHistory_Num_Sort].Work_JobType);
-      Company_arr.push(workHistory[workHistory_Num_Sort].Work_Company);
-      Work_Start_Month_arr.push(workHistory[workHistory_Num_Sort].Work_Start_Month);
-      Work_End_Month_arr.push(workHistory[workHistory_Num_Sort].Work_End_Month);
-      Work_Start_Year_arr.push(workHistory[workHistory_Num_Sort].Work_Start_Year);
-      Work_End_Year_arr.push(workHistory[workHistory_Num_Sort].Work_End_Year);
-      Salary_arr.push(workHistory[workHistory_Num_Sort].Work_Salary);
-      Infomation_arr.push(workHistory[workHistory_Num_Sort].Work_Infomation);
-      SalaryType_arr.push(workHistory[workHistory_Num_Sort].Work_Salary_Type);
-    }
-    
-    result.Work_JobName=Work_JobName_arr;
-    result.Work_JobType=Work_JobType_arr;
-    result.Company=Company_arr;
-    result.Work_Start_Month=Work_Start_Month_arr;
-    result.Work_End_Month=Work_End_Month_arr;
-    result.Work_Start_Year=Work_Start_Year_arr;
-    result.Work_End_Year=Work_End_Year_arr;
-    result.Salary=Salary_arr;
-    result.Infomation=Infomation_arr;
-    result.SalaryType=SalaryType_arr;
-    
-    const Job_Objective_arr=[];
-    const Job_Score_arr=[];
-    const Job_JobName_arr=[];
-    const Job_SkillName_arr=[];
-    const IJ=await this.InterestedJobRepository.find({where:{UserId:UserId}});
-    for (var _i = 0; _i < IJ.length; _i++) {
-      Job_Objective_arr.push(IJ[_i].Job_Objective);
-      Job_Score_arr.push(IJ[_i].Job_Score);
-      Job_JobName_arr.push(IJ[_i].Job_JobName);
-      Job_SkillName_arr.push(IJ[_i].Job_SkillName);
+      workHistory_arr.push(workHistory[workHistory_Num_Sort]);
 
     }
 
-    result.Job_Objective=Job_Objective_arr;
-    result.Job_Score=Job_Score_arr;
-    result.Job_JobName=Job_JobName_arr;
-    result.Job_SkillName=Job_SkillName_arr;
+    result.WorkHistory=workHistory_arr;
+
+
     
+
+    result.InterestedJob=await this.InterestedJobRepository.find({where:{UserId:UserId}});
+
     
     return result;
-    
+  //*/  
   }
-
+  
 
   
 }
