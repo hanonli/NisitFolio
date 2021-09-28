@@ -313,50 +313,55 @@ function GetSkill(jobname2findskill) {
         });
 }
 
-$(document).on("change", "#each_skill1", function () {
+/*$(document).on("change", "#each_skill1", function () {
     if ($('#each_skill1').val() != "none") {
         $('#each_skill2').prop("disabled", false);
         $('#each_skill2').removeClass("dis_input3");
     }
     else {
-        $('#each_skill2').prop("disabled", true);
+        //$('#each_skill2').prop("disabled", true);
         //$('#each_skill2').val("เลือกทักษะของคุณที่เหมาะกับงาน");
-        $('#each_skill2').addClass("dis_input3");
+        //$('#each_skill2').addClass("dis_input3");
     }
-
-});
+});*/
 
 $(document).on("change", "#each_skill2", function () {
-    if ($('#each_skill2').val() != "none") {
+    /*if ($('#each_skill2').val() != "none") {
         $('#each_skill3').prop("disabled", false);
         $('#each_skill3').removeClass("dis_input3");
-    }
-    else {
-        $('#each_skill3').prop("disabled", true);
-        $('#each_skill3').addClass("dis_input3");
-    }
+    }*/
+
+    // $('#each_skill3').prop("disabled", true);
+    //$('#each_skill3').addClass("dis_input3");
+
     if (document.getElementById("each_skill2").value == document.getElementById("each_skill1").value) {
-        $("#each_skill2").addClass("error_select_job");
+        $("#each_skill2").addClass("is-invalid");
     }
     else {
-        $("#each_skill2").removeClass("error_select_job");
+        $("#each_skill2").removeClass("is-invalid");
     }
 });
 
 $(document).on("change", "#each_skill3", function () {
     if (document.getElementById("each_skill3").value == document.getElementById("each_skill1").value || document.getElementById("each_skill3").value == document.getElementById("each_skill2").value) {
-        $("#each_skill3").addClass("error_select_job");
+        $("#each_skill3").addClass("is-invalid");
     }
     else {
-        $("#each_skill3").removeClass("error_select_job");
+        $("#each_skill3").removeClass("is-invalid");
     }
 });
 
 $(document).on("change", "#nm_job", function () {
     if (document.getElementById("nm_job").selectedIndex != 0) {
-        $("#nm_job").removeClass("error_select_job");
+        $("#nm_job").removeClass("is-invalid");
         $('#each_skill1').prop("disabled", false);
         $('#each_skill1').removeClass("dis_input3");
+        $('#each_skill2').prop("disabled", false);
+        $('#each_skill2').removeClass("dis_input3");
+        $('#each_skill3').prop("disabled", false);
+        $('#each_skill3').removeClass("dis_input3");
+        $('#obj-job-01').prop("disabled", false);
+        $("#obj-job-01").removeClass("dis_input3");
         let tomapjobeng = mapEngNameJob[document.getElementById("nm_job").value];
         //console.log("mapEngNameJob:", mapEngNameJob);
         //console.log("tomapjobeng:", tomapjobeng);
@@ -365,6 +370,7 @@ $(document).on("change", "#nm_job", function () {
         removeOptionsJob(document.getElementById("each_skill3"));
         GetSkill(jobname2findskill = tomapjobeng);
     }
+
     $(".step-marks").remove();
     $(".step-labels").remove();
     $("#input_mySlider1").remove();
@@ -385,7 +391,7 @@ $(document).on("click", ".frame_add_job_interest", function () {
     $('#each_skill2').addClass("dis_input3");
     $('#each_skill3').prop("disabled", true);
     $('#each_skill3').addClass("dis_input3");
-    $("#nm_job").removeClass("error_select_job");
+    $("#nm_job").removeClass("is-invalid");
     choose_function = 2;
     if (list_of_job.length < 3) {
         $('#exampleModalJob').modal('toggle');
@@ -403,6 +409,8 @@ $(document).on("click", ".frame_add_job_interest", function () {
     $("#pos-del-obj-button2").hide();
     $("#obj-job-03").val('');
     $("#pos-del-obj-button3").hide();
+    $('#obj-job-01').prop("disabled", true);
+    $("#obj-job-01").addClass("dis_input3");
     $('#obj-job-02').prop("disabled", true);
     $("#obj-job-02").addClass("dis_input3");
     $('#obj-job-03').prop("disabled", true);
@@ -411,13 +419,19 @@ $(document).on("click", ".frame_add_job_interest", function () {
 
 var for_edit;
 $(document).on("click", "#edit-job", function () {
-    $("#nm_job").removeClass("error_select_job");
+    $("#nm_job").removeClass("is-invalid");
     id_list_job_edit = $(this).parents().parents().attr('id');
     //console.log(`edit:`, id_list_job_edit);
     for_edit = list_of_job.find(function (post, index_del) {
         if (post.id == id_list_job_edit)
             return true;
     });
+    $('#each_skill1').prop("disabled", false);
+    $('#each_skill1').removeClass("dis_input3");
+    $('#each_skill2').prop("disabled", false);
+    $('#each_skill2').removeClass("dis_input3");
+    $('#each_skill3').prop("disabled", false);
+    $('#each_skill3').removeClass("dis_input3");
     document.getElementById("nm_job").selectedIndex = for_edit["name_job_select"];
     let tomapjobeng = mapEngNameJob[document.getElementById("nm_job").value];
     GetSkill(jobname2findskill = tomapjobeng);
@@ -432,11 +446,23 @@ $(document).on("click", "#edit-job", function () {
     if (for_edit["obj1"] == "none") {
         for_edit["obj1"] = "";
     }
+    else {
+        $('#obj-job-01').prop("disabled", false);
+        $("#obj-job-01").removeClass("dis_input3");
+    }
     if (for_edit["obj2"] == "none") {
         for_edit["obj2"] = "";
     }
+    else {
+        $('#obj-job-02').prop("disabled", false);
+        $("#obj-job-02").removeClass("dis_input3");
+    }
     if (for_edit["obj3"] == "none") {
         for_edit["obj3"] = "";
+    }
+    else {
+        $('#obj-job-03').prop("disabled", false);
+        $("#obj-job-03").removeClass("dis_input3");
     }
     $("#obj-job-01").val(for_edit["obj1"]);
     $("#obj-job-02").val(for_edit["obj2"]);
@@ -522,14 +548,14 @@ document.getElementById("submit-job11").addEventListener("click", function () {
     var push2list = {};
     if (document.getElementById("nm_job").value == '') {
         //alert("kuay");
-        $("#nm_job").addClass("error_select_job");
+        $("#nm_job").addClass("is-invalid");
     }
     else if ((skill_job_2 == skill_job_1 || skill_job_3 == skill_job_1 || skill_job_2 == skill_job_3) && skill_job_1 != 'none' && skill_job_2 != 'none' && skill_job_3 != 'none') {
-        //$("#each_skill2").addClass("error_select_job");
+        //$("#each_skill2").addClass("is-invalid");
         //can't submit
     }
     else if (list_of_job.findIndex(e => e.name_job === document.getElementById("nm_job").value) != -1 && choose_function == 2) {
-        $("#nm_job").addClass("error_select_job");
+        $("#nm_job").addClass("is-invalid");
     }
     else {
         if (skill_job_1 == 'none') {
@@ -700,9 +726,9 @@ document.getElementById("submit-job11").addEventListener("click", function () {
         $("#input_mySlider3").remove();
         if (list_of_job.length < 3) {
             $(".limit-job-pos-3").removeClass("limit-job-pos-3-red");
-            $('.limit-job-pos-3').text('ท่านสามารถเพิ่มตำแหน่งงานที่สนใจได้สูงสุด 3 อัน');            
+            $('.limit-job-pos-3').text('ท่านสามารถเพิ่มตำแหน่งงานที่สนใจได้สูงสุด 3 อัน');
         }
-        else{
+        else {
             $(".frame_add_job_interest").hide();
             $(".limit-job-pos-3").addClass("limit-job-pos-3-red");
             $('.limit-job-pos-3').text('ท่านเพิ่มตำแหน่งงานที่สนใจครบจำนวนแล้ว');
@@ -737,7 +763,7 @@ $(document).on('click', "#summit-to-delete", function () {
     if (list_of_job.length < 3) {
         $(".frame_add_job_interest").show();
         $(".limit-job-pos-3").removeClass("limit-job-pos-3-red");
-        $('.limit-job-pos-3').text('ท่านสามารถเพิ่มตำแหน่งงานที่สนใจได้สูงสุด 3 อัน');              
+        $('.limit-job-pos-3').text('ท่านสามารถเพิ่มตำแหน่งงานที่สนใจได้สูงสุด 3 อัน');
     }
 });
 
@@ -756,9 +782,6 @@ $(document).on('hide.bs.modal', "#exampleModalJob", function () {
     $("#input_mySlider1").remove();
     $("#input_mySlider2").remove();
     $("#input_mySlider3").remove();
-    /*$('#each_skill1 :selected').text('เลือกทักษะของคุณที่เหมาะกับงาน');
-    $('#each_skill2 :selected').text('เลือกทักษะของคุณที่เหมาะกับงาน');
-    $('#each_skill3 :selected').text('เลือกทักษะของคุณที่เหมาะกับงาน');*/
     removeOptionsJob(document.getElementById("each_skill1"));
     removeOptionsJob(document.getElementById("each_skill2"));
     removeOptionsJob(document.getElementById("each_skill3"));
@@ -798,7 +821,7 @@ $(document).on("click", "#pos-del-obj-button1", function () {
             $("#obj-job-03").val('');
             $("#pos-del-obj-button3").hide();
             $('#obj-job-03').prop("disabled", true);
-            $("#obj-job-03").addClass("dis_input3");            
+            $("#obj-job-03").addClass("dis_input3");
         }
         else if ($("#obj-job-02").val() != "" && $("#obj-job-03").val() == "") {
             $("#obj-job-01").val($("#obj-job-02").val());
@@ -814,13 +837,13 @@ $(document).on("click", "#pos-del-obj-button2", function () {
     if ($("#obj-job-01").val() != "" && $("#obj-job-03").val() != "") {
         $("#obj-job-02").val($("#obj-job-03").val());
         $("#obj-job-03").val('');
-        $("#pos-del-obj-button3").hide();  
+        $("#pos-del-obj-button3").hide();
     }
     else if ($("#obj-job-01").val() != "" && $("#obj-job-03").val() == "") {
         $("#obj-job-02").val('');
         $("#pos-del-obj-button2").hide();
         $('#obj-job-03').prop("disabled", true);
-        $("#obj-job-03").addClass("dis_input3");         
+        $("#obj-job-03").addClass("dis_input3");
     }
 });
 
@@ -837,9 +860,9 @@ $(document).on("change", "#obj-job-01", function () {
     }
     else {
         $("#pos-del-obj-button1").hide();
-        if($("#obj-job-02").val() == ""){
+        if ($("#obj-job-02").val() == "") {
             $('#obj-job-02').prop("disabled", true);
-            $("#obj-job-02").addClass("dis_input3");                
+            $("#obj-job-02").addClass("dis_input3");
         }
     }
 });
@@ -851,9 +874,9 @@ $(document).on("change", "#obj-job-02", function () {
     }
     else {
         $("#pos-del-obj-button2").hide();
-        if($("#obj-job-03").val() == ""){
+        if ($("#obj-job-03").val() == "") {
             $('#obj-job-03').prop("disabled", true);
-            $("#obj-job-03").addClass("dis_input3");  
+            $("#obj-job-03").addClass("dis_input3");
         }
     }
 });

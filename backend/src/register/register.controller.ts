@@ -111,6 +111,8 @@ export class RegisterController {
   async GetInfo(@Request() req) {
     return this.registerService.GetInfo(req.user.userId);
   }
+  //*/
+
 
   @Get('/random')
   //@Header('Content-Type', 'image/jpeg')
