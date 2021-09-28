@@ -23,6 +23,7 @@ class Resume_topNavbar extends React.Component {
 			privacy : '',
 			color : '',
 			index : 0,
+			owner :  false,
 			stat  : 'unready'
 		}
 
@@ -40,46 +41,18 @@ class Resume_topNavbar extends React.Component {
 		.then(response => response.text())
 		.then((datas) => {
 			this.setState({
-				userID : datas
+				userID : datas,
 			})
 			// console.log('this.state.userID1 :'+this.state.userID)
 		});
 		
-		// console.log('in contructs'+this.state.userID)
-		// var userID
 		// var resumeID = '6142398e3e8c5c1df01304cc'
-		// var workHistorys
-		// var educationHistorys
-	}
-		
-	getDatas(){
-		fetch("http://localhost:2000/myresume/"+this.state.resumeID,{
-			method: "GET",
-			headers: {
-				"Access-Control-Allow-Origin": "*",
-				"Access-Control-Allow-Methods": "*",
-				"Access-Control-Allow-Credentials": true,
-				"Content-Type": "application/json"
-			},
-		})
-		.then(response => response.json())
-		.then((datas) => {
-			this.setState({
-				workHistorys : datas.workHistorys,
-				educationHistorys : datas.educationHistorys,
-				certificates : datas.certificates,
-				additionalskill : datas.additionalskill,
-				interestedjob : datas.interestedjob,
-				color : datas.Color,
-				privacy : datas.Privacy,
-			})
-		});
-
 	}
 		
 	getResumeID(e){
-		const userid = this.state.userID
-		const index = e
+		const userid = this.state.userID ;
+		const index = e ;
+		const owner = this.state.owner ;
 		console.log('in getResumeID index is :' + index + ' userid is: ' + userid )
 		fetch("http://localhost:2000/portfolio/user/"+ userid,{
 			method: "GET",
@@ -92,12 +65,60 @@ class Resume_topNavbar extends React.Component {
 		})
 		.then(response => response.json())
 		.then((datas) => {
+			
 			// console.log('real resumeID:' + JSON.stringify(datas[0].ResumeId[0]))
 			this.setState({
 				resumeID : datas[index].ResumeId[0],
-				stat : 'ready',
 			})
+		}).catch(function() {
+			if(owner){
+				alert("You haven't created this part, Please create first");
+				window.location = ("editprofile");
+			}else{
+				alert('This portfolio is not exist!');
+			}
+			
 		});
+		
+
+	}
+
+	getDatas(){
+		
+		fetch("http://localhost:2000/myresume/"+this.state.resumeID,{
+			method: "GET",
+			headers: {
+				"Access-Control-Allow-Origin": "*",
+				"Access-Control-Allow-Methods": "*",
+				"Access-Control-Allow-Credentials": true,
+				"Content-Type": "application/json"
+			},
+		})
+		.then(response => response.json())
+		.then((datas) => {
+			// console.log( 'in getDatas1 :' + JSON.stringify(this.state))
+			if(datas.UserId == this.state.userID){
+				this.setState({
+					owner : true,
+				})
+			}else{
+				this.setState({
+					owner : false,
+				})
+			}
+			this.setState({
+				workHistorys : datas.workHistorys,
+				educationHistorys : datas.educationHistorys,
+				certificates : datas.certificates,
+				additionalskill : datas.additionalskill,
+				interestedjob : datas.interestedjob,
+				color : datas.Color,
+				privacy : datas.Privacy,
+				stat : 'ready'
+			})
+			// console.log( 'in getDatas2 :' + JSON.stringify(this.state))
+		});
+
 	}
 
 	portfoliotab1 = () => {
@@ -116,8 +137,6 @@ class Resume_topNavbar extends React.Component {
 		})
 		console.log('indexfff',index)
 		this.getResumeID(index);
-		this.getDatas();
-
 	}
 
 	portfoliotab3 = () => {
@@ -126,7 +145,6 @@ class Resume_topNavbar extends React.Component {
 			index : 2,
 		})
 		this.getResumeID(index);
-		this.getDatas();
 
 	}
 
@@ -140,7 +158,10 @@ class Resume_topNavbar extends React.Component {
 		document.body.appendChild(script);
 
 		console.log('topnav stop mount')
-		
+		console.log( 'before update state :' + JSON.stringify(this.state))
+	}
+	componentDidUpdate(){
+		console.log( 'state updated now state :' + JSON.stringify(this.state))
 	}
 	
 	shouldComponentUpdate(nextProps, nextState){
@@ -148,14 +169,16 @@ class Resume_topNavbar extends React.Component {
 		if(this.state.resumeID===''){
 			// console.log(1)
 			return true
-		}else if(this.state.color === '' ){
-			// console.log(2)
-			return true
-
 		}else if(this.state.resumeID !== nextState.resumeID){
 			// console.log(3)
 			return true
 		}else if(this.state.color !== nextState.color){
+			// console.log(3)
+			return true
+		}else if(this.state.stat !== 'ready'){
+			// console.log(3)
+			return true
+		}else if(this.state.owner !== nextState.owner){
 			// console.log(3)
 			return true
 		}else{
@@ -176,15 +199,16 @@ class Resume_topNavbar extends React.Component {
 			// console.log(this.state.resumeID)
 		}
 		if(this.state.resumeID !== ''){
-			// console.log('call getDatas');
+			// alert('call getDatas');
 			this.getDatas();
 		}else{
-			// console.log('getDatas not called')
+			// alert('getDatas not called')
 		}
+		
 
 
 
-		console.log('state : ' + JSON.stringify(this.state))
+		console.log('in render() state : ' + JSON.stringify(this.state))
 
 		return (
 			
