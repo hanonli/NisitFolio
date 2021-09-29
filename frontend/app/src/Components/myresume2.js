@@ -66,6 +66,14 @@ class MyResume2 extends React.Component {
                 "Job_JobName": "กวาดพื้นที่ logger room",
                 "Job_SkillName": ["มวยปล้ำ", "ชักกะเย่อ", "การซ่อมแซมหรือเปลี่ยนวาล์ว ปั๊ม เครื่องแลกเปลี่ยนความร้อน คอมเพรสเซอร์ กังหันไอน้ำ และอุปกรณ์ควบคุมไฮดรอลิกหรือนิวแมติก "]
         }; //มันควรชื่อ jobskill มากกว่าป่าววะ
+        const interestedJobnoskill = {
+            "id": "6135805cd633f137e4559264",
+            "UserId": "61358059d633f137e455925c",
+            "Job_Objective": ["อยากหวั่นไหว"],
+            "Job_Score": [],
+            "Job_JobName": "กวาดพื้นที่ logger room",
+            "Job_SkillName": []
+    }; //มันควรชื่อ jobskill มากกว่าป่าววะ
         return (
             <div class="resume2">
                 <div class="myresume-3">
@@ -79,7 +87,16 @@ class MyResume2 extends React.Component {
                 <MyresumeWork data={workdata}></MyresumeWork>
                 <MyresumeWork data={[]} owner={true}></MyresumeWork>
                 <MyResumeSkill addSkill={additionalSkills} intJob={interestedJob}></MyResumeSkill>
+                <h2>ไม่มีเหี้ยไรสักอย่าง แต่เป็นเจ้าของ</h2>
                 <MyResumeSkill addSkill={[]} owner={true}></MyResumeSkill>
+                <h2>เคสที่มีแต่ jobskill</h2>
+                <MyResumeSkill intJob={interestedJob}></MyResumeSkill>
+                <h2>เคสที่มีแต่ additionalSkills</h2>
+                <MyResumeSkill addSkill={additionalSkills} owner={true}></MyResumeSkill>
+                <h2>เคสที่มี intjob แต่ในนั้น array Job_SkillName ไม่มีสมาชิก</h2>
+                <MyResumeSkill addSkill={[]} intJob={interestedJobnoskill} owner={true}></MyResumeSkill>
+                <p>เหตุผลคือถ้าอุตส่าห์มีสกิลทั้งทีแล้วทำไมต้องรอให้มีสกิลเสริม หรือสกิลตามอาชีพก่อนถึงยอมโชว์ ถ้าเขาใส่มาคงอยากโชว์แหละ</p>
+                
             </div>
                 
         );

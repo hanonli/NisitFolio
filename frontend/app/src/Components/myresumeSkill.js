@@ -97,15 +97,20 @@ class MyResumeSkill extends React.Component {
         let jobskillcontent = [];
         let dummyshow = [];
         if(this.props.intJob?true:false){
-            
-            for(var i = 0; i<interestedJob.Job_SkillName.length; i++){
-                jobskillcontent.push(
-                    <MyResumeScoreSkill skillname={interestedJob.Job_SkillName[i]} score={interestedJob.Job_Score[i]}></MyResumeScoreSkill>
-                );
+            if(interestedJob.Job_SkillName? true:false){
+                if(interestedJob.length !== 0){
+                    for(var i = 0; i<interestedJob.Job_SkillName.length; i++){
+                        jobskillcontent.push(
+                            <MyResumeScoreSkill skillname={interestedJob.Job_SkillName[i]} score={interestedJob.Job_Score[i]}></MyResumeScoreSkill>
+                        );
+                    }
+                }
             }
             
         }
-        if((additionalSkills.length==0) && (this.props.intJob?false:true) && (owner)){
+        const jobskillcheck = (this.props.intJob?true:false)&&(interestedJob.Job_SkillName? (interestedJob.Job_SkillName.length !== 0):false);
+        console.log(jobskillcheck);
+        if((additionalSkills.length===0) && (!jobskillcheck) && (owner)){
             dummyshow.push(<div class="dummycaseSkill"><MyResumeScoreSkill skillname="ทักษะของคุณ" score={10} level="ระดับคะแนน" colour="#505050"></MyResumeScoreSkill></div>);
             dummyshow.push(
             <div class="dummycaseSkill dummycenter">
