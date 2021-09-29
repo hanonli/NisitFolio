@@ -1,7 +1,7 @@
 import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { UserAddSkill, UserJobSkill, AdditionalSkill, JobTitle } from './analytics.schema';
+import { UserAddSkill, UserJobSkill, AdditionalSkill, JobTitle, Analytics } from './analytics.schema';
 import * as mongoose from 'mongoose' ;
 import { ObjectId } from 'mongodb' ;
 import { ConstraintMetadata } from 'class-validator/types/metadata/ConstraintMetadata';
@@ -18,9 +18,42 @@ export class AnalyticsService {
     @InjectModel('AdditionalSkill')
     private AdditionalSkillModel: Model<AdditionalSkill>,
     @InjectModel('JobTitle')
-    private JobTitleModel: Model<JobTitle>,    
+    private JobTitleModel: Model<JobTitle>,
+    @InjectModel('Analytics')
+    private AnalyticsModel: Model<Analytics>,
 
   ) {}
+
+  async GetAnalytics(id: string) {
+    const result = await this.AnalyticsModel.findOne({ UserId: id }).select("-_id -__v -createdAt").exec();
+    //const iso_time = result.updatedAt;
+    //const local_time = iso_time.toLocaleString();
+    //console.log(local_time);
+    return result;
+  }
+
+  async callUpdate(id: string)  {
+    this.UpdateCache(id);
+    return 'Processing.'
+  }
+
+  async UpdateCache(id: string): Promise<any> {
+    const main = await this.findUserJobSkill(id);
+    const additional = await this.additionalAnalytics(id);
+    const found = await this.AnalyticsModel.find({ UserId: id }).countDocuments();
+    console.log("found: " + found);
+    if ( found ) {
+      await this.AnalyticsModel.updateOne({ UserId: id }, { $set: { Main: main, Additional: additional } });
+    }
+    else {
+      console.log("NEW");
+      const newCache = new this.AnalyticsModel({ UserId: id, Main: main, Additional: additional });
+      console.log(newCache)
+      await newCache.save();
+    }
+    console.log("SUCCESS");
+    return "Updated";
+  }
   
   async additionalAnalytics(id: string): Promise<any> {
     const Jobs = await this.UserJobSkillModel.aggregate([
@@ -32,7 +65,7 @@ export class AnalyticsService {
       },
       { $sort: { _id: 1 } },
     ]);
-    console.log("Jobs :", Jobs) ;
+    //console.log("Jobs :", Jobs) ;
     let jobs = [];
     for ( var job of Jobs ) {
       const job_name = job._id.Job_JobName;
@@ -41,30 +74,25 @@ export class AnalyticsService {
       jobs.push({ name: job_THname.Name, THname: job_THname.THName });
     }
 
-    console.log("jobs: ",jobs);
+    //console.log("jobs: ",jobs);
     let finalResults = {};
     finalResults['InterestedJobs'] = jobs;
     const mySkills = await this.AdditionalSkillModel.find({ UserId: id }).select({ AdditionalSkill: 1 , _id: 0 }).distinct('AdditionalSkill');
-    console.log("My Skill: ", mySkills);
+    //console.log("My Skill: ", mySkills);
     finalResults['mySkills'] = mySkills;
 
     for ( var job of jobs ) {
       const job_name = job.name;
-      console.log(job_name);
-      console.log(job.THname);
-      const Users = await this.UserJobSkillModel.find({Job_JobName: { "$in": [job_name, job.THname]}}).select({ UserId: 1, _id: 0 }).distinct('UserId').exec();
-      console.log("Users: ",Users);
-      let users=[];
-      for ( var user of Users ) {
-        //console.log(user);
-        users.push(user.toString());
-      }
-      //console.log(users);
+      //console.log(job_name);
+      //console.log(job.THname);
+      const users = await this.UserJobSkillModel.find({Job_JobName: { "$in": [job_name, job.THname]}}).select({ UserId: 1, _id: 0 }).distinct('UserId').exec();
+      //console.log("Users: ",users);
+
       const numberOfUsers = users.length;
 
       const rawResults = await this.AdditionalSkillModel.aggregate([
         {
-          $match: { UserId: { $in: users } }
+          $match: { UserId: { "$in": users } }
         },
         {  
           $group: {
@@ -75,7 +103,7 @@ export class AnalyticsService {
         { $sort: { total: -1, _id: 1 }}
       ]).exec();
 
-      console.log("Raw Result :",rawResults);
+      //console.log("Raw Result :",rawResults);
 
       let ModifiedResults = [];
       for (var result of rawResults) {
@@ -93,7 +121,7 @@ export class AnalyticsService {
     * Overview
     */
     const totalUsers = await this.UserJobSkillModel.find().select({ UserId: 1, _id: 0 }).distinct('UserId');
-    console.log("Total User: ", totalUsers) ;
+    //console.log("Total User: ", totalUsers) ;
     const totalNumberOfUsers = totalUsers.length;
     const rawResults = await this.AdditionalSkillModel.aggregate([
       {  
@@ -104,7 +132,7 @@ export class AnalyticsService {
       },
       { $sort: {total: -1 , _id: 1 }}
     ]).exec();
-    console.log("RawResult2: ",rawResults);
+    //console.log("RawResult2: ",rawResults);
     let ModifiedResults = [];
     for (var result of rawResults) {
       if (result['_id'].AdditionalSkill == null) {continue;};
@@ -134,22 +162,22 @@ export class AnalyticsService {
                         },
                         { $sort: { _id: 1 }},
     ]) ;
-    console.log(userSkill) ;
+    //console.log(userSkill) ;
     let array = {} ;
     let InterestedJobs = [] ;
     let THnameJobs = [] ;
-    console.log(userSkill) ;
+    //console.log(userSkill) ;
     for ( var job of userSkill ) {
       const job_name = job._id.Job_JobName;
       const job_THname = await this.JobTitleModel.findOne({ $or: [ { THName: job_name }, { Name: job_name }]}).select({ Name: 1,THName: 1, _id: 0 }).exec();
       InterestedJobs.push(job_name) ;
       THnameJobs.push({ "name": job_THname.Name, "THname": job_THname.THName })
     }
-    console.log("THName: ", THnameJobs) ;
+    //console.log("THName: ", THnameJobs) ;
     array['InterestedJobs'] = THnameJobs ;
 
     const mySkills = await this.UserJobSkillModel.find({ UserId: UserId }).select({ Job_SkillName: 1 , _id: 0 }).distinct('Job_SkillName').exec();
-    console.log("MySkill: ", mySkills) ;
+    //console.log("MySkill: ", mySkills) ;
     array['mySkills'] = mySkills;
 
     for (var job of InterestedJobs) {
@@ -164,7 +192,7 @@ export class AnalyticsService {
                         },
                         { $sort : {total: -1, _id: 1}},
       ])
-      console.log("SumSkill: ", SumSkill) ; 
+      //console.log("SumSkill: ", SumSkill) ; 
       const userList = await this.UserJobSkillModel.aggregate([
                         { $match: { Job_JobName: job } },
                         { 
@@ -174,7 +202,7 @@ export class AnalyticsService {
                           }
                         }
       ])
-      console.log("userList: ", userList) ;
+      //console.log("userList: ", userList) ;
       //console.log(SumSkill) ;
       let numberOfUsers = userList.length ;
       array[job] = {numberOfUsers: numberOfUsers} ;
@@ -185,7 +213,7 @@ export class AnalyticsService {
         const _sum = i.total ;
         const mean = i.mean ;
         const AllUser = await this.UserJobSkillModel.find({Job_JobName: job, Job_SkillName: _name}).sort({ Job_Score: 1 }).exec() ;
-        console.log("AllUser: ", AllUser) ;
+        //console.log("AllUser: ", AllUser) ;
         if ( countTop <= 2 || mySkills.includes(_name) ) {  
           // ---------- AllUser Score --------------//
           
@@ -220,7 +248,7 @@ export class AnalyticsService {
     // ----------------------------------------- Overview -------------------------------------------------
 
     const users = await this.UserJobSkillModel.find( {Job_JobName: { "$in" : InterestedJobs }} ).select({ UserId: 1, _id: 0 }).distinct('UserId');
-    console.log("users :", users) ;
+    //console.log("users :", users) ;
     const numberOfUsers = users.length;
     
     const New = await this.UserJobSkillModel.aggregate([
@@ -238,7 +266,7 @@ export class AnalyticsService {
         $sort: { total: -1 , _id: 1 },
       },
     ])
-    console.log("New: ", New) ;
+    //console.log("New: ", New) ;
     let temp2 = [] ;
     let percentage = 0 ;
     
@@ -247,7 +275,7 @@ export class AnalyticsService {
       const Skill = i._id.Job_SkillName ;
       const total = i.total ;
       const AllUserScore = await this.UserJobSkillModel.find( { Job_JobName: { "$in": InterestedJobs }, Job_SkillName: Skill } ).select({ UserId: 1, Job_Score: 1, _id: 0 }).sort({Job_Score: 1}) ;
-      console.log("AllUserSCore: ", AllUserScore) ;
+      //console.log("AllUserSCore: ", AllUserScore) ;
       let AllScore = [] ;
       let UserScore = null ;
       if (countTop <= 2 || mySkills.includes(Skill)) {
@@ -314,3 +342,4 @@ function find_mode( arr: any[] ): any {
   }
   return [Score, freq, mode];
 }
+
