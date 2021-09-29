@@ -32,6 +32,12 @@ export class Portfolio2 {
   @Prop()
   Port_Date: string;
 
+  @Prop()
+  Port_Name: string;
+
+  @Prop()
+  Port_Info: string;
+
   
 }
 

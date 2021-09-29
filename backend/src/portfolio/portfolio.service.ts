@@ -131,6 +131,14 @@ export class PortService {
         port.Port_Tag = CreateDto.Port_Tag;
       if (CreateDto.Port_Privacy != null)
         port.Port_Privacy = CreateDto.Port_Privacy;
+      //---------------------------
+      if (CreateDto.Port_Name != null)
+        port.Port_Name = CreateDto.Port_Name;
+      if (CreateDto.Port_Info != null)
+        port.Port_Info = CreateDto.Port_Info;
+      if (CreateDto.Port_Date != null)
+        port.Port_Date = CreateDto.Port_Date;
+      //---------------------------
       if (CreateDto.Pic != null)
         portfoliopic.Pic = CreateDto.Pic;
       if (CreateDto.Description != null)
