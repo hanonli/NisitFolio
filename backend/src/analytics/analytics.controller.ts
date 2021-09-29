@@ -18,5 +18,20 @@ export class AnalyticsController {
   async findUserJobSkill(@Param('id') id: string): Promise<any> {
     return this.analyticsService.findUserJobSkill(id);
   }
+
+  @Post('/:id')
+  async UpdateAnalytics(
+    @Param('id') id: string
+  ): Promise<any> {
+    return this.analyticsService.callUpdate(id);
+  }
+
+  @Get('/:id')
+  async GetAnalytics(
+    @Param('id') id: string
+  ): Promise<any> {
+    return this.analyticsService.GetAnalytics(id);
+  }
+
   
 }

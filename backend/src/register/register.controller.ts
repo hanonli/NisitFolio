@@ -106,6 +106,7 @@ export class RegisterController {
     return this.registerService.DeleteInterestedJob(req.user.userId,id);
   }
 
+  
   @UseGuards(JwtAuthGuard)
   @Get("getinfo")
   async GetInfo(@Request() req) {

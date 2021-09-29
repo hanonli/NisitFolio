@@ -185,8 +185,8 @@ $(document).on("click", "#edit-work", function () {
     backup_month_endwork = for_edit["backup_month_endwork"];
     $('#regist4_cb').prop('checked', for_edit.regist4_cb);
     if (for_edit.regist4_cb == true) {
-        $("#year_endwork").addClass("dis_input4");
-        $("#month_endwork").addClass("dis_input4");
+        $("#year_endwork").prop("disabled", true);
+        $("#month_endwork").prop("disabled", true);
     }
     document.getElementById("inform_work").value = for_edit.inform_work;
 });
@@ -220,18 +220,22 @@ $(document).on("click", "#can_del_work", function () {
 
 $(document).on('change', "#regist4_cb", function () {
     if ($('#regist4_cb').prop('checked') == true) {
-        $(".my_year_endwork").addClass("dis_input444");
-        $(".my_month_endwork").addClass("dis_input444");
+        /*$("#year_endwork").addClass("dis_input444");
+        $("#month_endwork").addClass("dis_input444");*/
+        $("#year_endwork").prop("disabled", true);
+        $("#month_endwork").prop("disabled", true);
         backup_year_endwork = document.getElementById("year_endwork").selectedIndex;
         backup_month_endwork = document.getElementById("month_endwork").selectedIndex;
         document.getElementById("year_endwork").selectedIndex = "0";
         document.getElementById("month_endwork").selectedIndex = "0";
     }
     else {
-        $(".my_year_endwork").removeClass("dis_input444");
-        $(".my_month_endwork").removeClass("dis_input444");
-        $(".my_year_endwork").removeClass("error_select_work");
-        $(".my_month_endwork").removeClass("error_select_work");
+        /*$("#year_endwork").removeClass("dis_input444");
+        $("#month_endwork").removeClass("dis_input444");*/
+        $("#year_endwork").prop("disabled", false);
+        $("#month_endwork").prop("disabled", false);
+        $("#year_endwork").removeClass("is-invalid");
+        $("#month_endwork").removeClass("is-invalid");
         document.getElementById("year_endwork").selectedIndex = backup_year_endwork;
         document.getElementById("month_endwork").selectedIndex = backup_month_endwork;
     }
@@ -239,43 +243,43 @@ $(document).on('change', "#regist4_cb", function () {
 
 $(document).on('change', "#jobtype_work", function () {
     if (document.getElementById("jobtype_work").selectedIndex != 0) {
-        $("#jobtype_work").removeClass("error_select_work");
+        $("#jobtype_work").removeClass("is-invalid");
     }
 });
 
 $(document).on('change', "#jobname_work", function () {
     if (document.getElementById("jobname_work").selectedIndex != 0) {
-        $("#jobname_work").removeClass("error_select_work");
+        $("#jobname_work").removeClass("is-invalid");
     }
 });
 
 $(document).on('change', "#year_startwork", function () {
     if (document.getElementById("year_startwork").selectedIndex != 0) {
-        $("#year_startwork").removeClass("error_select_work");
+        $("#year_startwork").removeClass("is-invalid");
     }
 });
 
 $(document).on('change', "#month_startwork", function () {
     if (document.getElementById("month_startwork").selectedIndex != 0) {
-        $("#month_startwork").removeClass("error_select_work");
+        $("#month_startwork").removeClass("is-invalid");
     }
 });
 
 $(document).on('change', "#year_endwork", function () {
     if (document.getElementById("year_endwork").selectedIndex != 0) {
-        $("#year_endwork").removeClass("error_select_work");
+        $("#year_endwork").removeClass("is-invalid");
     }
 });
 
 $(document).on('change', "#month_endwork", function () {
     if (document.getElementById("month_endwork").selectedIndex != 0) {
-        $("#month_endwork").removeClass("error_select_work");
+        $("#month_endwork").removeClass("is-invalid");
     }
 });
 
 $(document).on('change', "#salary_work", function () {
     if (Number.isNaN(parseInt(document.getElementById("salary_work").value)) == false) {
-        $("#salary_work").removeClass("error_select_work");
+        $("#salary_work").removeClass("is-invalid");
     }
 });
 
@@ -299,75 +303,75 @@ $(document).on('click', "#submit-work", function () {
     var regist4_cb = $('#regist4_cb').prop('checked');
     var inform_work = document.getElementById("inform_work").value;
     if (document.getElementById("jobtype_work").selectedIndex == 0 && document.getElementById("jobname_work").value == "" && document.getElementById("year_startwork").value == "" && document.getElementById("month_startwork").value == "") {
-        $("#jobtype_work").addClass("error_select_work");
-        $("#jobname_work").addClass("error_select_work");
-        $("#year_startwork").addClass("error_select_work");
-        $("#month_startwork").addClass("error_select_work");
+        $("#jobtype_work").addClass("is-invalid");
+        $("#jobname_work").addClass("is-invalid");
+        $("#year_startwork").addClass("is-invalid");
+        $("#month_startwork").addClass("is-invalid");
     }
     else if (document.getElementById("jobname_work").value == "" && document.getElementById("year_startwork").value == "" && document.getElementById("month_startwork").value == "") {
-        $("#jobname_work").addClass("error_select_work");
-        $("#year_startwork").addClass("error_select_work");
-        $("#month_startwork").addClass("error_select_work");
+        $("#jobname_work").addClass("is-invalid");
+        $("#year_startwork").addClass("is-invalid");
+        $("#month_startwork").addClass("is-invalid");
     }
     else if (document.getElementById("jobtype_work").selectedIndex == 0 && document.getElementById("year_startwork").value == "" && document.getElementById("month_startwork").value == "") {
-        $("#jobtype_work").addClass("error_select_work");
-        $("#year_startwork").addClass("error_select_work");
-        $("#month_startwork").addClass("error_select_work");
+        $("#jobtype_work").addClass("is-invalid");
+        $("#year_startwork").addClass("is-invalid");
+        $("#month_startwork").addClass("is-invalid");
     }
     else if (document.getElementById("jobtype_work").selectedIndex == 0 && document.getElementById("jobname_work").value == "" && document.getElementById("year_startwork").value == "" && document.getElementById("month_startwork").value == "") {
-        $("#jobtype_work").addClass("error_select_work");
-        $("#jobname_work").addClass("error_select_work");
-        $("#month_startwork").addClass("error_select_work");
+        $("#jobtype_work").addClass("is-invalid");
+        $("#jobname_work").addClass("is-invalid");
+        $("#month_startwork").addClass("is-invalid");
     }
     else if (document.getElementById("jobtype_work").selectedIndex == 0 && document.getElementById("jobname_work").value == "" && document.getElementById("year_startwork").value == "") {
-        $("#jobtype_work").addClass("error_select_work");
-        $("#jobname_work").addClass("error_select_work");
-        $("#year_startwork").addClass("error_select_work");
+        $("#jobtype_work").addClass("is-invalid");
+        $("#jobname_work").addClass("is-invalid");
+        $("#year_startwork").addClass("is-invalid");
     }
     else if (document.getElementById("jobtype_work").selectedIndex == 0 && document.getElementById("jobname_work").value == "") {
-        $("#jobtype_work").addClass("error_select_work");
-        $("#jobname_work").addClass("error_select_work");
+        $("#jobtype_work").addClass("is-invalid");
+        $("#jobname_work").addClass("is-invalid");
     }
     else if (document.getElementById("jobtype_work").selectedIndex == 0 && document.getElementById("year_startwork").value == "") {
-        $("#jobtype_work").addClass("error_select_work");
-        $("#year_startwork").addClass("error_select_work");
+        $("#jobtype_work").addClass("is-invalid");
+        $("#year_startwork").addClass("is-invalid");
     }
     else if (document.getElementById("jobtype_work").selectedIndex == 0 && document.getElementById("month_startwork").value == "") {
-        $("#jobtype_work").addClass("error_select_work");
-        $("#month_startwork").addClass("error_select_work");
+        $("#jobtype_work").addClass("is-invalid");
+        $("#month_startwork").addClass("is-invalid");
     }
     else if (document.getElementById("jobname_work").value == "" && document.getElementById("year_startwork").value == "") {
-        $("#jobname_work").addClass("error_select_work");
-        $("#year_startwork").addClass("error_select_work");
+        $("#jobname_work").addClass("is-invalid");
+        $("#year_startwork").addClass("is-invalid");
     }
     else if (document.getElementById("jobname_work").value == "" && document.getElementById("month_startwork").value == "") {
-        $("#jobname_work").addClass("error_select_work");
-        $("#month_startwork").addClass("error_select_work");
+        $("#jobname_work").addClass("is-invalid");
+        $("#month_startwork").addClass("is-invalid");
     }
     else if (document.getElementById("year_startwork").value == "" && document.getElementById("month_startwork").value == "") {
-        $("#year_startwork").addClass("error_select_work");
-        $("#month_startwork").addClass("error_select_work");
+        $("#year_startwork").addClass("is-invalid");
+        $("#month_startwork").addClass("is-invalid");
     }
     else if (document.getElementById("jobtype_work").selectedIndex == 0) {
-        $("#jobtype_work").addClass("error_select_work");
+        $("#jobtype_work").addClass("is-invalid");
     }
     else if (document.getElementById("jobname_work").value == "") {
-        $("#jobname_work").addClass("error_select_work");
+        $("#jobname_work").addClass("is-invalid");
     }
     else if (document.getElementById("year_startwork").value == "") {
-        $("#year_startwork").addClass("error_select_work");
+        $("#year_startwork").addClass("is-invalid");
     }
     else if (document.getElementById("month_startwork").value == "") {
-        $("#month_startwork").addClass("error_select_work");
+        $("#month_startwork").addClass("is-invalid");
     }
     else if (isNumberTab4(document.getElementById("salary_work").value) == false) {
-        $("#salary_work").addClass("error_select_work");
+        $("#salary_work").addClass("is-invalid");
     }
     else if ($('#regist4_cb').prop('checked') == false && parseInt(document.getElementById("year_endwork").value) < parseInt(document.getElementById("year_startwork").value)) {
-        $("#year_endwork").addClass("error_select_work");
+        $("#year_endwork").addClass("is-invalid");
     }
     else if ($('#regist4_cb').prop('checked') == false && parseInt(document.getElementById("year_endwork").value) == parseInt(document.getElementById("year_startwork").value) && parseInt(document.getElementById("month_endwork").value) < parseInt(document.getElementById("month_startwork").value)) {
-        $("#month_endwork").addClass("error_select_work");
+        $("#month_endwork").addClass("is-invalid");
     }
     else {
         if (choose_function == 1) {
@@ -440,13 +444,15 @@ $(document).on('hide.bs.modal', "#registab4Modal", function () {
     document.getElementById("year_endwork").selectedIndex = "0";
     document.getElementById("month_endwork").selectedIndex = "0";
     $('#regist4_cb').prop('checked', false);
-    $(".my_year_endwork").removeClass("dis_input4");
-    $(".my_month_endwork").removeClass("dis_input4");
-    $("#jobtype_work").removeClass("error_select_work");
-    $("#jobname_work").removeClass("error_select_work");
-    $("#year_startwork").removeClass("error_select_work");
-    $("#month_startwork").removeClass("error_select_work");
-    $("#salary_work").removeClass("error_select_work");
+    /*$("#year_endwork").removeClass("dis_input4");
+    $("#month_endwork").removeClass("dis_input4");*/
+    $("#year_endwork").prop("disabled", false);
+    $("#month_endwork").prop("disabled", false);
+    $("#jobtype_work").removeClass("is-invalid");
+    $("#jobname_work").removeClass("is-invalid");
+    $("#year_startwork").removeClass("is-invalid");
+    $("#month_startwork").removeClass("is-invalid");
+    $("#salary_work").removeClass("is-invalid");
     document.getElementById("inform_work").value = "";
     backup_year_endwork = 0, backup_month_endwork = 0;
 });

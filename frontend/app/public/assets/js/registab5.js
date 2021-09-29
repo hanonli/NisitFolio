@@ -145,8 +145,8 @@ $(document).on("click", "#edit-certi", function () {
     id_list_certi_edit = $(this).parents().parents().parents().attr('id');
     //console.log("id_list_certi111:", id_list_certi_edit);
     $('#exampleModal11112').modal('toggle');
-    $("#nm_certi").removeClass("error_select_certi");
-    $("#yearpicker_111").removeClass("error_select_certi");
+    $("#nm_certi").removeClass("is-invalid");
+    $("#yearpicker_111").removeClass("is-invalid");
     $("#preview_before_upload").remove();
     $("#icon-upload-112").remove();
     $("#text-upload-112").remove();
@@ -170,8 +170,8 @@ $(document).on("click", ".frame_add_certi", function () {
     //console.log(`chosoe: ${choose_function}`);
     $('#exampleModal11112').modal('toggle');
     $("#preview_before_upload").remove();
-    $("#nm_certi").removeClass("error_select_certi");
-    $("#yearpicker_111").removeClass("error_select_certi");
+    $("#nm_certi").removeClass("is-invalid");
+    $("#yearpicker_111").removeClass("is-invalid");
     $('.for_upload112').append(`<img id="icon-upload-112" src="assets/images/upload_file.png" width="85px" height="85px" class="up_img"></img>`);
     $('.for_upload112').append(`<h2 class="text_up5" id="text-upload-112">อัพโหลดใบรับรองของคุณได้ที่นี่</h2>`);
     $('.for_upload112').append(`<h2 class="text_up5-1" id="text-upload-116">(ไฟล์สกุล jpg jpeg หรือ png เท่านั้น)</h2>`);
@@ -212,13 +212,13 @@ $(document).on('click', "#summit-to-delete-certi", function () {
 
 $(document).on("change", "#nm_certi", function () {
     if (document.getElementById("nm_certi").value != "") {
-        $("#nm_certi").removeClass("error_select_certi");
+        $("#nm_certi").removeClass("is-invalid");
     }
 });
 
 $(document).on("change", "#yearpicker_111", function () {
     if (document.getElementById("yearpicker_111").selectedIndex != 0) {
-        $("#yearpicker_111").removeClass("error_select_certi");
+        $("#yearpicker_111").removeClass("is-invalid");
     }
 });
 
@@ -227,16 +227,16 @@ $(document).on('click', "#submit-certi", function () {
     year_certi = document.getElementById("yearpicker_111").value;
     //file_pic_certi = document.getElementById("image-upload112");
     if (document.getElementById("nm_certi").value == "" && year_certi == "" && picOfCerti == '') {
-        $("#nm_certi").addClass("error_select_certi");
-        $("#yearpicker_111").addClass("error_select_certi");
+        $("#nm_certi").addClass("is-invalid");
+        $("#yearpicker_111").addClass("is-invalid");
         $("#to_upload112").addClass("error_select_certi");
     }
     else if (year_certi == "") {
-        $("#yearpicker_111").addClass("error_select_certi");
+        $("#yearpicker_111").addClass("is-invalid");
     }
     else if (document.getElementById("nm_certi").value == "") {
         //alert("error!!!!");
-        $("#nm_certi").addClass("error_select_certi");
+        $("#nm_certi").addClass("is-invalid");
     }
     else if (picOfCerti == '' && choose_function == 2) {
         $("#to_upload112").addClass("error_select_certi");
