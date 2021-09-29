@@ -65,6 +65,7 @@ class MyResumeSkill extends React.Component {
         window.location = ("editprofile");
     }
     render() {
+        const owner = this.props.owner? this.props.owner: false;
         const additionalSkills = this.props.addSkill? this.props.addSkill: [];
         const interestedJob = this.props.intJob? this.props.intJob: {}; //มันควรชื่อ jobskill มากกว่าป่าววะ
         const occupation = this.props.occupation? this.props.occupation: "นี้";
@@ -104,7 +105,7 @@ class MyResumeSkill extends React.Component {
             }
             
         }
-        if((additionalSkills.length==0) && (this.props.intJob?false:true)){
+        if((additionalSkills.length==0) && (this.props.intJob?false:true) && (owner)){
             dummyshow.push(<div class="dummycaseSkill"><MyResumeScoreSkill skillname="ทักษะของคุณ" score={10} level="ระดับคะแนน" colour="#505050"></MyResumeScoreSkill></div>);
             dummyshow.push(
             <div class="dummycaseSkill dummycenter">
