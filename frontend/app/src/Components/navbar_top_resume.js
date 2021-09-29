@@ -18,8 +18,8 @@ class Resume_topNavbar extends React.Component {
 			workHistorys : [],
 			educationHistorys : [],
 			certificates : [],
-			additionalskill : [],
-			interestedjob : [],
+			additionalSkills : [],
+			interestedJob : [],
 			privacy : '',
 			color : '',
 			index : 0,
@@ -48,11 +48,20 @@ class Resume_topNavbar extends React.Component {
 		
 		// var resumeID = '6142398e3e8c5c1df01304cc'
 	}
+
+	injectScript = () =>{
+		const script = document.createElement("script");
+		script.src = "assets/js/navbar_top_resume_script.js";
+		document.body.appendChild(script);
+		// alert('oirejger')
+		// this.forceUpdate();
+	}
 		
-	getResumeID(e){
+	getResumeID(e=0){
 		const userid = this.state.userID ;
 		const index = e ;
 		const owner = this.state.owner ;
+		// console.log('getResumeID called')
 		console.log('in getResumeID index is :' + index + ' userid is: ' + userid )
 		fetch("http://localhost:2000/portfolio/user/"+ userid,{
 			method: "GET",
@@ -65,11 +74,13 @@ class Resume_topNavbar extends React.Component {
 		})
 		.then(response => response.json())
 		.then((datas) => {
-			
 			// console.log('real resumeID:' + JSON.stringify(datas[0].ResumeId[0]))
+			// console.log(JSON.stringify(datas));
+			// console.log('real resumeID:' + JSON.stringify(datas[0].ResumeId[index]))
 			this.setState({
-				resumeID : datas[index].ResumeId[0],
+				resumeID : datas[0].ResumeId[index],
 			})
+
 		}).catch(function() {
 			if(owner){
 				alert("You haven't created this part, Please create first");
@@ -84,7 +95,8 @@ class Resume_topNavbar extends React.Component {
 	}
 
 	getDatas(){
-		
+		console.log('getDatas called')
+		console.log( 'in getDatas :' + this.state.resumeID)
 		fetch("http://localhost:2000/myresume/"+this.state.resumeID,{
 			method: "GET",
 			headers: {
@@ -96,7 +108,7 @@ class Resume_topNavbar extends React.Component {
 		})
 		.then(response => response.json())
 		.then((datas) => {
-			// console.log( 'in getDatas1 :' + JSON.stringify(this.state))
+			// console.log( 'in getDatas1 :' + JSON.stringify(datas))
 			if(datas.UserId == this.state.userID){
 				this.setState({
 					owner : true,
@@ -110,81 +122,129 @@ class Resume_topNavbar extends React.Component {
 				workHistorys : datas.workHistorys,
 				educationHistorys : datas.educationHistorys,
 				certificates : datas.certificates,
-				additionalskill : datas.additionalskill,
-				interestedjob : datas.interestedjob,
+				additionalSkills : datas.additionalSkills,
+				interestedJob : datas.interestedJob,
 				color : datas.Color,
 				privacy : datas.Privacy,
 				stat : 'ready'
 			})
-			// console.log( 'in getDatas2 :' + JSON.stringify(this.state))
+			// console.log( 'in getDatas2 :' + JSON.stringify(datas.educationHistorys))
 		});
 
 	}
 
 	portfoliotab1 = () => {
+		// console.log('Porfoliotab1 is called')
 		var index = 0;
 		this.setState({
+			workHistorys : [],
+			educationHistorys : [],
+			certificates : [],
+			additionalSkills : [],
+			interestedJob : [],
+			privacy : '',
+			color : '',
 			index : 0,
+			stat  : 'unready'
 		});
+		// console.log('call GetreumeID from tab1')
 		this.getResumeID(index);
-		this.getDatas();
+		// this.getDatas();
 	}
 
 	portfoliotab2 = () => {
-		var index = 1;
+		// console.log('Porfoliotab2 is called')
+		var index = 1 ;
 		this.setState({
+			workHistorys : [],
+			educationHistorys : [],
+			certificates : [],
+			additionalSkills : [],
+			interestedJob : [],
+			privacy : '',
+			color : '',
 			index : 1,
+			stat  : 'unready'
 		})
-		console.log('indexfff',index)
+		// console.log('indexfff',index)
+		// console.log('call GetreumeID from tab2')
 		this.getResumeID(index);
+		// this.getDatas();
+		// this.forceUpdate()
 	}
 
 	portfoliotab3 = () => {
 		var index = 2;
 		this.setState({
+			workHistorys : [],
+			educationHistorys : [],
+			certificates : [],
+			additionalSkills : [],
+			interestedJob : [],
+			privacy : '',
+			color : '',
 			index : 2,
+			stat  : 'unready'
 		})
 		this.getResumeID(index);
 
 	}
 
+	// handleSection1 = () => {
+	// 	if(this.state.owner){
+			
+	// 		return (
+	// 		<div className='resume_topnav' >
+	// 			<a className='topnav_section1' href='#' > 
+	// 				<img id='icon-myresume-lock'  src="assets/images/outline_lock_black_24dp.png"/> 
+	// 			</a>
+	// 		</div>
+			
+	// 		)
+	// 	}else{
+	// 		return (
+	// 		<div className='resume_topnav' >
+	// 			<a className='topnav_section1' href='#' > 
+	// 				<img id='icon-myresume-lock'  src="assets/images/bookmark_2"/> 
+	// 			</a>
+	// 		</div>
+
+	// 		)
+	// 	}
+	// }
+
+
 	
 	componentDidMount() {
-
-		console.log('topnav start mount')
+		// console.log('topnav start mount')
 		window.addEventListener('load', this.handleLoad);
 		const script = document.createElement("script");
 		script.src = "assets/js/navbar_top_resume_script.js";
 		document.body.appendChild(script);
 
-		console.log('topnav stop mount')
-		console.log( 'before update state :' + JSON.stringify(this.state))
+		// console.log('topnav stop mount')
+		// console.log( 'before update state :' + JSON.stringify(this.state))
 	}
-	componentDidUpdate(){
-		console.log( 'state updated now state :' + JSON.stringify(this.state))
-	}
+	
 	
 	shouldComponentUpdate(nextProps, nextState){
 		// alert( nextState == this.state )
 		if(this.state.resumeID===''){
-			// console.log(1)
 			return true
 		}else if(this.state.resumeID !== nextState.resumeID){
 			// console.log(3)
 			return true
-		}else if(this.state.color !== nextState.color){
+		}else if(this.state.educationHistorys === [] ){
 			// console.log(3)
 			return true
 		}else if(this.state.stat !== 'ready'){
-			// console.log(3)
-			return true
-		}else if(this.state.owner !== nextState.owner){
-			// console.log(3)
+			// console.log('status need to re-render')
 			return true
 		}else{
-			// console.log(4)
+			// console.log('status dont need to re-render')
 			return false
 		}
+
 	
 	}
 
@@ -194,32 +254,26 @@ class Resume_topNavbar extends React.Component {
 		if(this.state.userID !== ''  && this.state.resumeID === ''  ){
 			// console.log('call getResumeID');
 			this.getResumeID(this.state.index);
-		}else{
-			// console.log('getResumeID not called')
-			// console.log(this.state.resumeID)
 		}
-		if(this.state.resumeID !== ''){
+		// console.log('in render() state before : ' + JSON.stringify(this.state))
+		if(this.state.resumeID !== '' && this.state.stat === 'unready' ){
 			// alert('call getDatas');
 			this.getDatas();
-		}else{
-			// alert('getDatas not called')
 		}
-		
 
-
-
-		console.log('in render() state : ' + JSON.stringify(this.state))
+		// console.log('in render() state : ' + JSON.stringify(this.state))
 
 		return (
 			
 			<div className="Resume_topNavbar" id='topNav'>
 				
 				<div  className='myresumetoppath'> 
-					<div className='resume_topnav' >
-						<a className='topnav_lock' href='#' > 
+					{/* {this.handleSection1} */}
+					{/* <div className='resume_topnav' >
+						<a className='topnav_section1' href='#' > 
 							<img id='icon-myresume-lock'  src="assets/images/outline_lock_black_24dp.png"/> 
 						</a>
-					</div>
+					</div> */}
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<div className='resume_topnav' >
 						<div className='resume_selectjob'> 
@@ -233,8 +287,13 @@ class Resume_topNavbar extends React.Component {
 								&nbsp;<a href='#'  onClick={this.portfoliotab3} id='resume_selectjob3'>ตำแหน่งงานที่ 3</a>&nbsp;
 							</h1>
 						</div>
-						
 					</div>
+					<div className='resume_topnav' >
+						<a className='topnav_lock' href='#' > 
+							<img id='icon-myresume-lock'  src="assets/images/outline_lock_black_24dp.png"/> 
+						</a>
+					</div>
+
 				</div>
 				<div>
 					<div class="tab-content" id="myresume1-content">
