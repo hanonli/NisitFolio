@@ -23,7 +23,7 @@ class Portfolio extends React.Component {
 		this.handleLoad = this.handleLoad.bind(this);
 		this.handleSortUpdate = this.handleSortUpdate.bind(this);
 		this.state = {
-			allow: false,
+			allow: true,
 			allowSort: true,
 			/*list: [{ id: "1", name: "Img1" },
 					{ id: "2", name: "Img2" },

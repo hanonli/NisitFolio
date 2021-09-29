@@ -1036,8 +1036,8 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
  */
 *, *::after, *::before {
 	-webkit-user-select: none;
-	-webkit-user-drag: none;
-	-webkit-app-region: no-drag;
+	/*-webkit-user-drag: none;
+	-webkit-app-region: no-drag;*/
 	/*cursor: default;*/
 }
 
