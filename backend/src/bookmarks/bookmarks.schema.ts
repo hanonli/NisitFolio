@@ -87,6 +87,8 @@ export class UserInfo {
   @Prop()
   totalBookmark: Number;
 
+  @Prop()
+  Privacy: String ;
 }
 
 export const UserInfoSchema = SchemaFactory.createForClass(UserInfo);
