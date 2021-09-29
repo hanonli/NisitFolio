@@ -1,3 +1,4 @@
+import { ObjectId } from 'bson';
 import { IsEmail, IsNotEmpty, IsNumberString } from 'class-validator';
 import { AdditionalSkill, Certificate, EducationHistory, InterestedJob, WorkHistory } from '../entity/Register.entity';
 
@@ -40,29 +41,29 @@ export class GetRegisDto {
 
   //--------------------add
 
-  Additionalskill:AdditionalSkill[];
-/*
+  //Additionalskill:AdditionalSkill[];
+
   @IsNotEmpty()
   SoftSkill: string[];
-*/
+
   //--------------------cert
 
-  Certificate:Certificate[];
+  //Certificate:Certificate[];
 
 
-  /*
+  
   @IsNotEmpty()
   CertName: string[];
 
   CertPic: string[];
 
   CertYear: number[];
-*/
+
   //--------------------------ED
 
-  EducationHistory:EducationHistory[];
+  //EducationHistory:EducationHistory[];
   
-/*
+
   @IsNotEmpty()
   Degree: string[];
 
@@ -75,13 +76,13 @@ export class GetRegisDto {
   Grade: number[]; 
 
   Education_End_Year: number[];   
-  */
+  
 
   //-----------------------------work
 
-  WorkHistory:WorkHistory[];
+  //WorkHistory:WorkHistory[];
 
-  /*
+  
 
   @IsNotEmpty()
   Work_JobName: string[];
@@ -103,13 +104,13 @@ export class GetRegisDto {
   SalaryType: string[];
 
   Infomation: string[];
-  */
+  
 
   //----------------------------job
 
-  InterestedJob:InterestedJob[];
+  //InterestedJob:InterestedJob[];
 
-  /*
+  
 
   Job_Objective: string[][];
 
@@ -122,5 +123,22 @@ export class GetRegisDto {
 
   /*@OneToMany(type => CreateDto3, ED => ED)
   ED: CreateDto3[];*/
+  //----------------------new
+
+  
+  user_id:string;
+
+  Account_id:string;
+
+  AdditionalSkill_id:string[];
+
+  Certificate_id:string[];
+
+  EducationHistory_id:string[];
+
+  WorkHistory_id:string[];
+
+  InterestedJob_id:string[];
+//*/
  
 }
