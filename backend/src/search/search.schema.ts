@@ -21,6 +21,7 @@ export interface UserInfo extends Document {
   readonly tags: string[] ,
   readonly AvgScore: number,
   readonly totalBookmark: number,
+  readonly Privacy: string,
 }
 
 // ------------------------------------- Total Bookmark ---------------------------------------
