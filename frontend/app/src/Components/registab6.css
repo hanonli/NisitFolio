@@ -182,11 +182,17 @@
 .tabs_pop {
     margin: 0;
     padding: 0;
-    color: #4e5264;
 }
 .tabs_pop li {
     display: inline-block;
     padding: 5px 25px;
+}
+
+.tab-link_pop:hover{
+    background-color: white;
+    border: solid grey;
+    border-width: 0px 0px 6.5px 0px;
+    color:#000000;
 }
 
 .underline-tabJob1{
@@ -198,7 +204,11 @@
 }
 
 li.current2{
-    border-bottom: 6.5px solid black;
+     border-bottom: 6.5px solid black;
+}
+
+li.current2:hover{
+     border-bottom: 6.5px solid black;
 }
 
 .tabs_pop li.current2 {
@@ -215,8 +225,8 @@ li.current2{
 }
 
 .popup_JOB {
-    position: relative;
-    width: 1150px;
+    position: absolute;
+    width: 1200px !important;
     height: 680px;
     border-radius: 25px;
 }
@@ -281,7 +291,7 @@ li.current2{
 
 .button-add-job1 {
     position: absolute;
-    margin-left: 760px;
+    margin-left: 825px;
     margin-bottom: 15px;
     margin-top: 600px;
 }
@@ -319,7 +329,7 @@ li.current2{
 
 .pos-del-obj-button {
     position: absolute;
-    left: 750px;
+    left: 792px;
     top: 5px;
     z-index: 1;
 }
@@ -450,7 +460,7 @@ li.current2{
 .height-job1 {
     padding-right: 28px;
     height: 110px;
-    width: 885px;
+    width: 930px;
     position: relative;
     left: -86px;
 }
@@ -458,7 +468,7 @@ li.current2{
 .height-job2 {
     padding-right: 28px;
     height: 110px;
-    width: 885px;
+    width: 930px;
     position: relative;
     left: -86px;
 }
@@ -466,7 +476,7 @@ li.current2{
 .height-job3 {
     padding-right: 28px;
     height: 110px;
-    width: 885px;
+    width: 930px;
     position: relative;
     left: -86px;
 }
@@ -486,19 +496,19 @@ li.current2{
 
 .box-slider1{
     position:absolute;
-    right: -40px;
+    right: 20px;
     top: 20px;
 }
 
 .box-slider2{
     position:absolute;
-    right: -40px;
+    right: 20px;
     top: 20px;
 }
 
 .box-slider3{
     position:absolute;
-    right: -40px;
+    right: 20px;
     top: 20px;
 }
 
@@ -537,12 +547,19 @@ li.current2{
 }
 .limit-job-pos-3{
     color: #A4A4A4;
-    font-size: 18px;
-    font-weight: 300;
+    font-size: 16px;
+    font-weight: 400;
     position: absolute;
     bottom: 20vh;
 }
 
 .limit-job-pos-3-red{
     color: red;
+}
+
+.reset-button11{
+    position: relative;
+    right: -565px;
+    top: 10px;
+    cursor: pointer;
 }

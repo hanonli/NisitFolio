@@ -62,6 +62,7 @@
     background-color: transparent;
     border-radius: 20px;
     border: 2px solid #C4C4C4;
+    cursor: pointer;
 }
 
 .user-choose-template{
@@ -78,11 +79,13 @@
     padding-right: 40%;
 }
 
-#text-red-template1{
+.text-template1{
+    position: relative;
     color: black;
     font-size: 24px;
     font-weight: 300;    
-    margin-top: 195%;
+    top: 25%;
+    text-align: center;
 }
 
 #orange-template1{
@@ -115,4 +118,35 @@
     font-weight: 300;
     /*padding-left: 42%;
     padding-right: 40%;*/
+}
+
+#template-color-FF7370{
+    visibility: hidden;
+}
+
+#template-color-FE9666{
+    visibility: hidden;
+}
+
+#template-color-FFCE55{
+    visibility: hidden;
+}
+
+#template-color-01B8AA{
+    visibility: hidden;
+}
+
+#template-color-32A3C7 {
+    visibility: hidden;
+}
+
+.circle-color-template{
+    position: relative;
+    top: 10%;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    background-color: green;
+    justify-content: center;
+    text-align: center;
 }

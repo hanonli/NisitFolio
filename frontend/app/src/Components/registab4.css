@@ -122,13 +122,26 @@
 }
 
 .font-titlet4_1{
-    color:black;
+    color: black;
     font-size: 16px;
     font-weight: 400;
     white-space: nowrap;
-    width: 19vw;
+    width: 7vw;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.font-salary{
+    color: black;
+    font-size: 16px;
+    font-weight: 400;
+    margin-right: 1.3vw;
+}
+
+.font-titlet4_2{
+    color: black;
+    font-size: 16px;
+    font-weight: 400;
 }
 
 .font-boldt3{
@@ -158,7 +171,7 @@
     font-size: 24px;
     font-weight: 400;
     white-space: nowrap;
-    width: 16.9vw;
+    width: 26vw;
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -208,7 +221,7 @@
 }
 
 .salarytype_work1{
-    width: 235px;
+    width: 218px;
 }
 
 .position-salary1{
@@ -281,18 +294,17 @@
     /*---*/
 }
 
-.dis_input444{
-    background-color: #EAEAEA;
+.dis_input4::placeholder {
     color: #cfcfcf;
-    padding: 10px;
-    font-size: 20px;
-    /*border: none;*/
-    border-color: #EAEAEA;
-    /*cursor: pointer;*/
-    border-radius: 2.5vh;
-    padding-left: 30px;
-    pointer-events: none;
-    /*---*/
+    opacity: 1; /* Firefox */
+  }
+  
+.dis_input4:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #cfcfcf;
+}
+  
+.dis_input4::-ms-input-placeholder { /* Microsoft Edge */
+    color: #cfcfcf;
 }
 
 #textOfyear_work{

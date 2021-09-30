@@ -277,7 +277,7 @@ export class Portfolio {
   UserId: string;
 
   @Column()
-  Port_Tag: string;
+  Port_Tag: string[];
 
   @Column()
   Port_Privacy: string;
@@ -317,6 +317,18 @@ export class Resume {
   
   @Column()
   UserId: string;
+
+  @Column()
+  ProfilePic: string;
+
+  @Column()
+  Owner: string;
+
+  @Column()
+  Aboutme: string;
+
+  @Column()
+  Email: string;
 
   @Column()
   TAG: string[];

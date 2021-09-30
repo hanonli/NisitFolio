@@ -82,12 +82,10 @@ function show_all_job() {
             else {
                 grid_Job_skill1 = grid_Job_skill1.replace("{skill1}", ele["skill1"]);
             }
-
         }
         else {
             grid_Job_skill1 = "";
         }
-
         if (ele["skill2"] != "none") {
             if (ele["skill2"].length > 12) {
                 grid_Job_skill2 = grid_Job_skill2.replace("{skill2}", ele["skill2"].slice(0, 11) + "...");
@@ -99,7 +97,6 @@ function show_all_job() {
         else {
             grid_Job_skill2 = "";
         }
-
         if (ele["skill3"] != "none") {
             if (ele["skill3"].length > 12) {
                 grid_Job_skill3 = grid_Job_skill3.replace("{skill3}", ele["skill3"].slice(0, 11) + "...");
@@ -180,6 +177,14 @@ function set_slider_range1(value1) {
             score_slider1 = "2.5";
         }
     });
+    $(document).on("click", "#reset-skill1", function () {
+        $("#each_skill1").prop('selectedIndex', 0);
+        document.getElementById("input_mySlider1").value = "2.5";
+        document.getElementById("input_mySlider1").disabled = true;
+        document.getElementById("input_mySlider1").style.background = 'linear-gradient(to right, #f0a143 0%, #f0a143 ' + 0 + '%, #c4c4c4 ' + 0 + '%, #c4c4c4 100%)';
+        pre_click_slider1 = -1;
+        score_slider1 = "2.5";
+    });
     var slider1 = document.getElementById("input_mySlider1");
     slider1.style.background = 'linear-gradient(to right, #f0a143 0%, #f0a143 ' + (slider1.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 ' + (slider1.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 100%)';
 
@@ -217,6 +222,14 @@ function set_slider_range2(value2) {
             score_slider2 = "2.5";
         }
     });
+    $(document).on("click", "#reset-skill2", function () {
+        $("#each_skill2").prop('selectedIndex', 0);
+        document.getElementById("input_mySlider2").disabled = true;
+        document.getElementById("input_mySlider2").value = "2.5";
+        document.getElementById("input_mySlider2").style.background = 'linear-gradient(to right, #0fe17c 0%, #0fe17c ' + 0 + '%, #c4c4c4 ' + 0 + '%, #c4c4c4 100%)';
+        pre_click_slider2 = -1;
+        score_slider2 = "2.5";
+    });
     var slider2 = document.getElementById("input_mySlider2");
     slider2.style.background = 'linear-gradient(to right, #0fe17c 0%, #0fe17c ' + (slider2.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 ' + (slider2.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 100%)';
     slider2.oninput = function (event) {
@@ -252,6 +265,14 @@ function set_slider_range3(value3) {
             pre_click_slider3 = -1;
             score_slider3 = "2.5";
         }
+    });
+    $(document).on("click", "#reset-skill3", function () {
+        $("#each_skill3").prop('selectedIndex', 0);
+        document.getElementById("input_mySlider3").disabled = true;
+        document.getElementById("input_mySlider3").value = "2.5";
+        document.getElementById("input_mySlider3").style.background = 'linear-gradient(to right, #c98a11 0%, #c98a11 ' + 0 + '%, #c4c4c4 ' + 0 + '%, #c4c4c4 100%)';
+        pre_click_slider3 = -1;
+        score_slider3 = "2.5";
     });
     var slider3 = document.getElementById("input_mySlider3");
     slider3.style.background = 'linear-gradient(to right, #c98a11 0%, #c98a11 ' + (slider3.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 ' + (slider3.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 100%)';
@@ -313,27 +334,8 @@ function GetSkill(jobname2findskill) {
         });
 }
 
-/*$(document).on("change", "#each_skill1", function () {
-    if ($('#each_skill1').val() != "none") {
-        $('#each_skill2').prop("disabled", false);
-        $('#each_skill2').removeClass("dis_input3");
-    }
-    else {
-        //$('#each_skill2').prop("disabled", true);
-        //$('#each_skill2').val("เลือกทักษะของคุณที่เหมาะกับงาน");
-        //$('#each_skill2').addClass("dis_input3");
-    }
-});*/
 
 $(document).on("change", "#each_skill2", function () {
-    /*if ($('#each_skill2').val() != "none") {
-        $('#each_skill3').prop("disabled", false);
-        $('#each_skill3').removeClass("dis_input3");
-    }*/
-
-    // $('#each_skill3').prop("disabled", true);
-    //$('#each_skill3').addClass("dis_input3");
-
     if (document.getElementById("each_skill2").value == document.getElementById("each_skill1").value) {
         $("#each_skill2").addClass("is-invalid");
     }
@@ -370,7 +372,6 @@ $(document).on("change", "#nm_job", function () {
         removeOptionsJob(document.getElementById("each_skill3"));
         GetSkill(jobname2findskill = tomapjobeng);
     }
-
     $(".step-marks").remove();
     $(".step-labels").remove();
     $("#input_mySlider1").remove();
@@ -439,23 +440,34 @@ $(document).on("click", "#edit-job", function () {
     set_slider_range2(for_edit["score_skill2"]);
     set_slider_range3(for_edit["score_skill3"]);
     choose_function = 1;
-
     $('#submit-job11').text('ยืนยัน');
-    //console.log(`chosoe: ${choose_function}`);
-    //console.log(`for_edit:`, for_edit);
-    if (for_edit["obj1"] == "none") {
+    $('#obj-job-01').prop("disabled", false);
+    $("#obj-job-01").removeClass("dis_input3");
+    /*if (for_edit["obj1"] == "none") {
         for_edit["obj1"] = "";
-    }
-    else {
-        $('#obj-job-01').prop("disabled", false);
-        $("#obj-job-01").removeClass("dis_input3");
-    }
-    if (for_edit["obj2"] == "none") {
-        for_edit["obj2"] = "";
     }
     else {
         $('#obj-job-02').prop("disabled", false);
         $("#obj-job-02").removeClass("dis_input3");
+        if (for_edit["obj2"] != "none") {
+            $('#obj-job-03').prop("disabled", false);
+            $("#obj-job-03").removeClass("dis_input3");
+        }
+        else {
+            $('#obj-job-03').prop("disabled", true);
+            $("#obj-job-03").addClass("dis_input3");
+        }
+    }
+    if (for_edit["obj2"] == "none") {
+        for_edit["obj2"] = "";
+        $('#obj-job-03').prop("disabled", true);
+        $("#obj-job-03").addClass("dis_input3");
+    }
+    else {
+        $('#obj-job-02').prop("disabled", false);
+        $("#obj-job-02").removeClass("dis_input3");
+        $('#obj-job-03').prop("disabled", false);
+        $("#obj-job-03").removeClass("dis_input3");
     }
     if (for_edit["obj3"] == "none") {
         for_edit["obj3"] = "";
@@ -463,10 +475,11 @@ $(document).on("click", "#edit-job", function () {
     else {
         $('#obj-job-03').prop("disabled", false);
         $("#obj-job-03").removeClass("dis_input3");
-    }
+    }*/
     $("#obj-job-01").val(for_edit["obj1"]);
     $("#obj-job-02").val(for_edit["obj2"]);
     $("#obj-job-03").val(for_edit["obj3"]);
+
     if (for_edit["obj1"] == "") {
         $("#pos-del-obj-button1").hide();
     }
@@ -486,6 +499,19 @@ $(document).on("click", "#edit-job", function () {
         $("#pos-del-obj-button3").show();
     }
 
+    if ($("#obj-job-01").val() != "") {
+        $('#obj-job-02').prop("disabled", false);
+        $("#obj-job-02").removeClass("dis_input3");
+        if ($("#obj-job-02").val() != "") {
+            $('#obj-job-03').prop("disabled", false);
+            $("#obj-job-03").removeClass("dis_input3");
+        }
+        else {
+            $('#obj-job-03').prop("disabled", true);
+            $("#obj-job-03").addClass("dis_input3");
+        }
+    }
+
     $('#exampleModalJob').modal('toggle');
     setTimeout(function () {
         if (for_edit["skill1"] == "none") {
@@ -496,9 +522,6 @@ $(document).on("click", "#edit-job", function () {
         }
         else {
             $("#each_skill1").prop('selectedIndex', for_edit["skill1_select"]);
-
-            //$('#each_skill1 :selected').text(for_edit["skill1"]);
-            //set_slider_range1(for_edit["score_skill1"]);
             document.getElementById("input_mySlider1").disabled = false;
         }
         if (for_edit["skill2"] == "none") {
@@ -509,8 +532,6 @@ $(document).on("click", "#edit-job", function () {
         }
         else {
             $("#each_skill2").prop('selectedIndex', for_edit["skill2_select"]);
-            //$('#each_skill2 :selected').text(for_edit["skill2"]);
-            //set_slider_range2(for_edit["score_skill2"]);
             document.getElementById("input_mySlider2").disabled = false;
         }
         if (for_edit["skill3"] == "none") {
@@ -522,16 +543,9 @@ $(document).on("click", "#edit-job", function () {
         }
         else {
             $("#each_skill3").prop('selectedIndex', for_edit["skill3_select"]);
-            //$('#each_skill3 :selected').text(for_edit["skill3"]);
-            //set_slider_range3(for_edit["score_skill3"]);
             document.getElementById("input_mySlider3").disabled = false;
         }
     }, 280);
-
-
-    /*alert($("select#each_skill1").prop('selectedIndex'));
-    alert($("select#each_skill2").prop('selectedIndex'));
-    alert($("select#each_skill3").prop('selectedIndex'));*/
 });
 
 document.getElementById("submit-job11").addEventListener("click", function () {
@@ -570,15 +584,6 @@ document.getElementById("submit-job11").addEventListener("click", function () {
             //skill_job_3 = 'none';
             score_slider13 = "2.5";
         }
-        if (obj_job_1 == "") {
-            obj_job_1 = "none";
-        }
-        if (obj_job_2 == "") {
-            obj_job_2 = "none";
-        }
-        if (obj_job_3 == "") {
-            obj_job_3 = "none";
-        }
         if (choose_function == 1) { //edit job after add
             console.log("edit!!!!!!");
             for_edit["name_job"] = name_job;
@@ -595,48 +600,6 @@ document.getElementById("submit-job11").addEventListener("click", function () {
             for_edit["obj1"] = obj_job_1;
             for_edit["obj2"] = obj_job_2;
             for_edit["obj3"] = obj_job_3;
-
-            if (for_edit["skill1_select"] != 0 && for_edit["skill2_select"] == 0) {
-                if (for_edit["skill3_select"] != 0) {
-                    for_edit["skill2_select"] = for_edit["skill3_select"];
-                    for_edit["skill3_select"] = 0;
-                    for_edit["skill2"] = for_edit["skill3"];
-                    for_edit["skill3"] = "none";
-                    for_edit["score_skill2"] = for_edit["score_skill3"];
-                    for_edit["score_skill3"] = "2.5";
-                }
-            }
-            else if (for_edit["skill1_select"] == 0 && for_edit["skill2_select"] != 0) {
-                if (for_edit["skill3_select"] != 0) {
-                    for_edit["skill1_select"] = for_edit["skill2_select"];
-                    for_edit["skill2_select"] = for_edit["skill3_select"];
-                    for_edit["skill3_select"] = 0;
-                    for_edit["skill1"] = for_edit["skill2"];
-                    for_edit["skill2"] = for_edit["skill3"];
-                    for_edit["skill3"] = "none";
-                    for_edit["score_skill1"] = for_edit["score_skill2"];
-                    for_edit["score_skill2"] = for_edit["score_skill3"];
-                    for_edit["score_skill3"] = "2.5";
-                }
-                else {
-                    for_edit["skill1_select"] = for_edit["skill2_select"];
-                    for_edit["skill2_select"] = 0;
-                    for_edit["skill1"] = for_edit["skill2"];
-                    for_edit["skill2"] = "none";
-                    for_edit["score_skill1"] = for_edit["score_skill2"];
-                    for_edit["score_skill2"] = "2.5";
-                }
-            }
-            else if (for_edit["skill1_select"] == 0 && for_edit["skill2_select"] == 0) {
-                if (for_edit["skill3_select"] != 0) {
-                    for_edit["skill1_select"] = for_edit["skill3_select"];
-                    for_edit["skill3_select"] = 0;
-                    for_edit["skill1"] = for_edit["skill3"];
-                    for_edit["skill3"] = "none";
-                    for_edit["score_skill1"] = for_edit["score_skill3"];
-                    for_edit["score_skill3"] = "2.5";
-                }
-            }
         }
         else if (choose_function == 2) { //add job in list
             push2list = {
@@ -657,59 +620,11 @@ document.getElementById("submit-job11").addEventListener("click", function () {
                 obj2: obj_job_2,
                 obj3: obj_job_3
             }
-            if (push2list["skill1_select"] != 0 && push2list["skill2_select"] == 0) {
-                if (push2list["skill3_select"] != 0) {
-                    push2list["skill2_select"] = push2list["skill3_select"];
-                    push2list["skill3_select"] = 0;
-                    push2list["skill2"] = push2list["skill3"];
-                    push2list["skill3"] = "none";
-                    push2list["score_skill2"] = push2list["score_skill3"];
-                    push2list["score_skill3"] = "2.5";
-                }
-            }
-            else if (push2list["skill1_select"] == 0 && push2list["skill2_select"] != 0) {
-                if (push2list["skill3_select"] != 0) {
-                    push2list["skill1_select"] = push2list["skill2_select"];
-                    push2list["skill2_select"] = push2list["skill3_select"];
-                    push2list["skill3_select"] = 0;
-                    push2list["skill1"] = push2list["skill2"];
-                    push2list["skill2"] = push2list["skill3"];
-                    push2list["skill3"] = "none";
-                    push2list["score_skill1"] = push2list["score_skill2"];
-                    push2list["score_skill2"] = push2list["score_skill3"];
-                    push2list["score_skill3"] = "2.5";
-                }
-                else {
-                    push2list["skill1_select"] = push2list["skill2_select"];
-                    push2list["skill2_select"] = 0;
-                    push2list["skill1"] = push2list["skill2"];
-                    push2list["skill2"] = "none";
-                    push2list["score_skill1"] = push2list["score_skill2"];
-                    push2list["score_skill2"] = "2.5";
-                }
-            }
-            else if (push2list["skill1_select"] == 0 && push2list["skill2_select"] == 0) {
-                if (push2list["skill3_select"] != 0) {
-                    push2list["skill1_select"] = push2list["skill3_select"];
-                    push2list["skill3_select"] = 0;
-                    push2list["skill1"] = push2list["skill3"];
-                    push2list["skill3"] = "none";
-                    push2list["score_skill1"] = push2list["score_skill3"];
-                    push2list["score_skill3"] = "2.5";
-                }
-            }
             list_of_job.push(push2list);
             get_job_id(list_of_job, 1);
             console.log(list_of_job);
         }
         $('#nm_job').prop('selectedIndex', 0);
-
-        /*$("#each_skill1").prop('selectedIndex', 0);
-        $("#each_skill2").prop('selectedIndex', 0);
-        $("#each_skill3").prop('selectedIndex', 0);*/
-        /*$('#each_skill1 :selected').text('เลือกทักษะของคุณที่เหมาะกับงาน');
-        $('#each_skill2 :selected').text('เลือกทักษะของคุณที่เหมาะกับงาน');
-        $('#each_skill3 :selected').text('เลือกทักษะของคุณที่เหมาะกับงาน');*/
         $("#obj-job-01").val('');
         $("#pos-del-obj-button1").hide();
         $("#obj-job-02").val('');
@@ -731,7 +646,7 @@ document.getElementById("submit-job11").addEventListener("click", function () {
         else {
             $(".frame_add_job_interest").hide();
             $(".limit-job-pos-3").addClass("limit-job-pos-3-red");
-            $('.limit-job-pos-3').text('ท่านเพิ่มตำแหน่งงานที่สนใจครบจำนวนแล้ว');
+            $('.limit-job-pos-3').text('*ท่านเพิ่มตำแหน่งงานที่สนใจครบจำนวนแล้ว');
         }
     }
 });
@@ -769,7 +684,6 @@ $(document).on('click', "#summit-to-delete", function () {
 
 $(document).on('click', "#hide-modal-tab6", function () {
     $('#exampleModalJob').modal('hide');
-
 });
 
 $(document).on('hide.bs.modal', "#exampleModalJob", function () {
@@ -782,6 +696,9 @@ $(document).on('hide.bs.modal', "#exampleModalJob", function () {
     $("#input_mySlider1").remove();
     $("#input_mySlider2").remove();
     $("#input_mySlider3").remove();
+    $("#each_skill1").prop('selectedIndex', 0);
+    $("#each_skill2").prop('selectedIndex', 0);
+    $("#each_skill3").prop('selectedIndex', 0);
     removeOptionsJob(document.getElementById("each_skill1"));
     removeOptionsJob(document.getElementById("each_skill2"));
     removeOptionsJob(document.getElementById("each_skill3"));
@@ -812,7 +729,6 @@ $(document).on("click", "#pos-del-obj-button1", function () {
         $("#pos-del-obj-button1").hide();
         $('#obj-job-02').prop("disabled", true);
         $("#obj-job-02").addClass("dis_input3");
-
     }
     else {
         if ($("#obj-job-02").val() != "" && $("#obj-job-03").val() != "") {

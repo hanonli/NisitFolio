@@ -9,6 +9,18 @@ export class Resume2 {
   UserId: string;
 
   @Prop()
+  Owner: string;
+
+  @Prop()
+  ProfilePic: string;
+
+  @Prop()
+  Aboutme: string;
+
+  @Prop()
+  Email: string;
+
+  @Prop()
   Privacy: string;
 
   @Prop()

@@ -75,7 +75,7 @@ class Registab4 extends React.Component {
                                                 </div>
                                                 <div class='col-4'>
                                                     <select class="form-select form-select-lg dropbtn margin-bottom1 fff salarytype_work1" id="salarytype_work" aria-labelledby="select1" required>
-                                                        <option value="">เลือกประเภทรายได้</option>
+                                                        <option selected disabled value="">เลือกประเภทรายได้</option>
                                                         <option value='รายได้ต่อไตรมาส' >รายได้ต่อไตรมาส</option>
                                                         <option value='รายได้ต่อเดือน'>รายได้ต่อเดือน</option>
                                                         <option value='รายได้ต่อสัปดาห์'>รายได้ต่อสัปดาห์</option>
@@ -86,7 +86,7 @@ class Registab4 extends React.Component {
                                                     </select>
                                                 </div>
                                                 <div class='col-2 chidright position-salary1'>
-                                                    <label class=" form-f-sex">รายได้</label>
+                                                    <label class=" form-f-sex">รายได้ (จำนวนเต็ม)</label>
                                                 </div>
                                                 <div class='col-4'>
                                                     <input maxlength="20" type="text" class="form-control dropbtn margin-bottom1 salary_work1" id="salary_work" placeholder='บาท'></input>

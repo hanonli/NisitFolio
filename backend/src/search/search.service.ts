@@ -141,7 +141,11 @@ export class SearchService {
       is_mem = true ;
     }
     const BookmarkUserList = await this.BookmarkModel.find({userId: userId, type: "profile"}).distinct("thatUserId") ;
-    const BookmarkWorkList = await this.BookmarkModel.find({userId: userId, type: "work"}).select({"_id": 0, "projectName": 1}) ;
+    const BookmarkPortList = await this.BookmarkModel.find({userId: userId, type: "work"}) ;
+    let BookmarkWorkList = []
+    for (var item of BookmarkPortList) {
+      BookmarkWorkList.push(item.projectName) ;
+    }
     console.log(BookmarkUserList) ;
     console.log(BookmarkWorkList) ;
     let result = [] ;
@@ -178,7 +182,7 @@ export class SearchService {
       result.push({"name": obj1.Firstname + " " + obj1.Lastname, "type": "profile", "thatUserId": obj1.UserId, "pic": obj1.ProfilePic, "about": obj1.AboutMe, "tags": obj1.tags, "bookmark": is_Bookmarking}) ;
     } 
     for (var obj2 of sorted_work) {
-      if (BookmarkWorkList.includes({"projectName": obj2.Port_Name}))
+      if (BookmarkWorkList.includes(obj2.Port_Name))
         is_Bookmarking = true ;
       else 
         is_Bookmarking = false ;

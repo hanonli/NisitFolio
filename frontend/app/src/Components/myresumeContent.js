@@ -15,13 +15,13 @@ class MyResumeContent extends React.Component {
 	
 	render (){
 		const educationdata = this.props.state.educationHistorys;
-		console.log('In Content : ' + JSON.stringify(educationdata) )
+		// console.log('In Content : ' + JSON.stringify(educationdata) )
 		return (
 			<div className="MyResumeContent">
 				<MyResume1 state={this.props.state}></MyResume1>
 				<MyResume2 state={this.props.state}></MyResume2>
 				<MyResume3 state={this.props.state}></MyResume3>
-				<MyresumeWorkGoals></MyresumeWorkGoals>
+				<MyresumeWorkGoals interestedJob={this.props.state.interestedJob}></MyresumeWorkGoals>
 				<h1>Testing Sharing Space</h1>
 				<SharingPopup></SharingPopup>
 			</div>

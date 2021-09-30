@@ -4,7 +4,7 @@ export class CreatePortfolioDto {
 
     UserId: string;
 
-    Port_Tag: string;
+    Port_Tag: string[];
  
     Port_Privacy: string;
 

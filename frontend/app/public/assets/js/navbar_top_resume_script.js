@@ -18,7 +18,7 @@ $('.resume_topnav').css({
 
 
 
-$('.topnav_lock').css({
+$('.topnav_section1').css({
     'font-size' : '3.5vh',
     'padding-bottom': '0.5vh',
     'border' : '0.1vw solid black',
@@ -106,7 +106,7 @@ $('#icon-myresume-lock' ).css({
             $(this).addClass('active')
         });
 
-        $('.topnav_lock' ).click(function(){
+        $('.topnav_section1' ).click(function(){
             $('#icon-myresume-lock' ).toggleClass('active');
         });
         
