@@ -25,7 +25,7 @@ class MyResumeTemplate extends React.Component {
 
                     <div class="template-header">
                         <h1 class="inline" id="text-choose-template">เลือกเทมเพลต</h1>
-                        <h1 class="inline" id="text-display-info"><span id="span-text-display-info">></span> เลือกข้อมูลผู้ใช้ที่จะแสดง</h1>
+                        <h1 class="inline" id="text-display-info"><span id="span-text-display-info"></span> เลือกข้อมูลผู้ใช้ที่จะแสดง</h1>
                     </div>
 
                     <div class="template-content">

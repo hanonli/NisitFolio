@@ -3,8 +3,8 @@ $(document).ready(function(){
   console.log('script for registab3 loaded')
 });
 
-let startYear3 = 1970;
-let endYear3 = new Date().getFullYear();
+var startYear3 = 1970;
+var endYear3 = new Date().getFullYear();
 for (i = endYear3; i > startYear3; i--) {
   $('#year_higher').append($('<option />').val(i).html(i));
   $('#year_secondary').append($('<option />').val(i).html(i));
