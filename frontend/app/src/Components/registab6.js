@@ -69,39 +69,42 @@ class Registab6 extends React.Component {
 											<div class="row list-job-skill1">
 												<div class="col-md-5">
 													<select id="each_skill1" class="form-select dropbtn_skillP margin-bottom1 fff"  >
-														<option value="none">เลือกหรือพิมพ์ทักษะของคุณที่เหมาะกับงาน</option>
+														<option selected disabled value="none">เลือกหรือพิมพ์ทักษะของคุณที่เหมาะกับงาน</option>
 													</select>
 												</div>
 												<div class="col-md-5">
 													<div class="box-slider1">
 														<div class="sliderWithLabels" id="mySlider1"></div>
 													</div>
+													<div class="reset-button11" id="reset-skill1"><img src="assets/images/reset.png" width="25" height="25"></img></div>
 												</div>
 											</div>
 
 											<div class="row list-job-skill1">
 												<div class="col-md-5">
 													<select id="each_skill2" class="form-select dropbtn_skillP margin-bottom1 fff" >
-														<option value="none">เลือกหรือพิมพ์ทักษะของคุณที่เหมาะกับงาน</option>
+														<option selected disabled value="none">เลือกหรือพิมพ์ทักษะของคุณที่เหมาะกับงาน</option>
 													</select>
 												</div>
 												<div class="col-md-5">
 													<div class="box-slider2">
 														<div class="sliderWithLabels" id="mySlider2"></div>
 													</div>
+													<div class="reset-button11" id="reset-skill2"><img src="assets/images/reset.png" width="25" height="25"></img></div>
 												</div>
 											</div>
 
 											<div class="row list-job-skill1">
 												<div class="col-md-5">
 													<select id="each_skill3" class="form-select dropbtn_skillP margin-bottom1 fff">
-														<option value="none">เลือกหรือพิมพ์ทักษะของคุณที่เหมาะกับงาน</option>
+														<option selected disabled value="none">เลือกหรือพิมพ์ทักษะของคุณที่เหมาะกับงาน</option>
 													</select>
 												</div>
 												<div class="col-md-5">
 													<div class="box-slider3">
 														<div class="sliderWithLabels" id="mySlider3"></div>
 													</div>
+													<div class="reset-button11" id="reset-skill3"><img src="assets/images/reset.png" width="25" height="25"></img></div>
 												</div>
 											</div>
 										</div>
@@ -118,13 +121,13 @@ class Registab6 extends React.Component {
 														</div>
 														<textarea maxlength="280" type="text" class="form-control dropbtn margin-bottom1 height-job1" id="obj-job-01" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
 													</div>
-												</div>												
+												</div>
 											</div>
 
 											<div class="row">
 												<div class="col-2">
 													<h1 id="number-obj-job">2</h1>
-												</div>		
+												</div>
 												<div class="col-4">
 													<div class="contend-of-obj" >
 														<div class="pos-del-obj-button" id="pos-del-obj-button2">
@@ -132,13 +135,13 @@ class Registab6 extends React.Component {
 														</div>
 														<textarea maxlength="280" type="text" class="form-control dropbtn margin-bottom1 height-job2" id="obj-job-02" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
 													</div>
-												</div>																						
+												</div>
 											</div>
 
 											<div class="row">
 												<div class="col-2">
 													<h1 id="number-obj-job">3</h1>
-												</div>	
+												</div>
 												<div class="col-4">
 													<div class="contend-of-obj" >
 														<div class="pos-del-obj-button" id="pos-del-obj-button3">

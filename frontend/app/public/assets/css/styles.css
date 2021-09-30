@@ -16,6 +16,33 @@ h1, h2, h3, h4, h5, h6, input, span,label,button,textarea, a, div {
   color: #7A8492;
 }
 
+select:disabled,select[disabled]{
+    background-color: #EAEAEA;
+    color: #cfcfcf;
+    border-color: #EAEAEA;
+	pointer-events: none;
+}
+
+input:disabled,input[disabled]{
+    background-color: #EAEAEA;
+    color: #cfcfcf;
+    border-color: #EAEAEA;
+    pointer-events: none;
+}
+
+input:disabled,input[disabled]::placeholder {
+    color: #cfcfcf;
+    opacity: 1; /* Firefox */
+  }
+  
+input:disabled,input[disabled]:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #cfcfcf;
+}
+  
+input:disabled,input[disabled]::-ms-input-placeholder { /* Microsoft Edge */
+    color: #cfcfcf;
+}
+
 nf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 32px; font-weight: 200;  color: #939393; }
 nnf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 24px; font-weight: 400;  color: #939393; }
 unf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 18px; font-weight: 400;  color: #939393; }

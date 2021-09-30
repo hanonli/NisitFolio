@@ -16,7 +16,6 @@ function compareValues(key, order = 'asc') {
             // property doesn't exist on either object
             return 0;
         }
-
         var varA = (typeof a[key] === 'string')
             ? a[key].toUpperCase() : a[key];
         var varB = (typeof b[key] === 'string')
@@ -33,7 +32,12 @@ function compareValues(key, order = 'asc') {
         );
     };
 }
-var backup_year_endwork=0,backup_month_endwork=0;
+
+function isNumberTab4(n) {
+    return /^-?[\d.]+(?:e-?\d+)?$/.test(n);
+}
+
+var backup_year_endwork = 0, backup_month_endwork = 0, backup_salary = "";
 var list_of_work = []; //list of work
 var list_of_year_work = {}; //check year
 var year_before_work;
@@ -44,22 +48,22 @@ function show_work() {
     year_before_work = -1;
     list_of_year_work = {};
     list_of_work.sort(compareValues('year_startwork', 'desc'));
-    list_of_work.forEach(ele =>{
+    list_of_work.forEach(ele => {
         let grid_work1 = `<div class="t4-content" id="{no_work}">\
-                            <h5 class="font-titlet4 font-boldt3">{pos_work}</h5>\
+                            <h5 class="col font-titlet4 font-boldt31">{pos_work}</h5>\
                             <div class="row">\
                                 <div class="col font-titlet4_1">\
                                     <div class="font-titlet4_1 font-boldt3">{company_work}</div>\
                                     <div class="font-titlet4_1">เริ่มต้น {month_startwork}/{year_startwork}</div>`;
 
-        let grid_work2 =            `<div class="font-titlet4_1">สิ้นสุด {month_endwork}/{year_endwork}</div>`;
+        let grid_work2 = `<div class="font-titlet4_1">สิ้นสุด {month_endwork}/{year_endwork}</div>`;
 
-        let grid_work3 =        `</div>\
-                                <div class="col-2 font-titlet4_1">{inform_work}</div>\
+        let grid_work3 = `</div>\
+                                <div class="col-2 newline-text123">{inform_work}</div>\
                             </div>\
                             <div class="row">\
-                                <div class="col font-titlet4_1 font-boldt3">เงินเดือน</div>\
-                                <div class="col-2 font-titlet4_1">{salary_work} บาท</div>\
+                                <div class="col-3 font-salary font-boldt3">{type_salary}</div>\
+                                <div class="col font-titlet4_2">{salary_work} บาท</div>\
                             </div>\
                             <div class="layer_icon2">\
                                 <div class="set-layer_icon2">\
@@ -72,53 +76,64 @@ function show_work() {
                                 <h1 id="textOfyear_work">{head-year}</h1>\
                               </div>\
                               <div class="content-work1111" id="{contentYear}"></div>`;
-        grid_work1 = grid_work1.replace("{no_work}",ele["id"]);
-        grid_work1 = grid_work1.replace("{pos_work}",ele["pos_work"]);
-        grid_work1 = grid_work1.replace("{company_work}",ele["company_work"]);
-        if(ele["month_startwork"]<10){
-            grid_work1 = grid_work1.replace("{month_startwork}",`0`+ele["month_startwork"]);
+        grid_work1 = grid_work1.replace("{no_work}", ele["id"]);
+        grid_work1 = grid_work1.replace("{pos_work}", ele["pos_work"]);
+        if (ele["company_work"] != "") {
+            grid_work1 = grid_work1.replace("{company_work}", ele["company_work"]);
         }
-        else{
-            grid_work1 = grid_work1.replace("{month_startwork}",ele["month_startwork"]);
+        else {
+            grid_work1 = grid_work1.replace("{company_work}", "-");
         }
-        grid_work1 = grid_work1.replace("{year_startwork}",ele["year_startwork"]);
-        if(ele["regist4_cb"]==true){
-            grid_work2 = grid_work2.replace("สิ้นสุด {month_endwork}/{year_endwork}",`ยังอยู่ในงาน`);
+        if (ele["month_startwork"] < 10) {
+            grid_work1 = grid_work1.replace("{month_startwork}", `0` + ele["month_startwork"]);
         }
-        else{
-            if(Number.isNaN(ele["month_endwork"])==true && Number.isNaN(ele["year_endwork"])==true){
+        else {
+            grid_work1 = grid_work1.replace("{month_startwork}", ele["month_startwork"]);
+        }
+        grid_work1 = grid_work1.replace("{year_startwork}", ele["year_startwork"]);
+        if (ele["regist4_cb"] == true) {
+            grid_work2 = grid_work2.replace("สิ้นสุด {month_endwork}/{year_endwork}", `ยังอยู่ในงาน`);
+        }
+        else {
+            if (Number.isNaN(ele["month_endwork"]) == true && Number.isNaN(ele["year_endwork"]) == true) {
                 grid_work2 = "";
             }
-            else if(Number.isNaN(ele["month_endwork"])==true && Number.isNaN(ele["year_endwork"])==false){
-                grid_work2 = grid_work2.replace("{month_endwork}",`-`);
-                grid_work2 = grid_work2.replace("{year_endwork}",ele["year_endwork"]);     
+            else if (Number.isNaN(ele["month_endwork"]) == true && Number.isNaN(ele["year_endwork"]) == false) {
+                grid_work2 = grid_work2.replace("{month_endwork}", `-`);
+                grid_work2 = grid_work2.replace("{year_endwork}", ele["year_endwork"]);
             }
-            else if(Number.isNaN(ele["year_endwork"])==true && Number.isNaN(ele["month_endwork"])==false){
-                grid_work2 = grid_work2.replace("{year_endwork}",`-`);
-                if(ele["month_endwork"]<10){
-                    grid_work2 = grid_work2.replace("{month_endwork}",`0`+ele["month_endwork"]);
+            else if (Number.isNaN(ele["year_endwork"]) == true && Number.isNaN(ele["month_endwork"]) == false) {
+                grid_work2 = grid_work2.replace("{year_endwork}", `-`);
+                if (ele["month_endwork"] < 10) {
+                    grid_work2 = grid_work2.replace("{month_endwork}", `0` + ele["month_endwork"]);
                 }
-                else{
-                    grid_work2 = grid_work2.replace("{month_endwork}",ele["month_endwork"]);
-                }    
-            }
-            else{
-                if(ele["month_endwork"]<10){
-                    grid_work2 = grid_work2.replace("{month_endwork}",`0`+ele["month_endwork"]);
+                else {
+                    grid_work2 = grid_work2.replace("{month_endwork}", ele["month_endwork"]);
                 }
-                else{
-                    grid_work2 = grid_work2.replace("{month_endwork}",ele["month_endwork"]);
-                }    
-                grid_work2 = grid_work2.replace("{year_endwork}",ele["year_endwork"]);        
+            }
+            else {
+                if (ele["month_endwork"] < 10) {
+                    grid_work2 = grid_work2.replace("{month_endwork}", `0` + ele["month_endwork"]);
+                }
+                else {
+                    grid_work2 = grid_work2.replace("{month_endwork}", ele["month_endwork"]);
+                }
+                grid_work2 = grid_work2.replace("{year_endwork}", ele["year_endwork"]);
             }
         }
-        grid_work3 = grid_work3.replace("{inform_work}",ele["inform_work"]);
-        if(Number.isNaN(ele["salary_work"])==false){
-            grid_work3 = grid_work3.replace("{salary_work}",ele["salary_work"]);
+        grid_work3 = grid_work3.replace("{type_salary}", ele["type_salary_work"]);
+        if (ele["type_salary_work"] != "ไม่ระบุ" && ele["type_salary_work_select"] != 0) {
+            if (Number.isNaN(ele["salary_work"]) == false) {
+                grid_work3 = grid_work3.replace("{salary_work}", ele["salary_work"]);
+            }
+            else {
+                grid_work3 = grid_work3.replace("{salary_work}", "-");
+            }
         }
-        else{
-            grid_work3 = grid_work3.replace("{salary_work}",`-`);
+        else {
+            grid_work3 = grid_work3.replace("{salary_work} บาท", "");
         }
+        grid_work3 = grid_work3.replace("{inform_work}", ele["inform_work"]);
         if (year_before_work != ele["year_startwork"]) {
             //console.log(`change year!!!!`);
             list_of_year_work[ele["year_startwork"]] = 1;
@@ -130,16 +145,16 @@ function show_work() {
         }
         else {
             list_of_year_work[ele["year_startwork"]] += 1;
-        }        
-        $("#contentYear-work_" + String(ele["year_startwork"])).append(grid_work1+grid_work2+grid_work3);
+        }
+        $("#contentYear-work_" + String(ele["year_startwork"])).append(grid_work1 + grid_work2 + grid_work3);
     });
-
 }
 
 //open modal to add work
 $(document).on("click", ".registab4_formbox", function () {
     choose_function = 2;
     $('#registab4Modal').modal('toggle');
+    $("#salary_work").prop("disabled", true);
     document.querySelector('#submit-work').innerText = 'เพิ่ม';
 });
 
@@ -162,11 +177,18 @@ $(document).on("click", "#edit-work", function () {
     document.getElementById("company_work").value = for_edit.company_work;
     //document.getElementById("salarytype_work").value = for_edit.type_salary_work;
     document.getElementById("salarytype_work").selectedIndex = for_edit.type_salary_work_select;
-    if(Number.isNaN(for_edit.salary_work)==false){
+    if (Number.isNaN(for_edit.salary_work) == false) {
         document.getElementById("salary_work").value = for_edit.salary_work;
     }
-    else{
+    else {
         document.getElementById("salary_work").value = '';
+    }
+    if (for_edit.type_salary_work == "ไม่ระบุ" || for_edit.type_salary_work_select == 0) {
+        $("#salary_work").prop("disabled", true);
+        document.getElementById("salary_work").value = "";
+    }
+    else {
+        $("#salary_work").prop("disabled", false);
     }
     //document.getElementById("year_startwork").value = for_edit.year_startwork;
     document.getElementById("year_startwork").selectedIndex = for_edit.year_startwork_select;
@@ -178,10 +200,11 @@ $(document).on("click", "#edit-work", function () {
     document.getElementById("month_endwork").selectedIndex = for_edit.month_endwork_select;
     backup_year_endwork = for_edit["backup_year_endwork"];
     backup_month_endwork = for_edit["backup_month_endwork"];
+    //backup_salary = for_edit["backup_salary"];
     $('#regist4_cb').prop('checked', for_edit.regist4_cb);
-    if(for_edit.regist4_cb == true){
-        $("#year_endwork").addClass("dis_input4");
-        $("#month_endwork").addClass("dis_input4");
+    if (for_edit.regist4_cb == true) {
+        $("#year_endwork").prop("disabled", true);
+        $("#month_endwork").prop("disabled", true);
     }
     document.getElementById("inform_work").value = for_edit.inform_work;
 });
@@ -202,69 +225,90 @@ $(document).on("click", "#sub_del_work", function () {
     if (list_of_year_work[list_of_work[removeIndex]["year_startwork"]] == 0) {
         $(`#yearOf_` + String(list_of_work[removeIndex]["year_startwork"])).remove();
     }
-    list_of_work.splice(removeIndex, 1);    
+    list_of_work.splice(removeIndex, 1);
     $(`#` + id_list_work_del).remove();
     $('#Modal_remove_work').modal('hide');
 });
 
 $(document).on("click", "#can_del_work", function () {
     $('#Modal_remove_work').modal('hide');
-}); 
+});
 
 //change status 
-
 $(document).on('change', "#regist4_cb", function () {
-    if($('#regist4_cb').prop('checked')==true){
-        $("#year_endwork").addClass("dis_input4");
-        $("#month_endwork").addClass("dis_input4");
+    if ($('#regist4_cb').prop('checked') == true) {
+        /*$("#year_endwork").addClass("dis_input444");
+        $("#month_endwork").addClass("dis_input444");*/
+        $("#year_endwork").prop("disabled", true);
+        $("#month_endwork").prop("disabled", true);
         backup_year_endwork = document.getElementById("year_endwork").selectedIndex;
         backup_month_endwork = document.getElementById("month_endwork").selectedIndex;
         document.getElementById("year_endwork").selectedIndex = "0";
         document.getElementById("month_endwork").selectedIndex = "0";
     }
-    else{
-        $("#year_endwork").removeClass("dis_input4");
-        $("#month_endwork").removeClass("dis_input4");
-        $("#year_endwork").removeClass("error_select_work");
-        $("#month_endwork").removeClass("error_select_work");
+    else {
+        /*$("#year_endwork").removeClass("dis_input444");
+        $("#month_endwork").removeClass("dis_input444");*/
+        $("#year_endwork").prop("disabled", false);
+        $("#month_endwork").prop("disabled", false);
+        $("#year_endwork").removeClass("is-invalid");
+        $("#month_endwork").removeClass("is-invalid");
         document.getElementById("year_endwork").selectedIndex = backup_year_endwork;
-        document.getElementById("month_endwork").selectedIndex = backup_month_endwork;        
+        document.getElementById("month_endwork").selectedIndex = backup_month_endwork;
     }
 });
 
 $(document).on('change', "#jobtype_work", function () {
-    if(document.getElementById("jobtype_work").selectedIndex != 0){
-        $("#jobtype_work").removeClass("error_select_work");
+    if (document.getElementById("jobtype_work").selectedIndex != 0) {
+        $("#jobtype_work").removeClass("is-invalid");
     }
 });
 
 $(document).on('change', "#jobname_work", function () {
-    if(document.getElementById("jobname_work").selectedIndex != 0){
-        $("#jobname_work").removeClass("error_select_work");
+    if (document.getElementById("jobname_work").selectedIndex != 0) {
+        $("#jobname_work").removeClass("is-invalid");
     }
 });
 
 $(document).on('change', "#year_startwork", function () {
-    if(document.getElementById("year_startwork").selectedIndex != 0){
-        $("#year_startwork").removeClass("error_select_work");
+    if (document.getElementById("year_startwork").selectedIndex != 0) {
+        $("#year_startwork").removeClass("is-invalid");
     }
 });
 
 $(document).on('change', "#month_startwork", function () {
-    if(document.getElementById("month_startwork").selectedIndex != 0){
-        $("#month_startwork").removeClass("error_select_work");
+    if (document.getElementById("month_startwork").selectedIndex != 0) {
+        $("#month_startwork").removeClass("is-invalid");
     }
 });
 
 $(document).on('change', "#year_endwork", function () {
-    if(document.getElementById("year_endwork").selectedIndex != 0){
-        $("#year_endwork").removeClass("error_select_work");
+    if (document.getElementById("year_endwork").selectedIndex != 0) {
+        $("#year_endwork").removeClass("is-invalid");
     }
 });
 
 $(document).on('change', "#month_endwork", function () {
-    if(document.getElementById("month_endwork").selectedIndex != 0){
-        $("#month_endwork").removeClass("error_select_work");
+    if (document.getElementById("month_endwork").selectedIndex != 0) {
+        $("#month_endwork").removeClass("is-invalid");
+    }
+});
+
+$(document).on('change', "#salary_work", function () {
+    if (Number.isNaN(parseInt(document.getElementById("salary_work").value)) == false) {
+        $("#salary_work").removeClass("is-invalid");
+    }
+});
+
+$(document).on('change', "#salarytype_work", function () {
+    if ($("#salarytype_work").val() == "ไม่ระบุ" || document.getElementById("salarytype_work").selectedIndex == "0") {
+        //backup_salary = document.getElementById("salary_work").value;
+        $("#salary_work").prop("disabled", true);
+        document.getElementById("salary_work").value = "";
+    }
+    else {
+        $("#salary_work").prop("disabled", false);
+        //document.getElementById("salary_work").value = backup_salary;
     }
 });
 
@@ -275,7 +319,7 @@ $(document).on('click', "#submit-work", function () {
     var pos_work = document.getElementById("jobname_work").value;
     var company_work = document.getElementById("company_work").value;
     var type_salary_work = document.getElementById("salarytype_work").value;
-   // var type_salary_work_select = document.getElementById("salarytype_work").selectedIndex;
+    // var type_salary_work_select = document.getElementById("salarytype_work").selectedIndex;
     var salary_work = document.getElementById("salary_work").value;
     var year_startwork = document.getElementById("year_startwork").value;
     //var year_startwork_select = document.getElementById("year_startwork").selectedIndex;
@@ -286,76 +330,79 @@ $(document).on('click', "#submit-work", function () {
     var month_endwork = document.getElementById("month_endwork").value;
     //var month_endwork_select = document.getElementById("month_endwork").selectedIndex;
     var regist4_cb = $('#regist4_cb').prop('checked');
-    var inform_work = document.getElementById("inform_work").value; 
-    if(document.getElementById("jobtype_work").selectedIndex == 0&&document.getElementById("jobname_work").value == ""&&document.getElementById("year_startwork").value == ""&&document.getElementById("month_startwork").value == ""){
-        $("#jobtype_work").addClass("error_select_work");
-        $("#jobname_work").addClass("error_select_work");
-        $("#year_startwork").addClass("error_select_work");
-        $("#month_startwork").addClass("error_select_work");
+    var inform_work = document.getElementById("inform_work").value;
+    if (document.getElementById("jobtype_work").selectedIndex == 0 && document.getElementById("jobname_work").value == "" && document.getElementById("year_startwork").value == "" && document.getElementById("month_startwork").value == "") {
+        $("#jobtype_work").addClass("is-invalid");
+        $("#jobname_work").addClass("is-invalid");
+        $("#year_startwork").addClass("is-invalid");
+        $("#month_startwork").addClass("is-invalid");
     }
-    else if(document.getElementById("jobname_work").value == ""&&document.getElementById("year_startwork").value == ""&&document.getElementById("month_startwork").value == ""){
-        $("#jobname_work").addClass("error_select_work");
-        $("#year_startwork").addClass("error_select_work");
-        $("#month_startwork").addClass("error_select_work");
+    else if (document.getElementById("jobname_work").value == "" && document.getElementById("year_startwork").value == "" && document.getElementById("month_startwork").value == "") {
+        $("#jobname_work").addClass("is-invalid");
+        $("#year_startwork").addClass("is-invalid");
+        $("#month_startwork").addClass("is-invalid");
     }
-    else if(document.getElementById("jobtype_work").selectedIndex == 0&&document.getElementById("year_startwork").value == ""&&document.getElementById("month_startwork").value == ""){
-        $("#jobtype_work").addClass("error_select_work");
-        $("#year_startwork").addClass("error_select_work");
-        $("#month_startwork").addClass("error_select_work");
+    else if (document.getElementById("jobtype_work").selectedIndex == 0 && document.getElementById("year_startwork").value == "" && document.getElementById("month_startwork").value == "") {
+        $("#jobtype_work").addClass("is-invalid");
+        $("#year_startwork").addClass("is-invalid");
+        $("#month_startwork").addClass("is-invalid");
     }
-    else if(document.getElementById("jobtype_work").selectedIndex == 0&&document.getElementById("jobname_work").value == ""&&document.getElementById("year_startwork").value == ""&&document.getElementById("month_startwork").value == ""){
-        $("#jobtype_work").addClass("error_select_work");
-        $("#jobname_work").addClass("error_select_work");
-        $("#month_startwork").addClass("error_select_work");
+    else if (document.getElementById("jobtype_work").selectedIndex == 0 && document.getElementById("jobname_work").value == "" && document.getElementById("year_startwork").value == "" && document.getElementById("month_startwork").value == "") {
+        $("#jobtype_work").addClass("is-invalid");
+        $("#jobname_work").addClass("is-invalid");
+        $("#month_startwork").addClass("is-invalid");
     }
-    else if(document.getElementById("jobtype_work").selectedIndex == 0&&document.getElementById("jobname_work").value == ""&&document.getElementById("year_startwork").value == ""){
-        $("#jobtype_work").addClass("error_select_work");
-        $("#jobname_work").addClass("error_select_work");
-        $("#year_startwork").addClass("error_select_work");
+    else if (document.getElementById("jobtype_work").selectedIndex == 0 && document.getElementById("jobname_work").value == "" && document.getElementById("year_startwork").value == "") {
+        $("#jobtype_work").addClass("is-invalid");
+        $("#jobname_work").addClass("is-invalid");
+        $("#year_startwork").addClass("is-invalid");
     }
-    else if(document.getElementById("jobtype_work").selectedIndex == 0&&document.getElementById("jobname_work").value == ""){
-        $("#jobtype_work").addClass("error_select_work");
-        $("#jobname_work").addClass("error_select_work");
+    else if (document.getElementById("jobtype_work").selectedIndex == 0 && document.getElementById("jobname_work").value == "") {
+        $("#jobtype_work").addClass("is-invalid");
+        $("#jobname_work").addClass("is-invalid");
     }
-    else if(document.getElementById("jobtype_work").selectedIndex == 0&&document.getElementById("year_startwork").value == ""){
-        $("#jobtype_work").addClass("error_select_work");
-        $("#year_startwork").addClass("error_select_work");
+    else if (document.getElementById("jobtype_work").selectedIndex == 0 && document.getElementById("year_startwork").value == "") {
+        $("#jobtype_work").addClass("is-invalid");
+        $("#year_startwork").addClass("is-invalid");
     }
-    else if(document.getElementById("jobtype_work").selectedIndex == 0&&document.getElementById("month_startwork").value == ""){
-        $("#jobtype_work").addClass("error_select_work");
-        $("#month_startwork").addClass("error_select_work");
+    else if (document.getElementById("jobtype_work").selectedIndex == 0 && document.getElementById("month_startwork").value == "") {
+        $("#jobtype_work").addClass("is-invalid");
+        $("#month_startwork").addClass("is-invalid");
     }
-    else if(document.getElementById("jobname_work").value == ""&&document.getElementById("year_startwork").value == ""){
-        $("#jobname_work").addClass("error_select_work");
-        $("#year_startwork").addClass("error_select_work");
+    else if (document.getElementById("jobname_work").value == "" && document.getElementById("year_startwork").value == "") {
+        $("#jobname_work").addClass("is-invalid");
+        $("#year_startwork").addClass("is-invalid");
     }
-    else if(document.getElementById("jobname_work").value == ""&&document.getElementById("month_startwork").value == ""){
-        $("#jobname_work").addClass("error_select_work");
-        $("#month_startwork").addClass("error_select_work");
+    else if (document.getElementById("jobname_work").value == "" && document.getElementById("month_startwork").value == "") {
+        $("#jobname_work").addClass("is-invalid");
+        $("#month_startwork").addClass("is-invalid");
     }
-    else if(document.getElementById("year_startwork").value == ""&&document.getElementById("month_startwork").value == ""){
-        $("#year_startwork").addClass("error_select_work");
-        $("#month_startwork").addClass("error_select_work");
-    }   
-    else if(document.getElementById("jobtype_work").selectedIndex == 0){
-        $("#jobtype_work").addClass("error_select_work");
+    else if (document.getElementById("year_startwork").value == "" && document.getElementById("month_startwork").value == "") {
+        $("#year_startwork").addClass("is-invalid");
+        $("#month_startwork").addClass("is-invalid");
     }
-    else if(document.getElementById("jobname_work").value == ""){
-        $("#jobname_work").addClass("error_select_work");
+    else if (document.getElementById("jobtype_work").selectedIndex == 0) {
+        $("#jobtype_work").addClass("is-invalid");
     }
-    else if(document.getElementById("year_startwork").value == ""){
-        $("#year_startwork").addClass("error_select_work");
+    else if (document.getElementById("jobname_work").value == "") {
+        $("#jobname_work").addClass("is-invalid");
     }
-    else if(document.getElementById("month_startwork").value == ""){
-        $("#month_startwork").addClass("error_select_work");
+    else if (document.getElementById("year_startwork").value == "") {
+        $("#year_startwork").addClass("is-invalid");
     }
-    else if($('#regist4_cb').prop('checked')==false && parseInt(document.getElementById("year_endwork").value) < parseInt(document.getElementById("year_startwork").value)){
-        $("#year_endwork").addClass("error_select_work");
+    else if (document.getElementById("month_startwork").value == "") {
+        $("#month_startwork").addClass("is-invalid");
     }
-    else if($('#regist4_cb').prop('checked')==false && parseInt(document.getElementById("year_endwork").value) == parseInt(document.getElementById("year_startwork").value) && parseInt(document.getElementById("month_endwork").value)<parseInt(document.getElementById("month_startwork").value)){
-        $("#month_endwork").addClass("error_select_work");
+    else if ((document.getElementById("salary_work").value != "" && isNumberTab4(document.getElementById("salary_work").value) == false) || parseInt(document.getElementById("salary_work").value) < 0) {
+        $("#salary_work").addClass("is-invalid");
     }
-    else{
+    else if ($('#regist4_cb').prop('checked') == false && parseInt(document.getElementById("year_endwork").value) < parseInt(document.getElementById("year_startwork").value)) {
+        $("#year_endwork").addClass("is-invalid");
+    }
+    else if ($('#regist4_cb').prop('checked') == false && parseInt(document.getElementById("year_endwork").value) == parseInt(document.getElementById("year_startwork").value) && parseInt(document.getElementById("month_endwork").value) < parseInt(document.getElementById("month_startwork").value)) {
+        $("#month_endwork").addClass("is-invalid");
+    }
+    else {
         if (choose_function == 1) {
             for_edit["type_workt"] = type_work;
             for_edit["type_work_select"] = document.getElementById("jobtype_work").selectedIndex;
@@ -376,6 +423,7 @@ $(document).on('click', "#submit-work", function () {
             for_edit["inform_work"] = inform_work;
             for_edit["backup_year_endwork"] = backup_year_endwork;
             for_edit["backup_month_endwork"] = backup_month_endwork;
+            //for_edit["backup_salary"] = backup_salary;
         }
         else if (choose_function == 2) {
             //console.log(`add!!!!!`);
@@ -399,10 +447,10 @@ $(document).on('click', "#submit-work", function () {
                 regist4_cb: regist4_cb,
                 inform_work: inform_work,
                 backup_year_endwork: backup_year_endwork,
-                backup_month_endwork: backup_month_endwork
+                backup_month_endwork: backup_month_endwork,
             });
         }
-        console.log(`list_of_work:`,list_of_work);
+        console.log(`list_of_work:`, list_of_work);
         $("#registab4Modal").modal("hide"); //success!!!!!
         $(".box-box-box-work1").empty();
         show_work();
@@ -423,17 +471,22 @@ $(document).on('hide.bs.modal', "#registab4Modal", function () {
     document.getElementById("salary_work").value = "";
     document.getElementById("year_startwork").selectedIndex = "0";
     document.getElementById("month_startwork").selectedIndex = "0";
-    document.getElementById("year_endwork").selectedIndex = "0"; 
+    document.getElementById("year_endwork").selectedIndex = "0";
     document.getElementById("month_endwork").selectedIndex = "0";
-    $('#regist4_cb').prop('checked',false);
-    $("#year_endwork").removeClass("dis_input4");
-    $("#month_endwork").removeClass("dis_input4");
-    $("#jobtype_work").removeClass("error_select_work");
-    $("#jobname_work").removeClass("error_select_work");
-    $("#year_startwork").removeClass("error_select_work");
-    $("#month_startwork").removeClass("error_select_work");
+    $('#regist4_cb').prop('checked', false);
+    /*$("#year_endwork").removeClass("dis_input4");
+    $("#month_endwork").removeClass("dis_input4");*/
+    $("#year_endwork").prop("disabled", false);
+    $("#month_endwork").prop("disabled", false);
+    $("#jobtype_work").removeClass("is-invalid");
+    $("#jobname_work").removeClass("is-invalid");
+    $("#year_startwork").removeClass("is-invalid");
+    $("#month_startwork").removeClass("is-invalid");
+    $("#salary_work").removeClass("is-invalid");
+    $("#salary_work").prop("disabled", true);
     document.getElementById("inform_work").value = "";
-    backup_year_endwork=0,backup_month_endwork=0;
+    backup_year_endwork = 0, backup_month_endwork = 0;
+    //backup_salary = "";
 });
 
 /*
