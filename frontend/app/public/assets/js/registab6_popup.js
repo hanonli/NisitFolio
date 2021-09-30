@@ -646,7 +646,7 @@ document.getElementById("submit-job11").addEventListener("click", function () {
         else {
             $(".frame_add_job_interest").hide();
             $(".limit-job-pos-3").addClass("limit-job-pos-3-red");
-            $('.limit-job-pos-3').text('ท่านเพิ่มตำแหน่งงานที่สนใจครบจำนวนแล้ว');
+            $('.limit-job-pos-3').text('*ท่านเพิ่มตำแหน่งงานที่สนใจครบจำนวนแล้ว');
         }
     }
 });
