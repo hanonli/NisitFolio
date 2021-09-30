@@ -243,7 +243,7 @@ export class Portfolio {
   totalBookmark: number;
   
   @Column()
-  Port_Tag: string;
+  Port_Tag: string[];
 
   @Column()
   Port_Privacy: string;

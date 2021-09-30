@@ -43,6 +43,15 @@ export class AdditionalSkill {
 
   @Prop()
   AdditionalSkill: String;
+
+  @Prop()
+  create_time: Date;
+
+  @Prop()
+  last_modified: Date[];
+
+  @Prop()
+  ResumeId: String[];
 }
 
 export const AdditionalSkillSchema = SchemaFactory.createForClass(AdditionalSkill);
@@ -57,3 +66,24 @@ export class JobTitle {
 }
 
 export const JobTitleSchema = SchemaFactory.createForClass(JobTitle);
+
+
+@Schema({ collection: 'Analytics' , timestamps: true })
+export class Analytics {
+  @Prop()
+  UserId: String;
+
+  @Prop({ type: Object })
+  Main: any;
+
+  @Prop({ type: Object })
+  Additional: any;
+
+  @Prop()
+  updatedAt: Date;
+
+  @Prop()
+  createdAt: Date;
+}
+
+export const AnalyticsSchema = SchemaFactory.createForClass(Analytics);

@@ -9,7 +9,7 @@ export class Portfolio2 {
   UserId: string;
 
   @Prop()
-  Port_Tag: string;
+  Port_Tag: string[];
 
   @Prop()
   Port_Privacy: string;
@@ -31,6 +31,12 @@ export class Portfolio2 {
 
   @Prop()
   Port_Date: string;
+
+  @Prop()
+  Port_Name: string;
+
+  @Prop()
+  Port_Info: string;
 
   
 }
