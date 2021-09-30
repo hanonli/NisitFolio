@@ -20,7 +20,7 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Get(':email')
+  @Get('kuay/:email')
   async findemail(@Param('email') email: string)
   {
     return this.usersService.findOne(email);
