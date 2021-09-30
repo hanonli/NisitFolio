@@ -50,7 +50,7 @@ function show_work() {
     list_of_work.sort(compareValues('year_startwork', 'desc'));
     list_of_work.forEach(ele => {
         let grid_work1 = `<div class="t4-content" id="{no_work}">\
-                            <h5 class="font-titlet4 font-boldt31">{pos_work}</h5>\
+                            <h5 class="col font-titlet4 font-boldt31">{pos_work}</h5>\
                             <div class="row">\
                                 <div class="col font-titlet4_1">\
                                     <div class="font-titlet4_1 font-boldt3">{company_work}</div>\
@@ -62,8 +62,8 @@ function show_work() {
                                 <div class="col-2 newline-text123">{inform_work}</div>\
                             </div>\
                             <div class="row">\
-                                <div class="col font-titlet4_1 font-boldt3">{type_salary}</div>\
-                                <div class="col-2 font-titlet4_1">{salary_work} บาท</div>\
+                                <div class="col-3 font-salary font-boldt3">{type_salary}</div>\
+                                <div class="col font-titlet4_2">{salary_work} บาท</div>\
                             </div>\
                             <div class="layer_icon2">\
                                 <div class="set-layer_icon2">\

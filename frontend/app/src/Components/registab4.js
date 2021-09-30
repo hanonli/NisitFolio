@@ -86,7 +86,7 @@ class Registab4 extends React.Component {
                                                     </select>
                                                 </div>
                                                 <div class='col-2 chidright position-salary1'>
-                                                    <label class=" form-f-sex">รายได้</label>
+                                                    <label class=" form-f-sex">รายได้ (จำนวนเต็ม)</label>
                                                 </div>
                                                 <div class='col-4'>
                                                     <input maxlength="20" type="text" class="form-control dropbtn margin-bottom1 salary_work1" id="salary_work" placeholder='บาท'></input>
