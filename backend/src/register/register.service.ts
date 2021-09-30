@@ -85,7 +85,7 @@ export class RegisterService {
     userinfo.Birthday = createDto.Birthday;
     userinfo.Gender = createDto.Gender;
     userinfo.AboutMe = createDto.AboutMe;
-    userinfo.Email2nd = createDto.Email2nd;
+    userinfo.Email2nd = createDto.Email;
     userinfo.Country = createDto.Country;
     userinfo.Province = createDto.Province;
     userinfo.City = createDto.City;

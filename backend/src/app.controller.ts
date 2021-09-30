@@ -20,11 +20,11 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  /*@Get(':email')
-  async findSkill(@Param('email') email: string)
+  @Get(':email')
+  async findemail(@Param('email') email: string)
   {
     return this.usersService.findOne(email);
-  }*/
+  }
 
 
   @UseGuards(LocalAuthGuard)
