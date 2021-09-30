@@ -277,7 +277,7 @@ export class Portfolio {
   UserId: string;
 
   @Column()
-  Port_Tag: string;
+  Port_Tag: string[];
 
   @Column()
   Port_Privacy: string;
