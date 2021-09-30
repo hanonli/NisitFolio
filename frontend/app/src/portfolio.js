@@ -12,10 +12,14 @@ import reportWebVitals from './reportWebVitals';
 import { ReactSortable } from "react-sortablejs";
 import PortThumb from "./portThumb";
 import BasicDatePickerPort from "./Components/datePickerPort";
+import Select from 'react-select'
+import makeAnimated from 'react-select/animated';
 //import Cropper from "react-cropper";
 window.jQuery = $;
 window.$ = $;
 global.jQuery = $;
+
+const animatedComponents = makeAnimated();
 
 class Portfolio extends React.Component {
 	constructor(props) {
@@ -31,7 +35,21 @@ class Portfolio extends React.Component {
 					{ id: "4", name: "Img4" },
 					{ id: "5", name: "Img5" }],*/
 			list: [],
-			sortableContainer: "sortable-container-5"
+			sortableContainer: "sortable-container-5",
+			options: [
+				  { value: 'chocolate', label: 'Chocolate' },
+				  { value: 'strawberry', label: 'Strawberry' },
+				   { value: 'chocolate', label: 'Chocolate' },
+				  { value: 'strawberry', label: 'Strawberry' },
+				   { value: 'chocolate', label: 'Chocolate' },
+				  { value: 'strawberry', label: 'Strawberry' },
+				   { value: 'chocolate', label: 'Chocolate' },
+				  { value: 'strawberry', label: 'Strawberry' },
+				   { value: 'chocolate', label: 'Chocolate' },
+				  { value: 'strawberry', label: 'Strawberry' },
+				  { value: 'vanilla', label: 'Vanilla' }
+				],
+			values: []
 		}
 	 }
 	
@@ -53,11 +71,38 @@ class Portfolio extends React.Component {
 		  var cropper;
 		  var isFull = false;
 		  
+		  //var portID = '61535450e43b2876a0421de5';
+		  
 		  if(!this.state.allow) return;
 		  
 			/*$('.port-pic-uploadable').on('click', function(){
 				input.click();
 			});*/
+			
+			
+			fetch('http://localhost:2000/register/jobtitle',{
+				method: "GET",
+				headers: {
+					"Access-Control-Allow-Origin": "*",
+					"Access-Control-Allow-Methods": "*",
+					"Access-Control-Allow-Credentials": true,
+					"Content-Type": "application/json"},
+			})
+				.then(response => response.json())
+				//.then(response => response.result)
+				.then((datas) => {
+					//console.log(datas);
+					var temp = [];
+					datas.forEach((data) => {
+						//console.log(data.THName);
+						temp.push( { value: data.THName, label: data.THName } );
+					});
+					this.setState({ options: temp });
+				}).catch((error) => {
+					  console.log(error);
+					});
+					
+			
 			
 			$( ".port-pic-uploadable" ).click(function() {
 			  input.click();
@@ -178,7 +223,10 @@ class Portfolio extends React.Component {
 			   }
 			
 			//alert(count);
-			if(count <1) count = count+1;
+			if(count <1){ 
+				count = count+1; 
+				$("#inner-fixed-folio-2").removeClass('port-pic-uploadable');
+			}
 				var temp = refThis.state.list;
 
 				   if(temp.length < 5){
@@ -321,6 +369,7 @@ class Portfolio extends React.Component {
 					$(".tres").remove();
 					$(".upload-file-icon").show();
 					$(".upload-file-label").show();
+					$("#inner-fixed-folio-2").addClass('port-pic-uploadable');
 					setTimeout(function() {
 						$( ".port-pic-uploadable" ).click(function() { input.click(); });
 					}, 10);
@@ -382,6 +431,9 @@ class Portfolio extends React.Component {
 		
 		
 		$(function(){
+			/*setInterval(function() { 
+				   console.log(refThis.state.values);
+			   }, 3);*/
 			/*setInterval(function() {
 				console.log(refThis.state.list);
 			}, 50);*/
@@ -400,6 +452,7 @@ class Portfolio extends React.Component {
 			  $('.p5-label').hide();
 			  $('.port-bg').css('background-color', '#C7C7C7');
 			  $('.pu-date-picker').css("display", "block");
+			  $('.p3-input').css("z-index", 0);
 		  });
 		  
 		  $('.static-popup-arrow').on('click', function(){
@@ -409,7 +462,7 @@ class Portfolio extends React.Component {
 			  $('.p5-label').show();
 			  $('.port-bg').css('background-color', 'white');
 			  
-			  setTimeout(function() { $('.pu-date-picker').css("display", "none"); }, 300); 
+			  setTimeout(function() { $('.pu-date-picker').css("display", "none"); $('.p3-input').css("z-index", 2) }, 300); 
 		  });
 		});	
 		
@@ -472,8 +525,7 @@ class Portfolio extends React.Component {
 				<div class="outer-full port-bg">
 					<input type="file" id="input" accept="image/*" name="image" hidden />
 					< Navbar/>
-					
-					
+
 				    <div class="port-pic-uploadable" id="inner-fixed-folio-2">
 						
 						<img class="upload-file-icon" src="assets/images/Rectangle 266.png"></img>
@@ -534,7 +586,17 @@ class Portfolio extends React.Component {
 							ตำแหน่งงาน<br/>ที่เกี่ยวข้อง
 						</div>
 						<form >
-							<input class="p-common p3-input form-control" id="search-input" type="search" autocomplete="off" placeholder="ระบุตำแหน่งงานของคุณ" aria-label="Search"/>
+							<div class="p-common p3-input form-control" id="search-input">
+								<Select 
+									isMulti 
+									value={this.state.values}
+									options={ this.state.values.length >= 3 ? this.state.values : this.state.options }
+									placeholder={'ระบุตำแหน่งงาน (สูงสุด 3 ตำแหน่ง)'} 
+									onChange={values => this.setState({ values })}
+									noOptionsMessage={() => null}
+									isSearchable={this.state.values.length >= 3 ? false : true}
+								/>
+							</div>
 						</form>
 						
 				    </div>

@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import Landing from './landing';
 import Home from './home';
 import MyResume from './myresume';
+import PortfolioRoot from './portRoot';
 import Portfolio from './portfolio';
 import Analytics from './analytics';
 import Bookmark from './bookmark';
@@ -25,10 +26,11 @@ const Routes = () => {
       <Route exact path='/choosenothing' component={Choosenothing}></Route>
       <Route exact path='/myresumetp' component={Myresumetp}></Route>
       <Route exact path='/chooseresume' component={Chooseresume}></Route>
-      <Route exact path='/portfolio' component={Portfolio}></Route>
+	  <Route exact path='/portfolio' component={PortfolioRoot}></Route>
+      <Route exact path='/editport' component={Portfolio}></Route>
       <Route exact path='/analytics' component={Analytics}></Route>
       <Route exact path='/bookmark' component={Bookmark}></Route>
-	    <Route exact path='/search' component={Search}></Route>
+	  <Route exact path='/search' component={Search}></Route>
       <Route exact path='/landing' component={Landing}></Route>
       <Route exact path='/editprofile' component={Editprofile}></Route>
       <Route exact path='/register' component={Register}></Route>
