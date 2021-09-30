@@ -129,7 +129,7 @@ const customStyles = {
     console.log(this.state.opT7)
     return (
       <div>
-        <Select styles={customStyles} options={this.state.opT7} onChange={this.handleChange.bind(this)} placeholder='เลือกหมวดทักษะเสริมที่ถนัด'  closeMenuOnSelect={false}/>
+        <Select styles={customStyles} options={this.state.opT7} onChange={this.handleChange.bind(this)} placeholder='เลือกหมวดทักษะเสริมที่ถนัด'  closeMenuOnSelect={false} id='ddt7s'/>
     <p>You have selected <strong>{this.state.name}</strong> whose id is <strong>{this.state.id}</strong></p>
       </div>
     )
