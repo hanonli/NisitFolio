@@ -281,18 +281,17 @@
     /*---*/
 }
 
-.dis_input444{
-    background-color: #EAEAEA;
+.dis_input4::placeholder {
     color: #cfcfcf;
-    padding: 10px;
-    font-size: 20px;
-    /*border: none;*/
-    border-color: #EAEAEA;
-    /*cursor: pointer;*/
-    border-radius: 2.5vh;
-    padding-left: 30px;
-    pointer-events: none;
-    /*---*/
+    opacity: 1; /* Firefox */
+  }
+  
+.dis_input4:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #cfcfcf;
+}
+  
+.dis_input4::-ms-input-placeholder { /* Microsoft Edge */
+    color: #cfcfcf;
 }
 
 #textOfyear_work{
