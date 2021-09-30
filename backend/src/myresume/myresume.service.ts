@@ -46,9 +46,14 @@ export class MyResumeService {
     const time =  new Date();
     const isoTime = time.toLocaleDateString('th-TH',{ year:'numeric',month: 'long',day:'numeric',hour:"2-digit",minute:"2-digit"});
 
+    const user = await this.userinfoRepository.findOne({where:{ UserId: CreateDto.UserId }});
+
     const resume = new Resume(); 
     resume.UserId = CreateDto.UserId;
     resume.Privacy = "Public";
+    resume.Owner = user.Firstname + " " + user.Lastname;
+    resume.Aboutme = user.AboutMe; 
+    resume.Email = user.Email2nd; 
 
     const jobid = new ObjectID(CreateDto.JobID);
 

@@ -319,6 +319,18 @@ export class Resume {
   UserId: string;
 
   @Column()
+  ProfilePic: string;
+
+  @Column()
+  Owner: string;
+
+  @Column()
+  Aboutme: string;
+
+  @Column()
+  Email: string;
+
+  @Column()
   TAG: string[];
 
   @Column()
