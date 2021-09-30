@@ -793,27 +793,6 @@ function PostRegis(pack){
       Job_JobName:[["โปรแกรมเมอร์"]],
       Job_SkillName:[["C","JQuery","HTML"]]
   }
-    
+   
 
-  $(document).ready(function(){
-    console.log('script for registab3 loaded')
-  });
-  /*
-  let startYear4 = 1970;
-  let endYear4 = new Date().getFullYear();
-  for (i = endYear4; i > startYear4; i--) {
-    $('#year_higher').append($('<option />').val(i).html(i));
-    $('#year_secondary').append($('<option />').val(i).html(i));
-    $('#year_startwork').append($('<option />').val(i).html(i));
-    $('#year_endwork').append($('<option />').val(i).html(i));
-  }
   
-  $('handleHigherSubmit').on('click',function() {
-    $("#registab3Modal1").modal("hide");
-  
-  });
-  
-  $('handleSecondaryubmit').on('click',function() {
-    $("#registab3Modal2").modal("hide");
-  });
-  */

@@ -29,13 +29,14 @@
 
 .regis-box-content7 {
   height: 26vw;
-    width: 50vw;
-    margin-left:25%;
-    margin-bottom: 1%;
-    padding-top: 1%;
-    /*padding: 1%;*/
-    margin-right: 25%;
-    overflow-y: scroll;
+  width: 60vw;
+  margin-left:20%;
+  /*margin-bottom: 0.5vw;*/
+  margin-top: 1.5vw;
+  /*padding: 1%;*/
+  margin-right: 20%;
+  /*overflow-y: scroll;*/
+  overflow: auto;
 }
 
 .headerRegis {

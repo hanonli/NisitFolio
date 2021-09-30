@@ -3091,6 +3091,35 @@ a.btn-cta-primary-yellowwideE:hover, .btn-cta-primary-yellowwideE:hover {
   opacity:0;
 }
 
+
+#cross-fadegone7 {
+	position:relative;
+	margin:0 auto;
+  }
+  
+  #cross-fadegone7 img {
+	position:absolute;
+	left: 52vw;
+	top: -3.1vw;
+	-webkit-transition: opacity 0.2s ease-in-out;
+	-moz-transition: opacity 0.2s ease-in-out;
+	-o-transition: opacity 0.2s ease-in-out;
+	transition: opacity 0.2s ease-in-out;
+  }
+  
+  #cross-fadegone7 img.bottom {
+	opacity:0.01;
+  }
+  
+  #cross-fadegone7:hover img.bottom {
+	opacity:1;
+  }
+  
+  #cross-fadegone7 img.top:hover {
+	opacity:0;
+  }
+
+  
 .alt-fadegone{
 	left: -35px !important;
     top: -15px !important;

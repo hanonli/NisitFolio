@@ -3,7 +3,7 @@ import Select, { NonceProvider } from 'react-select'
 import AsyncSelectP from 'react-select-async-paginate'
 import { useState } from 'react';
 import AsyncSelect from 'react-select/async';
-import axios from 'axios'
+import axios from 'axios';
 
 const options = [
   { value: 'Technical', label: 'Technical' },
@@ -17,19 +17,6 @@ const options = [
   { value: 'Design', label: 'Design' }
 ]
 
-const opT7 = [
-  { value: 'Computer_Technology', label: 'Computer_Technology' },
-  { value: 'Hard_Communication%20Skills', label: 'Hard_Communication Skills' },
-  { value: 'Data_Analysis', label: 'Data_Analysis' },
-  { value: 'Certifications_and_Licenses', label: 'Certifications_and_Licenses' },
-  { value: 'Marketing', label: 'Marketing' },
-  { value: 'Project_Management', label: 'Project_Management' },
-  { value: 'Design', label: 'Design' },
-  { value: 'Cloud_Computing', label: 'Cloud_Computing' },
-  { value: 'Mobile_&_Web_Development', label: 'Mobile_&_Web_Development' },
-  { value: 'Network_Structure&_Security', label: 'Network_Structure&_Security' },
-  
-]
 const customStyles = {
     option: (provided, state) => ({
         ...provided,
@@ -82,12 +69,70 @@ const customStyles = {
     }),
   }
   
-function dropdownt7 (props){
-  
-	return <div>
-		<Select styles={customStyles} id='selectT7' placeholder="เลือกหมวดทักษะเสริมที่ถนัด" options={opT7}>
-        </Select>
-	</div>
-}
+  class dropdownt7 extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      selectOptions : [],
+      id: "",
+      name: '',     
+      opT7 : [
+        { value: 'Computer_Technology', label: 'ทักษะคอมพิวเตอร์' },
+        { value: 'Hard_Communication%20Skills', label: 'ทักษะการสื่อสาร' },
+        { value: 'Data_Analysis', label: 'ทักษะการวิเคราะห์ดาต้า' },
+        { value: 'Certifications_and_Licenses', label: 'ทักษะที่ใช้ใบประกอบวิชาชีพ' },
+        { value: 'Marketing', label: 'ทักษะการตลาด' },
+        { value: 'Project_Management', label: 'ทักษะการบริหารโปรเจค' },
+        { value: 'Design', label: 'ทักษะการออกแบบ' },
+        { value: 'Cloud_Computing', label: 'ทักษะเกี่ยวกับ Cloud_Computing' },
+        { value: 'Mobile_&_Web_Development', label: 'การพัฒนาเว็ปแอปพลิเคชั่นและ Mobile App' },
+        { value: 'Network_Structure_&_Security', label: 'เน็ตเวิร์คและซีเคียวริตี้' },
+        
+      ],
+      checkddt7: false
+          }
+  }
 
+  async getOptions(typeC){
+    const res = await axios.get("http://localhost:2000/register/" + typeC +"/hardskill")
+    const data = res.data
+    console.log(res);
+    const options = data.map(d => ({
+      "value" : d.Name,
+      "label" : d.THName
+
+    }))
+    console.log(options);
+    this.setState({opT7: options,checkddt7: false})
+
+  }
+
+  handleChange(e){
+   this.setState({id:e.value, name:e.label})
+   var neww='';
+   neww = e.label;
+   console.log(neww);
+   console.log("http://localhost:2000/register/" + e.value +"/hardskill");
+   this.getOptions(e.value);
+   const inputText = e.label;
+    this.setState({
+      value: inputText
+    });
+    this.props.onChange(inputText);
+  }
+
+  componentDidMount(){
+      
+  }
+
+  render() {
+    console.log(this.state.opT7)
+    return (
+      <div>
+        <Select styles={customStyles} options={this.state.opT7} onChange={this.handleChange.bind(this)} placeholder='เลือกหมวดทักษะเสริมที่ถนัด'  closeMenuOnSelect={false}/>
+    <p>You have selected <strong>{this.state.name}</strong> whose id is <strong>{this.state.id}</strong></p>
+      </div>
+    )
+  }
+}
 export default dropdownt7;
