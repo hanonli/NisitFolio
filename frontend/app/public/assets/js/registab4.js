@@ -122,7 +122,7 @@ function show_work() {
             }
         }
         grid_work3 = grid_work3.replace("{type_salary}", ele["type_salary_work"]);
-        if (ele["type_salary_work"] != "ไม่ระบุ") {
+        if (ele["type_salary_work"] != "ไม่ระบุ" && ele["type_salary_work_select"] != 0) {
             if (Number.isNaN(ele["salary_work"]) == false) {
                 grid_work3 = grid_work3.replace("{salary_work}", ele["salary_work"]);
             }
@@ -154,6 +154,7 @@ function show_work() {
 $(document).on("click", ".registab4_formbox", function () {
     choose_function = 2;
     $('#registab4Modal').modal('toggle');
+    $("#salary_work").prop("disabled", true);
     document.querySelector('#submit-work').innerText = 'เพิ่ม';
 });
 
@@ -182,7 +183,7 @@ $(document).on("click", "#edit-work", function () {
     else {
         document.getElementById("salary_work").value = '';
     }
-    if (for_edit.type_salary_work == "ไม่ระบุ") {
+    if (for_edit.type_salary_work == "ไม่ระบุ" || for_edit.type_salary_work_select == 0) {
         $("#salary_work").prop("disabled", true);
         document.getElementById("salary_work").value = "";
     }
@@ -234,7 +235,6 @@ $(document).on("click", "#can_del_work", function () {
 });
 
 //change status 
-
 $(document).on('change', "#regist4_cb", function () {
     if ($('#regist4_cb').prop('checked') == true) {
         /*$("#year_endwork").addClass("dis_input444");
@@ -301,7 +301,7 @@ $(document).on('change', "#salary_work", function () {
 });
 
 $(document).on('change', "#salarytype_work", function () {
-    if ($("#salarytype_work").val() == "ไม่ระบุ") {
+    if ($("#salarytype_work").val() == "ไม่ระบุ" || document.getElementById("salarytype_work").selectedIndex == "0") {
         //backup_salary = document.getElementById("salary_work").value;
         $("#salary_work").prop("disabled", true);
         document.getElementById("salary_work").value = "";
@@ -393,7 +393,7 @@ $(document).on('click', "#submit-work", function () {
     else if (document.getElementById("month_startwork").value == "") {
         $("#month_startwork").addClass("is-invalid");
     }
-    else if (document.getElementById("salary_work").value != "" && isNumberTab4(document.getElementById("salary_work").value) == false) {
+    else if ((document.getElementById("salary_work").value != "" && isNumberTab4(document.getElementById("salary_work").value) == false) || parseInt(document.getElementById("salary_work").value) < 0) {
         $("#salary_work").addClass("is-invalid");
     }
     else if ($('#regist4_cb').prop('checked') == false && parseInt(document.getElementById("year_endwork").value) < parseInt(document.getElementById("year_startwork").value)) {
@@ -483,7 +483,7 @@ $(document).on('hide.bs.modal', "#registab4Modal", function () {
     $("#year_startwork").removeClass("is-invalid");
     $("#month_startwork").removeClass("is-invalid");
     $("#salary_work").removeClass("is-invalid");
-    $("#salary_work").prop("disabled", false);
+    $("#salary_work").prop("disabled", true);
     document.getElementById("inform_work").value = "";
     backup_year_endwork = 0, backup_month_endwork = 0;
     //backup_salary = "";
