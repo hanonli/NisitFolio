@@ -111,6 +111,10 @@ function show_certi() {
 
 $(document).ready(function () {
     show_certi();
+    $("#icon-upload-112").remove();
+    $("#text-upload-112").remove();
+    $("#text-upload-116").remove();
+    console.log("hello5");
 });
 
 var picOfCerti = '';
