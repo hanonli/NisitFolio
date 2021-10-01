@@ -10,10 +10,18 @@ import ProfileHeader from './Components/profileHeader';
 import PortfolioContent from './Components/portfolioContent';
 import reportWebVitals from './reportWebVitals';
 import { ReactSortable } from "react-sortablejs";
+import LoadingS from './Components/loadingS';
 import PortThumb from "./portThumb";
-import BasicDatePickerPort from "./Components/datePickerPort";
 import Select from 'react-select'
+import { Redirect } from "react-router-dom";
 import makeAnimated from 'react-select/animated';
+import cookie from 'react-cookies'
+import TextField from '@mui/material/TextField';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import DatePicker from '@mui/lab/DatePicker';
+import thLocale from 'date-fns/locale/th';
+
 //import Cropper from "react-cropper";
 window.jQuery = $;
 window.$ = $;
@@ -27,7 +35,9 @@ class Portfolio extends React.Component {
 		this.handleLoad = this.handleLoad.bind(this);
 		this.handleSortUpdate = this.handleSortUpdate.bind(this);
 		this.state = {
+			render: false, //Set render state to false
 			allow: true,
+			redirect: null,
 			allowSort: true,
 			/*list: [{ id: "1", name: "Img1" },
 					{ id: "2", name: "Img2" },
@@ -49,7 +59,8 @@ class Portfolio extends React.Component {
 				  { value: 'strawberry', label: 'Strawberry' },
 				  { value: 'vanilla', label: 'Vanilla' }
 				],
-			values: []
+			values: [],
+			currentDate: null
 		}
 	 }
 	
@@ -62,6 +73,188 @@ class Portfolio extends React.Component {
 		//$.getScript('assets/js/portfolio.js');
 		const refThis = this;
 		var refElement = null;
+		var portMode = cookie.load('port-entry');
+		var token = cookie.load('login-token');
+		var privacyId = 0;
+		
+		function GetFetchableData(){
+			var newPort = {};
+			
+			var pics = [];
+			var pCount = refThis.state.list.length;
+			if(pCount > 0) pics.push($('#upload-id-1').attr('src'));
+			if(pCount > 1) pics.push($('#upload-id-2').attr('src'));
+			if(pCount > 2) pics.push($('#upload-id-3').attr('src'));
+			if(pCount > 3) pics.push($('#upload-id-4').attr('src'));
+			if(pCount > 4) pics.push($('#upload-id-5').attr('src'));
+			
+			var privacy = null;
+			if(privacyId == 0) privacy = 'Public'
+			else if(privacyId == 1) privacy = 'Members'
+			else if(privacyId == 2) privacy = 'Private'
+			
+			var tags = [];
+			refThis.state.values.forEach((data) => {
+				tags.push(data.value);
+			});
+			
+			var date = null;
+			if(document.getElementById('basic-date-picker').value.length > 0)
+				date = document.getElementById('basic-date-picker').value;
+			
+			newPort.Port_Tag = tags;
+			newPort.Port_Privacy = privacy;
+			newPort.Pic = pics;
+			newPort.Description = [];
+			newPort.Port_Date = date;
+			newPort.Port_Name = document.getElementById('text-input').value;
+			newPort.Port_Info = document.getElementById('w3review').value;
+			
+			console.log(newPort);
+			
+			return newPort;
+		}
+		
+		function GetEditPortData(id){
+			fetch("http://localhost:2000/portfolio/"+id,{
+			method: "GET",
+			headers: {
+				'Authorization': 'Bearer '+token,
+				"Access-Control-Allow-Origin": "*",
+				"Access-Control-Allow-Methods": "*",
+				"Access-Control-Allow-Credentials": true,
+				"Content-Type": "application/json"
+			},
+			})
+				.then(response => response.json())
+				.then((data) => {
+					console.log(data);
+					refThis.setState({ render: true });
+					setTimeout(function() { InitializeFunction(); }, 300); 
+					
+					$('#op-button').text('แก้ไข');
+					$('#op-button').on('click', function(){
+						var editPort = GetFetchableData();
+						refThis.setState({ render:  false });
+						fetch("http://localhost:2000/portfolio/"+id,{
+							method: "PATCH",
+							headers: {
+								'Authorization': 'Bearer '+token,
+								"Access-Control-Allow-Origin": "*",
+								"Access-Control-Allow-Methods": "*",
+								"Access-Control-Allow-Credentials": true,
+								"Content-Type": "application/json"
+							},
+							body: JSON.stringify(editPort),
+						})
+						.then(response =>  {
+							//console.log(datas);
+							console.log(response);
+							refThis.setState({ redirect: "/portfolio" });
+							//GetSearchBookmarkData();
+						})
+						.catch((error) => {
+							console.log('add Error!');
+							//this.setState({ redirect: "/landing" });
+						});
+					});
+					
+					$('#text-input').val(data.Port_Name);
+					$('#w3review').val(data.Port_Info);
+					
+					if(data.Port_Privacy == 'Public'){
+						privacyId = 0;
+					}else if(data.Port_Privacy == 'Members'){ 
+						privacyId = 1;
+					}else if(data.Port_Privacy == 'Private'){ 
+						privacyId = 2;
+					}
+
+					var idd = privacyId+1;
+					$('.static-public-icon').removeClass('spi-active');
+					$('.spi'+idd).addClass('spi-active');
+					
+					var tags = [];
+					data.Port_Tag.forEach((entry) => {
+						tags.push( { value: entry, label: entry } );
+					});
+					
+					refThis.setState({ values: tags });
+					//setInterval(function() { console.log(refThis.state.values); }, 1000);
+					
+					if(data.Port_Date != null){
+						//alert(777);
+						setInterval(function() { console.log(refThis.state.currentDate); }, 1000);
+						/*refThis.setState({ values: tags });*/
+						var tpp = data.Port_Date.split('/');
+						var date = tpp[0]; var month = tpp[1]; var year = tpp[2];
+						if(month == '01') month = 'Jan';
+						else if(month == '02') month = 'Feb';
+						else if(month == '03') month = 'Mar';
+						else if(month == '04') month = 'Apr';
+						else if(month == '05') month = 'May';
+						else if(month == '06') month = 'Jun';
+						else if(month == '07') month = 'Jul';
+						else if(month == '08') month = 'Aug';
+						else if(month == '09') month = 'Sep';
+						else if(month == '10') month = 'Oct';
+						else if(month == '11') month = 'Sep';
+						else if(month == '12') month = 'Dec';
+						var day = 'NON'; // Mon, Tue, Wed, ...
+						refThis.setState({ currentDate: day+' '+month+' '+date+' '+year+' 01:24:50 GMT+0700 (Indochina Time)' });
+					}
+					
+					data.portfolioPictures[0].Pic.forEach((entry) => {
+						//alert(entry);
+						AddImageToSortable(entry);
+					});
+					//alert('5555555555555');
+
+				}).catch((error) => {
+					console.log('Token Error!');
+					//refThis.setState({ redirect: "/landing" });
+				});
+		}
+		
+		if(portMode == 'new'){
+			refThis.setState({ render: true });
+			setTimeout(function() { InitializeFunction(); }, 100); 
+			
+			//alert(555);
+			setTimeout(function() {
+				$('#op-button').text('เพิ่ม');
+				$('#op-button').on('click', function(){
+					var newPort = GetFetchableData();
+					refThis.setState({ render:  false });
+					fetch("http://localhost:2000/portfolio",{
+						method: "POST",
+						headers: {
+							'Authorization': 'Bearer '+token,
+							"Access-Control-Allow-Origin": "*",
+							"Access-Control-Allow-Methods": "*",
+							"Access-Control-Allow-Credentials": true,
+							"Content-Type": "application/json"
+						},
+						body: JSON.stringify(newPort),
+					})
+					.then(response =>  {
+						//console.log(datas);
+						console.log(response);
+						//GetSearchBookmarkData();
+						refThis.setState({ redirect: "/portfolio" });
+					})
+					.catch((error) => {
+						console.log('add Error!');
+						//this.setState({ redirect: "/landing" });
+					});
+				});
+			 }, 300); 
+			
+		}else{
+			var editPortId = cookie.load('port-focus');
+			GetEditPortData(editPortId);
+			//alert(editPortId);
+		}
 		
 		  var avatar = $('.port-pic-uploadable');
 		  var image = document.getElementById('image');
@@ -102,12 +295,7 @@ class Portfolio extends React.Component {
 					  console.log(error);
 					});
 					
-			
-			
-			$( ".port-pic-uploadable" ).click(function() {
-			  input.click();
-			});
-			
+
 			function ResetHoverFunction(){
 				$('.sortable-thumbnail-pic').on('mouseenter', function(){
 					  //alert('over!'); 
@@ -136,33 +324,9 @@ class Portfolio extends React.Component {
 					 $('#'+pid).css('display','inline');
 					});
 			}
-
-		  input.addEventListener('change', function (e) {
-			var files = e.target.files;
-			var done = function (url) {
-			  input.value = '';
-			  image.src = url;
-			  $alert.hide();
-			  $modal.modal('show');
-			};
-			var reader;
-			var file;
-			var url;
-
-			if (files && files.length > 0) {
-			  file = files[0];
-
-			  if (URL) {
-				done(URL.createObjectURL(file));
-			  } else if (FileReader) {
-				reader = new FileReader();
-				reader.onload = function (e) {
-				  done(reader.result);
-				};
-				reader.readAsDataURL(file);
-			  }
-			}
-		  });
+			
+					
+		 
 		  
 		  var uploadButton = '<piv class="tres" id="{tresId}">\
 								<div class="sortable-thumbnail" style="background-color: rgb(245, 245, 245);">\
@@ -172,7 +336,53 @@ class Portfolio extends React.Component {
 		  
 		  var jObj = '';
 
-		  $modal.on('shown.bs.modal', function () {
+		 
+			
+			
+			function InitializeFunction(){
+				avatar = $('.port-pic-uploadable');
+				image = document.getElementById('image');
+				input = document.getElementById('input');
+				$alert = $('.alert');
+				$modal = window.$('#modal');
+				isFull = false;
+				
+							
+			
+				$( ".port-pic-uploadable" ).click(function() {
+				  input.click();
+				});
+			
+				
+				
+				input.addEventListener('change', function (e) {
+				var files = e.target.files;
+				var done = function (url) {
+				  input.value = '';
+				  image.src = url;
+				  $alert.hide();
+				  $modal.modal('show');
+				};
+				var reader;
+				var file;
+				var url;
+
+				if (files && files.length > 0) {
+				  file = files[0];
+
+				  if (URL) {
+					done(URL.createObjectURL(file));
+				  } else if (FileReader) {
+					reader = new FileReader();
+					reader.onload = function (e) {
+					  done(reader.result);
+					};
+					reader.readAsDataURL(file);
+				  }
+				}
+			  });
+			  
+			   $modal.on('shown.bs.modal', function () {
 			cropper = new window.Cropper(image, {
 			  aspectRatio: 16/9,
 			  viewMode: 1,
@@ -203,6 +413,63 @@ class Portfolio extends React.Component {
 				console.log("HELLO LV5!");
 			  });
 			}
+			
+			AddImageToSortable(avatar.src);
+			
+		  });
+		
+		
+			ResetSortableContent();
+		
+			// recursive event listener
+			setTimeout(function() {
+				$('.delete-upload-icon').off('click');
+				$('.delete-upload-icon').on('click', function(){ // add delete event
+					delFunc(this);
+				});
+			}, 20);
+		
+			
+						/*setInterval(function() { 
+				   console.log(refThis.state.values);
+			   }, 3);*/
+			/*setInterval(function() {
+				console.log(refThis.state.list);
+			}, 50);*/
+			
+		  $("#basic-date-picker").attr("placeholder", "วัน/เดือน/ปี");
+		  
+		  $('.static-public-icon').on('click', function(){
+			  $('.static-public-icon').removeClass('spi-active');
+			  $(this).addClass('spi-active');
+			  privacyId =  Number($(this).attr('id').split('-')[1]);
+		  });
+		  
+		  $('.static-footer-arrow').on('click', function(){
+			  $('.inner-popup-folio').addClass('anim-inner-popup-folio');
+			  $('#inner-fixed-folio-3').addClass('anim-inner-fixed-folio-3');
+			  $('.static-footer-arrow').hide();
+			  $('.p5-label').hide();
+			  $('.port-bg').css('background-color', '#C7C7C7');
+			  $('.pu-date-picker').css("display", "block");
+			  $('.p3-input').css("z-index", 0);
+		  });
+		  
+		  $('.static-popup-arrow').on('click', function(){
+			  $('.inner-popup-folio').removeClass('anim-inner-popup-folio');
+			  $('#inner-fixed-folio-3').removeClass('anim-inner-fixed-folio-3');
+			  $('.static-footer-arrow').show();
+			  $('.p5-label').show();
+			  $('.port-bg').css('background-color', 'white');
+			  
+			  setTimeout(function() { $('.pu-date-picker').css("display", "none"); $('.p3-input').css("z-index", 2) }, 300); 
+		  });
+		
+			}
+			
+
+		
+		function AddImageToSortable(getImg){
 			//$(".port-pic-uploadable").click(function() { return false; });
 			//$(".port-pic-uploadable").off(); 
 			$(".port-pic-uploadable").off('click'); // turn off big upload section when adding new image
@@ -266,7 +533,7 @@ class Portfolio extends React.Component {
 					
 					var nImg = document.getElementById('upload-id-'+lid);
 				//alert('upload-id-'+lid);
-				nImg.src = avatar.src; 
+				nImg.src = getImg; 
 				// allow upload for last button
 				//$("#upload-id-"+lid).off('click');
 				//$( "#upload-id-"+count ).click(function() {input.click(); }); 
@@ -297,7 +564,7 @@ class Portfolio extends React.Component {
 				   $('.delete-upload-icon').css('display','none');
 
 				   ResetHoverFunction();
-		  });
+		}
 		
 		/////////////////////////
 		
@@ -323,7 +590,7 @@ class Portfolio extends React.Component {
 			}
 		}
 		
-		ResetSortableContent();
+		
 		
 		/*var i=1;
 		
@@ -418,53 +685,10 @@ class Portfolio extends React.Component {
 				}
 			}
 			
-			// recursive event listener
-			setTimeout(function() {
-				$('.delete-upload-icon').off('click');
-				$('.delete-upload-icon').on('click', function(){ // add delete event
-					delFunc(this);
-				});
-			}, 20);
+			
 			
 		}
 		
-		
-		
-		$(function(){
-			/*setInterval(function() { 
-				   console.log(refThis.state.values);
-			   }, 3);*/
-			/*setInterval(function() {
-				console.log(refThis.state.list);
-			}, 50);*/
-			
-		  $("#basic-date-picker").attr("placeholder", "วัน/เดือน/ปี");
-		  
-		  $('.static-public-icon').on('click', function(){
-			  $('.static-public-icon').removeClass('spi-active');
-			  $(this).addClass('spi-active');
-		  });
-		  
-		  $('.static-footer-arrow').on('click', function(){
-			  $('.inner-popup-folio').addClass('anim-inner-popup-folio');
-			  $('#inner-fixed-folio-3').addClass('anim-inner-fixed-folio-3');
-			  $('.static-footer-arrow').hide();
-			  $('.p5-label').hide();
-			  $('.port-bg').css('background-color', '#C7C7C7');
-			  $('.pu-date-picker').css("display", "block");
-			  $('.p3-input').css("z-index", 0);
-		  });
-		  
-		  $('.static-popup-arrow').on('click', function(){
-			  $('.inner-popup-folio').removeClass('anim-inner-popup-folio');
-			  $('#inner-fixed-folio-3').removeClass('anim-inner-fixed-folio-3');
-			  $('.static-footer-arrow').show();
-			  $('.p5-label').show();
-			  $('.port-bg').css('background-color', 'white');
-			  
-			  setTimeout(function() { $('.pu-date-picker').css("display", "none"); $('.p3-input').css("z-index", 2) }, 300); 
-		  });
-		});	
 		
 	}
 	
@@ -503,6 +727,10 @@ class Portfolio extends React.Component {
 	 }
 	
 	render (){
+		if(this.state.redirect) {
+			return <Redirect to={this.state.redirect} />
+		}
+		
 		if(!this.state.allow) return (
 			<div className="Underconstruction">
 				< Navbar/>
@@ -518,6 +746,10 @@ class Portfolio extends React.Component {
 					</div>
 				</header>
 			</div>
+		);
+		
+		if(!this.state.render) return (
+			<LoadingS />
 		);
 		
 		return (
@@ -572,7 +804,7 @@ class Portfolio extends React.Component {
 							หัวข้อผลงาน
 						</div>
 						<form >
-							<input class="p-common p1-input form-control" id="search-input" type="search" autocomplete="off" placeholder="กรอกหัวข้อผลงานของคุณ" aria-label="Search"/>
+							<input class="p-common p1-input form-control" id="text-input" type="search" autocomplete="off" placeholder="กรอกหัวข้อผลงานของคุณ" aria-label="Search"/>
 						</form>
 						
 						<div class="p2-label">
@@ -620,7 +852,14 @@ class Portfolio extends React.Component {
 							วันที่เข้าร่วม/ได้รับ
 						</div>
 						<div class="pu-date-picker">
-							< BasicDatePickerPort />
+							<LocalizationProvider dateAdapter={AdapterDateFns} locale={thLocale}>
+							  <DatePicker
+								value={this.state.currentDate}
+								onChange={currentDate => this.setState({ currentDate })}
+								maxDate={new Date()}
+								renderInput={(params) => <TextField variant="filled" id="basic-date-picker" {...params} />}
+							  />
+							</LocalizationProvider>
 						</div>
 				    </div>
 				  
@@ -629,9 +868,9 @@ class Portfolio extends React.Component {
 							ความเป็นส่วนตัว
 						</div>
 						
-						<img class="static-public-icon spi1 spi-active" src="assets/images/outline_public_black_24dp.png"></img>
-						<img class="static-public-icon spi2" src="assets/images/outline_people_black_24dp.png"></img>
-						<img class="static-public-icon spi3" src="assets/images/outline_lock_black_24dp.png"></img>
+						<img class="static-public-icon spi1 spi-active" id="privacy-0" src="assets/images/outline_public_black_24dp.png"></img>
+						<img class="static-public-icon spi2" id="privacy-1" src="assets/images/outline_people_black_24dp.png"></img>
+						<img class="static-public-icon spi3" id="privacy-2" src="assets/images/outline_lock_black_24dp.png"></img>
 						
 						<div class="p5-label">
 							ตั้งค่าเพิ่มเติม
@@ -642,7 +881,7 @@ class Portfolio extends React.Component {
 							<Link to="/home">
 								<a class="btn btn-cta-primary round grey margin-right-m port-button" target="_blank">ยกเลิก</a>
 							</Link>        
-							<a class="btn btn-cta-primary-yellow round port-button" href="#" target="_blank">เพิ่ม</a>
+							<a class="btn btn-cta-primary-yellow round port-button" id="op-button" target="_blank">เพิ่ม</a>
 						</div>
 					</div>
 				</div>
