@@ -29,7 +29,7 @@
 
 /*------background choose template------*/
 .template-content{
-    position: absolute;
+    position: relative;
     height: 630px;
     width: 1480px;
     top: 165px;
@@ -39,7 +39,7 @@
 
 .choose-color-template11 {
     position: absolute;
-    left: 580px;
+    left: 565px;
     top: 110px;
 }
 
@@ -47,16 +47,32 @@
 #text-choose-color-template11{
     color: black;
     margin-bottom: 50px;
+    margin-left: 11px;
 }
 
 .grid-choose-template{
     display: grid;
     grid-template-columns: repeat(3,1fr);
-    gap: 50px;
+    gap: 40px;
 }
 
-.choose-template-color{
-    display: block;
+.choose-template-color-FF7370{
+    width: 227px;
+    height: 125px;
+    border-radius: 20px;
+    border: 2px solid #C4C4C4;
+    cursor: pointer;
+}
+
+.choose-template-color-FE9666{
+    width: 227px;
+    height: 125px;
+    border-radius: 20px;
+    border: 2px solid #C4C4C4;
+    cursor: pointer;
+}
+
+.choose-template-color-FFCE55{
     width: 227px;
     height: 125px;
     background-color: transparent;
@@ -65,26 +81,66 @@
     cursor: pointer;
 }
 
-.user-choose-template{
-    display: block;
+.choose-template-color-01B8AA{
     width: 227px;
     height: 125px;
     background-color: transparent;
     border-radius: 20px;
-    border: 8px solid #2560A5;    
+    border: 2px solid #C4C4C4;
+    cursor: pointer;
 }
 
-#red-template1{
-    padding-left: 42%;
-    padding-right: 40%;
+.choose-template-color-32A3C7{
+    width: 227px;
+    height: 125px;
+    background-color: transparent;
+    border-radius: 20px;
+    border: 2px solid #C4C4C4;
+    cursor: pointer;
 }
 
-.text-template1{
+.text-template11{
     position: relative;
+    top: 22%;
     color: black;
     font-size: 24px;
     font-weight: 300;    
-    top: 25%;
+    text-align: center;
+}
+
+.text-template22{
+    position: relative;
+    top: 22%;
+    color: black;
+    font-size: 24px;
+    font-weight: 300;    
+    text-align: center;
+}
+
+.text-template33{
+    position: relative;
+    top: 22%;
+    color: black;
+    font-size: 24px;
+    font-weight: 300;    
+    text-align: center;
+}
+
+.text-template44{
+    position: relative;
+    top: 22%;
+    color: black;
+    font-size: 24px;
+    font-weight: 300;    
+    text-align: center;
+}
+
+.text-template55{
+    position: relative;
+    top: 22%;
+    color: black;
+    font-size: 24px;
+    font-weight: 300;    
     text-align: center;
 }
 
@@ -140,13 +196,74 @@
     visibility: hidden;
 }
 
-.circle-color-template{
+.circle-color-template-FF7370{
     position: relative;
-    top: 10%;
+    top: 16%;
+    left: 40%;
     border-radius: 50%;
     width: 45px;
     height: 45px;
-    background-color: green;
-    justify-content: center;
+    background-color: #FF7370;
+}
+
+.circle-color-template-FE9666{
+    position: relative;
+    top: 16%;
+    left: 40%;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    background-color: #FE9666;
+}
+.circle-color-template-FFCE55{
+    position: relative;
+    top: 16%;
+    left: 40%;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    background-color: #FFCE55;
+}
+.circle-color-template-01B8AA{
+    position: relative;
+    top: 16%;
+    left: 40%;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    background-color: #01B8AA;
+}
+.circle-color-template-32A3C7{
+    position: relative;
+    top: 16%;
+    left: 40%;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    background-color: #32A3C7;
+}
+
+.text-info-template11{
+    color: black;
+    font-weight: 300;
+    font-size: 24px;
+    margin-left: 4.8%;
+    margin-top: 4.5%;
     text-align: center;
+}
+
+.sample-color-template{
+    position: relative;
+    left: 8%;
+    top: 14%;
+}
+
+.choose-color-template11 input[type=radio]:checked + label#color-template1{
+    border: 8px solid #2560A5;    
+}
+
+.arrow2nextpage_template{
+    position: absolute;
+    top: 66%;
+    right: 11%;
 }

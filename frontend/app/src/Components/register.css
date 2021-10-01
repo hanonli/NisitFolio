@@ -35,9 +35,19 @@
   margin-top: 1.5vw;
   /*padding: 1%;*/
   margin-right: 20%;
-  /*overflow-y: scroll;*/
+  overflow-y: hidden;
+  position: relative;
+  z-index: 1000;
 }
-
+.fixed-wrapper {
+  position: absolute;     
+  width: 100%;    
+  z-index: 2000;
+}
+.fixed {
+      position: fixed;
+      z-index: 3000;
+  }
 .headerRegis {
     color: #000;
     font-size: 48px;

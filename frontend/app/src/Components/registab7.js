@@ -5,34 +5,26 @@ import SelectSS7 from './dropsideskill';
 import $ from 'jquery';
 
 class Registab7 extends React.Component {
+	
 	constructor(props) {
 		super(props);
 		this.state = {
 		  sideskillName: "",
-		  checkstatust7: false
+		  checkstatust7: false,
+		  countsideskill:0
 		};
 	  }
 	  onInputChage = value => {
 		this.setState({
 			sideskillName: value,
-			checkstatust7: true
+			checkstatust7: true,
+			countsideskill: this.state.countsideskill++
 		});
 		console.log("I am Parent component. I got", value, "from my child.");
 		console.log("I am",this.state.checkstatust7);
 	  };
 
 	  componentDidMount(){
-      if(this.state.checkstatust7){
-		var sideskilldropdown1 = '<div class="container-fluid dropbtn-box form-f " id="ssl_1">\
-		<div class="row">\
-		  <div class="col-10">\
-			<a class="textT7B">\
-			';
-		var sideskilldropdown2_1 = '</a>\
-			</div>\
-			';
-		$('.dropdowntab7').append(sideskilldropdown1+this.state.sideskillName+sideskilldropdown2_1);
-	  }
   }
 	render (){
 		return (
@@ -43,11 +35,9 @@ class Registab7 extends React.Component {
                         <img class="registab3_btnplus icon-plus-circleA bottom" type='button' src="assets/images/add_hover.png"></img>
                         <img class="registab3_btnplus icon-plus-circleA top" type='button' id='add_sideskill' src="assets/images/add_black.png"></img>
                     </div>
-					<div class="dropdowntap7"></div>
-					<Ddt7 onChange={this.onInputChage}/>
-					<Ddt7 onChange={this.onInputChage}/>
-					<Ddt7 onChange={this.onInputChage}/>
-					<span>Table:{this.state.sideskillName}</span>
+					<div class="dropdowntap7 fixed-wrapper">
+					<Ddt7 onChange={this.onInputChage} />
+					</div>
 					<div class="modal fade" id="Modaltab7" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog modal-dialog-centered">
 							<div class="modal-content minisize">

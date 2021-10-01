@@ -116,6 +116,11 @@ function show_all_job() {
 
 $(document).ready(function () {
     show_all_job();
+    $(".step-marks").remove();
+    $(".step-labels").remove();
+    $("#input_mySlider1").remove();
+    $("#input_mySlider2").remove();
+    $("#input_mySlider3").remove();
 });
 
 // setup slider HTML, then call the following method with the values

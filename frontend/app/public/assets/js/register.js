@@ -11,6 +11,7 @@ $(function(){
     $('.tab-content').hide();
     $('#registab1-content').show();
     $('#basic-date-picker1').attr('placeholder','วัน/เดือน/ปี');
+    $('#ddt7s').hide();
     console.log("Yahaha!");
    $('#tab-1').on('click', function(){
        $('.tab-content').hide();
@@ -532,50 +533,6 @@ $(document).on("change", "#selectT7", function () {
   }
 });
 */
-var sskdd1 = '<div class="col-2">\
-                <div class="delbtn">\
-                <img class="obj-icon tooltips-item" src="assets/images/bin.png" type="button" data-bs-toggle="modal" toggle-type="dynamic"data-bs-target="#Modaltab7-1" id="valss1" alt="" width="30" height="30"/>\
-                </div>\
-              </div>\
-              </div>\
-              ';
-var sskdd2 = '<div class="col-2">\
-                <div class="delbtn">\
-                <img class="obj-icon tooltips-item" src="assets/images/bin.png" type="button" data-bs-toggle="modal" toggle-type="dynamic"data-bs-target="#Modaltab7-2" id="valss2" alt="" width="30" height="30"/>\
-                </div>\
-              </div>\
-              </div>\
-              ';
-var sskdd3 = '<div class="col-2">\
-              <div class="delbtn">\
-              <img class="obj-icon tooltips-item" src="assets/images/bin.png" type="button" data-bs-toggle="modal" toggle-type="dynamic"data-bs-target="#Modaltab7-3" id="valss3" alt="" width="30" height="30"/>\
-              </div>\
-            </div>\
-            </div>\
-            ';
-var sideskilldropdown1_1 = '<div class="container-fluid dropbtn-box form-f " id="ssl_1">\
-                              <div class="row">\
-                                <div class="col-10">\
-                                  <a class="textT7B">\
-                                  ';
-var sideskilldropdown1_2 = '<div class="container-fluid dropbtn-box form-f " id="ssl_2">\
-                                  <div class="row">\
-                                    <div class="col-10">\
-                                      <a class="textT7B">\
-                                      ';
-var sideskilldropdown1_3 = '<div class="container-fluid dropbtn-box form-f " id="ssl_3">\
-                              <div class="row">\
-                                <div class="col-10">\
-                                  <a class="textT7B">\
-                                  ';
-var sideskilldropdown2 = '</a>\
-                          </div>\
-                          ';
-var sideskill_count=0;
-var max_sideskill=3;
-var sumsideskill='';
-var valss_now='';
-
 
 function GetProvince(){
 	fetch("https://thaiaddressapi-thaikub.herokuapp.com/v1/thailand/provinces",
@@ -628,7 +585,7 @@ function GetDistrict(text){
 			});
 		
 }
-
+/*
 function Getchoicehardskill(typeC,number){
 	fetch("http://localhost:2000/register/" + typeC +"/hardskill",
 		{ method: "GET", })
@@ -655,7 +612,7 @@ function Getchoicehardskill(typeC,number){
 			  console.log(error);
 			});
 }
-
+*/
 function PostRegis(pack){
   fetch("http://localhost:2000/register",
 		{ method: "POST",
@@ -720,5 +677,36 @@ function PostRegis(pack){
       Job_SkillName:[["C","JQuery","HTML"]]
   }
    
+  var ddt7_dd = '<Ddt7 onChange={this.onInputChage} /> \
+  ';
+  var ddt7_un ='<h3>Table:{this.state.sideskillName}</h3> \
+  ';
+$('#add_sideskill').on('click',function(){
+  console.log('Add sideskill dropdown!');
+  //$('.dropdowntap7').append(ddt7_dd);
+  //$('#ddt7s').prop('selectedIndex', 0);
+  $('#ddt7s').show();
+});
 
-  
+
+var sskdd111 = '<div class="container-fluid dropbtn-box form-f " id="ssl">\
+<div class="row">\
+  <div class="col-10">\
+  <a class="textT7B">\
+  ';
+var sskdd112 = '</a>\
+  </div>\
+  ';
+
+var sskdd113 = '<div class="col-2">\
+  <div class="delbtn">\
+  <img class="obj-icon tooltips-item" src="assets/images/bin.png" type="button" data-bs-toggle="modal" toggle-type="dynamic"data-bs-target="#Modaltab7" id="valss" alt="" width="30" height="30"/>\
+  </div>\
+  </div>\
+  </div>\
+  ';
+
+var sideskill_count=0;
+var max_sideskill=3;
+var sumsideskill='';
+var valss_now='';
