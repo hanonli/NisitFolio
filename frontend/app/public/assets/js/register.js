@@ -799,8 +799,8 @@ function PostRegis(pack){
     console.log('script for registab3 loaded')
   });
   
-  let startYear4 = 1970;
-  let endYear4 = new Date().getFullYear();
+  var startYear4 = 1970;
+  var endYear4 = new Date().getFullYear();
   for (i = endYear4; i > startYear4; i--) {
     $('#year_higher').append($('<option />').val(i).html(i));
     $('#year_secondary').append($('<option />').val(i).html(i));
