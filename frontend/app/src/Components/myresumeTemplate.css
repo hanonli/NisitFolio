@@ -1,3 +1,4 @@
+/*---------------------------- choose template ----------------------------*/
 .layout-template{
     position: relative;
     left: 106px;
@@ -266,4 +267,110 @@
     position: absolute;
     top: 66%;
     right: 11%;
+    cursor: pointer;
+}
+
+/*---------------------------- edit template ----------------------------*/
+.layout-edit-template{
+    position: relative;
+    left: 103px; 
+}
+
+.edit-template-content{
+    position: relative;
+    height: 630px;
+    width: 1480px;
+    top: 205px;
+}
+
+.sample-color-edit-template{
+    position: relative;
+    left: 7%;
+    top: 14%;
+}
+
+.choose-color-edit-template11{
+    position: absolute;
+    left: 565px;
+    top: 110px;
+}
+
+.grid-edit-template{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 40px;
+}
+
+#edit-template-color-FF7370{
+    visibility: hidden;
+}
+
+#edit-template-color-FE9666{
+    visibility: hidden;
+}
+
+#edit-template-color-FFCE55{
+    visibility: hidden;
+}
+
+#edit-template-color-01B8AA{
+    visibility: hidden;
+}
+
+#edit-template-color-32A3C7 {
+    visibility: hidden;
+}
+
+.edit-template-color-FF7370{
+    width: 227px;
+    height: 125px;
+    border-radius: 20px;
+    border: 2px solid #C4C4C4;
+    cursor: pointer;
+    background-color: #F4F4F4F4;
+}
+
+.edit-template-color-FE9666{
+    width: 227px;
+    height: 125px;
+    border-radius: 20px;
+    border: 2px solid #C4C4C4;
+    cursor: pointer;
+    background-color: #F4F4F4F4;
+}
+
+.edit-template-color-FFCE55{
+    width: 227px;
+    height: 125px;
+    border-radius: 20px;
+    border: 2px solid #C4C4C4;
+    cursor: pointer;
+    background-color: #F4F4F4F4;
+}
+
+.edit-template-color-01B8AA{
+    width: 227px;
+    height: 125px;
+    border-radius: 20px;
+    border: 2px solid #C4C4C4;
+    cursor: pointer;
+    background-color: #F4F4F4F4;
+}
+
+.edit-template-color-32A3C7{
+    width: 227px;
+    height: 125px;
+    border-radius: 20px;
+    border: 2px solid #C4C4C4;
+    cursor: pointer;
+    background-color: #F4F4F4F4;
+}
+
+.choose-color-edit-template11 input[type=radio]:checked + label#color-edit-template1{
+    border: 8px solid #2560A5;    
+}
+
+#text-edit-color-template11{
+    color: black;
+    margin-bottom: 20px;
 }

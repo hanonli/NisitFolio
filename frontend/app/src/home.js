@@ -22,6 +22,8 @@ class Home extends React.Component {
 	 }
 	
 	componentDidMount() {
+		var refThis = this;
+		
 		window.addEventListener('load', this.handleLoad);
 		console.log("YEAHXXX!");
 		var token = cookie.load('login-token');
@@ -90,6 +92,32 @@ class Home extends React.Component {
 					 //alert('Crop!');
 					setTimeout(function() { UploadProfile(); }, 300);
 				});
+				
+				
+				$('#mrs').on('click', function(){
+					fetch("http://localhost:2000/myresume/",{
+						method: "GET",
+						headers: {
+							'Authorization': 'Bearer '+token,
+							"Access-Control-Allow-Origin": "*",
+							"Access-Control-Allow-Methods": "*",
+							"Access-Control-Allow-Credentials": true,
+							"Content-Type": "application/json"
+						},
+					})
+					.then(function(response) {
+						return response.text().then(function(text) {
+						  if(text == '[]'){ 
+							//alert('isEmpty!')
+							refThis.setState({ redirect: "/Choosenothing" });
+						  }else{
+							//alert('Go!');
+							refThis.setState({ redirect: "/myresume" });
+						  }
+						});
+					 });
+				});
+				
 			}).catch((error) => {
 				console.log('Token Error!');
 				this.setState({ redirect: "/landing" });
@@ -121,7 +149,6 @@ class Home extends React.Component {
 						//this.setState({ redirect: "/landing" });
 					});
 			}
-			
 			 
 			
 	}
@@ -204,13 +231,11 @@ class Home extends React.Component {
 					<div class="container-fluid md-view" id="inner-home">
 						<div class="d-flex df-f justify-content-center align-items-center">
 							<div class="row">
-								<div class="col-md-auto">
-									<Link to="/myresume">
-										<div class="transition-component scale-up-s resume-icon" id="cross-fade">
-											<img class="resume-icon bottom" src="assets/images/myresume2.png" type='button' id="myresume-home" alt="" />
-											<img class="resume-icon top" src="assets/images/myresume1.png" type='button' id="myresume-home" alt="" />
-										</div>
-									</Link>
+								<div class="col-md-auto" id="mrs">
+									<div class="transition-component scale-up-s resume-icon" id="cross-fade">
+										<img class="resume-icon bottom" src="assets/images/myresume2.png" type='button' id="myresume-home" alt="" />
+										<img class="resume-icon top" src="assets/images/myresume1.png" type='button' id="myresume-home" alt="" />
+									</div>
 								</div>
 								<div class="col-md-auto">
 									<Link to="/portfolio">

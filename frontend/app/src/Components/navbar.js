@@ -45,7 +45,7 @@ class Navbar extends React.Component {
 		if(this.state.tpId == 'public'){
 			return(
 				<div className="Navbar">
-					<nav class="navbar-2 navbar-no-vertical-padding navbar-expand-lg navbar-light bg-light ">
+					<nav class="navbar-2 navbar-no-vertical-padding navbar-expand-lg navbar-light bg-light">
 						<div class="nav-flex">
 							<div class="nvw1">
 								<div class="lg-view">
@@ -120,7 +120,7 @@ class Navbar extends React.Component {
 		
 		return (
 			<div className="Navbar">
-				<nav class="navbar-2 navbar-no-vertical-padding navbar-expand-lg navbar-light bg-light ">
+				<nav class="navbar-2 navbar-no-vertical-padding navbar-expand-lg navbar-light bg-light static-nav">
 					<div class="nav-flex">
 						<div class="nvw1">
 							<div class="lg-view">
@@ -257,6 +257,7 @@ class Navbar extends React.Component {
 					  </ul>
 					</div>
 				</nav>
+				<div class="nav-margin"></div>
 			</div>
 		);
 	}

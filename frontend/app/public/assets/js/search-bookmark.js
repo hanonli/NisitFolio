@@ -161,7 +161,7 @@ function ResetData(){
 
 function FormatIcon(data,dtype) {
   if(pageName == 'search'){
-		if(data.bookmark == "false") {
+		if(!data.bookmark) {
 			entityIdInfo.push("false"+"-"+data.thatUserId+'&'+data.type+'&'+data.name);
 			dtype = dtype.replace("{icon-type}","assets/images/bookmark_1.png").replace("{tooltip}","บันทึก").replace("{status}",entityId);
 		}else {
