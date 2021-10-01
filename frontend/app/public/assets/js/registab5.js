@@ -1,7 +1,7 @@
 /*----year option----*/
 $(document).ready(function () {
-    let startYear = 1990;
-    let endYear = new Date().getFullYear();
+    var startYear = 1990;
+    var endYear = new Date().getFullYear();
     for (i = endYear; i > startYear; i--) {
         $('#yearpicker_111').append($('<option />').val(i).html(i));
     }
@@ -111,6 +111,10 @@ function show_certi() {
 
 $(document).ready(function () {
     show_certi();
+    $("#icon-upload-112").remove();
+    $("#text-upload-112").remove();
+    $("#text-upload-116").remove();
+    console.log("hello5");
 });
 
 var picOfCerti = '';

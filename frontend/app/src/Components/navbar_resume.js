@@ -33,42 +33,42 @@ class Resume_sideNavbar extends React.Component {
 					<a className='resumeicon' href="#resume-education">
 						<div className='resumeblock' >
 							<img id='icon-myresume-education'  src="assets/images/ประวัติการศึกษา.png"/> 
-							<h1 id='resumetext'>&nbsp;ประวัติการศึกษา</h1>
+							<h1 id='resumetext'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ประวัติการศึกษา</h1>
 						</div>
 					</a>
 
 					<a className='resumeicon' href="#resume-certificate">
 						<div className='resumeblock'>
 							 <img id='icon-myresume-certi'  src="assets/images/เกียรติบัตรและใบรับรอง.png"></img>  
-							<h1 id='resumetext'>ใบรับรอง</h1>
+							<h1 id='resumetext'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ใบรับรอง</h1>
 						</div>
 					</a>
 
 					<a className='resumeicon' href="#">
 						<div className='resumeblock'>
 							 <img id='icon-myresume-skill'  src="assets/images/ความถนัดและทักษะ.png"></img>  
-							<h1 id='resumetext'>ทักษะที่โดดเด่น</h1>
+							<h1 id='resumetext'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ทักษะที่โดดเด่น</h1>
 						</div>
 					</a>
 
 					<a className='resumeicon' href="#resume-work">
 						<div className='resumeblock'>
 							 <img id='icon-myresume-work'  src="assets/images/ประวัติการทำงาน.png"></img>  
-							<h1 id='resumetext'>ประวัติการทำงาน</h1>
+							<h1 id='resumetext'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ประวัติการทำงาน</h1>
 						</div>
 					</a>
 
 					<a className='resumeicon' href="#resume-resume">
 						<div className='resumeblock'>
 							 <img id='icon-myresume-resume'  src="assets/images/ผลงานของฉัน.png"></img> 
-							<h1 id='resumetext'>ผลงาน</h1>
+							<h1 id='resumetext'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ผลงาน</h1>
 						</div> 
 					</a>
 
 					<a className='resumeicon' href="#resume-goal">
 						<div className='resumeblock'>
 							 <img id='icon-myresume-goal'  src="assets/images/เป้าหมายการทำงาน.png"></img> 
-							<h1 id='resumetext'>เป้าหมายการทำงาน</h1>
+							<h1 id='resumetext'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;เป้าหมายการทำงาน</h1>
 						</div>
 					</a>
 					

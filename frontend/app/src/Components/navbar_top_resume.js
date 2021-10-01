@@ -53,8 +53,7 @@ class Resume_topNavbar extends React.Component {
 		const script = document.createElement("script");
 		script.src = "assets/js/navbar_top_resume_script.js";
 		document.body.appendChild(script);
-		// alert('oirejger')
-		// this.forceUpdate();
+
 	}
 		
 	getResumeID(e=0){
@@ -83,10 +82,10 @@ class Resume_topNavbar extends React.Component {
 
 		}).catch(function() {
 			if(owner){
-				alert("You haven't created this part, Please create first");
+				console.log("You haven't created this part, Please create first");
 				window.location = ("editprofile");
 			}else{
-				alert('This portfolio is not exist!');
+				console.log('This portfolio is not exist!');
 			}
 			
 		});
@@ -190,28 +189,65 @@ class Resume_topNavbar extends React.Component {
 
 	}
 
-	// handleSection1 = () => {
-	// 	if(this.state.owner){
+	handleSection1 = () => {
+		if(this.state.owner){
+			console.log('you are owner1')
+			return (
+			<div className='resume_topnav' >
+				<a className='topnav_section1' href='#' > 
+					<img className='icon-myresume' id='icon-myresume-lock' src="assets/images/outline_lock_black_24dp.png"/> 
+				</a>
+			</div>
 			
-	// 		return (
-	// 		<div className='resume_topnav' >
-	// 			<a className='topnav_section1' href='#' > 
-	// 				<img id='icon-myresume-lock'  src="assets/images/outline_lock_black_24dp.png"/> 
-	// 			</a>
-	// 		</div>
-			
-	// 		)
-	// 	}else{
-	// 		return (
-	// 		<div className='resume_topnav' >
-	// 			<a className='topnav_section1' href='#' > 
-	// 				<img id='icon-myresume-lock'  src="assets/images/bookmark_2"/> 
-	// 			</a>
-	// 		</div>
+			)
+		}else{
+			console.log('you are outsider1')
+			return (
+			<div className='resume_topnav' >
+				<a className='topnav_section1' href='#' > 
+					<img className='icon-myresume' id='icon-myresume-lock-bookmark' src="assets/images/bookmark_2.png"/> 
+				</a>
+			</div>
 
-	// 		)
-	// 	}
-	// }
+			)
+		}
+	}
+
+	handleSection2 = () => {
+		if(this.state.owner){
+			console.log('you are owner2')
+			return (
+				<div className='resume_topnav' >
+
+					<div className='resume_selectoption'> 
+
+						<a className='topnav_section2'> 
+							&nbsp;
+							<img className='icon-myresume' id='icon-myresume-edit' src="assets/images/blackedit.png"/> 
+							&nbsp;
+						</a>
+						<span className='resume_verticalline2'> </span>
+						<a className='topnav_section2'> 
+
+							<img className='icon-myresume' id='icon-myresume-share' src="assets/images/outline_ios_share_black_48dp.png"/> 
+						</a>
+						&nbsp;
+					</div>
+				</div>
+			)
+		}else{
+			console.log('you are outsider2')
+			return (
+			<div className='resume_topnav' >
+				<a className='topnav_section1' href='#' > 
+					<img id='icon-myresume-lock'  src="assets/images/bookmark_2.png"/> 
+				</a>
+			</div>
+
+			)
+		}
+	}
+
 
 
 	
@@ -261,6 +297,7 @@ class Resume_topNavbar extends React.Component {
 			this.getDatas();
 		}
 
+
 		// console.log('in render() state : ' + JSON.stringify(this.state))
 
 		return (
@@ -268,32 +305,25 @@ class Resume_topNavbar extends React.Component {
 			<div className="Resume_topNavbar" id='topNav'>
 				
 				<div  className='myresumetoppath'> 
-					{/* {this.handleSection1} */}
-					{/* <div className='resume_topnav' >
-						<a className='topnav_section1' href='#' > 
-							<img id='icon-myresume-lock'  src="assets/images/outline_lock_black_24dp.png"/> 
-						</a>
-					</div> */}
+					{this.handleSection1()}
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<div className='resume_topnav' >
 						<div className='resume_selectjob'> 
 							<h1 className='resume_selectjob_block'> 
-								&nbsp;<a className='active' href='#' onClick={this.portfoliotab1} id='resume_selectjob1'>ตำแหน่งงานที่ 1</a>&nbsp; <span className="resume_verticalline"></span> 
+								&nbsp;<a className='active' onClick={this.portfoliotab1} id='resume_selectjob1'>ตำแหน่งงานที่ 1</a>&nbsp; <span className="resume_verticalline"></span> 
 							</h1>
 							<h1 className='resume_selectjob_block'> 
-								&nbsp;<a href='#'  onClick={this.portfoliotab2} id='resume_selectjob2'>ตำแหน่งงานที่ 2</a>&nbsp; <span className="resume_verticalline"></span> 
+								&nbsp;<a  onClick={this.portfoliotab2} id='resume_selectjob2'>ตำแหน่งงานที่ 2</a>&nbsp; <span className="resume_verticalline"></span> 
 							</h1>
 							<h1 className='resume_selectjob_block'> 
-								&nbsp;<a href='#'  onClick={this.portfoliotab3} id='resume_selectjob3'>ตำแหน่งงานที่ 3</a>&nbsp;
+								&nbsp;<a  onClick={this.portfoliotab3} id='resume_selectjob3'>ตำแหน่งงานที่ 3</a>&nbsp;
 							</h1>
 						</div>
 					</div>
-					<div className='resume_topnav' >
-						<a className='topnav_lock' href='#' > 
-							<img id='icon-myresume-lock'  src="assets/images/outline_lock_black_24dp.png"/> 
-						</a>
-					</div>
-
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					{/* {this.handleSection2()} */}
+					{this.handleSection2()}
+					{this.injectScript()}
 				</div>
 				<div>
 					<div class="tab-content" id="myresume1-content">

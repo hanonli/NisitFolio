@@ -116,6 +116,11 @@ function show_all_job() {
 
 $(document).ready(function () {
     show_all_job();
+    $(".step-marks").remove();
+    $(".step-labels").remove();
+    $("#input_mySlider1").remove();
+    $("#input_mySlider2").remove();
+    $("#input_mySlider3").remove();
 });
 
 // setup slider HTML, then call the following method with the values
@@ -367,10 +372,14 @@ $(document).on("change", "#nm_job", function () {
         let tomapjobeng = mapEngNameJob[document.getElementById("nm_job").value];
         //console.log("mapEngNameJob:", mapEngNameJob);
         //console.log("tomapjobeng:", tomapjobeng);
+        $("#each_skill1").prop('selectedIndex', 0);
+        $("#each_skill2").prop('selectedIndex', 0);
+        $("#each_skill3").prop('selectedIndex', 0);
         removeOptionsJob(document.getElementById("each_skill1"));
         removeOptionsJob(document.getElementById("each_skill2"));
         removeOptionsJob(document.getElementById("each_skill3"));
         GetSkill(jobname2findskill = tomapjobeng);
+
     }
     $(".step-marks").remove();
     $(".step-labels").remove();
