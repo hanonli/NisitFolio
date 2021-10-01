@@ -372,10 +372,14 @@ $(document).on("change", "#nm_job", function () {
         let tomapjobeng = mapEngNameJob[document.getElementById("nm_job").value];
         //console.log("mapEngNameJob:", mapEngNameJob);
         //console.log("tomapjobeng:", tomapjobeng);
+        $("#each_skill1").prop('selectedIndex', 0);
+        $("#each_skill2").prop('selectedIndex', 0);
+        $("#each_skill3").prop('selectedIndex', 0);
         removeOptionsJob(document.getElementById("each_skill1"));
         removeOptionsJob(document.getElementById("each_skill2"));
         removeOptionsJob(document.getElementById("each_skill3"));
         GetSkill(jobname2findskill = tomapjobeng);
+
     }
     $(".step-marks").remove();
     $(".step-labels").remove();
