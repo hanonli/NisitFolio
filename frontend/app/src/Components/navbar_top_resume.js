@@ -136,6 +136,7 @@ class Resume_topNavbar extends React.Component {
 		// console.log('Porfoliotab1 is called')
 		var index = 0;
 		this.setState({
+			resumeID : '',
 			workHistorys : [],
 			educationHistorys : [],
 			certificates : [],
@@ -147,7 +148,7 @@ class Resume_topNavbar extends React.Component {
 			stat  : 'unready'
 		});
 		// console.log('call GetreumeID from tab1')
-		this.getResumeID(index);
+		// this.getResumeID(index);
 		// this.getDatas();
 	}
 
@@ -155,6 +156,7 @@ class Resume_topNavbar extends React.Component {
 		// console.log('Porfoliotab2 is called')
 		var index = 1 ;
 		this.setState({
+			resumeID : '',
 			workHistorys : [],
 			educationHistorys : [],
 			certificates : [],
@@ -167,7 +169,7 @@ class Resume_topNavbar extends React.Component {
 		})
 		// console.log('indexfff',index)
 		// console.log('call GetreumeID from tab2')
-		this.getResumeID(index);
+		// this.getResumeID(index);
 		// this.getDatas();
 		// this.forceUpdate()
 	}
@@ -175,6 +177,7 @@ class Resume_topNavbar extends React.Component {
 	portfoliotab3 = () => {
 		var index = 2;
 		this.setState({
+			resumeID : '',
 			workHistorys : [],
 			educationHistorys : [],
 			certificates : [],
@@ -185,13 +188,13 @@ class Resume_topNavbar extends React.Component {
 			index : 2,
 			stat  : 'unready'
 		})
-		this.getResumeID(index);
+		// this.getResumeID(index);
 
 	}
 
 	handleSection1 = () => {
 		if(this.state.owner){
-			console.log('you are owner1')
+			// console.log('you are owner1')
 			return (
 			<div className='resume_topnav' >
 				<a className='topnav_section1' href='#' > 
@@ -201,7 +204,7 @@ class Resume_topNavbar extends React.Component {
 			
 			)
 		}else{
-			console.log('you are outsider1')
+			// console.log('you are outsider1')
 			return (
 			<div className='resume_topnav' >
 				<a className='topnav_section1' href='#' > 
@@ -215,7 +218,7 @@ class Resume_topNavbar extends React.Component {
 
 	handleSection2 = () => {
 		if(this.state.owner){
-			console.log('you are owner2')
+			// console.log('you are owner2')
 			return (
 				<div className='resume_topnav' >
 
@@ -236,7 +239,7 @@ class Resume_topNavbar extends React.Component {
 				</div>
 			)
 		}else{
-			console.log('you are outsider2')
+			// console.log('you are outsider2')
 			return (
 			<div className='resume_topnav' >
 				<a className='topnav_section1' href='#' > 
@@ -266,18 +269,23 @@ class Resume_topNavbar extends React.Component {
 	shouldComponentUpdate(nextProps, nextState){
 		// alert( nextState == this.state )
 		if(this.state.resumeID===''){
+			console.log('update state')
 			return true
 		}else if(this.state.resumeID !== nextState.resumeID){
 			// console.log(3)
+			console.log('update state')
 			return true
 		}else if(this.state.educationHistorys === [] ){
 			// console.log(3)
+			console.log('update state')
 			return true
 		}else if(this.state.stat !== 'ready'){
 			// console.log('status need to re-render')
+			console.log('update state')
 			return true
 		}else{
 			// console.log('status dont need to re-render')
+			console.log(' not update state')
 			return false
 		}
 
@@ -298,7 +306,7 @@ class Resume_topNavbar extends React.Component {
 		}
 
 
-		// console.log('in render() state : ' + JSON.stringify(this.state))
+		console.log('in render() state : ' + JSON.stringify(this.state))
 
 		return (
 			
@@ -310,10 +318,10 @@ class Resume_topNavbar extends React.Component {
 					<div className='resume_topnav' >
 						<div className='resume_selectjob'> 
 							<h1 className='resume_selectjob_block'> 
-								&nbsp;<a className='active' onClick={this.portfoliotab1} id='resume_selectjob1'>ตำแหน่งงานที่ 1</a>&nbsp; <span className="resume_verticalline"></span> 
+								&nbsp;<a  className='active' onClick={this.portfoliotab1} href='#' id='resume_selectjob1'>ตำแหน่งงานที่ 1</a>&nbsp; <span className="resume_verticalline"></span> 
 							</h1>
 							<h1 className='resume_selectjob_block'> 
-								&nbsp;<a  onClick={this.portfoliotab2} id='resume_selectjob2'>ตำแหน่งงานที่ 2</a>&nbsp; <span className="resume_verticalline"></span> 
+								&nbsp;<a  onClick={this.portfoliotab2} href='#' id='resume_selectjob2'>ตำแหน่งงานที่ 2</a>&nbsp; <span className="resume_verticalline"></span> 
 							</h1>
 							<h1 className='resume_selectjob_block'> 
 								&nbsp;<a  onClick={this.portfoliotab3} id='resume_selectjob3'>ตำแหน่งงานที่ 3</a>&nbsp;
@@ -321,7 +329,6 @@ class Resume_topNavbar extends React.Component {
 						</div>
 					</div>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					{/* {this.handleSection2()} */}
 					{this.handleSection2()}
 					{this.injectScript()}
 				</div>

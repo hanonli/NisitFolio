@@ -3,6 +3,7 @@ import Myresumetimeline from './myresumeTimeline';
 
 
 class EducationContent extends React.Component {
+
     render(){
         const data = this.props.data;
         let content = [];

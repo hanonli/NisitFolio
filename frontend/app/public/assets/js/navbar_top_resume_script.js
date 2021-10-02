@@ -118,11 +118,8 @@ $('#icon-myresume-share' ).click(function(){
 
 
 
-
-
-
     
-    $(document).ready(function() {
+ $(document).ready(function() {
         //hover
         // $('#resume_selectjob1').hover(function(){
         //     $(this).css("background-color", "gray");
@@ -164,4 +161,4 @@ $('#icon-myresume-share' ).click(function(){
         
 
 
-    });
+ }); 
