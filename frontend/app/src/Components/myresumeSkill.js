@@ -76,7 +76,12 @@ class MyResumeSkill extends React.Component {
             backgroundColor: "#C4C4C4"
         };
         let softskillContent = [];
+        let topicElement = [];
         if(additionalSkills.length !== 0){
+            if(topicElement.length === 0){
+                topicElement.push(<h2 class="resumetopic">ทักษะที่โดดเด่น</h2>);
+                topicElement.push(<div class="resumesectionline" style={linestyle}></div>);
+            }
             softskillContent.push(
                 <h3 class="softskill-topic">ทักษะเสริม</h3>
             );
@@ -98,7 +103,11 @@ class MyResumeSkill extends React.Component {
         let dummyshow = [];
         if(this.props.intJob?true:false){
             if(interestedJob.Job_SkillName? true:false){
-                if(interestedJob.length !== 0){
+                if(interestedJob.Job_SkillName.length !== 0){
+                    if(topicElement.length === 0){
+                        topicElement.push(<h2 class="resumetopic">ทักษะที่โดดเด่น</h2>);
+                        topicElement.push(<div class="resumesectionline" style={linestyle}></div>);
+                    }
                     for(var i = 0; i<interestedJob.Job_SkillName.length; i++){
                         jobskillcontent.push(
                             <MyResumeScoreSkill skillname={interestedJob.Job_SkillName[i]} score={interestedJob.Job_Score[i]}></MyResumeScoreSkill>
@@ -109,8 +118,12 @@ class MyResumeSkill extends React.Component {
             
         }
         const jobskillcheck = (this.props.intJob?true:false)&&(interestedJob.Job_SkillName? (interestedJob.Job_SkillName.length !== 0):false);
-        console.log(jobskillcheck);
+        //console.log(jobskillcheck);
         if((additionalSkills.length===0) && (!jobskillcheck) && (owner)){
+            if(topicElement.length === 0){
+                topicElement.push(<h2 class="resumetopic">ทักษะที่โดดเด่น</h2>);
+                topicElement.push(<div class="resumesectionline" style={linestyle}></div>);
+            }
             dummyshow.push(<div class="dummycaseSkill"><MyResumeScoreSkill skillname="ทักษะของคุณ" score={10} level="ระดับคะแนน" colour="#505050"></MyResumeScoreSkill></div>);
             dummyshow.push(
             <div class="dummycaseSkill dummycenter">
@@ -119,17 +132,29 @@ class MyResumeSkill extends React.Component {
             </div>
             );
         }
+        let result;
+        if((additionalSkills.length===0) && (!jobskillcheck) && (!owner)){
+            result = (<div></div>);
+        }
+        else{
+            result = (
+                    <div class="myresumeskill">
+                        {topicElement}
+                    
+                        <div class="jobskillcontent">
+                            {jobskillcontent}
+                            {dummyshow[0]}
+                        </div>
+                        {softskillContent}
+                        {dummyshow[1]}
+                    </div>  
+                );
+        }
         return(
-            <div class="myresumeskill">
-                <h2 class="resumetopic">ทักษะที่โดดเด่น</h2>
-                <div class="resumesectionline" style={linestyle}></div>
-                <div class="jobskillcontent">
-                    {jobskillcontent}
-                    {dummyshow[0]}
-                </div>
-                {softskillContent}
-                {dummyshow[1]}
-            </div>  
+           <div>
+               {result}
+           </div> 
+            
         );
     }
 }
