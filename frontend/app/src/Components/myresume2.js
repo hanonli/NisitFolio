@@ -76,14 +76,6 @@ class MyResume2 extends React.Component {
     }; //มันควรชื่อ jobskill มากกว่าป่าววะ
         return (
             <div class="resume2">
-                <div class="myresume-3">
-                    <h1 id="">ส่วนที่3</h1>                  
-                </div>
-                <div class="myresume-4">
-                    <h1 id="">ส่วนที่4</h1>                  
-                </div>
-                <h1>กลัวจะไม่ทัน จะขึ้นโครง WORK HISTORY ให้ มาปรับ css ให้เข้า กับเก็บ detail เองนะ ตอนนี่ยังไม่ทำรองรับเงื่อนไขไม่มีข้อมูลแต่เป็นเจ้าของ ลองก็อบ html ใน inspect มาทำๆ ดู -PUN-</h1>
-                
                 <MyresumeWork data={workdata}></MyresumeWork>
                 <MyresumeWork data={[]} owner={true}></MyresumeWork>
                 <MyResumeSkill addSkill={additionalSkills} intJob={interestedJob}></MyResumeSkill>
@@ -95,6 +87,7 @@ class MyResume2 extends React.Component {
                 <MyResumeSkill addSkill={additionalSkills} owner={true}></MyResumeSkill>
                 <h2>เคสที่มี intjob แต่ในนั้น array Job_SkillName ไม่มีสมาชิก</h2>
                 <MyResumeSkill addSkill={[]} intJob={interestedJobnoskill} owner={true}></MyResumeSkill>
+                <MyResumeSkill addSkill={[]} intJob={interestedJobnoskill} owner={false}></MyResumeSkill>
                 <p>เหตุผลคือถ้าอุตส่าห์มีสกิลทั้งทีแล้วทำไมต้องรอให้มีสกิลเสริม หรือสกิลตามอาชีพก่อนถึงยอมโชว์ ถ้าเขาใส่มาคงอยากโชว์แหละ</p>
                 
             </div>

@@ -160,17 +160,23 @@ class MyresumeCertificate extends React.Component{
         const linestyle = {
             backgroundColor: colour
         };
+        const owner = this.props.owner? this.props.owner : false;
         const occupation = this.props.occupation? this.props.occupation: "นี้";
         const data = this.props.data? this.props.data: [];
         data.sort((a, b) => (a.CertYear < b.CertYear) ? 1 : -1)
         let content = [];
-        if(data.length != 0){
+        let topicElement = [];
+        if(data.length !== 0){
+            topicElement.push(<div class="educationtopic"><h2 class="resumetopic">เกียรติบัตรและใบรับรอง</h2></div>);
+            topicElement.push(<div class="resumesectionline" style={linestyle}></div>);
             for (var i = 0; i < data.length; i++) {
                 content.push(<div class="cert-column"><MyresumeCertificateComponent data={data[i]} colour={colour} seq={i}></MyresumeCertificateComponent></div>);
                 console.log(data[i]);
             }
         }
-        else{
+        else if(owner){
+            topicElement.push(<div class="educationtopic"><h2 class="resumetopic">เกียรติบัตรและใบรับรอง</h2></div>);
+            topicElement.push(<div class="resumesectionline" style={linestyle}></div>);
             content = [
                 (<div class="cert-column">
                     <div class="cert-dummybox cert-dummy-w">
@@ -204,8 +210,7 @@ class MyresumeCertificate extends React.Component{
         }
         return(
             <div class="certificate-data" id="resume-certificate">
-                <div class="educationtopic"><h2 class="resumetopic">เกียรติบัตรและใบรับรอง</h2></div>
-                <div class="resumesectionline" style={linestyle}></div>
+                {topicElement}
                 <div class="cert-show">
                     <div class="cert-row">
                         {content}
