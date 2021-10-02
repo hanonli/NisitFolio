@@ -237,7 +237,7 @@ class PortRoot extends React.Component {
 			}).catch((error) => {
 				console.log('Token Error!');
 				console.log(error);
-				this.setState({ redirect: "/landing" });
+				//this.setState({ redirect: "/landing" });
 			});
 
 		

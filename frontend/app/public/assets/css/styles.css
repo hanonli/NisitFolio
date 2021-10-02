@@ -1687,7 +1687,7 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 }
 
 .pft-c {
-	cursor: pointer;
+	/*cursor: pointer;*/
 	height: 472.5px;
 	width: 840px;
 	flex: 0 0 auto;

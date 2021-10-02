@@ -70,7 +70,7 @@ class PortInfo extends React.Component {
 				if(data.Port_date != null) $('#port-date').text(data.Port_Date);
 				else $('#port-date').text('ไม่ทราบวันที่');
 				
-				$('#port-owner').text(data.owner);
+				$('#port-owner').text(data.Owner);
 				$('#port-desc').text(data.Port_Info);
 				
 				var pdd=1;
@@ -98,7 +98,7 @@ class PortInfo extends React.Component {
 					$('#port-tag3').text(data.Port_Tag[2]);
 				}
 
-				$('#port-owner-b').text(data.owner);
+				$('#port-owner-b').text(data.Owner);
 
 				
 			}).catch((error) => {
@@ -389,11 +389,11 @@ class PortInfo extends React.Component {
 					
 					<div class="swf-flex">
 						<div class="scrolling-wrapper-flexbox" id="h-scroll">
-							<img class="pft-c" id="port-pic-1" src="assets/images/4ktestimage.jpg" alt=""/>
-							<img class="pft-c" id="port-pic-2" src="assets/images/4ktestimage.jpg" alt=""/>
-							<img class="pft-c" id="port-pic-3" src="assets/images/4ktestimage.jpg" alt=""/>
-							<img class="pft-c" id="port-pic-4" src="assets/images/4ktestimage.jpg" alt=""/>
-							<img class="pft-c" id="port-pic-5" src="assets/images/4ktestimage.jpg" alt=""/>
+							<img class="pft-c" id="port-pic-1" src="assets/images/emp_thumb.jpg" alt=""/>
+							<img class="pft-c" id="port-pic-2" src="assets/images/emp_thumb.jpg" alt=""/>
+							<img class="pft-c" id="port-pic-3" src="assets/images/emp_thumb.jpg" alt=""/>
+							<img class="pft-c" id="port-pic-4" src="assets/images/emp_thumb.jpg" alt=""/>
+							<img class="pft-c" id="port-pic-5" src="assets/images/emp_thumb.jpg" alt=""/>
 						</div>
 					</div>
 
