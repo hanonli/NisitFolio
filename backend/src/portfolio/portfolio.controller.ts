@@ -18,6 +18,8 @@ export class PortController {
   }
 
   
+
+  
   @UseGuards(JwtAuthGuard)
   @Get('/header/:x')
   async getheadert(@Param('x') x: string,@Request() req){
@@ -61,7 +63,14 @@ export class PortController {
   @Patch(":portfolioId")
     async updatePort(@Body() CreateDto: CreatePortfolioDto ,@Param('portfolioId') portfolioId: string,@Request() req ) {
       return this.portService.updatePort(CreateDto,portfolioId,req.user.userId);
-
     }
     //*/
+    
+  @UseGuards(JwtAuthGuard)
+  @Patch("Privacy/:portfolioId")
+    async updatePortP(@Body() CreateDto: CreatePortfolioDto ,@Param('portfolioId') portfolioId: string,@Request() req ) {
+      return this.portService.updatePortP(CreateDto,portfolioId,req.user.userId);
+  
+    }
+    
 }
