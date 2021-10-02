@@ -66,9 +66,10 @@ export class BookmarkService {
           
           await this.UserInfoModel.updateOne({UserId: thatUserId}, { $inc: { totalBookmark: 1 }});
           const tags = [];
-          const info = await this.UserInfoModel.findOne({ UserId: thatUserId }).select("-_id Firstname Lastname AboutMe totalBookmark ProfilePic tags").exec();
+          const info = await this.UserInfoModel.findOne({ UserId: thatUserId }).select("_id Firstname Lastname AboutMe totalBookmark ProfilePic tags").exec();
           //console.log(bookmark.thatUserId);
           // console.log(profilePic);
+          const id = info._id;
           const details = { 
                           name: info.Firstname + " " + info.Lastname, 
                           pic: info.ProfilePic,
@@ -79,6 +80,7 @@ export class BookmarkService {
                                                         userId: userId,
                                                         thatUserId: thatUserId,
                                                         type: type,
+                                                        id: id,
                                                         details: details,
                                                         totalBookmark: info.totalBookmark,
                                                       });
@@ -104,7 +106,7 @@ export class BookmarkService {
           return [0, "You already bookmarked this."];
         await this.PortfolioModel.updateOne({UserId: thatUserId, Port_Name: projectName}, { $inc: { totalBookmark: 1 }});
         const info = await this.PortfolioModel.findOne({UserId: thatUserId, Port_Name: projectName})
-                                    .select("-_id Port_Name Port_Info portfolioPictures Owner totalBookmark").exec();
+                                    .select("_id Port_Name Port_Info portfolioPictures Owner totalBookmark").exec();
         
         const details = {
                           Port_Info: info.Port_Info,
@@ -113,11 +115,13 @@ export class BookmarkService {
                           owner: info.Owner,
         }
 
+        const id = info._id;
         const newBookmark = new this.BookmarkModel({
                                                       userId: userId,
                                                       thatUserId: thatUserId,
                                                       projectName: projectName,
                                                       type: type,
+                                                      id: id,
                                                       details: details,
                                                       totalBookmark: info.totalBookmark,
                                                     });
