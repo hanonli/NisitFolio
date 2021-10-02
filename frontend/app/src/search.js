@@ -35,7 +35,7 @@ class Search extends React.Component {
 			console.log('search by public');
 			//alert('search by public');
 			//this.setState({ redirect: "/landing" });
-			this.setState({userId : '610d3832ca49ebf4cdfed03a'}); // dummy user
+			this.setState({userId : '1'}); // dummy user
 			this.setState({tpId : 'public'});
 			setTimeout(function() {
 				$.getScript('assets/js/search-bookmark.js');

@@ -1,10 +1,11 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import Landing from './landing';
 import Home from './home';
 import MyResume from './myresume';
 import PortfolioRoot from './portRoot';
 import Portfolio from './portfolio';
+import PortInfo from './portInfo';
 import Analytics from './analytics';
 import Bookmark from './bookmark';
 import Search from './search';
@@ -22,12 +23,14 @@ const Routes = () => {
     <Switch> {/* The Switch decides which component to show based on the current URL.*/}
       <Route exact path='/' component={Landing}></Route> /* First page that user see */
       <Route exact path='/home' component={Home}></Route>
-      <Route exact path='/myresume' component={MyResume}></Route>
+      <Route exact path='/myresume/:id?' component={MyResume}></Route>
       <Route exact path='/choosenothing' component={Choosenothing}></Route>
       <Route exact path='/myresumetp' component={Myresumetp}></Route>
       <Route exact path='/chooseresume' component={Chooseresume}></Route>
 	  <Route exact path='/portfolio' component={PortfolioRoot}></Route>
       <Route exact path='/editport' component={Portfolio}></Route>
+	  <Route exact path='/portinfo/:id' component={PortInfo}></Route>
+	  <Redirect exact from="/portinfo/:id/reload" to="/portinfo/:id" />
       <Route exact path='/analytics' component={Analytics}></Route>
       <Route exact path='/bookmark' component={Bookmark}></Route>
 	  <Route exact path='/search' component={Search}></Route>

@@ -49,6 +49,7 @@ unf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 18px; font-we
 uf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 24px; font-weight: 200;  color: #939393; }
 af { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 22px; font-weight: lighter;  color: black;}
 agf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 22px; font-weight: lighter;  color: grey;}
+akf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 16px; font-weight: 300;  color: grey;}
 abf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 22px; font-weight: lighter;  color: black;}
 aaf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 32px; font-weight: bold;  color: black; }
 cf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 24px; font-weight: 600;  color: black; }
@@ -57,12 +58,18 @@ gf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 32px; font-wei
 hff { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 42px; font-weight: 400;  color: grey; }
 hhf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 42px; font-weight: bold;  color: black; }
 mf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 18px; font-weight: 600;  color: black; }
+mef { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 24px; font-weight: 600;  color: black; }
+mhf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 32px; font-weight: 600;  color: black; }
 mff { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 18px; font-weight: 400;  color: grey; }
-
+mdf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 32px; font-weight: 500;  color: #C7C7C7; }
 
 
 .text-extra{
 	line-height: 1.2;
+}
+
+.sbm-clickable{
+	cursor: pointer;
 }
 
 .ggp{
@@ -272,6 +279,10 @@ option {
 
 .modal-ku{
 	max-width: 80%;
+}
+
+.modal-ku2{
+	max-width: 40%;
 }
 
 .round-s {
@@ -1625,11 +1636,113 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 .pft-flex{
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: center;
+	justify-content: left;
+	align-items: center;
 	width: 81%;
 	margin: 0 auto 0 auto;
+	max-width: 1530px;
 }
 
+.pfic-flex{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+}
+
+.pfmn-flex{
+	display: flex;
+	justify-content: left;
+	align-items: center;
+	width: 80%;
+	margin: 0 auto 0 auto;
+	gap: 10px;
+	max-width: 1530px;
+}
+
+.pftx-flex{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: left;
+	align-items: center;
+	width: 80%;
+	margin: 0 auto 0 auto;
+	max-width: 1530px;
+}
+
+.pf-dtext{
+	font-size: 18px;
+	color: black;
+	font-weight: 300;
+	word-wrap: break-word;
+	word-break: break-word;
+}
+
+
+.scrolling-wrapper-flexbox {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  /*overflow-y: hidden;*/
+}
+
+.pft-c {
+	cursor: pointer;
+	height: 472.5px;
+	width: 840px;
+	flex: 0 0 auto;
+    margin-right: 3px;
+}
+
+.scrolling-wrapper-flexbox {
+  display: flex;
+  gap: 40px;
+  height: 500px;
+  margin-bottom: 20px;
+  width: 100%;
+  -webkit-overflow-scrolling: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.swf-flex{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: left;
+	align-items: center;
+	width: 100%;
+	margin: 0 auto 0 auto;
+	padding: 0 0 0 10%;
+	max-width: 1920px;
+	max-height: 472.5px;
+}
+
+.anf-flex{
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	align-items: center;
+	width: 80%;
+	margin: 0 auto 0 auto;
+	gap: 20px;
+	max-width: 1530px;
+}
+
+.ptag-flex{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto 0 auto;
+	max-width: 1530px;
+	gap: 15px;
+}
+
+.ds1 {
+	width: 50%;
+	height: 20px;
+    border-top: 4px solid #C7C7C7;
+}
 
 .pft-i{
 	cursor: pointer;
@@ -1663,6 +1776,12 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 	font-size: 40px;
 	height: 250px;
 	padding-top: 25px;
+}
+
+.nf-md-flex{
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 @media (max-width: 1700px){
@@ -3044,20 +3163,13 @@ body {
 }
 
 .static-public-icon{
-	position:absolute;
-	top:40%;
-	left:15%;
-    width: 4vh;
-    height: auto;
-	transform: translate(-15%, 0%);
-}
-
-.static-public-icon{
 	cursor: pointer;
 	position:absolute;
 	top:30%;
-    width: 6vh;
+    width: 4.5vh;
     height: auto;
+	left:15%;
+	transform: translate(-15%, 0%);
 	border: 0.3vh solid white;
 	
 }
@@ -3079,14 +3191,21 @@ body {
 	border-radius: 1vh;
 	border: 0.3vh solid white;
 	background: white;
-	left:22%;
+	left:20%;
 }
 
 .spi3{
 	border-radius: 1vh;
 	border: 0.3vh solid white;
 	background: white;
-	left:29%;
+	left:25%;
+}
+
+.spi4{
+	border-radius: 1vh;
+	border: 0.3vh solid white;
+	background: white;
+	left:80%;
 }
 
 .spi-active{
@@ -3121,6 +3240,29 @@ body {
 .yhh1{
 	flex-grow : 1;
 	/*background-color: #DDDDDD;*/
+}
+
+.port-wide{
+	width: 100%;
+	/*background: red;*/
+	height: 250px;
+}
+
+.pf-hi{
+	width: 100%;
+	height: auto;
+}
+
+.pfti-flex{
+	display: flex;
+	justify-content: space-between;
+	width: 80%;
+	margin: 0 auto 0 auto;
+	max-width: 1530px;
+}
+
+.flex-child-right{
+	align-self: 
 }
 
 .df-f{ margin-top: 2%; height:92% }

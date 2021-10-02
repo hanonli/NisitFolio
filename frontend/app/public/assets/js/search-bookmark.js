@@ -2,7 +2,7 @@ console.log("Run bookmark script!");
 Cookies.set('username','worames'); 
 console.log('Currently login as: '+Cookies.get('username'));
 
-var profile_grid = '<header class="header hsbm-pad round">\
+var profile_grid = '<header class="header hsbm-pad round sbm-clickable" id="{id}">\
 						<div class="pf-entity-flex">\
 							<div class="pf-start">\
 								<img class=" pf-image rounded-circle" type="button" id="avatar" src="{img}" alt="profile image" />\
@@ -18,7 +18,7 @@ var profile_grid = '<header class="header hsbm-pad round">\
 					</header>';
 
 var profile_list = '<div class="sbm-list-entity">\
-						<header class="header hsbm-pad round">\
+						<header class="header hsbm-pad round sbm-clickable" id="{id}">\
 							<div class="pf-entity-flex">\
 								<div class="pf-start-list">\
 									<img class=" pf-image rounded-circle" type="button" id="avatar" src="{img}" alt="profile image" />\
@@ -75,7 +75,7 @@ var profile_list_no_tag = '<div class="sbm-list-entity">\
 								</header>\
 							</div>';
 					
-var work_grid = '<header class="header hsbm-pad round">\
+var work_grid = '<header class="header hsbm-pad round sbm-clickable" id="{id}">\
 					<div class="pf-entity-flex">\
 						<div class="pf-start-port">\
 							<img class="pf-port-image round" type="button" id="avatar" src="{img}" />\
@@ -92,7 +92,7 @@ var work_grid = '<header class="header hsbm-pad round">\
 				</header>';
 				
 var work_list = '<div class="sbm-list-entity">\
-					<header class="header hsbm-pad round">\
+					<header class="header hsbm-pad round sbm-clickable" id="{id}">\
 						<div class="pf-entity-flex">\
 							<div class="pf-start-port-list">\
 								<img class="pf-port-image round" type="button" id="avatar" src="{img}" />\
@@ -160,6 +160,13 @@ function ResetData(){
 }
 
 function FormatIcon(data,dtype) {
+  if(data.type == 'profile'){
+	dtype = dtype.replace("{id}",data.type+'-'+data.thatUserId);
+  }else{
+	  alert(data.portId);
+	dtype = dtype.replace("{id}",data.type+'-'+data.portId);
+  }
+
   if(pageName == 'search'){
 		if(!data.bookmark) {
 			entityIdInfo.push("false"+"-"+data.thatUserId+'&'+data.type+'&'+data.name);
@@ -567,6 +574,8 @@ function GetFormattedSearchData(datas){
 			datt['thatUserId'] = data.thatUserId;
 			datt['name'] = data.name;
 			datt['profilePic'] = data.pic[0].Pic[0];
+			datt['portId'] = data.pic[0].PortId;
+			console.log(data);
 			datt['about'] = data.about;
 			datt['owner'] = data.owner;
 			datt['port'] = data.pic.length;
@@ -794,7 +803,7 @@ function DeleteBookmark(id){
 	console.log('DeleteBookmark: '+id);
 	
 	var delData = {};
-	alert(id);
+	//alert(id);
 	var temp = id.split("&");
 	delData['userId'] = userId;
 	delData['type'] = temp[1];
@@ -869,13 +878,15 @@ function AddListenerToDynamicComponents(){
 	}
 	
 	//alert(pageName);
-	$('.tag').on('click', function(){
+	$('.tag').on('click', function(e){
        //alert(event.target.text);
+	   e.stopPropagation();
 	   SearchByTag(event.target.text);
    });
    
    $(".obj-icon").unbind('click');
-   $('.obj-icon').click(function() {
+   $('.obj-icon').click(function(e) {
+	   e.stopPropagation();
 	  // alert(pageName);
 	   if(pageName == "search"){
 		  //console.log("change icon--!!!");
@@ -922,6 +933,14 @@ function AddListenerToDynamicComponents(){
 	$('.obj-icon').mouseover(function() {
 		console.log('mouseover icon!');
 		currentTooltip = $(this);
+	});
+	
+	$('.sbm-clickable').click(function() {
+		//alert('go!');
+		var mns = $(this).attr('id').split('-');
+		var type = mns[0]; var myId = mns[1];
+		if(type == 'profile') window.location.assign("/myresume/"+myId);
+		else window.location.assign("/portinfo/"+myId);
 	});
 }
 
