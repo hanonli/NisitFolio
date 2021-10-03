@@ -403,8 +403,15 @@ class Portfolio extends React.Component {
 			$modal.modal('hide');
 			if (cropper) {
 			  canvas = cropper.getCroppedCanvas({
-				width: 320,
-				height: 180,
+				/*width: 320,
+				height: 180,*/
+				minWidth: 320,
+				minHeight: 180,
+				maxWidth: 3200,
+				maxHeight: 1800,
+				fillColor: '#fff',
+				imageSmoothingEnabled: true,
+				imageSmoothingQuality: 'high',
 			  });
 			  initialAvatarURL = avatar.src;
 			  avatar.src = canvas.toDataURL();
@@ -860,7 +867,7 @@ class Portfolio extends React.Component {
 							คำอธิบาย
 						</div>
 				
-						<textarea class="p-common p2-input form-control"  id="w3review" minlength="24" name="w3review" autocomplete="off" placeholder="กรอกคำอธิบายผลงานของคุณ" rows="4" cols="50" required>
+						<textarea class="p-common p2-input form-control"  id="w3review" name="w3review" autocomplete="off" placeholder="กรอกคำอธิบายผลงานของคุณ" rows="4" cols="50">
 						</textarea>
 						
 						<div class="p3-label">
@@ -959,7 +966,7 @@ class Portfolio extends React.Component {
 				
 				<div class="container">
 					<div class="alert" role="alert"></div>
-					<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+					<div class="modal fade" id="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
 					  <div class="modal-dialog" role="document">
 						<div class="modal-content">
 						  <div class="modal-header">
