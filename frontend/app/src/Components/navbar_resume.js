@@ -37,7 +37,7 @@ class Resume_sideNavbar extends React.Component {
 						</div>
 					</a>
 
-					<a className='resumeicon' href="#resume-certificate">
+					<a className='resumeicon' href="resume-certificate">
 						<div className='resumeblock'>
 							 <img id='icon-myresume-certi'  src="assets/images/เกียรติบัตรและใบรับรอง.png"></img>  
 							<h1 id='resumetext'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ใบรับรอง</h1>
