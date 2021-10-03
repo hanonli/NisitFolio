@@ -114,7 +114,7 @@ $(document).ready(function () {
     $("#icon-upload-112").remove();
     $("#text-upload-112").remove();
     $("#text-upload-116").remove();
-    console.log("hello5");
+    console.log("hello576");
 });
 
 var picOfCerti = '';
@@ -170,6 +170,9 @@ $(document).on("click", "#edit-certi", function () {
 
 //open modal to add certi
 $(document).on("click", ".frame_add_certi", function () {
+    $("#icon-upload-112").remove();
+    $("#text-upload-112").remove();
+    $("#text-upload-116").remove();
     choose_function = 2;
     //console.log(`chosoe: ${choose_function}`);
     $('#exampleModal11112').modal('toggle');

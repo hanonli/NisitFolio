@@ -4,9 +4,15 @@ import $ from 'jquery';
 import Cropper from 'react-cropper';
 
 class Edittab5 extends React.Component {
+    constructor(props) {
+        super(props);
+    }
     componentDidMount() {
         var name_certi, year_certi, id_of_certi;
         /*----year option----*/
+        $("#icon-upload-112").remove();
+        $("#text-upload-112").remove();
+        $("#text-upload-116").remove();
         $(document).ready(function () {
             let startYear = 1990;
             let endYear = new Date().getFullYear();
@@ -15,13 +21,16 @@ class Edittab5 extends React.Component {
             }
         });
 
-        /*----upload img----*/
-
         $(document).ready(function () {
-            $('#to_upload112').on('click', function () {
-                $('#image-upload112').click();
-            });
+            show_certi();
+            $("#icon-upload-112").remove();
+            $("#text-upload-112").remove();
+            $("#text-upload-116").remove();
         });
+        /*----upload img----*/
+        $('#to_upload112').on('click', function () {
+             $('#image-upload112').click();
+        });        
 
         /*---- generate code ID ----*/
         function create_UUID() {
@@ -42,7 +51,6 @@ class Edittab5 extends React.Component {
                     // property doesn't exist on either object
                     return 0;
                 }
-
                 var varA = (typeof a[key] === 'string')
                     ? a[key].toUpperCase() : a[key];
                 var varB = (typeof b[key] === 'string')
@@ -88,20 +96,11 @@ class Edittab5 extends React.Component {
                               <div class="content-certi1" id="{contentYear}"></div>`;
 
                 grid_certi = grid_certi.replace("{no_certi}", ele["id"]);
-                //grid_certi = grid_certi.replace("{name-certi}", ele["name_certi"]);
-                // if (ele["name_certi"].length > 15) {
-                //     grid_certi = grid_certi.replace("{name-certi}", ele["name_certi"].slice(0, 14) + "...");
-                //     grid_certi = grid_certi.replace("{name-certi}", ele["name_certi"]);
-                // }
-                // else {
-                //     grid_certi = grid_certi.replace("{name-certi}", ele["name_certi"]);
-                // }
                 grid_certi = grid_certi.replace("{name-certi}", ele["name_certi"]);
                 grid_certi = grid_certi.replace("{year-certi}", ele["year_certi"]);
                 grid_certi = grid_certi.replace("{pic-of-certi}", ele["path_file_certi"]);
 
                 if (year_before_certi != ele["year_certi"]) {
-                    //console.log(`change year!!!!`);
                     list_of_year_certi[ele["year_certi"]] = 1;
                     year_before_certi = ele["year_certi"];
                     headOfyear1234 = headOfyear1234.replace("{show-year}", `yearOf_` + String(ele["year_certi"]));
@@ -114,12 +113,7 @@ class Edittab5 extends React.Component {
                 }
                 $("#contentYear_" + String(ele["year_certi"])).append(grid_certi);
             });
-            //console.log(`list_of_year_certi:`, list_of_year_certi);
         }
-
-        $(document).ready(function () {
-            show_certi();
-        });
 
         var picOfCerti = '';
 
@@ -128,13 +122,10 @@ class Edittab5 extends React.Component {
             if (path_img.files[0].type == "image/jpeg" || path_img.files[0].type == "image/jpg" || path_img.files[0].type == "image/png") {
                 var reader = new FileReader();
                 reader.onload = function (e) {
-                    //$("#preview_before_upload").remove();
                     picOfCerti = e.target.result;
                     $("#preview_before_upload").attr('src', e.target.result);
                 };
                 reader.readAsDataURL(path_img.files[0]);
-                //picOfCerti = readURL(document.getElementById("image-upload112"));
-                //console.log("picOfCerti:", picOfCerti);
                 $("#icon-upload-112").remove();
                 $("#text-upload-112").remove();
                 $("#text-upload-116").remove();
@@ -149,9 +140,7 @@ class Edittab5 extends React.Component {
         //open modal to edit certi
         $(document).on("click", "#edit-certi", function () {
             choose_function = 1;
-            //console.log(`chosoe: ${choose_function}`);
             id_list_certi_edit = $(this).parents().parents().parents().attr('id');
-            //console.log("id_list_certi111:", id_list_certi_edit);
             $('#exampleModal11112').modal('toggle');
             $("#nm_certi").removeClass("is-invalid");
             $("#yearpicker_111").removeClass("is-invalid");
@@ -164,7 +153,6 @@ class Edittab5 extends React.Component {
                 if (post.id == id_list_certi_edit)
                     return true;
             });
-            //console.log(`for_edit:`, for_edit);
             document.getElementById("nm_certi").value = for_edit["name_certi"];
             document.getElementById("yearpicker_111").selectedIndex = for_edit["year_certi_select"];
             picOfCerti = for_edit["path_file_certi"];
@@ -174,8 +162,10 @@ class Edittab5 extends React.Component {
 
         //open modal to add certi
         $(document).on("click", ".frame_add_certi", function () {
+            $("#icon-upload-112").remove();
+            $("#text-upload-112").remove();
+            $("#text-upload-116").remove();
             choose_function = 2;
-            //console.log(`chosoe: ${choose_function}`);
             $('#exampleModal11112').modal('toggle');
             $("#preview_before_upload").remove();
             $("#nm_certi").removeClass("is-invalid");
@@ -187,12 +177,9 @@ class Edittab5 extends React.Component {
             document.querySelector('#submit-certi').innerText = 'เพิ่ม';
         });
         var id_list_certi_del;
-        //open modal to delete certi (uncomplete!!!!!!!!!!!!!!!!!!!)
         $(document).on("click", "#del-certi", function () {
             id_list_certi_del = $(this).parents().parents().parents().attr('id');
-            //console.log("id_list_certi111:", id_list_certi_del);
             $('#exampleModal_remove_certi').modal('toggle');
-            //console.log(`list_of_year_certi:`, list_of_year_certi);
         });
 
         $(document).on('click', "#summit-to-delete-certi", function () {
@@ -200,16 +187,12 @@ class Edittab5 extends React.Component {
                 if (post.id == id_list_certi_del)
                     return true;
             });
-            //console.log("id_list_certi:", id_list_certi);
-            //console.log("removeIndex:", list_of_certi[removeIndex])
             list_of_year_certi[list_of_certi[removeIndex]["year_certi"]] -= 1;
             if (list_of_year_certi[list_of_certi[removeIndex]["year_certi"]] == 0) {
                 $(`#yearOf_` + String(list_of_certi[removeIndex]["year_certi"])).remove();
             }
             list_of_certi.splice(removeIndex, 1);
-            //console.log(`delete _certi id:`, removeIndex);
             $(`#` + id_list_certi_del).remove();
-            //console.log(`list_of_certi:`, list_of_certi);
             $("#preview_before_upload").remove();
             $("#icon-upload-112").remove();
             $("#text-upload-112").remove();
@@ -233,7 +216,6 @@ class Edittab5 extends React.Component {
         $(document).on('click', "#submit-certi", function () {
             name_certi = document.getElementById("nm_certi").value;
             year_certi = document.getElementById("yearpicker_111").value;
-            //file_pic_certi = document.getElementById("image-upload112");
             if (document.getElementById("nm_certi").value == "" && year_certi == "" && picOfCerti == '') {
                 $("#nm_certi").addClass("is-invalid");
                 $("#yearpicker_111").addClass("is-invalid");
@@ -243,7 +225,6 @@ class Edittab5 extends React.Component {
                 $("#yearpicker_111").addClass("is-invalid");
             }
             else if (document.getElementById("nm_certi").value == "") {
-                //alert("error!!!!");
                 $("#nm_certi").addClass("is-invalid");
             }
             else if (picOfCerti == '' && choose_function == 2) {
@@ -252,24 +233,15 @@ class Edittab5 extends React.Component {
             else {
                 if (choose_function == 1) {
                     console.log("edit!!!!!!");
-                    //console.log(`name: `, name_certi);
-                    //console.log(`year: `, year_certi);
-                    //console.log('pic: ', file_pic_certi.files[0]);
                     console.log(`list_of_certi:`, list_of_certi);
                     for_edit["name_certi"] = name_certi;
                     for_edit["year_certi"] = parseInt(year_certi);
                     for_edit["path_file_certi"] = picOfCerti;
                     for_edit["year_certi_select"] = $("#yearpicker_111").prop('selectedIndex');
                     var list_edit11 = document.getElementById(id_list_certi_edit);
-                    //console.log("id_list_certi_edit:", id_list_certi_edit);
                 }
                 else if (choose_function == 2) {
-                    //console.log("add!!!!!!")
                     id_of_certi = create_UUID();
-                    //console.log(`name: `, name_certi);
-                    //console.log(`year: `, year_certi);
-                    //console.log('pic: ', file_pic_certi.files[0]);
-                    //console.log(`pic_certi: ${pic_certi}`);
                     list_of_certi.push({
                         id: id_of_certi,
                         name_certi: name_certi,
@@ -277,16 +249,11 @@ class Edittab5 extends React.Component {
                         year_certi_select: $("#yearpicker_111").prop('selectedIndex'),
                         path_file_certi: picOfCerti
                     });
-                    //list_of_certi.push(keepInList);
-                    //$(".content-certi1").append(gridListCerti);
-                    //document.getElementById(id_preview_pic).style.borderRadius = "16px";
-                    //console.log(`list_of_certi:`, list_of_certi);
                 }
                 $("#nm_certi").val("");
                 $("#yearpicker_111").prop('selectedIndex', 0);
                 $("#exampleModal11112").modal("hide");
                 $(".box-box-box").empty();
-                //console.log(`list_of_certi:`, list_of_certi);
                 show_certi();
                 $("#preview_before_upload").remove();
                 $("#icon-upload-112").remove();
@@ -297,17 +264,7 @@ class Edittab5 extends React.Component {
         });
 
         $(document).on('click', "#hide-modal-certi", function () {
-            /*$('#yearpicker_111').prop('selectedIndex', 0);
-            $("#nm_certi").val("");
-            $("#preview_before_upload").remove();
-            $("#icon-upload-112").remove();
-            $("#text-upload-112").remove();*/
             $("#exampleModal11112").modal("hide");
-            /*if (list_of_certi.length == 0) {
-                $("#preview_before_upload").remove();
-                $(".for_upload112").append('<img id="icon-upload-112" src="assets/images/upload_file.png" width="85px" height="85px" class="up_img"></img>');
-                $(".for_upload112").append('<h2 class="text_up" id="text-upload-112">อัพโหลดใบรับรองของคุณได้ที่นี่</h2>');
-            }*/
         });
 
         $(document).on('hide.bs.modal', "#exampleModal11112", function () {
@@ -319,32 +276,10 @@ class Edittab5 extends React.Component {
             $("#text-upload-116").remove();
             $("#to_upload112").removeClass("error_select_certi");
             picOfCerti = '';
-            /*if (list_of_certi.length == 0) {
-                $("#preview_before_upload").remove();
-                $(".for_upload112").append('<img id="icon-upload-112" src="assets/images/upload_file.png" width="85px" height="85px" class="up_img"></img>');
-                $(".for_upload112").append('<h2 class="text_up" id="text-upload-112">อัพโหลดใบรับรองของคุณได้ที่นี่</h2>');
-            }*/
         });
-
         $(document).on('click', "#hide-delete-certi", function () {
             $('#exampleModal_remove_certi').modal('hide');
         });
-
-        function testPost5() {
-            var CertName = [], CertPic = [], CertYear = []; //variable for send to backend
-            list_of_certi.forEach(ele => {
-                //post certi name
-                CertName.push(ele["name_certi"]);
-                //post year certi
-                CertYear.push(ele["year_certi"]);
-                //post pic certi
-                CertPic.push(ele["path_file_certi"]);
-
-            });
-            console.log("CertName:", CertName);
-            console.log("CertPic:", CertPic);
-            console.log("CertYear:", CertYear);
-        }
     }
     render() {
         return (
