@@ -18,9 +18,6 @@ export class Bookmark {
   type: String;
 
   @Prop()
-  projectName?: String;
-
-  @Prop()
   id: ObjectId;
 
   @Prop({type: Object})
@@ -144,7 +141,7 @@ export class Portfolio {
   Port_Info: string;
 
   @Prop()
-  Port_Tag: string;
+  Port_Tag: string[];
 
   @Prop()
   Port_Privacy: string;
