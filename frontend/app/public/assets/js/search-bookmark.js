@@ -559,7 +559,7 @@ function GetFormattedBookmarkData(datas){
 		}else{
 			datt['type'] = data.type;
 			datt['thatUserId'] = data.thatUserId;
-			datt['name'] = data.projectName;
+			datt['name'] = data.details.Port_Name;
 			if(data.details.numberOfPic > 0) datt['profilePic'] = data.details.Port_Pic;
 			else datt['profilePic'] = 'assets/images/emp_thumb.jpg';
 			datt['portId'] = data.id;

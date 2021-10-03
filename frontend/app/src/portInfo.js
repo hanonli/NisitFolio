@@ -81,12 +81,12 @@ class PortInfo extends React.Component {
 			}
 		}
 		
-		function AddBookmark(targetUser, portName){
+		function AddBookmark(targetUser, pid){
 			var addData = {};
 			addData['userId'] = userId;
 			addData['type'] = 'work';
 			addData['thatUserId'] = targetUser;
-			addData['projectName'] = portName;
+			addData['port_id'] = pid;
 			
 			fetch("http://localhost:2000/bookmark/saveBookmark",{
 				method: "POST",
@@ -109,12 +109,12 @@ class PortInfo extends React.Component {
 				});
 		}
 		
-		function DeleteBookmark(targetUser, portName){
+		function DeleteBookmark(targetUser, pid){
 			var delData = {};
 			delData['userId'] = userId;
 			delData['type'] = 'work';
 			delData['thatUserId'] = targetUser;
-			delData['projectName'] = portName;
+			delData['port_id'] = pid;
 			
 			fetch("http://localhost:2000/bookmark/saveBookmark",{
 				method: "DELETE",
@@ -143,7 +143,7 @@ class PortInfo extends React.Component {
 			//$('#uic-1').attr('title','ยกเลิกการบันทึก');
 			//$('#tooltip-uic-1').text('ยกเลิกการบันทึก');
 			setTimeout(function() { refThis.setState({ tooltip1: 'ยกเลิกการบันทึก' }); }, 500); 
-			AddBookmark(thatUserId,portfolioData.Port_Name);
+			AddBookmark(thatUserId,portfolioData._id);
 			$('#uic-1').off('click');
 			$('#uic-1').on('mouseover', function(){
 			  refThis.setState({ show1: true });
@@ -166,7 +166,7 @@ class PortInfo extends React.Component {
 			//$('#tooltip-uic-1').text('บันทึก');
 			
 			setTimeout(function() { refThis.setState({ tooltip1: 'บันทึก' }); }, 500); 
-			DeleteBookmark(thatUserId,portfolioData.Port_Name);
+			DeleteBookmark(thatUserId,portfolioData._id);
 			$('#uic-1').off('click');
 			$('#uic-1').on('mouseover', function(){
 			  refThis.setState({ show1: true });
@@ -186,7 +186,7 @@ class PortInfo extends React.Component {
 			//pftBookmark[focusId] = true;
 			$('#bm-'+focusId).attr('src','assets/images/bookmark_2w.png');
 			//alert('add: '+userPortData[focusId].Port_Name+' from user: '+userPortData[focusId].Owner);
-			AddBookmark(userPortData[focusId].UserId, userPortData[focusId].Port_Name);
+			AddBookmark(userPortData[focusId].UserId, userPortData[focusId]._id);
 			$('#bm-'+focusId).off('click');
 			$('#bm-'+focusId).click(function(e) {
 				e.stopPropagation();
@@ -199,7 +199,7 @@ class PortInfo extends React.Component {
 			//pftBookmark[focusId] = true;
 			$('#bm-'+focusId).attr('src','assets/images/bookmark_1w.png');
 			//alert('delete: '+userPortData[focusId].Port_Name+' from user: '+userPortData[focusId].Owner);
-			DeleteBookmark(userPortData[focusId].UserId, userPortData[focusId].Port_Name);
+			DeleteBookmark(userPortData[focusId].UserId, userPortData[focusId]._id);
 			$('#bm-'+focusId).off('click');
 			$('#bm-'+focusId).click(function(e) {
 				e.stopPropagation();

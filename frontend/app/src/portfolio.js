@@ -75,6 +75,7 @@ class Portfolio extends React.Component {
 		var refElement = null;
 		var portMode = cookie.load('port-entry');
 		var token = cookie.load('login-token');
+		var userId = cookie.load('login-user');
 		var privacyId = 0;
 		var portId = null;
 		
@@ -153,7 +154,42 @@ class Portfolio extends React.Component {
 						.then(response =>  {
 							//console.log(datas);
 							console.log(response);
-							refThis.setState({ redirect: "/portfolio" });
+							
+							
+							
+							
+							
+							var patchBm = {};
+							patchBm.type = 'work';
+							patchBm.thatUserId = userId;
+							patchBm.port_id = id;
+							fetch("http://localhost:2000/bookmark/edit",{
+								method: "POST",
+								headers: {
+									"Access-Control-Allow-Origin": "*",
+									"Access-Control-Allow-Methods": "*",
+									"Access-Control-Allow-Credentials": true,
+									"Content-Type": "application/json"
+								},
+								body: JSON.stringify(patchBm),
+							})
+								.then(response =>  {
+									//console.log(datas);
+									console.log(response);
+									refThis.setState({ redirect: "/portfolio" });
+									//GetSearchBookmarkData();
+								})
+								.catch((error) => {
+									console.log('add Error!');
+									//this.setState({ redirect: "/landing" });
+								});
+													
+							
+							
+							
+							
+							
+							//refThis.setState({ redirect: "/portfolio" });
 							//GetSearchBookmarkData();
 						})
 						.catch((error) => {
@@ -878,11 +914,12 @@ class Portfolio extends React.Component {
 								<Select 
 									isMulti 
 									value={this.state.values}
-									options={ this.state.values.length >= 3 ? this.state.values : this.state.options }
+									//options={ this.state.values.length >= 3 ? this.state.values : this.state.options }
+									options={ this.state.options }
 									placeholder={'ระบุตำแหน่งงาน (สูงสุด 3 ตำแหน่ง)'} 
 									onChange={values => this.setState({ values })}
 									noOptionsMessage={() => null}
-									isSearchable={this.state.values.length >= 3 ? false : true}
+									//isSearchable={this.state.values.length >= 3 ? false : true}
 								/>
 							</div>
 						
