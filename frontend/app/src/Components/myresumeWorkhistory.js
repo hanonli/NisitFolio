@@ -118,6 +118,7 @@ class MyresumeWork extends React.Component{
         let sortdata;
         let topicElement = [];
         let content = [];
+        let result;
         if(data.length !== 0){
             topicElement.push(<div class="educationtopic"><h2 class="resumetopic">ประวัติการการทำงาน</h2></div>);
             topicElement.push(<div class="resumesectionline" style={linestyle}></div>)
@@ -172,10 +173,22 @@ class MyresumeWork extends React.Component{
                 </div>);
             }
         }
-        return(
+        if(data.length !== 0 || owner){
+            result = (
             <div class="resume-education" id="resume-work">
                 {topicElement}
                 {workCon}
+            </div>
+            );
+        }
+        else{
+            result = (
+                <div></div>
+            );
+        }
+        return(
+            <div>
+                {result}
             </div>
         )
     }

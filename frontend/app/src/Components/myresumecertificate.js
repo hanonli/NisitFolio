@@ -208,8 +208,10 @@ class MyresumeCertificate extends React.Component{
                 </div>)
             ]
         }
-        return(
-            <div class="certificate-data" id="resume-certificate">
+        let result;
+        if(data.length !== 0 || owner){
+            result = (
+                <div class="certificate-data" id="resume-certificate">
                 {topicElement}
                 <div class="cert-show">
                     <div class="cert-row">
@@ -217,7 +219,18 @@ class MyresumeCertificate extends React.Component{
                     </div>
                 </div>
             </div>
-        );        
+            );
+        }
+        else{
+            result = (
+                <div></div>
+            );
+        }
+        return(
+            <div>
+                {result}
+            </div>
+        );     
     }
 } 
 
