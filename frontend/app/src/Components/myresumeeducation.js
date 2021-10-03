@@ -227,15 +227,24 @@ class MyResumeEducation extends React.Component {
         /*console.log(sortdata);*/
         
         }
-        
-        
-        return (
-            <div class="resume-education" id="resume-education">
-                {topicElement}
-                {EducationCon}
+        let result;
+        if(data.length !== 0 || owner){
+            result = (
+                <div class="resume-education" id="resume-education">
+                    {topicElement}
+                    {EducationCon}
+                </div>
+            );
+        }
+        else{
+            result = (
+                <div></div>
+            );
+        }
+        return(
+            <div>
+                {result}
             </div>
-
-            
         );
         
     }
