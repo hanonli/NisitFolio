@@ -1,9 +1,8 @@
-
 /*For Javascript Desu*/
 window.onload = () => {
-  const myInput1 = document.getElementById('pass05');
+  //const myInput1 = document.getElementById('pass05');
   const myInput2 = document.getElementById('pass06');
-  myInput1.onpaste = e => e.preventDefault();
+  //myInput1.onpaste = e => e.preventDefault();
   myInput2.onpaste = e => e.preventDefault();
  }
 
@@ -71,6 +70,9 @@ $(function(){
 /*Tab1*/
 var RequestCount_email=0;
 $('#continue2').click(function () {
+  $('#ssl1').removeClass('borderred');
+  $('#ssl2').removeClass('borderred');
+  $('#ssl3').removeClass('borderred');
   var RequestCount_email=0;
   var BDDate= $('#basic-date-picker1').val();
   var last_province= $('#province').val();
@@ -240,9 +242,9 @@ $('#continue2').click(function () {
     $('.tab-list-item').removeClass('tab-list-active');
     $('#tab-7').addClass('tab-list-active')
     $('#registab7-content').show();
-    $('#ssl1').addClass('error_select_aca');
-    $('#ssl2').addClass('error_select_aca');
-    $('#ssl3').addClass('error_select_aca');
+    $('#ssl1').addClass('borderred');
+    $('#ssl2').addClass('borderred');
+    $('#ssl3').addClass('borderred');
   }
   else if(ssss1==ssss2&&ssss1!=""&&ssss2!=""){
     $('.tab-content').hide();

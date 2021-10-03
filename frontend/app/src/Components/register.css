@@ -489,7 +489,7 @@ datalist {
 
 #dangerzonet7 {
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 300;
     position: absolute;
     top: 23vw;
 }
@@ -502,4 +502,9 @@ datalist {
   color: red;
   margin-top:-5px;
   padding-left:20px;
+  font-weight: 300;
+}
+
+.failgap{
+  margin-top: 30px;
 }
