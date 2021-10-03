@@ -184,7 +184,7 @@ class PortInfo extends React.Component {
 		function AddBookmarkClickFuncSub(){
 			//alert('add bookmark!');
 			//pftBookmark[focusId] = true;
-			$('#bm-'+focusId).attr('src','assets/images/bookmark_2.png');
+			$('#bm-'+focusId).attr('src','assets/images/bookmark_2w.png');
 			//alert('add: '+userPortData[focusId].Port_Name+' from user: '+userPortData[focusId].Owner);
 			AddBookmark(userPortData[focusId].UserId, userPortData[focusId].Port_Name);
 			$('#bm-'+focusId).off('click');
@@ -197,7 +197,7 @@ class PortInfo extends React.Component {
 		function RemoveBookmarkClickFuncSub(){
 			//alert('add bookmark!');
 			//pftBookmark[focusId] = true;
-			$('#bm-'+focusId).attr('src','assets/images/bookmark_1.png');
+			$('#bm-'+focusId).attr('src','assets/images/bookmark_1w.png');
 			//alert('delete: '+userPortData[focusId].Port_Name+' from user: '+userPortData[focusId].Owner);
 			DeleteBookmark(userPortData[focusId].UserId, userPortData[focusId].Port_Name);
 			$('#bm-'+focusId).off('click');
@@ -306,6 +306,9 @@ class PortInfo extends React.Component {
 				
 				//refThis.setState({ render: true });
 				var index=0;
+				if(userPortData.length < 2){
+					$('.pft-flex').append('<af>(ยังไม่มีผลงานอื่นของเจ้าของผลงานนี้)</af>');
+				}else{
 					userPortData.forEach((data) => {
 						if(data._id == portId) { index += 1; pftId.push(data._id); pftVipData.push({}); pftPrivacy.push(portfolioData.Port_Privacy); return; } // ignore viewing port
 						//console.log(data);
@@ -361,10 +364,10 @@ class PortInfo extends React.Component {
 							});
 							//pftBookmark.push(_bookmarked);
 							if(_bookmarked){
-								vii = 'assets/images/bookmark_2.png';
+								vii = 'assets/images/bookmark_2w.png';
 							
 							}else{
-								vii = 'assets/images/bookmark_1.png';
+								vii = 'assets/images/bookmark_1w.png';
 								
 							}
 							
@@ -387,6 +390,7 @@ class PortInfo extends React.Component {
 						pftId.push(data._id);
 						index += 1;
 					});
+				
 					
 					$('.pft-edit-icon').on('click', function(e){
 						e.stopPropagation();
@@ -439,6 +443,7 @@ class PortInfo extends React.Component {
 								//this.setState({ redirect: "/landing" });
 							});
 						});
+				}
 					
 					$('.lb-container').on('mouseover', function(){
 						  focusId = Number($(this).attr('id'));
