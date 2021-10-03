@@ -1698,6 +1698,7 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 	font-weight: 300;
 	word-wrap: break-word;
 	word-break: break-word;
+	white-space: pre-wrap;
 }
 
 
