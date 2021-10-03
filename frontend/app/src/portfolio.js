@@ -644,7 +644,7 @@ class Portfolio extends React.Component {
 		});*/
 		
 		function delFunc(ref){
-			alert('Delete!');
+			//alert('Delete!');
 			console.log('Del');
 			var imgList = [];
 			// store images
