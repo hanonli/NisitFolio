@@ -260,7 +260,10 @@
 }
 
 .choose-color-template11 input[type=radio]:checked + label#color-template1{
-    border: 8px solid #2560A5;    
+    border: 2px solid transparent; 
+    outline-style: solid;
+    outline-color: #2560A5;
+    outline-width: 8px;
 }
 
 .arrow2nextpage_template{
@@ -367,7 +370,10 @@
 }
 
 .choose-color-edit-template11 input[type=radio]:checked + label#color-edit-template1{
-    border: 8px solid #2560A5;    
+    border: 2px solid transparent; 
+    outline-style: solid;
+    outline-color: #2560A5;
+    outline-width: 8px;   
 }
 
 #text-edit-color-template11{
