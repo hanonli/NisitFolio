@@ -1,4 +1,5 @@
 import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
+import { ObjectId } from 'bson';
 import { TotalBookmarkSchema } from 'src/search/search.schema';
 
 @Schema({ collection: "Bookmark", timestamps: true })
@@ -17,7 +18,7 @@ export class Bookmark {
   type: String;
 
   @Prop()
-  projectName?: String;
+  id: ObjectId;
 
   @Prop({type: Object})
   details: any;
@@ -140,7 +141,7 @@ export class Portfolio {
   Port_Info: string;
 
   @Prop()
-  Port_Tag: string;
+  Port_Tag: string[];
 
   @Prop()
   Port_Privacy: string;

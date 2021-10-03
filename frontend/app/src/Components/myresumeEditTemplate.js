@@ -1,6 +1,4 @@
 import React from 'react';
-import Navbar from './navbar';
-import { Link } from 'react-router-dom';
 import './myresumeTemplate.css'
 
 var myTemplate = {
@@ -11,7 +9,7 @@ var myTemplate = {
     "#32A3C7": "assets/images/previewRB.png",
 }
 
-class MyResumeTemplate extends React.Component {
+class MyResumeEditTemplate extends React.Component {
 
     constructor(props) {
         super(props);
@@ -32,32 +30,25 @@ class MyResumeTemplate extends React.Component {
 
     render() {
         return (
-            <div class="myresumeTemplate">
-                <Navbar />
-                <div class="layout-template">
-
-                    <div class="template-header">
-                        <h1 class="inline" id="text-choose-template">เลือกเทมเพลต</h1>
-                        <h1 class="inline" id="text-display-info"><span id="span-text-display-info"></span> เลือกข้อมูลผู้ใช้ที่จะแสดง</h1>
-                    </div>
-
-                    <div class="template-content">
-                        <div class="sample-color-template">
+            <div class="myresumeEditTemplate">
+                <div class="layout-edit-template">
+                    <div class="edit-template-content">
+                        <div class="sample-color-edit-template">
                             <img src={this.state.sample_template} width="321px"></img>
                         </div>
-                        <div class="choose-color-template11">
-                            <h1 id="text-choose-color-template11">เลือกสีที่เข้ากันและบ่งบอกถึงตัวคุณ</h1>
-                            <div class="grid-choose-template">
+                        <div class="choose-color-edit-template11">
+                            <h1 id="text-edit-color-template11">เลือกสีที่เข้ากันและบ่งบอกถึงตัวคุณ</h1>
+                            <div class="grid-edit-template">
                                 <div>
                                     <input
-                                        id="template-color-FF7370"
+                                        id="edit-template-color-FF7370"
                                         value="#FF7370"
                                         onChange={this.handleChange}
                                         checked={this.state.selectedOption === "#FF7370"}
                                         name="platform"
                                         type="radio"
                                     />
-                                    <label id="color-template1" class="choose-template-color-FF7370" for="template-color-FF7370">
+                                    <label id="color-edit-template1" class="edit-template-color-FF7370" for="edit-template-color-FF7370">
                                         <div class="circle-color-template-FF7370"></div>
                                         <div class="text-template11">แดง</div>
                                     </label>
@@ -65,14 +56,14 @@ class MyResumeTemplate extends React.Component {
 
                                 <div>
                                     <input
-                                        id="template-color-FE9666"
+                                        id="edit-template-color-FE9666"
                                         value="#FE9666"
                                         onChange={this.handleChange}
                                         checked={this.state.selectedOption === "#FE9666"}
                                         name="platform"
                                         type="radio"
                                     />
-                                    <label id="color-template1" class="choose-template-color-FE9666" for="template-color-FE9666">
+                                    <label id="color-edit-template1" class="edit-template-color-FE9666" for="edit-template-color-FE9666">
                                         <div class="circle-color-template-FE9666"></div>
                                         <div class="text-template22">ส้ม</div>
                                     </label>
@@ -80,14 +71,14 @@ class MyResumeTemplate extends React.Component {
 
                                 <div>
                                     <input
-                                        id="template-color-FFCE55"
+                                        id="edit-template-color-FFCE55"
                                         value="#FFCE55"
                                         onChange={this.handleChange}
                                         checked={this.state.selectedOption === "#FFCE55"}
                                         name="platform"
                                         type="radio"
                                     />
-                                    <label id="color-template1" class="choose-template-color-FFCE55" for="template-color-FFCE55">
+                                    <label id="color-edit-template1" class="edit-template-color-FFCE55" for="edit-template-color-FFCE55">
                                         <div class="circle-color-template-FFCE55"></div>
                                         <div class="text-template33">เหลือง</div>
                                     </label>
@@ -95,14 +86,14 @@ class MyResumeTemplate extends React.Component {
 
                                 <div>
                                     <input
-                                        id="template-color-01B8AA"
+                                        id="edit-template-color-01B8AA"
                                         value="#01B8AA"
                                         name="platform"
                                         onChange={this.handleChange}
                                         checked={this.state.selectedOption === "#01B8AA"}
                                         type="radio"
                                     />
-                                    <label id="color-template1" class="choose-template-color-01B8AA" for="template-color-01B8AA">
+                                    <label id="color-edit-template1" class="edit-template-color-01B8AA" for="edit-template-color-01B8AA">
                                         <div class="circle-color-template-01B8AA"></div>
                                         <div class="text-template44">เขียว</div>
                                     </label>
@@ -110,30 +101,22 @@ class MyResumeTemplate extends React.Component {
 
                                 <div>
                                     <input
-                                        id="template-color-32A3C7"
+                                        id="edit-template-color-32A3C7"
                                         value="#32A3C7"
                                         onChange={this.handleChange}
                                         checked={this.state.selectedOption === "#32A3C7"}
                                         name="platform"
                                         type="radio"
                                     />
-                                    <label id="color-template1" class="choose-template-color-32A3C7" for="template-color-32A3C7">
+                                    <label id="color-edit-template1" class="edit-template-color-32A3C7" for="edit-template-color-32A3C7">
                                         <div class="circle-color-template-32A3C7"></div>
                                         <div class="text-template55">ฟ้า</div>
                                     </label>
                                 </div>
 
-                                <div>
-                                    <div class="text-info-template11">สีของเทมเพลตจะใช้กับ<br />ทุกตำแหน่งงาน และผู้ใช้<br />สามารถแก้ไขภายหลังได้</div>
-                                </div>
                             </div>
                         </div>
                     </div>
-
-                    <Link to="/chooseresume">
-                        <div class="arrow2nextpage_template"><img src="assets/images/arrowwithyellow.png"></img></div>
-                    </Link>
-
                 </div>
             </div>
 
@@ -141,4 +124,4 @@ class MyResumeTemplate extends React.Component {
     }
 }
 
-export default MyResumeTemplate;
+export default MyResumeEditTemplate;

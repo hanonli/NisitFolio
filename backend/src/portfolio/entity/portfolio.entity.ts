@@ -237,7 +237,7 @@ export class Portfolio {
   Port_Info: string;
 
   @Column()
-  owner: string;
+  Owner: string;
 
   @Column()
   totalBookmark: number;

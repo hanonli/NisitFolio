@@ -23,6 +23,7 @@ import { Model } from 'mongoose';
 import { UserInfoMongoose } from './entity/register.schema';
 import { UserInfoDocument } from './entity/register.schema';
 import { GetRegisDto } from './dto/get-register.dto';
+import { Bookmark } from './entity/bookmark.entity';
 
 @Injectable()
 export class RegisterService {
@@ -57,6 +58,8 @@ export class RegisterService {
     private userInfoModel: Model<UserInfoDocument>,
     @InjectRepository(UserJobSkill)
     private userJobSkillRepository: Repository<UserJobSkill>,
+    @InjectRepository(Bookmark)
+    private BookmarkRepository: Repository<Bookmark>,
     
     private readonly emailConfirmationService: EmailConfirmationService,
     private httpService: HttpService,
@@ -255,11 +258,22 @@ export class RegisterService {
 
   async DeleteRegis(UserId:string)
   {
+    
+
     const userid = new ObjectID(UserId);
     const acc =  await this.accountRepository.findOne({where:{ _id: userid }});
     await this.accountRepository.remove(acc);
+    
 
     const userinfo =  await this.userinfoRepository.findOne({where:{UserId: UserId }});
+
+
+    const x=userinfo.id;
+
+    const thatbookmark = await this.BookmarkRepository.find({where:{ id: x }});
+    for (var _i = 0; _i < thatbookmark.length; _i++) {
+      await this.BookmarkRepository.remove(thatbookmark[_i]);
+    }
     
 
     const additionalskill = await this.AdditionalSkillRepository.find({where:{ UserId: UserId}});

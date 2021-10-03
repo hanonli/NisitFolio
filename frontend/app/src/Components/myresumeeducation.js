@@ -3,6 +3,7 @@ import Myresumetimeline from './myresumeTimeline';
 
 
 class EducationContent extends React.Component {
+
     render(){
         const data = this.props.data;
         let content = [];
@@ -175,8 +176,11 @@ class MyResumeEducation extends React.Component {
         const occupation = this.props.occupation? this.props.occupation: "นี้";
         let EducationCon;
         let sortdata;
+        let topicElement = [];
         let content = [];
         if(data.length !== 0){
+            topicElement.push(<div class="educationtopic"><h2 class="resumetopic">ประวัติการศึกษา</h2></div>);
+            topicElement.push(<div class="resumesectionline" style={linestyle}></div>)
             sortdata = data.sort(educationSorter("Degree", "Education_End_Year"));
             for (var i = 0; i < sortdata.length; i++) {
                 content.push(<EducationContent data={sortdata[i]}></EducationContent>);
@@ -186,6 +190,8 @@ class MyResumeEducation extends React.Component {
             EducationCon = (<Myresumetimeline data={content} colour={this.props.colour}></Myresumetimeline>);
         }
         else if(owner){
+            topicElement.push(<div class="educationtopic"><h2 class="resumetopic">ประวัติการศึกษา</h2></div>);
+            topicElement.push(<div class="resumesectionline" style={linestyle}></div>)
             EducationCon = (
                 <div class="education-dummyshow">
                     <div class="resumetimeline">
@@ -221,17 +227,24 @@ class MyResumeEducation extends React.Component {
         /*console.log(sortdata);*/
         
         }
-        
-        
-        return (
-            <div class="resume-education" id="resume-education">
-                <div class="educationtopic"><h2 class="resumetopic">ประวัติการศึกษา</h2></div>
-                <div class="resumesectionline" style={linestyle}></div>
-                {EducationCon}
-            
+        let result;
+        if(data.length !== 0 || owner){
+            result = (
+                <div class="resume-education" id="resume-education">
+                    {topicElement}
+                    {EducationCon}
+                </div>
+            );
+        }
+        else{
+            result = (
+                <div></div>
+            );
+        }
+        return(
+            <div>
+                {result}
             </div>
-
-            
         );
         
     }

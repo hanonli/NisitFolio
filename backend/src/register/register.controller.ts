@@ -28,6 +28,7 @@ export class RegisterController {
     return this.registerService.DeleteRegis(req.user.userId);
   }
 
+
   @Get('/jobtitle')
   async findJobTitle()
   {
