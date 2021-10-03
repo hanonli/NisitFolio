@@ -11,6 +11,7 @@ import { Portfolio2, PortfolioDocument} from './entity/portfolio.schema';
 import { UserInfoDocument, UserInfoMongoose } from 'src/register/entity/register.schema';
 import Portfolio3 from './dto/portfolio4.dto';
 import { hearderDto } from 'src/portfolio/dto/haerder.dto';
+import { Bookmark } from './entity/portfliobookmark.entity';
 
 @Injectable()
 export class PortService {
@@ -25,6 +26,8 @@ export class PortService {
     private userInfoRepository: Repository<Userinfo>,
     @InjectRepository(Account)
     private accountRepository: Repository<Account>,
+    @InjectRepository(Bookmark)
+    private BookmarkRepository: Repository<Bookmark>,
     
 
 
@@ -97,7 +100,11 @@ export class PortService {
   async removePort(portId:string, userId:string){
     const portid = new ObjectID(portId);
     const port =  await this.portRepository.findOne({where:{ _id: portid }});
-  
+    const thatbookmark = await this.BookmarkRepository.find({where:{ id: portid }});
+    for (var _i = 0; _i < thatbookmark.length; _i++) {
+      await this.BookmarkRepository.remove(thatbookmark[_i]);
+    }
+    
     if (port && port.UserId === userId) {
       const portpic =  await this.portfolioPictureRepository.findOne({where:{ PortId: port.id }});
       await this.portfolioPictureRepository.remove(portpic);

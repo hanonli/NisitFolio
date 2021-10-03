@@ -15,9 +15,10 @@ import { Skill } from 'src/register/entity/Skill.entrity'
 import { HardSkill} from 'src/register/entity/HardSkill.entrity'
 import { UserInfoMongoose } from './entity/register.schema';
 import { UserInfoSchema } from './entity/register.schema';
+import { Bookmark } from './entity/bookmark.entity';
 @Module({
 
-  imports: [TypeOrmModule.forFeature([Account, Userinfo,EducationHistory,WorkHistory,Certificate,AdditionalSkill,InterestedJob,HardSkill,JobTitle,Skill,Portfolio,PortfolioPicture,Resume,UserJobSkill])
+  imports: [TypeOrmModule.forFeature([Bookmark,Account, Userinfo,EducationHistory,WorkHistory,Certificate,AdditionalSkill,InterestedJob,HardSkill,JobTitle,Skill,Portfolio,PortfolioPicture,Resume,UserJobSkill])
             ,MongooseModule.forFeature([{ name: UserInfoMongoose.name, schema: UserInfoSchema }])  
             ,MulterModule.register({
             dest: './upload',
