@@ -644,6 +644,7 @@ class Portfolio extends React.Component {
 		});*/
 		
 		function delFunc(ref){
+			alert('Delete!');
 			console.log('Del');
 			var imgList = [];
 			// store images
@@ -690,6 +691,10 @@ class Portfolio extends React.Component {
 					}, 10);
 					var idd = refThis.state.list.length+1;
 					$(".tres").attr("id","tres-"+idd);
+					$(".delete-upload-icon").off('click'); // fix event stacking bugs
+					$('.delete-upload-icon').on('click', function(){ // add delete event
+						delFunc(this);
+					});
 
 				}
 			}else{
@@ -718,6 +723,10 @@ class Portfolio extends React.Component {
 						jObj = $(uploadButton.replace('{tresId}','tres-5')).prependTo( $('.sortable-container-5').first());
 						$( "#upload-next" ).click(function() {input.click(); }); 
 						ResetHoverFunction();
+						$(".delete-upload-icon").off('click'); // fix event stacking bugs
+						$('.delete-upload-icon').on('click', function(){ // add delete event
+							delFunc(this);
+						});
 						
 					}, 10);
 					
