@@ -1,9 +1,8 @@
-
 /*For Javascript Desu*/
 window.onload = () => {
-  const myInput1 = document.getElementById('pass05');
+  //const myInput1 = document.getElementById('pass05');
   const myInput2 = document.getElementById('pass06');
-  myInput1.onpaste = e => e.preventDefault();
+  //myInput1.onpaste = e => e.preventDefault();
   myInput2.onpaste = e => e.preventDefault();
  }
 
@@ -71,6 +70,9 @@ $(function(){
 /*Tab1*/
 var RequestCount_email=0;
 $('#continue2').click(function () {
+  $('#ssl1').removeClass('error_select_aca');
+  $('#ssl2').removeClass('error_select_aca');
+  $('#ssl3').removeClass('error_select_aca');
   var RequestCount_email=0;
   var BDDate= $('#basic-date-picker1').val();
   var last_province= $('#province').val();

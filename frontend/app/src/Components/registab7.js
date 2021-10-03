@@ -211,7 +211,7 @@ class Registab7 extends React.Component {
 			var sss3 = cookie.load('sideskill3');
 			//$('#ddt7s').val('');
 			console.log('Add sideskill dropdown!');
-			alert(cookie.load('sideskill1')+ '+' +cookie.load('sideskill2')+'+'+cookie.load('sideskill3'));
+			//alert(cookie.load('sideskill1')+ '+' +cookie.load('sideskill2')+'+'+cookie.load('sideskill3'));
 			if(sss1==""){
 				console.log('ใส่อันที่1แล้วจ้า');
 				$('#ddt7s').show();

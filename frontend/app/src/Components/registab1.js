@@ -44,7 +44,7 @@ class Registab1 extends React.Component {
 										<label class="form-f-cfp disablecopypaste">ยืนยันรหัสผ่าน<label class="red_markEp1">*</label></label>
 									</div>
 									<div class="col-10">
-										<input maxlength="100" type="password" class="form-control dropbtn margin-bottom1 " id="pass06" required></input>
+										<input maxlength="100" onpaste="return false;" type="password" class="form-control dropbtn margin-bottom1 " id="pass06" required></input>
 									</div>
 								</div>
 								<div class="row">
