@@ -25,6 +25,7 @@
     /*padding: 1%;*/
     margin-right: 20%;
     overflow-y: scroll;
+    position: relative;
 }
 
 .regis-box-content7 {
@@ -37,17 +38,17 @@
   margin-right: 20%;
   overflow-y: hidden;
   position: relative;
-  z-index: 1000;
 }
-.fixed-wrapper {
-  position: absolute;     
-  width: 100%;    
-  z-index: 2000;
+
+.css-1vpl199-control{
+  margin-bottom: 20px;
 }
-.fixed {
-      position: fixed;
-      z-index: 3000;
-  }
+.css-1vpl199-control:active{
+  margin-bottom: 20px;
+}
+.css-1jdqyts-control{
+  margin-bottom: 20px;
+}
 .headerRegis {
     color: #000;
     font-size: 48px;
@@ -484,4 +485,21 @@ datalist {
   font-size: 32px;
   margin-bottom: 20px;
   margin-top: 5px;
+}
+
+#dangerzonet7 {
+    font-size: 16px;
+    font-weight: 400;
+    position: absolute;
+    top: 23vw;
+}
+
+.borderred {
+  border: 0.1px solid red;
+}
+
+#toggleEmailW{
+  color: red;
+  margin-top:-5px;
+  padding-left:20px;
 }

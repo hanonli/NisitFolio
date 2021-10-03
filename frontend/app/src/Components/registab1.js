@@ -28,6 +28,7 @@ class Registab1 extends React.Component {
 									</div>
 									<div class="col-10">
 										<input maxlength="60" type="text" class="form-control dropbtn margin-bottom1 " id="re03" required></input>
+										<a id='toggleEmailW'>อีเมลนี้มีอยู่ในระบบอยู่แล้ว</a>
 									</div>
 								</div>
 								<div class="row">
@@ -35,7 +36,7 @@ class Registab1 extends React.Component {
 										<label class="form-f-sex disablecopypaste">รหัสผ่าน<label class="red_markEp1">*</label></label>
 									</div>
 									<div class="col-10">
-										<input maxlength="100" type="password" class="form-control dropbtn margin-bottom1 " id="pass05" aria-describedby="passwordHelpInline" required></input>
+										<input maxlength="100" type="password" class="form-control dropbtn margin-bottom1 " id="pass05" placeholder='ความยาวอย่างน้อย 8 อักขระ' describedby="passwordHelpInline" required></input>
 									</div>
 								</div>
 								<div class="row triggerRed1 chidright">

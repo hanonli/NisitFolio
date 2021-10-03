@@ -99,7 +99,7 @@ const customStyles = {
   async getOptions(typeC){
     const res = await axios.get("http://localhost:2000/register/" + typeC +"/hardskill")
     const data = res.data
-    console.log(res);
+    //console.log(res);
     if(res.data==[]){
       this.setState({opT7:[
         { value: 'Computer_Technology', label: 'ทักษะคอมพิวเตอร์' },
@@ -128,12 +128,14 @@ const customStyles = {
   }
 
   handleChange(e){
-   this.setState({id:e.value, name:e.label})
+   this.setState({id:e.value, name:e.label,startval:e})
    var neww='';
    neww = e.label;
    //console.log(neww);
-   console.log("http://localhost:2000/register/" + e.value +"/hardskill");
-   this.getOptions(e.value);
+   //console.log("http://localhost:2000/register/" + e.value +"/hardskill");
+   if(this.state.checkddt7==0){
+    this.getOptions(e.value);
+   }
    const inputText = e.label;
    if(this.state.checkddt7==1){
     this.setState({
@@ -149,28 +151,29 @@ const customStyles = {
         { value: 'Cloud_Computing', label: 'ทักษะเกี่ยวกับ Cloud_Computing' },
         { value: 'Mobile_&_Web_Development', label: 'การพัฒนาเว็ปแอปพลิเคชั่นและ Mobile App' },
         { value: 'Network_Structure_&_Security', label: 'เน็ตเวิร์คและซีเคียวริตี้' },
-      ]
+      ],
     });
     this.props.onChange(inputText);
-    this.setState({startval:null});
+    this.setState({startval:null,checkddt7:0});
     $('#ddt7s').hide();
    }
    else{
-     console.log(this.state.checkddt7);
+     //console.log(this.state.checkddt7);
      this.props.onChange('unselected');
-     this.setState({startval:e.label});
+     //console.log(this.state.startval);
    }
+   //setInterval(function(){ console.log(this.state.startval); }, 1000);
   }
 
   componentDidMount(){
-      
   }
 
   render() {
-    console.log(this.state.opT7)
+    //console.log(this.state.opT7)
+    //console.log(this.state.startval)
     return (
       <div>
-        <Select styles={customStyles} value={this.state.startval} options={this.state.opT7} onChange={this.handleChange.bind(this)} placeholder='เลือกหมวดทักษะเสริมที่ถนัด'  closeMenuOnSelect={false} id='ddt7s' class='fixed'/>
+        <Select styles={customStyles} value={this.state.startval} options={this.state.opT7} onChange={this.handleChange.bind(this)} placeholder='เลือกหมวดทักษะเสริมที่ถนัด'  closeMenuOnSelect={false} id='ddt7s' class='fixed margin-bottom1'/>
       </div>
     )
   }

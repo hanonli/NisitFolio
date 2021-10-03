@@ -14,7 +14,7 @@ class PortRoot extends React.Component {
 		this.handleLoad = this.handleLoad.bind(this);
 		this.state = {
 			render: false, //Set render state to false
-			allow: false,
+			allow: true,
 			redirect: null,
 			portEmpty: true
 		}
