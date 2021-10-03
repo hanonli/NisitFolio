@@ -40,6 +40,7 @@ class PortRoot extends React.Component {
 		
 		var pftId = [];
 		var pftPrivacy = [];
+		var pftVipData= [];
 		
 		var token = cookie.load('login-token');
 		var refThis = this;
@@ -71,6 +72,18 @@ class PortRoot extends React.Component {
 					this.setState({ portEmpty: false });
 					var index=0;
 					datas.forEach((data) => {
+						
+						// for PATCH
+						var patchData = {};
+						patchData['Port_Tag'] = data.Port_Tag;
+						patchData['Port_Privacy'] = data.Port_Privacy;
+						patchData['Pic'] = data.portfolioPictures[0].Pic;
+						patchData['Description'] = data.portfolioPictures[0].Description;
+						patchData['Port_Date'] = data.Port_Date;
+						patchData['Port_Name'] = data.Port_Name;
+						patchData['Port_Info'] = data.Port_Info;
+						pftVipData.push(patchData);
+						
 						//console.log(data);
 						console.log(data.Port_Name);
 						var date = "ไม่ทราบวันที่";
@@ -91,6 +104,8 @@ class PortRoot extends React.Component {
 						var thumb = null;
 						if(data.portfolioPictures[0].Pic[0] != null)
 							thumb = data.portfolioPictures[0].Pic[0];
+						else
+							thumb = 'assets/images/emp_thumb.jpg';
 						
 						$('.pft-flex').append(pftDiv.replace('{id}',index).replace('{img}',thumb).replace('{name}',data.Port_Name).replace('{date}',date).replace('{privacy}',privacyImg));
 						pftId.push(data._id);
@@ -107,7 +122,6 @@ class PortRoot extends React.Component {
 						$('.pft-lock-icon').on('click', function(e){
 							//alert('Clicked! id: '+pftId[focusId]);
 							e.stopPropagation();
-							var patchData = {};
 							var p2c = null;
 							if(pftPrivacy[focusId] == 0){
 								//alert('Change to Member');
@@ -125,8 +139,9 @@ class PortRoot extends React.Component {
 								pftPrivacy[focusId] = 0;
 								//alert('Change to Public');
 							}
-							patchData.Port_Privacy = p2c;
-							/*fetch("http://localhost:2000/portfolio/"+pftId[focusId],{
+							pftVipData[focusId].Port_Privacy = p2c;
+							console.log(pftVipData[focusId]);
+							fetch("http://localhost:2000/portfolio/"+pftId[focusId],{
 							method: "PATCH",
 							headers: {
 								'Authorization': 'Bearer '+token,
@@ -135,7 +150,7 @@ class PortRoot extends React.Component {
 								"Access-Control-Allow-Credentials": true,
 								"Content-Type": "application/json"
 							},
-							body: JSON.stringify(patchData),
+							body: JSON.stringify(pftVipData[focusId]),
 							})
 							.then(response =>  {
 								//console.log(datas);
@@ -146,7 +161,7 @@ class PortRoot extends React.Component {
 							.catch((error) => {
 								console.log('add Error!');
 								//this.setState({ redirect: "/landing" });
-							});*/
+							});
 							
 							
 						});
@@ -171,6 +186,7 @@ class PortRoot extends React.Component {
 					  });
 					  
 					$('#delete-port').on('click', function(){
+						  $(window).unbind('scroll');
 						  refThis.setState({ render: false });
 						  fetch("http://localhost:2000/portfolio/"+pftId[focusId],{
 							method: "DELETE",

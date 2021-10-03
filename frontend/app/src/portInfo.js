@@ -8,6 +8,7 @@ import cookie from 'react-cookies';
 import { Redirect } from "react-router-dom";
 import { withRouter } from "react-router";
 import $ from 'jquery';
+import { OverlayTrigger, Overlay, Tooltip, Button } from 'react-bootstrap';
 
 class PortInfo extends React.Component {
 	constructor(props) {
@@ -17,7 +18,11 @@ class PortInfo extends React.Component {
 			render: false, //Set render state to false
 			allow: true,
 			redirect: null,
-			portEmpty: true
+			portEmpty: true,
+			tooltip1: '...',
+			tooltip2: 'ติดต่อ',
+			show1: false,
+			show2: false,
 		}
 	 }
 	
@@ -34,9 +39,9 @@ class PortInfo extends React.Component {
 							<img class="pft-i" src="{img}" alt=""/>\
 							<div class="hover-box">\
 								<img class="pft-overlay" src="assets/images/black.jpg" alt=""/>\
-								<img class="pft-lock-icon" src="{privacy}" alt=""/>\
-								<img class="pft-del-icon" src="assets/images/white_bin.png" data-bs-toggle="modal" data-bs-target="#staticBackdrop" alt=""/>\
-								<img class="pft-edit-icon" src="assets/images/whiteedit.png" alt=""/>\
+								<img class="pft-lock-icon {hidden1}" src="{privacy}" alt=""/>\
+								<img class="pft-del-icon {hidden2}" src="assets/images/white_bin.png" data-bs-toggle="modal" data-bs-target="#staticBackdrop" alt=""/>\
+								<img class="{var-ic}" id="{var-id}" src="{var-ic-img}" alt=""/>\
 								<div class="pft-name">{name}</div>\
 								<div class="pft-date">{date}</div>\
 							</div>\
@@ -44,111 +49,278 @@ class PortInfo extends React.Component {
 		
 		var pftId = [];
 		var pftPrivacy = [];
+		var pftVipData= [];
 		
 		var token = cookie.load('login-token');
+		var userId = cookie.load('login-user');
+		
 		var refThis = this;
 		var focusId = null;
 		
-		fetch("http://localhost:2000/portfolio/"+portId,{
-			method: "GET",
-			headers: {
-				'Authorization': 'Bearer '+token,
-				"Access-Control-Allow-Origin": "*",
-				"Access-Control-Allow-Methods": "*",
-				"Access-Control-Allow-Credentials": true,
-				"Content-Type": "application/json"
-			},
-		})
-			.then(response => response.json())
-			.then((data) => {
-				console.log(data);
-				GetUserProfilePic(data.UserId);
-				GetUserPortfolio(data.UserId);
-				this.setState({ render: true });
-				$('#port-name').text(data.Port_Name);
+		var portfolioData = null;
+		var userData = null;
+		var userPortData = null;
+		var userBmData = null;
+		var thatUserId = null;
+		
+		var bookmarked = false;
+		//var pftBookmark = [];
+		
+		var f1 = false; var f2 = false; var f3 = false; var f4 = false;
+		
+		var fetcher = setInterval(Fetcher, 100);
+		
+		function Fetcher() {
+			//console.log('f1: '+f1+'f2: '+f2+'f3: '+f3);
+			if(f1 && f2 && f3 && f4){ 
+				clearInterval(fetcher);
+				//alert('Complete!');
+				InitializePortInfo();
+			}else{
 				
-				if(data.Port_date != null) $('#port-date').text(data.Port_Date);
-				else $('#port-date').text('ไม่ทราบวันที่');
+			}
+		}
+		
+		function AddBookmark(targetUser, portName){
+			var addData = {};
+			addData['userId'] = userId;
+			addData['type'] = 'work';
+			addData['thatUserId'] = targetUser;
+			addData['projectName'] = portName;
+			
+			fetch("http://localhost:2000/bookmark/saveBookmark",{
+				method: "POST",
+				headers: {
+					"Access-Control-Allow-Origin": "*",
+					"Access-Control-Allow-Methods": "*",
+					"Access-Control-Allow-Credentials": true,
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify(addData),
+			})
+				.then(response =>  {
+					//console.log(datas);
+					console.log(response);
+					//GetSearchBookmarkData();
+				})
+				.catch((error) => {
+					console.log('add Error!');
+					//this.setState({ redirect: "/landing" });
+				});
+		}
+		
+		function DeleteBookmark(targetUser, portName){
+			var delData = {};
+			delData['userId'] = userId;
+			delData['type'] = 'work';
+			delData['thatUserId'] = targetUser;
+			delData['projectName'] = portName;
+			
+			fetch("http://localhost:2000/bookmark/saveBookmark",{
+				method: "DELETE",
+				headers: {
+					"Access-Control-Allow-Origin": "*",
+					"Access-Control-Allow-Methods": "*",
+					"Access-Control-Allow-Credentials": true,
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify(delData),
+			})
+				.then(response =>  {
+					//console.log(datas);
+					console.log(response);
+				})
+				.catch((error) => {
+					console.log('delete Error!');
+					//this.setState({ redirect: "/landing" });
+				});
+		}
+		
+		function AddBookmarkClickFunc(){
+			//alert('add bookmark!');
+			bookmarked = true;
+			$('#uic-1').attr('src','assets/images/bookmark_2.png');
+			//$('#uic-1').attr('title','ยกเลิกการบันทึก');
+			//$('#tooltip-uic-1').text('ยกเลิกการบันทึก');
+			setTimeout(function() { refThis.setState({ tooltip1: 'ยกเลิกการบันทึก' }); }, 500); 
+			AddBookmark(thatUserId,portfolioData.Port_Name);
+			$('#uic-1').off('click');
+			$('#uic-1').on('mouseover', function(){
+			  refThis.setState({ show1: true });
+			});
 				
-				$('#port-owner').text(data.Owner);
-				$('#port-desc').text(data.Port_Info);
+			$('#uic-1').on('mouseleave', function(){
+			  refThis.setState({ show1: false });
+			});
+			$("#uic-1").click(function() {
+				refThis.setState({ show1: false });
+				RemoveBookmarkClickFunc();
+			});
+		}
+		
+		function RemoveBookmarkClickFunc(){
+			//alert('delete bookmark!');
+			bookmarked = false;
+			$('#uic-1').attr('src','assets/images/bookmark_1.png');
+			//$('#uic-1').attr('title','บันทึก');
+			//$('#tooltip-uic-1').text('บันทึก');
+			
+			setTimeout(function() { refThis.setState({ tooltip1: 'บันทึก' }); }, 500); 
+			DeleteBookmark(thatUserId,portfolioData.Port_Name);
+			$('#uic-1').off('click');
+			$('#uic-1').on('mouseover', function(){
+			  refThis.setState({ show1: true });
+			});
+				
+			$('#uic-1').on('mouseleave', function(){
+			  refThis.setState({ show1: false });
+			});
+			$("#uic-1").click(function() {
+				refThis.setState({ show1: false });
+				AddBookmarkClickFunc();
+			});
+		}
+		
+		function AddBookmarkClickFuncSub(){
+			//alert('add bookmark!');
+			//pftBookmark[focusId] = true;
+			$('#bm-'+focusId).attr('src','assets/images/bookmark_2.png');
+			//alert('add: '+userPortData[focusId].Port_Name+' from user: '+userPortData[focusId].Owner);
+			AddBookmark(userPortData[focusId].UserId, userPortData[focusId].Port_Name);
+			$('#bm-'+focusId).off('click');
+			$('#bm-'+focusId).click(function(e) {
+				e.stopPropagation();
+				RemoveBookmarkClickFuncSub();
+			});
+		}
+		
+		function RemoveBookmarkClickFuncSub(){
+			//alert('add bookmark!');
+			//pftBookmark[focusId] = true;
+			$('#bm-'+focusId).attr('src','assets/images/bookmark_1.png');
+			//alert('delete: '+userPortData[focusId].Port_Name+' from user: '+userPortData[focusId].Owner);
+			DeleteBookmark(userPortData[focusId].UserId, userPortData[focusId].Port_Name);
+			$('#bm-'+focusId).off('click');
+			$('#bm-'+focusId).click(function(e) {
+				e.stopPropagation();
+				AddBookmarkClickFuncSub();
+			});
+		}
+		
+		function InitializePortInfo(){
+			console.log(portfolioData);
+				refThis.setState({ render: true });
+				
+				if(portfolioData.UserId == userId){ //user is viewing user's port
+					$('#uic-1').attr('src','assets/images/black_edit2.png');
+					$("#uic-1").click(function() {
+						cookie.save('port-entry', 'edit', { path: '/' })
+						cookie.save('port-focus', portId, { path: '/' })
+						refThis.setState({ redirect: "/editport" });
+					});
+					//$('#uic-1').attr('title', 'แก้ไข')
+					refThis.setState({ tooltip1: 'แก้ไข' });
+					$('#uic-1').on('mouseover', function(){
+					  refThis.setState({ show1: true });
+					});
+						
+					$('#uic-1').on('mouseleave', function(){
+					  refThis.setState({ show1: false });
+					});
+					$("#uic-1").click(function() {
+						refThis.setState({ show1: false });
+					});
+					
+					$('#uic-2').attr('src','assets/images/bin.png');
+					$('#uic-2').attr('data-bs-target','#staticBackdropM');
+					$('#uic-2').attr('data-bs-toggle','modal');
+					//$('#uic-2').attr('title', 'ลบ')
+					refThis.setState({ tooltip2: 'ลบ' });
+					/*if(portfolioData.Port_Privacy == 'Public'){
+						$('#uic-2').attr('src','assets/images/outline_public_black_24dp.png');
+						$('#uic-2').attr('title','เปลี่ยนความเป็นส่วนตัว');
+					}else if(portfolioData.Port_Privacy == 'Members'){
+						$('#uic-2').attr('src','assets/images/outline_people_black_24dp.png');
+						$('#uic-2').attr('title','เปลี่ยนความเป็นส่วนตัว');
+					}else{
+						$('#uic-2').attr('src','assets/images/outline_lock_black_24dp.png');
+						$('#uic-2').attr('title','เปลี่ยนความเป็นส่วนตัว');
+					}*/
+				}else{
+					userBmData.every((entry) => {
+						if(entry.id == portId){
+							bookmarked = true; 
+							return false;
+						}
+						return true;
+					});
+					if(bookmarked){
+						AddBookmarkClickFunc();
+					}else{
+						RemoveBookmarkClickFunc();
+					}
+					
+					$('#uic-2').attr('data-bs-target','#staticBackdropE');
+					$('#uic-2').attr('data-bs-toggle','modal');
+				}
+				
+				$('#port-name').text(portfolioData.Port_Name);
+				
+				if(portfolioData.Port_Date != null) 
+					$('#port-date').text(portfolioData.Port_Date);
+				else 
+					$('#port-date').text('ไม่ทราบวันที่');
+				
+				$('#port-owner').text(portfolioData.Owner);
+				$('#port-desc').text(portfolioData.Port_Info);
 				
 				var pdd=1;
-				data.portfolioPictures[0].Pic.forEach((entry) => {
+				portfolioData.portfolioPictures[0].Pic.forEach((entry) => {
 					$('#port-pic-'+pdd).attr('src',entry);
 					pdd += 1;
 				});
 				
-				var tagCount = data.Port_Tag.length;
+				var tagCount = portfolioData.Port_Tag.length;
 				if(tagCount == 0){
 					$('#port-tag1').hide();
 					$('#port-tag2').hide();
 					$('#port-tag3').hide();
 				}else if(tagCount == 1){
-					$('#port-tag1').text(data.Port_Tag[0]);
+					$('#port-tag1').text(portfolioData.Port_Tag[0]);
 					$('#port-tag2').hide();
 					$('#port-tag3').hide();
 				}else if(tagCount == 2){
-					$('#port-tag1').text(data.Port_Tag[0]);
-					$('#port-tag2').text(data.Port_Tag[1]);
+					$('#port-tag1').text(portfolioData.Port_Tag[0]);
+					$('#port-tag2').text(portfolioData.Port_Tag[1]);
 					$('#port-tag3').hide();
 				}else if(tagCount == 3){
-					$('#port-tag1').text(data.Port_Tag[0]);
-					$('#port-tag2').text(data.Port_Tag[1]);
-					$('#port-tag3').text(data.Port_Tag[2]);
+					$('#port-tag1').text(portfolioData.Port_Tag[0]);
+					$('#port-tag2').text(portfolioData.Port_Tag[1]);
+					$('#port-tag3').text(portfolioData.Port_Tag[2]);
 				}
 
-				$('#port-owner-b').text(data.Owner);
-
+				$('#port-owner-b').text(portfolioData.Owner);
 				
-			}).catch((error) => {
-				console.log('Token Error!');
-				console.log(error);
-				//this.setState({ redirect: "/landing" });
-			});
-		
-		function GetUserProfilePic(uid){
-			fetch("http://localhost:2000/portfolio/header/"+uid,{
-			method: "GET",
-			headers: {
-				'Authorization': 'Bearer '+token,
-				"Access-Control-Allow-Origin": "*",
-				"Access-Control-Allow-Methods": "*",
-				"Access-Control-Allow-Credentials": true,
-				"Content-Type": "application/json"
-			},
-			})
-			.then(response => response.json())
-			.then((data) => {
-				//console.log(data);
+				$('#avatar').attr('src',userData.ProfilePic);
+				$('#port-user-email').text(userData.Email);
+				
 				//refThis.setState({ render: true });
-				$('#avatar').attr('src',data.ProfilePic);
-				
-			}).catch((error) => {
-				console.log('Token Error!');
-				console.log(error);
-				//this.setState({ redirect: "/landing" });
-			});
-		}
-		
-		function GetUserPortfolio(uid){
-			fetch("http://localhost:2000/portfolio/user/"+uid,{
-			method: "GET",
-			headers: {
-				'Authorization': 'Bearer '+token,
-				"Access-Control-Allow-Origin": "*",
-				"Access-Control-Allow-Methods": "*",
-				"Access-Control-Allow-Credentials": true,
-				"Content-Type": "application/json"
-			},
-			})
-			.then(response => response.json())
-			.then((datas) => {
-				//console.log(datas);
-				refThis.setState({ render: true });
 				var index=0;
-					datas.forEach((data) => {
+					userPortData.forEach((data) => {
+						if(data._id == portId) { index += 1; pftId.push(data._id); pftVipData.push({}); pftPrivacy.push(portfolioData.Port_Privacy); return; } // ignore viewing port
 						//console.log(data);
+						
+						// for PATCH
+						var patchData = {};
+						patchData['Port_Tag'] = data.Port_Tag;
+						patchData['Port_Privacy'] = data.Port_Privacy;
+						patchData['Pic'] = data.portfolioPictures[0].Pic;
+						patchData['Description'] = data.portfolioPictures[0].Description;
+						patchData['Port_Date'] = data.Port_Date;
+						patchData['Port_Name'] = data.Port_Name;
+						patchData['Port_Info'] = data.Port_Info;
+						pftVipData.push(patchData);
+						
 						console.log(data.Port_Name);
 						var date = "ไม่ทราบวันที่";
 						if(data.Port_Date != null) date = data.Port_Date;
@@ -166,12 +338,54 @@ class PortInfo extends React.Component {
 						}
 						
 						var thumb = null;
-						if(data.portfolioPictures[0].Pic[0] != null)
+						if(data.portfolioPictures[0].Pic.length > 0)
 							thumb = data.portfolioPictures[0].Pic[0];
+						else
+							thumb = 'assets/images/emp_thumb.jpg';
 						
-						$('.pft-flex').append(pftDiv.replace('{id}',index).replace('{img}',thumb).replace('{name}',data.Port_Name).replace('{date}',date).replace('{privacy}',privacyImg));
+						var vi = null; var vii = null; var hid = ''; var vid = null;
+						if(portfolioData.UserId == userId){ //user is viewing user's port
+							vi = 'pft-edit-icon';
+							vii = 'assets/images/whiteedit.png';
+							vid = '';
+						}else{
+							vi = 'pft-bookmark-icon';
+							vid = 'bm-'+index;
+							var _bookmarked = false;
+							userBmData.every((entry) => {
+								if(entry.id == data._id){
+									_bookmarked = true; 
+									return false;
+								}
+								return true;
+							});
+							//pftBookmark.push(_bookmarked);
+							if(_bookmarked){
+								vii = 'assets/images/bookmark_2.png';
+							
+							}else{
+								vii = 'assets/images/bookmark_1.png';
+								
+							}
+							
+							
+							hid = 'ic-hidden';
+						}
+						
+						$('.pft-flex').append(pftDiv.replace('{id}',index).replace('{img}',thumb).replace('{name}',data.Port_Name)
+							.replace('{date}',date).replace('{privacy}',privacyImg).replace('{var-ic}',vi)
+							.replace('{var-ic-img}',vii).replace('{hidden1}',hid).replace('{hidden2}',hid).replace('{var-id}',vid));
+							
+						focusId = index;
+						if(_bookmarked){
+							AddBookmarkClickFuncSub();
+						}else{
+							RemoveBookmarkClickFuncSub();
+						}
+						
+						//alert(data._id);
 						pftId.push(data._id);
-						index += 1;	
+						index += 1;
 					});
 					
 					$('.pft-edit-icon').on('click', function(e){
@@ -184,7 +398,6 @@ class PortInfo extends React.Component {
 						$('.pft-lock-icon').on('click', function(e){
 							//alert('Clicked! id: '+pftId[focusId]);
 							e.stopPropagation();
-							var patchData = {};
 							var p2c = null;
 							if(pftPrivacy[focusId] == 0){
 								//alert('Change to Member');
@@ -202,8 +415,9 @@ class PortInfo extends React.Component {
 								pftPrivacy[focusId] = 0;
 								//alert('Change to Public');
 							}
-							patchData.Port_Privacy = p2c;
-							/*fetch("http://localhost:2000/portfolio/"+pftId[focusId],{
+							pftVipData[focusId].Port_Privacy = p2c;
+							console.log(pftVipData[focusId]);
+							fetch("http://localhost:2000/portfolio/"+pftId[focusId],{
 							method: "PATCH",
 							headers: {
 								'Authorization': 'Bearer '+token,
@@ -212,7 +426,7 @@ class PortInfo extends React.Component {
 								"Access-Control-Allow-Credentials": true,
 								"Content-Type": "application/json"
 							},
-							body: JSON.stringify(patchData),
+							body: JSON.stringify(pftVipData[focusId]),
 							})
 							.then(response =>  {
 								//console.log(datas);
@@ -223,7 +437,7 @@ class PortInfo extends React.Component {
 							.catch((error) => {
 								console.log('add Error!');
 								//this.setState({ redirect: "/landing" });
-							});*/
+							});
 						});
 					
 					$('.lb-container').on('mouseover', function(){
@@ -276,7 +490,43 @@ class PortInfo extends React.Component {
 								//this.setState({ redirect: "/landing" });
 							});
 					  });
+					  
+					  $('#delete-main-port').on('click', function(){
+						  refThis.setState({ render: false });
+						  fetch("http://localhost:2000/portfolio/"+portId,{
+							method: "DELETE",
+							headers: {
+								'Authorization': 'Bearer '+token,
+								"Access-Control-Allow-Origin": "*",
+								"Access-Control-Allow-Methods": "*",
+								"Access-Control-Allow-Credentials": true,
+								"Content-Type": "application/json"
+							}
+							})
+							.then(response =>  {
+								//console.log(datas);
+								console.log(response);
+								//$('#'+focusId).remove();
+								//alert($('#pft-box').length);
+								//if($('#pft-box').length < 1)
+								//window.location.reload();
+								//setInterval(function() { console.log($('#pft-box div').length); }, 1000); 
+									
+								refThis.setState({ redirect: "/portfolio" });
+								//GetSearchBookmarkData();
+							})
+							.catch((error) => {
+								console.log('add Error!');
+								//this.setState({ redirect: "/landing" });
+							});
+					  });
+					  
+						$('#clipboard').on('click', function(){
+							navigator.clipboard.writeText($('#port-user-email').text());
+						});
 						
+					
+
 					var item = document.getElementById("h-scroll");
 					  /*window.addEventListener("wheel", function (e) {
 						if (e.deltaY > 0) 
@@ -311,8 +561,95 @@ class PortInfo extends React.Component {
 							
 							//console.log(item.scrollLeft);
 					  });
-
+		}
+		
+		fetch("http://localhost:2000/portfolio/"+portId,{
+			method: "GET",
+			headers: {
+				'Authorization': 'Bearer '+token,
+				"Access-Control-Allow-Origin": "*",
+				"Access-Control-Allow-Methods": "*",
+				"Access-Control-Allow-Credentials": true,
+				"Content-Type": "application/json"
+			},
+		})
+			.then(response => response.json())
+			.then((data) => {
+				portfolioData = data;
+				//alert('f1!');
+				f1 = true;
+				thatUserId = data.UserId;
+				GetUserHeader(thatUserId);
+				GetUserPortfolio(thatUserId);
+				GetUserBookmarkData();
+			}).catch((error) => {
+				console.log('Token Error!');
+				console.log(error);
+				//this.setState({ redirect: "/landing" });
+			});
+		
+		function GetUserBookmarkData(){
+			fetch("http://localhost:2000/bookmark/"+userId+"&&time",{
+				method: "GET",
+				headers: {
+					"Access-Control-Allow-Origin": "*",
+					"Access-Control-Allow-Methods": "*",
+					"Access-Control-Allow-Credentials": true,
+					"Content-Type": "application/json"},
+			})
+			.then(response => response.json())
+			//.then(response => response.result)
+			.then((datas) => {
+				userBmData = datas;
+				f4 = true;
+			}).catch((error) => {
+				  console.log(error);
+				});
+		}
+		
+		function GetUserHeader(uid){
+			fetch("http://localhost:2000/portfolio/header/"+uid,{
+			method: "GET",
+			headers: {
+				'Authorization': 'Bearer '+token,
+				"Access-Control-Allow-Origin": "*",
+				"Access-Control-Allow-Methods": "*",
+				"Access-Control-Allow-Credentials": true,
+				"Content-Type": "application/json"
+			},
+			})
+			.then(response => response.json())
+			.then((data) => {
+				//console.log(data);
+				//refThis.setState({ render: true });
+				userData = data;
+				f2 = true;
+				//alert('f2!');
 				
+			}).catch((error) => {
+				console.log('Token Error!');
+				console.log(error);
+				//this.setState({ redirect: "/landing" });
+			});
+		}
+		
+		function GetUserPortfolio(uid){
+			fetch("http://localhost:2000/portfolio/user/"+uid,{
+			method: "GET",
+			headers: {
+				'Authorization': 'Bearer '+token,
+				"Access-Control-Allow-Origin": "*",
+				"Access-Control-Allow-Methods": "*",
+				"Access-Control-Allow-Credentials": true,
+				"Content-Type": "application/json"
+			},
+			})
+			.then(response => response.json())
+			.then((datas) => {
+				//console.log(datas);
+				userPortData = datas;
+				f3 = true;
+				//alert('f3!');
 			}).catch((error) => {
 				console.log('Token Error!');
 				console.log(error);
@@ -323,7 +660,7 @@ class PortInfo extends React.Component {
 	
 	componentWillUnmount() { 
 	   window.removeEventListener('load', this.handleLoad);
-	   $(window).unbind('scroll');
+	   //$(window).unbind('scroll');
 	}
 	
 	handleLoad() {
@@ -367,8 +704,12 @@ class PortInfo extends React.Component {
 					<div class="pfti-flex">
 						<hf id="port-name">ชื่อหัวข้ออะไรสักอย่าง สุดแล้วแต่คุณท่านจะตั้ง</hf>
 						<div class="pfic-flex">
-							<img class="tooltips-item obj-icon" src="assets/images/bookmark_2.png" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Bookmark" type="button" alt="" width="45" height="45"/>
-							<img class="tooltips-item obj-icon" src="assets/images/outline_forward_to_inbox_black_48dp.png" data-bs-toggle="tooltip" data-bs-placement="bottom" title="ติดต่อ" type="button" alt="" width="45" height="45"/>
+							<OverlayTrigger key={'bottom'} placement={'bottom'} show={this.state.show1} overlay={ <Tooltip id='tooltip-uic-1'>{this.state.tooltip1}</Tooltip> }>
+								<img class="tooltips-item obj-icon" id="uic-1" src="assets/images/bookmark_2.png" type="button" alt="" width="45" height="45"/>
+							</OverlayTrigger>
+							<OverlayTrigger key={'bottom'} placement={'bottom'} overlay={ <Tooltip id='tooltip-uic-2'>{this.state.tooltip2}</Tooltip> }>
+								<img class="tooltips-item obj-icon" id="uic-2" src="assets/images/outline_forward_to_inbox_black_48dp.png" type="button" alt="" width="45" height="45"/>
+							</OverlayTrigger>
 						</div>
 					</div>
 					
@@ -424,6 +765,19 @@ class PortInfo extends React.Component {
 					
 					<br></br>
 						
+					<div class="modal fade" id="staticBackdropM" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered">
+							<div class="modal-content minisize">
+								<h4 class="del-b">คุณต้องการลบผลงานนี้ ?</h4>
+								<div class="centerverify">
+									<a type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</a>
+									<a id="delete-main-port" type="button" class="btn btn-cta-primary-yellowshort profile-button round" data-bs-dismiss="modal">ลบ</a>
+								</div>
+							</div>
+						</div>
+					</div>
+						
+						
 					 <div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog modal-dialog-centered">
 							<div class="modal-content minisize">
@@ -436,6 +790,29 @@ class PortInfo extends React.Component {
 						</div>
 					</div>
 					
+					<div class="modal fade" id="staticBackdropE" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-lg modal-dialog-centered">
+							<div class="modal-content md-round">
+								<div class="e-flex">
+									<div class="yahahaCf" data-bs-dismiss="modal">
+										<div class="transition-component" id="cross-fadegone">
+											<img class="icon-plus-circleA bottom alt-fadegone" type="button" src="assets/images/close_hover.png" />
+											<img class="icon-plus-circleA top alt-fadegone" type="button" id="add_aca" src="assets/images/close_normal.png" />
+										</div> 
+									</div>
+									<div class="e-wrapper">
+										<div class="email-box">
+											<af id="port-user-email">Nutawut.n@ku.th</af>
+											<img class="tooltips-item obj-icon cb-icon" id="clipboard" src="assets/images/outline_content_copy_black_48dp.png" type="button" alt="" width="25" height="25"/>
+										</div>
+									</div>
+									<af>หรือ</af>
+									<a id="delete-port" type="button" class="btn btn-cta-primary-yellow profile-button round" data-bs-dismiss="modal">ไปยังระบบอีเมลของคุณเพื่อติดต่อโดยตรง</a>
+								</div>
+								
+							</div>
+						</div>
+					</div>
 				</div>
 			);
 	}
