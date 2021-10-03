@@ -90,7 +90,7 @@ const customStyles = {
 			redirect: null
 		}
         var newT = [];
-        /*this.handleChange = (selectedOption) => {
+        this.handleChange = (selectedOption) => {
             this.setState({ selectedOption }, () =>
               console.log(`Option selected:`, this.state.selectedOption),
               //selectedOption = this.state.selectedOption,
@@ -115,9 +115,9 @@ const customStyles = {
 			})
             );
         }
-        this.setState({ opT7: newT});
-            )};*/
-}
+        this.setState({ opT7: newT});*/
+            )};
+            };
 	/*componentDidMount() {
 		window.addEventListener('load', this.handleLoad);
 		console.log("YEAHXXX!");
@@ -142,10 +142,10 @@ const customStyles = {
                 console.log(error);
                 })
             }
-        }
+        }*/
 	componentWillUnmount() { 
-	   window.removeEventListener('load', this.handleLoad)  
-	}*/
+	   window.removeEventListener('load', this.handleLoad)
+	}
 	
 	handleLoad() {
 		console.log("YEAH!");
@@ -155,8 +155,6 @@ const customStyles = {
 		return ( <div>
 		<Select styles={customStyles} options={this.state.opT7} id='selectT7' value={selectedOption}
         onChange={this.handleChange} placeholder="เลือกหมวดทักษะเสริมที่ถนัด"></Select>
-        <Select styles={customStyles} options={this.state.newT} id='selectT7_2' value={selectedOption}
-        onChange={this.handleChange} placeholder="เลือกทักษะเสริมที่ถนัด"></Select>
 	</div>
         )};
 }

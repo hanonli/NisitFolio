@@ -12,12 +12,12 @@ AAA.addEventListener('change', function(){
   console.log('I am Agreeeeeeeeeeee!');  
   /*$('#continue1').prop('disabled', false);
   AAAbt.disabled = false;
-});*/
+});
 $('#continue1').click(function () {           
   window.location.pathname = '/register'
 });
 
-/*emailvrify*/
+//emailvrify
 $('#resendEmail').click(function () {           
   setInterval('window.location.pathname = "/successregis"', 3000);
-});
+});*/

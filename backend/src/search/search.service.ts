@@ -132,6 +132,7 @@ export class SearchService {
 
   async find_Query(q: string, userId: string) : Promise<any> {
     const regex = new RegExp(escapeRegex(q), 'gi') ; 
+    console.log(regex) 
     const JobName = await this.JobTitleModel.findOne({ $or: [{Name: regex}, {THName: regex}]}) ;
     let is_mem ;
     if (userId == "1") {
@@ -144,7 +145,7 @@ export class SearchService {
     const BookmarkPortList = await this.BookmarkModel.find({userId: userId, type: "work"}) ;
     let BookmarkWorkList = []
     for (var item of BookmarkPortList) {
-      BookmarkWorkList.push(item.projectName) ;
+      BookmarkWorkList.push(item.details.Port_Name) ;
     }
     console.log(BookmarkUserList) ;
     console.log(BookmarkWorkList) ;
@@ -160,8 +161,9 @@ export class SearchService {
     if (is_mem) {
       privacy.push("Members") ;
     }
-    const findUserId = await this.UserInfoModel.find({$or: [{Firstname: regex}, {Lastname: regex}, {tags: {"$in": Jobs}}], Privacy: {"$in": privacy}})
-    const findPort = await this.PortfolioModel.find({$or: [{Port_Name: regex}, {Port_Info: regex}, {Port_Tag: {"$in": Jobs}}], Port_Privacy: {"$in": privacy}})
+    const findUserId = await this.UserInfoModel.find({$or: [{Firstname: regex}, {Lastname: regex}, {tags: {"$in": Jobs}}], Privacy: {"$in": privacy}}) ;
+    const findPort = await this.PortfolioModel.find({$or: [{Port_Name: regex}, {Port_Info: regex}, {Port_Tag: {"$in": Jobs}}], Port_Privacy: {"$in": privacy}}) ;
+    // const findPort = [] ;
     const sorted_profile = findUserId.sort((a,b) => (
       a.totalBookmark == b.totalBookmark ? (a.AvgScore == b.AvgScore ?
       (a.last_modified[a.last_modified.length-1] < b.last_modified[b.last_modified.length-1] ? 1 : -1)
@@ -186,7 +188,7 @@ export class SearchService {
         is_Bookmarking = true ;
       else 
         is_Bookmarking = false ;
-      result.push({"name": obj2.Port_Name, "type": "work", "thatUserId": obj2.UserId, "pic": obj2.portfolioPictures, "about": obj2.Port_Info, "owner": obj2.Owner, "bookmark": is_Bookmarking}) ;
+      result.push({"name": obj2.Port_Name, "Port_id": obj2._id.toString(),"type": "work", "thatUserId": obj2.UserId, "pic": obj2.portfolioPictures, "about": obj2.Port_Info, "owner": obj2.Owner, "bookmark": is_Bookmarking}) ;
     }
     // result["Profile"] = sorted_profile ;
     // result["Work"] = sorted_work ;

@@ -13,6 +13,7 @@ import Registab5 from "./Components/registab5";
 import Registab6 from "./Components/registab6";
 import Registab7 from "./Components/registab7";
 import $ from 'jquery';
+import cookie from 'react-cookies'
 
 class Register extends React.Component {
 

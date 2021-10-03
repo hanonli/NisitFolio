@@ -26,7 +26,6 @@ class Registab6 extends React.Component {
 							</button>
 						</div>
 					</div>
-					<h1 class="limit-job-pos-3">ท่านสามารถเพิ่มตำแหน่งงานที่สนใจได้สูงสุด 3 อัน</h1>
 
 
 					<div class="modal fade" id="exampleModal_remove_job" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -166,7 +165,7 @@ class Registab6 extends React.Component {
 						</div>
 					</div>
 
-
+					<h1 class="limit-job-pos-3 normalformzonet3">ท่านสามารถเพิ่มตำแหน่งงานที่สนใจได้สูงสุด 3 อัน</h1>
 				</div>
 			</div >
 		);
