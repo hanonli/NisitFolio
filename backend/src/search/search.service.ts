@@ -145,7 +145,7 @@ export class SearchService {
     const BookmarkPortList = await this.BookmarkModel.find({userId: userId, type: "work"}) ;
     let BookmarkWorkList = []
     for (var item of BookmarkPortList) {
-      BookmarkWorkList.push(item.projectName) ;
+      BookmarkWorkList.push(item.details.Port_Name) ;
     }
     console.log(BookmarkUserList) ;
     console.log(BookmarkWorkList) ;
