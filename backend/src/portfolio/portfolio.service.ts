@@ -11,6 +11,7 @@ import { Portfolio2, PortfolioDocument} from './entity/portfolio.schema';
 import { UserInfoDocument, UserInfoMongoose } from 'src/register/entity/register.schema';
 import Portfolio3 from './dto/portfolio4.dto';
 import { hearderDto } from 'src/portfolio/dto/haerder.dto';
+import { Bookmark } from './entity/portfliobookmark.entity';
 
 @Injectable()
 export class PortService {
@@ -25,6 +26,8 @@ export class PortService {
     private userInfoRepository: Repository<Userinfo>,
     @InjectRepository(Account)
     private accountRepository: Repository<Account>,
+    @InjectRepository(Bookmark)
+    private BookmarkRepository: Repository<Bookmark>,
     
 
 
@@ -69,7 +72,7 @@ export class PortService {
     port.UserId = CreateDto.UserId;
     port.Port_Name = CreateDto.Port_Name;
     port.Port_Info = CreateDto.Port_Info;
-    port.owner = user.Firstname + " " + user.Lastname;
+    port.Owner = user.Firstname + " " + user.Lastname;
     port.totalBookmark = 0;
     port.Port_Tag = CreateDto.Port_Tag;
     port.Port_Privacy = CreateDto.Port_Privacy;
@@ -97,7 +100,11 @@ export class PortService {
   async removePort(portId:string, userId:string){
     const portid = new ObjectID(portId);
     const port =  await this.portRepository.findOne({where:{ _id: portid }});
-  
+    const thatbookmark = await this.BookmarkRepository.find({where:{ id: portid }});
+    for (var _i = 0; _i < thatbookmark.length; _i++) {
+      await this.BookmarkRepository.remove(thatbookmark[_i]);
+    }
+    
     if (port && port.UserId === userId) {
       const portpic =  await this.portfolioPictureRepository.findOne({where:{ PortId: port.id }});
       await this.portfolioPictureRepository.remove(portpic);
@@ -120,6 +127,7 @@ export class PortService {
     const portfoliopic = new PortfolioPicture();
     portfoliopic.create_time=portpic.create_time;
     portfoliopic.last_modified=portpic.last_modified;
+    portfoliopic.PortId=portpic.PortId;
     portfoliopic.last_modified.push(isoTime)
 
     await this.portfolioPictureRepository.remove(portpic);
@@ -149,7 +157,36 @@ export class PortService {
       return await this.portModel.create(port);
     }
   }
+  async updatePortP(CreateDto: CreatePortfolioDto,portId:string, userId:string){
+    const portid = new ObjectID(portId);
+    const port =  await this.portModel.findById(portid);
+    const portpic =  await this.portfolioPictureRepository.findOne({where:{ PortId: portid }});
+    
+    const time =  new Date();
+    const isoTime = time.toLocaleDateString('th-TH',{ year:'numeric',month: 'long',day:'numeric',hour:"2-digit",minute:"2-digit"});
+    const portfoliopic = new PortfolioPicture();
+    portfoliopic.create_time=portpic.create_time;
+    portfoliopic.last_modified=portpic.last_modified;
+    portfoliopic.last_modified.push(isoTime)
+    portfoliopic.Pic = portpic.Pic;
+    portfoliopic.Description =  portpic.Description;
 
+    await this.portfolioPictureRepository.remove(portpic);
+    portfoliopic.PortId = portid;
+    
+    var portpic_arr = [];
+    if (port && port.UserId === userId) {
+        port.Port_Tag = port.Port_Tag;
+        port.Port_Privacy = CreateDto.Port_Privacy;
+        port.Port_Name = port.Port_Name;
+        port.Port_Info = port.Port_Info;
+        port.Port_Date = port.Port_Date;
+      portpic_arr.push(portfoliopic)
+      port.portfolioPictures = portpic_arr;
+      await this.portfolioPictureRepository.save(portfoliopic);
+      return await this.portModel.create(port);
+    }
+  }
 
 
 }

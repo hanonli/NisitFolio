@@ -1,7 +1,9 @@
 import React from 'react';
 
 class MyResumeScoreSkill extends React.Component{
+
     render() {
+       
         const skillName = this.props.skillname? this.props.skillname: "";
         const colourstyle = {
             backgroundColor: this.props.colour? this.props.colour: "#FFCE55"
@@ -61,13 +63,35 @@ class MyResumeScoreSkill extends React.Component{
     }
 }
 class MyResumeSkill extends React.Component {
+    constructor(props) {
+		super(props);
+    }
+
+    shouldComponentUpdate(nextProps){
+        if(this.props.addSkill != nextProps.addSkill){
+            return true;
+        }else{
+            return false;
+        }
+            
+        
+    }
+  
+
     handleRoute = () =>{ 
         window.location = ("editprofile");
     }
+
     render() {
+        // console.log('in skill: ' + JSON.stringify(this.props.addSkill))
         const owner = this.props.owner? this.props.owner: false;
         const additionalSkills = this.props.addSkill? this.props.addSkill: [];
-        const interestedJob = this.props.intJob? this.props.intJob: {}; //มันควรชื่อ jobskill มากกว่าป่าววะ
+        // console.log('in skill addskill: ' + JSON.stringify(additionalSkills))
+        // console.log('in skill addskill: ' + additionalSkills.length)
+        // console.log('in skill addskill: ' +  JSON.stringify(additionalSkills[0]))
+        const interestedJob = this.props.intJob? this.props.intJob: {}; //มันควรชื่อ jobskill มากกว่าป่าวว
+        console.log('in skill intJob: ' + JSON.stringify(interestedJob))
+
         const occupation = this.props.occupation? this.props.occupation: "นี้";
         const linestyle = {
             backgroundColor: this.props.colour? this.props.colour: "#FFCE55"
@@ -76,41 +100,79 @@ class MyResumeSkill extends React.Component {
             backgroundColor: "#C4C4C4"
         };
         let softskillContent = [];
-        if(additionalSkills.length !== 0){
+        let topicElement = [];
+
+        if( additionalSkills.length !== 0){
+            if(topicElement.length === 0){
+                topicElement.push(<h2 class="resumetopic">ทักษะที่โดดเด่น</h2>);
+                topicElement.push(<div class="resumesectionline" style={linestyle}></div>);
+            }
             softskillContent.push(
                 <h3 class="softskill-topic">ทักษะเสริม</h3>
             );
-            softskillContent.push(
-                <div class="softskill-body">
-                    <div class="softskill-child softskill-child-left">
-                        <p>{additionalSkills[0]? additionalSkills[0].SoftSkill : ""}</p>
-                    </div>
-                    <div class="softskill-child">
-                        <p>{additionalSkills[1]? additionalSkills[1].SoftSkill : ""}</p>
-                    </div>
-                    <div class="softskill-child softskill-child-right">
-                        <p>{additionalSkills[2]? additionalSkills[2].SoftSkill : ""}</p>
-                    </div>
-                </div>
-            );
+            let i=0;
+            // console.log('fiwejfhiwefweif'+additionalSkills[{}].AdditionalSkill)
+            while( i < additionalSkills.length ){
+                console.log('i is : ' + i)
+                if( i % 3 === 0){
+                    softskillContent.push(
+                        <div class="softskill-child softskill-child-left">
+                            <p>{additionalSkills[i]? additionalSkills[i].AdditionalSkill : ""}</p>
+                        </div>
+                     );
+                }else if(i % 3 === 1){
+                    softskillContent.push(
+                        <div class="softskill-child">
+                            <p>{additionalSkills[i]? additionalSkills[i].AdditionalSkill  : ""}</p>
+                        </div>
+                    );
+                }else if(i % 3 === 2){
+                    softskillContent.push(
+                        <div class="softskill-child softskill-child-right">
+                            <p>{additionalSkills[i]? additionalSkills[i].AdditionalSkill  : ""}</p>
+                        </div>
+                    );
+                }
+                
+            i+=1
+            }
+            
         }
         let jobskillcontent = [];
         let dummyshow = [];
+        
+        // console.log('in skill intJob: ' + interestedJob.length)
+        // console.log('in skill tf: ' + this.props.intJob)
         if(this.props.intJob?true:false){
-            if(interestedJob.Job_SkillName? true:false){
-                if(interestedJob.length !== 0){
-                    for(var i = 0; i<interestedJob.Job_SkillName.length; i++){
+            // console.log('in pass1')
+            // console.log('in skill tf: ' + JSON.stringify(interestedJob[0]))
+            if(interestedJob[0]? true:false){
+                // console.log('in pass2')
+                let job = interestedJob[0];
+                // console.log(job.Job_SkillName)
+                if( job.Job_SkillName.length !== 0){
+                    if(topicElement.length === 0){
+                        topicElement.push(<h2 class="resumetopic">ทักษะที่โดดเด่น</h2>);
+                        topicElement.push(<div class="resumesectionline" style={linestyle}></div>);
+                    }
+                    for(var i = 0; i< job.Job_SkillName.length; i++){
+                        // console.log('in skill skillname: ' + job.Job_SkillName[i] + ' score: ' + job.Job_Score[i])
                         jobskillcontent.push(
-                            <MyResumeScoreSkill skillname={interestedJob.Job_SkillName[i]} score={interestedJob.Job_Score[i]}></MyResumeScoreSkill>
+                            <MyResumeScoreSkill skillname={job.Job_SkillName[i]} score={job.Job_Score[i]}></MyResumeScoreSkill>
                         );
                     }
                 }
             }
             
         }
+        // let job = interestedJob[0];
         const jobskillcheck = (this.props.intJob?true:false)&&(interestedJob.Job_SkillName? (interestedJob.Job_SkillName.length !== 0):false);
-        console.log(jobskillcheck);
+        //console.log(jobskillcheck);
         if((additionalSkills.length===0) && (!jobskillcheck) && (owner)){
+            if(topicElement.length === 0){
+                topicElement.push(<h2 class="resumetopic">ทักษะที่โดดเด่น</h2>);
+                topicElement.push(<div class="resumesectionline" style={linestyle}></div>);
+            }
             dummyshow.push(<div class="dummycaseSkill"><MyResumeScoreSkill skillname="ทักษะของคุณ" score={10} level="ระดับคะแนน" colour="#505050"></MyResumeScoreSkill></div>);
             dummyshow.push(
             <div class="dummycaseSkill dummycenter">
@@ -119,17 +181,31 @@ class MyResumeSkill extends React.Component {
             </div>
             );
         }
+        let result;
+        if((additionalSkills.length===0) && (!jobskillcheck) && (!owner)){
+            result = (<div></div>);
+        }
+        else{
+            result = (
+                    <div class="myresumeskill">
+                        {topicElement}
+                    
+                        <div class="jobskillcontent">
+                            {jobskillcontent}
+                            {dummyshow[0]}
+                        </div>
+                        <div class="softskill-body">
+                           {softskillContent}
+                        </div>
+                        {dummyshow[1]}
+                    </div>  
+                );
+        }
         return(
-            <div class="myresumeskill">
-                <h2 class="resumetopic">ทักษะที่โดดเด่น</h2>
-                <div class="resumesectionline" style={linestyle}></div>
-                <div class="jobskillcontent">
-                    {jobskillcontent}
-                    {dummyshow[0]}
-                </div>
-                {softskillContent}
-                {dummyshow[1]}
-            </div>  
+           <div>
+               {result}
+           </div> 
+            
         );
     }
 }

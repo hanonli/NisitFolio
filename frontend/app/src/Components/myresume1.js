@@ -4,7 +4,7 @@ import MyResumeEducation from './myresumeeducation.js'
 import MyresumeCertificate from './myresumecertificate.js';
 
 class MyResume1 extends React.Component {
-
+    
     render() {
         const firstname="พุฒวัฒน์"; 
         const lastname="ผดุงเจริญ"; 
@@ -13,6 +13,7 @@ class MyResume1 extends React.Component {
         const imagepath="assets/images/profile.jpg";
         const educationdata = this.props.state.educationHistorys;
         const certdata = this.props.state.certificates;
+        const owner = this.props.state.owner;
         // const educationdata = [
         //     {
         //         "id": "6135805bd633f137e4559262",
@@ -91,13 +92,13 @@ class MyResume1 extends React.Component {
         return (
             
             <div class="resume1">
-                <MyresumeHeading firstname={firstname} lastname={lastname} const occupation={occupation} bio={bio} imagepath={imagepath} colour={"#FFCE55"} province="กรุงเทพมหานคร" city="มินบุรี"></MyresumeHeading>
-			    <MyresumeHeading firstname={firstname} lastname={lastname} const occupation={occupation} imagepath={imagepath} colour="#FFCE55"></MyresumeHeading>
-                <MyresumeHeading firstname={firstname} lastname={lastname} const occupation={occupation} imagepath={imagepath} colour="#FFCE55" owner={true}></MyresumeHeading>
-                <MyResumeEducation data={educationdata}></MyResumeEducation>
-                <MyResumeEducation data={[]} owner={true}></MyResumeEducation>
-                <MyresumeCertificate data={certdata}></MyresumeCertificate>
-                <MyresumeCertificate data={[]}></MyresumeCertificate>
+                <MyresumeHeading firstname={firstname} lastname={lastname} const occupation={occupation} bio={bio} imagepath={imagepath} colour={color} province="กรุงเทพมหานคร" city="มินบุรี"></MyresumeHeading>
+			    {/* <MyresumeHeading firstname={firstname} lastname={lastname} const occupation={occupation} imagepath={imagepath} colour="#FFCE55"></MyresumeHeading>
+                <MyresumeHeading firstname={firstname} lastname={lastname} const occupation={occupation} imagepath={imagepath} colour="#FFCE55" owner={true}></MyresumeHeading> */}
+                <MyResumeEducation data={educationdata} owner={owner}></MyResumeEducation>
+                {/* <MyResumeEducation data={[]} owner={true}></MyResumeEducation> */}
+                <MyresumeCertificate data={certdata} owner={owner}></MyresumeCertificate>
+                {/* <MyresumeCertificate data={[]}></MyresumeCertificate> */}
                 
                 {/* <h1> try change colour function</h1>
 

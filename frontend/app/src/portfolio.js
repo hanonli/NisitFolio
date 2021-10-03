@@ -75,7 +75,9 @@ class Portfolio extends React.Component {
 		var refElement = null;
 		var portMode = cookie.load('port-entry');
 		var token = cookie.load('login-token');
+		var userId = cookie.load('login-user');
 		var privacyId = 0;
+		var portId = null;
 		
 		function GetFetchableData(){
 			var newPort = {};
@@ -116,6 +118,7 @@ class Portfolio extends React.Component {
 		}
 		
 		function GetEditPortData(id){
+			portId = id;
 			fetch("http://localhost:2000/portfolio/"+id,{
 			method: "GET",
 			headers: {
@@ -133,7 +136,8 @@ class Portfolio extends React.Component {
 					setTimeout(function() { InitializeFunction(); }, 300); 
 					
 					$('#op-button').text('แก้ไข');
-					$('#op-button').on('click', function(){
+					$('form').submit(function() {
+						//alert(444);
 						var editPort = GetFetchableData();
 						refThis.setState({ render:  false });
 						fetch("http://localhost:2000/portfolio/"+id,{
@@ -150,7 +154,42 @@ class Portfolio extends React.Component {
 						.then(response =>  {
 							//console.log(datas);
 							console.log(response);
-							refThis.setState({ redirect: "/portfolio" });
+							
+							
+							
+							
+							
+							var patchBm = {};
+							patchBm.type = 'work';
+							patchBm.thatUserId = userId;
+							patchBm.port_id = id;
+							fetch("http://localhost:2000/bookmark/edit",{
+								method: "POST",
+								headers: {
+									"Access-Control-Allow-Origin": "*",
+									"Access-Control-Allow-Methods": "*",
+									"Access-Control-Allow-Credentials": true,
+									"Content-Type": "application/json"
+								},
+								body: JSON.stringify(patchBm),
+							})
+								.then(response =>  {
+									//console.log(datas);
+									console.log(response);
+									refThis.setState({ redirect: "/portfolio" });
+									//GetSearchBookmarkData();
+								})
+								.catch((error) => {
+									console.log('add Error!');
+									//this.setState({ redirect: "/landing" });
+								});
+													
+							
+							
+							
+							
+							
+							//refThis.setState({ redirect: "/portfolio" });
 							//GetSearchBookmarkData();
 						})
 						.catch((error) => {
@@ -223,7 +262,8 @@ class Portfolio extends React.Component {
 			//alert(555);
 			setTimeout(function() {
 				$('#op-button').text('เพิ่ม');
-				$('#op-button').on('click', function(){
+				$('form').submit(function() {
+					//alert(333);
 					var newPort = GetFetchableData();
 					refThis.setState({ render:  false });
 					fetch("http://localhost:2000/portfolio",{
@@ -399,8 +439,15 @@ class Portfolio extends React.Component {
 			$modal.modal('hide');
 			if (cropper) {
 			  canvas = cropper.getCroppedCanvas({
-				width: 320,
-				height: 180,
+				/*width: 320,
+				height: 180,*/
+				minWidth: 320,
+				minHeight: 180,
+				maxWidth: 3200,
+				maxHeight: 1800,
+				fillColor: '#fff',
+				imageSmoothingEnabled: true,
+				imageSmoothingQuality: 'high',
 			  });
 			  initialAvatarURL = avatar.src;
 			  avatar.src = canvas.toDataURL();
@@ -437,6 +484,35 @@ class Portfolio extends React.Component {
 				console.log(refThis.state.list);
 			}, 50);*/
 			
+			$('.spi4').hide();
+			
+			$('#cancel-port').on('click', function(){
+			  refThis.setState({ redirect: "/portfolio" });
+			});
+			
+			$('#delete-port').on('click', function(){
+			  refThis.setState({ render: false });
+			  fetch("http://localhost:2000/portfolio/"+portId,{
+				method: "DELETE",
+				headers: {
+					'Authorization': 'Bearer '+token,
+					"Access-Control-Allow-Origin": "*",
+					"Access-Control-Allow-Methods": "*",
+					"Access-Control-Allow-Credentials": true,
+					"Content-Type": "application/json"
+				}
+				})
+				.then(response =>  {
+					//console.log(datas);
+					console.log(response);
+					refThis.setState({ redirect: "/portfolio" });
+				})
+				.catch((error) => {
+					console.log('add Error!');
+					//this.setState({ redirect: "/landing" });
+				});
+			});
+			
 		  $("#basic-date-picker").attr("placeholder", "วัน/เดือน/ปี");
 		  
 		  $('.static-public-icon').on('click', function(){
@@ -453,6 +529,10 @@ class Portfolio extends React.Component {
 			  $('.port-bg').css('background-color', '#C7C7C7');
 			  $('.pu-date-picker').css("display", "block");
 			  $('.p3-input').css("z-index", 0);
+			  if(portMode != 'new'){
+				$('#cancel-trigger').text('ลบ');
+				$('#cancel-trigger').attr('data-bs-target','#staticBackdrop2');
+			  }
 		  });
 		  
 		  $('.static-popup-arrow').on('click', function(){
@@ -461,6 +541,8 @@ class Portfolio extends React.Component {
 			  $('.static-footer-arrow').show();
 			  $('.p5-label').show();
 			  $('.port-bg').css('background-color', 'white');
+			  $('#cancel-trigger').text('ยกเลิก');
+			  $('#cancel-trigger').attr('data-bs-target','#staticBackdrop');
 			  
 			  setTimeout(function() { $('.pu-date-picker').css("display", "none"); $('.p3-input').css("z-index", 2) }, 300); 
 		  });
@@ -605,6 +687,7 @@ class Portfolio extends React.Component {
 		});*/
 		
 		function delFunc(ref){
+			//alert('Delete!');
 			console.log('Del');
 			var imgList = [];
 			// store images
@@ -651,6 +734,10 @@ class Portfolio extends React.Component {
 					}, 10);
 					var idd = refThis.state.list.length+1;
 					$(".tres").attr("id","tres-"+idd);
+					$(".delete-upload-icon").off('click'); // fix event stacking bugs
+					$('.delete-upload-icon').on('click', function(){ // add delete event
+						delFunc(this);
+					});
 
 				}
 			}else{
@@ -679,6 +766,10 @@ class Portfolio extends React.Component {
 						jObj = $(uploadButton.replace('{tresId}','tres-5')).prependTo( $('.sortable-container-5').first());
 						$( "#upload-next" ).click(function() {input.click(); }); 
 						ResetHoverFunction();
+						$(".delete-upload-icon").off('click'); // fix event stacking bugs
+						$('.delete-upload-icon').on('click', function(){ // add delete event
+							delFunc(this);
+						});
 						
 					}, 10);
 					
@@ -754,6 +845,7 @@ class Portfolio extends React.Component {
 		
 		return (
 			<div className="Portfolio">
+				<form >
 				<div class="outer-full port-bg">
 					<input type="file" id="input" accept="image/*" name="image" hidden />
 					< Navbar/>
@@ -800,12 +892,12 @@ class Portfolio extends React.Component {
 					</div>
 
 				    <div id="inner-remaining-folio">
+						
 						<div class="p1-label">
 							หัวข้อผลงาน
 						</div>
-						<form >
-							<input class="p-common p1-input form-control" id="text-input" type="search" autocomplete="off" placeholder="กรอกหัวข้อผลงานของคุณ" aria-label="Search"/>
-						</form>
+						
+							<input class="p-common p1-input form-control" id="text-input" type="text" minlength="3" maxlength="80" autocomplete="off" placeholder="กรอกหัวข้อผลงานของคุณ" aria-label="Search" required/>
 						
 						<div class="p2-label">
 							คำอธิบาย
@@ -815,21 +907,22 @@ class Portfolio extends React.Component {
 						</textarea>
 						
 						<div class="p3-label">
-							ตำแหน่งงาน<br/>ที่เกี่ยวข้อง
+							ตำแหน่งงานที่เกี่ยวข้อง
 						</div>
-						<form >
+
 							<div class="p-common p3-input form-control" id="search-input">
 								<Select 
 									isMulti 
 									value={this.state.values}
-									options={ this.state.values.length >= 3 ? this.state.values : this.state.options }
+									//options={ this.state.values.length >= 3 ? this.state.values : this.state.options }
+									options={ this.state.options }
 									placeholder={'ระบุตำแหน่งงาน (สูงสุด 3 ตำแหน่ง)'} 
 									onChange={values => this.setState({ values })}
 									noOptionsMessage={() => null}
-									isSearchable={this.state.values.length >= 3 ? false : true}
+									//isSearchable={this.state.values.length >= 3 ? false : true}
 								/>
 							</div>
-						</form>
+						
 						
 				    </div>
 					
@@ -878,21 +971,43 @@ class Portfolio extends React.Component {
 						<img class="static-footer-arrow" src="assets/images/arrow_up1.png"></img>
 						
 						<div class="port-buttons">
-							<Link to="/home">
-								<a class="btn btn-cta-primary round grey margin-right-m port-button" target="_blank">ยกเลิก</a>
-							</Link>        
-							<a class="btn btn-cta-primary-yellow round port-button" id="op-button" target="_blank">เพิ่ม</a>
+							<a class="btn btn-cta-primary round grey margin-right-m port-button" id="cancel-trigger" target="_blank" data-bs-toggle="modal" data-bs-target="#staticBackdrop">ยกเลิก</a>      
+							<button class="btn btn-cta-primary-yellow round port-button button" id="op-button" type="submit" value="Submit" target="_blank">เพิ่ม</button>
+						</div>
+					</div>
+				</div>
+				
+				<div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered">
+						<div class="modal-content minisize">
+							<h4 class="del-b">คุณต้องการยกเลิกการเปลี่ยนแปลงนี้ ?</h4>
+							<div class="centerverify">
+								<a type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">แก้ไขต่อ</a>
+								<a id="cancel-port" type="button" class="btn btn-cta-primary-yellowshort profile-button round" data-bs-dismiss="modal">ยืนยัน</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="modal fade" id="staticBackdrop2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered">
+						<div class="modal-content minisize">
+							<h4 class="del-b">คุณต้องการลบผลงานนี้ ?</h4>
+							<div class="centerverify">
+								<a type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</a>
+								<a id="delete-port" type="button" class="btn btn-cta-primary-yellowshort profile-button round" data-bs-dismiss="modal">ลบ</a>
+							</div>
 						</div>
 					</div>
 				</div>
 				
 				<div class="container">
 					<div class="alert" role="alert"></div>
-					<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+					<div class="modal fade" id="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
 					  <div class="modal-dialog" role="document">
 						<div class="modal-content">
 						  <div class="modal-header">
-							<h5 class="modal-title" id="modalLabel">ปรับแต่งรูปโปรไฟล์</h5>
+							<h5 class="modal-title" id="modalLabel">ปรับแต่งรูปของคุณ</h5>
 						  </div>
 						  <div class="modal-body">
 							<div class="img-container">
@@ -907,6 +1022,7 @@ class Portfolio extends React.Component {
 					  </div>
 					</div>
 			    </div>
+				</form>
 			</div>
 		);
 	}

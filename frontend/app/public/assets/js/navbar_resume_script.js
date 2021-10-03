@@ -1,4 +1,4 @@
-$(document).ready( function() {
+
 
     $('#icon-myresume-education, #icon-myresume-certi, #icon-myresume-skill, #icon-myresume-work, #icon-myresume-goal, #icon-myresume-resume' )
     .attr({
@@ -21,8 +21,6 @@ $(document).ready( function() {
     $('#icon-myresume-goal').attr('title', 'Goal');
     
 
-});
-
 
 
 $('.Home').css({
@@ -43,10 +41,20 @@ $('.resumeblock').css({
 });
 
 
+$('.Resume_sideNavbar').css({
+    "padding-top":"10vh",
+    "padding-bottom":"0vh"
+});
+$('.resumeblock').css({
+    "height": "6vw",
+    "padding-top" : "2vw",
+});
+
+
 $(window).on("scroll load resize", function(){
     
     if($(window).scrollTop() > 0){
-        $('.Resume_sideNavbar').css("padding-top","15vh");
+        $('.Resume_sideNavbar').css("padding-top","10vh");
         $('.resumeblock').css({
             "height": "6vw",
             "padding-top" : "2vw",
@@ -54,7 +62,7 @@ $(window).on("scroll load resize", function(){
 
     }else{
         $('.Resume_sideNavbar').css({
-            "padding-top":"15vh",
+            "padding-top":"10vh",
             "padding-bottom":"0vh"
         });
         $('.resumeblock').css({

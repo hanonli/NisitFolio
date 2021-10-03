@@ -2,7 +2,7 @@ console.log("Run bookmark script!");
 Cookies.set('username','worames'); 
 console.log('Currently login as: '+Cookies.get('username'));
 
-var profile_grid = '<header class="header hsbm-pad round">\
+var profile_grid = '<header class="header hsbm-pad round sbm-clickable" id="{id}">\
 						<div class="pf-entity-flex">\
 							<div class="pf-start">\
 								<img class=" pf-image rounded-circle" type="button" id="avatar" src="{img}" alt="profile image" />\
@@ -18,7 +18,7 @@ var profile_grid = '<header class="header hsbm-pad round">\
 					</header>';
 
 var profile_list = '<div class="sbm-list-entity">\
-						<header class="header hsbm-pad round">\
+						<header class="header hsbm-pad round sbm-clickable" id="{id}">\
 							<div class="pf-entity-flex">\
 								<div class="pf-start-list">\
 									<img class=" pf-image rounded-circle" type="button" id="avatar" src="{img}" alt="profile image" />\
@@ -75,7 +75,7 @@ var profile_list_no_tag = '<div class="sbm-list-entity">\
 								</header>\
 							</div>';
 					
-var work_grid = '<header class="header hsbm-pad round">\
+var work_grid = '<header class="header hsbm-pad round sbm-clickable" id="{id}">\
 					<div class="pf-entity-flex">\
 						<div class="pf-start-port">\
 							<img class="pf-port-image round" type="button" id="avatar" src="{img}" />\
@@ -92,7 +92,7 @@ var work_grid = '<header class="header hsbm-pad round">\
 				</header>';
 				
 var work_list = '<div class="sbm-list-entity">\
-					<header class="header hsbm-pad round">\
+					<header class="header hsbm-pad round sbm-clickable" id="{id}">\
 						<div class="pf-entity-flex">\
 							<div class="pf-start-port-list">\
 								<img class="pf-port-image round" type="button" id="avatar" src="{img}" />\
@@ -160,7 +160,14 @@ function ResetData(){
 }
 
 function FormatIcon(data,dtype) {
-  if(pageName == 'search'){
+  if(data.type == 'profile'){
+	dtype = dtype.replace("{id}",data.type+'-'+data.thatUserId);
+  }else{
+	  //alert(data.portId);
+	dtype = dtype.replace("{id}",data.type+'-'+data.portId);
+  }
+
+  /*if(pageName == 'search'){
 		if(!data.bookmark) {
 			entityIdInfo.push("false"+"-"+data.thatUserId+'&'+data.type+'&'+data.name);
 			dtype = dtype.replace("{icon-type}","assets/images/bookmark_1.png").replace("{tooltip}","บันทึก").replace("{status}",entityId);
@@ -171,6 +178,18 @@ function FormatIcon(data,dtype) {
 	}else{
 		entityIdInfo.push(data.thatUserId+'&'+data.type+'&'+data.name);
 		dtype = dtype.replace("{icon-type}","assets/images/bin.png").replace("{tooltip}","ลบ").replace("{status}",entityId);
+	}*/
+	if(pageName == 'search'){
+		if(!data.bookmark) {
+			entityIdInfo.push("false"+"-"+data.thatUserId+'&'+data.type+'&'+data.name);
+			dtype = dtype.replace("{icon-type}","assets/images/bookmark_1.png").replace("{tooltip}","บันทึก").replace("{status}",entityId);
+		}else {
+			entityIdInfo.push("true"+"-"+data.thatUserId+'&'+data.type+'&'+data.name);
+			dtype = dtype.replace("{icon-type}","assets/images/bookmark_2.png").replace("{tooltip}","ยกเลิกการบันทึก").replace("{status}",entityId);
+		}
+	}else{
+		entityIdInfo.push("true"+"-"+data.thatUserId+'&'+data.type+'&'+data.name);
+		dtype = dtype.replace("{icon-type}","assets/images/bookmark_2.png").replace("{tooltip}","ยกเลิกการบันทึก").replace("{status}",entityId);
 	}
 	entityId += 1;
 	return dtype;
@@ -194,7 +213,9 @@ function AddMixedListEntity(data){
 	var valid_desc = FormatEllipsis('desc-list',data.about);
 	
 	var pcc = data.profilePic;
-	if(pcc === null) pcc = "assets/images/profile_uk.png";
+	if(pcc === null){
+		pcc = "assets/images/profile_uk.png";
+	}
 	
 	if(data.type == "profile") {
 		if(data.jobs.length > 0){
@@ -228,7 +249,9 @@ function AddMixedGridEntity(data){
 	var dtype = "";
 	
 	var pcc = data.profilePic;
-	if(pcc === null) pcc = "assets/images/profile_uk.png";
+	if(pcc === null){
+		pcc = "assets/images/profile_uk.png";
+	}
 		
 	
 	if(data.type == "profile") {
@@ -368,7 +391,7 @@ function AddProfileGridEntity(data){
 function AddWorkListEntity(data){
 	console.log("Add new list");
 	var pcc = data.profilePic;
-	if(pcc === null) pcc = "assets/images/profile_uk.png";
+	if(pcc === null) pcc = "assets/images/emp_thumb.jpg";
 	
 	var valid_desc = FormatEllipsis('desc-list',data.about);
 	var dtype = work_list.replace("{name}", data.name).replace("{img}", pcc).replace("{desc}", valid_desc).replace("{owner}", data.owner);
@@ -388,7 +411,7 @@ function AddWorkGridEntity(data){
 	}
 	var valid_desc = FormatEllipsis('desc-grid',data.about);
 	var pcc = data.profilePic;
-	if(pcc === null) pcc = "assets/images/profile_uk.png";
+	if(pcc === null) pcc = "assets/images/emp_thumb.jpg";
 	
 	if(row_filled || (workIndex == workCount)){// add 2 data as new row
 		console.log("add new GRID: "+workIndex+" : "+data.name + " max: " + workCount);
@@ -536,8 +559,10 @@ function GetFormattedBookmarkData(datas){
 		}else{
 			datt['type'] = data.type;
 			datt['thatUserId'] = data.thatUserId;
-			datt['name'] = data.projectName;
-			datt['profilePic'] = data.details.Port_Pic;
+			datt['name'] = data.details.Port_Name;
+			if(data.details.numberOfPic > 0) datt['profilePic'] = data.details.Port_Pic;
+			else datt['profilePic'] = 'assets/images/emp_thumb.jpg';
+			datt['portId'] = data.id;
 			datt['about'] = data.details.Port_Info;
 			datt['owner'] = data.details.owner;
 			datt['port'] = data.details.numberOfPic;
@@ -566,10 +591,13 @@ function GetFormattedSearchData(datas){
 			datt['type'] = data.type;
 			datt['thatUserId'] = data.thatUserId;
 			datt['name'] = data.name;
-			datt['profilePic'] = data.pic[0].Pic[0];
+			if(data.pic[0].Pic.length > 0) datt['profilePic'] = data.pic[0].Pic[0];
+			else datt['profilePic'] = 'assets/images/emp_thumb.jpg';
+			datt['portId'] = data.pic[0].PortId;
+			console.log(data);
 			datt['about'] = data.about;
 			datt['owner'] = data.owner;
-			datt['port'] = data.pic.length;
+			datt['port'] = data.pic[0].Pic.length;
 			datt['bookmark'] = data.bookmark;
 			fData.push(datt);
 		}
@@ -794,7 +822,7 @@ function DeleteBookmark(id){
 	console.log('DeleteBookmark: '+id);
 	
 	var delData = {};
-	alert(id);
+	//alert(id);
 	var temp = id.split("&");
 	delData['userId'] = userId;
 	delData['type'] = temp[1];
@@ -814,10 +842,10 @@ function DeleteBookmark(id){
 		.then(response =>  {
 			//console.log(datas);
 			console.log(response);
-			if(pageName == "bookmark"){
+			/*if(pageName == "bookmark"){
 				ClearCache();
 				GetSearchBookmarkData();
-			}
+			}*/
 		})
 		.catch((error) => {
 			console.log('delete Error!');
@@ -869,15 +897,17 @@ function AddListenerToDynamicComponents(){
 	}
 	
 	//alert(pageName);
-	$('.tag').on('click', function(){
+	$('.tag').on('click', function(e){
        //alert(event.target.text);
+	   e.stopPropagation();
 	   SearchByTag(event.target.text);
    });
    
    $(".obj-icon").unbind('click');
-   $('.obj-icon').click(function() {
+   $('.obj-icon').click(function(e) {
+	   e.stopPropagation();
 	  // alert(pageName);
-	   if(pageName == "search"){
+	   /*if(pageName == "search"){
 		  //console.log("change icon--!!!");
 		  //alert(this.id);
 		  var id = $(this).attr('id');
@@ -912,7 +942,44 @@ function AddListenerToDynamicComponents(){
 	   }else{
 		   var id = $(this).attr('id');
 		   DeleteBookmark(entityIdInfo[id]);
-	   }
+	   }*/
+	   
+	   
+	   
+	   
+	   
+		  //console.log("change icon--!!!");
+		  //alert(this.id);
+		  var id = $(this).attr('id');
+		  var nId = entityIdInfo[id].split("-");
+		  console.log(entityIdInfo[id]);
+		  //alert(id);
+		   //console.log(cacheDataTime);
+		  //console.log(cacheDataTime[id]);
+		  if (nId[0] == 'true') {
+			  //alert('remove!');
+			$(this).attr('src', 'assets/images/bookmark_1.png');
+			$(this).attr('data-bs-original-title', 'บันทึก');
+			entityIdInfo[id] = entityIdInfo[id].replace('true','false');
+			if(sortType == 'total')
+				cacheDataTotal[id].bookmark = 'false';
+			else
+				cacheDataTime[id].bookmark = 'false';
+			console.log("Remove bookmark!");
+			DeleteBookmark(nId[1]);
+		  }else if(nId[0] == 'false'){
+			  //alert('add!');
+			$(this).attr('src', 'assets/images/bookmark_2.png');
+			$(this).attr('data-bs-original-title', 'ยกเลิกการบันทึก');
+			entityIdInfo[id] = entityIdInfo[id].replace('false','true');
+			if(sortType == 'total')
+				cacheDataTotal[id].bookmark = 'true';
+			else
+				cacheDataTime[id].bookmark = 'true';
+			console.log("Add bookmark!");
+			AddBookmark(nId[1]);
+		  }
+	   
 	  $(this).tooltip('hide');
 	  //setTimeout(function() { ReinitializeTooltips();  }, 500);
 	  //$(this).tooltip('show'); });
@@ -922,6 +989,14 @@ function AddListenerToDynamicComponents(){
 	$('.obj-icon').mouseover(function() {
 		console.log('mouseover icon!');
 		currentTooltip = $(this);
+	});
+	
+	$('.sbm-clickable').click(function() {
+		//alert('go!');
+		var mns = $(this).attr('id').split('-');
+		var type = mns[0]; var myId = mns[1];
+		if(type == 'profile') window.location.assign("/myresume/"+myId);
+		else window.location.assign("/portinfo/"+myId);
 	});
 }
 
