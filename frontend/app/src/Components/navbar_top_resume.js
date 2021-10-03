@@ -191,14 +191,18 @@ class Resume_topNavbar extends React.Component {
 		// this.getResumeID(index);
 
 	}
+	handlePrivacy = () =>{
+
+
+	}
 
 	handleSection1 = () => {
 		if(this.state.owner){
 			// console.log('you are owner1')
 			return (
 			<div className='resume_topnav' >
-				<a className='topnav_section1' href='#' > 
-					<img className='icon-myresume' id='icon-myresume-lock' src="assets/images/outline_lock_black_24dp.png"/> 
+				<a className='topnav_section1' > 
+					<img onClick={this.handlePrivacy()} className='icon-myresume' id='icon-myresume-lock' src="assets/images/outline_lock_black_24dp.png"/> 
 				</a>
 			</div>
 			
@@ -207,7 +211,7 @@ class Resume_topNavbar extends React.Component {
 			// console.log('you are outsider1')
 			return (
 			<div className='resume_topnav' >
-				<a className='topnav_section1' href='#' > 
+				<a className='topnav_section1' > 
 					<img className='icon-myresume' id='icon-myresume-lock-bookmark' src="assets/images/bookmark_2.png"/> 
 				</a>
 			</div>
@@ -318,10 +322,10 @@ class Resume_topNavbar extends React.Component {
 					<div className='resume_topnav' >
 						<div className='resume_selectjob'> 
 							<h1 className='resume_selectjob_block'> 
-								&nbsp;<a  className='active' onClick={this.portfoliotab1} href='#' id='resume_selectjob1'>ตำแหน่งงานที่ 1</a>&nbsp; <span className="resume_verticalline"></span> 
+								&nbsp;<a  className='active' onClick={this.portfoliotab1}  id='resume_selectjob1'>ตำแหน่งงานที่ 1</a>&nbsp; <span className="resume_verticalline"></span> 
 							</h1>
 							<h1 className='resume_selectjob_block'> 
-								&nbsp;<a  onClick={this.portfoliotab2} href='#' id='resume_selectjob2'>ตำแหน่งงานที่ 2</a>&nbsp; <span className="resume_verticalline"></span> 
+								&nbsp;<a  onClick={this.portfoliotab2} id='resume_selectjob2'>ตำแหน่งงานที่ 2</a>&nbsp; <span className="resume_verticalline"></span> 
 							</h1>
 							<h1 className='resume_selectjob_block'> 
 								&nbsp;<a  onClick={this.portfoliotab3} id='resume_selectjob3'>ตำแหน่งงานที่ 3</a>&nbsp;
