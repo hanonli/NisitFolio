@@ -16,6 +16,7 @@ import Myresumetp from './Components/myresumeTemplate';
 import Register from './register';
 import Emailverify from './emailverify';
 import Successregis from './successregis';
+import Failregis from './failregis';
 import PDF from './pdf';
 
 const Routes = () => {
@@ -39,6 +40,7 @@ const Routes = () => {
       <Route exact path='/register' component={Register}></Route>
       <Route exact path='/emailverify' component={Emailverify}></Route>
       <Route path='/successregis' component={Successregis}></Route>
+      <Route path='/unsuccessregis' component={Failregis}></Route>
       <Route path='/makepdf' component={PDF}></Route>
     </Switch>
   );

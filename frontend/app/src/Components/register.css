@@ -502,4 +502,9 @@ datalist {
   color: red;
   margin-top:-5px;
   padding-left:20px;
+  font-weight: 300;
+}
+
+.failgap{
+  margin-top: 30px;
 }

@@ -33,7 +33,7 @@ class Registab7 extends React.Component {
 			</div>	\
 			<div class="col-2">\
 				<div class="delbtn">\
-				<img class="obj-icon tooltips-item" src="assets/images/bin.png" type="button" data-bs-toggle="modal" toggle-type="dynamic"data-bs-target="#Modaltab71" id="valss" alt="" width="30" height="30"/>\
+				<img class="obj-icont7 tooltips-item" src="assets/images/bin.png" type="button" data-bs-toggle="modal" toggle-type="dynamic"data-bs-target="#Modaltab71" id="valss" alt="" width="30" height="30"/>\
 				</div>\
 			</div>\
 		</div>\
@@ -46,7 +46,7 @@ class Registab7 extends React.Component {
 			</div>	\
 			<div class="col-2">\
 				<div class="delbtn">\
-				<img class="obj-icon tooltips-item" src="assets/images/bin.png" type="button" data-bs-toggle="modal" toggle-type="dynamic"data-bs-target="#Modaltab72" id="valss" alt="" width="30" height="30"/>\
+				<img class="obj-icont7 tooltips-item" src="assets/images/bin.png" type="button" data-bs-toggle="modal" toggle-type="dynamic"data-bs-target="#Modaltab72" id="valss" alt="" width="30" height="30"/>\
 				</div>\
 			</div>\
 		</div>\
@@ -59,7 +59,7 @@ class Registab7 extends React.Component {
 			</div>	\
 			<div class="col-2">\
 				<div class="delbtn">\
-				<img class="obj-icon tooltips-item" src="assets/images/bin.png" type="button" data-bs-toggle="modal" toggle-type="dynamic"data-bs-target="#Modaltab73" id="valss" alt="" width="30" height="30"/>\
+				<img class="obj-icont7 tooltips-item" src="assets/images/bin.png" type="button" data-bs-toggle="modal" toggle-type="dynamic"data-bs-target="#Modaltab73" id="valss" alt="" width="30" height="30"/>\
 				</div>\
 			</div>\
 		</div>\
@@ -109,7 +109,7 @@ class Registab7 extends React.Component {
 			</div>	\
 			<div class="col-2">\
 				<div class="delbtn">\
-				<img class="obj-icon tooltips-item" src="assets/images/bin.png" type="button" data-bs-toggle="modal" toggle-type="dynamic"data-bs-target="#Modaltab71" id="valss" alt="" width="30" height="30"/>\
+				<img class="obj-icont7 tooltips-item" src="assets/images/bin.png" type="button" data-bs-toggle="modal" toggle-type="dynamic"data-bs-target="#Modaltab71" id="valss" alt="" width="30" height="30"/>\
 				</div>\
 			</div>\
 		</div>\
@@ -122,7 +122,7 @@ class Registab7 extends React.Component {
 			</div>	\
 			<div class="col-2">\
 				<div class="delbtn">\
-				<img class="obj-icon tooltips-item" src="assets/images/bin.png" type="button" data-bs-toggle="modal" toggle-type="dynamic"data-bs-target="#Modaltab72" id="valss" alt="" width="30" height="30"/>\
+				<img class="obj-icont7 tooltips-item" src="assets/images/bin.png" type="button" data-bs-toggle="modal" toggle-type="dynamic"data-bs-target="#Modaltab72" id="valss" alt="" width="30" height="30"/>\
 				</div>\
 			</div>\
 		</div>\
@@ -167,7 +167,7 @@ class Registab7 extends React.Component {
 			</div>	\
 			<div class="col-2">\
 				<div class="delbtn">\
-				<img class="obj-icon tooltips-item" src="assets/images/bin.png" type="button" data-bs-toggle="modal" toggle-type="dynamic"data-bs-target="#Modaltab72" id="valss" alt="" width="30" height="30"/>\
+				<img class="obj-icont7 tooltips-item" src="assets/images/bin.png" type="button" data-bs-toggle="modal" toggle-type="dynamic"data-bs-target="#Modaltab72" id="valss" alt="" width="30" height="30"/>\
 				</div>\
 			</div>\
 		</div>\
