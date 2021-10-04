@@ -2,6 +2,7 @@ import $, { data, get } from 'jquery';
 import cookie from 'react-cookies';
 import React from 'react';
 import MyResumeContent from './myresumeContent.js';
+import Resume_sideNavbar from './navbar_resume.js';
 import { Link } from "react-router-dom";
 import './navbar_resume.css'
 
@@ -24,7 +25,8 @@ class Resume_topNavbar extends React.Component {
 			color : '',
 			index : 0,
 			owner :  false,
-			stat  : 'unready'
+			ready  : false,
+			loading : true,
 		}
 
 		var token = cookie.load('login-token')
@@ -79,13 +81,13 @@ class Resume_topNavbar extends React.Component {
 			this.setState({
 				resumeID : datas[0].ResumeId[index],
 			})
-
+			
 		}).catch(function() {
 			if(owner){
-				console.log("You haven't created this part, Please create first");
+				alert("You haven't created this part, Please create first");
 				window.location = ("editprofile");
 			}else{
-				console.log('This portfolio is not exist!');
+				alert('This portfolio is not exist!');
 			}
 			
 		});
@@ -125,8 +127,9 @@ class Resume_topNavbar extends React.Component {
 				interestedJob : datas.interestedJob,
 				color : datas.Color,
 				privacy : datas.Privacy,
-				stat : 'ready'
+				ready : true,
 			})
+
 			// console.log( 'in getDatas2 :' + JSON.stringify(datas.educationHistorys))
 		});
 
@@ -145,7 +148,8 @@ class Resume_topNavbar extends React.Component {
 			privacy : '',
 			color : '',
 			index : 0,
-			stat  : 'unready'
+			ready  :  false,
+			loading : true,
 		});
 		// console.log('call GetreumeID from tab1')
 		// this.getResumeID(index);
@@ -154,6 +158,7 @@ class Resume_topNavbar extends React.Component {
 
 	portfoliotab2 = () => {
 		// console.log('Porfoliotab2 is called')
+		console.log('before change state: ' + JSON.stringify(this.state))
 		var index = 1 ;
 		this.setState({
 			resumeID : '',
@@ -165,8 +170,10 @@ class Resume_topNavbar extends React.Component {
 			privacy : '',
 			color : '',
 			index : 1,
-			stat  : 'unready'
+			ready  :  false,
+			loading : true,
 		})
+		console.log('after change but not reloaded state: ' + JSON.stringify(this.state))
 		// console.log('indexfff',index)
 		// console.log('call GetreumeID from tab2')
 		// this.getResumeID(index);
@@ -186,7 +193,8 @@ class Resume_topNavbar extends React.Component {
 			privacy : '',
 			color : '',
 			index : 2,
-			stat  : 'unready'
+			ready  :  false,
+			loading : true,
 		})
 		// this.getResumeID(index);
 
@@ -235,7 +243,6 @@ class Resume_topNavbar extends React.Component {
 						</a>
 						<span className='resume_verticalline2'> </span>
 						<a className='topnav_section2'> 
-
 							<img className='icon-myresume' id='icon-myresume-share' src="assets/images/outline_ios_share_black_48dp.png"/> 
 						</a>
 						&nbsp;
@@ -255,6 +262,56 @@ class Resume_topNavbar extends React.Component {
 		}
 	}
 
+	loadingScreen(){
+		return( 
+			<div>
+				<h1> Loading Please Wait... </h1>
+			</div>)
+	}
+
+	showingScreen(){
+		return(
+			<div>
+				<Resume_sideNavbar/>
+				<div className="Resume_topNavbar" id='topNav'>
+				
+					<div  className='myresumetoppath'> 
+							{this.handleSection1()}
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<div className='resume_topnav' >
+							<div className='resume_selectresume'> 
+								<h1 className='resume_selectresume_block'> 
+									&nbsp;<a  onClick={this.portfoliotab1}  id='resume_selectresume1'>ตำแหน่งงานที่ 1</a>&nbsp; <span className="resume_verticalline"></span> 
+								</h1>
+								<h1 className='resume_selectresume_block'> 	
+									&nbsp;<a  onClick={this.portfoliotab2} id='resume_selectresume2'>ตำแหน่งงานที่ 2</a>&nbsp; <span className="resume_verticalline"></span> 
+								</h1>
+								<h1 className='resume_selectresume_block'> 
+									&nbsp;<a  onClick={this.portfoliotab3} id='resume_selectresume3'>ตำแหน่งงานที่ 3</a>&nbsp;
+								</h1>
+							</div>
+						</div>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							{this.handleSection2()}
+							{this.injectScript()}
+					</div>
+
+					<div>
+						<div class="tab-content" id="myresume1-content">
+							<MyResumeContent  state={this.state} />
+						</div>
+					</div>
+	
+				</div>
+
+			</div>
+			
+
+
+		)
+
+	}
+
 
 
 	
@@ -263,6 +320,8 @@ class Resume_topNavbar extends React.Component {
 		window.addEventListener('load', this.handleLoad);
 		const script = document.createElement("script");
 		script.src = "assets/js/navbar_top_resume_script.js";
+		document.body.appendChild(script);
+		script.src = <script src='/path/to/jquery.keyframes[.min].js'></script>
 		document.body.appendChild(script);
 
 		// console.log('topnav stop mount')
@@ -283,14 +342,16 @@ class Resume_topNavbar extends React.Component {
 			// console.log(3)
 			console.log('update state')
 			return true
-		}else if(this.state.stat !== 'ready'){
+		}else if( !this.state.ready){
 			// console.log('status need to re-render')
 			console.log('update state')
 			return true
-		}else{
-			// console.log('status dont need to re-render')
-			console.log(' not update state')
-			return false
+		}else if( this.state.loading){
+			this.setState({
+				loading : false
+			})
+			// console.log('update state')
+			return true
 		}
 
 	
@@ -304,7 +365,7 @@ class Resume_topNavbar extends React.Component {
 			this.getResumeID(this.state.index);
 		}
 		// console.log('in render() state before : ' + JSON.stringify(this.state))
-		if(this.state.resumeID !== '' && this.state.stat === 'unready' ){
+		if(this.state.resumeID !== '' && this.state.loading){
 			// alert('call getDatas');
 			this.getDatas();
 		}
@@ -314,37 +375,40 @@ class Resume_topNavbar extends React.Component {
 
 		return (
 			
-			<div className="Resume_topNavbar" id='topNav'>
+			this.state.loading ? this.loadingScreen() : this.showingScreen() 
+			// <div className="Resume_topNavbar" id='topNav'>
 				
-				<div  className='myresumetoppath'> 
-					{this.handleSection1()}
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<div className='resume_topnav' >
-						<div className='resume_selectjob'> 
-							<h1 className='resume_selectjob_block'> 
-								&nbsp;<a  className='active' onClick={this.portfoliotab1}  id='resume_selectjob1'>ตำแหน่งงานที่ 1</a>&nbsp; <span className="resume_verticalline"></span> 
-							</h1>
-							<h1 className='resume_selectjob_block'> 
-								&nbsp;<a  onClick={this.portfoliotab2} id='resume_selectjob2'>ตำแหน่งงานที่ 2</a>&nbsp; <span className="resume_verticalline"></span> 
-							</h1>
-							<h1 className='resume_selectjob_block'> 
-								&nbsp;<a  onClick={this.portfoliotab3} id='resume_selectjob3'>ตำแหน่งงานที่ 3</a>&nbsp;
-							</h1>
-						</div>
-					</div>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					{this.handleSection2()}
-					{this.injectScript()}
-				</div>
-				<div>
-					<div class="tab-content" id="myresume1-content">
-						<MyResumeContent  state={this.state} />
-					</div>
+			// 	<div  className='myresumetoppath'> 
+			// 		{this.handleSection1()}
+			// 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			// 		<div className='resume_topnav' >
+			// 			<div className='resume_selectresume'> 
+			// 				<h1 className='resume_selectresume_block'> 
+			// 					&nbsp;<a  className='active' onClick={this.portfoliotab1}  id='resume_selectresume1'>ตำแหน่งงานที่ 1</a>&nbsp; <span className="resume_verticalline"></span> 
+			// 				</h1>
+			// 				<h1 className='resume_selectresume_block'> 
+			// 					&nbsp;<a  onClick={this.portfoliotab2} id='resume_selectresume2'>ตำแหน่งงานที่ 2</a>&nbsp; <span className="resume_verticalline"></span> 
+			// 				</h1>
+			// 				<h1 className='resume_selectresume_block'> 
+			// 					&nbsp;<a  onClick={this.portfoliotab3} id='resume_selectresume3'>ตำแหน่งงานที่ 3</a>&nbsp;
+			// 				</h1>
+			// 			</div>
+			// 		</div>
+			// 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			// 		{this.handleSection2()}
+			// 		{this.injectScript()}
+			// 	</div>
+
+			// 	<div>
+			// 		<div class="tab-content" id="myresume1-content">
+			// 			<MyResumeContent  state={this.state} />
+			// 		</div>
 
 				
-				</div>
-		
-			</div>
+			// 	</div>
+	
+			// </div>
+			
 			
 		);
 	}
