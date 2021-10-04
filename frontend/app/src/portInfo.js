@@ -634,7 +634,7 @@ class PortInfo extends React.Component {
 		}
 		
 		function GetUserHeader(uid){
-			fetch("http://localhost:2000/portfolio/header/"+uid,{
+			fetch("http://localhost:2000/portfolio/user/"+uid,{
 			method: "GET",
 			headers: {
 				'Authorization': 'Bearer '+token,
@@ -649,6 +649,8 @@ class PortInfo extends React.Component {
 				//console.log(data);
 				//refThis.setState({ render: true });
 				userData = data;
+				console.log(userData);
+				//alert(userData.name);
 				f2 = true;
 				//alert('f2!');
 				
@@ -832,7 +834,7 @@ class PortInfo extends React.Component {
 									</div>
 									<div class="e-wrapper">
 										<div class="email-box">
-											<af id="port-user-email">Nutawut.n@ku.th</af>
+											<af id="port-user-email">ยังไม่สามารถระบุอีเมลของเจ้าของผลงานได้</af>
 											<img class="tooltips-item obj-icon cb-icon" id="clipboard" src="assets/images/outline_content_copy_black_48dp.png" type="button" alt="" width="25" height="25"/>
 										</div>
 									</div>

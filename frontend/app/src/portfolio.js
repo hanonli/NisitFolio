@@ -21,6 +21,8 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
 import thLocale from 'date-fns/locale/th';
+import { uploadFile } from 'react-s3';
+import { v4 as uuidv4 } from 'uuid';
 
 //import Cropper from "react-cropper";
 window.jQuery = $;
@@ -28,6 +30,20 @@ window.$ = $;
 global.jQuery = $;
 
 const animatedComponents = makeAnimated();
+
+const S3_BUCKET ='nisitfolio';
+const REGION ='ap-southeast-1';
+const ACCESS_KEY ='AKIAWGHRNY32XLWEVA62';
+const SECRET_ACCESS_KEY ='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';
+const DIR_NAME = 'images';
+
+const config = {
+    bucketName: S3_BUCKET,
+    region: REGION,
+    accessKeyId: ACCESS_KEY,
+    secretAccessKey: SECRET_ACCESS_KEY,
+	dirName: DIR_NAME,
+}
 
 class Portfolio extends React.Component {
 	constructor(props) {
@@ -65,6 +81,8 @@ class Portfolio extends React.Component {
 	 }
 	
 	componentDidMount() {
+		setInterval(function() { console.log(refThis.state.list); }, 1000);
+		
 		window.addEventListener('load', this.handleLoad);
 		console.log("YEAHXXX!");
 		/*const script = document.createElement("script");
@@ -76,20 +94,80 @@ class Portfolio extends React.Component {
 		var portMode = cookie.load('port-entry');
 		var token = cookie.load('login-token');
 		var userId = cookie.load('login-user');
+		var editPortId = cookie.load('port-focus');
 		var privacyId = 0;
 		var portId = null;
+		//var pendingUploads = [];
+		var picsUrl = [];
+		var newPort = {};
 		
-		function GetFetchableData(){
-			var newPort = {};
+		 var isFull;
+		setInterval(function() { console.log(isFull); }, 1000);
+		var fetchStep = 0;
 			
-			var pics = [];
+		var fetcher = setInterval(Fetcher, 100);
+		
+		function Fetcher() {
+			//console.log('f1: '+f1+'f2: '+f2+'f3: '+f3);
+			console.log('waiting to fetch...');
+			if(fetchStep != 0 && fetchStep == refThis.state.list.length){ 
+				//alert('OK!');
+				clearInterval(fetcher);
+				//alert('Complete!');
+				FinalizeFetchableData();
+			}
+		}
+		
+		var current_i = -1;
+		
+		function UploadToS3(_img){
+			return new Promise((resolve,reject)=>{
+				uploadFile(_img, config)
+				.then(data => { 
+					picsUrl.push(data.location); 
+					fetchStep += 1; 
+					//alert(current_i+' push! (from file)');
+					resolve();
+					
+				})
+				.catch(err => console.error(err))
+			});
+		}
+		
+		async function GetFetchableData(){
+			/*console.log(pendingUploads);
+			console.log(pendingUploads[0]);
+			pendingUploads.forEach((file) => {
+				uploadFile(file, config)
+				.then(data => console.log(data))
+				.catch(err => console.error(err))
+			});
+			return;*/
+			
 			var pCount = refThis.state.list.length;
-			if(pCount > 0) pics.push($('#upload-id-1').attr('src'));
+			/*if(pCount > 0) pics.push($('#upload-id-1').attr('src'));
 			if(pCount > 1) pics.push($('#upload-id-2').attr('src'));
 			if(pCount > 2) pics.push($('#upload-id-3').attr('src'));
 			if(pCount > 3) pics.push($('#upload-id-4').attr('src'));
-			if(pCount > 4) pics.push($('#upload-id-5').attr('src'));
-			
+			if(pCount > 4) pics.push($('#upload-id-5').attr('src'));*/
+			for (let i = 0; i < 5; i++) {
+				if(pCount > i){
+					if(typeof(refThis.state.list[i].img) != "string"){
+						//alert(i+' is file=>generate url');
+						current_i = i;
+						await UploadToS3(refThis.state.list[i].img);
+					}else{
+						//alert(i+' is url');
+						current_i = i;
+						picsUrl.push(refThis.state.list[i].img); 
+						fetchStep += 1; 
+						//alert(current_i+' push!');
+					}
+				}
+			}
+		}
+		
+		function FinalizeFetchableData(){
 			var privacy = null;
 			if(privacyId == 0) privacy = 'Public'
 			else if(privacyId == 1) privacy = 'Members'
@@ -106,7 +184,7 @@ class Portfolio extends React.Component {
 			
 			newPort.Port_Tag = tags;
 			newPort.Port_Privacy = privacy;
-			newPort.Pic = pics;
+			newPort.Pic = picsUrl;
 			newPort.Description = [];
 			newPort.Port_Date = date;
 			newPort.Port_Name = document.getElementById('text-input').value;
@@ -114,7 +192,85 @@ class Portfolio extends React.Component {
 			
 			console.log(newPort);
 			
-			return newPort;
+			//alert(777);
+			//console.log(newPort);
+			//return;
+			if(portMode == 'new'){
+				refThis.setState({ render:  false });
+				fetch("http://localhost:2000/portfolio",{
+					method: "POST",
+					headers: {
+						'Authorization': 'Bearer '+token,
+						"Access-Control-Allow-Origin": "*",
+						"Access-Control-Allow-Methods": "*",
+						"Access-Control-Allow-Credentials": true,
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify(newPort),
+				})
+				.then(response =>  {
+					//console.log(datas);
+					console.log(response);
+					//GetSearchBookmarkData();
+					refThis.setState({ redirect: "/portfolio" });
+				})
+				.catch((error) => {
+					console.log('add Error!');
+					//this.setState({ redirect: "/landing" });
+				});
+			}else{
+				console.log(newPort);
+				//alert('PATCH!');
+				//return;
+				refThis.setState({ render:  false });
+				fetch("http://localhost:2000/portfolio/"+editPortId,{
+					method: "PATCH",
+					headers: {
+						'Authorization': 'Bearer '+token,
+						"Access-Control-Allow-Origin": "*",
+						"Access-Control-Allow-Methods": "*",
+						"Access-Control-Allow-Credentials": true,
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify(newPort),
+				})
+				.then(response =>  {
+					//console.log(datas);
+					console.log(response);
+
+					var patchBm = {};
+					patchBm.type = 'work';
+					patchBm.thatUserId = userId;
+					patchBm.port_id = editPortId;
+					fetch("http://localhost:2000/bookmark/edit",{
+						method: "POST",
+						headers: {
+							"Access-Control-Allow-Origin": "*",
+							"Access-Control-Allow-Methods": "*",
+							"Access-Control-Allow-Credentials": true,
+							"Content-Type": "application/json"
+						},
+						body: JSON.stringify(patchBm),
+					})
+						.then(response =>  {
+							//console.log(datas);
+							console.log(response);
+							refThis.setState({ redirect: "/portfolio" });
+							//GetSearchBookmarkData();
+						})
+						.catch((error) => {
+							console.log('add Error!');
+							//this.setState({ redirect: "/landing" });
+						});
+
+					//refThis.setState({ redirect: "/portfolio" });
+					//GetSearchBookmarkData();
+				})
+				.catch((error) => {
+					console.log('add Error!');
+					//this.setState({ redirect: "/landing" });
+				});
+			}
 		}
 		
 		function GetEditPortData(id){
@@ -138,64 +294,9 @@ class Portfolio extends React.Component {
 					$('#op-button').text('แก้ไข');
 					$('form').submit(function() {
 						//alert(444);
-						var editPort = GetFetchableData();
-						refThis.setState({ render:  false });
-						fetch("http://localhost:2000/portfolio/"+id,{
-							method: "PATCH",
-							headers: {
-								'Authorization': 'Bearer '+token,
-								"Access-Control-Allow-Origin": "*",
-								"Access-Control-Allow-Methods": "*",
-								"Access-Control-Allow-Credentials": true,
-								"Content-Type": "application/json"
-							},
-							body: JSON.stringify(editPort),
-						})
-						.then(response =>  {
-							//console.log(datas);
-							console.log(response);
-							
-							
-							
-							
-							
-							var patchBm = {};
-							patchBm.type = 'work';
-							patchBm.thatUserId = userId;
-							patchBm.port_id = id;
-							fetch("http://localhost:2000/bookmark/edit",{
-								method: "POST",
-								headers: {
-									"Access-Control-Allow-Origin": "*",
-									"Access-Control-Allow-Methods": "*",
-									"Access-Control-Allow-Credentials": true,
-									"Content-Type": "application/json"
-								},
-								body: JSON.stringify(patchBm),
-							})
-								.then(response =>  {
-									//console.log(datas);
-									console.log(response);
-									refThis.setState({ redirect: "/portfolio" });
-									//GetSearchBookmarkData();
-								})
-								.catch((error) => {
-									console.log('add Error!');
-									//this.setState({ redirect: "/landing" });
-								});
-													
-							
-							
-							
-							
-							
-							//refThis.setState({ redirect: "/portfolio" });
-							//GetSearchBookmarkData();
-						})
-						.catch((error) => {
-							console.log('add Error!');
-							//this.setState({ redirect: "/landing" });
-						});
+						GetFetchableData();
+						return false;
+						//refThis.setState({ render:  false });
 					});
 					
 					$('#text-input').val(data.Port_Name);
@@ -264,34 +365,12 @@ class Portfolio extends React.Component {
 				$('#op-button').text('เพิ่ม');
 				$('form').submit(function() {
 					//alert(333);
-					var newPort = GetFetchableData();
-					refThis.setState({ render:  false });
-					fetch("http://localhost:2000/portfolio",{
-						method: "POST",
-						headers: {
-							'Authorization': 'Bearer '+token,
-							"Access-Control-Allow-Origin": "*",
-							"Access-Control-Allow-Methods": "*",
-							"Access-Control-Allow-Credentials": true,
-							"Content-Type": "application/json"
-						},
-						body: JSON.stringify(newPort),
-					})
-					.then(response =>  {
-						//console.log(datas);
-						console.log(response);
-						//GetSearchBookmarkData();
-						refThis.setState({ redirect: "/portfolio" });
-					})
-					.catch((error) => {
-						console.log('add Error!');
-						//this.setState({ redirect: "/landing" });
-					});
+					GetFetchableData();
+					return false;
 				});
 			 }, 300); 
 			
 		}else{
-			var editPortId = cookie.load('port-focus');
 			GetEditPortData(editPortId);
 			//alert(editPortId);
 		}
@@ -303,8 +382,7 @@ class Portfolio extends React.Component {
 		  var $modal = window.$('#modal');
 		  var $modalFile = window.$('#modal-file');
 		  var cropper;
-		  var isFull = false;
-		  var maxFileSizeInMb = 3;
+		  var maxFileSizeInMb = 10;
 		  
 		  //var portID = '61535450e43b2876a0421de5';
 		  
@@ -388,7 +466,7 @@ class Portfolio extends React.Component {
 				$alert = $('.alert');
 				$modal = window.$('#modal');
 				$modalFile = window.$('#modal-file');
-				isFull = false;
+				//isFull = false;
 				
 							
 			
@@ -465,14 +543,18 @@ class Portfolio extends React.Component {
 			  console.log(avatar.src);
 			  $alert.removeClass('alert-success alert-warning');
 			  canvas.toBlob(function (blob) {
+				/*alert('new form!');
 				var formData = new FormData();
 
 				formData.append('avatar', blob, 'avatar.jpg');
-				console.log("HELLO LV5!");
+				console.log("HELLO LV5!");*/
+				var file = new File([blob], userId+'_'+uuidv4()+".png", { lastModified: new Date().getTime(), type: blob.type });
+				//pendingUploads.push(file);
+				AddImageToSortable(avatar.src,file);
 			  });
 			}
 			
-			AddImageToSortable(avatar.src);
+			
 			
 		  });
 		
@@ -562,7 +644,7 @@ class Portfolio extends React.Component {
 			
 
 		
-		function AddImageToSortable(getImg){
+		function AddImageToSortable(getImg,file){
 			//$(".port-pic-uploadable").click(function() { return false; });
 			//$(".port-pic-uploadable").off(); 
 			$(".port-pic-uploadable").off('click'); // turn off big upload section when adding new image
@@ -590,7 +672,12 @@ class Portfolio extends React.Component {
 				var temp = refThis.state.list;
 
 				   if(temp.length < 5){
-					   temp.push({ id: lid, name: "Img"+lid });
+					   if(file != null){
+						   temp.push({ id: lid, name: "Img"+lid, img: file});
+					   }else{
+						   //alert('add url: '+getImg);
+						   temp.push({ id: lid, name: "Img"+lid, img: getImg});
+					   }
 					   /*if(lid == 1){
 						  //temp.push({ id: lid+1, name: "Img"+lid+1 });
 					   }*/
@@ -720,6 +807,8 @@ class Portfolio extends React.Component {
 				
 				// auto delete last element
 				//if(temp.length == 1) temp.pop();
+				
+				//alert('Erased!');
 
 				refThis.setState({ list: temp });
 				ResetSortableContent();
@@ -766,12 +855,18 @@ class Portfolio extends React.Component {
 					//alert('delete before last');
 					var Did = Number(ref.id.slice(-1));
 					setTimeout(function() {
+						var temp = refThis.state.list;
 						for (let i = Did; i <= refThis.state.list.length; i++) {
 							//alert('start: '+Did+' end: '+refThis.state.list.length+' i: '+i);
 							document.getElementById('upload-id-'+i).src = imgList[i];
+							/*alert(i);
+							console.log(temp[i-1].img);
+							console.log(temp[i].img);*/
+							if(i != refThis.state.list.length)
+								temp[i-1].img = temp[i].img;
 						}
 
-						var temp = refThis.state.list;
+						
 						temp.pop();
 						refThis.setState({ list: temp });
 						jObj = $(uploadButton.replace('{tresId}','tres-5')).prependTo( $('.sortable-container-5').first());
@@ -1037,7 +1132,7 @@ class Portfolio extends React.Component {
 						<div class="modal fade" id="modal-file" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
 						  <div class="modal-dialog modal-dialog-centered">
 								<div class="modal-content minisize">
-									<h4 class="del-b">คุณไม่สามารถอัพโหลดรูปที่มีขนาดเกิน 3MB ได้</h4>
+									<h4 class="del-b">คุณไม่สามารถอัพโหลดรูปที่มีขนาดเกิน 10MB ได้</h4>
 									<div class="centerverify">
 										<a id="delete-port" type="button" class="btn btn-cta-primary-yellowshort profile-button round" data-bs-dismiss="modal">รับทราบ</a>
 									</div>
