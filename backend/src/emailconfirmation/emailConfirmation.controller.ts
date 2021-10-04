@@ -3,6 +3,7 @@ import ConfirmEmailDto from './confirmEmail.dto';
 import { EmailConfirmationService } from './emailConfirmation.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import RequestWithUser from '../auth/requestWithUser.interface';
+import { CreateRegisDto } from '../register/dto/create-register.dto';
    
 @Controller('email-confirmation')
   @UseInterceptors(ClassSerializerInterceptor)
@@ -21,6 +22,11 @@ import RequestWithUser from '../auth/requestWithUser.interface';
     @UseGuards(JwtAuthGuard)
     async resendConfirmationLink(@Req() request: RequestWithUser) {
       await this.emailConfirmationService.resendConfirmationLink(request.user.id);
+    }
+
+    @Post('send-mail-no')
+    async sendmailno(@Body() Email: CreateRegisDto) {
+      await this.emailConfirmationService.sendmailno(Email.Email);
     }
 
   }
