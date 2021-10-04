@@ -291,7 +291,9 @@ class PortInfo extends React.Component {
 				}else{
 					var pdd=1;
 					portfolioData.portfolioPictures[0].Pic.forEach((entry) => {
-						$('#port-pic-'+pdd).attr('src',entry);
+						var hDiv = '<img class="pft-c" id="port-pic-' + pdd + '" src="'+entry+'" alt=""/>';
+						$('#h-scroll').append(hDiv);
+						//$('#port-pic-'+pdd).attr('src',entry);
 						pdd += 1;
 					});
 					$('.swf-flex-single').hide();
@@ -720,7 +722,7 @@ class PortInfo extends React.Component {
 				<div className="PortInfo">
 					<Navbar />
 					
-					<br></br><br></br>
+					<br></br><br></br><br></br><br></br>
 					
 					<div class="pfti-flex">
 						<phf id="port-name">ชื่อหัวข้ออะไรสักอย่าง สุดแล้วแต่คุณท่านจะตั้ง</phf>
@@ -760,11 +762,7 @@ class PortInfo extends React.Component {
 					
 					<div class="swf-flex">
 						<div class="scrolling-wrapper-flexbox" id="h-scroll">
-							<img class="pft-c" id="port-pic-1" src="assets/images/emp_thumb.jpg" alt=""/>
-							<img class="pft-c" id="port-pic-2" src="assets/images/emp_thumb.jpg" alt=""/>
-							<img class="pft-c" id="port-pic-3" src="assets/images/emp_thumb.jpg" alt=""/>
-							<img class="pft-c" id="port-pic-4" src="assets/images/emp_thumb.jpg" alt=""/>
-							<img class="pft-c" id="port-pic-5" src="assets/images/emp_thumb.jpg" alt=""/>
+
 						</div>
 					</div>
 
