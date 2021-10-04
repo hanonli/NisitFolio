@@ -5,8 +5,9 @@ import './register.css';
 import './registab5.css';
 import './chooseresume3.css';
 
-const workdata = [
+var workdata = [
     {
+        "WorkHistory_id": "xx01",
         "id": "61388f7c34f592a9d7f788e7",
         "UserId": "613881e534f592a9d7f788cf",
         "Work_JobName": "FUll time Pro Duel list",
@@ -16,10 +17,12 @@ const workdata = [
         "Work_End_Month": 6,
         "Work_Start_Year": 2013,
         "Work_End_Year": 2021,
+        "Salary_type": "รายได้ต่อเดือน",
         "Salary": 35000,
         "Infomation": "Duel"
     },
     {
+        "WorkHistory_id": "xx02",
         "id": "61388f7c34f592a9d7f788e7",
         "UserId": "613881e534f592a9d7f788cf",
         "Work_JobName": "Pro Duel list",
@@ -27,12 +30,14 @@ const workdata = [
         "Company": "kaiba crop",
         "Work_Start_Month": 7,
         "Work_End_Month": 9,
-        "Work_Start_Year": 2013,
+        "Work_Start_Year": 2012,
         "Work_End_Year": 2021,
+        "Salary_type": "รายได้ต่อเดือน",
         "Salary": 35000,
         "Infomation": "Duel"
     },
     {
+        "WorkHistory_id": "xx03",
         "id": "61388f7c34f592a9d7f788e7",
         "UserId": "613881e534f592a9d7f788cf",
         "Work_JobName": "Slave Engineer",
@@ -42,12 +47,11 @@ const workdata = [
         "Work_End_Month": 99,
         "Work_Start_Year": 2021,
         "Work_End_Year": 9999,
+        "Salary_type": "รายได้ต่อเดือน",
         "Salary": 35000,
         "Infomation": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tincidunt, neque vitae eleifend ornare, leo sem hendrerit lorem, vel hendrerit elit elit et libero. Pellentesque auctor ornare sapien sit amet imperdiet. Nam at justo nibh. Aenean mollis ornare lacus, in ornare odio."
     }
 ];
-
-
 
 function compareValues(key, order = 'asc') {
     return function innerSort(a, b) {
@@ -72,26 +76,51 @@ function compareValues(key, order = 'asc') {
     };
 }
 
-var list_of_year_certi = {}; //check year
-var year_before_certi = -1;
-var choose_certi = [];
-var isCheck_certi = {};
+var list_of_year_work = {}; //check year
+var year_before_work = -1;
+var choose_work = [];
+var isCheck_work = {};
 
 class Chooseresume2 extends React.Component {
 
-    constructor(props) {
-        super(props);
-        /* this.state = {
-             isChecked: false,
-         };*/
-    }
-
     handleChange = e => {
-
+        isCheck_work[e.target.value] = !isCheck_work[e.target.value];
+        if (isCheck_work[e.target.value] === true) {
+            choose_work.push(e.target.value);
+            console.log(`add ${e.target.value} !!!!!!!!!`);
+            //$("#list-certi33" + e.target.value).addClass("choose-certi1111");
+        }
+        else {
+            var removeIndex = choose_work.findIndex(function (post, index_del) {
+                if (post == e.target.value)
+                    return true;
+            });
+            choose_work.splice(removeIndex, 1);
+            console.log(`delete ${e.target.value} !!!!!!!!!`);
+            //$("#list-certi33" + e.target.value).removeClass("choose-certi1111");
+        }
+        console.log(choose_work);
+        console.log(isCheck_work);
     };
 
     componentDidMount() {
-
+        /*let testwork = (
+            <div class="t4-content" id="{no_work}">
+                <h5 class="col font-titlet4 font-boldt31">{ele.Work_JobName}</h5>
+                <div class="row">
+                    <div class="col font-titlet4_1">
+                        <div class="font-titlet4_1 font-boldt3">{ele.Company}</div>
+                        <div class="font-titlet4_1">เริ่มต้น {ele.Work_Start_Month}/{ele.Work_Start_Year}</div>
+                        <div class="font-titlet4_1">สิ้นสุด {ele.Work_End_Month}/{ele.Work_End_Year}</div>
+                    </div>
+                    <div class="col-2 newline-text123">{ele.Infomation}</div>
+                </div>
+                <div class="row">
+                    <div class="col-3 font-salary font-boldt3">{ele.Salary_type}</div>
+                    <div class="col font-titlet4_2">{ele.Salary} บาท</div>
+                </div>
+            </div>
+        );*/
     }
 
     componentWillUnmount() {
@@ -100,11 +129,98 @@ class Chooseresume2 extends React.Component {
 
     render() {
         let result = [];
+        let listwork = [];
+        workdata.sort(compareValues('Work_Start_Year', 'desc'));
+        workdata.forEach(ele => {
+            isCheck_work[ele.WorkHistory_id] = false;
+            if (year_before_work != ele.Work_Start_Year) {
+                if (listwork.length != 0) {
+                    result.push(
+                        <div class="content-work1111" id="{contentYear}">
+                            {listwork}
+                        </div>
+                    );
+                    listwork = [];
+                }
+                list_of_year_work[ele.Work_Start_Year] = 1;
+                year_before_work = ele.Work_Start_Year;
+                result.push(<div id="year-choose-tem-2003"><h1 id="textOfyear_certi">{ele.Work_Start_Year}</h1></div>);
+                listwork.push(
+                    <div id={ele.WorkHistory_id}>
+                        <input
+                            id={'yyy' + ele.WorkHistory_id}
+                            type="checkbox"
+                            name="vehicle2"
+                            value={ele.WorkHistory_id}
+                            defaultchecked={isCheck_work[ele.WorkHistory_id]}
+                            onChange={this.handleChange}
+                            hidden
+                        />
+                        <label class="t4-content" id="list-work-22" for={'yyy' + ele.WorkHistory_id}>
+                            <h5 class="col font-titlet4 font-boldt31">{ele.Work_JobName}</h5>
+                            <div class="row">
+                                <div class="col font-titlet4_1">
+                                    <div class="font-titlet4_1 font-boldt3">{ele.Company}</div>
+                                    <div class="font-titlet4_1">เริ่มต้น {ele.Work_Start_Month}/{ele.Work_Start_Year}</div>
+                                    <div class="font-titlet4_1">สิ้นสุด {ele.Work_End_Month}/{ele.Work_End_Year}</div>
+                                </div>
+                                <div class="col-2 newline-text123">{ele.Infomation}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3 font-salary font-boldt3">{ele.Salary_type}</div>
+                                <div class="col font-titlet4_2">{ele.Salary} บาท</div>
+                            </div>
+                            <div class="icon-checkbox1112"><img height="110" src="assets/images/check_black.png"></img></div>
+                        </label>
+                    </div>
+                );
+            }
+            else {
+                listwork.push(
+                    <div id={ele.WorkHistory_id}>
+                        <input
+                            id={'yyy' + ele.WorkHistory_id}
+                            type="checkbox"
+                            name="vehicle2"
+                            value={ele.WorkHistory_id}
+                            defaultchecked={isCheck_work[ele.WorkHistory_id]}
+                            onChange={this.handleChange}
+                            hidden
+                        />
+                        <label class="t4-content" id="list-work-22" for={'yyy' + ele.WorkHistory_id}>
+                            <h5 class="col font-titlet4 font-boldt31">{ele.Work_JobName}</h5>
+                            <div class="row">
+                                <div class="col font-titlet4_1">
+                                    <div class="font-titlet4_1 font-boldt3">{ele.Company}</div>
+                                    <div class="font-titlet4_1">เริ่มต้น {ele.Work_Start_Month}/{ele.Work_Start_Year}</div>
+                                    <div class="font-titlet4_1">สิ้นสุด {ele.Work_End_Month}/{ele.Work_End_Year}</div>
+                                </div>
+                                <div class="col-2 newline-text123">{ele.Infomation}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3 font-salary font-boldt3">{ele.Salary_type}</div>
+                                <div class="col font-titlet4_2">{ele.Salary} บาท</div>
+                            </div>
+                            <div class="icon-checkbox1112"><img height="110" src="assets/images/check_black.png"></img></div>
+                        </label>
+                    </div>
+                );
+                list_of_year_work[ele.Work_Start_Year] += 1;
+            }
 
+        });
+        result.push(
+            <div class="content-work1111" id="{contentYear}">
+                {listwork}
+            </div>
+        );
+        listwork = [];
         return (
             <div className="Registab4">
                 <div class="regis-box-content1">
-                    ประวัติการทำงาน
+                    <div class="myresume-choose-work11">
+                        {result}
+                    </div>
                 </div>
             </div>
         );

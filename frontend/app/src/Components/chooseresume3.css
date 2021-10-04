@@ -1,19 +1,41 @@
-.myresume-choose-certi .card_certi{
+/*---------------- resume tab2 ----------------*/
+.myresume-choose-certi11 .card_certi{
     cursor: pointer;
 }
 
-.myresume-choose-certi .icon-checkbox1111{
+.myresume-choose-certi11 .icon-checkbox1111{
     visibility: hidden;
 }
 
-.myresume-choose-certi input[type=checkbox]:checked + label#list-certi33{
+.myresume-choose-certi11 input[type=checkbox]:checked + label#list-certi33{
     background: #E1E1E1;
     opacity: 0.7; 
 }
 
-.myresume-choose-certi input[type=checkbox]:checked + label#list-certi33 > .icon-checkbox1111{
+.myresume-choose-certi11 input[type=checkbox]:checked + label#list-certi33 > .icon-checkbox1111{
     visibility: visible;
     position: relative;
     left: 11.5vw;
     top: -9.5vh;
+}
+
+/*---------------- resume tab3 ----------------*/
+.myresume-choose-work11 .icon-checkbox1112{
+    visibility: hidden;
+}
+
+.myresume-choose-work11 .t4-content{
+    cursor: pointer;
+}
+
+.myresume-choose-work11 input[type=checkbox]:checked + label#list-work-22{
+    background: #E1E1E1;
+    opacity: 0.7; 
+}
+
+.myresume-choose-work11 input[type=checkbox]:checked + label#list-work-22 > .icon-checkbox1112{
+    visibility: visible;
+    position: relative;
+    left: 10.6vw;
+    top: -11.6vh;
 }

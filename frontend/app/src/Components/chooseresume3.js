@@ -83,26 +83,21 @@ var isCheck_certi = {};
 
 class Chooseresume3 extends React.Component {
 
-    constructor(props) {
-        super(props);
-        /* this.state = {
-             isChecked: false,
-         };*/
-    }
-
     handleChange = e => {
         isCheck_certi[e.target.value] = !isCheck_certi[e.target.value];
-        if (isCheck_certi[e.target.value]) {
+        if (isCheck_certi[e.target.value] === true) {
             choose_certi.push(e.target.value);
             console.log(`add ${e.target.value} !!!!!!!!!`);
+            //$("#list-certi33" + e.target.value).addClass("choose-certi1111");
         }
         else {
             var removeIndex = choose_certi.findIndex(function (post, index_del) {
-                if (post.id == e.target.value)
+                if (post == e.target.value)
                     return true;
             });
             choose_certi.splice(removeIndex, 1);
             console.log(`delete ${e.target.value} !!!!!!!!!`);
+            //$("#list-certi33" + e.target.value).removeClass("choose-certi1111");
         }
         console.log(choose_certi);
         console.log(isCheck_certi);
@@ -159,7 +154,7 @@ class Chooseresume3 extends React.Component {
                             type="checkbox"
                             name="vehicle1"
                             value={ele.certi_id}
-                            checked={isCheck_certi[ele.certi_id]}
+                            defaultchecked={isCheck_certi[ele.certi_id]}
                             onChange={this.handleChange}
                             hidden
                         />
@@ -171,7 +166,7 @@ class Chooseresume3 extends React.Component {
                             </div>
                             <div class="icon-checkbox1111"><img height="110" src="assets/images/check_black.png"></img></div>
                         </label>
-                    </div>
+                    </div >
                 );
             }
             else {
@@ -182,7 +177,7 @@ class Chooseresume3 extends React.Component {
                             type="checkbox"
                             name="vehicle1"
                             value={ele.certi_id}
-                            checked={isCheck_certi[ele.certi_id]}
+                            defaultchecked={isCheck_certi[ele.certi_id]}
                             onChange={this.handleChange}
                             hidden
                         />
@@ -209,7 +204,7 @@ class Chooseresume3 extends React.Component {
         return (
             <div className="Registab5">
                 <div class="regis-box-content1">
-                    <div class="myresume-choose-certi">
+                    <div class="myresume-choose-certi11">
                         {result}
                     </div>
                 </div>
