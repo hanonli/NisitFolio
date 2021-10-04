@@ -328,6 +328,7 @@ class PortInfo extends React.Component {
 				var index=0;
 				if(userPortData.length < 2){
 					$('.pft-flex').append('<af>(ยังไม่มีผลงานอื่นของเจ้าของผลงานนี้)</af>');
+					$('.pft-flex').css('justify-content','center');
 				}else{
 					userPortData.forEach((data) => {
 						if(data._id == portId) { index += 1; pftId.push(data._id); pftVipData.push({}); pftPrivacy.push(portfolioData.Port_Privacy); return; } // ignore viewing port
