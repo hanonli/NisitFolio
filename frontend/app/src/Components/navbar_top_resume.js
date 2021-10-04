@@ -3,6 +3,7 @@ import cookie from 'react-cookies';
 import React from 'react';
 import MyResumeContent from './myresumeContent.js';
 import Resume_sideNavbar from './navbar_resume.js';
+import LoadingL from './loadingL';
 import { Link } from "react-router-dom";
 import './navbar_resume.css'
 
@@ -76,23 +77,13 @@ class Resume_topNavbar extends React.Component {
 		.then(response => response.json())
 		.then((datas) => {
 			// console.log('real resumeID:' + JSON.stringify(datas[0].ResumeId[0]))
-			// console.log(JSON.stringify(datas));
+			// console.log('in resumeid datas: ' + JSON.stringify(datas));
 			// console.log('real resumeID:' + JSON.stringify(datas[0].ResumeId[index]))
 			this.setState({
 				resumeID : datas[0].ResumeId[index],
 			})
 			
-		}).catch(function() {
-			if(owner){
-				alert("You haven't created this part, Please create first");
-				window.location = ("editprofile");
-			}else{
-				alert('This portfolio is not exist!');
-			}
-			
-		});
-		
-
+		})
 	}
 
 	getDatas(){
@@ -135,6 +126,10 @@ class Resume_topNavbar extends React.Component {
 
 	}
 
+	handlePrivacy(){
+
+	}
+
 	portfoliotab1 = () => {
 		// console.log('Porfoliotab1 is called')
 		var index = 0;
@@ -158,7 +153,7 @@ class Resume_topNavbar extends React.Component {
 
 	portfoliotab2 = () => {
 		// console.log('Porfoliotab2 is called')
-		console.log('before change state: ' + JSON.stringify(this.state))
+		// console.log('before change state: ' + JSON.stringify(this.state))
 		var index = 1 ;
 		this.setState({
 			resumeID : '',
@@ -173,7 +168,7 @@ class Resume_topNavbar extends React.Component {
 			ready  :  false,
 			loading : true,
 		})
-		console.log('after change but not reloaded state: ' + JSON.stringify(this.state))
+		// console.log('after change but not reloaded state: ' + JSON.stringify(this.state))
 		// console.log('indexfff',index)
 		// console.log('call GetreumeID from tab2')
 		// this.getResumeID(index);
@@ -197,10 +192,6 @@ class Resume_topNavbar extends React.Component {
 			loading : true,
 		})
 		// this.getResumeID(index);
-
-	}
-	handlePrivacy = () =>{
-
 
 	}
 
@@ -253,7 +244,7 @@ class Resume_topNavbar extends React.Component {
 			// console.log('you are outsider2')
 			return (
 			<div className='resume_topnav' >
-				<a className='topnav_section1' href='#' > 
+				<a className='topnav_section1' href='#myresume' > 
 					<img id='icon-myresume-lock'  src="assets/images/bookmark_2.png"/> 
 				</a>
 			</div>
@@ -265,7 +256,7 @@ class Resume_topNavbar extends React.Component {
 	loadingScreen(){
 		return( 
 			<div>
-				<h1> Loading Please Wait... </h1>
+				<LoadingL />
 			</div>)
 	}
 
@@ -321,8 +312,6 @@ class Resume_topNavbar extends React.Component {
 		const script = document.createElement("script");
 		script.src = "assets/js/navbar_top_resume_script.js";
 		document.body.appendChild(script);
-		script.src = <script src='/path/to/jquery.keyframes[.min].js'></script>
-		document.body.appendChild(script);
 
 		// console.log('topnav stop mount')
 		// console.log( 'before update state :' + JSON.stringify(this.state))
@@ -362,7 +351,7 @@ class Resume_topNavbar extends React.Component {
 
 		if(this.state.userID !== ''  && this.state.resumeID === ''  ){
 			// console.log('call getResumeID');
-			this.getResumeID(this.state.index);
+			this.getResumeID(0);
 		}
 		// console.log('in render() state before : ' + JSON.stringify(this.state))
 		if(this.state.resumeID !== '' && this.state.loading){

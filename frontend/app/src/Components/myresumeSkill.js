@@ -187,7 +187,7 @@ class MyResumeSkill extends React.Component {
         }
         else{
             result = (
-                    <div class="myresumeskill">
+                    <div class="myresumeskill" id='resume-additionalskills'>
                         {topicElement}
                     
                         <div class="jobskillcontent">
