@@ -181,14 +181,14 @@ function FormatIcon(data,dtype) {
 	}*/
 	if(pageName == 'search'){
 		if(!data.bookmark) {
-			entityIdInfo.push("false"+"-"+data.thatUserId+'&'+data.type+'&'+data.name);
+			entityIdInfo.push("false"+"-"+data.thatUserId+'&'+data.type+'&'+data.portId);
 			dtype = dtype.replace("{icon-type}","assets/images/bookmark_1.png").replace("{tooltip}","บันทึก").replace("{status}",entityId);
 		}else {
-			entityIdInfo.push("true"+"-"+data.thatUserId+'&'+data.type+'&'+data.name);
+			entityIdInfo.push("true"+"-"+data.thatUserId+'&'+data.type+'&'+data.portId);
 			dtype = dtype.replace("{icon-type}","assets/images/bookmark_2.png").replace("{tooltip}","ยกเลิกการบันทึก").replace("{status}",entityId);
 		}
 	}else{
-		entityIdInfo.push("true"+"-"+data.thatUserId+'&'+data.type+'&'+data.name);
+		entityIdInfo.push("true"+"-"+data.thatUserId+'&'+data.type+'&'+data.portId);
 		dtype = dtype.replace("{icon-type}","assets/images/bookmark_2.png").replace("{tooltip}","ยกเลิกการบันทึก").replace("{status}",entityId);
 	}
 	entityId += 1;
@@ -593,7 +593,7 @@ function GetFormattedSearchData(datas){
 			datt['name'] = data.name;
 			if(data.pic[0].Pic.length > 0) datt['profilePic'] = data.pic[0].Pic[0];
 			else datt['profilePic'] = 'assets/images/emp_thumb.jpg';
-			datt['portId'] = data.pic[0].PortId;
+			datt['portId'] = data.Port_id;
 			console.log(data);
 			datt['about'] = data.about;
 			datt['owner'] = data.owner;
@@ -827,7 +827,7 @@ function DeleteBookmark(id){
 	delData['userId'] = userId;
 	delData['type'] = temp[1];
 	delData['thatUserId'] = temp[0];
-	if(temp[1] != 'profile') delData['projectName'] = temp[2];
+	if(temp[1] != 'profile') delData['port_id'] = temp[2];
 	
 	fetch("http://localhost:2000/bookmark/saveBookmark",{
 		method: "DELETE",
@@ -861,7 +861,7 @@ function AddBookmark(id){
 	addData['userId'] = userId;
 	addData['type'] = temp[1];
 	addData['thatUserId'] = temp[0];
-	if(temp[1] != 'profile') addData['projectName'] = temp[2];
+	if(temp[1] != 'profile') addData['port_id'] = temp[2];
 	
 	fetch("http://localhost:2000/bookmark/saveBookmark",{
 		method: "POST",

@@ -301,8 +301,10 @@ class Portfolio extends React.Component {
 		  var input = document.getElementById('input');
 		  var $alert = $('.alert');
 		  var $modal = window.$('#modal');
+		  var $modalFile = window.$('#modal-file');
 		  var cropper;
 		  var isFull = false;
+		  var maxFileSizeInMb = 3;
 		  
 		  //var portID = '61535450e43b2876a0421de5';
 		  
@@ -385,6 +387,7 @@ class Portfolio extends React.Component {
 				input = document.getElementById('input');
 				$alert = $('.alert');
 				$modal = window.$('#modal');
+				$modalFile = window.$('#modal-file');
 				isFull = false;
 				
 							
@@ -397,6 +400,14 @@ class Portfolio extends React.Component {
 				
 				input.addEventListener('change', function (e) {
 				var files = e.target.files;
+				//alert(e.target.files[0].size);
+				if(e.target.files[0].size > 1048576*maxFileSizeInMb){
+					   //alert("You can't upload file larger than 3 MB");
+					    $modalFile.modal('show');
+					   this.value = "";
+					   return;
+				};
+				
 				var done = function (url) {
 				  input.value = '';
 				  image.src = url;
@@ -857,7 +868,7 @@ class Portfolio extends React.Component {
 							อัพโหลดรูปภาพประกอบได้ที่นี่ (สูงสุด 5 ภาพ)
 						</div>
 						<div className={this.state.sortableContainer}>
-														  <ReactSortable
+							<ReactSortable
 								group="huakuay"
 								list={this.state.list}
 								animation={200}
@@ -885,9 +896,7 @@ class Portfolio extends React.Component {
 								{this.state.list.map((item) => (
 								  <PortThumb key={item.id} item={item}/>
 								))}
-							  </ReactSortable>
-						 
-						  
+							 </ReactSortable>
 						</div>
 					</div>
 
@@ -1022,6 +1031,20 @@ class Portfolio extends React.Component {
 					  </div>
 					</div>
 			    </div>
+				
+				<div class="container">
+					<div class="alert" role="alert"></div>
+						<div class="modal fade" id="modal-file" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+						  <div class="modal-dialog modal-dialog-centered">
+								<div class="modal-content minisize">
+									<h4 class="del-b">คุณไม่สามารถอัพโหลดรูปที่มีขนาดเกิน 3MB ได้</h4>
+									<div class="centerverify">
+										<a id="delete-port" type="button" class="btn btn-cta-primary-yellowshort profile-button round" data-bs-dismiss="modal">รับทราบ</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</form>
 			</div>
 		);

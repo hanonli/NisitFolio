@@ -274,11 +274,29 @@ class PortInfo extends React.Component {
 				$('#port-owner').text(portfolioData.Owner);
 				$('#port-desc').text(portfolioData.Port_Info);
 				
-				var pdd=1;
-				portfolioData.portfolioPictures[0].Pic.forEach((entry) => {
-					$('#port-pic-'+pdd).attr('src',entry);
-					pdd += 1;
-				});
+				var imgCount = portfolioData.portfolioPictures[0].Pic.length;
+				if(imgCount == 0){
+					$('.swf-flex-single').hide();
+					$('.swf-flex-double').hide();
+					$('.swf-flex').hide();
+				}else if(imgCount == 1){
+					$('#port-pic-single').attr('src',portfolioData.portfolioPictures[0].Pic[0]);
+					$('.swf-flex-double').hide();
+					$('.swf-flex').hide();
+				}else if(imgCount == 2){
+					$('#port-pic-d1').attr('src',portfolioData.portfolioPictures[0].Pic[0]);
+					$('#port-pic-d2').attr('src',portfolioData.portfolioPictures[0].Pic[1]);
+					$('.swf-flex-single').hide();
+					$('.swf-flex').hide();
+				}else{
+					var pdd=1;
+					portfolioData.portfolioPictures[0].Pic.forEach((entry) => {
+						$('#port-pic-'+pdd).attr('src',entry);
+						pdd += 1;
+					});
+					$('.swf-flex-single').hide();
+					$('.swf-flex-double').hide();
+				}
 				
 				var tagCount = portfolioData.Port_Tag.length;
 				if(tagCount == 0){
@@ -702,12 +720,10 @@ class PortInfo extends React.Component {
 				<div className="PortInfo">
 					<Navbar />
 					
-					<img class="pf-hi" src="assets/images/pheader.jpg" />
-					
 					<br></br><br></br>
 					
 					<div class="pfti-flex">
-						<hf id="port-name">ชื่อหัวข้ออะไรสักอย่าง สุดแล้วแต่คุณท่านจะตั้ง</hf>
+						<phf id="port-name">ชื่อหัวข้ออะไรสักอย่าง สุดแล้วแต่คุณท่านจะตั้ง</phf>
 						<div class="pfic-flex">
 							<OverlayTrigger key={'bottom'} placement={'bottom'} show={this.state.show1} overlay={ <Tooltip id='tooltip-uic-1'>{this.state.tooltip1}</Tooltip> }>
 								<img class="tooltips-item obj-icon" id="uic-1" src="assets/images/bookmark_2.png" type="button" alt="" width="45" height="45"/>
@@ -733,6 +749,15 @@ class PortInfo extends React.Component {
 					
 					<br></br><br></br><br></br><br></br>
 					
+					<div class="swf-flex-single">
+						<img class="pft-s" id="port-pic-single" src="assets/images/emp_thumb.jpg" alt=""/>
+					</div>
+					
+					<div class="swf-flex-double">
+						<img class="pft-d" id="port-pic-d1" src="assets/images/emp_thumb.jpg" alt=""/>
+						<img class="pft-d" id="port-pic-d2" src="assets/images/emp_thumb.jpg" alt=""/>
+					</div>
+					
 					<div class="swf-flex">
 						<div class="scrolling-wrapper-flexbox" id="h-scroll">
 							<img class="pft-c" id="port-pic-1" src="assets/images/emp_thumb.jpg" alt=""/>
@@ -748,12 +773,13 @@ class PortInfo extends React.Component {
 					
 					<div class="anf-flex">
 						<mdf >ไฟล์แนบ</mdf>
-						<img src="assets/images/sample_attach.png" alt="" width="450" height="200" />
+						<img src="assets/images/sample_attach.png" alt="" width="281.25" height="125" />
+						<br></br>
 						<mef >ตำแหน่งงานที่เกี่ยวข้อง</mef>
 						<div class="ptag-flex">
-							<a class="lg-view pft btn btn-cta-secondary btn-small round no-margin tag" id="port-tag1" target="_blank">tag1</a>
-							<a class="lg-view pft btn btn-cta-secondary btn-small round no-margin tag" id="port-tag2" target="_blank">tag2</a>
-							<a class="lg-view pft btn btn-cta-secondary btn-small round no-margin tag" id="port-tag3" target="_blank">tag3</a>
+							<a class="pft-tag btn btn-cta-secondary btn-small round no-margin tag" id="port-tag1" target="_blank">tag1</a>
+							<a class="pft-tag btn btn-cta-secondary btn-small round no-margin tag" id="port-tag2" target="_blank">tag2</a>
+							<a class="pft-tag btn btn-cta-secondary btn-small round no-margin tag" id="port-tag3" target="_blank">tag3</a>
 						</div>
 						<br></br>
 						<div class="ds1" />

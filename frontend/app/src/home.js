@@ -93,6 +93,12 @@ class Home extends React.Component {
 					setTimeout(function() { UploadProfile(); }, 300);
 				});
 				
+				$('#editport').on('click', function(){
+					 //alert('Crop!');
+					cookie.save('port-entry', 'new', { path: '/' })
+					refThis.setState({ redirect: "/editport" });
+				});
+				
 				
 				$('#mrs').on('click', function(){
 					fetch("http://localhost:2000/myresume/",{
@@ -189,15 +195,15 @@ class Home extends React.Component {
 										 <div class="lg-view float-end">
 											<Link to="/editprofile">
 												<a class="btn btn-cta-primary round profile-button grey margin-right-m" target="_blank">แก้ไขโปรไฟล์</a>
-											</Link>        
-											<a class="btn btn-cta-primary-yellow round profile-button" href="#" target="_blank">เพิ่มกิจกรรมของคุณ</a>
+											</Link>       
+											<a class="btn btn-cta-primary-yellow round profile-button" id="editport" target="_blank">เพิ่มกิจกรรมของคุณ</a> 
 										</div>
 										
 										<div class="sm-view">
 											<Link to="/editprofile">
 												<a class="btn btn-cta-primary round profile-button grey margin-right-m" target="_blank">แก้ไขโปรไฟล์</a>
 											</Link>        
-											<a class="btn btn-cta-primary-yellow round profile-button" href="#" target="_blank">เพิ่มกิจกรรมของคุณ</a>
+											<a class="btn btn-cta-primary-yellow round profile-button" id="editport" target="_blank">เพิ่มกิจกรรมของคุณ</a> 
 										</div>
 										
 									</div>
