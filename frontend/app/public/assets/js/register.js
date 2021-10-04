@@ -1,8 +1,8 @@
 /*For Javascript Desu*/
 window.onload = () => {
-  const myInput1 = document.getElementById('pass05');
+  //const myInput1 = document.getElementById('pass05');
   const myInput2 = document.getElementById('pass06');
-  myInput1.onpaste = e => e.preventDefault();
+  //myInput1.onpaste = e => e.preventDefault();
   myInput2.onpaste = e => e.preventDefault();
  }
 
@@ -11,6 +11,8 @@ $(function(){
     $('.tab-content').hide();
     $('#registab1-content').show();
     $('#basic-date-picker1').attr('placeholder','วัน/เดือน/ปี');
+    $('#ddt7s').hide();
+    $('#toggleEmailW').hide();
     console.log("Yahaha!");
    $('#tab-1').on('click', function(){
        $('.tab-content').hide();
@@ -61,30 +63,22 @@ $(function(){
         $('.tab-list-item').removeClass('tab-list-active');
         $('#tab-7').addClass('tab-list-active')
         $('#registab7-content').show();
-        /*if(sideskill_count == 0){
-          $('#sideskilllist1').hide();
-          $('.ddt7_2').hide();
-          $('.ddt7_3').hide();
-        }
-        else if(sideskill_count == 1){
-          $('#sideskilllist2').hide();
-          $('.ddt7_3').hide();
-        }
-        else if(sideskill_count == 2){
-          $('#sideskilllist3').hide();
-        }*/
     });
 
  });
 
 /*Tab1*/
-
+var RequestCount_email=0;
 $('#continue2').click(function () {
+  $('#ssl1').removeClass('borderred');
+  $('#ssl2').removeClass('borderred');
+  $('#ssl3').removeClass('borderred');
+  var RequestCount_email=0;
   var BDDate= $('#basic-date-picker1').val();
   var last_province= $('#province').val();
   var last_city = $('#townny').val();
   var last_aboutme = $('#aboutme2').val();
-  var last_sideskill = list_sideskill;
+  var last_sideskill = [];
   if(last_province==null){
     last_province='';
   }
@@ -99,6 +93,32 @@ $('#continue2').click(function () {
   list_of_job.forEach((entry) => {
     //console.log(entry);
     last_jobname.push(entry.name_job);
+    if(entry.skill1=="none"&&entry.skill2=="none"&&entry.skill3!="none"){
+      entry.skill1 = entry.skill3;
+      entry.score_skill1 = entry.score_skill3;
+      entry.skill3 = "none";
+      entry.score_skill3 = "2.5";
+  }
+  else if(entry.skill1=="none"&&entry.skill2!="none"&&entry.skill3=="none"){
+      entry.skill1 = entry.skill2;
+      entry.score_skill1 = entry.score_skill2;
+      entry.skill2 = "none";
+      entry.score_skill2 = "2.5";
+  }
+  else if(entry.skill1=="none"&&entry.skill2!="none"&&entry.skill3!="none"){
+      entry.skill1 = entry.skill2;
+      entry.score_skill1 = entry.score_skill2;
+      entry.skill2 = entry.skill3;
+      entry.score_skill2 = entry.score_skill3;
+      entry.skill3 = "none";
+      entry.score_skill3 = "2.5";
+  }
+  else if(entry.skill1!="none"&&entry.skill2=="none"&&entry.skill3!="none"){
+      entry.skill2 = entry.skill3;
+      entry.score_skill2 = entry.score_skill3;
+      entry.skill3 = "none";
+      entry.score_skill3 = "2.5";
+  }
     last_jobskill.push([entry.skill1,entry.skill2,entry.skill3]);
     //last_jobscore.push([parseFloat(entry.score_skill1).toFixed(1),parseFloat(entry.score_skill2).toFixed(1),parseFloat(entry.score_skill3).toFixed(1)]);
     var total_skill_score = new Float32Array(3);
@@ -121,6 +141,32 @@ $('#continue2').click(function () {
             total_skill_score[2] = 0;
         }
     last_jobscore.push([total_skill_score[0],total_skill_score[1],total_skill_score[2]]);
+    if(entry.obj1==""&&entry.obj2==""&&entry.obj3!=""){
+      entry.obj1 = entry.obj3;
+      entry.obj3 = "";
+    }
+    else if(entry.obj1==""&&entry.obj2!=""&&entry.obj3==""){
+        entry.obj1 = entry.obj2;
+        entry.obj2 = "";
+    }
+    else if(entry.obj1==""&&entry.obj2!=""&&entry.obj3!=""){
+        entry.obj1 = entry.obj2;
+        entry.obj2 = entry.obj3;
+        entry.obj3 = "";
+    }
+    else if(entry.obj1!=""&&entry.obj2==""&&entry.obj3!=""){
+        entry.obj2 = entry.obj3;
+        entry.obj3 = "";
+    }       
+    if(entry.obj1==""){
+        entry.obj1 = "none";
+    }
+    if(entry.obj2==""){
+        entry.obj2 = "none";
+    }
+    if(entry.obj3==""){
+        entry.obj3 = "none";
+    }        
     last_jobobj.push([entry.obj1,entry.obj2,entry.obj3]);
   });
   var last_certname=[],last_certpic=[],last_certyear=[];
@@ -184,25 +230,109 @@ $('#continue2').click(function () {
       last_monthend.push(entry.month_endwork);
     }
   });
-  if(avatar1.src=="http://localhost:3000/assets/images/Circleuploadprofile.png"){
-    avatar1.src="http://localhost:3000/assets/images/profile_uk.png";
-  }
-  if(list_sideskill[0]==''){
+  var ssss1 = Cookies.get('sideskill1');
+  var ssss2 = Cookies.get('sideskill2');
+  var ssss3 = Cookies.get('sideskill3');
+  console.log(ssss1+'+'+ssss2+'+'+ssss3);
+  if(ssss1==''){
     var last_sideskill = [];
   }
-  else if(list_sideskill[1]==''){
-    var last_sideskill = [list_sideskill[0]];
+  else if(ssss1==ssss2&&ssss1==ssss3){
+    $('.tab-content').hide();
+    $('.tab-list-item').removeClass('tab-list-active');
+    $('#tab-7').addClass('tab-list-active')
+    $('#registab7-content').show();
+    $('#ssl1').addClass('borderred');
+    $('#ssl2').addClass('borderred');
+    $('#ssl3').addClass('borderred');
   }
-  else if(list_sideskill[2]==''){
-    var last_sideskill = [list_sideskill[0],list_sideskill[1]];
+  else if(ssss1==ssss2&&ssss1!=""&&ssss2!=""){
+    $('.tab-content').hide();
+    $('.tab-list-item').removeClass('tab-list-active');
+    $('#tab-7').addClass('tab-list-active')
+    $('#registab7-content').show();
+    $('#ssl1').addClass('borderred');
+    $('#ssl2').addClass('borderred');
   }
-  if(RequireCount_pass==1){     
+  else if(ssss1==ssss3&&ssss1!=""&&ssss3!=""){
+    $('.tab-content').hide();
+    $('.tab-list-item').removeClass('tab-list-active');
+    $('#tab-7').addClass('tab-list-active')
+    $('#registab7-content').show();
+    $('#ssl1').addClass('borderred');
+    $('#ssl3').addClass('borderred');
+  }
+  else if(ssss3==ssss2&&ssss3!=""&&ssss2!=""){
+    $('.tab-content').hide();
+    $('.tab-list-item').removeClass('tab-list-active');
+    $('#tab-7').addClass('tab-list-active')
+    $('#registab7-content').show();
+    $('#ssl3').addClass('borderred');
+    $('#ssl2').addClass('borderred');
+  }
+  else if(ssss2==''){
+    var last_sideskill = [ssss1];
+  }
+  else if(ssss3==''){
+    var last_sideskill = [ssss1,ssss2];
+  }
+  else{
+    var last_sideskill = [ssss1,ssss2,ssss3];
+  }
+  if($('#re03').val()!=""){
+    console.log("http://localhost:2000/kuay/"+$('#re03').val())
+    fetch("http://localhost:2000/kuay/"+$('#re03').val(),
+		{ method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+		}
+  )
+    .then(function (response) {
+        //window.location.pathname = '/emailverify'
+        console.log(response);
+        //alert(checkcaseEmail);
+         if (!response.ok) {
+          if(response.statusText='Unauthorized' && checkcaseEmail==1){
+            //alert("ใช้อีเมลนี้ได้จ้า");
+            $('#re03').removeClass('is-invalid');
+            $('#re03').addClass('is-valid');
+            //alert(RequestCount_email);
+            RequestCount_email=1;
+            //alert(RequestCount_email);
+          }
+        }
+        else{
+          //alert("มีอีเมลนี้แล้วในระบบ");
+          //window.location.href = "http://localhost:3000/emailverify";
+          $('#re03').removeClass('is-valid');
+          $('#re03').addClass('is-invalid');
+          $('#re03').removeClass('margin-bottom1');
+          //$('#re03').addClass('margin-bottom2');
+          $('#toggleEmailW').show();
+          RequestCount_email=0;
+        }
+        //alert(RequestCount_email);
+        return response,RequestCount_email;
+    })
+  }
+  if($('#re03').hasClass('is-valid')){
+    RequestCount_email=1;
+  //alert(RequireCount_pass +'+' +RequestCount_email);
+  if(RequireCount_pass==1 && RequestCount_email==1){     
+    if(avatar1.src=="http://localhost:3000/assets/images/Circleuploadprofile.png"){
+      var last_avatar="http://localhost:3000/assets/images/profile_uk.png";
+    }
+    else{
+      var last_avatar=avatar1.src;
+    }
     console.log('You Pass!'); 
     //window.location.pathname = '/emailverify'
     var FormRegis2 = {
       Email: $('#re03').val(),
       Password: $('#pass05').val(),
-      ProfilePic: avatar1.src,
+      ProfilePic: last_avatar,
       Firstname: $('#re01').val(),
       Lastname: $('#re02').val(),
       Birthday: BDDate,
@@ -212,13 +342,10 @@ $('#continue2').click(function () {
       Country:"ประเทศไทย",
       Province:last_province,
       City:last_city,
-      SoftSkill:[],
+      SoftSkill:last_sideskill,
       CertName:last_certname,
       CertPic:last_certpic,
       CertYear:last_certyear,
-      //Degree:[],
-      //Work_JobName: [],
-      //Work_JobType:[],
       Degree:last_degree,
       Facalty:last_faculty,
       Field_of_study:last_fos,
@@ -238,7 +365,6 @@ $('#continue2').click(function () {
       Job_JobName:last_jobname,
       Job_SkillName: last_jobskill,
       Job_Score: last_jobscore,
-      //Job_Score: last_jobscore,
       Job_Objective:last_jobobj,
     }
     console.log(FormRegis2);
@@ -254,7 +380,7 @@ $('#continue2').click(function () {
     $('.tab-list-item').removeClass('tab-list-active');
     $('#tab-1').addClass('tab-list-active')
     $('#registab1-content').show();
-  }
+  }}
 });
 
 /*var startYear = 1950;
@@ -411,15 +537,56 @@ ret2.addEventListener('keyup', function(){
     $('#re02').removeClass('is-invalid');
     $('#re02').addClass('is-valid');
   }});
-ret3 = document.getElementById('re03');                   
+ret3 = document.getElementById('re03');       
+var checkcaseEmail=0;            
 ret3.addEventListener('keyup', function(){
   var input=$(this);
   //console.log('Email : ' + input);
 	var re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 	var is_email=re.test(input.val());
-	if(is_email){input.removeClass("is-invalid").addClass("is-valid");}
-	else{input.removeClass("is-valid").addClass("is-invalid");}
+	if(is_email){
+    input.removeClass("is-invalid").addClass("is-valid");
+    checkcaseEmail=1;
+  }
+	else{
+    input.removeClass("is-valid").addClass("is-invalid");
+    checkcaseEmail=0;
+  }
 });
+/*
+ret3.addEventListener('keyup',function(){
+  var input=$(this).val();
+  //alert(input);
+  fetch("http://localhost:2000/kuay/"+input,
+		{ method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+		}
+  )
+    .then(function (response) {
+        //window.location.pathname = '/emailverify'
+        //alert(response.message);
+        if (!response.ok) {
+          if(response.statusText='Unauthorized'){
+            //alert("ใช้อีเมลนี้ได้จ้า");
+            $('#re03').removeClass('is-invalid');
+            $('#re03').addClass('is-valid');
+          }
+          //throw Error(response.statusText);
+        }
+        else{
+          //alert("มีอีเมลนี้แล้วในระบบ");
+        //window.location.href = "http://localhost:3000/emailverify";
+         $('#re03').removeClass('is-valid');
+         $('#re03').addClass('is-invalid');
+        }
+        return response;
+    }).catch(function(error) {
+        console.log(error);
+    });
+})*/
 var passw = 0;
 var min_pass_count = 8;
 var max_pass_count = 20;
@@ -521,136 +688,6 @@ $('.aboutmee').on('change', 'input', function(){
   
 });
 
-
-/*Tab7*/
-var list_sideskill = ["","",""];
-/*
-$(document).on("change", "#selectT7", function () {
-  if (document.getElementById("selectT7").selectedIndex != 0) {
-      $("#selectT7").removeClass("is-invalid");
-      removeOptions('selectT7');
-  }
-});
-*/
-var sskdd1 = '<div class="col-2">\
-                <div class="delbtn">\
-                <img class="obj-icon tooltips-item" src="assets/images/bin.png" type="button" data-bs-toggle="modal" toggle-type="dynamic"data-bs-target="#Modaltab7-1" id="valss1" alt="" width="30" height="30"/>\
-                </div>\
-              </div>\
-              </div>\
-              ';
-var sskdd2 = '<div class="col-2">\
-                <div class="delbtn">\
-                <img class="obj-icon tooltips-item" src="assets/images/bin.png" type="button" data-bs-toggle="modal" toggle-type="dynamic"data-bs-target="#Modaltab7-2" id="valss2" alt="" width="30" height="30"/>\
-                </div>\
-              </div>\
-              </div>\
-              ';
-var sskdd3 = '<div class="col-2">\
-              <div class="delbtn">\
-              <img class="obj-icon tooltips-item" src="assets/images/bin.png" type="button" data-bs-toggle="modal" toggle-type="dynamic"data-bs-target="#Modaltab7-3" id="valss3" alt="" width="30" height="30"/>\
-              </div>\
-            </div>\
-            </div>\
-            ';
-var sideskilldropdown1_1 = '<div class="container-fluid dropbtn-box form-f " id="ssl_1">\
-                              <div class="row">\
-                                <div class="col-10">\
-                                  <a class="textT7B">\
-                                  ';
-var sideskilldropdown1_2 = '<div class="container-fluid dropbtn-box form-f " id="ssl_2">\
-                                  <div class="row">\
-                                    <div class="col-10">\
-                                      <a class="textT7B">\
-                                      ';
-var sideskilldropdown1_3 = '<div class="container-fluid dropbtn-box form-f " id="ssl_3">\
-                              <div class="row">\
-                                <div class="col-10">\
-                                  <a class="textT7B">\
-                                  ';
-var sideskilldropdown2 = '</a>\
-                          </div>\
-                          ';
-var sideskill_count=0;
-var max_sideskill=3;
-var sumsideskill='';
-var valss_now='';
-
-var Dropdownsideskill1 = '<div class="row ddt7_1">\
-<div class="col-md-12">\
-  <select class="form-select dropbtn fff" id="ch1">\
-    <option selected disabled value="">เลือกหมวดทักษะเสริมที่ถนัด</option>\
-		<option value="Computer_Technology">Computer_Technology</option>\
-		<option value="Hard_Communication%20Skills">Hard_Communication Skills</option>\
-		<option value="Data_Analysis">Data_Analysis</option>\
-	  <option value="Certifications_and_Licenses">Certifications_and_Licenses</option>\
-		<option value="Marketing">Marketing</option>\
-		<option value="Project_Management">Project_Management</option>\
-		<option value="Design">Design</option>\
-		<option value="Cloud_Computing">Cloud_Computing</option>\
-		<option value="Writing">Writing</option>\
-		<option value="Mobile_&_Web_Development">Mobile&_Web_Development</option>\
-  	<option value="Network_Structure&_Security">NetworkStructure&_Security</option>\
-  </select>\
-</div>\
-<div class="col-md-12">\
-  <select class="form-select dropbtn" id="sideskilllist1">\
-    <option selected disabled value="">เลือกทักษะเสริมที่ถนัด</option>\
-  </select>\
-</div>\
-</div>\
-';
-
-var Dropdownsideskill2 = '<div class="row ddt7_2">\
-<div class="col-md-12">\
-  <select class="form-select dropbtn fff" id="ch2">\
-    <option selected disabled value="">เลือกหมวดทักษะเสริมที่ถนัด</option>\
-		<option value="Computer_Technology">Computer_Technology</option>\
-		<option value="Hard_Communication%20Skills">Hard_Communication Skills</option>\
-		<option value="Data_Analysis">Data_Analysis</option>\
-	  <option value="Certifications_and_Licenses">Certifications_and_Licenses</option>\
-		<option value="Marketing">Marketing</option>\
-		<option value="Project_Management">Project_Management</option>\
-		<option value="Design">Design</option>\
-		<option value="Cloud_Computing">Cloud_Computing</option>\
-		<option value="Writing">Writing</option>\
-		<option value="Mobile_&_Web_Development">Mobile&_Web_Development</option>\
-  	<option value="Network_Structure&_Security">NetworkStructure&_Security</option>\
-  </select>\
-</div>\
-<div class="col-md-12">\
-  <select class="form-select dropbtn" id="sideskilllist2">\
-    <option selected disabled value="">เลือกทักษะเสริมที่ถนัด</option>\
-  </select>\
-</div>\
-</div>\
-';
-
-var Dropdownsideskill3 = '<div class="row ddt7_3">\
-<div class="col-md-12">\
-  <select class="form-select dropbtn fff" id="ch3">\
-  <option selected disabled value="">เลือกหมวดทักษะเสริมที่ถนัด</option>\
-  <option value="Computer_Technology">Computer_Technology</option>\
-  <option value="Hard_Communication%20Skills">Hard_Communication Skills</option>\
-  <option value="Data_Analysis">Data_Analysis</option>\
-  <option value="Certifications_and_Licenses">Certifications_and_Licenses</option>\
-  <option value="Marketing">Marketing</option>\
-  <option value="Project_Management">Project_Management</option>\
-  <option value="Design">Design</option>\
-  <option value="Cloud_Computing">Cloud_Computing</option>\
-  <option value="Writing">Writing</option>\
-  <option value="Mobile_&_Web_Development">Mobile&_Web_Development</option>\
-  <option value="Network_Structure&_Security">NetworkStructure&_Security</option>\
-  </select>\
-</div>\
-<div class="col-md-12">\
-  <select class="form-select dropbtn" id="sideskilllist3">\
-    <option selected disabled value="">เลือกทักษะเสริมที่ถนัด</option>\
-  </select>\
-</div>\
-</div>\
-';
-
 function GetProvince(){
 	fetch("https://thaiaddressapi-thaikub.herokuapp.com/v1/thailand/provinces",
 		{ method: "GET", })
@@ -702,7 +739,7 @@ function GetDistrict(text){
 			});
 		
 }
-
+/*
 function Getchoicehardskill(typeC,number){
 	fetch("http://localhost:2000/register/" + typeC +"/hardskill",
 		{ method: "GET", })
@@ -729,7 +766,7 @@ function Getchoicehardskill(typeC,number){
 			  console.log(error);
 			});
 }
-
+*/
 function PostRegis(pack){
   fetch("http://localhost:2000/register",
 		{ method: "POST",
@@ -741,19 +778,17 @@ function PostRegis(pack){
   )
     .then(function (response) {
         //window.location.pathname = '/emailverify'
-        setInterval(window.location = "http://localhost:3000/emailverify", 10000);
-        return response.json();
-    })
-    .then(function (result) {
-        alert(result);
-    })
-    .catch((error) => {
-      res.status(500)
-      .json({
-          message:error
-      })
-  })
-  }
+        //alert(response.message);
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        console.log("ok");
+        window.location.href = "http://localhost:3000/emailverify";
+        return response;
+    }).catch(function(error) {
+        console.log(error);
+    });
+    }
 
     var FormRegis = {
       Email:"kohamatrio@gmail.com",
@@ -793,27 +828,4 @@ function PostRegis(pack){
       Job_JobName:[["โปรแกรมเมอร์"]],
       Job_SkillName:[["C","JQuery","HTML"]]
   }
-    
-
-  $(document).ready(function(){
-    console.log('script for registab3 loaded')
-  });
-  
-  var startYear4 = 1970;
-  var endYear4 = new Date().getFullYear();
-  for (i = endYear4; i > startYear4; i--) {
-    $('#year_higher').append($('<option />').val(i).html(i));
-    $('#year_secondary').append($('<option />').val(i).html(i));
-    $('#year_startwork').append($('<option />').val(i).html(i));
-    $('#year_endwork').append($('<option />').val(i).html(i));
-  }
-  
-  /*$('handleHigherSubmit').on('click',function() {
-    $("#registab3Modal1").modal("hide");
-  
-  });
-  
-  $('handleSecondaryubmit').on('click',function() {
-    $("#registab3Modal2").modal("hide");
-  });
-  */
+   

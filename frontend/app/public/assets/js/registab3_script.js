@@ -124,7 +124,7 @@ $(document).on("click", "#add_aca", function () {
   $("#aca_name").removeClass("is-invalid");
   $("#aca_degree").removeClass("is-invalid");
   $("#aca_faculty").removeClass("is-invalid");
-  $('#aca_grade').removeClass('is_invalid');
+  $('#aca_grade').removeClass('is-invalid');
   choose_function3 = 2;
   $('#registab3Modal1').modal('toggle');
   $('#aca_degree').prop('selectedIndex', 0);
@@ -145,7 +145,7 @@ $(document).on("click", "#edit-aca", function () {
   $("#aca_name").removeClass("is-invalid");
   $("#aca_degree").removeClass("is-invalid");
   $("#aca_faculty").removeClass("is-invalid");
-  $('#aca_grade').removeClass('is_invalid');
+  $('#aca_grade').removeClass('is-invalid');
   id_list_aca_edit = $(this).parents().attr('id');
   console.log(`edit:`, id_list_aca_edit);
   choose_function3 = 1;
@@ -232,7 +232,7 @@ document.getElementById("submit-aca").addEventListener("click", function () {
   $("#aca_name").removeClass("is-invalid");
   $("#aca_degree").removeClass("is-invalid");
   $("#aca_faculty").removeClass("is-invalid");
-  $('#aca_grade').removeClass('is_invalid');
+  $('#aca_grade').removeClass('is-invalid');
   name_aca = document.getElementById("aca_name").value;
   degree_aca = document.getElementById("aca_degree").value;
   faculty_aca = document.getElementById("aca_faculty").value;

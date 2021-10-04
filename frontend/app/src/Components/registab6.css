@@ -550,7 +550,7 @@ li.current2:hover{
     font-size: 16px;
     font-weight: 400;
     position: absolute;
-    bottom: 20vh;
+    top:23vw;
 }
 
 .limit-job-pos-3-red{

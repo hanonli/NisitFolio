@@ -5,6 +5,7 @@ export default function PortThumb({ item }) {
   let myId = "upload-id-"+item.id;
   let myPid = "pic-id-"+item.id;
   item.id === 1 && (backgroundColor = "#f4d6d2");
+  let myLabel = item.id === 1 ? item.id+' (ภาพหน้าปก)' : item.id;
   //item.id === "2" && (backgroundColor = "#f5f5f5");
 
   return (
@@ -18,7 +19,7 @@ export default function PortThumb({ item }) {
 		 
 		
 		<div class="sortable-label">
-		  {item.id}
+		  {myLabel}
 		</div>
 	</div>
   );
