@@ -5,6 +5,9 @@
 
 .myresume-choose-certi11 .icon-checkbox1111{
     visibility: hidden;
+    position: absolute;
+    left: 42%;
+    top: 22%; 
 }
 
 .myresume-choose-certi11 input[type=checkbox]:checked + label#list-certi33{
@@ -14,14 +17,14 @@
 
 .myresume-choose-certi11 input[type=checkbox]:checked + label#list-certi33 > .icon-checkbox1111{
     visibility: visible;
-    position: relative;
-    left: 11.5vw;
-    top: -9.5vh;
 }
 
 /*---------------- resume tab3 ----------------*/
 .myresume-choose-work11 .icon-checkbox1112{
     visibility: hidden;
+    position: absolute;
+    left: 42%;
+    top: 22%;    
 }
 
 .myresume-choose-work11 .t4-content{
@@ -35,7 +38,6 @@
 
 .myresume-choose-work11 input[type=checkbox]:checked + label#list-work-22 > .icon-checkbox1112{
     visibility: visible;
-    position: relative;
-    left: 10.6vw;
-    top: -11.6vh;
+
+
 }

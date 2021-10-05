@@ -17,8 +17,8 @@ var workdata = [
         "Work_End_Month": 6,
         "Work_Start_Year": 2013,
         "Work_End_Year": 2021,
-        "Salary_type": "รายได้ต่อเดือน",
-        "Salary": 35000,
+        "Salary_type": "ไม่ระบุ",
+        "Salary": 0,
         "Infomation": "Duel"
     },
     {
@@ -29,9 +29,9 @@ var workdata = [
         "Work_JobType": "partime",
         "Company": "kaiba crop",
         "Work_Start_Month": 7,
-        "Work_End_Month": 9,
-        "Work_Start_Year": 2012,
-        "Work_End_Year": 2021,
+        "Work_End_Month": 0,
+        "Work_Start_Year": 2021,
+        "Work_End_Year": 0,
         "Salary_type": "รายได้ต่อเดือน",
         "Salary": 35000,
         "Infomation": "Duel"
@@ -130,9 +130,55 @@ class Chooseresume2 extends React.Component {
     render() {
         let result = [];
         let listwork = [];
+        let end_work;
+        let mysalarywork;
+        let mycompanywork;
         workdata.sort(compareValues('Work_Start_Year', 'desc'));
         workdata.forEach(ele => {
             isCheck_work[ele.WorkHistory_id] = false;
+            end_work = [];
+            if (ele.Work_End_Month === 99 && ele.Work_End_Year === 9999) {
+                end_work.push(<div class="font-titlet4_1">สิ้นสุดยังอยู่ในงาน</div>);
+            }
+            else if (ele.Work_End_Month === 0 && ele.Work_End_Year === 0) {
+                end_work.push(<div class="font-titlet4_1"></div>);
+            }
+            else if (ele.Work_End_Month === 0 && ele.Work_End_Year != 0) {
+                end_work.push(<div class="font-titlet4_1">สิ้นสุด -/{ele.Work_End_Year}</div>);
+            }
+            else if (ele.Work_End_Month != 0 && ele.Work_End_Year === 0) {
+                if (ele.Work_End_Month <= 9) {
+                    end_work.push(<div class="font-titlet4_1">สิ้นสุด 0{ele.Work_End_Month}/-</div>);
+                }
+                else {
+                    end_work.push(<div class="font-titlet4_1">สิ้นสุด {ele.Work_End_Month}/-</div>);
+                }
+            }
+            else {
+                if (ele.Work_End_Month <= 9) {
+                    end_work.push(<div class="font-titlet4_1">สิ้นสุด 0{ele.Work_End_Month}/{ele.Work_End_Year}</div>);
+                }
+                else {
+                    end_work.push(<div class="font-titlet4_1">สิ้นสุด {ele.Work_End_Month}/{ele.Work_End_Year}</div>);
+                }
+            }
+            mysalarywork = [];
+            if (ele.Salary_type === "ไม่ระบุ" && ele.Salary == 0) {
+                mysalarywork.push(<div class="col font-titlet4_2"></div>);
+            }
+            else if (ele.Salary_type != "ไม่ระบุ" && ele.Salary == 0) {
+                mysalarywork.push(<div class="col font-titlet4_2">- บาท</div>);
+            }
+            else {
+                mysalarywork.push(<div class="col font-titlet4_2">{ele.Salary} บาท</div>);
+            }
+            mycompanywork = [];
+            if (ele.Company == "none") {
+                mycompanywork.push(<div class="font-titlet4_1 font-boldt3">-</div>);
+            }
+            else {
+                mycompanywork.push(<div class="font-titlet4_1 font-boldt3">{ele.Company}</div>);
+            }
             if (year_before_work != ele.Work_Start_Year) {
                 if (listwork.length != 0) {
                     result.push(
@@ -160,17 +206,17 @@ class Chooseresume2 extends React.Component {
                             <h5 class="col font-titlet4 font-boldt31">{ele.Work_JobName}</h5>
                             <div class="row">
                                 <div class="col font-titlet4_1">
-                                    <div class="font-titlet4_1 font-boldt3">{ele.Company}</div>
+                                    {mycompanywork}
                                     <div class="font-titlet4_1">เริ่มต้น {ele.Work_Start_Month}/{ele.Work_Start_Year}</div>
-                                    <div class="font-titlet4_1">สิ้นสุด {ele.Work_End_Month}/{ele.Work_End_Year}</div>
+                                    {end_work}
                                 </div>
                                 <div class="col-2 newline-text123">{ele.Infomation}</div>
                             </div>
                             <div class="row">
                                 <div class="col-3 font-salary font-boldt3">{ele.Salary_type}</div>
-                                <div class="col font-titlet4_2">{ele.Salary} บาท</div>
+                                {mysalarywork}
                             </div>
-                            <div class="icon-checkbox1112"><img height="110" src="assets/images/check_black.png"></img></div>
+                            <img class="icon-checkbox1112" height="110" src="assets/images/check_black.png"></img>
                         </label>
                     </div>
                 );
@@ -191,17 +237,17 @@ class Chooseresume2 extends React.Component {
                             <h5 class="col font-titlet4 font-boldt31">{ele.Work_JobName}</h5>
                             <div class="row">
                                 <div class="col font-titlet4_1">
-                                    <div class="font-titlet4_1 font-boldt3">{ele.Company}</div>
+                                    {mycompanywork}
                                     <div class="font-titlet4_1">เริ่มต้น {ele.Work_Start_Month}/{ele.Work_Start_Year}</div>
-                                    <div class="font-titlet4_1">สิ้นสุด {ele.Work_End_Month}/{ele.Work_End_Year}</div>
+                                    {end_work}
                                 </div>
                                 <div class="col-2 newline-text123">{ele.Infomation}</div>
                             </div>
                             <div class="row">
                                 <div class="col-3 font-salary font-boldt3">{ele.Salary_type}</div>
-                                <div class="col font-titlet4_2">{ele.Salary} บาท</div>
+                                {mysalarywork}
                             </div>
-                            <div class="icon-checkbox1112"><img height="110" src="assets/images/check_black.png"></img></div>
+                            <img class="icon-checkbox1112" height="110" src="assets/images/check_black.png"></img>
                         </label>
                     </div>
                 );
