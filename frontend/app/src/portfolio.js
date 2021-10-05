@@ -197,6 +197,7 @@ class Portfolio extends React.Component {
 			//return;
 			if(portMode == 'new'){
 				refThis.setState({ render:  false });
+				//console.log(picsUrl);
 				fetch("http://localhost:2000/portfolio",{
 					method: "POST",
 					headers: {
@@ -474,52 +475,62 @@ class Portfolio extends React.Component {
 				  input.click();
 				});
 			
-				
-				
 				input.addEventListener('change', function (e) {
-				var files = e.target.files;
-				//alert(e.target.files[0].size);
-				if(e.target.files[0].size > 1048576*maxFileSizeInMb){
-					   //alert("You can't upload file larger than 3 MB");
-					    $modalFile.modal('show');
-					   this.value = "";
-					   return;
-				};
+					var files = e.target.files;
+					var remSpace = 5 - refThis.state.list.length;
+					if(files){
+						for (var i = 0; i < files.length; i++) {
+							if(i >= remSpace) break;
+							var uFile = new File([files[i]], userId+'_'+uuidv4(), {type: files[i].type});
+							AddImageToSortable(URL.createObjectURL(files[i]),uFile);
+						}
+					}
+				});
 				
-				var done = function (url) {
-				  input.value = '';
-				  image.src = url;
-				  $alert.hide();
-				  $modal.modal('show');
-				};
-				var reader;
-				var file;
-				var url;
-
-				if (files && files.length > 0) {
-				  file = files[0];
-
-				  if (URL) {
-					done(URL.createObjectURL(file));
-				  } else if (FileReader) {
-					reader = new FileReader();
-					reader.onload = function (e) {
-					  done(reader.result);
+				/*input.addEventListener('change', function (e) {
+					var files = e.target.files;
+					//alert(e.target.files[0].size);
+					if(e.target.files[0].size > 1048576*maxFileSizeInMb){
+						   //alert("You can't upload file larger than 3 MB");
+							$modalFile.modal('show');
+						   this.value = "";
+						   return;
 					};
-					reader.readAsDataURL(file);
-				  }
-				}
-			  });
+					
+					var done = function (url) {
+					  input.value = '';
+					  image.src = url;
+					  $alert.hide();
+					  $modal.modal('show');
+					};
+					var reader;
+					var file;
+					var url;
+
+					if (files && files.length > 0) {
+					  file = files[0];
+
+					  if (URL) {
+						done(URL.createObjectURL(file));
+					  } else if (FileReader) {
+						reader = new FileReader();
+						reader.onload = function (e) {
+						  done(reader.result);
+						};
+						reader.readAsDataURL(file);
+					  }
+					}
+				  });
 			  
 			   $modal.on('shown.bs.modal', function () {
-			cropper = new window.Cropper(image, {
-			  aspectRatio: 16/9,
-			  viewMode: 1,
-			});
-		  }).on('hidden.bs.modal', function () {
-			cropper.destroy();
-			cropper = null;
-		  });
+					cropper = new window.Cropper(image, {
+					 // aspectRatio: 16/9,
+					  viewMode: 1,
+					});
+				  }).on('hidden.bs.modal', function () {
+					cropper.destroy();
+					cropper = null;
+				  });
 		  
 		  document.getElementById('crop').addEventListener('click', function () {
 			var initialAvatarURL;
@@ -528,8 +539,8 @@ class Portfolio extends React.Component {
 			$modal.modal('hide');
 			if (cropper) {
 			  canvas = cropper.getCroppedCanvas({
-				/*width: 320,
-				height: 180,*/
+				//width: 320,
+				//height: 180,
 				minWidth: 320,
 				minHeight: 180,
 				maxWidth: 3200,
@@ -543,11 +554,11 @@ class Portfolio extends React.Component {
 			  console.log(avatar.src);
 			  $alert.removeClass('alert-success alert-warning');
 			  canvas.toBlob(function (blob) {
-				/*alert('new form!');
-				var formData = new FormData();
+				//alert('new form!');
+				//var formData = new FormData();
 
-				formData.append('avatar', blob, 'avatar.jpg');
-				console.log("HELLO LV5!");*/
+				//formData.append('avatar', blob, 'avatar.jpg');
+				//console.log("HELLO LV5!");
 				var file = new File([blob], userId+'_'+uuidv4()+".png", { lastModified: new Date().getTime(), type: blob.type });
 				//pendingUploads.push(file);
 				AddImageToSortable(avatar.src,file);
@@ -556,7 +567,7 @@ class Portfolio extends React.Component {
 			
 			
 			
-		  });
+		  });*/
 		
 		
 			ResetSortableContent();
@@ -711,7 +722,7 @@ class Portfolio extends React.Component {
 					});
 					
 					
-					var nImg = document.getElementById('upload-id-'+lid);
+					var nImg = document.getElementById('upload-oid-'+lid);
 				//alert('upload-id-'+lid);
 				nImg.src = getImg; 
 				// allow upload for last button
@@ -790,7 +801,7 @@ class Portfolio extends React.Component {
 			var imgList = [];
 			// store images
 			for (let i = 0; i < refThis.state.list.length; i++) {
-				imgList.push(document.getElementById('upload-id-'+(i+1)).src);
+				imgList.push(document.getElementById('upload-oid-'+(i+1)).src);
 			}
 			if(Number(ref.id.slice(-1)) < 5 && !isFull){
 				//alert('cut case!');
@@ -829,7 +840,7 @@ class Portfolio extends React.Component {
 					setTimeout(function() {
 						for (let i = Did; i <= refThis.state.list.length; i++) {
 							//alert('start: '+Did+' end: '+refThis.state.list.length+' i: '+i);
-							document.getElementById('upload-id-'+i).src = imgList[i];
+							document.getElementById('upload-oid-'+i).src = imgList[i];
 						}
 					}, 10);
 					var idd = refThis.state.list.length+1;
@@ -858,7 +869,7 @@ class Portfolio extends React.Component {
 						var temp = refThis.state.list;
 						for (let i = Did; i <= refThis.state.list.length; i++) {
 							//alert('start: '+Did+' end: '+refThis.state.list.length+' i: '+i);
-							document.getElementById('upload-id-'+i).src = imgList[i];
+							document.getElementById('upload-oid-'+i).src = imgList[i];
 							/*alert(i);
 							console.log(temp[i-1].img);
 							console.log(temp[i].img);*/
@@ -905,13 +916,13 @@ class Portfolio extends React.Component {
 			var imgList = [];
 			for (let i = 0; i < temp.length; i++) {
 				var bid = refThis.state.list[i].id;
-				imgList.push(document.getElementById('upload-id-'+bid).src);
+				imgList.push(document.getElementById('upload-oid-'+bid).src);
 			}
 			for (let i = 0; i < temp.length; i++) {
 			  temp[i].id = i+1;
 			  temp[i].name = 'Img'+(i+1);
 			  var bid = refThis.state.list[i].id;
-			  document.getElementById('upload-id-'+bid).src = imgList[i];
+			  document.getElementById('upload-oid-'+bid).src = imgList[i];
 			}
 			refThis.setState({ list: temp }); 
 			/*setTimeout(function() { 
@@ -953,7 +964,7 @@ class Portfolio extends React.Component {
 			<div className="Portfolio">
 				<form >
 				<div class="outer-full port-bg">
-					<input type="file" id="input" accept="image/*" name="image" hidden />
+					<input type="file" id="input" multiple="multiple" accept="image/*" name="image" hidden />
 					< Navbar/>
 
 				    <div class="port-pic-uploadable" id="inner-fixed-folio-2">
@@ -1018,12 +1029,12 @@ class Portfolio extends React.Component {
 								<Select 
 									isMulti 
 									value={this.state.values}
-									//options={ this.state.values.length >= 3 ? this.state.values : this.state.options }
-									options={ this.state.options }
+									options={ this.state.values.length >= 3 ? this.state.values : this.state.options }
+									//options={ this.state.options }
 									placeholder={'ระบุตำแหน่งงาน (สูงสุด 3 ตำแหน่ง)'} 
 									onChange={values => this.setState({ values })}
 									noOptionsMessage={() => null}
-									//isSearchable={this.state.values.length >= 3 ? false : true}
+									isSearchable={this.state.values.length >= 3 ? false : true}
 								/>
 							</div>
 						

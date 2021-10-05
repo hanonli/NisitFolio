@@ -27,7 +27,10 @@ class PortRoot extends React.Component {
 		console.log("YEAHXXX!");
 		
 		var pftDiv = '<div class="lb-container" id={id}>\
-							<img class="pft-i" src="{img}" alt=""/>\
+							<div class="pft-ibox">\
+								<img class="pft-bg" src="assets/images/black.jpg" alt=""/>\
+								<img class="pft-i" src="{img}" alt=""/>\
+							</div>\
 							<div class="hover-box">\
 								<img class="pft-overlay" src="assets/images/black.jpg" alt=""/>\
 								<img class="pft-lock-icon" src="{privacy}" alt=""/>\
