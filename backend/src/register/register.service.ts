@@ -184,7 +184,7 @@ export class RegisterService {
     }
     let avg_score = sum_score / count_skill;
     
-    //await this.emailConfirmationService.sendVerificationLink(createDto.Email);
+    await this.emailConfirmationService.sendVerificationLink(createDto.Email);
     userinfo.AvgScore = avg_score;
     userinfo.totalBookmark = 0;
     userinfo.tags = tag_arr;

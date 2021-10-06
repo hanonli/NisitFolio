@@ -78,7 +78,10 @@ var profile_list_no_tag = '<div class="sbm-list-entity">\
 var work_grid = '<header class="header hsbm-pad round sbm-clickable" id="{id}">\
 					<div class="pf-entity-flex">\
 						<div class="pf-start-port">\
-							<img class="pf-port-image round" type="button" id="avatar" src="{img}" />\
+							<div class="pf-port-image round" type="button" id="avatar" />\
+								<img class="pf-port-top" src="{img}" />\
+								<img class="pf-port-bottom" src="assets/images/black.jpg" />\
+							</div>\
 						</div>\
 						<div class="pf-center-port">\
 							<div class="pf-port-name">{name}</div>\
@@ -95,7 +98,10 @@ var work_list = '<div class="sbm-list-entity">\
 					<header class="header hsbm-pad round sbm-clickable" id="{id}">\
 						<div class="pf-entity-flex">\
 							<div class="pf-start-port-list">\
-								<img class="pf-port-image round" type="button" id="avatar" src="{img}" />\
+								<div class="pf-port-image round" type="button" id="avatar" />\
+									<img class="pf-port-top" src="{img}" />\
+									<img class="pf-port-bottom" src="assets/images/black.jpg" />\
+								</div>\
 							</div>\
 							<div class="pf-center-port-list">\
 								<div class="pf-port-name-list">{name}</div>\

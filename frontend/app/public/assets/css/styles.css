@@ -1213,9 +1213,28 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 }
 
 .pf-port-image{
+	overflow: hidden;
+	position: relative;
 	height: 100px;
 	width: 177.7777px;
 	border-radius: 16px;
+}
+
+.pf-port-top{
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%);
+	height: 100%;
+	width: auto;
+	z-index: 1;
+}
+
+.pf-port-bottom{
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%);
+	height: 100%;
+	width: 100%;
 }
 
 .pf-center{
@@ -1544,6 +1563,7 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 }
 
 .hover-box{
+	z-index: 2;
 	opacity: 0%;
 	transition: all 0.5s ease;
 }
@@ -1732,10 +1752,26 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 
 .pft-c {
 	/*cursor: pointer;*/
+	position: relative;
 	height: 472.5px;
 	width: 840px;
 	flex: 0 0 auto;
     margin-right: 3px;
+}
+
+.pft-uc {
+	z-index:1;
+	position: absolute;
+	height: 100%;
+	width: auto;
+	left: 50%;
+	transform: translate(-50%);
+}
+
+.pft-ub {
+	position: absolute;
+	height: 100%;
+	width: 100%;
 }
 
 .md-round{
@@ -1808,6 +1844,7 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 
 .pft-s {
 	/*cursor: pointer;*/
+	position: relative;
 	height: 472.5px;
 	width: 840px;
 	/*flex: 0 0 auto;
@@ -1815,6 +1852,7 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 }
 
 .pft-d {
+	position: relative;
 	/*cursor: pointer;*/
 	height: 472.5px;
 	width: 840px;
@@ -1882,10 +1920,34 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
     border-top: 4px solid #C7C7C7;
 }
 
-.pft-i{
+.pft-ibox{
 	cursor: pointer;
 	height: 286.875px;
 	width: 510px;
+	pointer-events: none;
+	position: relative;
+}
+
+.pft-i{
+	z-index: -1;
+	position: absolute;
+	cursor: pointer;
+	height: 100%;
+	width: auto;
+	left: 50%;
+	transform: translate(-50%);
+}
+
+.pft-bg{
+	z-index: -1;
+    position: absolute;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    left: 0%;
+	/* top: 50%; */
+    /* transform: translate(-50%, -50%); */
+    /* pointer-events: none; */
 }
 
 .nf-flex{
@@ -3125,13 +3187,14 @@ body {
 }
 
 .sortable-thumbnail-pic{
+	overflow: hidden;
 	cursor: grab;
 	position: relative;
 	display: flex;
 	font-size: 2vh;
 	/*padding: 1vh;*/
 	border-radius: 2vh;
-	height: 20vh;
+	height: 21vh;
 	/*width: 35vh;*/
 	background: #C7C7C7;
 	justify-content: center;
@@ -3140,6 +3203,29 @@ body {
 	-moz-transition: filter 0.2s ease-in-out;
 	-o-transition: filter 0.2s ease-in-out;
 	transition: filter 0.2s ease-in-out;
+}
+
+.sortable-thumbnail-pic-overlay{
+	cursor: grab;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	height: 100%;
+	width: auto;
+	max-height:100%; 
+	max-width:100%;
+	z-index: 1;
+	/*height: 20vh;
+	width: auto;*/
+}
+
+.sortable-thumbnail-pic-underlay{
+	cursor: grab;
+	height: 100%;
+	width: 100%;
+	/*height: 20vh;
+	width: auto;*/
 }
 
 .sortable-thumbnail-pic-n{
