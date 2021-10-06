@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Navbar from './Components/navbar';
-import Resume_sideNavbar from './Components/navbar_resume';
-import MyResumeContent from './Components/myresumeContent';
+// import Resume_sideNavbar from './Components/navbar_resume';
+// import MyResumeContent from './Components/myresumeContent';
 import reportWebVitals from './reportWebVitals';
 import Resume_topNavbar from './Components/navbar_top_resume';
 
@@ -32,9 +32,9 @@ class MyResume extends React.Component {
 	
 	render (){
 		return (
+			
 			<div className="Home">
 				<Navbar />
-				<Resume_sideNavbar/>
 				<Resume_topNavbar/>
 			</div>
 		);

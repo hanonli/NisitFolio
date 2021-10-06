@@ -23,7 +23,7 @@ import  UserReq   from "src/users/user.entity";
     TypeOrmModule.forFeature([UserReq ]),
     JwtModule.register({
       secret: jwtConstants.secret,
-      signOptions: { expiresIn: '60m' },
+      signOptions: { expiresIn: '10h' },
     })
     
   ],

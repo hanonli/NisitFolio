@@ -10,6 +10,23 @@ import reportWebVitals from './reportWebVitals';
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import cookie from 'react-cookies'
+import { uploadFile } from 'react-s3';
+import { v4 as uuidv4 } from 'uuid';
+
+
+const S3_BUCKET ='nisitfolio';
+const REGION ='ap-southeast-1';
+const ACCESS_KEY ='AKIAWGHRNY32XLWEVA62';
+const SECRET_ACCESS_KEY ='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';
+const DIR_NAME = 'images';
+
+const config = {
+    bucketName: S3_BUCKET,
+    region: REGION,
+    accessKeyId: ACCESS_KEY,
+    secretAccessKey: SECRET_ACCESS_KEY,
+	dirName: DIR_NAME,
+}
 
 class Home extends React.Component {
 	constructor(props) {
@@ -22,9 +39,12 @@ class Home extends React.Component {
 	 }
 	
 	componentDidMount() {
+		var refThis = this;
+		
 		window.addEventListener('load', this.handleLoad);
 		console.log("YEAHXXX!");
 		var token = cookie.load('login-token');
+		var userId = null;
 		console.log(token);
 		 
 		 fetch("http://localhost:2000/profile/",{
@@ -46,9 +66,18 @@ class Home extends React.Component {
 			  }else{
 				  // alert('set cookie as '+text);
 				cookie.save('login-user', text, { path: '/' })
+				userId = text;
 			  }
 			});
 		 });
+		 
+		function UploadProfileToS3(file){
+			uploadFile(file, config)
+				.then(data => { 
+					UploadProfile(data.location);
+				})
+				.catch(err => console.error(err))
+		}
 		
 		fetch("http://localhost:2000/homepage/",{
 			method: "GET",
@@ -84,21 +113,129 @@ class Home extends React.Component {
 				script.src = "assets/js/home.js";
 				script.async = true;
 				document.body.appendChild(script);*/
-				$.getScript('assets/js/home.js');
 				
+				//$.getScript('assets/js/home.js');
+
+				  var avatar = document.getElementById('avatar');
+				  var image = document.getElementById('image');
+				  var input = document.getElementById('input');
+				  var $alert = $('.alert');
+				  var $modal = $('#modal');
+				  var cropper;
+					
+					avatar.addEventListener('click', function () {
+						input.click();
+						// console.log("Click on profile!");
+					});
+
+				  input.addEventListener('change', function (e) {
+					var files = e.target.files;
+					var done = function (url) {
+					  input.value = '';
+					  image.src = url;
+					  $alert.hide();
+					  $modal.modal('show');
+					};
+					var reader;
+					var file;
+					var url;
+
+					if (files && files.length > 0) {
+					  file = files[0];
+
+					  if (URL) {
+						done(URL.createObjectURL(file));
+					  } else if (FileReader) {
+						reader = new FileReader();
+						reader.onload = function (e) {
+						  done(reader.result);
+						};
+						reader.readAsDataURL(file);
+					  }
+					}
+				  });
+
+				  $modal.on('shown.bs.modal', function () {
+					cropper = new window.Cropper(image, {
+					  aspectRatio: 1,
+					  viewMode: 1,
+					});
+				  }).on('hidden.bs.modal', function () {
+					cropper.destroy();
+					cropper = null;
+				  });
+
+				  document.getElementById('crop').addEventListener('click', function () {
+					var initialAvatarURL;
+					var canvas;
+
+					$modal.modal('hide');
+					if (cropper) {
+					  canvas = cropper.getCroppedCanvas({
+						minWidth: 150,
+						minHeight: 150,
+						maxWidth: 2048,
+						maxHeight: 2048,
+					  });
+					  initialAvatarURL = avatar.src;
+					  avatar.src = canvas.toDataURL();
+					  console.log(avatar.src);
+					  $alert.removeClass('alert-success alert-warning');
+					  canvas.toBlob(function (blob) {
+						//var formData = new FormData();
+						//formData.append('avatar', blob, 'avatar.jpg');
+						//console.log("HELLO LV5!");
+						var file = new File([blob], userId+'_pf_'+uuidv4(), { lastModified: new Date().getTime(), type: blob.type });
+						UploadProfileToS3(file);
+					  });
+					}
+				  });
+
 				$('#crop').on('click', function(){
 					 //alert('Crop!');
 					setTimeout(function() { UploadProfile(); }, 300);
 				});
+				
+				$('#editport').on('click', function(){
+					 //alert('Crop!');
+					cookie.save('port-entry', 'new', { path: '/' })
+					refThis.setState({ redirect: "/editport" });
+				});
+				
+				
+				$('#mrs').on('click', function(){
+					fetch("http://localhost:2000/myresume/",{
+						method: "GET",
+						headers: {
+							'Authorization': 'Bearer '+token,
+							"Access-Control-Allow-Origin": "*",
+							"Access-Control-Allow-Methods": "*",
+							"Access-Control-Allow-Credentials": true,
+							"Content-Type": "application/json"
+						},
+					})
+					.then(function(response) {
+						return response.text().then(function(text) {
+						  if(text == '[]'){ 
+							//alert('isEmpty!')
+							refThis.setState({ redirect: "/Choosenothing" });
+						  }else{
+							//alert('Go!');
+							refThis.setState({ redirect: "/myresume" });
+						  }
+						});
+					 });
+				});
+				
 			}).catch((error) => {
 				console.log('Token Error!');
 				this.setState({ redirect: "/landing" });
 			});
 			
-			function UploadProfile(){
+			function UploadProfile(picUrl){
 				//alert(111);
 					var data = {
-						"ProfilePic":$('#avatar').attr('src'),
+						"ProfilePic":picUrl,
 					}
 					
 					fetch("http://localhost:2000/register/",{
@@ -121,7 +258,6 @@ class Home extends React.Component {
 						//this.setState({ redirect: "/landing" });
 					});
 			}
-			
 			 
 			
 	}
@@ -149,7 +285,7 @@ class Home extends React.Component {
 							<div class="container">     
 								<div class="row align-items-end">
 									<div class="col-md-7">
-										<img class="profile-image img-fluid float-start rounded-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="อัพโหลดรูปโปรไฟล์" type='button' id="avatar" src="assets/images/profile_uk.png" alt="profile image" />
+										<img class="profile-image img-fluid float-start rounded-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="อัพโหลดรูปโปรไฟล์" type='button' id="avatar" src="assets/images/profile_uk.png" width="150" height="150" alt="profile image" />
 										<input type="file" class="sr-only" id="input" accept="image/*" name="image" hidden />
 										<div class="profile-content">
 											<h1 class="name" id="fetch-name"></h1>
@@ -162,15 +298,15 @@ class Home extends React.Component {
 										 <div class="lg-view float-end">
 											<Link to="/editprofile">
 												<a class="btn btn-cta-primary round profile-button grey margin-right-m" target="_blank">แก้ไขโปรไฟล์</a>
-											</Link>        
-											<a class="btn btn-cta-primary-yellow round profile-button" href="#" target="_blank">เพิ่มกิจกรรมของคุณ</a>
+											</Link>       
+											<a class="btn btn-cta-primary-yellow round profile-button" id="editport" target="_blank">เพิ่มกิจกรรมของคุณ</a> 
 										</div>
 										
 										<div class="sm-view">
 											<Link to="/editprofile">
 												<a class="btn btn-cta-primary round profile-button grey margin-right-m" target="_blank">แก้ไขโปรไฟล์</a>
 											</Link>        
-											<a class="btn btn-cta-primary-yellow round profile-button" href="#" target="_blank">เพิ่มกิจกรรมของคุณ</a>
+											<a class="btn btn-cta-primary-yellow round profile-button" id="editport" target="_blank">เพิ่มกิจกรรมของคุณ</a> 
 										</div>
 										
 									</div>
@@ -204,13 +340,11 @@ class Home extends React.Component {
 					<div class="container-fluid md-view" id="inner-home">
 						<div class="d-flex df-f justify-content-center align-items-center">
 							<div class="row">
-								<div class="col-md-auto">
-									<Link to="/myresume">
-										<div class="transition-component scale-up-s resume-icon" id="cross-fade">
-											<img class="resume-icon bottom" src="assets/images/myresume2.png" type='button' id="myresume-home" alt="" />
-											<img class="resume-icon top" src="assets/images/myresume1.png" type='button' id="myresume-home" alt="" />
-										</div>
-									</Link>
+								<div class="col-md-auto" id="mrs">
+									<div class="transition-component scale-up-s resume-icon" id="cross-fade">
+										<img class="resume-icon bottom" src="assets/images/myresume2.png" type='button' id="myresume-home" alt="" />
+										<img class="resume-icon top" src="assets/images/myresume1.png" type='button' id="myresume-home" alt="" />
+									</div>
 								</div>
 								<div class="col-md-auto">
 									<Link to="/portfolio">

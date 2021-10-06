@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import Select, { NonceProvider } from 'react-select'
-import AsyncSelect from 'react-select-async-paginate'
+import AsyncSelectP from 'react-select-async-paginate'
+import { useState } from 'react';
+import AsyncSelect from 'react-select/async';
+import axios from 'axios';
+import $ from 'jquery';
 
 const options = [
   { value: 'Technical', label: 'Technical' },
@@ -14,19 +18,6 @@ const options = [
   { value: 'Design', label: 'Design' }
 ]
 
-const opT7 = [
-  { value: 'Computer_Technology', label: 'Computer_Technology' },
-  { value: 'Hard_Communication%20Skills', label: 'Hard_Communication Skills' },
-  { value: 'Data_Analysis', label: 'Data_Analysis' },
-  { value: 'Certifications_and_Licenses', label: 'Certifications_and_Licenses' },
-  { value: 'Marketing', label: 'Marketing' },
-  { value: 'Project_Management', label: 'Project_Management' },
-  { value: 'Design', label: 'Design' },
-  { value: 'Cloud_Computing', label: 'Cloud_Computing' },
-  { value: 'Mobile_&_Web_Development', label: 'Mobile_&_Web_Development' },
-  { value: 'Network_Structure&_Security', label: 'Network_Structure&_Security' },
-  
-]
 const customStyles = {
     option: (provided, state) => ({
         ...provided,
@@ -77,32 +68,114 @@ const customStyles = {
         backgroundColor: 'rgba(205,205,205,1)',
       }
     }),
+  }
   
-    singleValue: (provided, state) => {
-      const opacity = state.isDisabled ? 0.5 : 1;
-      const transition = 'opacity 300ms';
-  
-      return { ...provided, opacity, transition };
-    }
+  class dropdownt7 extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      selectOptions : [],
+      id: "",
+      name: '',     
+      opT7 : [
+        { value: 'Computer_Technology', label: 'ทักษะคอมพิวเตอร์' },
+        { value: 'Hard_Communication%20Skills', label: 'ทักษะการสื่อสาร' },
+        { value: 'Data_Analysis', label: 'ทักษะการวิเคราะห์ดาต้า' },
+        { value: 'Certifications_and_Licenses', label: 'ทักษะที่ใช้ใบประกอบวิชาชีพ' },
+        { value: 'Marketing', label: 'ทักษะการตลาด' },
+        { value: 'Project_Management', label: 'ทักษะการบริหารโปรเจค' },
+        { value: 'Design', label: 'ทักษะการออกแบบ' },
+        { value: 'Cloud_Computing', label: 'ทักษะเกี่ยวกับ Cloud_Computing' },
+        { value: 'Mobile_&_Web_Development', label: 'การพัฒนาเว็ปแอปพลิเคชั่นและ Mobile App' },
+        { value: 'Network_Structure_&_Security', label: 'เน็ตเวิร์คและซีเคียวริตี้' },
+        
+      ],
+      checkddt7: 0,
+      startval: null
+          }
+    
   }
 
+  async getOptions(typeC){
+    const res = await axios.get("http://localhost:2000/register/" + typeC +"/hardskill")
+    const data = res.data
+    //console.log(res);
+    if(res.data==[]){
+      this.setState({opT7:[
+        { value: 'Computer_Technology', label: 'ทักษะคอมพิวเตอร์' },
+        { value: 'Hard_Communication%20Skills', label: 'ทักษะการสื่อสาร' },
+        { value: 'Data_Analysis', label: 'ทักษะการวิเคราะห์ดาต้า' },
+        { value: 'Certifications_and_Licenses', label: 'ทักษะที่ใช้ใบประกอบวิชาชีพ' },
+        { value: 'Marketing', label: 'ทักษะการตลาด' },
+        { value: 'Project_Management', label: 'ทักษะการบริหารโปรเจค' },
+        { value: 'Design', label: 'ทักษะการออกแบบ' },
+        { value: 'Cloud_Computing', label: 'ทักษะเกี่ยวกับ Cloud_Computing' },
+        { value: 'Mobile_&_Web_Development', label: 'การพัฒนาเว็ปแอปพลิเคชั่นและ Mobile App' },
+        { value: 'Network_Structure_&_Security', label: 'เน็ตเวิร์คและซีเคียวริตี้' },
+        
+      ],checkddt7: 0})
+    }
+    else{
+      const options = data.map(d => ({
+        "value" : d.Name,
+        "label" : d.THName
+  
+      }))
+      //console.log(options);
+      this.setState({opT7: options,checkddt7: 1})
+    }
 
-function CustomSelect(props){
-	return <div>
-		<Select styles={customStyles} id='selectT7' placeholder="เลือกหมวดทักษะเสริมที่ถนัด">
-									<option value='Computer_Technology'>Computer_Technology</option>
-									<option value='Hard_Communication%20Skills'>Hard_Communication Skills</option>
-									<option value='Data_Analysis'>Data_Analysis</option>
-									<option value='Certifications_and_Licenses'>Certifications_and_Licenses</option>
-									<option value='Marketing'>Marketing</option>
-									<option value='Project_Management'>Project_Management</option>
-									<option value='Design'>Design</option>
-									<option value='Cloud_Computing'>Cloud_Computing</option>
-									<option value='Writing'>Writing</option>
-									<option value='Mobile_&_Web_Development'>Mobile_&_Web_Development</option>
-									<option value='Network_Structure&_Security'>NetworkStructure&_Security</option>
-        </Select>
-	</div>
+  }
+
+  handleChange(e){
+   this.setState({id:e.value, name:e.label,startval:e})
+   var neww='';
+   neww = e.label;
+   //console.log(neww);
+   //console.log("http://localhost:2000/register/" + e.value +"/hardskill");
+   if(this.state.checkddt7==0){
+    this.getOptions(e.value);
+   }
+   const inputText = e.label;
+   if(this.state.checkddt7==1){
+    this.setState({
+      value: inputText,
+      opT7:[
+        { value: 'Computer_Technology', label: 'ทักษะคอมพิวเตอร์' },
+        { value: 'Hard_Communication%20Skills', label: 'ทักษะการสื่อสาร' },
+        { value: 'Data_Analysis', label: 'ทักษะการวิเคราะห์ดาต้า' },
+        { value: 'Certifications_and_Licenses', label: 'ทักษะที่ใช้ใบประกอบวิชาชีพ' },
+        { value: 'Marketing', label: 'ทักษะการตลาด' },
+        { value: 'Project_Management', label: 'ทักษะการบริหารโปรเจค' },
+        { value: 'Design', label: 'ทักษะการออกแบบ' },
+        { value: 'Cloud_Computing', label: 'ทักษะเกี่ยวกับ Cloud_Computing' },
+        { value: 'Mobile_&_Web_Development', label: 'การพัฒนาเว็ปแอปพลิเคชั่นและ Mobile App' },
+        { value: 'Network_Structure_&_Security', label: 'เน็ตเวิร์คและซีเคียวริตี้' },
+      ],
+    });
+    this.props.onChange(inputText);
+    this.setState({startval:null,checkddt7:0});
+    $('#ddt7s').hide();
+   }
+   else{
+     //console.log(this.state.checkddt7);
+     this.props.onChange('unselected');
+     //console.log(this.state.startval);
+   }
+   //setInterval(function(){ console.log(this.state.startval); }, 1000);
+  }
+
+  componentDidMount(){
+  }
+
+  render() {
+    //console.log(this.state.opT7)
+    //console.log(this.state.startval)
+    return (
+      <div>
+        <Select styles={customStyles} value={this.state.startval} options={this.state.opT7} onChange={this.handleChange.bind(this)} placeholder='เลือกหมวดทักษะเสริมที่ถนัด'  closeMenuOnSelect={false} id='ddt7s' class='fixed margin-bottom1'/>
+      </div>
+    )
+  }
 }
-
-export default CustomSelect;
+export default dropdownt7;

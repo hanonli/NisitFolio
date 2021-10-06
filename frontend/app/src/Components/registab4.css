@@ -2,7 +2,6 @@
     background-color: #E4F7FF;
     border: 1px solid black;
     height: 106px;
-    
     border-radius: 25px;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -27,11 +26,12 @@
     height: 50px;
 }
 
-.modal-title{
-    color:black;
+.modal-titleT4only {
+    color: black;
     font-size: 50px;
-    padding-left: 40px;
-    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-bottom: 20px;
+    font-weight: 500;
 }
 
 .addWorkHistory{
@@ -77,12 +77,13 @@
     border-radius: 25px;
     padding-right: 2vw;
     padding-bottom: 2.6vw;
-    height: 790px;
+    height: 820px;
+    padding-top: 0.8vw;
 }
 
 .button-add-work1 {
     position: absolute;
-    top: 60px;
+    top: 85px;
     right: 50px;
 }
 

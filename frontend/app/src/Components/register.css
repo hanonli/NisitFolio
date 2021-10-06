@@ -25,19 +25,30 @@
     /*padding: 1%;*/
     margin-right: 20%;
     overflow-y: scroll;
+    position: relative;
 }
 
 .regis-box-content7 {
   height: 26vw;
-    width: 50vw;
-    margin-left:25%;
-    margin-bottom: 1%;
-    padding-top: 1%;
-    /*padding: 1%;*/
-    margin-right: 25%;
-    overflow-y: scroll;
+  width: 60vw;
+  margin-left:20%;
+  /*margin-bottom: 0.5vw;*/
+  margin-top: 1.5vw;
+  /*padding: 1%;*/
+  margin-right: 20%;
+  overflow-y: hidden;
+  position: relative;
 }
 
+.css-1vpl199-control{
+  margin-bottom: 20px;
+}
+.css-1vpl199-control:active{
+  margin-bottom: 20px;
+}
+.css-1jdqyts-control{
+  margin-bottom: 20px;
+}
 .headerRegis {
     color: #000;
     font-size: 48px;
@@ -463,4 +474,37 @@ datalist {
 
 .del-padrightbit {
   padding-right: calc(var(--bs-gutter-x) * -.5);
+}
+
+.margin-right09{
+  margin-right: 0.9vw;
+}
+
+#text-add-name-ss {
+  color: black;
+  font-size: 32px;
+  margin-bottom: 20px;
+  margin-top: 5px;
+}
+
+#dangerzonet7 {
+    font-size: 16px;
+    font-weight: 300;
+    position: absolute;
+    top: 23vw;
+}
+
+.borderred {
+  border: 0.1px solid red;
+}
+
+#toggleEmailW{
+  color: red;
+  margin-top:-5px;
+  padding-left:20px;
+  font-weight: 300;
+}
+
+.failgap{
+  margin-top: 30px;
 }

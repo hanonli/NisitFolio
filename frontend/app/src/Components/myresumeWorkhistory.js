@@ -116,8 +116,12 @@ class MyresumeWork extends React.Component{
         const occupation = this.props.occupation? this.props.occupation: "นี้";
         let workCon;
         let sortdata;
+        let topicElement = [];
         let content = [];
+        let result;
         if(data.length !== 0){
+            topicElement.push(<div class="educationtopic"><h2 class="resumetopic">ประวัติการการทำงาน</h2></div>);
+            topicElement.push(<div class="resumesectionline" style={linestyle}></div>)
             sortdata = data.sort(workSorter("Work_End_Year", "Work_End_Month"));
             for (var i = 0; i < sortdata.length; i++) {
                 content.push(<MyresumeWorkelement data={sortdata[i]}></MyresumeWorkelement>);
@@ -128,6 +132,8 @@ class MyresumeWork extends React.Component{
         }
         else{
             if(owner){
+                topicElement.push(<div class="educationtopic"><h2 class="resumetopic">ประวัติการการทำงาน</h2></div>);
+                topicElement.push(<div class="resumesectionline" style={linestyle}></div>)
                 workCon =(
                 <div class="work-dummyshow">
                     <div class="resumetimeline">
@@ -167,11 +173,22 @@ class MyresumeWork extends React.Component{
                 </div>);
             }
         }
-        return(
+        if(data.length !== 0 || owner){
+            result = (
             <div class="resume-education" id="resume-work">
-                <div class="educationtopic"><h2 class="resumetopic">ประวัติการการทำงาน</h2></div>
-                <div class="resumesectionline" style={linestyle}></div>
+                {topicElement}
                 {workCon}
+            </div>
+            );
+        }
+        else{
+            result = (
+                <div></div>
+            );
+        }
+        return(
+            <div>
+                {result}
             </div>
         )
     }

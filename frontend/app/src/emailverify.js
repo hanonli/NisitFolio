@@ -9,11 +9,12 @@ import { Link } from "react-router-dom";
 class Emailverify extends React.Component {
 
 	componentDidMount() {
-		window.addEventListener('load', this.handleLoad);
+		/*window.addEventListener('load', this.handleLoad);
 		console.log("YEAHXXX!");
 		const script = document.createElement("script");
 		script.src = "assets/js/register2.js";
 		document.body.appendChild(script);
+		*/
 	}
 
 	render (){
@@ -41,6 +42,7 @@ class Emailverify extends React.Component {
 						<img class="img-fluid" data-bs-placement="top" title="ส่งอีเมลยืนยันแล้ว" src="assets/images/mail.png" alt="" width="150" height="150"/>	
 					</div>
 					<div class="col">
+						<h5 class='form-b24'>หากไม่ได้รับอีเมลในการยืนยัน</h5>
 						<a class="btn btn-cta-primary-yellowwideE round profile-button" href="#" id='resendEmail' target="_blank">ส่งใหม่อีกครั้ง</a>
 					</div>
 				</div>

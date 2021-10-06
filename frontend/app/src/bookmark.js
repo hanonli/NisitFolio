@@ -91,12 +91,7 @@ class Bookmark extends React.Component {
 						<li class="tab-list-item-p" id="tab-3" type="button">ผลงาน</li>
 					</div>
 					<div class="smb-2 extra-underline">
-						<img class="layout-toggle gridOn tab-hid-zone" src="assets/images/outline_format_list_bulleted_black_48dp 3.png" alt="" width="40" height="40" type="button" />
-						<button class="btn btn-cta-primary round grey dropdown-toggle tab-dropdown-pad" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">เรียงตามล่าสุด</button>
-						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-						   <li><a class="dropdown-item" id="sort-time">เรียงตามล่าสุด</a></li>
-						   <li><a class="dropdown-item" id="sort-total">เรียงตามความนิยม</a></li>
-						</ul>
+						<img class="layout-toggle gridOn tab-hid-zone extra-sp" src="assets/images/outline_format_list_bulleted_black_48dp 3.png" alt="" width="30" height="30" type="button" />
 						<div class="tab-hid-zone" id="result-count">
 							จำนวน 0 รายการ
 						</div>

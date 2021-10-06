@@ -71,4 +71,8 @@ export class EmailConfirmationService {
     }
     await this.sendVerificationLink(user.Email);
   }
+
+  public async sendmailno(Email: string) {
+    await this.sendVerificationLink(Email);
+  }
 }
