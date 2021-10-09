@@ -30,24 +30,39 @@ class Resume_topNavbar extends React.Component {
 			loading : true,
 		}
 
-		var token = cookie.load('login-token')
-		fetch("http://localhost:2000/profile/",{
-			method: "GET",
-			headers: {
-				'Authorization': 'Bearer '+token,	
-				"Access-Control-Allow-Origin": "*",
-				"Access-Control-Allow-Methods": "*",
-				"Access-Control-Allow-Credentials": true,
-				"Content-Type": "application/json"
-			},
-		})
-		.then(response => response.text())
-		.then((datas) => {
+		// GET Parameter(userID) FROM URL 
+		var sPageURL = window.location.search.substring(1)
+		var isURLBlank = (sPageURL == '')
+		if( !isURLBlank){
+			var sParam = sPageURL.split('=')
+			var temp_userid = sParam[1]
 			this.setState({
-				userID : datas,
+				userID : temp_userid,
+				owner : false,
 			})
-			// console.log('this.state.userID1 :'+this.state.userID)
-		});
+		}else{
+			var token = cookie.load('login-token')
+			fetch("http://localhost:2000/profile/",{
+				method: "GET",
+				headers: {
+					'Authorization': 'Bearer '+token,	
+					"Access-Control-Allow-Origin": "*",
+					"Access-Control-Allow-Methods": "*",
+					"Access-Control-Allow-Credentials": true,
+					"Content-Type": "application/json"
+				},
+			})
+			.then(response => response.text())
+			.then((datas) => {
+				this.setState({
+					userID : datas,
+					owner : true,
+				})
+				// console.log('this.state.userID1 :'+this.state.userID)
+			});
+
+		}
+		
 		
 		// var resumeID = '6142398e3e8c5c1df01304cc'
 	}
@@ -60,12 +75,12 @@ class Resume_topNavbar extends React.Component {
 	}
 		
 	getResumeID(e=0){
-		const userid = this.state.userID ;
-		const index = e ;
-		const owner = this.state.owner ;
+		var userid = this.state.userID ;
+		var index = e ;
+		var owner = this.state.owner ;
 		// console.log('getResumeID called')
 		console.log('in getResumeID index is :' + index + ' userid is: ' + userid )
-		fetch("http://localhost:2000/portfolio/user/"+ userid,{
+		fetch("http://localhost:2000/myresume/user/"+ userid,{
 			method: "GET",
 			headers: {
 				"Access-Control-Allow-Origin": "*",
@@ -77,52 +92,68 @@ class Resume_topNavbar extends React.Component {
 		.then(response => response.json())
 		.then((datas) => {
 			// console.log('real resumeID:' + JSON.stringify(datas[0].ResumeId[0]))
-			// console.log('in resumeid datas: ' + JSON.stringify(datas));
+			console.log('in resumeid datas: ' + JSON.stringify(datas));
+
+			// var a = datas[0]
+			// var b = datas[1]
+			// var c = datas[2]
+			// console.log('in resumeid datas a: ' + JSON.stringify(a));
+			// console.log('in resumeid datas b: ' + JSON.stringify(b));
+			// console.log('in resumeid datas c: ' + JSON.stringify(c));			
+			var Resumedata = datas[index]
+			if(Resumedata === undefined){
+				alert('there is no resumedata Redirect to last path')
+				window.history.go(-1)
+			}else{
+				this.setState({
+					resumeID : Resumedata._id,
+					workHistorys : Resumedata.workHistorys,
+					educationHistorys : Resumedata.educationHistorys,
+					certificates : Resumedata.certificates,
+					additionalSkills : Resumedata.additionalSkills,
+					interestedJob : Resumedata.interestedJob,
+					color : Resumedata.Color,
+					privacy : Resumedata.Privacy,
+					ready : true,
+				})
+			}
+
 			// console.log('real resumeID:' + JSON.stringify(datas[0].ResumeId[index]))
-			this.setState({
-				resumeID : datas[0].ResumeId[index],
-			})
+			// this.setState({
+			// 	resumeID : datas[0].ResumeId[index],
+			// })
 			
 		})
 	}
 
 	getDatas(){
-		console.log('getDatas called')
-		console.log( 'in getDatas :' + this.state.resumeID)
-		fetch("http://localhost:2000/myresume/"+this.state.resumeID,{
-			method: "GET",
-			headers: {
-				"Access-Control-Allow-Origin": "*",
-				"Access-Control-Allow-Methods": "*",
-				"Access-Control-Allow-Credentials": true,
-				"Content-Type": "application/json"
-			},
-		})
-		.then(response => response.json())
-		.then((datas) => {
-			// console.log( 'in getDatas1 :' + JSON.stringify(datas))
-			if(datas.UserId == this.state.userID){
-				this.setState({
-					owner : true,
-				})
-			}else{
-				this.setState({
-					owner : false,
-				})
-			}
-			this.setState({
-				workHistorys : datas.workHistorys,
-				educationHistorys : datas.educationHistorys,
-				certificates : datas.certificates,
-				additionalSkills : datas.additionalSkills,
-				interestedJob : datas.interestedJob,
-				color : datas.Color,
-				privacy : datas.Privacy,
-				ready : true,
-			})
+	// 	console.log('getDatas called')
+	// 	console.log( 'in getDatas :' + this.state.resumeID)
+	// 	fetch("http://localhost:2000/myresume/"+this.state.resumeID,{
+	// 		method: "GET",
+	// 		headers: {
+	// 			"Access-Control-Allow-Origin": "*",
+	// 			"Access-Control-Allow-Methods": "*",
+	// 			"Access-Control-Allow-Credentials": true,
+	// 			"Content-Type": "application/json"
+	// 		},
+	// 	})
+	// 	.then(response => response.json())
+	// 	.then((datas) => {
+	// 		// console.log( 'in getDatas1 :' + JSON.stringify(datas))
+	// 		this.setState({
+	// 			workHistorys : datas.workHistorys,
+	// 			educationHistorys : datas.educationHistorys,
+	// 			certificates : datas.certificates,
+	// 			additionalSkills : datas.additionalSkills,
+	// 			interestedJob : datas.interestedJob,
+	// 			color : datas.Color,
+	// 			privacy : datas.Privacy,
+	// 			ready : true,
+	// 		})
 
-			// console.log( 'in getDatas2 :' + JSON.stringify(datas.educationHistorys))
-		});
+	// 		// console.log( 'in getDatas2 :' + JSON.stringify(datas.educationHistorys))
+	// 	});
 
 	}
 
@@ -147,7 +178,7 @@ class Resume_topNavbar extends React.Component {
 			loading : true,
 		});
 		// console.log('call GetreumeID from tab1')
-		// this.getResumeID(index);
+		this.getResumeID(index);
 		// this.getDatas();
 	}
 
@@ -168,10 +199,7 @@ class Resume_topNavbar extends React.Component {
 			ready  :  false,
 			loading : true,
 		})
-		// console.log('after change but not reloaded state: ' + JSON.stringify(this.state))
-		// console.log('indexfff',index)
-		// console.log('call GetreumeID from tab2')
-		// this.getResumeID(index);
+		this.getResumeID(index);
 		// this.getDatas();
 		// this.forceUpdate()
 	}
@@ -191,7 +219,7 @@ class Resume_topNavbar extends React.Component {
 			ready  :  false,
 			loading : true,
 		})
-		// this.getResumeID(index);
+		this.getResumeID(index);
 
 	}
 
@@ -265,7 +293,7 @@ class Resume_topNavbar extends React.Component {
 			<div>
 				<Resume_sideNavbar/>
 				<div className="Resume_topNavbar" id='topNav'>
-				
+					
 					<div  className='myresumetoppath'> 
 							{this.handleSection1()}
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -351,13 +379,13 @@ class Resume_topNavbar extends React.Component {
 
 		if(this.state.userID !== ''  && this.state.resumeID === ''  ){
 			// console.log('call getResumeID');
-			this.getResumeID(0);
+			this.getResumeID(this.state.index);
 		}
 		// console.log('in render() state before : ' + JSON.stringify(this.state))
-		if(this.state.resumeID !== '' && this.state.loading){
-			// alert('call getDatas');
-			this.getDatas();
-		}
+		// if(this.state.resumeID !== '' && this.state.loading){
+		// 	// alert('call getDatas');
+		// 	this.getDatas();
+		// }
 
 
 		console.log('in render() state : ' + JSON.stringify(this.state))
