@@ -77,7 +77,7 @@ class MyresumeWorkGoals extends React.Component {
         }
 
         return (
-            <div class="workgolas">
+            <div class="workgolas" id="resume-goal">
                 <div>{Job_Goals_With_data}</div>
                 <div>{Without_Job_Goals}</div>
             </div>

@@ -37,20 +37,6 @@ class Resume_sideNavbar extends React.Component {
 						</div>
 					</a>
 
-					<a className='resumeicon' href="myresume#resume-certificate">
-						<div className='resumeblock'>
-							 <img id='icon-myresume-certi'  src="assets/images/เกียรติบัตรและใบรับรอง.png"></img>  
-							<h1 id='resumetext'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ใบรับรอง</h1>
-						</div>
-					</a>
-					
-					<a className='resumeicon' href="myresume#resume-work">
-						<div className='resumeblock'>
-							 <img id='icon-myresume-work'  src="assets/images/ประวัติการทำงาน.png"></img>  
-							<h1 id='resumetext'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ประวัติการทำงาน</h1>
-						</div>
-					</a>
-
 					<a className='resumeicon' href="myresume#resume-additionalskills">
 						<div className='resumeblock'>
 							 <img id='icon-myresume-skill'  src="assets/images/ความถนัดและทักษะ.png"></img>  
@@ -58,7 +44,19 @@ class Resume_sideNavbar extends React.Component {
 						</div>
 					</a>
 
-					
+					<a className='resumeicon' href="myresume#resume-work">
+						<div className='resumeblock'>
+							 <img id='icon-myresume-work'  src="assets/images/ประวัติการทำงาน.png"></img>  
+							<h1 id='resumetext'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ประวัติการทำงาน</h1>
+						</div>
+					</a>
+
+					<a className='resumeicon' href="myresume#resume-certificate">
+						<div className='resumeblock'>
+							 <img id='icon-myresume-certi'  src="assets/images/เกียรติบัตรและใบรับรอง.png"></img>  
+							<h1 id='resumetext'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ใบรับรอง</h1>
+						</div>
+					</a>
 
 					<a className='resumeicon' href="myresume#resume-resume">
 						<div className='resumeblock'>

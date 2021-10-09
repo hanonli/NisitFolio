@@ -175,7 +175,7 @@ class MyresumeWork extends React.Component{
         }
         if(data.length !== 0 || owner){
             result = (
-            <div class="resume-education" id="resume-work">
+            <div class="resume-education" >
                 {topicElement}
                 {workCon}
             </div>
@@ -187,7 +187,7 @@ class MyresumeWork extends React.Component{
             );
         }
         return(
-            <div>
+            <div id="resume-work">
                 {result}
             </div>
         )

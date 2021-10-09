@@ -142,7 +142,7 @@ class Resume_topNavbar extends React.Component {
 	// 	.then((datas) => {
 	// 		// console.log( 'in getDatas1 :' + JSON.stringify(datas))
 	// 		this.setState({
-	// 			workHistorys : datas.workHistorys,
+	// 			workHistorys : datas.workHistorys,	
 	// 			educationHistorys : datas.educationHistorys,
 	// 			certificates : datas.certificates,
 	// 			additionalSkills : datas.additionalSkills,
