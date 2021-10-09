@@ -20,13 +20,13 @@ class Register extends React.Component {
 		super(props);
 
 		this.state = {
-			data : [],
-			render : true
+			data: [],
+			render: true
 		}
 	}
 
 	componentDidMount() {
-		var list_of_high=[],list_of_aca=[];
+		var list_of_high = [], list_of_aca = [];
 
 		function get_high_id(list_of_high, x) {
 			//var x = 1;
@@ -49,58 +49,58 @@ class Register extends React.Component {
 		}
 
 		var token = cookie.load('login-token')
-        console.log('Your Token is: '+token);
-		fetch("http://localhost:2000/register/getinfo",{
+		console.log('Your Token is: ' + token);
+		fetch("http://localhost:2000/register/getinfo", {
 			method: "GET",
 			headers: {
-				'Authorization': 'Bearer '+token,	
+				'Authorization': 'Bearer ' + token,
 				"Access-Control-Allow-Origin": "*",
 				"Access-Control-Allow-Methods": "*",
 				"Access-Control-Allow-Credentials": true,
 				"Content-Type": "application/json"
 			},
 		})
-		.then(response => response.json())
-		.then((datas) => {
-            console.log('You Fetch Success!');
-			console.log(datas);
-			this.setState({
-				data : datas,
-			})
-			 console.log('this.state.data :'+this.state.data);
-			 /*Zone to use datas*/
-			 console.log(this.state.data.Degree);
-			 this.state.data.Degree.forEach(element => {
-			if(element=='มัธยมศึกษาตอนปลาย'||element=='ปวช.'){
-				list_of_high.push({
-					id: this.state.data.EducationHistory_id,
-					high_pos: 0,
-					high_name: this.state.data.Academy,
-					high_faculty: 'none',
-					high_degree: this.state.data.Degree,
-					high_grade: this.state.data.Grade,
-					high_field: this.state.data.Field_of_study,
-					high_year: this.state.data.Education_End_Year,
+			.then(response => response.json())
+			.then((datas) => {
+				console.log('You Fetch Success!');
+				console.log(datas);
+				this.setState({
+					data: datas,
+				})
+				console.log('this.state.data :' + this.state.data);
+				/*Zone to use datas*/
+				console.log(this.state.data.Degree);
+				this.state.data.Degree.forEach(element => {
+					if (element == 'มัธยมศึกษาตอนปลาย' || element == 'ปวช.') {
+						list_of_high.push({
+							id: this.state.data.EducationHistory_id,
+							high_pos: 0,
+							high_name: this.state.data.Academy,
+							high_faculty: 'none',
+							high_degree: this.state.data.Degree,
+							high_grade: this.state.data.Grade,
+							high_field: this.state.data.Field_of_study,
+							high_year: this.state.data.Education_End_Year,
+						});
+						get_high_id(list_of_high, 1);
+						console.log(list_of_high);
+					}
+					else {
+						list_of_aca.push({
+							id: this.state.data.EducationHistory_id,
+							aca_pos: 0,
+							aca_name: this.state.data.Academy,
+							aca_faculty: this.state.data.Facalty,
+							aca_degree: this.state.data.Degree,
+							aca_grade: this.state.data.Grade,
+							aca_field: this.state.data.Field_of_study,
+							aca_year: this.state.data.Education_End_Year,
+						});
+						get_aca_id(list_of_aca, 1);
+						console.log(list_of_aca);
+					}
 				});
-				get_high_id(list_of_high, 1);
-				console.log(list_of_high);
-			}
-			else{
-				list_of_aca.push({
-					id: this.state.data.EducationHistory_id,
-					aca_pos: 0,
-					aca_name: this.state.data.Academy,
-					aca_faculty: this.state.data.Facalty,
-					aca_degree: this.state.data.Degree,
-					aca_grade: this.state.data.Grade,
-					aca_field: this.state.data.Field_of_study,
-					aca_year: this.state.data.Education_End_Year,
-				});
-				get_aca_id(list_of_aca, 1);
-				console.log(list_of_aca);
-			}
 			});
-		});
 		$(function () {
 			$('.tab-content').hide();
 			$('#registab1-content').show();
@@ -145,7 +145,7 @@ class Register extends React.Component {
 	}
 
 	render() {
-		if(this.state.render==true){
+		if (this.state.render == true) {
 			return (
 				<div className="ChooseResume">
 					<Navbarlogo />
@@ -173,10 +173,10 @@ class Register extends React.Component {
 								<Chooseresume1 />
 							</div>
 							<div class="tab-content" id="registab2-content">
-								<Chooseresume2 />
+								<Chooseresume2 mywork_data={this.state.data} />
 							</div>
 							<div class="tab-content" id="registab3-content">
-								<Chooseresume3 />
+								<Chooseresume3 mycerti_data={this.state.data} />
 							</div>
 							<div class="tab-content" id="registab4-content">
 								<Registab6 />
@@ -193,12 +193,12 @@ class Register extends React.Component {
 				</div>
 			);
 		}
-		else{
+		else {
 			return (
 				<LoadingS />
 			)
 		}
 	}
-}		
+}
 
 export default Register;

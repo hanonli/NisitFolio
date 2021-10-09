@@ -23,8 +23,8 @@
 .myresume-choose-work11 .icon-checkbox1112{
     visibility: hidden;
     position: absolute;
-    left: 42%;
-    top: 22%;    
+    left: 12.2vw;
+    top: 5.4vh;    
 }
 
 .myresume-choose-work11 .t4-content{
@@ -38,6 +38,4 @@
 
 .myresume-choose-work11 input[type=checkbox]:checked + label#list-work-22 > .icon-checkbox1112{
     visibility: visible;
-
-
 }

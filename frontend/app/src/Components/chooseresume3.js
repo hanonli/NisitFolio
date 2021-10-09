@@ -40,18 +40,7 @@ var certdata = [{
     "CertName": "การแข่งขันนอนกลางวัน",
     "CertPic": "assets/images/trylargesizeimg.jpg",
     "CertYear": 2003
-},
-{
-    "certi_id": "xx05",
-    "id": "6135805bd633f137e4559261",
-    "UserId": "61358059d633f137e455925c",
-    "ResumeId": "6135805bd633f137e4559261",
-    "CertName": "กNullam eu erat nec turpis dictum augue.",
-    "CertPic": "assets/images/testlongimage.jpg",
-    "CertYear": 2003
 }];
-
-
 
 function compareValues(key, order = 'asc') {
     return function innerSort(a, b) {
@@ -130,6 +119,7 @@ class Chooseresume3 extends React.Component {
     }
 
     render() {
+        console.log("tu3", this.props.mycerti_data);
         let result = [];
         let listcerti = [];
         certdata.sort(compareValues('CertYear', 'desc'));

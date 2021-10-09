@@ -128,6 +128,7 @@ class Chooseresume2 extends React.Component {
     }
 
     render() {
+        console.log("tu2", this.props.mywork_data);
         let result = [];
         let listwork = [];
         let end_work;
