@@ -21,7 +21,7 @@ class Register extends React.Component {
 
 		this.state = {
 			data : [],
-			render : false
+			render : true
 		}
 	}
 

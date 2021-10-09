@@ -11,7 +11,7 @@ export default class MultipleRows extends Component  {
         };
         const settings = {
             dots: true,
-            className: "center",
+            className: "center del-padbottom",
             infinite: true,
             slidesToShow: 3,
             speed: 500,
@@ -26,9 +26,9 @@ export default class MultipleRows extends Component  {
                     <h2 class="myresume-head-woNb">ผลงานของฉัน</h2>
                 </div><div class="resumesectionline" style={linestyle}></div>
                 <div class="showmywork-woNb">
-                    <div class="showmywork">
+                    <div class="showmywork del-padbottom">
                         <Slider {...settings}>
-                            <div>
+                            <div class='del-padbottom'>
                                 <div className="img-overlay3">
                                     <img className="img-mywork-bookmark" src="assets/images/outline_bookmark_border_white_24dp.png" />
                                     <div className="myworkname">
@@ -39,9 +39,8 @@ export default class MultipleRows extends Component  {
                                     </div>
                                 </div>
                                 <img className="img-mywork-1" src="assets/images/ldwithgradient.png" />
-                                
                             </div>
-                            <div>
+                            <div class='del-padbottom'>
                                 <div class="img-overlay3">
                                     <img className="img-mywork-bookmark" src="assets/images/outline_bookmark_border_white_24dp.png" />
                                     <div className="myworkname">
@@ -53,7 +52,7 @@ export default class MultipleRows extends Component  {
                                 </div>
                                 <img className="img-mywork-1" src="assets/images/ldwithgradient.png" />
                             </div>
-                            <div>
+                            <div class='del-padbottom'>
                                 <div class="img-overlay3">
                                     <img className="img-mywork-bookmark" src="assets/images/outline_bookmark_border_white_24dp.png" />
                                     <div className="myworkname">
@@ -65,7 +64,7 @@ export default class MultipleRows extends Component  {
                                 </div>
                                 <img className="img-mywork-1" src="assets/images/ldwithgradient.png" />
                             </div>
-                            <div>
+                            <div class='del-padbottom'>
                                 <div class="img-overlay3">
                                     <img className="img-mywork-bookmark" src="assets/images/outline_bookmark_border_white_24dp.png" />
                                     <div className="myworkname">
@@ -77,7 +76,7 @@ export default class MultipleRows extends Component  {
                                 </div>
                                 <img className="img-mywork-1" src="assets/images/ldwithgradient.png" />
                             </div>
-                            <div>
+                            <div class='del-padbottom'>
                                 <div class="img-overlay3">
                                     <img className="img-mywork-bookmark" src="assets/images/outline_bookmark_border_white_24dp.png" />
                                     <div className="myworkname">
@@ -89,7 +88,7 @@ export default class MultipleRows extends Component  {
                                 </div>
                                 <img className="img-mywork-1" src="assets/images/ldwithgradient.png" />
                             </div>
-                            <div>
+                            <div class='del-padbottom'>
                                 <div class="img-overlay3">
                                     <img className="img-mywork-bookmark" src="assets/images/outline_bookmark_border_white_24dp.png" />
                                     <div className="myworkname">
@@ -101,7 +100,7 @@ export default class MultipleRows extends Component  {
                                 </div>
                                 <img className="img-mywork-1" src="assets/images/ldwithgradient.png" />
                             </div>
-                            <div>
+                            <div class='del-padbottom'>
                                 <div class="img-overlay3">
                                     <img className="img-mywork-bookmark" src="assets/images/outline_bookmark_border_white_24dp.png" />
                                     <div className="myworkname">
@@ -113,7 +112,7 @@ export default class MultipleRows extends Component  {
                                 </div>
                                 <img className="img-mywork-1" src="assets/images/ldwithgradient.png" />
                             </div>
-                            <div>
+                            <div class='del-padbottom'>
                                 <div class="img-overlay3">
                                     <img className="img-mywork-bookmark" src="assets/images/outline_bookmark_border_white_24dp.png" />
                                     <div className="myworkname">

@@ -476,6 +476,10 @@ datalist {
   padding-right: calc(var(--bs-gutter-x) * -.5);
 }
 
+.del-padbottom {
+  padding-bottom: calc(var(--bs-gutter-x) * -.5);
+}
+
 .margin-right09{
   margin-right: 0.9vw;
 }

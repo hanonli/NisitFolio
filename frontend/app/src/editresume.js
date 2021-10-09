@@ -5,6 +5,7 @@ import Navbarlogo from './Components/navbarlogo';
 import InformationHeader from './Components/informationHeader';
 import reportWebVitals from './reportWebVitals';
 import { Link } from "react-router-dom";
+import Myresumedittemplate from "./Components/myresumeEditTemplate";
 import Chooseresume1 from "./Components/chooseresume1";
 import Chooseresume2 from "./Components/chooseresume2";
 import Chooseresume3 from "./Components/chooseresume3";
@@ -21,7 +22,7 @@ class Editresume extends React.Component {
 
 		this.state = {
 			data : [],
-			render : false
+			render : true
 		}
 	}
 
@@ -167,16 +168,17 @@ class Editresume extends React.Component {
 						</div>
 					</header>
 					<ol class="tabs-list">
-						<li class="tab-list-item tab-list-active" id="tab-1" type="button">ประวัติการศึกษา</li>
-						<li class="tab-list-item" id="tab-2" type="button">ประวัติการทำงาน</li>
-						<li class="tab-list-item" id="tab-3" type="button">ใบรับรอง</li>
-						<li class="tab-list-item" id="tab-4" type="button">งานที่สนใจ</li>
-						<li class="tab-list-item" id="tab-5" type="button">ทักษะเสริม</li>
+						<li class="tab-list-item tab-list-active" id="tab-1" type="button">เทมเพลต</li>
+						<li class="tab-list-item" id="tab-2" type="button">ประวัติการศึกษา</li>
+						<li class="tab-list-item" id="tab-3" type="button">ประวัติการทำงาน</li>
+						<li class="tab-list-item" id="tab-4" type="button">ใบรับรอง</li>
+						<li class="tab-list-item" id="tab-5" type="button">งานที่สนใจ</li>
+                        <li class="tab-list-item" id="tab-6" type="button">ทักษะเสริม</li>
 					</ol>
 					<form class="needs-validation" novalidate>
 						<div>
                             <div class="tab-content" id="registab1-content">
-								<Registab7 />
+								<Myresumedittemplate />
 							</div>
 							<div class="tab-content" id="registab2-content">
 								<Chooseresume1 />
