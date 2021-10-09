@@ -7,10 +7,6 @@ class Chooseresume1 extends React.Component {
 
 	constructor(props) {
 		super(props);
-
-		this.state = {
-			data : [],
-		}
 	}
 
     componentDidMount() {
@@ -24,7 +20,8 @@ class Chooseresume1 extends React.Component {
 			});
 			return list_of_high;
 		}
-				
+		console.log('i am resumetab1'+data);
+				/*
 		function show_all_high() {
 		
 			list_of_high.forEach(ele => {
@@ -89,7 +86,7 @@ class Chooseresume1 extends React.Component {
 		const script = document.createElement("script");
 		script.src = "assets/js/chooseresume.js";
 		document.body.appendChild(script);
-        var data_aca = [], data_high = [],list_of_high=[],list_of_aca=[];
+        /*var data_aca = [], data_high = [],list_of_high=[],list_of_aca=[];
 		var token = cookie.load('login-token')
         console.log('Your Token is: '+token);
 		fetch("http://localhost:2000/register/getinfo",{
@@ -111,7 +108,7 @@ class Chooseresume1 extends React.Component {
 			})
 			 console.log('this.state.data :'+this.state.data);
 			 console.log(this.state.data.Degree);
-			 /*this.state.data.Degree.forEach(element => {
+			 this.state.data.Degree.forEach(element => {
 			if(element=='มัธยมศึกษาตอนปลาย'||element=='ปวช.'){
 				list_of_high.push({
 					id: this.state.data.EducationHistory_id,
@@ -140,8 +137,8 @@ class Chooseresume1 extends React.Component {
 				get_high_id(list_of_aca, 1);
 				console.log(list_of_aca);
 			}
-		});*/
 		});
+		});*/
 	}
 
 	componentWillUnmount() { 

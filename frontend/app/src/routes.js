@@ -10,6 +10,7 @@ import Analytics from './analytics';
 import Bookmark from './bookmark';
 import Search from './search';
 import Editprofile from './editprofile';
+import Editresume from './editresume';
 import Choosenothing from './Components/myresumeNothing';
 import Chooseresume from './chooseresume';
 import Myresumetp from './Components/myresumeTemplate';
@@ -28,6 +29,7 @@ const Routes = () => {
       <Route exact path='/choosenothing' component={Choosenothing}></Route>
       <Route exact path='/myresumetp' component={Myresumetp}></Route>
       <Route exact path='/chooseresume' component={Chooseresume}></Route>
+      <Route exact path='/editresume' component={Editresume}></Route>
 	  <Route exact path='/portfolio' component={PortfolioRoot}></Route>
       <Route exact path='/editport' component={Portfolio}></Route>
 	  <Route exact path='/portinfo/:id' component={PortInfo}></Route>

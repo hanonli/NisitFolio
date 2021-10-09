@@ -12,7 +12,7 @@ class MyResume1 extends React.Component {
         const bio= "Curabitur lobortis blandit tellus vitae viverra. Praesent a elementum massa, nec congue elit. Aliquam a nunc turpis. Praesent et nisi vestibulum sem interdum ultricies. Integer quis semper erat, sed rhoncus nulla. Etiam in euismod augue. Aenean eu auctor magna. Donec sodales sed.";
         const imagepath="assets/images/profile.jpg";
         const educationdata = this.props.state.educationHistorys;
-        const certdata = this.props.state.certificates;
+        //const certdata = this.props.state.certificates; // certificate move to resume 2 follow the figma!
         const owner = this.props.state.owner;
         // const educationdata = [
         //     {
@@ -97,9 +97,9 @@ class MyResume1 extends React.Component {
                 <MyresumeHeading firstname={firstname} lastname={lastname} const occupation={occupation} imagepath={imagepath} colour="#FFCE55" owner={true}></MyresumeHeading> */}
                 <MyResumeEducation data={educationdata} owner={owner}></MyResumeEducation>
                 {/* <MyResumeEducation data={[]} owner={true}></MyResumeEducation> */}
-                <MyresumeCertificate data={certdata} owner={owner}></MyresumeCertificate>
+                {/*<MyresumeCertificate data={certdata} owner={owner}></MyresumeCertificate>*/}
                 {/* <MyresumeCertificate data={[]}></MyresumeCertificate> */}
-                
+                {/*certificate move to myresume 2 follow the figma*/}
                 {/* <h1> try change colour function</h1>
 
                 <MyresumeHeading firstname={firstname} lastname={lastname} const occupation={occupation} bio={bio} imagepath={imagepath} colour={colour_red} province="กรุงเทพมหานคร" city="มินบุรี"></MyresumeHeading>
