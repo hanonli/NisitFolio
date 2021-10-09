@@ -33,7 +33,9 @@
     "react-select": "^4.3.1",
     "react-select-async-paginate": "^0.5.3",
     "react-select-fetch": "^0.3.2",
+    "react-slick": "^0.28.1",
     "react-sortablejs": "^6.0.0",
+    "slick-carousel": "^1.8.1",
     "sortablejs": "^1.14.0",
     "uuid": "^8.3.2",
     "web-vitals": "^1.1.2"

@@ -36,7 +36,10 @@ class PortInfo extends React.Component {
         console.log(portId);
 		
 		var pftDiv = '<div class="lb-container" id={id}>\
-							<img class="pft-i" src="{img}" alt=""/>\
+							<div class="pft-ibox">\
+								<img class="pft-bg" src="assets/images/black.jpg" alt=""/>\
+								<img class="pft-i" src="{img}" alt=""/>\
+							</div>\
 							<div class="hover-box">\
 								<img class="pft-overlay" src="assets/images/black.jpg" alt=""/>\
 								<img class="pft-lock-icon {hidden1}" src="{privacy}" alt=""/>\
@@ -143,7 +146,8 @@ class PortInfo extends React.Component {
 			//$('#uic-1').attr('title','ยกเลิกการบันทึก');
 			//$('#tooltip-uic-1').text('ยกเลิกการบันทึก');
 			setTimeout(function() { refThis.setState({ tooltip1: 'ยกเลิกการบันทึก' }); }, 500); 
-			AddBookmark(thatUserId,portfolioData._id);
+			if(focusId != null)
+				AddBookmark(thatUserId,portfolioData._id);
 			$('#uic-1').off('click');
 			$('#uic-1').on('mouseover', function(){
 			  refThis.setState({ show1: true });
@@ -166,7 +170,8 @@ class PortInfo extends React.Component {
 			//$('#tooltip-uic-1').text('บันทึก');
 			
 			setTimeout(function() { refThis.setState({ tooltip1: 'บันทึก' }); }, 500); 
-			DeleteBookmark(thatUserId,portfolioData._id);
+			if(focusId != null)
+				DeleteBookmark(thatUserId,portfolioData._id);
 			$('#uic-1').off('click');
 			$('#uic-1').on('mouseover', function(){
 			  refThis.setState({ show1: true });
@@ -186,7 +191,8 @@ class PortInfo extends React.Component {
 			//pftBookmark[focusId] = true;
 			$('#bm-'+focusId).attr('src','assets/images/bookmark_2w.png');
 			//alert('add: '+userPortData[focusId].Port_Name+' from user: '+userPortData[focusId].Owner);
-			AddBookmark(userPortData[focusId].UserId, userPortData[focusId]._id);
+			if(focusId != null)
+				AddBookmark(userPortData[focusId].UserId, userPortData[focusId]._id);
 			$('#bm-'+focusId).off('click');
 			$('#bm-'+focusId).click(function(e) {
 				e.stopPropagation();
@@ -199,7 +205,8 @@ class PortInfo extends React.Component {
 			//pftBookmark[focusId] = true;
 			$('#bm-'+focusId).attr('src','assets/images/bookmark_1w.png');
 			//alert('delete: '+userPortData[focusId].Port_Name+' from user: '+userPortData[focusId].Owner);
-			DeleteBookmark(userPortData[focusId].UserId, userPortData[focusId]._id);
+			if(focusId != null)
+				DeleteBookmark(userPortData[focusId].UserId, userPortData[focusId]._id);
 			$('#bm-'+focusId).off('click');
 			$('#bm-'+focusId).click(function(e) {
 				e.stopPropagation();
@@ -291,7 +298,10 @@ class PortInfo extends React.Component {
 				}else{
 					var pdd=1;
 					portfolioData.portfolioPictures[0].Pic.forEach((entry) => {
-						var hDiv = '<img class="pft-c" id="port-pic-' + pdd + '" src="'+entry+'" alt=""/>';
+						var hDiv = '<div class="pft-c"/>\
+										<img class="pft-uc" id="port-pic-' + pdd + '" src="'+entry+'" alt=""/>\
+										<img class="pft-ub" src="assets/images/black.jpg" alt=""/>\
+									</div>';
 						$('#h-scroll').append(hDiv);
 						//$('#port-pic-'+pdd).attr('src',entry);
 						pdd += 1;
@@ -400,7 +410,7 @@ class PortInfo extends React.Component {
 							.replace('{date}',date).replace('{privacy}',privacyImg).replace('{var-ic}',vi)
 							.replace('{var-ic-img}',vii).replace('{hidden1}',hid).replace('{hidden2}',hid).replace('{var-id}',vid));
 							
-						focusId = index;
+						//focusId = index;
 						if(_bookmarked){
 							AddBookmarkClickFuncSub();
 						}else{
@@ -755,12 +765,21 @@ class PortInfo extends React.Component {
 					<br></br><br></br><br></br><br></br>
 					
 					<div class="swf-flex-single">
-						<img class="pft-s" id="port-pic-single" src="assets/images/emp_thumb.jpg" alt=""/>
+						<div class="pft-s">
+							<img class="pft-uc" id="port-pic-single" src="assets/images/emp_thumb.jpg" alt=""/>
+							<img class="pft-ub" src="assets/images/black.jpg" alt=""/>
+						</div>
 					</div>
 					
 					<div class="swf-flex-double">
-						<img class="pft-d" id="port-pic-d1" src="assets/images/emp_thumb.jpg" alt=""/>
-						<img class="pft-d" id="port-pic-d2" src="assets/images/emp_thumb.jpg" alt=""/>
+						<div class="pft-d">
+							<img class="pft-uc" id="port-pic-d1" src="assets/images/emp_thumb.jpg" alt=""/>
+							<img class="pft-ub" src="assets/images/black.jpg" alt=""/>
+						</div>
+						<div class="pft-d">
+							<img class="pft-uc" id="port-pic-d2" src="assets/images/emp_thumb.jpg" alt=""/>
+							<img class="pft-ub" src="assets/images/black.jpg" alt=""/>
+						</div>
 					</div>
 					
 					<div class="swf-flex">

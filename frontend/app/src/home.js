@@ -10,6 +10,23 @@ import reportWebVitals from './reportWebVitals';
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import cookie from 'react-cookies'
+import { uploadFile } from 'react-s3';
+import { v4 as uuidv4 } from 'uuid';
+
+
+const S3_BUCKET ='nisitfolio';
+const REGION ='ap-southeast-1';
+const ACCESS_KEY ='AKIAWGHRNY32XLWEVA62';
+const SECRET_ACCESS_KEY ='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';
+const DIR_NAME = 'images';
+
+const config = {
+    bucketName: S3_BUCKET,
+    region: REGION,
+    accessKeyId: ACCESS_KEY,
+    secretAccessKey: SECRET_ACCESS_KEY,
+	dirName: DIR_NAME,
+}
 
 class Home extends React.Component {
 	constructor(props) {
@@ -27,6 +44,7 @@ class Home extends React.Component {
 		window.addEventListener('load', this.handleLoad);
 		console.log("YEAHXXX!");
 		var token = cookie.load('login-token');
+		var userId = null;
 		console.log(token);
 		 
 		 fetch("http://localhost:2000/profile/",{
@@ -48,9 +66,18 @@ class Home extends React.Component {
 			  }else{
 				  // alert('set cookie as '+text);
 				cookie.save('login-user', text, { path: '/' })
+				userId = text;
 			  }
 			});
 		 });
+		 
+		function UploadProfileToS3(file){
+			uploadFile(file, config)
+				.then(data => { 
+					UploadProfile(data.location);
+				})
+				.catch(err => console.error(err))
+		}
 		
 		fetch("http://localhost:2000/homepage/",{
 			method: "GET",
@@ -86,8 +113,84 @@ class Home extends React.Component {
 				script.src = "assets/js/home.js";
 				script.async = true;
 				document.body.appendChild(script);*/
-				$.getScript('assets/js/home.js');
 				
+				//$.getScript('assets/js/home.js');
+
+				  var avatar = document.getElementById('avatar');
+				  var image = document.getElementById('image');
+				  var input = document.getElementById('input');
+				  var $alert = $('.alert');
+				  var $modal = $('#modal');
+				  var cropper;
+					
+					avatar.addEventListener('click', function () {
+						input.click();
+						// console.log("Click on profile!");
+					});
+
+				  input.addEventListener('change', function (e) {
+					var files = e.target.files;
+					var done = function (url) {
+					  input.value = '';
+					  image.src = url;
+					  $alert.hide();
+					  $modal.modal('show');
+					};
+					var reader;
+					var file;
+					var url;
+
+					if (files && files.length > 0) {
+					  file = files[0];
+
+					  if (URL) {
+						done(URL.createObjectURL(file));
+					  } else if (FileReader) {
+						reader = new FileReader();
+						reader.onload = function (e) {
+						  done(reader.result);
+						};
+						reader.readAsDataURL(file);
+					  }
+					}
+				  });
+
+				  $modal.on('shown.bs.modal', function () {
+					cropper = new window.Cropper(image, {
+					  aspectRatio: 1,
+					  viewMode: 1,
+					});
+				  }).on('hidden.bs.modal', function () {
+					cropper.destroy();
+					cropper = null;
+				  });
+
+				  document.getElementById('crop').addEventListener('click', function () {
+					var initialAvatarURL;
+					var canvas;
+
+					$modal.modal('hide');
+					if (cropper) {
+					  canvas = cropper.getCroppedCanvas({
+						minWidth: 150,
+						minHeight: 150,
+						maxWidth: 2048,
+						maxHeight: 2048,
+					  });
+					  initialAvatarURL = avatar.src;
+					  avatar.src = canvas.toDataURL();
+					  console.log(avatar.src);
+					  $alert.removeClass('alert-success alert-warning');
+					  canvas.toBlob(function (blob) {
+						//var formData = new FormData();
+						//formData.append('avatar', blob, 'avatar.jpg');
+						//console.log("HELLO LV5!");
+						var file = new File([blob], userId+'_pf_'+uuidv4(), { lastModified: new Date().getTime(), type: blob.type });
+						UploadProfileToS3(file);
+					  });
+					}
+				  });
+
 				$('#crop').on('click', function(){
 					 //alert('Crop!');
 					setTimeout(function() { UploadProfile(); }, 300);
@@ -129,10 +232,10 @@ class Home extends React.Component {
 				this.setState({ redirect: "/landing" });
 			});
 			
-			function UploadProfile(){
+			function UploadProfile(picUrl){
 				//alert(111);
 					var data = {
-						"ProfilePic":$('#avatar').attr('src'),
+						"ProfilePic":picUrl,
 					}
 					
 					fetch("http://localhost:2000/register/",{
@@ -182,7 +285,7 @@ class Home extends React.Component {
 							<div class="container">     
 								<div class="row align-items-end">
 									<div class="col-md-7">
-										<img class="profile-image img-fluid float-start rounded-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="อัพโหลดรูปโปรไฟล์" type='button' id="avatar" src="assets/images/profile_uk.png" alt="profile image" />
+										<img class="profile-image img-fluid float-start rounded-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="อัพโหลดรูปโปรไฟล์" type='button' id="avatar" src="assets/images/profile_uk.png" width="150" height="150" alt="profile image" />
 										<input type="file" class="sr-only" id="input" accept="image/*" name="image" hidden />
 										<div class="profile-content">
 											<h1 class="name" id="fetch-name"></h1>
