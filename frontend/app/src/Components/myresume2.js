@@ -21,6 +21,7 @@ class MyResume2 extends React.Component {
         const workdata = this.props.state.workHistorys;
         const owner = this.props.state.owner;
         const certdata = this.props.state.certificates;
+        const color = this.props.state.color;
         // const workdata = [
         //     {
         //         "id": "61388f7c34f592a9d7f788e7",
@@ -95,8 +96,8 @@ class MyResume2 extends React.Component {
     }; //มันควรชื่อ jobskill มากกว่าป่าววะ
         return (
             <div class="resume2">
-                <MyResumeSkill addSkill={additionalSkills} intJob={interestedJob} owner={owner}></MyResumeSkill>
-                <MyresumeWork data={workdata} owner={owner}></MyresumeWork>
+                <MyResumeSkill addSkill={additionalSkills} intJob={interestedJob} owner={owner} colour={color}></MyResumeSkill>
+                <MyresumeWork data={workdata} owner={owner} colour={color}></MyresumeWork>
                 {/* <MyresumeWork data={[]} owner={true}></MyresumeWork> */}
                 
                 {/* <h2>ไม่มีเหี้ยไรสักอย่าง แต่เป็นเจ้าของ</h2>
@@ -109,7 +110,7 @@ class MyResume2 extends React.Component {
                 <MyResumeSkill addSkill={[]} intJob={interestedJobnoskill} owner={true}></MyResumeSkill>
                 <MyResumeSkill addSkill={[]} intJob={interestedJobnoskill} owner={false}></MyResumeSkill>
                 <p>เหตุผลคือถ้าอุตส่าห์มีสกิลทั้งทีแล้วทำไมต้องรอให้มีสกิลเสริม หรือสกิลตามอาชีพก่อนถึงยอมโชว์ ถ้าเขาใส่มาคงอยากโชว์แหละ</p> */}
-                <MyresumeCertificate data={certdata} owner={owner}></MyresumeCertificate>
+                <MyresumeCertificate data={certdata} owner={owner} colour={color}></MyresumeCertificate>
                 <MyResumeportfoliolayoutP>
                     <div>element1</div>
                     <div>element2</div>

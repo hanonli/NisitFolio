@@ -96,6 +96,7 @@ class MyResumeSkill extends React.Component {
         const linestyle = {
             backgroundColor: this.props.colour? this.props.colour: "#FFCE55"
         };
+        const color = this.props.colour? this.props.colour: "#FFCE55";
         const dummylinestyle = {
             backgroundColor: "#C4C4C4"
         };
@@ -158,7 +159,7 @@ class MyResumeSkill extends React.Component {
                     for(var i = 0; i< job.Job_SkillName.length; i++){
                         // console.log('in skill skillname: ' + job.Job_SkillName[i] + ' score: ' + job.Job_Score[i])
                         jobskillcontent.push(
-                            <MyResumeScoreSkill skillname={job.Job_SkillName[i]} score={job.Job_Score[i]}></MyResumeScoreSkill>
+                            <MyResumeScoreSkill skillname={job.Job_SkillName[i]} score={job.Job_Score[i]} colour={color}></MyResumeScoreSkill>
                         );
                     }
                 }
