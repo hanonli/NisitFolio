@@ -3,7 +3,7 @@
 @import "myresumeCertificate.css";
 @import "myresumework.css";
 @import "myresumeSkill.css";
-
+@import "Myresume_portfolio_choice.css";
 /* Zone Decoration */
 .MyResumeContent *{
     font-weight: normal;
