@@ -14,7 +14,7 @@ import $ from 'jquery';
 import cookie from 'react-cookies';
 import LoadingS from './Components/loadingS';
 
-class Register extends React.Component {
+class Editresume extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -141,13 +141,19 @@ class Register extends React.Component {
 				$('#registab5-content').show();
 			});
 
+            $('#tab-6').on('click', function () {
+				$('.tab-content').hide();
+				$('.tab-list-item').removeClass('tab-list-active');
+				$('#tab-6').addClass('tab-list-active')
+				$('#registab6-content').show();
+			});
 		});
 	}
 
 	render() {
 		if(this.state.render==true){
 			return (
-				<div className="ChooseResume">
+				<div className="EditResume">
 					<Navbarlogo />
 					<header class="header-white">
 						<div class="container">
@@ -169,19 +175,22 @@ class Register extends React.Component {
 					</ol>
 					<form class="needs-validation" novalidate>
 						<div>
-							<div class="tab-content" id="registab1-content">
-								<Chooseresume1 />
+                            <div class="tab-content" id="registab1-content">
+								<Registab7 />
 							</div>
 							<div class="tab-content" id="registab2-content">
-								<Chooseresume2 />
+								<Chooseresume1 />
 							</div>
 							<div class="tab-content" id="registab3-content">
-								<Chooseresume3 />
+								<Chooseresume2 />
 							</div>
 							<div class="tab-content" id="registab4-content">
-								<Registab6 />
+								<Chooseresume3 />
 							</div>
 							<div class="tab-content" id="registab5-content">
+								<Registab6 />
+							</div>
+							<div class="tab-content" id="registab6-content">
 								<Registab7 />
 							</div>
 						</div>
@@ -201,4 +210,4 @@ class Register extends React.Component {
 	}
 }		
 
-export default Register;
+export default Editresume;

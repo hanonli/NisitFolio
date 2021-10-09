@@ -3,6 +3,7 @@ $(function(){
 
 });
 /*Tab1*/
+/*
   let startYear3 = 1970;
   let endYear3 = new Date().getFullYear();
   for (i = endYear3; i > startYear3; i--) {
@@ -105,10 +106,11 @@ $(function(){
         console.log(`list_of_aca:`, list_of_aca);
     });
   }
+  /*
   $(document).ready(function () {
     show_all_aca();
   });
-  
+*/
   //func add new aca form
   $(document).on("click", "#add_aca", function () {
     $("#aca_name").removeClass("is-invalid");
@@ -263,7 +265,7 @@ $(function(){
   }
   
   var choose_function3_2 = -1; //default
-  
+  /*
   function show_all_high() {
   
     list_of_high.forEach(ele => {
@@ -309,11 +311,12 @@ $(function(){
         $(".list-of-high").append(grid_high1 + grid_high2);
         console.log(`list_of_high:`, list_of_high);
     });
-  }
+  }*/
+  /*
   $(document).ready(function () {
     show_all_high();
   });
-  
+  */
   //func add new high form
   $(document).on("click", "#add_high", function () {
     $("#high_degree").removeClass("is-invalid");
@@ -423,4 +426,4 @@ $(function(){
   });
   
   
-  
+  */
