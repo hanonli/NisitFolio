@@ -69,6 +69,8 @@ class PortInfo extends React.Component {
 		var bookmarked = false;
 		//var pftBookmark = [];
 		
+		var userProfilePic = null;
+		
 		var f1 = false; var f2 = false; var f3 = false; var f4 = false;
 		
 		var fetcher = setInterval(Fetcher, 100);
@@ -336,6 +338,7 @@ class PortInfo extends React.Component {
 				$('#port-owner-b').text(portfolioData.Owner);
 				
 				//$('#avatar').attr('src',userData.ProfilePic);
+				//$('#avatar').attr('src',userProfilePic);
 				$('#port-user-email').text(userData.Email);
 				
 				//refThis.setState({ render: true });
@@ -622,11 +625,39 @@ class PortInfo extends React.Component {
 				GetUserHeader(thatUserId);
 				GetUserPortfolio(thatUserId);
 				GetUserBookmarkData();
+				
+				//quick fix
+				GetUserProfilePic();
 			}).catch((error) => {
 				console.log('Token Error!');
 				console.log(error);
 				//this.setState({ redirect: "/landing" });
 			});
+			
+		function GetUserProfilePic(){
+			fetch("http://localhost:2000/search/top?q="+portfolioData.Owner.split(' ')[0]+"&userId="+userId,{
+				method: "GET",
+				headers: {
+					"Access-Control-Allow-Origin": "*",
+					"Access-Control-Allow-Methods": "*",
+					"Access-Control-Allow-Credentials": true,
+					"Content-Type": "application/json"},
+			})
+				.then(response => response.json())
+				//.then(response => response.result)
+				.then((datas) => {
+					datas.every((entry) => {
+						if(entry.thatUserId == portfolioData.UserId){
+							userProfilePic = entry.pic;
+							$('#avatar').attr('src',userProfilePic);
+							return false;
+						}
+						return true;
+					});
+				}).catch((error) => {
+					  console.log(error);
+					});
+		}
 		
 		function GetUserBookmarkData(){
 			fetch("http://localhost:2000/bookmark/"+userId+"&&time",{
@@ -807,7 +838,7 @@ class PortInfo extends React.Component {
 						</div>
 						<br></br>
 						<div class="ds1" />
-						<img class="profile-image img-fluid float-start rounded-circle" id="avatar" src="assets/images/profile_uk.png" alt="profile image" />
+						<img class="profile-image img-fluid float-start rounded-circle" id="avatar" src="assets/images/profile_uk.png" alt="profile image" height="150" width="150" />
 						<af >ผลงานอื่นที่คุณอาจสนใจของ</af>
 						<mhf id="port-owner-b">ชื่อ นามสกุล</mhf>
 					</div>
