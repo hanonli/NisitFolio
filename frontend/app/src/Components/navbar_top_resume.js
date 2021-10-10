@@ -25,7 +25,10 @@ class Resume_topNavbar extends React.Component {
 			privacy : '',
 			color : '',
 			index : 0,
-			owner :  false,
+			owner : '',
+			is_owner :  false,
+			profilepic : null,
+			aboutme : '',
 			ready  : false,
 			loading : true,
 		}
@@ -38,7 +41,7 @@ class Resume_topNavbar extends React.Component {
 			var temp_userid = sParam[1]
 			this.setState({
 				userID : temp_userid,
-				owner : false,
+				is_owner : false,
 			})
 		}else{
 			var token = cookie.load('login-token')
@@ -56,7 +59,7 @@ class Resume_topNavbar extends React.Component {
 			.then((datas) => {
 				this.setState({
 					userID : datas,
-					owner : true,
+					is_owner : true,
 				})
 				// console.log('this.state.userID1 :'+this.state.userID)
 			});
@@ -77,7 +80,7 @@ class Resume_topNavbar extends React.Component {
 	getResumeID(e=0){
 		var userid = this.state.userID ;
 		var index = e ;
-		var owner = this.state.owner ;
+		var owner = this.state.is_owner ;
 		// console.log('getResumeID called')
 		console.log('in getResumeID index is :' + index + ' userid is: ' + userid )
 		fetch("http://localhost:2000/myresume/user/"+ userid,{
@@ -107,13 +110,16 @@ class Resume_topNavbar extends React.Component {
 			}else{
 				this.setState({
 					resumeID : Resumedata._id,
-					workHistorys : Resumedata.workHistorys,
-					educationHistorys : Resumedata.educationHistorys,
-					certificates : Resumedata.certificates,
-					additionalSkills : Resumedata.additionalSkills,
-					interestedJob : Resumedata.interestedJob,
-					color : Resumedata.Color,
+					workHistorys : Resumedata.workHistorys ? Resumedata.workHistorys : [],
+					educationHistorys : Resumedata.educationHistorys ? Resumedata.educationHistorys : [],
+					certificates : Resumedata.certificates ?  Resumedata.certificates : [],
+					additionalSkills : Resumedata.additionalSkills ? Resumedata.additionalSkills : [],
+					interestedJob : Resumedata.interestedJob ? Resumedata.interestedJob : [],
+					color : Resumedata.Color ? Resumedata.Color : '#FFCE55',
 					privacy : Resumedata.Privacy,
+					owner : Resumedata.Owner ? Resumedata.Owner : '',
+					profilepic : Resumedata.ProfilePic !== null ? Resumedata.ProfilePic : '',
+					aboutme : Resumedata.Aboutme !== null ? Resumedata.Aboutme : '',
 					ready : true,
 				})
 			}
@@ -224,7 +230,7 @@ class Resume_topNavbar extends React.Component {
 	}
 
 	handleSection1 = () => {
-		if(this.state.owner){
+		if(this.state.is_owner){
 			// console.log('you are owner1')
 			return (
 			<div className='resume_topnav' >
@@ -248,7 +254,7 @@ class Resume_topNavbar extends React.Component {
 	}
 
 	handleSection2 = () => {
-		if(this.state.owner){
+		if(this.state.is_owner){
 			// console.log('you are owner2')
 			return (
 				<div className='resume_topnav' >
