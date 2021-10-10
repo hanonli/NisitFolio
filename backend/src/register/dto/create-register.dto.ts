@@ -1,6 +1,7 @@
 import { IsEmail, IsNotEmpty, IsNumberString } from 'class-validator';
 
 export class CreateRegisDto {
+  
 
   @IsNotEmpty()
   @IsEmail()
@@ -37,9 +38,11 @@ export class CreateRegisDto {
 
   City: string;
 
+  
   @IsNotEmpty()
   SoftSkill: string[];
 
+  
   @IsNotEmpty()
   CertName: string[];
 

@@ -6,14 +6,31 @@ import MyresumeCertificate from './myresumecertificate.js';
 class MyResume1 extends React.Component {
     
     render() {
-        const firstname="พุฒวัฒน์"; 
-        const lastname="ผดุงเจริญ"; 
+        var name = this.props.state.owner.split(' ');
+        console.log('namem : ' + JSON.stringify(name))   
+
+        var firstname = name[0] ? name[0] : '';
+        var lastname = name[1] ? name[1] : ''
+
+        // if( name.length >1){
+        //     alert('longname')
+        //     var firstname = name[0]
+        //     var lastname = name[1]
+        // }else{
+        //     alert('shortname')
+        //     var firstname = name[0]
+        // }
+
+        // const firstname="พุฒวัฒน์"; 
+        // const lastname="ผดุงเจริญ"; 
         const occupation="พระเจ้า";
-        const bio= "Curabitur lobortis blandit tellus vitae viverra. Praesent a elementum massa, nec congue elit. Aliquam a nunc turpis. Praesent et nisi vestibulum sem interdum ultricies. Integer quis semper erat, sed rhoncus nulla. Etiam in euismod augue. Aenean eu auctor magna. Donec sodales sed.";
-        const imagepath="assets/images/profile.jpg";
-        const educationdata = this.props.state.educationHistorys;
+        // const bio= "Curabitur lobortis blandit tellus vitae viverra. Praesent a elementum massa, nec congue elit. Aliquam a nunc turpis. Praesent et nisi vestibulum sem interdum ultricies. Integer quis semper erat, sed rhoncus nulla. Etiam in euismod augue. Aenean eu auctor magna. Donec sodales sed.";
+        var bio = this.props.state.aboutme ? this.props.state.aboutme : 'No Content, please add one'
+        // const imagepath="assets/images/profile.jpg";
+        var imagepath =  this.props.state.profilepic ? this.props.state.profilepic : null ; 
+        var educationdata = this.props.state.educationHistorys;
         //const certdata = this.props.state.certificates; // certificate move to resume 2 follow the figma!
-        const owner = this.props.state.owner;
+        var owner = this.props.state.is_owner;
         // const educationdata = [
         //     {
         //         "id": "6135805bd633f137e4559262",
