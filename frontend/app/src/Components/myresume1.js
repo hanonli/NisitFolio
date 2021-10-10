@@ -23,7 +23,9 @@ class MyResume1 extends React.Component {
 
         // const firstname="พุฒวัฒน์"; 
         // const lastname="ผดุงเจริญ"; 
-        const occupation="พระเจ้า";
+        // var job = this.props.state.interestedJob[0].Job_JobName
+        // console.log('job: '+ JSON.stringify(job))
+        const occupation = this.props.state.interestedJob[0].Job_JobName ? this.props.state.interestedJob[0].Job_JobName : 'คุณยังไม่มีอาชีพ' ;
         // const bio= "Curabitur lobortis blandit tellus vitae viverra. Praesent a elementum massa, nec congue elit. Aliquam a nunc turpis. Praesent et nisi vestibulum sem interdum ultricies. Integer quis semper erat, sed rhoncus nulla. Etiam in euismod augue. Aenean eu auctor magna. Donec sodales sed.";
         var bio = this.props.state.aboutme ? this.props.state.aboutme : 'No Content, please add one'
         // const imagepath="assets/images/profile.jpg";
