@@ -243,6 +243,10 @@ class PortInfo extends React.Component {
 					$('#uic-2').attr('data-bs-toggle','modal');
 					//$('#uic-2').attr('title', 'ลบ')
 					refThis.setState({ tooltip2: 'ลบ' });
+					
+					console.log(userData);
+					//alert(44);
+					$('#avatar').attr('src',userData.ProfilePic);
 					/*if(portfolioData.Port_Privacy == 'Public'){
 						$('#uic-2').attr('src','assets/images/outline_public_black_24dp.png');
 						$('#uic-2').attr('title','เปลี่ยนความเป็นส่วนตัว');
@@ -331,7 +335,7 @@ class PortInfo extends React.Component {
 
 				$('#port-owner-b').text(portfolioData.Owner);
 				
-				$('#avatar').attr('src',userData.ProfilePic);
+				//$('#avatar').attr('src',userData.ProfilePic);
 				$('#port-user-email').text(userData.Email);
 				
 				//refThis.setState({ render: true });
@@ -380,7 +384,7 @@ class PortInfo extends React.Component {
 						var vi = null; var vii = null; var hid = ''; var vid = null;
 						if(portfolioData.UserId == userId){ //user is viewing user's port
 							vi = 'pft-edit-icon';
-							vii = 'assets/images/whiteedit.png';
+							vii = 'assets/images/white_edit2.png';
 							vid = '';
 						}else{
 							vi = 'pft-bookmark-icon';
@@ -644,7 +648,7 @@ class PortInfo extends React.Component {
 		}
 		
 		function GetUserHeader(uid){
-			fetch("http://localhost:2000/portfolio/user/"+uid,{
+			fetch("http://localhost:2000/portfolio/header/"+uid,{
 			method: "GET",
 			headers: {
 				'Authorization': 'Bearer '+token,

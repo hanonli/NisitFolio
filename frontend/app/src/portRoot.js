@@ -35,7 +35,7 @@ class PortRoot extends React.Component {
 								<img class="pft-overlay" src="assets/images/black.jpg" alt=""/>\
 								<img class="pft-lock-icon" src="{privacy}" alt=""/>\
 								<img class="pft-del-icon" src="assets/images/white_bin.png" data-bs-toggle="modal" data-bs-target="#staticBackdrop" alt=""/>\
-								<img class="pft-edit-icon" src="assets/images/whiteedit.png" alt=""/>\
+								<img class="pft-edit-icon" src="assets/images/white_edit2.png" alt=""/>\
 								<div class="pft-name">{name}</div>\
 								<div class="pft-date">{date}</div>\
 							</div>\
