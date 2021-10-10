@@ -22,12 +22,12 @@ export class MyResumeController {
     return this.resumeService.getResumebyUser(UserId);
   }
 
-  
   @UseGuards(JwtAuthGuard)
   @Get("/header/:x")
     async Getheader(@Param('x') x: string,@Request() req) {
       return this.resumeService.getResumeheader(req.user.userId);
   }
+  
   
 
   @UseGuards(JwtAuthGuard)
