@@ -105,7 +105,7 @@ class Resume_topNavbar extends React.Component {
 			// console.log('in resumeid datas c: ' + JSON.stringify(c));			
 			var Resumedata = datas[index]
 			if(Resumedata === undefined){
-				alert('there is no resumedata Redirect to last path')
+				console.log('there is no resumedata Redirect to last path')
 				window.history.go(-1)
 			}else{
 				this.setState({
