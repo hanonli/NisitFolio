@@ -19,4 +19,6 @@ export class hearderDto {
     City: string;
       
     AboutMe: string;
+
+    Job_JobName: string[];
 }

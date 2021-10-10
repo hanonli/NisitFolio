@@ -18,6 +18,7 @@ export default function DatePickerBD() {
 		onChange={(newValue) => {
 		  setValue(newValue);
 		}}
+    maxDate={new Date()}
 		renderInput={(params) => <TextField variant="filled" id="basic-date-picker1" {...params} />}
 	  />
     </LocalizationProvider>

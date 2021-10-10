@@ -14,10 +14,22 @@ import Registab6 from "./Components/registab6";
 import Registab7 from "./Components/registab7";
 import $ from 'jquery';
 import cookie from 'react-cookies'
+import LoadingS from './Components/loadingS';
 
 class Register extends React.Component {
 
+	constructor(props) {
+		super(props);
+		this.state = {
+			render : false
+		}
+	}
+
 	componentDidMount() {
+		$(function(){
+			$('.tab-content').hide();
+			$('#continue2').hide();
+		});
 		reloadJs("assets/js/register.js");
 		window.addEventListener('load', this.handleLoad);
 		console.log("YEAHXXX!");
@@ -29,9 +41,15 @@ class Register extends React.Component {
 			$('script[src$="' + src + '"]').remove();
 			$('<script/>').attr('src', src).appendTo('head');
 		}
+		this.setState({ 
+			render: true
+		})
 	}
-
-	render() {
+	render() {/*
+		if(this.state.render==false){
+			return (
+				<LoadingS />
+		)};*/
 		return (
 			<div className="Register">
 				<Navbarlogo />

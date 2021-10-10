@@ -5,6 +5,7 @@ import Navbarlogo from './Components/navbarlogo';
 import InformationHeader from './Components/informationHeader';
 import reportWebVitals from './reportWebVitals';
 import { Link } from "react-router-dom";
+import Myresumedittemplate from "./Components/myresumeEditTemplate";
 import Chooseresume1 from "./Components/chooseresume1";
 import Chooseresume2 from "./Components/chooseresume2";
 import Chooseresume3 from "./Components/chooseresume3";
@@ -14,7 +15,7 @@ import $ from 'jquery';
 import cookie from 'react-cookies';
 import LoadingS from './Components/loadingS';
 
-class Register extends React.Component {
+class Editresume extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -141,13 +142,19 @@ class Register extends React.Component {
 				$('#registab5-content').show();
 			});
 
+			$('#tab-6').on('click', function () {
+				$('.tab-content').hide();
+				$('.tab-list-item').removeClass('tab-list-active');
+				$('#tab-6').addClass('tab-list-active')
+				$('#registab6-content').show();
+			});
 		});
 	}
 
 	render() {
 		if (this.state.render == true) {
 			return (
-				<div className="ChooseResume">
+				<div className="EditResume">
 					<Navbarlogo />
 					<header class="header-white">
 						<div class="container">
@@ -161,27 +168,31 @@ class Register extends React.Component {
 						</div>
 					</header>
 					<ol class="tabs-list">
-						<li class="tab-list-item tab-list-active" id="tab-1" type="button">ประวัติการศึกษา</li>
-						<li class="tab-list-item" id="tab-2" type="button">ประวัติการทำงาน</li>
-						<li class="tab-list-item" id="tab-3" type="button">ใบรับรอง</li>
-						<li class="tab-list-item" id="tab-4" type="button">งานที่สนใจ</li>
-						<li class="tab-list-item" id="tab-5" type="button">ทักษะเสริม</li>
+						<li class="tab-list-item tab-list-active" id="tab-1" type="button">เทมเพลต</li>
+						<li class="tab-list-item" id="tab-2" type="button">ประวัติการศึกษา</li>
+						<li class="tab-list-item" id="tab-3" type="button">ประวัติการทำงาน</li>
+						<li class="tab-list-item" id="tab-4" type="button">ใบรับรอง</li>
+						<li class="tab-list-item" id="tab-5" type="button">งานที่สนใจ</li>
+						<li class="tab-list-item" id="tab-6" type="button">ทักษะเสริม</li>
 					</ol>
 					<form class="needs-validation" novalidate>
 						<div>
 							<div class="tab-content" id="registab1-content">
-								<Chooseresume1 />
+								<Myresumedittemplate />
 							</div>
 							<div class="tab-content" id="registab2-content">
-								<Chooseresume2 mywork_data={this.state.data} />
+								<Chooseresume1 />
 							</div>
 							<div class="tab-content" id="registab3-content">
-								<Chooseresume3 mycerti_data={this.state.data} />
+								<Chooseresume2 mywork_data={this.state.data} />
 							</div>
 							<div class="tab-content" id="registab4-content">
-								<Registab6 />
+								<Chooseresume3 mycerti_data={this.state.data} />
 							</div>
 							<div class="tab-content" id="registab5-content">
+								<Registab6 />
+							</div>
+							<div class="tab-content" id="registab6-content">
 								<Registab7 />
 							</div>
 						</div>
@@ -201,4 +212,4 @@ class Register extends React.Component {
 	}
 }
 
-export default Register;
+export default Editresume;

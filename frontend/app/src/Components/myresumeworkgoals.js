@@ -16,13 +16,16 @@ class MyresumeWorkGoals extends React.Component {
             }
         ]*/
         let Count_Job = 0;
-        // const Job_Objective = ["Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.","อยากรวย","อยากมีตัง หิวเงิน"];
-        const Job_Objective = ["none", "none", "none"];
+         const Job_Objective = ["Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.","อยากรวย","อยากมีตัง หิวเงิน"];
+        // const Job_Objective = ["none", "none", "none"];
         // const interestedJob = this.props.interestedJob;
         // const Job_Objective = this.props.interestedJob.Job_Objective;
         // alert(JSON.stringify(interestedJob[0]))
         const linestyle = {
             backgroundColor: this.props.colour ? this.props.colour : "#FFCE55"
+        };
+        const colornumstyle = {
+            color: this.props.colour ? this.props.colour : "#FFCE55"
         };
 
         const Job_Goals = []
@@ -34,7 +37,7 @@ class MyresumeWorkGoals extends React.Component {
                 Count_Job += 1;
                 Job_Goals.push(
                     <>
-                        <h1 class="color-number">{Count_Job}</h1>
+                        <h1 class="color-number" style={colornumstyle}>{Count_Job}</h1>
                         <h5 class="White-font">{Job_Objective[i]}</h5>
                     </>
                 );
@@ -45,7 +48,7 @@ class MyresumeWorkGoals extends React.Component {
             Job_Goals_With_data.push(
                 <div class="myresume-work-goals-woNb">
                     <div class="work-goals-head">
-                        <h1 class="White-font-topic" id="WG">เป้าหมายการทำงาน</h1>
+                        <h1 class="White-font-topic">เป้าหมายการทำงาน</h1>
                     </div>
                     <div class="resumesectionline" style={linestyle}></div>
                     <div class="work-goals-woNb">
@@ -74,7 +77,7 @@ class MyresumeWorkGoals extends React.Component {
         }
 
         return (
-            <div class="myresume-mywork-woNb" id='resume-goal'>
+            <div class="workgolas" id="resume-goal">
                 <div>{Job_Goals_With_data}</div>
                 <div>{Without_Job_Goals}</div>
             </div>

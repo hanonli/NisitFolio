@@ -6,6 +6,7 @@ import Navbar from './Components/navbar';
 // import MyResumeContent from './Components/myresumeContent';
 import reportWebVitals from './reportWebVitals';
 import Resume_topNavbar from './Components/navbar_top_resume';
+import MyResumeContent from './Components/myresumeContent';
 
 class MyResume extends React.Component {
 	constructor(props) {
@@ -36,6 +37,7 @@ class MyResume extends React.Component {
 			<div className="Home">
 				<Navbar />
 				<Resume_topNavbar/>
+				
 			</div>
 		);
 	}

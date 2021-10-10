@@ -5,6 +5,8 @@ import Navbarlogo from './Components/navbarlogo';
 import reportWebVitals from './reportWebVitals';
 import { Link } from "react-router-dom";
 import cookie from 'react-cookies';
+import $ from 'jquery';
+import {Redirect} from 'react-router-dom';
 
 /* NOT AVALIABLE TO TEST RIGHT NOW BC DONT HAVE PATH TO LINK WITH*/
 class Failregis extends React.Component {
@@ -14,6 +16,7 @@ class Failregis extends React.Component {
 	
 	componentDidMount() {
 		// Simple POST request with a JSON body using fetch
+        /*
 		let params = new URLSearchParams(document.location.search.substring(1));
 		let token = params.get("token");
 		//cookie.save('login-token',token);
@@ -27,6 +30,11 @@ class Failregis extends React.Component {
 			.then(response => response.json())
 			.then(data => this.setState({ postId: data.id }));
 		//setInterval(window.location = "http://localhost:3000/landing", 5000);  
+        */
+        $('#resendEmail').on('click',function(){
+			alert('This feature is now unavaliable! be patient');
+			<Redirect  to="/landing" />
+		});
 	}
 
 	render (){

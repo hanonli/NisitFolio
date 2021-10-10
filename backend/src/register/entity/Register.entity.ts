@@ -118,6 +118,9 @@ export class AdditionalSkill {
   @Column()
   last_modified:string[];
 
+  @Column()
+  Type:string;
+
   @ManyToOne(type => Resume, resume => resume.additionalSkills)
   resumes: Resume[];
 

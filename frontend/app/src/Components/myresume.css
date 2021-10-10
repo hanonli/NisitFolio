@@ -3,7 +3,7 @@
 @import "myresumeCertificate.css";
 @import "myresumework.css";
 @import "myresumeSkill.css";
-
+@import "Myresume_portfolio_choice.css";
 /* Zone Decoration */
 .MyResumeContent *{
     font-weight: normal;
@@ -274,7 +274,6 @@
 
 .myresume-work-goals-woNb{
     background-color: rgba(22, 21, 19, 1);
-    padding: 0Vw;
 }
 
 
@@ -291,7 +290,6 @@
     margin-top: 5Vw;
     font-weight: 200;
     font-size: 320%;
-    color: #FFCE55;
 
     text-align: center;
 }
@@ -299,7 +297,6 @@
 .work-goals-woNb{
     margin-left: 8Vw;
     margin-right: 8Vw;
-    margin-bottom: 4Vw;
 }
 
 
@@ -309,7 +306,8 @@
 }
 
 .myworkb{
-    margin-bottom: 4%;
+    color: white;
+    padding-bottom: 4Vw;
 }
 
 .myresume-work-goals-withoutdata{
@@ -372,25 +370,247 @@
     /*display: flex;*/
 }
 
+.mywork-row {
+    margin-bottom: 18Vw;
+}
+
 .mywork-col{
     float: left;
     width: 33.33%;
     padding: 0%;
+    margin-bottom: 0.5Vw;
+    position: relative;
+}
+
+.mywork-col-overlay{
+    float: left;
+    width: 33.33%;
+    padding: 0%;
+    margin-bottom: 0.1Vw;
+    position: relative;
 }
 
 .img-mywork-1{
     /*position: absolute;*/
     width: 100%;
-    height: 100%;
+    height: 17vw;
     margin-left: 0%;
-    display: block;
+    margin-top: 0%;
+    display: flex;
     position: relative;
+    transition: 0.5s;
+    z-index: 0;
+    /*background-color: rgba(26, 26, 26, 0.76);*/
 }
 
-.img-slide{
-    position: absolute;
-    width: 30%;
-    height: 30%;
-    margin-left: 50%;
-    margin-top: 25%;
+/*.img-mywork-1{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}*/
+
+.img-overlay-block{
+    position: relative;
 }
+.img-overlaybox{
+    width: 100%;
+    height: 17Vw;
+    position: relative;
+    overflow: hidden;
+}
+
+.img-overlayspace{
+    margin: 0%;
+}
+
+.img-overlay{
+    margin-top: 0.2Vw;
+    position: absolute;
+    width: 100%;
+    height: 17Vw;
+    z-index: 1;
+    display: flex;
+    background-color: rgba(0,0,0,0.6);
+    color:#FFFFFF;
+    flex-direction: column;
+    transition: 0.5s;
+    overflow: hidden;
+    opacity: 0;
+}
+
+.img-overlay2{
+    margin-top: 17.6Vw;
+    position: absolute;
+    width: 100%;
+    height: 17Vw;
+    z-index: 1;
+    display: flex;
+    background-color: rgba(0,0,0,0.6);
+    color:#FFFFFF;
+    flex-direction: column;
+    transition: 0.5s;
+    overflow: hidden;
+    opacity: 0;
+}
+
+.img-overlay3{
+    position: absolute;
+    width: 26.67Vw;
+    height: 17Vw;
+    z-index: 1;
+    display: flex;
+    background-color: rgba(0,0,0,0.6);
+    color:#FFFFFF;
+    flex-direction: column;
+    transition: 0.5s;
+    overflow: hidden;
+    opacity: 0;
+}
+
+
+.img-overlay:hover{
+    opacity: 1;
+}
+
+.img-overlay2:hover{
+    opacity: 1;
+}
+
+.img-overlay3:hover{
+    opacity: 1;
+}
+
+.myworkname{
+    margin-top: 7.3Vw;
+    margin-left: 2Vw;
+    font-size: 2Vw;
+    color:rgb(255, 255, 255);
+}
+
+.myworkdate{
+    margin-top: 0.3Vw;
+    margin-left: 2Vw;
+    font-size: 1Vw;
+    font-weight: 500;
+    color:white;
+}
+
+.img-mywork-bookmark{
+    width: 2.5Vw;
+    height: 2.5Vw;
+    margin-top: 1Vw;
+    margin-left: 23.2Vw;
+    z-index: 999;
+}
+
+.iconmywork{
+    margin-left: 4Vw;
+    margin-top: 1Vw;
+    margin-bottom: 0.7Vw;
+    z-index: 999;
+}
+
+.img-mywork-select{
+    width: 1.9Vw;
+    height: 1.9Vw;
+    margin-left: 13.8Vw;
+    z-index: 999;
+}
+
+.img-mywork-bin{
+    width: 1.9Vw;
+    height: 1.9Vw;
+    margin-left: 1Vw;
+    z-index: 999;
+}
+
+.img-mywork-edit{
+    width: 1.6Vw;
+    height: 1.6Vw;
+    margin-left: 1Vw;
+    z-index: 999;
+}
+
+/*.img-overlay:hover{
+    opacity: 0.6;
+    transition: 0.5s;
+}*/
+
+/*.img-mywork-1:hover:after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 17vw;
+    margin-left: 0%;
+    margin-top: 0%;
+    display: flex;
+    cursor: pointer;
+    transition: 0.5s;
+    box-shadow: 0 0 0 3px black;
+}*/
+/*
+.img-mywork-1:hover{
+    opacity: 0.4;
+}*/
+/*
+.img-mywork-1:hover:after {
+    opacity: initial;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    opacity: 85%;
+}*/
+
+.workgolas{
+    background-color: rgba(22, 21, 19, 1);
+    padding-bottom: 4Vw;
+    padding-top: 1Vw;
+}
+
+.slidemywork-container{
+    max-width: 100%;
+    position: relative;
+    margin: auto;
+}
+/*
+.cert-overlaybox{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.cert-overlayitem{
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    width: 80%;
+}
+
+.cert-overlayitem h3{
+    font-size: 2vw;
+    text-align: center;
+    opacity: 1;
+}
+.cert-overlayitem h4{
+    font-size: 1vw;
+    text-align: center;
+    opacity: 1;
+}
+
+.cert-overlay *{
+    text-align: center;
+    color: white;
+}
+.cert-overlay{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    opacity: 0;
+    transition: .5s ease;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+}*/
+

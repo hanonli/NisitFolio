@@ -8,8 +8,9 @@ window.onload = () => {
 
 /*Tabs New*/
 $(function(){
-    $('.tab-content').hide();
+    //$('.tab-content').hide();
     $('#registab1-content').show();
+    $('#continue2').show();
     $('#basic-date-picker1').attr('placeholder','วัน/เดือน/ปี');
     $('#ddt7s').hide();
     $('#toggleEmailW').hide();
