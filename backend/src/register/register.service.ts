@@ -48,6 +48,8 @@ export class RegisterService {
     private SkillRepository: Repository<Skill>,
     @InjectRepository(HardSkill)
     private HardSkillRepository: Repository<Skill>,
+    @InjectRepository(HardSkill)
+    private HardSkill2Repository: Repository<HardSkill>,
     @InjectRepository(Portfolio)
     private portfolioRepository: Repository<Portfolio>,
     @InjectRepository(PortfolioPicture)
@@ -67,9 +69,11 @@ export class RegisterService {
   ) {}
 
   async createRegis(createDto: CreateRegisDto)
+  
   {
     const time =  new Date();
     const isoTime = time.toLocaleDateString('th-TH',{ year:'numeric',month: 'long',day:'numeric',hour:"2-digit",minute:"2-digit"});
+    
     const account = new Account(); 
     account.Email = createDto.Email;
     account.Password = [Md5.hashStr(createDto.Password)];
@@ -97,14 +101,20 @@ export class RegisterService {
     userinfo.create_time = isoTime ;
     userinfo.last_modified =  [isoTime] ;
 
+
     for (var _i = 0; _i < createDto.SoftSkill.length; _i++) {
+      
       const additionalskill = new AdditionalSkill();
       additionalskill.UserId = accountid;
       additionalskill.AdditionalSkill  = createDto.SoftSkill[_i]; 
       additionalskill.create_time = isoTime ;
       additionalskill.last_modified =  [isoTime] ;
       additionalskill.ResumeId =  new Array() ;
+      
+      additionalskill.Type= (await this.HardSkill2Repository.findOne({where:{ THName: createDto.SoftSkill[_i] }})).THType;
       await this.AdditionalSkillRepository.save(additionalskill);
+      
+
     }
     
     for (var _i = 0; _i < createDto.CertName.length; _i++) {
@@ -335,6 +345,7 @@ export class RegisterService {
     if (patchDto.SoftSkill){
       additionalskill.last_modified.push(isoTime);
       additionalskill.AdditionalSkill = patchDto.SoftSkill;
+      additionalskill.Type= (await this.HardSkill2Repository.findOne({where:{ THName: patchDto.SoftSkill }})).THType;
       return await this.AdditionalSkillRepository.save(additionalskill);
     }
     throw new BadRequestException('Dto error');
