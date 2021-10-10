@@ -204,7 +204,7 @@ class MyResumeSkill extends React.Component {
         }
         return(
            <div id='resume-additionalskills'>
-               <h1>\n</h1>
+               {/*<h1>\n</h1>*/}
                {result}
            </div> 
             
