@@ -331,6 +331,9 @@ export class Resume {
   Email: string;
 
   @Column()
+  Location: string;
+
+  @Column()
   TAG: string[];
 
   @Column()
