@@ -74,7 +74,7 @@ export class PortController {
   
     }
   @UseGuards(JwtAuthGuard)
-  @Get('/sort:sort')
+  @Get('/sort/:sort')
   //async getThisUserBookmarks(@Param('id') userId: string,@Param('sort') sort: string): Promise<any[]> {
   async sortportUser(@Request() req,@Param('sort') sort: string){
       return this.portService.sortport(req.user.userId, sort);
