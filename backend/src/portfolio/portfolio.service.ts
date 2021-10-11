@@ -206,7 +206,7 @@ export class PortService {
                 "ธันวาคม":12
               }
 
-    if(sort=="created_sort"){
+    if(sort=="createTime"){
       for (var _i = 0; _i < arr_user_port.length; _i++) {
         const x=arr_user_port[_i].create_time
         if (x==null){
@@ -234,7 +234,7 @@ export class PortService {
 
 
     arr_sort.sort();
-    if (sort=="created_sort"||sort=="มากไปน้อย"){
+    if (sort=="createTime"||sort=="descendingOrder"){
       arr_sort.reverse()
     }
 
