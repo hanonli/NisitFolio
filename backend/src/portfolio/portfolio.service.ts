@@ -12,7 +12,6 @@ import { UserInfoDocument, UserInfoMongoose } from 'src/register/entity/register
 import Portfolio3 from './dto/portfolio4.dto';
 import { hearderDto } from 'src/portfolio/dto/haerder.dto';
 import { Bookmark } from './entity/portfliobookmark.entity';
-import { Portfolio4 } from './entity/portflio_get.entity';
 
 @Injectable()
 export class PortService {
@@ -29,8 +28,6 @@ export class PortService {
     private accountRepository: Repository<Account>,
     @InjectRepository(Bookmark)
     private BookmarkRepository: Repository<Bookmark>,
-    @InjectRepository(Portfolio4)
-    private Portfolio4Repository: Repository<Portfolio4>,
     
 
 
