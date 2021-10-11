@@ -111,6 +111,8 @@ class MyResume2 extends React.Component {
                 <MyResumeSkill addSkill={[]} intJob={interestedJobnoskill} owner={false}></MyResumeSkill>
                 <p>เหตุผลคือถ้าอุตส่าห์มีสกิลทั้งทีแล้วทำไมต้องรอให้มีสกิลเสริม หรือสกิลตามอาชีพก่อนถึงยอมโชว์ ถ้าเขาใส่มาคงอยากโชว์แหละ</p> */}
                 <MyresumeCertificate data={certdata} owner={owner} colour={color}></MyresumeCertificate>
+                
+                <h1>ไกด์ให้มาย</h1>
                 <MyResumeportfoliolayoutP>
                     <div>element1</div>
                     <div>element2</div>

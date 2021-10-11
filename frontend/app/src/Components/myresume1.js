@@ -10,8 +10,8 @@ class MyResume1 extends React.Component {
         console.log('namem : ' + JSON.stringify(name))   
 
         var firstname = name[0] ? name[0] : '';
-        var lastname = name[1] ? name[1] : ''
-
+        var lastname = name[1] ? name[1] : '';
+        var addname = name[2] ? name[2] + (name[3]? " "+name[3]: ''): "";
         // if( name.length >1){
         //     alert('longname')
         //     var firstname = name[0]
@@ -32,6 +32,7 @@ class MyResume1 extends React.Component {
         var imagepath =  this.props.state.profilepic ? this.props.state.profilepic : null ; 
         var educationdata = this.props.state.educationHistorys;
         //const certdata = this.props.state.certificates; // certificate move to resume 2 follow the figma!
+        
         var owner = this.props.state.is_owner;
         // const educationdata = [
         //     {
@@ -107,12 +108,13 @@ class MyResume1 extends React.Component {
         //     "CertYear": 2003
         // }];
         const color = this.props.state.color;
+        console.log(owner);
         const colour_red = "#FF7370";
         return (
             
             <div class="resume1">
-                <MyresumeHeading firstname={firstname} lastname={lastname} const occupation={occupation} bio={bio} imagepath={imagepath} colour={color} province="กรุงเทพมหานคร" city="มินบุรี"></MyresumeHeading>
-			    {/* <MyresumeHeading firstname={firstname} lastname={lastname} const occupation={occupation} imagepath={imagepath} colour="#FFCE55"></MyresumeHeading>
+                <MyresumeHeading firstname={firstname} lastname={lastname} addname={addname} occupation={occupation} owner={owner} bio={bio} imagepath={imagepath} colour={color} province="กรุงเทพมหานคร" city="มินบุรี"></MyresumeHeading>
+			    {/* <MyresumeHeading firstname={firstname} lastname={lastname} const occupation={occupation} imagepath={imagepath} colour="#FFCE55"></MyresumeHeading> bio={bio}
                 <MyresumeHeading firstname={firstname} lastname={lastname} const occupation={occupation} imagepath={imagepath} colour="#FFCE55" owner={true}></MyresumeHeading> */}
                 <MyResumeEducation data={educationdata} owner={owner} colour={color}></MyResumeEducation>
                 {/* <MyResumeEducation data={[]} owner={true}></MyResumeEducation> */}
