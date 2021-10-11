@@ -187,6 +187,64 @@ export class PortService {
       return await this.portModel.create(port);
     }
   }
+  async sortport(userId:string, sort:string){
+    const arr_user_port=await this.portModel.find({UserId : userId});
+    const arr_sort=[];
+    const arr_dic={};
+    const resut=[];
+    const Datess={"มกราคม":1,
+                "กุมภาพันธ์":2,
+                "มีนาคม":3,
+                "เมษายน":4,
+                "พฤษภาคม":5,
+                "มิถุนายน":6,
+                "กรกฎาคม":7,
+                "สิงหาคม":8,
+                "กันยายน":9,
+                "ตุลาคม":10,
+                "พฤศจิกายน":11,
+                "ธันวาคม":12
+              }
+
+    if(sort=="created_sort"){
+      for (var _i = 0; _i < arr_user_port.length; _i++) {
+        const x=arr_user_port[_i].create_time
+        if (x==null){
+          continue;
+        }
+        const y=x.split(' ');
+        const t=y[3].split(':');
+        const tmp=Number(y[0])*10000+Datess[y[1]]*1000000+Number(y[2])*100000000+Number(t[0])*100+Number(t[1]);
+
+        arr_sort.push(tmp);
+        arr_dic[tmp]=_i;
+      }
+    }else{
+      for (var _i = 0; _i < arr_user_port.length; _i++) {
+        const x=arr_user_port[_i].Port_Date
+        if (x==null){
+          continue;
+        }
+        const y=x.split('/').map(Number);
+        const tmp=y[0]+y[1]*100+y[2]*10000;
+        arr_sort.push(tmp);
+        arr_dic[tmp]=_i;
+      }
+    }
+
+
+    arr_sort.sort();
+    if (sort=="created_sort"||sort=="มากไปน้อย"){
+      arr_sort.reverse()
+    }
+
+    for (var _i = 0; _i < arr_user_port.length; _i++) {
+      const key= arr_dic[arr_sort[_i]]
+      resut.push(arr_user_port[key])
+    }
+    return resut;
+
+  }
 
 
 }
