@@ -11,7 +11,9 @@ class MyResumeScoreSkill extends React.Component{
         const graystyle = {
             backgroundColor: "#C4C4C4"
         };
-        const score = this.props.score? this.props.score: 0;
+        const score = this.props.score? Math.round(this.props.score): 0;
+        //console.log("remain-score:" + score%1);
+        //console.log("score:" + score);
         const scoreContent =[];
         for(var i=0; i<10; i++){
             if(i<score){
@@ -30,17 +32,20 @@ class MyResumeScoreSkill extends React.Component{
             }
         }
         let levellabel;
-        if(score>7.5){
+        if(score==10){
             levellabel = "ยอดเยี่ยม";
         }
-        else if(score>5){
+        else if(score>7.5){
             levellabel = "ดี";
         }
-        else if(score>2.5){
+        else if(score>5){
             levellabel = "พื้นฐาน";
         }
-        else{
+        else if(score>2.5){
             levellabel = "พอได้เล็กน้อย";
+        }
+        else{
+            levellabel = "";
         }
         return(
             <div class="skillrow">
@@ -204,11 +209,6 @@ class MyResumeSkill extends React.Component {
         }
         return(
            <div id='resume-additionalskills'>
-<<<<<<< HEAD
-               {/*<h1>\n</h1>*/}
-=======
-               <br></br>
->>>>>>> de00e1328b7883c3596cbdc60eb7b765a42d3a88
                {result}
            </div> 
             
