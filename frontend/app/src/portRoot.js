@@ -35,7 +35,7 @@ class PortRoot extends React.Component {
 								<img class="pft-overlay" src="assets/images/black.jpg" alt=""/>\
 								<img class="pft-lock-icon" src="{privacy}" alt=""/>\
 								<img class="pft-del-icon" src="assets/images/white_bin.png" data-bs-toggle="modal" data-bs-target="#staticBackdrop" alt=""/>\
-								<img class="pft-edit-icon" src="assets/images/whiteedit.png" alt=""/>\
+								<img class="pft-edit-icon" src="assets/images/white_edit2.png" alt=""/>\
 								<div class="pft-name">{name}</div>\
 								<div class="pft-date">{date}</div>\
 							</div>\
@@ -114,6 +114,11 @@ class PortRoot extends React.Component {
 						pftId.push(data._id);
 						index += 1;	
 					});
+					
+					$('#new-port').on('click', function(){
+						  cookie.save('port-entry', 'new', { path: '/' })
+						  refThis.setState({ redirect: "/editport" });
+					  });
 					
 					$('.pft-edit-icon').on('click', function(e){
 							e.stopPropagation();
@@ -225,12 +230,12 @@ class PortRoot extends React.Component {
 					// .scrollTop() retrieves vertical position of the scroll bar for the first element in a set of matched elements
 					var scroll = $(window).scrollTop();
 
-					var objectSelect = $('#anim-pos');
+					//var objectSelect = $('#anim-pos');
 					
 					// .offset() retrieves current position of element relative to document
-					var objectPosition = objectSelect.offset().top;
+					//var objectPosition = objectSelect.offset().top;
 
-					if (scroll > objectPosition+100) {
+					if (scroll > 0) {
 						console.log("PostAnim");
 						$('.pt-header').addClass('pt-header-anim');
 						$('.pt-name').addClass('pt-name-anim');
@@ -245,11 +250,11 @@ class PortRoot extends React.Component {
 					}
 				  });
 				  
-				  $(".dynamic-footer-arrow").click(function() {
+				  /*$(".dynamic-footer-arrow").click(function() {
 						$('html, body').animate({
 							scrollTop: $("#anim-pos").offset().top+120
 						}, 1);
-					});
+					});*/
 				}
 
 				
@@ -337,23 +342,10 @@ class PortRoot extends React.Component {
 								</div>
 							</div>        
 						</div>
-						<a class="btn btn-cta-primary-yellow round profile-button pf-fx" target="_blank">เพิ่มกิจกรรมของคุณ</a>
+						<a class="btn btn-cta-primary-yellow round profile-button pf-fx" id="new-port" target="_blank">เพิ่มกิจกรรมของคุณ</a>
 					</header>
 					<div class="pt-pad"></div>
-					<div class="nf-flex">
-						<header class="header header-azure hf-header round" id="empty-zone">
-							<img class="hf-i" src="assets/images/outline_add_black_24dp hd.png" alt=""/>
-							<abf class="hf-n" id="anim-pos">เพิ่มผลงานเจ๋ง ๆ ของคุณได้ที่นี่</abf>
-						</header>
-					</div>
-					<br></br><br></br>
 					<div class="port-box">
-						<br></br>
-						<div class="dfa-flex">
-							<img class="dynamic-footer-arrow" src="assets/images/arrow_up1.png"></img>
-							<div class="dynamic-footer-label">ผลงานของคุณ</div>
-						</div>
-						<br></br>
 						<div class="pft-flex" id="pft-box">
 
 						</div>

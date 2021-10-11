@@ -12,6 +12,9 @@ export class Resume2 {
   Owner: string;
 
   @Prop()
+  Location: string;
+
+  @Prop()
   ProfilePic: string;
 
   @Prop()

@@ -54,7 +54,8 @@ export class MyResumeService {
     resume.Privacy = "Public";
     resume.Owner = user.Firstname + " " + user.Lastname;
     resume.Aboutme = user.AboutMe; 
-    resume.Email = user.Email2nd; 
+    resume.Email = user.Email2nd;
+    resume.Location = user.Country + " " + user.Province + " "+ user.City;
 
     const jobid = new ObjectID(CreateDto.JobID);
 
