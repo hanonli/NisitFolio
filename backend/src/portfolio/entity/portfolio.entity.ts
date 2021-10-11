@@ -263,6 +263,12 @@ export class Portfolio {
   @Column()
   modified_by:string[];
 
+  @Column()
+  Email:string;
+
+  @Column()
+  ProfilePic: string;
+
 }
 
 //--------------------PortfolioPicture--------------------------//

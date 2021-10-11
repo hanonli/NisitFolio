@@ -12,6 +12,7 @@ import { UserInfoDocument, UserInfoMongoose } from 'src/register/entity/register
 import Portfolio3 from './dto/portfolio4.dto';
 import { hearderDto } from 'src/portfolio/dto/haerder.dto';
 import { Bookmark } from './entity/portfliobookmark.entity';
+import { Portfolio4 } from './entity/portflio_get.entity';
 
 @Injectable()
 export class PortService {
@@ -28,6 +29,8 @@ export class PortService {
     private accountRepository: Repository<Account>,
     @InjectRepository(Bookmark)
     private BookmarkRepository: Repository<Bookmark>,
+    @InjectRepository(Portfolio4)
+    private Portfolio4Repository: Repository<Portfolio4>,
     
 
 
@@ -56,7 +59,32 @@ export class PortService {
   }
   async getPort(portId:string ){
     const id = new ObjectID(portId);
-    return this.portModel.findById(id);
+    const neww= new Portfolio;
+    const port_by_id=await this.portRepository.findOne({where:{ id : id }});
+    neww.Port_Date=port_by_id.Port_Date;
+    neww.Port_Info=port_by_id.Port_Info
+    neww.Owner=port_by_id.Owner
+    neww.Port_Name=port_by_id.Port_Name
+    neww.Port_Privacy=port_by_id.Port_Privacy
+    neww.Port_Tag=port_by_id.Port_Tag
+    neww.UserId=port_by_id.UserId
+    neww.create_time=port_by_id.create_time
+    neww.portfolioPictures=port_by_id.portfolioPictures
+    neww.totalBookmark=port_by_id.totalBookmark
+    neww.modified_by=port_by_id.modified_by
+    neww.last_modified=port_by_id.last_modified
+
+    const UseridOb = new ObjectID(portId);
+    const Userid = port_by_id.UserId;
+
+    const account=await this.accountRepository.findOne({where:{_id:UseridOb}});
+
+    neww.Email=account.Email;
+    neww.ProfilePic=account.ProfilePic;
+
+    return neww;
+
+
   }
 
 
@@ -208,24 +236,24 @@ export class PortService {
 
     if(sort=="createTime"){
       for (var _i = 0; _i < arr_user_port.length; _i++) {
-        const x=arr_user_port[_i].create_time
-        if (x==null){
+        const user_port=arr_user_port[_i].create_time
+        if (user_port==null){
           continue;
         }
-        const y=x.split(' ');
+        const y=user_port.split(' ');
         const t=y[3].split(':');
         const tmp=Number(y[0])*10000+Datess[y[1]]*1000000+Number(y[2])*100000000+Number(t[0])*100+Number(t[1]);
 
         arr_sort.push(tmp);
         arr_dic[tmp]=_i;
       }
-    }else{
+    }else if(sort=="ascendingOrder"||sort=="descendingOrder"){
       for (var _i = 0; _i < arr_user_port.length; _i++) {
-        const x=arr_user_port[_i].Port_Date
-        if (x==null){
+        const user_port=arr_user_port[_i].Port_Date
+        if (user_port==null){
           continue;
         }
-        const y=x.split('/').map(Number);
+        const y=user_port.split('/').map(Number);
         const tmp=y[0]+y[1]*100+y[2]*10000;
         arr_sort.push(tmp);
         arr_dic[tmp]=_i;
