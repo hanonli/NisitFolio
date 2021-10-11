@@ -4,7 +4,19 @@ import LoadingL from './Components/loadingL';
 import { Redirect } from "react-router-dom";
 import cookie from 'react-cookies'
 import tahomo from './font/tahomo';
-import basePdf from "./pdf-template/template-red";
+import basePdf1 from "./pdf-template/template-red";
+import basePdf2 from "./pdf-template/template-orange";
+import basePdf3 from "./pdf-template/template-yellow";
+import basePdf4 from "./pdf-template/template-navy";
+import basePdf5 from "./pdf-template/template-blue";
+import img2 from "./bar/js/score3";
+import img3 from "./bar/js/score4";
+import img4 from "./bar/js/score5";
+import img5 from "./bar/js/score6";
+import img6 from "./bar/js/score7";
+import img7 from "./bar/js/score8";
+import img8 from "./bar/js/score9";
+import img9 from "./bar/js/score10";
 var fs = require('fs');
 
 
@@ -23,6 +35,28 @@ class PDF extends React.Component {
 		console.log("YEAHXXX!");
 		var token = cookie.load('login-token')
 		console.log(token);
+
+		let params = new URLSearchParams(document.location.search.substring(1));
+		console.log(params);
+		let template = params.get("template");
+		let basePdf =  basePdf1;
+		console.log(template);
+		if (template == "red"){
+			basePdf = basePdf1;
+		}
+		else if (template == "orange"){
+			basePdf = basePdf2;
+		}
+		else if (template == "yellow"){
+			basePdf = basePdf3;
+		}
+		else if (template == "navy"){
+			basePdf = basePdf4;
+		}
+		else if (template == "blue"){
+			basePdf = basePdf5;
+		}
+
 		
 		fetch("http://localhost:2000/myresume/",{
 			method: "GET",
@@ -67,6 +101,84 @@ class PDF extends React.Component {
 				}
 				else if (datas[0].additionalSkills[2].AdditionalSkill.length > 30){
 					position3 = 193.52;
+				}
+
+				let score1 = "";
+				if (datas[0].interestedJob[0].Job_Score[0] >= 2.5 && datas[0].interestedJob[0].Job_Score[0] < 3.5){
+					score1 = img2;
+				}
+				else if (datas[0].interestedJob[0].Job_Score[0] >= 3.5 && datas[0].interestedJob[0].Job_Score[0] < 4.5){
+					score1 = img3;
+				}
+				else if (datas[0].interestedJob[0].Job_Score[0] >= 4.5 && datas[0].interestedJob[0].Job_Score[0] < 5.5){
+					score1 = img4;
+				}
+				else if (datas[0].interestedJob[0].Job_Score[0] >= 5.5 && datas[0].interestedJob[0].Job_Score[0] < 6.5){
+					score1 = img5;
+				}
+				else if (datas[0].interestedJob[0].Job_Score[0] >= 6.5 && datas[0].interestedJob[0].Job_Score[0] < 7.5){
+					score1 = img6;
+				}
+				else if (datas[0].interestedJob[0].Job_Score[0] >= 7.5 && datas[0].interestedJob[0].Job_Score[0] < 8.5){
+					score1 = img7;
+				}
+				else if (datas[0].interestedJob[0].Job_Score[0] >= 8.5 && datas[0].interestedJob[0].Job_Score[0] < 9.5){
+					score1 = img8;
+				}
+				else if (datas[0].interestedJob[0].Job_Score[0] >= 9.5){
+					score1 = img9;
+				}
+
+				let score2 = "";
+				if (datas[0].interestedJob[0].Job_Score[1] >= 2.5 && datas[0].interestedJob[0].Job_Score[1] < 3.5){
+					score2 = img2;
+				}
+				else if (datas[0].interestedJob[0].Job_Score[1] >= 3.5 && datas[0].interestedJob[0].Job_Score[1] < 4.5){
+					score2 = img3;
+				}
+				else if (datas[0].interestedJob[0].Job_Score[1] >= 4.5 && datas[0].interestedJob[0].Job_Score[1] < 5.5){
+					score2 = img4;
+				}
+				else if (datas[0].interestedJob[0].Job_Score[1] >= 5.5 && datas[0].interestedJob[0].Job_Score[1] < 6.5){
+					score2 = img5;
+				}
+				else if (datas[0].interestedJob[0].Job_Score[1] >= 6.5 && datas[0].interestedJob[0].Job_Score[1] < 7.5){
+					score2 = img6;
+				}
+				else if (datas[0].interestedJob[0].Job_Score[1] >= 7.5 && datas[0].interestedJob[0].Job_Score[1] < 8.5){
+					score2 = img7;
+				}
+				else if (datas[0].interestedJob[0].Job_Score[1] >= 8.5 && datas[0].interestedJob[0].Job_Score[1] < 9.5){
+					score2 = img8;
+				}
+				else if (datas[0].interestedJob[0].Job_Score[1] >= 9.5){
+					score2 = img9;
+				}				
+
+				let score3 = "";
+				if (datas[0].interestedJob[0].Job_Score[2] >= 2.5 && datas[0].interestedJob[0].Job_Score[2] < 3.5){
+					score3 = img2;
+				}
+				else if (datas[0].interestedJob[0].Job_Score[2] >= 3.5 && datas[0].interestedJob[0].Job_Score[2] < 4.5){
+					score3 = img3;
+				}
+				else if (datas[0].interestedJob[0].Job_Score[2] >= 4.5 && datas[0].interestedJob[0].Job_Score[2] < 5.5){
+					score3 = img4;
+				}
+				else if (datas[0].interestedJob[0].Job_Score[2] >= 5.5 && datas[0].interestedJob[0].Job_Score[2] < 6.5){
+					score3 = img5;
+				}
+				else if (datas[0].interestedJob[0].Job_Score[2] >= 6.5 && datas[0].interestedJob[0].Job_Score[2] < 7.5){
+					score3 = img6;
+				}
+				else if (datas[0].interestedJob[0].Job_Score[2] >= 7.5 && datas[0].interestedJob[0].Job_Score[2] < 8.5){
+					score3 = img7;
+				}
+				else if (datas[0].interestedJob[0].Job_Score[2] >= 8.5 && datas[0].interestedJob[0].Job_Score[2] < 9.5){
+					score3 = img8;
+				}
+				else if (datas[0].interestedJob[0].Job_Score[2] >= 9.5){
+					score3 = img9;
 				}
 
                 (async () => {
@@ -197,17 +309,13 @@ class PDF extends React.Component {
 								"lineHeight": 1
 							},
 							"คะแนน 1": {
-								"type": "text",
+								"type": "image",
 								"position": {
 									"x": 10.22,
 									"y": 148.89
 								},
 								"width": 65.16,
 								"height": 5.67,
-								"alignment": "left",
-								"fontSize": 11,
-								"characterSpacing": 0,
-								"lineHeight": 1
 							},
 							"เกณฑ์ 1": {
 								"type": "text",
@@ -481,17 +589,13 @@ class PDF extends React.Component {
 								"lineHeight": 1
 							},
 							"คะแนน 2": {
-								"type": "text",
+								"type": "image",
 								"position": {
 									"x": 10.22,
 									"y": 162.89
 								},
 								"width": 65.16,
 								"height": 5.67,
-								"alignment": "left",
-								"fontSize": 11,
-								"characterSpacing": 0,
-								"lineHeight": 1
 							},
 							"เกณฑ์ 2": {
 								"type": "text",
@@ -520,17 +624,13 @@ class PDF extends React.Component {
 								"lineHeight": 1
 							},
 							"คะแนน 3": {
-								"type": "text",
+								"type": "image",
 								"position": {
 									"x": 10.22,
 									"y": 176.89
 								},
 								"width": 65.16,
 								"height": 5.67,
-								"alignment": "left",
-								"fontSize": 11,
-								"characterSpacing": 0,
-								"lineHeight": 1
 							},
 							"เกณฑ์ 3": {
 								"type": "text",
@@ -957,24 +1057,24 @@ class PDF extends React.Component {
 				"ชื่องาน 1":datas[0].workHistorys[0].Work_JobName,
 				"ประเภทงาน 1":datas[0].workHistorys[0].Work_JobType,
 				"ชื่อบริษัท 1":datas[0].workHistorys[0].Work_Company,
-				"ปีเริ่ม - ปีจบ 1":datas[0].workHistorys[0].Work_Start_Year	+ "-" + datas[0].workHistorys[0].Work_End_Year,
+				"ปีเริ่ม - ปีจบ 1":datas[0].workHistorys[0].Work_Start_Year	+ "-" + datas[0].workHistorys[0].Work_End_Year + "  |",
 				"ข้อมูลงาน 1":datas[0].workHistorys[0].Work_Infomation,
 				"ชื่องาน 2":datas[0].workHistorys[1].Work_JobName,
 				"ประเภทงาน 2":datas[0].workHistorys[1].Work_JobType,
 				"ชื่อบริษัท 2":datas[0].workHistorys[1].Work_Company,
-				"ปีเริ่ม - ปีจบ 2":datas[0].workHistorys[1].Work_Start_Year	+ "-" + datas[0].workHistorys[1].Work_End_Year,
+				"ปีเริ่ม - ปีจบ 2":datas[0].workHistorys[1].Work_Start_Year	+ "-" + datas[0].workHistorys[1].Work_End_Year + "  |",
 				"ข้อมูลงาน 2":datas[0].workHistorys[1].Work_Infomation,
 				"ชื่องาน 3":datas[0].workHistorys[2].Work_JobName,
 				"ประเภทงาน 3":datas[0].workHistorys[2].Work_JobType,
 				"ชื่อบริษัท 3":datas[0].workHistorys[2].Work_Company,
-				"ปีเริ่ม - ปีจบ 3":datas[0].workHistorys[2].Work_Start_Year	+ "-" + datas[0].workHistorys[2].Work_End_Year,
+				"ปีเริ่ม - ปีจบ 3":datas[0].workHistorys[2].Work_Start_Year	+ "-" + datas[0].workHistorys[2].Work_End_Year + "  |",
 				"ข้อมูลงาน 3":datas[0].workHistorys[2].Work_Infomation,
 				"ทักษะ 1":datas[0].interestedJob[0].Job_SkillName[0],
 				"ทักษะ 2":datas[0].interestedJob[0].Job_SkillName[1],
 				"ทักษะ 3":datas[0].interestedJob[0].Job_SkillName[2],
-				"คะแนน 1":datas[0].interestedJob[0].Job_Score[0].toString(),
-				"คะแนน 2":datas[0].interestedJob[0].Job_Score[1].toString(),
-				"คะแนน 3":datas[0].interestedJob[0].Job_Score[2].toString(),
+				"คะแนน 1":score1,
+				"คะแนน 2":score2,
+				"คะแนน 3":score3,
 				"เกณฑ์ 1":par1,
 				"เกณฑ์ 2":par2,
 				"เกณฑ์ 3":par3,
@@ -982,19 +1082,19 @@ class PDF extends React.Component {
 				"เพิ่มเติม 2":datas[0].additionalSkills[1].AdditionalSkill,
 				"เพิ่มเติม 3":datas[0].additionalSkills[2].AdditionalSkill,
 				"ระดับ 1":datas[0].educationHistorys[0].Degree,
-				"ปีจบ 1":datas[0].educationHistorys[0].Education_End_Year.toString(),
+				"ปีจบ 1":datas[0].educationHistorys[0].Education_End_Year.toString() + "  |",
 				"คณะ 1":datas[0].educationHistorys[0].Facalty,
 				"สถานศึกษา 1 ":datas[0].educationHistorys[0].Academy,
 				"เกรดเฉลี่ย 1":"เกรดเฉลี่ย",
 				"เกรด 1":(datas[0].educationHistorys[0].Grade.toFixed(2)).toString(),
 				"ระดับ 2":datas[0].educationHistorys[1].Degree,
-				"ปีจบ 2":datas[0].educationHistorys[1].Education_End_Year.toString(),
+				"ปีจบ 2":datas[0].educationHistorys[1].Education_End_Year.toString()+ "  |",
 				"คณะ 2":datas[0].educationHistorys[1].Facalty,
 				"สถานศึกษา 2":datas[0].educationHistorys[1].Academy,
 				"เกรดเฉลี่ย 2":"เกรดเฉลี่ย",
 				"เกรด 2":datas[0].educationHistorys[1].Grade.toFixed(2).toString(),
 				"ระดับ 3":datas[0].educationHistorys[1].Degree,
-				"ปีจบ 3":datas[0].educationHistorys[1].Education_End_Year.toString(),
+				"ปีจบ 3":datas[0].educationHistorys[1].Education_End_Year.toString()+ "  |",
 				"คณะ 3":datas[0].educationHistorys[1].Facalty,
 				"สถานศึกษา 3":datas[0].educationHistorys[1].Academy,
 				"เกรดเฉลี่ย 3":"เกรดเฉลี่ย",
