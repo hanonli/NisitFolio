@@ -1516,9 +1516,9 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 
 .pf-fx{
 	position: fixed;
-	top: 70px;
+	top: 110px;
 	right: 90px;
-	opacity: 0%;
+	/*opacity: 0%;*/
 	transform: scale(0.9);
 	transition: all 0.3s ease;
 }
@@ -1544,7 +1544,8 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 }
 
 .pf-fx-anim{
-	opacity: 100%;
+	/*opacity: 100%;*/
+	top: 70px;
 }
 
 .dfa-flex{
@@ -1692,8 +1693,8 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 
 .port-box{
 	width: 100%;
-	box-shadow: 0px -0.2vh 0.5vh rgb(50 50 50 / 19%);
-    border-radius: 2vh 2vh 0 0;
+	/*box-shadow: 0px -0.2vh 0.5vh rgb(50 50 50 / 19%);
+    border-radius: 2vh 2vh 0 0;*/
 }
 
 .pft-flex{
