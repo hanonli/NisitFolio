@@ -53,6 +53,8 @@ export class MyResumeService {
     resume.UserId = CreateDto.UserId;
     resume.Privacy = "Public";
     resume.Owner = user.Firstname + " " + user.Lastname;
+    resume.First = user.Firstname;
+    resume.Last = user.Lastname;
     resume.Aboutme = user.AboutMe; 
     resume.Email = user.Email2nd;
     resume.Location = user.Country + " " + user.Province + " "+ user.City;

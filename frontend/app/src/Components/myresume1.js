@@ -9,8 +9,9 @@ class MyResume1 extends React.Component {
         var name = this.props.state.owner.split(' ');
         console.log('namem : ' + JSON.stringify(name))   
 
-        var firstname = name[0] ? name[0] : '';
-        var lastname = name[1] ? name[1] : ''
+        
+        var firstname = this.props.state.firstname ? this.props.state.firstname : '';
+        var lastname = this.props.state.lastname ? this.props.state.lastname : ''
 
         // if( name.length >1){
         //     alert('longname')
