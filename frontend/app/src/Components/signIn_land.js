@@ -11,91 +11,51 @@ class SignInLand extends React.Component {
 
     myChangeHandler_email = (event) => {
         this.setState({ user: event.target.value });
-        /*this.setState({ invalid_email: "" });
-        this.setState({ id_email1: "inputform1" });
-        this.setState({ label_text_email: "labelText" });*/
         this.setState({ invalid_password: "" });
     }
 
     myChangeHandler_password = (event) => {
         this.setState({ password: event.target.value });
         this.setState({ invalid_password: "" });
-        /*this.setState({ id_password1: "inputform1" });
-        this.setState({ label_text_password: "labelText" });*/
     }
 
     async loginUser(credentials) {
-        console.log(`credentials: ${credentials["Email"]}`);
-        console.log(JSON.stringify(credentials));
-        return fetch('http://localhost:2000/auth/login', {
+        fetch('http://localhost:2000/auth/login', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "*",
+                "Access-Control-Allow-Credentials": true
             },
             body: JSON.stringify(credentials)
         })
-            .then(data => data.json())
+            .then(response => response.json())
+            .then((data) => {
+                if ('accessToken' in data) {
+                    cookie.save('login-token', data["accessToken"], { path: '/' })
+                    window.location.href = "/home";
+                }
+                else if ('error' in data) {
+                    this.setState({ invalid_password: "*คุณไม่มีสิทธิ์เข้าใช้งานระบบ" });
+                }
+            }).catch((error) => {
+                console.log(error);
+            });
     }
 
     handleSubmit = async e => {
         e.preventDefault();
-        /*this.setState({ invalid_email: "" });
-        this.setState({ id_email1: "inputform1" });
-        this.setState({ invalid_password: "" });
-        this.setState({ id_password1: "inputform1" });
-        this.setState({ label_text_email: "labelText" });
-        this.setState({ label_text_password: "labelText" });*/
         if (this.state.user == "") {
-            /*this.setState({ invalid_email: "คุณยังไม่ได้ป้อนอีเมล" });
-            this.setState({ id_email1: "inputform2_error" });
-            this.setState({ label_text_email: "labelText-error" });*/
             this.setState({ invalid_password: "*คุณไม่มีสิทธิ์เข้าใช้งานระบบ" });
         }
         if (this.state.password == "") {
             this.setState({ invalid_password: "*คุณไม่มีสิทธิ์เข้าใช้งานระบบ" });
-            /*this.setState({ id_password1: "inputform2_error" });
-            this.setState({ label_text_password: "labelText-error" });*/
         }
-        const result = await this.loginUser({
+        await this.loginUser({
             username: this.state.user,
             password: this.state.password
         });
-        //setToken(token);
-        console.log(`token: ${result["message"]}`);
-        console.log(`email: ${this.state.user}`);
-        console.log(`password: ${this.state.password}`);
-        console.log(`password: ${result}`);
-        if ('accessToken' in result) {
-            console.log(`token: ${result["accessToken"]}`);
-            //Cookies.set('login-token',result["accessToken"]);
-            cookie.save('login-token', result["accessToken"], { path: '/' })
-            /*var req = new XMLHttpRequest();
-            req.open('get','http://localhost:3000/home',true);
-            req.setRequestHeader('Authorization','Bearer '+result["accessToken"]);
-            req.send();*/
-            window.location.href = "/home";
-        }
-        else if ('error' in result) {
-            /*if (result["error"] == "Wrongpwd") {
-                //alert("passwordมึงผิดไอ้ควาย");
-                this.setState({ invalid_password: "รหัสผ่านที่คุณป้อนไม่ถูกต้อง" });
-                this.setState({ id_password1: "inputform2_error" });
-                this.setState({ label_text_password: "labelText-error" });
-            }
-            else if (result["error"] == "Oldpwd") {
-                //alert("passwordเก่า");
-                this.setState({ invalid_password: "รหัสผ่านที่คุณป้อนเป็นรหัสผ่านเก่า" });
-                this.setState({ id_password1: "inputform2_error" });
-                this.setState({ label_text_password: "labelText-error" });
-            }
-            else if (result["error"] == "Wronguser") {
-                //alert("เกเรจนกรอกemailผิด");
-                this.setState({ invalid_email: "อีเมลที่คุณป้อนไม่ถูกต้อง" });
-                this.setState({ id_email1: "inputform2_error" });
-                this.setState({ label_text_email: "labelText-error" });
-            }*/
-            this.setState({ invalid_password: "*คุณไม่มีสิทธิ์เข้าใช้งานระบบ" });
-        }
     }
 
     render() {

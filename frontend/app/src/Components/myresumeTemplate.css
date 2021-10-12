@@ -41,20 +41,14 @@
 .choose-color-template11 {
     position: absolute;
     left: 565px;
-    top: 110px;
-}
-
-/*------text choose template------*/
-#text-choose-color-template11{
-    color: black;
-    margin-bottom: 50px;
-    margin-left: 11px;
+    top: 90px;
 }
 
 .grid-choose-template{
     display: grid;
     grid-template-columns: repeat(3,1fr);
     gap: 40px;
+    margin-bottom: 50px;
 }
 
 .choose-template-color-FF7370{
@@ -271,6 +265,24 @@
     top: 66%;
     right: 11%;
     cursor: pointer;
+}
+
+.layout-describe-template11{
+    position: relative;
+    left: 11px;
+}
+
+#describe-template11{
+    color: black;
+    font-size: 18px;
+    font-weight: 300;
+    margin-bottom: 55px;
+}
+
+/*------text choose template------*/
+#text-choose-color-template11{
+    color: black;
+    font-size: 48px;
 }
 
 /*---------------------------- edit template ----------------------------*/
