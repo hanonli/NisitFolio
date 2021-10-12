@@ -56,7 +56,32 @@ export class PortService {
   }
   async getPort(portId:string ){
     const id = new ObjectID(portId);
-    return this.portModel.findById(id);
+    const neww= new Portfolio;
+    const port_by_id=await this.portRepository.findOne({where:{ id : id }});
+    neww.Port_Date=port_by_id.Port_Date;
+    neww.Port_Info=port_by_id.Port_Info
+    neww.Owner=port_by_id.Owner
+    neww.Port_Name=port_by_id.Port_Name
+    neww.Port_Privacy=port_by_id.Port_Privacy
+    neww.Port_Tag=port_by_id.Port_Tag
+    neww.UserId=port_by_id.UserId
+    neww.create_time=port_by_id.create_time
+    neww.portfolioPictures=port_by_id.portfolioPictures
+    neww.totalBookmark=port_by_id.totalBookmark
+    neww.modified_by=port_by_id.modified_by
+    neww.last_modified=port_by_id.last_modified
+
+    const UseridOb = new ObjectID(portId);
+    const Userid = port_by_id.UserId;
+
+    const account=await this.accountRepository.findOne({where:{_id:UseridOb}});
+
+    neww.Email=account.Email;
+    neww.ProfilePic=account.ProfilePic;
+
+    return neww;
+
+
   }
 
 
@@ -186,6 +211,64 @@ export class PortService {
       await this.portfolioPictureRepository.save(portfoliopic);
       return await this.portModel.create(port);
     }
+  }
+  async sortport(userId:string, sort:string){
+    const arr_user_port=await this.portModel.find({UserId : userId});
+    const arr_sort=[];
+    const arr_dic={};
+    const resut=[];
+    const Datess={"มกราคม":1,
+                "กุมภาพันธ์":2,
+                "มีนาคม":3,
+                "เมษายน":4,
+                "พฤษภาคม":5,
+                "มิถุนายน":6,
+                "กรกฎาคม":7,
+                "สิงหาคม":8,
+                "กันยายน":9,
+                "ตุลาคม":10,
+                "พฤศจิกายน":11,
+                "ธันวาคม":12
+              }
+
+    if(sort=="createTime"){
+      for (var _i = 0; _i < arr_user_port.length; _i++) {
+        const user_port=arr_user_port[_i].create_time
+        if (user_port==null){
+          continue;
+        }
+        const y=user_port.split(' ');
+        const t=y[3].split(':');
+        const tmp=Number(y[0])*10000+Datess[y[1]]*1000000+Number(y[2])*100000000+Number(t[0])*100+Number(t[1]);
+
+        arr_sort.push(tmp);
+        arr_dic[tmp]=_i;
+      }
+    }else if(sort=="ascendingOrder"||sort=="descendingOrder"){
+      for (var _i = 0; _i < arr_user_port.length; _i++) {
+        const user_port=arr_user_port[_i].Port_Date
+        if (user_port==null){
+          continue;
+        }
+        const y=user_port.split('/').map(Number);
+        const tmp=y[0]+y[1]*100+y[2]*10000;
+        arr_sort.push(tmp);
+        arr_dic[tmp]=_i;
+      }
+    }
+
+
+    arr_sort.sort();
+    if (sort=="createTime"||sort=="descendingOrder"){
+      arr_sort.reverse()
+    }
+
+    for (var _i = 0; _i < arr_user_port.length; _i++) {
+      const key= arr_dic[arr_sort[_i]]
+      resut.push(arr_user_port[key])
+    }
+    return resut;
+
   }
 
 
