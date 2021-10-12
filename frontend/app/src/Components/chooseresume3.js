@@ -4,6 +4,7 @@ import './register.css';
 import './registab5.css';
 import './chooseresume3.css';
 
+var choose_certi = [];
 class Chooseresume3 extends React.Component {
     constructor(props) {
         super(props);
@@ -44,7 +45,6 @@ class Chooseresume3 extends React.Component {
             };
         }
         const mycert2 = this.props.mycerti_data ? this.props.mycerti_data : [];
-        var choose_certi = [];
         var tmp1 = [...mycert2];
         tmp1.sort(compareValues('CertYear', 'desc'));
         tmp1.forEach(ele => {
@@ -86,21 +86,19 @@ class Chooseresume3 extends React.Component {
                 $(".myresume-choose-certi11").append(headOfyear1234);
             }
             else {
-                list_of_year_certi[ele.CertYear] += 1; //ffe
+                list_of_year_certi[ele.CertYear] += 1;
             }
             $("#year-choose-tem-" + String(ele.CertYear)).append(grid_certi2);
         });
 
-        $(document).on("click", ".input-choose-certi1", function (event) {
-            event.preventDefault();
+        $(document).on("click", ".input-choose-certi1", function () {
             choose_certi = $('.input-choose-certi1:input[type=checkbox]:checked').map(function (_, el) {
                 return $(el).val();
             }).get();
             console.log("susss:", choose_certi);
         });
 
-        $(document).on("click", ".input-choose-certi1:input:checkbox", function (event) {
-            event.preventDefault();
+        $(document).on("click", ".input-choose-certi1:input:checkbox", function () {
             var bol = $(".input-choose-certi1:input:checkbox:checked").length >= 6;
             $(".input-choose-certi1:input:checkbox").not(":checked").attr("disabled", bol);
         });
