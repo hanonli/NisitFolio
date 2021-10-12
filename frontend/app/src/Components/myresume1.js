@@ -9,7 +9,6 @@ class MyResume1 extends React.Component {
         var name = this.props.state.owner.split(' ');
         console.log('namem : ' + JSON.stringify(name))   
 
-
         
         var firstname = this.props.state.firstname ? this.props.state.firstname : '';
         var lastname = this.props.state.lastname ? this.props.state.lastname : ''
@@ -115,7 +114,7 @@ class MyResume1 extends React.Component {
         return (
             
             <div class="resume1">
-                <MyresumeHeading firstname={firstname} lastname={lastname} addname={addname} occupation={occupation} owner={owner} bio={bio} imagepath={imagepath} colour={color} province="กรุงเทพมหานคร" city="มินบุรี"></MyresumeHeading>
+                <MyresumeHeading firstname={firstname} lastname={lastname} occupation={occupation} owner={owner} bio={bio} imagepath={imagepath} colour={color} province="กรุงเทพมหานคร" city="มินบุรี"></MyresumeHeading>
 			    {/* <MyresumeHeading firstname={firstname} lastname={lastname} const occupation={occupation} imagepath={imagepath} colour="#FFCE55"></MyresumeHeading> bio={bio}
                 <MyresumeHeading firstname={firstname} lastname={lastname} const occupation={occupation} imagepath={imagepath} colour="#FFCE55" owner={true}></MyresumeHeading> */}
                 <MyResumeEducation data={educationdata} owner={owner} colour={color}></MyResumeEducation>
