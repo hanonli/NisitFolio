@@ -7,11 +7,11 @@
         'height' : '50%',
  
     });
-    $(".resumeblock").hover(function(){
-        $(this).css("background-color", "#e6ba4e");
-        }, function(){
-        $(this).css("background-color", "#FFCE55");
-      });
+    // $(".resumeblock").hover(function(){
+    //     $(this).css("background-color", "#e6ba4e");
+    //     }, function(){
+    //     $(this).css("background-color", "#FFCE55");
+    //   });
     $('.resumeicon').css({
 
         'padding-right' : '1vw',

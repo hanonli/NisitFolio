@@ -57,7 +57,8 @@ export class PortService {
   async getPort(portId:string ){
     const id = new ObjectID(portId);
     const neww= new Portfolio;
-    const port_by_id=await this.portRepository.findOne({where:{ id : id }});
+    const port_by_id=await this.portRepository.findOne({where:{ _id : id }});
+    //return port_by_id;
     neww.Port_Date=port_by_id.Port_Date;
     neww.Port_Info=port_by_id.Port_Info
     neww.Owner=port_by_id.Owner
@@ -71,8 +72,8 @@ export class PortService {
     neww.modified_by=port_by_id.modified_by
     neww.last_modified=port_by_id.last_modified
 
-    const UseridOb = new ObjectID(portId);
     const Userid = port_by_id.UserId;
+    const UseridOb = new ObjectID(Userid);
 
     const account=await this.accountRepository.findOne({where:{_id:UseridOb}});
 
@@ -113,7 +114,7 @@ export class PortService {
     port.last_modified = [isoTime];
     port.modified_by = [ip];
 
-    const portid = (await this.portRepository.save(port)).id;
+    const portid = (await this.portRepository.save(port))._id;
     portpic.PortId = portid;
 
     portpic.last_modified =  [isoTime];
@@ -131,7 +132,7 @@ export class PortService {
     }
     
     if (port && port.UserId === userId) {
-      const portpic =  await this.portfolioPictureRepository.findOne({where:{ PortId: port.id }});
+      const portpic =  await this.portfolioPictureRepository.findOne({where:{ PortId: port._id }});
       await this.portfolioPictureRepository.remove(portpic);
       return await this.portRepository.remove(port);
     }

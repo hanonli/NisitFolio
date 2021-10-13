@@ -275,7 +275,7 @@ class Resume_topNavbar extends React.Component {
 	showingScreen(){
 		return(
 			<div>
-				<Resume_sideNavbar/>
+				<Resume_sideNavbar color={this.state.color}/>
 				<div className="Resume_topNavbar" id='topNav'>
 					
 					<div  className='myresumetoppath'> 
@@ -381,6 +381,12 @@ class Resume_topNavbar extends React.Component {
 			// console.log(3)
 			console.log('update state')
 			return true
+			
+		}else if(this.state.color !== nextState.color ){
+			// console.log(3)
+			console.log('update state')
+			return true
+			
 		}else if( !this.state.ready){
 			// console.log('status need to re-render')
 			console.log('update state')
@@ -400,6 +406,9 @@ class Resume_topNavbar extends React.Component {
 
 
 	render (){
+		const linestyle = {
+            backgroundColor: this.state.color? this.state.color: "#FFCE55"
+        };
 
 		if(this.state.userID !== ''  && this.state.resumeID === ''  ){
 			// console.log('call getResumeID');

@@ -9,6 +9,8 @@ import { Model } from 'mongoose';
 import { Resume2 , ResumeDocument} from './entity/myresume.schema';
 import { Portfolio2, PortfolioDocument} from '../portfolio/entity/portfolio.schema';
 import { hearderDto } from './dto/haerder.dto';
+import { GetResume } from './dto/get_Port.dto';
+import { Resume3 } from './entity/myresume2.entity';
 
 
 @Injectable()
@@ -38,6 +40,9 @@ export class MyResumeService {
     private resumeModel: Model<ResumeDocument>,
     @InjectModel(Portfolio2.name) 
     private portModel: Model<PortfolioDocument>,
+    
+    @InjectRepository(Resume3) 
+    private Resume3Repository: Repository<Resume3>,
 
   ) {}
   
@@ -166,7 +171,38 @@ export class MyResumeService {
 
   async getResume(resumeId:string ){
     const id = new ObjectID(resumeId);
-    return this.resumeModel.findById(id);
+    
+    const thisx = await this.Resume3Repository.findOne({where:{_id:id}});
+    const thisy = new GetResume;
+
+    thisy.UserId=thisx.UserId
+    thisy.Privacy=thisx.Privacy
+    thisy.Owner=thisx.Owner
+    thisy.Aboutme=thisx.Aboutme
+    thisy.interestedJob=thisx.interestedJob
+    thisy.certificates=thisx.certificates
+    thisy.educationHistorys=thisx.educationHistorys
+    thisy.workHistorys=thisx.workHistorys
+    thisy.portfolios=thisx.portfolios
+    thisy.Color=thisx.Color
+    thisy.create_time=thisx.create_time
+    thisy.last_modified=thisx.last_modified
+    thisy.modified_by=thisx.modified_by
+    thisy.ProfilePic=thisx.ProfilePic
+    thisy.Email=thisx.Email
+
+    
+
+    const userid=thisx.UserId;
+
+    const userseven = await this.userinfoRepository.findOne({where:{UserId:userid}});
+    
+    thisy.Province= userseven.Province
+    thisy.Country=userseven.Country
+    thisy.City=userseven.City
+    
+
+    return thisy
     
   }
 
