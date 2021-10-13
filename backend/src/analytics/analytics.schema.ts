@@ -52,6 +52,9 @@ export class AdditionalSkill {
 
   @Prop()
   ResumeId: String[];
+
+  @Prop()
+  Type?: String;
 }
 
 export const AdditionalSkillSchema = SchemaFactory.createForClass(AdditionalSkill);
@@ -63,6 +66,7 @@ export class JobTitle {
 
   @Prop()
   THName: String;
+
 }
 
 export const JobTitleSchema = SchemaFactory.createForClass(JobTitle);
@@ -87,3 +91,22 @@ export class Analytics {
 }
 
 export const AnalyticsSchema = SchemaFactory.createForClass(Analytics);
+
+@Schema({ collection: 'HardSkill' })
+export class HardSkill {
+  @Prop()
+  Type: String;
+
+  @Prop()
+  THType: String;
+
+  @Prop()
+  Name: String;
+
+  @Prop()
+  THName: String;
+
+}
+
+export const HardSkillSchema = SchemaFactory.createForClass(HardSkill);
+

@@ -1,10 +1,11 @@
 import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { UserAddSkill, UserJobSkill, AdditionalSkill, JobTitle, Analytics } from './analytics.schema';
+import { UserAddSkill, UserJobSkill, AdditionalSkill, JobTitle, Analytics, HardSkill } from './analytics.schema';
 import * as mongoose from 'mongoose' ;
 import { ObjectId } from 'mongodb' ;
 import { ConstraintMetadata } from 'class-validator/types/metadata/ConstraintMetadata';
+import { type } from 'os';
 
 
 
@@ -21,6 +22,8 @@ export class AnalyticsService {
     private JobTitleModel: Model<JobTitle>,
     @InjectModel('Analytics')
     private AnalyticsModel: Model<Analytics>,
+    @InjectModel('HardSkill')
+    private HardSkillModel: Model<HardSkill>
 
   ) {}
 
@@ -77,9 +80,11 @@ export class AnalyticsService {
     //console.log("jobs: ",jobs);
     let finalResults = {};
     finalResults['InterestedJobs'] = jobs;
-    const mySkills = await this.AdditionalSkillModel.find({ UserId: id }).select({ AdditionalSkill: 1 , _id: 0 }).distinct('AdditionalSkill');
+    const mySkills = await this.AdditionalSkillModel.find({ UserId: id }).select({ Type: 1 , _id: 0 }).distinct('Type');
     //console.log("My Skill: ", mySkills);
     finalResults['mySkills'] = mySkills;
+
+    let sameJobUsers = [];
 
     for ( var job of jobs ) {
       const job_name = job.name;
@@ -87,6 +92,8 @@ export class AnalyticsService {
       //console.log(job.THname);
       const users = await this.UserJobSkillModel.find({Job_JobName: { "$in": [job_name, job.THname]}}).select({ UserId: 1, _id: 0 }).distinct('UserId').exec();
       //console.log("Users: ",users);
+      sameJobUsers = sameJobUsers.concat(users);
+      console.log("Users: " + sameJobUsers);
 
       const numberOfUsers = users.length;
 
@@ -96,18 +103,26 @@ export class AnalyticsService {
         },
         {  
           $group: {
-            _id: { AdditionalSkill: "$AdditionalSkill"},
-            total: { $sum: 1 }                        
+            _id: { Type: "$Type", UserId: "$UserId"},
+            temp: { $sum: 1 }                        
           }
         },
-        { $sort: { total: -1, _id: 1 }}
+        {
+          $group: {
+            _id: "$_id.Type",
+            total: { $sum: 1 } 
+          }
+        },
+        { $sort: { total: -1, _id: 1 }},
+        //{ $limit: 3 },
       ]).exec();
 
       //console.log("Raw Result :",rawResults);
 
       let ModifiedResults = [];
       for (var result of rawResults) {
-        ModifiedResults.push({ AdditionalSkill: result['_id'].AdditionalSkill,
+        if (result['_id'] == null) {continue;};
+        ModifiedResults.push({ Type: result['_id'],
                               total: result.total,
                               percentage: result.total/numberOfUsers * 100
                             });
@@ -120,23 +135,41 @@ export class AnalyticsService {
     /*
     * Overview
     */
-    const totalUsers = await this.UserJobSkillModel.find().select({ UserId: 1, _id: 0 }).distinct('UserId');
+
+    let userCount = {};
+    let totalUsers = [];
+    for ( var u of sameJobUsers ){
+      if ( !userCount.hasOwnProperty(u) ) {
+        userCount[u] = 1;
+        totalUsers.push(u);
+      }
+    }
     //console.log("Total User: ", totalUsers) ;
     const totalNumberOfUsers = totalUsers.length;
     const rawResults = await this.AdditionalSkillModel.aggregate([
-      {  
-        $group: {
-          _id: { AdditionalSkill: "$AdditionalSkill"},
-          total: { $sum: 1 }                        
-        }
+        { 
+          $match: { UserId: { $in: totalUsers } }
+        },
+        {  
+          $group: {
+            _id: { Type: "$Type", UserId: "$UserId"},
+            temp: { $sum: 1 }                        
+          }
+        },
+        {
+          $group: {
+            _id: "$_id.Type",
+            total: { $sum: 1 } 
+          }
       },
-      { $sort: {total: -1 , _id: 1 }}
+      { $sort: {total: -1 , _id: 1 }},
+      //{ $limit: 3 },
     ]).exec();
     //console.log("RawResult2: ",rawResults);
     let ModifiedResults = [];
     for (var result of rawResults) {
-      if (result['_id'].AdditionalSkill == null) {continue;};
-      ModifiedResults.push({ AdditionalSkill: result['_id'].AdditionalSkill,
+      if (result['_id'] == null) {continue;};
+      ModifiedResults.push({ Type: result['_id'],
                             total: result.total,
                             percentage: result.total/totalNumberOfUsers * 100
                           });
@@ -305,6 +338,21 @@ export class AnalyticsService {
     //console.log(New) ;
     //console.log(array);
     return array ;
+  }
+
+  async updateType(): Promise<any> {
+    console.log("start updating...");
+    const allDocs = await this.AdditionalSkillModel.find().exec();
+    for ( var doc of allDocs ) {
+      const docId = doc._id;
+      console.log("docId: " + docId);
+      const skillName = doc.AdditionalSkill;
+      console.log("skill: " + skillName);
+      const type = await this.HardSkillModel.findOne( {$or: [{ Name: skillName }, { THName: skillName}]}).exec();
+      if (type == null) continue;
+      const Type = type.THType;
+      await this.AdditionalSkillModel.updateOne({_id: docId}, {$set: { Type: Type }});
+    }
   }
 }
 
