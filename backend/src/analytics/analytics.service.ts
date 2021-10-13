@@ -203,7 +203,7 @@ export class AnalyticsService {
                         },
                         { $sort: { _id: 1 }},
     ]) ;
-    console.log(userSkill) ;
+    // console.log(userSkill) ;
     let array = {} ;
     let InterestedJobs = [] ;
     let FullNameJobs = [] ;
@@ -214,7 +214,7 @@ export class AnalyticsService {
       InterestedJobs.push(job_name) ;
       FullNameJobs.push({ "name": job_THname.Name, "THname": job_THname.THName })
     }
-    console.log(InterestedJobs) ;
+    // console.log(InterestedJobs) ;
     //console.log("THName: ", THnameJobs) ;
     array['InterestedJobs'] = FullNameJobs ;
 
@@ -329,7 +329,7 @@ export class AnalyticsService {
         $sort: { total: -1 , _id: 1 },
       },
     ])
-    console.log(New) ;
+    // console.log(New) ;
     let temp2 = [] ;
     let percentage = 0 ;
     
