@@ -11,10 +11,11 @@ import { MyResumeService } from './myresume.service';
 import { Account, Userinfo, AdditionalSkill, Certificate, EducationHistory, InterestedJob, WorkHistory,Portfolio,PortfolioPicture,Resume} from './entity/myresume.entity'
 import { Resume2 , ResumeSchema} from './entity/myresume.schema';
 import { Portfolio2, PortfolioSchema } from '../portfolio/entity/portfolio.schema';
+import { Resume3 } from './entity/myresume2.entity';
 
 @Module({
 
-  imports: [TypeOrmModule.forFeature([Account, Userinfo, AdditionalSkill, Certificate, EducationHistory, InterestedJob, WorkHistory,Portfolio,PortfolioPicture,Resume])
+  imports: [TypeOrmModule.forFeature([Resume3,Account, Userinfo, AdditionalSkill, Certificate, EducationHistory, InterestedJob, WorkHistory,Portfolio,PortfolioPicture,Resume])
            ,MongooseModule.forFeature([{ name: Resume2.name, schema: ResumeSchema },{ name: Portfolio2.name, schema: PortfolioSchema }]) 
            ,MulterModule.register({
             dest: './upload',

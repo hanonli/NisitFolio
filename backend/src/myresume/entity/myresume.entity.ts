@@ -322,6 +322,12 @@ export class Resume {
   ProfilePic: string;
 
   @Column()
+  First: string;
+
+  @Column()
+  Last: string;
+
+  @Column()
   Owner: string;
 
   @Column()

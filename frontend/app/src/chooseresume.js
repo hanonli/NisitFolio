@@ -14,11 +14,13 @@ import $ from 'jquery';
 import cookie from 'react-cookies';
 import LoadingS from './Components/loadingS';
 
+var certdata = [];
+
 class Register extends React.Component {
 
 	constructor(props) {
 		super(props);
-
+		this.handleLoad = this.handleLoad.bind(this);
 		this.state = {
 			data: [],
 			render: true
@@ -26,6 +28,7 @@ class Register extends React.Component {
 	}
 
 	componentDidMount() {
+		window.addEventListener('load', this.handleLoad);
 		var list_of_high = [], list_of_aca = [];
 
 		function get_high_id(list_of_high, x) {
@@ -100,7 +103,16 @@ class Register extends React.Component {
 						console.log(list_of_aca);
 					}
 				});
+				this.state.data.Certificate_id.forEach((ele, index) => {
+					certdata.push({
+						Certificate_id: ele,
+						CertName: this.state.data.CertName[index],
+						CertPic: this.state.data.CertPic[index],
+						CertYear: this.state.data.CertYear[index]
+					})
+				});
 			});
+
 		$(function () {
 			$('.tab-content').hide();
 			$('#registab1-content').show();
@@ -144,6 +156,10 @@ class Register extends React.Component {
 		});
 	}
 
+	handleLoad() {
+		console.log("YEAH!");
+	}
+
 	render() {
 		if (this.state.render == true) {
 			return (
@@ -176,7 +192,7 @@ class Register extends React.Component {
 								<Chooseresume2 mywork_data={this.state.data} />
 							</div>
 							<div class="tab-content" id="registab3-content">
-								<Chooseresume3 mycerti_data={this.state.data} />
+								<Chooseresume3 mycerti_data={certdata} />
 							</div>
 							<div class="tab-content" id="registab4-content">
 								<Registab6 />

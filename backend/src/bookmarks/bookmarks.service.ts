@@ -165,7 +165,7 @@ export class BookmarkService {
       found = await this.BookmarkModel.findOne({userId: userId, type: type, thatUserId: thatUserId}).countDocuments();
     if(type=='work')
       found = await this.BookmarkModel.findOne({userId: userId, type: type, thatUserId: thatUserId, id: id }).countDocuments();
-    console.log(found);
+    //console.log(found);
     return found;    
   }
   

@@ -30,6 +30,10 @@ class MyResumeTemplate extends React.Component {
         });
     };
 
+    componentWillUnmount() {
+        window.removeEventListener('load', this.handleLoad)
+    }
+
     render() {
         return (
             <div class="myresumeTemplate">
@@ -46,7 +50,11 @@ class MyResumeTemplate extends React.Component {
                             <img src={this.state.sample_template} width="321px"></img>
                         </div>
                         <div class="choose-color-template11">
-                            <h1 id="text-choose-color-template11">เลือกสีที่เข้ากันและบ่งบอกถึงตัวคุณ</h1>
+                            <div class="layout-describe-template11">
+                                <h1 id="text-choose-color-template11">เลือกสีที่เข้ากันและบ่งบอกถึงตัวคุณ</h1>
+                                <h5 id="describe-template11">สีของเทมเพลตจะใช้กับทุกตำแหน่งงาน และสามารถแก้ไขภายหลังได้</h5>
+                            </div>
+
                             <div class="grid-choose-template">
                                 <div>
                                     <input
@@ -121,10 +129,6 @@ class MyResumeTemplate extends React.Component {
                                         <div class="circle-color-template-32A3C7"></div>
                                         <div class="text-template55">ฟ้า</div>
                                     </label>
-                                </div>
-
-                                <div>
-                                    <div class="text-info-template11">สีของเทมเพลตจะใช้กับ<br />ทุกตำแหน่งงาน และผู้ใช้<br />สามารถแก้ไขภายหลังได้</div>
                                 </div>
                             </div>
                         </div>

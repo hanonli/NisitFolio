@@ -19,6 +19,14 @@
     visibility: visible;
 }
 
+.head-of-choose-resume-tab2{
+    color: black;
+    font-size: 24px;
+    position: relative;
+    left: 20vw;
+    bottom: -2vh;
+}
+
 /*---------------- resume tab3 ----------------*/
 .myresume-choose-work11 .icon-checkbox1112{
     visibility: hidden;
@@ -38,4 +46,25 @@
 
 .myresume-choose-work11 input[type=checkbox]:checked + label#list-work-22 > .icon-checkbox1112{
     visibility: visible;
+}
+
+.head-of-choose-resume-tab3{
+    color: black;
+    font-size: 24px;
+    position: relative;
+    left: 20vw;
+    bottom: -2vh;
+}
+
+.you-choose-list-resume{
+    position: fixed;
+    left: 20vw;
+    top: 90%;
+    font-size: 16px;
+    font-weight: 300;
+    color: #939393;
+}
+
+.you-choose-list-resume-red{
+    color: red;
 }

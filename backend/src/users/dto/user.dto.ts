@@ -13,5 +13,7 @@ export class UserDto {
     @IsNotEmpty()
     id: ObjectId;
 
+    @IsNotEmpty()
+    isEmailConfirmed: boolean;
  
 }

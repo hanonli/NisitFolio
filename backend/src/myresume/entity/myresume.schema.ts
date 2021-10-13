@@ -12,6 +12,12 @@ export class Resume2 {
   Owner: string;
 
   @Prop()
+  First: string;
+
+  @Prop()
+  Last: string;
+
+  @Prop()
   Location: string;
 
   @Prop()
