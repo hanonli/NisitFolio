@@ -31,12 +31,10 @@ $('.Home').css({
     'overflow':'hidden',
 });
 $('.MyResumeContent').css("padding-left",'20vw');
-$('.Resume_sideNavbar').css("transition","0s");
-
 
 $('.Resume_sideNavbar').css({
     "padding-top":"10vh",
-    "padding-bottom":"0vh"
+
 });
 $('.resumeblock').css({
     "height": "12%",
