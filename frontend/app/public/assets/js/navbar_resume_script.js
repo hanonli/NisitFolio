@@ -3,8 +3,8 @@
     $('#icon-myresume-education, #icon-myresume-certi, #icon-myresume-skill, #icon-myresume-work, #icon-myresume-goal, #icon-myresume-resume' )
     .attr({
         
-        'width': ' 30vw',
-        'height' : '30vh',
+        'width': ' 10%',
+        'height' : '50%',
  
     });
     $(".resumeblock").hover(function(){
@@ -12,7 +12,11 @@
         }, function(){
         $(this).css("background-color", "#FFCE55");
       });
-    $('.resumeicon').css('padding-right' , '1vw');
+    $('.resumeicon').css({
+
+        'padding-right' : '1vw',
+    
+    });
     $('#icon-myresume-education').attr('title', 'Education');
     $('#icon-myresume-certi').attr('title', 'Certificate');
     $('#icon-myresume-skill').attr('title', 'Skill');
@@ -28,17 +32,6 @@ $('.Home').css({
 });
 $('.MyResumeContent').css("padding-left",'20vw');
 $('.Resume_sideNavbar').css("transition","0s");
-$('.resumeblock').css({
-    'color' : 'black',
-    'font-weight' : '300',
-    'font-size' : '64px',
-    'width' : '20vw',
-    'height' : '16.67vh',
-    "padding-top" : "5.03vw",
-    "padding-left" : "2vw",
-    "display" : "block",
-    "font-size" : "1vw"
-});
 
 
 $('.Resume_sideNavbar').css({
@@ -46,31 +39,18 @@ $('.Resume_sideNavbar').css({
     "padding-bottom":"0vh"
 });
 $('.resumeblock').css({
-    "height": "6vw",
-    "padding-top" : "2vw",
+    "height": "12%",
+    "padding-top" : "10%",
+    "padding-left" : "10%",
+    "font-size" : "1vh",
+    "display" : "block",
 });
 
-
-$(window).on("scroll load resize", function(){
-    
-    if($(window).scrollTop() > 0){
-        $('.Resume_sideNavbar').css("padding-top","10vh");
-        $('.resumeblock').css({
-            "height": "6vw",
-            "padding-top" : "2vw",
-        });
-
-    }else{
-        $('.Resume_sideNavbar').css({
-            "padding-top":"10vh",
-            "padding-bottom":"0vh"
-        });
-        $('.resumeblock').css({
-            "height": "6vw",
-            "padding-top" : "2vw",
-        });
-
-    }
+$('.resumetext').css({
+    'position': 'relative',
+    'color' : 'black',
+    'top' : '0.3vw',
+    "font-size" : "1.1vw",
+    'font-weight' : '300',
+    "display" : "inline-block",
 });
-
-

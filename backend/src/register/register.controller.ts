@@ -116,7 +116,7 @@ export class RegisterController {
   //*/
 
 
-  @Get('/random')
+  /*@Get('/random')
   //@Header('Content-Type', 'image/jpeg')
   async RandomRegis()
   {
@@ -132,6 +132,5 @@ export class RegisterController {
     //console.log(encode(respone.data));
     //return encode(respone.data).slice(0, 20);
     
-  }
-  
+  }*/
 }

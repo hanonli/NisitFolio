@@ -41,20 +41,14 @@
 .choose-color-template11 {
     position: absolute;
     left: 565px;
-    top: 110px;
-}
-
-/*------text choose template------*/
-#text-choose-color-template11{
-    color: black;
-    margin-bottom: 50px;
-    margin-left: 11px;
+    top: 90px;
 }
 
 .grid-choose-template{
     display: grid;
     grid-template-columns: repeat(3,1fr);
     gap: 40px;
+    margin-bottom: 50px;
 }
 
 .choose-template-color-FF7370{
@@ -273,35 +267,45 @@
     cursor: pointer;
 }
 
+.layout-describe-template11{
+    position: relative;
+    left: 11px;
+}
+
+#describe-template11{
+    color: black;
+    font-size: 18px;
+    font-weight: 300;
+    margin-bottom: 55px;
+}
+
+/*------text choose template------*/
+#text-choose-color-template11{
+    color: black;
+    font-size: 48px;
+}
+
 /*---------------------------- edit template ----------------------------*/
 .layout-edit-template{
     position: relative;
-    left: 103px; 
-}
-
-.edit-template-content{
-    position: relative;
-    height: 630px;
-    width: 1480px;
-    top: 205px;
+    top: 10vh;
 }
 
 .sample-color-edit-template{
     position: relative;
-    left: 7%;
-    top: 14%;
+    top: -4.5vh;
 }
 
 .choose-color-edit-template11{
     position: absolute;
-    left: 565px;
-    top: 110px;
+    left: 17vw;
+    top: -2vh;
 }
 
 .grid-edit-template{
     display: grid;
     grid-template-columns: repeat(4,1fr);
-    gap: 40px;
+    gap: 28px;
 }
 
 #edit-template-color-FF7370{
@@ -325,8 +329,8 @@
 }
 
 .edit-template-color-FF7370{
-    width: 227px;
-    height: 125px;
+    width: 166px;
+    height: 100px;
     border-radius: 20px;
     border: 2px solid #C4C4C4;
     cursor: pointer;
@@ -334,8 +338,8 @@
 }
 
 .edit-template-color-FE9666{
-    width: 227px;
-    height: 125px;
+    width: 166px;
+    height: 100px;
     border-radius: 20px;
     border: 2px solid #C4C4C4;
     cursor: pointer;
@@ -343,8 +347,8 @@
 }
 
 .edit-template-color-FFCE55{
-    width: 227px;
-    height: 125px;
+    width: 166px;
+    height: 100px;
     border-radius: 20px;
     border: 2px solid #C4C4C4;
     cursor: pointer;
@@ -352,8 +356,8 @@
 }
 
 .edit-template-color-01B8AA{
-    width: 227px;
-    height: 125px;
+    width: 166px;
+    height: 100px;
     border-radius: 20px;
     border: 2px solid #C4C4C4;
     cursor: pointer;
@@ -361,8 +365,8 @@
 }
 
 .edit-template-color-32A3C7{
-    width: 227px;
-    height: 125px;
+    width: 166px;
+    height: 100px;
     border-radius: 20px;
     border: 2px solid #C4C4C4;
     cursor: pointer;
@@ -373,10 +377,58 @@
     border: 2px solid transparent; 
     outline-style: solid;
     outline-color: #2560A5;
-    outline-width: 8px;   
+    outline-width: 6px;   
 }
 
 #text-edit-color-template11{
     color: black;
+    font-size: 32px;
     margin-bottom: 20px;
+}
+
+.circle-color-template-FF7370-edit{
+    position: relative;
+    top: 16%;
+    left: 40%;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    background-color: #FF7370;
+}
+
+.circle-color-template-FE9666-edit{
+    position: relative;
+    top: 16%;
+    left: 40%;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    background-color: #FE9666;
+}
+.circle-color-template-FFCE55-edit{
+    position: relative;
+    top: 16%;
+    left: 40%;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    background-color: #FFCE55;
+}
+.circle-color-template-01B8AA-edit{
+    position: relative;
+    top: 16%;
+    left: 40%;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    background-color: #01B8AA;
+}
+.circle-color-template-32A3C7-edit{
+    position: relative;
+    top: 16%;
+    left: 40%;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    background-color: #32A3C7;
 }

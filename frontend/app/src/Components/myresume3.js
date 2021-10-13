@@ -7,10 +7,11 @@ import MultipleRows from './myresume3slidemywork';
 
 class MyResume3 extends React.Component {
     render() {
+        console.log('in Myresume3'+ JSON.stringify(this.props))
         const linestyle = {
-            backgroundColor: this.props.colour ? this.props.colour : "#FFCE55"
+            backgroundColor:  this.props.state.color ? this.props.state.color : "#FFCE55"
         };
-        const colourcode = this.props.colour ? this.props.colour : "#FFCE55";
+        const colourcode =  this.props.state.color ?  this.props.state.color : "#FFCE55";
         const bordercode = "0.5vw solid " + colourcode;
         const boxcolourstyle = {
             border: bordercode,
@@ -235,11 +236,12 @@ class MyResume3 extends React.Component {
         }
 
         return (
-            <>
+            <div id='resume-resume'>
+                <br/><br/>
                 <div>{myWorkWithoutData}</div>
                 <div>{myWorkWithData}</div>
                 <MultipleRows ></MultipleRows>
-            </>
+            </div>
         );
     }
 }

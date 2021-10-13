@@ -21,7 +21,7 @@ export default class MultipleRows extends Component  {
         };
         return(
             <div>
-                <div class="myresume-mywork-woNb" id='resume-resume'></div>
+                <div class="myresume-mywork-woNb" ></div>
                 <div class="educationtopic">
                     <h2 class="myresume-head-woNb">ผลงานของฉัน</h2>
                 </div><div class="resumesectionline" style={linestyle}></div>

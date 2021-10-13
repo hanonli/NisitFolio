@@ -43,6 +43,7 @@ export class MyResumeService {
   
 
   async createResume(CreateDto: CreateResumeDto ,ip:string){
+    
     const time =  new Date();
     const isoTime = time.toLocaleDateString('th-TH',{ year:'numeric',month: 'long',day:'numeric',hour:"2-digit",minute:"2-digit"});
 
@@ -52,8 +53,11 @@ export class MyResumeService {
     resume.UserId = CreateDto.UserId;
     resume.Privacy = "Public";
     resume.Owner = user.Firstname + " " + user.Lastname;
+    resume.First = user.Firstname;
+    resume.Last = user.Lastname;
     resume.Aboutme = user.AboutMe; 
-    resume.Email = user.Email2nd; 
+    resume.Email = user.Email2nd;
+    resume.Location = user.Country + " " + user.Province + " "+ user.City;
 
     const jobid = new ObjectID(CreateDto.JobID);
 
@@ -135,8 +139,10 @@ export class MyResumeService {
     return await this.resumePictureRepository.save(myresume);
   }
   async getResumeheader(UserID:string ){
-    const id = new ObjectID(UserID);
+
     const get_header=new hearderDto;
+    
+    const id = new ObjectID(UserID);
     const id2 = new ObjectID(id);
     const account=await this.accountRepository.findOne({where:{_id:id2}});
     const userinfo=await this.userinfoRepository.findOne({where:{UserId:UserID}});
@@ -148,7 +154,12 @@ export class MyResumeService {
     get_header.City=userinfo.City;
     get_header.AboutMe=userinfo.AboutMe;
     get_header.Province=userinfo.Province;
-    //*/
+    const get_arr=[];
+    const k=await this.InterestedJobRepository.find({where:{UserId:UserID}});
+    for (var _i = 0; _i < k.length; _i++) {
+      get_arr.push(k[_i].Job_JobName);
+    }
+    get_header.Job_JobName=get_arr;
     return get_header;
     
   }

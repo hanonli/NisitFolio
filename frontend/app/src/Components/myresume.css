@@ -3,7 +3,7 @@
 @import "myresumeCertificate.css";
 @import "myresumework.css";
 @import "myresumeSkill.css";
-
+@import "Myresume_portfolio_choice.css";
 /* Zone Decoration */
 .MyResumeContent *{
     font-weight: normal;
@@ -111,15 +111,15 @@
 }
 
 .resume-name-box{
-    margin-left:45%;
-    width:50%;
+    margin-left:38%;
+    width:58%;
     padding: 0.5vw;
     color: #FFFFFF;
     padding-inline: 1vw;
 }
 
 .resume-name-text{
-    font-size: 5vw;
+    font-size: 3.6vw;
     font-weight: 700;
     color: #FFFFFF;
 }
@@ -128,13 +128,14 @@
     font-size: 1.6vw;
     height: auto;
     margin-bottom: 0%;
+    margin-top: 5%;
 }
 
 .resume-name-bio-part{
     padding: 1vw;
-    padding-inline: 2vw;
-    margin-left:42%;
-    width:52%;
+    padding-inline: 0vw;
+    margin-left:38%;
+    width:56%;
     min-height: 8vw;
     font-size: 1vw;
     color: black;
@@ -167,14 +168,16 @@
 	position: absolute;
 	/*background: rgba(0, 0, 0, 0.3) none repeat scroll 0 0;
 	*/
-    width: 37%;
+    width: 30%;
     height: auto;
     z-index:9;
 }
 
 .resume-hometown{
     margin-top: 2%;
-    margin-left: 45%;
+    margin-left: 38%;
+    padding-inline: 1.5vw;
+    width: 58%;
 }
 .resume-hometown p{
     font-size: 1.4vw;

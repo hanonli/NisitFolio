@@ -11,7 +11,9 @@ class MyResumeScoreSkill extends React.Component{
         const graystyle = {
             backgroundColor: "#C4C4C4"
         };
-        const score = this.props.score? this.props.score: 0;
+        const score = this.props.score? Math.round(this.props.score): 0;
+        //console.log("remain-score:" + score%1);
+        //console.log("score:" + score);
         const scoreContent =[];
         for(var i=0; i<10; i++){
             if(i<score){
@@ -30,17 +32,20 @@ class MyResumeScoreSkill extends React.Component{
             }
         }
         let levellabel;
-        if(score>7.5){
+        if(score==10){
             levellabel = "ยอดเยี่ยม";
         }
-        else if(score>5){
+        else if(score>7.5){
             levellabel = "ดี";
         }
-        else if(score>2.5){
+        else if(score>5){
             levellabel = "พื้นฐาน";
         }
-        else{
+        else if(score>2.5){
             levellabel = "พอได้เล็กน้อย";
+        }
+        else{
+            levellabel = "";
         }
         return(
             <div class="skillrow">
@@ -96,6 +101,7 @@ class MyResumeSkill extends React.Component {
         const linestyle = {
             backgroundColor: this.props.colour? this.props.colour: "#FFCE55"
         };
+        const color = this.props.colour? this.props.colour: "#FFCE55";
         const dummylinestyle = {
             backgroundColor: "#C4C4C4"
         };
@@ -158,7 +164,7 @@ class MyResumeSkill extends React.Component {
                     for(var i = 0; i< job.Job_SkillName.length; i++){
                         // console.log('in skill skillname: ' + job.Job_SkillName[i] + ' score: ' + job.Job_Score[i])
                         jobskillcontent.push(
-                            <MyResumeScoreSkill skillname={job.Job_SkillName[i]} score={job.Job_Score[i]}></MyResumeScoreSkill>
+                            <MyResumeScoreSkill skillname={job.Job_SkillName[i]} score={job.Job_Score[i]} colour={color}></MyResumeScoreSkill>
                         );
                     }
                 }
@@ -187,7 +193,7 @@ class MyResumeSkill extends React.Component {
         }
         else{
             result = (
-                    <div class="myresumeskill">
+                    <div class="myresumeskill" >
                         {topicElement}
                     
                         <div class="jobskillcontent">
@@ -202,7 +208,7 @@ class MyResumeSkill extends React.Component {
                 );
         }
         return(
-           <div>
+           <div id='resume-additionalskills'>
                {result}
            </div> 
             

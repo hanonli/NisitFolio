@@ -4,7 +4,7 @@ import React from "react";
 class MyresumeHeading extends React.Component{
     render(){
         const colourcode = this.props.colour? this.props.colour : "#FFCE55";
-        const bordercode = "0.75vw solid " + colourcode;
+        const bordercode = "0.55vw solid " + colourcode;
         const boxcolourstyle = {
             border: bordercode,
         };
@@ -27,6 +27,7 @@ class MyresumeHeading extends React.Component{
                     <div class="resume-name-box" style={boxcolourstyle}>
                         <h1 class="resume-name-text">{this.props.firstname? this.props.firstname: "ชื่อ"}</h1>
                         <h1 class="resume-name-text">{this.props.lastname? this.props.lastname: "สกุล"}</h1>
+                        <h1 class="resume-name-text">{this.props.addname? this.props.addname: ""}</h1>
                         <p class="resume-occupation">{this.props.occupation? this.props.occupation: "ตำแหน่งงานที่สนใจ"}</p>
                     </div>
                     <div class="resume-hometown">
