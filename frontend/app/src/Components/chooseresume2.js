@@ -50,6 +50,21 @@ var workdata = [
         "Salary_type": "รายได้ต่อเดือน",
         "Salary": 35000,
         "Infomation": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tincidunt, neque vitae eleifend ornare, leo sem hendrerit lorem, vel hendrerit elit elit et libero. Pellentesque auctor ornare sapien sit amet imperdiet. Nam at justo nibh. Aenean mollis ornare lacus, in ornare odio."
+    },
+    {
+        "WorkHistory_id": "xx04",
+        "id": "61388f7c34f592a9d7f788e7",
+        "UserId": "613881e534f592a9d7f788cf",
+        "Work_JobName": "เงี่ยน",
+        "Work_JobType": "partime",
+        "Company": "1024 crop",
+        "Work_Start_Month": 7,
+        "Work_End_Month": 99,
+        "Work_Start_Year": 2021,
+        "Work_End_Year": 9999,
+        "Salary_type": "รายได้ต่อเดือน",
+        "Salary": 35000,
+        "Infomation": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tincidunt, neque vitae eleifend ornare, leo sem hendrerit lorem, vel hendrerit elit elit et libero. Pellentesque auctor ornare sapien sit amet imperdiet. Nam at justo nibh. Aenean mollis ornare lacus, in ornare odio."
     }
 ];
 
@@ -83,8 +98,16 @@ var isCheck_work = {};
 
 class Chooseresume2 extends React.Component {
 
+    constructor(props) {
+        super(props);
+
+        /*this.state = {
+
+        }*/
+    }
+
     handleChange = e => {
-        isCheck_work[e.target.value] = !isCheck_work[e.target.value];
+        isCheck_work[e.target.value] = e.target.checked;
         if (isCheck_work[e.target.value] === true) {
             choose_work.push(e.target.value);
             console.log(`add ${e.target.value} !!!!!!!!!`);
@@ -99,28 +122,27 @@ class Chooseresume2 extends React.Component {
             console.log(`delete ${e.target.value} !!!!!!!!!`);
             //$("#list-certi33" + e.target.value).removeClass("choose-certi1111");
         }
+        if (choose_work.length === 3) {
+            $("#you-choose-list-resume-work11").text("คุณเลือกครบ 3 รายการแล้ว");
+            $("#you-choose-list-resume-work11").addClass("you-choose-list-resume-red");
+        }
+        else if (choose_work.length === 0) {
+            $("#you-choose-list-resume-work11").text("");
+            $("#you-choose-list-resume-work11").removeClass("you-choose-list-resume-red");
+        }
+        else {
+            $("#you-choose-list-resume-work11").text(`คุณเลือกไปแล้ว ${choose_work.length} รายการ`);
+            $("#you-choose-list-resume-work11").removeClass("you-choose-list-resume-red");
+        }
         console.log(choose_work);
         console.log(isCheck_work);
     };
 
     componentDidMount() {
-        /*let testwork = (
-            <div class="t4-content" id="{no_work}">
-                <h5 class="col font-titlet4 font-boldt31">{ele.Work_JobName}</h5>
-                <div class="row">
-                    <div class="col font-titlet4_1">
-                        <div class="font-titlet4_1 font-boldt3">{ele.Company}</div>
-                        <div class="font-titlet4_1">เริ่มต้น {ele.Work_Start_Month}/{ele.Work_Start_Year}</div>
-                        <div class="font-titlet4_1">สิ้นสุด {ele.Work_End_Month}/{ele.Work_End_Year}</div>
-                    </div>
-                    <div class="col-2 newline-text123">{ele.Infomation}</div>
-                </div>
-                <div class="row">
-                    <div class="col-3 font-salary font-boldt3">{ele.Salary_type}</div>
-                    <div class="col font-titlet4_2">{ele.Salary} บาท</div>
-                </div>
-            </div>
-        );*/
+        $(".input-choose-work1:input:checkbox").click(function () {
+            var bol = $(".input-choose-work1:input:checkbox:checked").length >= 3;
+            $(".input-choose-work1:input:checkbox").not(":checked").attr("disabled", bol);
+        });
     }
 
     componentWillUnmount() {
@@ -195,6 +217,7 @@ class Chooseresume2 extends React.Component {
                 listwork.push(
                     <div id={ele.WorkHistory_id}>
                         <input
+                            class="input-choose-work1"
                             id={'yyy' + ele.WorkHistory_id}
                             type="checkbox"
                             name="vehicle2"
@@ -226,6 +249,7 @@ class Chooseresume2 extends React.Component {
                 listwork.push(
                     <div id={ele.WorkHistory_id}>
                         <input
+                            class="input-choose-work1"
                             id={'yyy' + ele.WorkHistory_id}
                             type="checkbox"
                             name="vehicle2"
@@ -264,12 +288,15 @@ class Chooseresume2 extends React.Component {
         listwork = [];
         return (
             <div className="Registab4">
+                <h2 class="head-of-choose-resume-tab2">คุณสามารถเลือกประวัติการทำงานที่สอดคล้องกับตำแหน่งงานที่สนใจได้สูงสุด 3 รายการ</h2>
                 <div class="regis-box-content1">
                     <div class="myresume-choose-work11">
                         {result}
                     </div>
                 </div>
+                <h5 class="you-choose-list-resume" id="you-choose-list-resume-work11"></h5>
             </div>
+
         );
     }
 }

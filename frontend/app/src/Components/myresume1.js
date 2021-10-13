@@ -12,6 +12,8 @@ class MyResume1 extends React.Component {
         
         var firstname = this.props.state.firstname ? this.props.state.firstname : '';
         var lastname = this.props.state.lastname ? this.props.state.lastname : ''
+        console.log('firstname: ' + firstname)
+        console.log('lastname: ' + lastname)
 
         // if( name.length >1){
         //     alert('longname')
@@ -26,11 +28,11 @@ class MyResume1 extends React.Component {
         // const lastname="ผดุงเจริญ"; 
         // var job = this.props.state.interestedJob[0].Job_JobName
         // console.log('job: '+ JSON.stringify(job))
-        const occupation = this.props.state.interestedJob[0].Job_JobName ? this.props.state.interestedJob[0].Job_JobName : 'คุณยังไม่มีอาชีพ' ;
+        const occupation = this.props.state.interestedJob[0].Job_JobName ? this.props.state.interestedJob[0].Job_JobName : null ; //ห้ามเติมข้อมูลกรณีที่ไม่มีข้อมูล ไม่งี้น header จะเข้าใจว่ามีข้อมูลแล้วแสดงผลผิด
         // const bio= "Curabitur lobortis blandit tellus vitae viverra. Praesent a elementum massa, nec congue elit. Aliquam a nunc turpis. Praesent et nisi vestibulum sem interdum ultricies. Integer quis semper erat, sed rhoncus nulla. Etiam in euismod augue. Aenean eu auctor magna. Donec sodales sed.";
-        var bio = this.props.state.aboutme ? this.props.state.aboutme : 'No Content, please add one'
+        var bio = this.props.state.aboutme ? this.props.state.aboutme : null; //ห้ามเติมข้อมูลกรณีที่ไม่มีข้อมูล ไม่งี้น header จะเข้าใจว่ามีข้อมูลแล้วแสดงผลผิด
         // const imagepath="assets/images/profile.jpg";
-        var imagepath =  this.props.state.profilepic ? this.props.state.profilepic : null ; 
+        var imagepath =  this.props.state.profilepic ? this.props.state.profilepic : null ; //ห้ามเติมข้อมูลกรณีที่ไม่มีข้อมูล ไม่งี้น header จะเข้าใจว่ามีข้อมูลแล้วแสดงผลผิด
         var educationdata = this.props.state.educationHistorys;
         //const certdata = this.props.state.certificates; // certificate move to resume 2 follow the figma!
         
