@@ -23,11 +23,12 @@ class Resume_sideNavbar extends React.Component {
 	
 	render (){
 		const linestyle = {
-            backgroundColor: this.props.colour? this.props.colour: "#FFCE55"
+            backgroundColor: this.props.color? this.props.color: "#FFCE55"
         };
+		// const color = this.props.color? this.props.color : "#FFCE55" 
 		return (
 			
-			<div className="Resume_sideNavbar" id='sideNav'>
+			<div className="Resume_sideNavbar" style={linestyle} id='sideNav'>
 				
 				<div  id='myresumepath'> 
 					<a className='resumeicon' href='myresume#resume-education'>

@@ -20,7 +20,13 @@ export class AuthService {
     const user = await this.usersService.findOne(email);
     const password = Md5.hashStr(pass);
   
-    if (user && user.Password[user.Password.length - 1] === password) {
+    if (user && user.isEmailConfirmed == false ){
+      throw new HttpException({
+        status: HttpStatus.UNAUTHORIZED,
+        error: 'pls confirm mail',
+      }, HttpStatus.UNAUTHORIZED);
+    }
+    else if (user && user.Password[user.Password.length - 1] === password) {
       const { Password, ...result } = user;
       return result;
     }
