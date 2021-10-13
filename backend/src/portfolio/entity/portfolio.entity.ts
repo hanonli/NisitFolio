@@ -225,7 +225,7 @@ export class InterestedJob {
 @Entity("Portfolio")
 export class Portfolio {
   @ObjectIdColumn()
-  id?: ObjectId;
+  _id?: ObjectId;
   
   @Column()
   UserId: string;
