@@ -225,7 +225,7 @@ export class InterestedJob {
 @Entity("Portfolio")
 export class Portfolio {
   @ObjectIdColumn()
-  id?: ObjectId;
+  _id?: ObjectId;
   
   @Column()
   UserId: string;
@@ -251,7 +251,8 @@ export class Portfolio {
   @Column()
   Port_Date: string;
 
-  @OneToMany(type => PortfolioPicture, portfolioPicture => portfolioPicture.portfolio)
+  //@OneToMany(type => PortfolioPicture, portfolioPicture => portfolioPicture.portfolio)
+  @Column()
   portfolioPictures: PortfolioPicture[];
 
   @Column()

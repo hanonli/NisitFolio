@@ -41,20 +41,28 @@ export class AnalyticsService {
   }
 
   async UpdateCache(id: string): Promise<any> {
+    console.log("*************************************************");
+    console.log("Begin updating cache for " + id);
+    console.log("-------------------------------------------------");
+    console.log(">> Analysing main skills.......");
     const main = await this.findUserJobSkill(id);
+    console.log(">> Analysing additional skills.......")
     const additional = await this.additionalAnalytics(id);
+    console.log(">> Updating database.......");
     const found = await this.AnalyticsModel.find({ UserId: id }).countDocuments();
-    console.log("found: " + found);
+    //console.log("found: " + found);
     if ( found ) {
       await this.AnalyticsModel.updateOne({ UserId: id }, { $set: { Main: main, Additional: additional } });
     }
     else {
-      console.log("NEW");
+      //console.log("NEW");
       const newCache = new this.AnalyticsModel({ UserId: id, Main: main, Additional: additional });
-      console.log(newCache)
+      //console.log(newCache)
       await newCache.save();
     }
-    console.log("SUCCESS");
+    console.log("-------------------------------------------------");
+    console.log("                    Updated.                     ");
+    console.log("*************************************************");
     return "Updated";
   }
   
@@ -73,7 +81,7 @@ export class AnalyticsService {
     for ( var job of Jobs ) {
       const job_name = job._id.Job_JobName;
       const job_THname = await this.JobTitleModel.findOne({ $or: [ { THName: job_name }, { Name: job_name }]}).select({ Name: 1, THName: 1, _id: 0 }).exec();
-      console.log("JobTHName: " ,job_THname) ;
+      //console.log("JobTHName: " ,job_THname) ;
       jobs.push({ name: job_THname.Name, THname: job_THname.THName });
     }
 
@@ -93,7 +101,7 @@ export class AnalyticsService {
       const users = await this.UserJobSkillModel.find({Job_JobName: { "$in": [job_name, job.THname]}}).select({ UserId: 1, _id: 0 }).distinct('UserId').exec();
       //console.log("Users: ",users);
       sameJobUsers = sameJobUsers.concat(users);
-      console.log("Users: " + sameJobUsers);
+      //console.log("Users: " + sameJobUsers);
 
       const numberOfUsers = users.length;
 

@@ -7,11 +7,11 @@
         'height' : '50%',
  
     });
-    $(".resumeblock").hover(function(){
-        $(this).css("background-color", "#e6ba4e");
-        }, function(){
-        $(this).css("background-color", "#FFCE55");
-      });
+    // $(".resumeblock").hover(function(){
+    //     $(this).css("background-color", "#e6ba4e");
+    //     }, function(){
+    //     $(this).css("background-color", "#FFCE55");
+    //   });
     $('.resumeicon').css({
 
         'padding-right' : '1vw',
@@ -31,12 +31,10 @@ $('.Home').css({
     'overflow':'hidden',
 });
 $('.MyResumeContent').css("padding-left",'20vw');
-$('.Resume_sideNavbar').css("transition","0s");
-
 
 $('.Resume_sideNavbar').css({
     "padding-top":"10vh",
-    "padding-bottom":"0vh"
+
 });
 $('.resumeblock').css({
     "height": "12%",

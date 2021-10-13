@@ -35,8 +35,8 @@ import { UserDto } from './dto/user.dto';
 
   async findOne(Email: string) {
     const toUserDto = (data: UserReq): UserDto => {  
-    const { id, Email, Password } = data;
-    let userDto: UserDto = { id, Email, Password  };
+    const { id, Email, Password , isEmailConfirmed} = data;
+    let userDto: UserDto = { id, Email, Password , isEmailConfirmed };
     return userDto;};
 
     const user = await this.usersRepository.findOne({ Email: Email })
