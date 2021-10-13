@@ -14,7 +14,7 @@ import $ from 'jquery';
 import cookie from 'react-cookies';
 import LoadingS from './Components/loadingS';
 
-class Register extends React.Component {
+class Chooseresume extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -201,4 +201,4 @@ class Register extends React.Component {
 	}
 }		
 
-export default Register;
+export default Chooseresume;
