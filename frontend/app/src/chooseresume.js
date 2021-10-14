@@ -23,19 +23,21 @@ class Chooseresume extends React.Component {
 		this.handleLoad = this.handleLoad.bind(this);
 		this.state = {
 			data: [],
-			render: true
+			render: true,
+			list_of_aca: [],
+			mywork_data:[],
 		}
 	}
 
 	componentDidMount() {
 		window.addEventListener('load', this.handleLoad);
-		var list_of_high = [], list_of_aca = [];
+		var list_of_high = [];
 
 		function get_high_id(list_of_high, x) {
 			//var x = 1;
 			list_of_high.forEach(ele => {
 				ele["high_pos"] = x;
-				console.log("x:", x);
+				//console.log("x:", x);
 				x++;
 			});
 			return list_of_high;
@@ -45,10 +47,63 @@ class Chooseresume extends React.Component {
 			//var x = 1;
 			list_of_aca.forEach(ele => {
 				ele["aca_pos"] = x;
-				console.log("x:", x);
+				//console.log("x:", x);
 				x++;
 			});
 			return list_of_aca;
+		}
+
+		function show_all_aca(list_of_aca) {
+			list_of_aca.forEach(ele => {
+				var grid_aca1 = '<div class="t3-content1 row">\
+									<div class="col-3">\
+										<div class="font-titlet3_1 font-boldt3">{degree_aca}</div>\
+										<div class="font-titlet3_1 font-khotboldt3">{year_aca}</div>\
+									</div>\
+									<div class="col-9">\
+										<div class="font-titlet3_1">{field_aca}</div>\
+										<div class="font-titlet3_1">{faculty_aca}</div>\
+										<div class="font-titlet3_1">{name_aca}</div>\
+										<div class="font-titlet3_1">เกรด {grade_aca}</div>\
+									</div>';
+		
+				var grid_aca2 = `
+									<div class="layer_icon1" id={no-list-aca} type='button'>\
+									</div>\
+								</div>`;
+				grid_aca2 = grid_aca2.replace("{no-list-aca}", ele["id"]);
+				grid_aca1 = grid_aca1.replace("{no_aca}", ele["aca_pos"]);
+				//grid_aca1 = grid_aca1.replace("{name_aca}", ele["aca_name"]);
+				grid_aca1 = grid_aca1.replace("{degree_aca}", ele["aca_degree"]);
+				//grid_aca1 = grid_aca1.replace("{field_aca}", ele["aca_field"]);
+				//grid_aca1 = grid_aca1.replace("{faculty_aca}", ele["aca_faculty"]);
+				//grid_aca1 = grid_aca1.replace("{year_aca}", ele["aca_year"]);
+				grid_aca1 = grid_aca1.replace("{name_aca}", ele["aca_name"]);
+				grid_aca1 = grid_aca1.replace("{faculty_aca}", ele["aca_faculty"]);
+				if(ele["aca_grade"]=="0.00"){
+				grid_aca1 = grid_aca1.replace("{grade_aca}", '-');
+				}
+				else{
+				grid_aca1 = grid_aca1.replace("{grade_aca}", ele["aca_grade"]);
+				}
+				if(ele["aca_field"]=="none"){
+				grid_aca1 = grid_aca1.replace("{field_aca}", '-');
+				}
+				else{
+				grid_aca1 = grid_aca1.replace("{field_aca}", ele["aca_field"]);
+				}
+				if(ele["aca_year"]=="0"){
+				grid_aca1 = grid_aca1.replace("{year_aca}", '-');
+				}
+				else if(ele["aca_year"]=="9999"){
+				grid_aca1 = grid_aca1.replace("{year_aca}", 'กำลังศึกษา');
+				}
+				else{
+				grid_aca1 = grid_aca1.replace("{year_aca}", ele["aca_year"]);
+				}
+				$(".list-of-aca").append(grid_aca1 + grid_aca2);
+				console.log(`list_of_aca:`, list_of_aca);
+			});
 		}
 
 		var token = cookie.load('login-token')
@@ -70,9 +125,9 @@ class Chooseresume extends React.Component {
 				this.setState({
 					data: datas,
 				})
-				console.log('this.state.data :' + this.state.data);
+				//console.log('this.state.data :' + this.state.data);
 				/*Zone to use datas*/
-				console.log(this.state.data.Degree);
+				//console.log(this.state.data.Degree);
 				this.state.data.Degree.forEach(element => {
 					if (element == 'มัธยมศึกษาตอนปลาย' || element == 'ปวช.') {
 						list_of_high.push({
@@ -89,7 +144,7 @@ class Chooseresume extends React.Component {
 						console.log(list_of_high);
 					}
 					else {
-						list_of_aca.push({
+						this.state.list_of_aca.push({
 							id: this.state.data.EducationHistory_id,
 							aca_pos: 0,
 							aca_name: this.state.data.Academy,
@@ -99,16 +154,38 @@ class Chooseresume extends React.Component {
 							aca_field: this.state.data.Field_of_study,
 							aca_year: this.state.data.Education_End_Year,
 						});
-						get_aca_id(list_of_aca, 1);
-						console.log(list_of_aca);
+						get_aca_id(this.state.list_of_aca, 1);
+						//console.log(this.state.list_of_aca);
 					}
 				});
+				if(this.state.list_of_aca!=[]){
+					console.log('My ACA NOT EMPTY!');
+					show_all_aca(this.state.list_of_aca);
+				}
+				/*if(list_of_high!=[]){
+					show_all_high();
+				}*/
 				this.state.data.Certificate_id.forEach((ele, index) => {
 					certdata.push({
 						Certificate_id: ele,
 						CertName: this.state.data.CertName[index],
 						CertPic: this.state.data.CertPic[index],
 						CertYear: this.state.data.CertYear[index]
+					})
+				});
+				this.state.data.WorkHistory_id.forEach((ele, index) => {
+					this.state.mywork_data.push({
+						WorkHistory_id: ele,
+						Work_JobName: this.state.data.Work_JobName[index],
+						Work_JobType: this.state.data.Work_JobType[index],
+						Company: this.state.data.Company[index],
+						Work_Start_Month: this.state.data.Work_Start_Month[index],
+						Work_End_Month: this.state.data.Work_End_Month[index],
+						Work_Start_Year: this.state.data.Work_Start_Year[index],
+						Work_End_Year: this.state.data.Work_End_Year[index],
+						Salary: this.state.data.Salary[index],
+						Salary_type: this.state.data.SalaryType[index],
+						Infomation: this.state.data.Infomation[index],
 					})
 				});
 			});
@@ -154,6 +231,12 @@ class Chooseresume extends React.Component {
 			});
 
 		});
+
+		var id_list_aca_check='';
+		$('.layer_icon1').on('click',function(){
+			id_list_aca_check = $(this).parents().attr('id');
+  			alert(`checked:`, id_list_aca_check);
+		});
 	}
 
 	handleLoad() {
@@ -186,10 +269,10 @@ class Chooseresume extends React.Component {
 					<form class="needs-validation" novalidate>
 						<div>
 							<div class="tab-content" id="registab1-content">
-								<Chooseresume1 />
+								<Chooseresume1 list_of_aca={this.state.list_of_aca}/>
 							</div>
 							<div class="tab-content" id="registab2-content">
-								<Chooseresume2 mywork_data={this.state.data} />
+								<Chooseresume2 mywork_data={this.state.mywork_data} />
 							</div>
 							<div class="tab-content" id="registab3-content">
 								<Chooseresume3 mycerti_data={certdata} />

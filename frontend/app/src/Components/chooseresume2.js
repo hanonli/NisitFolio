@@ -4,7 +4,7 @@ import $ from 'jquery';
 import './register.css';
 import './registab5.css';
 import './chooseresume3.css';
-
+/*
 var workdata = [
     {
         "WorkHistory_id": "xx01",
@@ -67,7 +67,7 @@ var workdata = [
         "Infomation": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tincidunt, neque vitae eleifend ornare, leo sem hendrerit lorem, vel hendrerit elit elit et libero. Pellentesque auctor ornare sapien sit amet imperdiet. Nam at justo nibh. Aenean mollis ornare lacus, in ornare odio."
     }
 ];
-
+*/
 function compareValues(key, order = 'asc') {
     return function innerSort(a, b) {
         if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
@@ -101,9 +101,9 @@ class Chooseresume2 extends React.Component {
     constructor(props) {
         super(props);
 
-        /*this.state = {
-
-        }*/
+        this.state = {
+            workdata : this.props.mywork_data
+        }
     }
 
     handleChange = e => {
@@ -156,8 +156,8 @@ class Chooseresume2 extends React.Component {
         let end_work;
         let mysalarywork;
         let mycompanywork;
-        workdata.sort(compareValues('Work_Start_Year', 'desc'));
-        workdata.forEach(ele => {
+        this.state.workdata.sort(compareValues('Work_Start_Year', 'desc'));
+        this.state.workdata.forEach(ele => {
             isCheck_work[ele.WorkHistory_id] = false;
             end_work = [];
             if (ele.Work_End_Month === 99 && ele.Work_End_Year === 9999) {
