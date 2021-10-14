@@ -1,8 +1,14 @@
 
-import React, { Component } from 'react';
+import React from 'react';
+import $ from 'jquery';
 import { Link } from "react-router-dom";
 import MultipleRows from './myresume3slidemywork';
+import MyResumeportfoliolayoutP from './Myresume_choiceforportfolio';
 
+
+window.jQuery = $;
+window.$ = $;
+global.jQuery = $;
 
 
 class MyResume3 extends React.Component {
@@ -20,74 +26,57 @@ class MyResume3 extends React.Component {
         const myWorkWithData = [];
         const images = [];
         const imagesoverlay = [];
-        // const portfolioPictures = ["assets/images/ldwithgradient.png", "assets/images/ldwithgradient.png", "assets/images/ldwithgradient.png", "assets/images/ldwithgradient.png", "assets/images/ldwithgradient.png", "assets/images/ldwithgradient.png", "assets/images/ldwithgradient.png", "assets/images/ldwithgradient.png", "assets/images/ldwithgradient.png", "assets/images/ldwithgradient.png", "assets/images/ldwithgradient.png"];
+        const portfolioPictures = ["assets/images/ldwithgradient.png", "assets/images/ldwithgradient.png", "assets/images/ldwithgradient.png", "assets/images/ldwithgradient.png", "assets/images/ldwithgradient.png", "assets/images/ldwithgradient.png", "assets/images/ldwithgradient.png", "assets/images/ldwithgradient.png", "assets/images/ldwithgradient.png", "assets/images/ldwithgradient.png", "assets/images/ldwithgradient.png"];
         // const portfolioPictures = [];
-        const portfolioPictures = ["assets/images/ldwithgradient.png", "assets/images/MyResume.png", "assets/images/ldwithgradient.png", "assets/images/ldwithgradient.png", "assets/images/MyResume.png", "assets/images/ldwithgradient.png"];
+        // const portfolioPictures = ["assets/images/ldwithgradient.png", "assets/images/MyResume.png", "assets/images/ldwithgradient.png", "assets/images/ldwithgradient.png", "assets/images/MyResume.png", "assets/images/ldwithgradient.png"];
         const create_time = "1 กันยายน 2800";
         const Port_Name = "ASD";
-        let countslide = 0;
 
-        function clickHandler() {
-            console.log('GOGO!')
-        }
 
-        countslide = Math.ceil(portfolioPictures.length / 6);
+        this.state = {
+            selec: [
+                "assets/images/outline_lock_white_24dp.png",
+                "assets/images/outline_people_white_24dp.png",
+                "assets/images/outline_public_white_24dp.png"
+            ],
+            next: 0
+        };
 
-        if (portfolioPictures.length <= 6) {
-            for (let i = 0; i < portfolioPictures.length; i++) {
-                images.push(
-                        <div class="mywork-col">
-                            <img className="img-mywork-1" src={portfolioPictures[i]} />
+        this.handleNext = () => {
+            this.setState({
+                next: 1
+            });
+        };
+
+
+        var refElement = null;
+
+        for (let i = 0; i < portfolioPictures.length; i++) {
+            images.push(
+                <div>
+                    <div id="img-overlay">
+                        <div className="iconmywork">
+                            <img className="img-mywork-select" type="button"
+                            onClick={this.handleNext}
+                            src={this.state.selec[this.state.next]}
+                        />
+                            <img className="img-mywork-bin" src="assets/images/white-bin.png" type="button" />
+                            <img className="img-mywork-edit" src="assets/images/whiteedit.png" type="button" />
                         </div>
-                        
-                )
-                imagesoverlay.push(
-                    <div className="mywork-col">
-                        <div class="img-overlay">
-                            <img className="img-mywork-bookmark" scr="./element/portfolio/outline_bookmark_border_white_24dp" />
-                            <h3 className="myworkname">
-                                {Port_Name}
-                            </h3>
-                            <h4 className="myworkdate">
-                                {create_time}
-                            </h4>
-                        </div>
+                        <h3 className="myworkname">
+                            {Port_Name}
+                        </h3>
+                        <h4 className="myworkdate">
+                            {create_time}
+                        </h4>
                     </div>
-                )
-            }
-        }
-                        
-/*
-        images.push(
-                <><div class="mywork-col">
-                <div class="img-overlay">
-                    <img className="img-mywork-1" src="assets/images/ldwithgradient.png" />
+                    <div class="mywork-col">
+                        <img className="img-mywork-1" src={portfolioPictures[i]} />
+                    </div>
                 </div>
-            </div><div class="mywork-col">
-                    <div class="img-overlay">
-                        <img className="img-mywork-1" src="assets/images/MyResume.png" />
-                    </div>
-                </div><div class="mywork-col">
-                    <div class="img-overlay">
-                        <img className="img-mywork-1" src="assets/images/ldwithgradient.png" />
-                    </div>
-                </div><div class="mywork-col">
-                    <div class="img-overlay">
-                        <img className="img-mywork-1" src="assets/images/MyResume.png" />
-                    </div>
-                </div><div class="mywork-col">
-                    <div class="img-overlay">
-                        <img className="img-mywork-1" src="assets/images/ldwithgradient.png" />
-                    </div>
-                </div><div class="mywork-col">
-                    <div class="img-overlay">
-                        <img className="img-mywork-1" src="assets/images/MyResume.png" />
-                    </div>
-                </div></>   
-        )
+            )
+        }
 
-        images.push(
-        )*/
 
         if (portfolioPictures.length == 0) {
             myWorkWithoutData.push(
@@ -106,139 +95,29 @@ class MyResume3 extends React.Component {
                 </div>
             )
         }
-
-        else if (portfolioPictures.length <= 6) {
+        else {
             myWorkWithData.push(
-                <>
-                    
-                    <div class="myresume-mywork-woNb">
+                <div class="myresume-mywork-woNb">
                     <div class="educationtopic">
                         <h2 class="myresume-head-woNb">ผลงานของฉัน</h2>
                     </div>
-                        <div class="resumesectionline" style={linestyle}></div>
-                        <div class="showmywork-woNb">
-                            <div class="showmywork">
-                            
-                                <div className="img-overlay-block">
-                                    <div class="img-overlayspace">
-
-                                        <div className="mywork-col-overlay">
-                                            <div class="img-overlay">
-                                                <div className="iconmywork">
-                                                    <img className="img-mywork-select" src="assets/images/outline_public_white_24dp.png" type="button" />
-                                                    <img className="img-mywork-bin" src="assets/images/white-bin.png" type="button" />
-                                                    <img className="img-mywork-edit" src="assets/images/whiteedit.png" type="button" />
-                                                </div>
-                                                <div className="myworkname">
-                                                    {Port_Name}
-                                                </div>
-                                                <div className="myworkdate">
-                                                    {create_time}
-                                                    </div>
-                                                    </div>
-                                        </div>
-                                        <div className="mywork-col-overlay">
-                                            <div class="img-overlay">
-                                                <div className="iconmywork">
-                                                    <img className="img-mywork-select" src="assets/images/outline_public_white_24dp.png" type="button" />
-                                                    <img className="img-mywork-bin" src="assets/images/white-bin.png" type="button" />
-                                                    <img className="img-mywork-edit" src="assets/images/whiteedit.png" type="button" />
-                                                </div>
-                                                <h3 className="myworkname">
-                                                    {Port_Name}
-                                                </h3>
-                                                <h4 className="myworkdate">
-                                                    {create_time}
-                                                </h4>
-                                            </div>
-                                        </div>
-                                        <div className="mywork-col-overlay">
-                                            <div class="img-overlay">
-                                                <div className="iconmywork">
-                                                    <img className="img-mywork-select" src="assets/images/outline_public_white_24dp.png" type="button" />
-                                                    <img className="img-mywork-bin" src="assets/images/white-bin.png" type="button" />
-                                                    <img className="img-mywork-edit" src="assets/images/whiteedit.png" type="button" />
-                                                </div>
-                                                <h3 className="myworkname">
-                                                    {Port_Name}
-                                                </h3>
-                                                <h4 className="myworkdate">
-                                                    {create_time}
-                                                </h4>
-                                            </div>
-                                        </div>
-                                        <div className="mywork-col-overlay">
-                                            <div class="img-overlay2">
-                                                <div className="iconmywork">
-                                                    <img className="img-mywork-select" src="assets/images/outline_public_white_24dp.png" type="button" />
-                                                    <img className="img-mywork-bin" src="assets/images/white-bin.png" type="button" />
-                                                    <img className="img-mywork-edit" src="assets/images/whiteedit.png" type="button" />
-                                                </div>
-                                                <h3 className="myworkname">
-                                                    {Port_Name}
-                                                </h3>
-                                                <h4 className="myworkdate">
-                                                    {create_time}
-                                                </h4>
-                                            </div>
-                                        </div>
-                                        <div className="mywork-col-overlay">
-                                            <div class="img-overlay2">
-                                                <div className="iconmywork">
-                                                    <img className="img-mywork-select" src="assets/images/outline_public_white_24dp.png" type="button" />
-                                                    <img className="img-mywork-bin" src="assets/images/white-bin.png" type="button" />
-                                                    <img className="img-mywork-edit" src="assets/images/whiteedit.png" type="button" />
-                                                </div>
-                                                <h3 className="myworkname">
-                                                    {Port_Name}
-                                                </h3>
-                                                <h4 className="myworkdate">
-                                                    {create_time}
-                                                </h4>
-                                            </div>
-                                        </div>
-                                        <div className="mywork-col-overlay">
-                                            <div class="img-overlay2">
-                                                <div className="iconmywork">
-                                                    <img className="img-mywork-select" src="assets/images/outline_public_white_24dp.png" type="button" />
-                                                    <img className="img-mywork-bin" src="assets/images/white-bin.png" type="button" />
-                                                    <img className="img-mywork-edit" src="assets/images/whiteedit.png" type="button" />
-                                                </div>
-                                                <h3 className="myworkname">
-                                                    {Port_Name}
-                                                </h3>
-                                                <h4 className="myworkdate">
-                                                    {create_time}
-                                                </h4>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                            <div class="row">
-                                <div>{images}</div>
-                            </div>
-                            </div>
-                            
+                    <div class="resumesectionline" style={linestyle}></div>
+                    <div className="img-sp"></div>
+                    <div class="showmywork-woNb">
+                        <MyResumeportfoliolayoutP>
+                            {images}
+                        </MyResumeportfoliolayoutP>
                     </div>
                     <div className="myworkb"></div>
-                </div>
-                </>
-            )
-        }
-
-        else {
-            myWorkWithData.push(
-                <MultipleRows ></MultipleRows>
+                    </div>
+                
             )
         }
 
         return (
             <>
-                <div>{myWorkWithoutData}</div>
                 <div>{myWorkWithData}</div>
-                <MultipleRows ></MultipleRows>
+                <div>{myWorkWithoutData}</div>
             </>
         );
     }

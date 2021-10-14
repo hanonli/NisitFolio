@@ -376,7 +376,8 @@
 
 .mywork-col{
     float: left;
-    width: 33.33%;
+    width: 100%;
+    height: 17Vw;
     padding: 0%;
     margin-bottom: 0.5Vw;
     position: relative;
@@ -393,7 +394,7 @@
 .img-mywork-1{
     /*position: absolute;*/
     width: 100%;
-    height: 17vw;
+    height: 100%;
     margin-left: 0%;
     margin-top: 0%;
     display: flex;
@@ -423,8 +424,7 @@
     margin: 0%;
 }
 
-.img-overlay{
-    margin-top: 0.2Vw;
+#img-overlay{
     position: absolute;
     width: 100%;
     height: 17Vw;
@@ -438,57 +438,18 @@
     opacity: 0;
 }
 
-.img-overlay2{
-    margin-top: 17.6Vw;
-    position: absolute;
-    width: 100%;
-    height: 17Vw;
-    z-index: 1;
-    display: flex;
-    background-color: rgba(0,0,0,0.6);
-    color:#FFFFFF;
-    flex-direction: column;
-    transition: 0.5s;
-    overflow: hidden;
-    opacity: 0;
-}
-
-.img-overlay3{
-    position: absolute;
-    width: 26.67Vw;
-    height: 17Vw;
-    z-index: 1;
-    display: flex;
-    background-color: rgba(0,0,0,0.6);
-    color:#FFFFFF;
-    flex-direction: column;
-    transition: 0.5s;
-    overflow: hidden;
-    opacity: 0;
-}
-
-
-.img-overlay:hover{
-    opacity: 1;
-}
-
-.img-overlay2:hover{
-    opacity: 1;
-}
-
-.img-overlay3:hover{
+#img-overlay:hover{
     opacity: 1;
 }
 
 .myworkname{
-    margin-top: 7.3Vw;
+    margin-top: 7Vw;
     margin-left: 2Vw;
     font-size: 2Vw;
     color:rgb(255, 255, 255);
 }
 
 .myworkdate{
-    margin-top: 0.3Vw;
     margin-left: 2Vw;
     font-size: 1Vw;
     font-weight: 500;
@@ -571,46 +532,8 @@
     position: relative;
     margin: auto;
 }
-/*
-.cert-overlaybox{
-    width: 100%;
-    height: 100%;
-    position: relative;
-    overflow: hidden;
-}
 
-.cert-overlayitem{
-    top:50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    position: absolute;
-    width: 80%;
+.img-sp{
+    padding-top: 2Vw;
 }
-
-.cert-overlayitem h3{
-    font-size: 2vw;
-    text-align: center;
-    opacity: 1;
-}
-.cert-overlayitem h4{
-    font-size: 1vw;
-    text-align: center;
-    opacity: 1;
-}
-
-.cert-overlay *{
-    text-align: center;
-    color: white;
-}
-.cert-overlay{
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.6);
-    opacity: 0;
-    transition: .5s ease;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-}*/
 
