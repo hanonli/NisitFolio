@@ -22,8 +22,8 @@ class MyResumeContent extends React.Component {
 				<MyResume1 state={this.props.state}></MyResume1>
 				<MyResume2 state={this.props.state}></MyResume2>
 				<MyResume3 state={this.props.state}></MyResume3>
-				<Resume3_A state={this.props.state}></Resume3_A>
-				<MyresumeWorkGoals interestedJob={this.props.state.interestedJob}></MyresumeWorkGoals>
+				<MyResume3_A state={this.props.state}></MyResume3_A>
+				<MyresumeWorkGoals interestedJob={this.props.state.interestedJob} colour={this.props.state.color}> </MyresumeWorkGoals>
 				<h1>Testing Sharing Space</h1>
 				<SharingPopup></SharingPopup>
 			</div>

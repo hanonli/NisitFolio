@@ -1,5 +1,8 @@
 {
   "name": "cr-backend",
+  "start:prod": "node dist/src/main.js",
+  "prestart:prod": "npm run build",
+  "postinstall": "npm run prestart:prod",
   "version": "0.0.1",
   "description": "",
   "author": "",

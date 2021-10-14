@@ -5,10 +5,13 @@ import cookie from 'react-cookies';
 import Edittab1 from "./edittab1";
 import Edittab2 from "./registab2";
 import Edittab3 from "./registab3";
-import Edittab4 from "./registab4";
+import Edittab4 from "./edittab4";
 import Edittab5 from "./edittab5";
-import Edittab6 from "./registab6";
+import Edittab6 from "./edittab6";
 import Edittab7 from "./registab7";
+
+var certdata = [], workdata = [], jobdata = [];
+var list_of_high = [], list_of_aca = [];
 
 class DataHeader extends React.Component {
 
@@ -165,6 +168,25 @@ class DataHeader extends React.Component {
 
 		});
 
+		function get_high_id(list_of_high, x) {
+			//var x = 1;
+			list_of_high.forEach(ele => {
+				ele["high_pos"] = x;
+				console.log("x:", x);
+				x++;
+			});
+			return list_of_high;
+		}
+
+		function get_aca_id(list_of_aca, x) {
+			//var x = 1;
+			list_of_aca.forEach(ele => {
+				ele["aca_pos"] = x;
+				console.log("x:", x);
+				x++;
+			});
+			return list_of_aca;
+		}
 
 		var token = cookie.load('login-token')
 		console.log('Your Token is: ' + token);
@@ -178,13 +200,77 @@ class DataHeader extends React.Component {
 				"Content-Type": "application/json"
 			},
 		})
-			.then(response => response.text())
+			.then(response => response.json())
 			.then((datas) => {
 				console.log('You Fetch Success!');
 				this.setState({
 					data: datas,
 				})
-				console.log('this.state.data :' + this.state.data)
+				console.log('this.state.data :' + this.state.data);
+				/*Zone to use datas*/
+				console.log(this.state.data.Degree);
+				this.state.data.Degree.forEach(element => {
+					if (element == 'มัธยมศึกษาตอนปลาย' || element == 'ปวช.') {
+						list_of_high.push({
+							id: this.state.data.EducationHistory_id,
+							high_pos: 0,
+							high_name: this.state.data.Academy,
+							high_faculty: 'none',
+							high_degree: this.state.data.Degree,
+							high_grade: this.state.data.Grade,
+							high_field: this.state.data.Field_of_study,
+							high_year: this.state.data.Education_End_Year,
+						});
+						get_high_id(list_of_high, 1);
+						console.log(list_of_high);
+					}
+					else {
+						list_of_aca.push({
+							id: this.state.data.EducationHistory_id,
+							aca_pos: 0,
+							aca_name: this.state.data.Academy,
+							aca_faculty: this.state.data.Facalty,
+							aca_degree: this.state.data.Degree,
+							aca_grade: this.state.data.Grade,
+							aca_field: this.state.data.Field_of_study,
+							aca_year: this.state.data.Education_End_Year,
+						});
+						get_aca_id(list_of_aca, 1);
+						console.log(list_of_aca);
+					}
+				});
+				this.state.data.Certificate_id.forEach((ele, index) => {
+					certdata.push({
+						Certificate_id: ele,
+						CertName: this.state.data.CertName[index],
+						CertPic: this.state.data.CertPic[index],
+						CertYear: this.state.data.CertYear[index]
+					})
+				});
+				this.state.data.WorkHistory_id.forEach((ele, index) => {
+					workdata.push({
+						WorkHistory_id: ele,
+						Work_JobName: this.state.data.Work_JobName[index],
+						Work_JobType: this.state.data.Work_JobType[index],
+						Company: this.state.data.Company[index],
+						Work_Start_Month: this.state.data.Work_Start_Month[index],
+						Work_End_Month: this.state.data.Work_End_Month[index],
+						Work_Start_Year: this.state.data.Work_Start_Year[index],
+						Work_End_Year: this.state.data.Work_End_Year[index],
+						SalaryType: this.state.data.SalaryType[index],
+						Salary: this.state.data.Salary[index],
+						Infomation: this.state.data.Infomation[index]
+					})
+				});
+				this.state.data.InterestedJob_id.forEach((ele, index) => {
+					jobdata.push({
+						InterestedJob_id: ele,
+						Job_JobName: this.state.data.Job_JobName[index],
+						Job_Objective: this.state.data.Job_Objective[index],
+						Job_Score: this.state.data.Job_Score[index],
+						Job_SkillName: this.state.data.Job_JobName[index],
+					})
+				});
 			});
 	}
 
@@ -228,13 +314,13 @@ class DataHeader extends React.Component {
 						<Edittab3 />
 					</div>
 					<div class="tab-content" id="Edittab4-content">
-						<Edittab4 />
+						<Edittab4 mywork_data={workdata} />
 					</div>
 					<div class="tab-content" id="Edittab5-content">
-						<Edittab5 />
+						<Edittab5 mycerti_data={certdata} />
 					</div>
 					<div class="tab-content" id="Edittab6-content">
-						<Edittab6 />
+						<Edittab6 myjob_data={jobdata} />
 					</div>
 					<div class="tab-content" id="Edittab7-content">
 						<Edittab7 />

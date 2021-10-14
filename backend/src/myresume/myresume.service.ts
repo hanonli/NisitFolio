@@ -9,6 +9,8 @@ import { Model } from 'mongoose';
 import { Resume2 , ResumeDocument} from './entity/myresume.schema';
 import { Portfolio2, PortfolioDocument} from '../portfolio/entity/portfolio.schema';
 import { hearderDto } from './dto/haerder.dto';
+import { GetResume } from './dto/get_Port.dto';
+import { Resume3 } from './entity/myresume2.entity';
 
 
 @Injectable()
@@ -38,11 +40,15 @@ export class MyResumeService {
     private resumeModel: Model<ResumeDocument>,
     @InjectModel(Portfolio2.name) 
     private portModel: Model<PortfolioDocument>,
+    
+    @InjectRepository(Resume3) 
+    private Resume3Repository: Repository<Resume3>,
 
   ) {}
   
 
   async createResume(CreateDto: CreateResumeDto ,ip:string){
+    
     const time =  new Date();
     const isoTime = time.toLocaleDateString('th-TH',{ year:'numeric',month: 'long',day:'numeric',hour:"2-digit",minute:"2-digit"});
 
@@ -52,8 +58,11 @@ export class MyResumeService {
     resume.UserId = CreateDto.UserId;
     resume.Privacy = "Public";
     resume.Owner = user.Firstname + " " + user.Lastname;
+    resume.First = user.Firstname;
+    resume.Last = user.Lastname;
     resume.Aboutme = user.AboutMe; 
-    resume.Email = user.Email2nd; 
+    resume.Email = user.Email2nd;
+    resume.Location = user.Country + " " + user.Province + " "+ user.City;
 
     const jobid = new ObjectID(CreateDto.JobID);
 
@@ -135,8 +144,10 @@ export class MyResumeService {
     return await this.resumePictureRepository.save(myresume);
   }
   async getResumeheader(UserID:string ){
-    const id = new ObjectID(UserID);
+
     const get_header=new hearderDto;
+    
+    const id = new ObjectID(UserID);
     const id2 = new ObjectID(id);
     const account=await this.accountRepository.findOne({where:{_id:id2}});
     const userinfo=await this.userinfoRepository.findOne({where:{UserId:UserID}});
@@ -148,14 +159,50 @@ export class MyResumeService {
     get_header.City=userinfo.City;
     get_header.AboutMe=userinfo.AboutMe;
     get_header.Province=userinfo.Province;
-    //*/
+    const get_arr=[];
+    const k=await this.InterestedJobRepository.find({where:{UserId:UserID}});
+    for (var _i = 0; _i < k.length; _i++) {
+      get_arr.push(k[_i].Job_JobName);
+    }
+    get_header.Job_JobName=get_arr;
     return get_header;
     
   }
 
   async getResume(resumeId:string ){
     const id = new ObjectID(resumeId);
-    return this.resumeModel.findById(id);
+    
+    const thisx = await this.Resume3Repository.findOne({where:{_id:id}});
+    const thisy = new GetResume;
+
+    thisy.UserId=thisx.UserId
+    thisy.Privacy=thisx.Privacy
+    thisy.Owner=thisx.Owner
+    thisy.Aboutme=thisx.Aboutme
+    thisy.interestedJob=thisx.interestedJob
+    thisy.certificates=thisx.certificates
+    thisy.educationHistorys=thisx.educationHistorys
+    thisy.workHistorys=thisx.workHistorys
+    thisy.portfolios=thisx.portfolios
+    thisy.Color=thisx.Color
+    thisy.create_time=thisx.create_time
+    thisy.last_modified=thisx.last_modified
+    thisy.modified_by=thisx.modified_by
+    thisy.ProfilePic=thisx.ProfilePic
+    thisy.Email=thisx.Email
+
+    
+
+    const userid=thisx.UserId;
+
+    const userseven = await this.userinfoRepository.findOne({where:{UserId:userid}});
+    
+    thisy.Province= userseven.Province
+    thisy.Country=userseven.Country
+    thisy.City=userseven.City
+    
+
+    return thisy
     
   }
 

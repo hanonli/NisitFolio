@@ -3,6 +3,8 @@ import cookie from 'react-cookies';
 import React from 'react';
 import MyResumeContent from './myresumeContent.js';
 import Resume_sideNavbar from './navbar_resume.js';
+import SharingPopup from './sharingpopup';
+import LoadingL from './loadingL';
 import { Link } from "react-router-dom";
 import './navbar_resume.css'
 
@@ -24,29 +26,19 @@ class Resume_topNavbar extends React.Component {
 			privacy : '',
 			color : '',
 			index : 0,
-			owner :  false,
+			owner : '',
+			firstname: '',
+			lastname: '',
+			is_owner :  false,
+			profilepic : null,
+			aboutme : '',
 			ready  : false,
 			loading : true,
 		}
 
-		var token = cookie.load('login-token')
-		fetch("http://localhost:2000/profile/",{
-			method: "GET",
-			headers: {
-				'Authorization': 'Bearer '+token,	
-				"Access-Control-Allow-Origin": "*",
-				"Access-Control-Allow-Methods": "*",
-				"Access-Control-Allow-Credentials": true,
-				"Content-Type": "application/json"
-			},
-		})
-		.then(response => response.text())
-		.then((datas) => {
-			this.setState({
-				userID : datas,
-			})
-			// console.log('this.state.userID1 :'+this.state.userID)
-		});
+		// GET Parameter(userID) FROM URL 
+		
+		
 		
 		// var resumeID = '6142398e3e8c5c1df01304cc'
 	}
@@ -59,12 +51,12 @@ class Resume_topNavbar extends React.Component {
 	}
 		
 	getResumeID(e=0){
-		const userid = this.state.userID ;
-		const index = e ;
-		const owner = this.state.owner ;
+		var userid = this.state.userID ;
+		var index = e ;
+		var owner = this.state.is_owner ;
 		// console.log('getResumeID called')
 		console.log('in getResumeID index is :' + index + ' userid is: ' + userid )
-		fetch("http://localhost:2000/portfolio/user/"+ userid,{
+		fetch("http://localhost:2000/myresume/user/"+ userid,{
 			method: "GET",
 			headers: {
 				"Access-Control-Allow-Origin": "*",
@@ -76,62 +68,77 @@ class Resume_topNavbar extends React.Component {
 		.then(response => response.json())
 		.then((datas) => {
 			// console.log('real resumeID:' + JSON.stringify(datas[0].ResumeId[0]))
-			// console.log(JSON.stringify(datas));
-			// console.log('real resumeID:' + JSON.stringify(datas[0].ResumeId[index]))
-			this.setState({
-				resumeID : datas[0].ResumeId[index],
-			})
-			
-		}).catch(function() {
-			if(owner){
-				alert("You haven't created this part, Please create first");
-				window.location = ("editprofile");
-			}else{
-				alert('This portfolio is not exist!');
-			}
-			
-		});
-		
+			console.log('in resumeid datas: ' + JSON.stringify(datas));
 
+			// var a = datas[0]
+			// var b = datas[1]
+			// var c = datas[2]
+			// console.log('in resumeid datas a: ' + JSON.stringify(a));
+			// console.log('in resumeid datas b: ' + JSON.stringify(b));
+			// console.log('in resumeid datas c: ' + JSON.stringify(c));			
+			var Resumedata = datas[index]
+			if(Resumedata === undefined){
+				alert('there is no resumedata Redirect to last path')
+				window.history.go(-1)	
+			}else{
+				this.setState({
+					resumeID : Resumedata._id,
+					workHistorys : Resumedata.workHistorys ? Resumedata.workHistorys : [],
+					educationHistorys : Resumedata.educationHistorys ? Resumedata.educationHistorys : [],
+					certificates : Resumedata.certificates ?  Resumedata.certificates : [],
+					additionalSkills : Resumedata.additionalSkills ? Resumedata.additionalSkills : [],
+					interestedJob : Resumedata.interestedJob ? Resumedata.interestedJob : [],
+					color : Resumedata.Color ? Resumedata.Color : '#FFCE55',
+					privacy : Resumedata.Privacy,
+					owner : Resumedata.Owner ? Resumedata.Owner : '',
+					firstname: Resumedata.First ? Resumedata.First : '',
+					lastname: Resumedata.Last ? Resumedata.Last : '',
+					profilepic : Resumedata.ProfilePic !== null ? Resumedata.ProfilePic : '',
+					aboutme : Resumedata.Aboutme !== null ? Resumedata.Aboutme : '',
+					ready : true,
+				})
+			}
+
+			// console.log('real resumeID:' + JSON.stringify(datas[0].ResumeId[index]))
+			// this.setState({
+			// 	resumeID : datas[0].ResumeId[index],
+			// })
+			
+		})
 	}
 
 	getDatas(){
-		console.log('getDatas called')
-		console.log( 'in getDatas :' + this.state.resumeID)
-		fetch("http://localhost:2000/myresume/"+this.state.resumeID,{
-			method: "GET",
-			headers: {
-				"Access-Control-Allow-Origin": "*",
-				"Access-Control-Allow-Methods": "*",
-				"Access-Control-Allow-Credentials": true,
-				"Content-Type": "application/json"
-			},
-		})
-		.then(response => response.json())
-		.then((datas) => {
-			// console.log( 'in getDatas1 :' + JSON.stringify(datas))
-			if(datas.UserId == this.state.userID){
-				this.setState({
-					owner : true,
-				})
-			}else{
-				this.setState({
-					owner : false,
-				})
-			}
-			this.setState({
-				workHistorys : datas.workHistorys,
-				educationHistorys : datas.educationHistorys,
-				certificates : datas.certificates,
-				additionalSkills : datas.additionalSkills,
-				interestedJob : datas.interestedJob,
-				color : datas.Color,
-				privacy : datas.Privacy,
-				ready : true,
-			})
+	// 	console.log('getDatas called')
+	// 	console.log( 'in getDatas :' + this.state.resumeID)
+	// 	fetch("http://localhost:2000/myresume/"+this.state.resumeID,{
+	// 		method: "GET",
+	// 		headers: {
+	// 			"Access-Control-Allow-Origin": "*",
+	// 			"Access-Control-Allow-Methods": "*",
+	// 			"Access-Control-Allow-Credentials": true,
+	// 			"Content-Type": "application/json"
+	// 		},
+	// 	})
+	// 	.then(response => response.json())
+	// 	.then((datas) => {
+	// 		// console.log( 'in getDatas1 :' + JSON.stringify(datas))
+	// 		this.setState({
+	// 			workHistorys : datas.workHistorys,	
+	// 			educationHistorys : datas.educationHistorys,
+	// 			certificates : datas.certificates,
+	// 			additionalSkills : datas.additionalSkills,
+	// 			interestedJob : datas.interestedJob,
+	// 			color : datas.Color,
+	// 			privacy : datas.Privacy,
+	// 			ready : true,
+	// 		})
 
-			// console.log( 'in getDatas2 :' + JSON.stringify(datas.educationHistorys))
-		});
+	// 		// console.log( 'in getDatas2 :' + JSON.stringify(datas.educationHistorys))
+	// 	});
+
+	}
+
+	handlePrivacy(){
 
 	}
 
@@ -152,13 +159,13 @@ class Resume_topNavbar extends React.Component {
 			loading : true,
 		});
 		// console.log('call GetreumeID from tab1')
-		// this.getResumeID(index);
+		this.getResumeID(index);
 		// this.getDatas();
 	}
 
 	portfoliotab2 = () => {
 		// console.log('Porfoliotab2 is called')
-		console.log('before change state: ' + JSON.stringify(this.state))
+		// console.log('before change state: ' + JSON.stringify(this.state))
 		var index = 1 ;
 		this.setState({
 			resumeID : '',
@@ -173,10 +180,7 @@ class Resume_topNavbar extends React.Component {
 			ready  :  false,
 			loading : true,
 		})
-		console.log('after change but not reloaded state: ' + JSON.stringify(this.state))
-		// console.log('indexfff',index)
-		// console.log('call GetreumeID from tab2')
-		// this.getResumeID(index);
+		this.getResumeID(index);
 		// this.getDatas();
 		// this.forceUpdate()
 	}
@@ -196,16 +200,12 @@ class Resume_topNavbar extends React.Component {
 			ready  :  false,
 			loading : true,
 		})
-		// this.getResumeID(index);
-
-	}
-	handlePrivacy = () =>{
-
+		this.getResumeID(index);
 
 	}
 
 	handleSection1 = () => {
-		if(this.state.owner){
+		if(this.state.is_owner){
 			// console.log('you are owner1')
 			return (
 			<div className='resume_topnav' >
@@ -229,7 +229,7 @@ class Resume_topNavbar extends React.Component {
 	}
 
 	handleSection2 = () => {
-		if(this.state.owner){
+		if(this.state.is_owner){
 			// console.log('you are owner2')
 			return (
 				<div className='resume_topnav' >
@@ -242,9 +242,12 @@ class Resume_topNavbar extends React.Component {
 							&nbsp;
 						</a>
 						<span className='resume_verticalline2'> </span>
-						<a className='topnav_section2'> 
-							<img className='icon-myresume' id='icon-myresume-share' src="assets/images/outline_ios_share_black_48dp.png"/> 
-						</a>
+						{/* <SharingPopup></SharingPopup> */}
+
+
+						{/* <a className='topnav_section2'> 
+							<span className='icon-myresume'> <SharingPopup></SharingPopup></span>
+						</a> */}
 						&nbsp;
 					</div>
 				</div>
@@ -253,7 +256,7 @@ class Resume_topNavbar extends React.Component {
 			// console.log('you are outsider2')
 			return (
 			<div className='resume_topnav' >
-				<a className='topnav_section1' href='#' > 
+				<a className='topnav_section1' href='#myresume' > 
 					<img id='icon-myresume-lock'  src="assets/images/bookmark_2.png"/> 
 				</a>
 			</div>
@@ -265,16 +268,16 @@ class Resume_topNavbar extends React.Component {
 	loadingScreen(){
 		return( 
 			<div>
-				<h1> Loading Please Wait... </h1>
+				<LoadingL />
 			</div>)
 	}
 
 	showingScreen(){
 		return(
 			<div>
-				<Resume_sideNavbar/>
+				<Resume_sideNavbar color={this.state.color}/>
 				<div className="Resume_topNavbar" id='topNav'>
-				
+					
 					<div  className='myresumetoppath'> 
 							{this.handleSection1()}
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -321,8 +324,41 @@ class Resume_topNavbar extends React.Component {
 		const script = document.createElement("script");
 		script.src = "assets/js/navbar_top_resume_script.js";
 		document.body.appendChild(script);
-		script.src = <script src='/path/to/jquery.keyframes[.min].js'></script>
-		document.body.appendChild(script);
+		
+		var sPageURL = window.location.search.substring(1)
+		var isURLBlank = (sPageURL == '')
+		console.log(sPageURL)
+		console.log(isURLBlank)
+		if( !isURLBlank){
+			var sParam = sPageURL.split('=')
+			var temp_userid = sParam[1]
+			console.log(temp_userid)
+			this.setState({
+				userID : temp_userid,
+				is_owner : false,		
+			})
+		}else{
+			var token = cookie.load('login-token')
+			fetch("http://localhost:2000/profile/",{
+				method: "GET",
+				headers: {
+					'Authorization': 'Bearer '+token,	
+					"Access-Control-Allow-Origin": "*",
+					"Access-Control-Allow-Methods": "*",
+					"Access-Control-Allow-Credentials": true,
+					"Content-Type": "application/json"
+				},
+			})
+			.then(response => response.text())
+			.then((datas) => {
+				this.setState({
+					userID : datas,
+					is_owner : true,
+				})
+				// console.log('this.state.userID1 :'+this.state.userID)
+			});
+
+		}
 
 		// console.log('topnav stop mount')
 		// console.log( 'before update state :' + JSON.stringify(this.state))
@@ -331,7 +367,10 @@ class Resume_topNavbar extends React.Component {
 	
 	shouldComponentUpdate(nextProps, nextState){
 		// alert( nextState == this.state )
-		if(this.state.resumeID===''){
+		if(this.state.userID===''){
+			console.log('update state')
+			return true
+		}else if(this.state.resumeID===''){
 			console.log('update state')
 			return true
 		}else if(this.state.resumeID !== nextState.resumeID){
@@ -342,6 +381,12 @@ class Resume_topNavbar extends React.Component {
 			// console.log(3)
 			console.log('update state')
 			return true
+			
+		}else if(this.state.color !== nextState.color ){
+			// console.log(3)
+			console.log('update state')
+			return true
+			
 		}else if( !this.state.ready){
 			// console.log('status need to re-render')
 			console.log('update state')
@@ -352,6 +397,8 @@ class Resume_topNavbar extends React.Component {
 			})
 			// console.log('update state')
 			return true
+		}else{
+			console.log('not update')
 		}
 
 	
@@ -359,16 +406,19 @@ class Resume_topNavbar extends React.Component {
 
 
 	render (){
+		const linestyle = {
+            backgroundColor: this.state.color? this.state.color: "#FFCE55"
+        };
 
 		if(this.state.userID !== ''  && this.state.resumeID === ''  ){
 			// console.log('call getResumeID');
 			this.getResumeID(this.state.index);
 		}
 		// console.log('in render() state before : ' + JSON.stringify(this.state))
-		if(this.state.resumeID !== '' && this.state.loading){
-			// alert('call getDatas');
-			this.getDatas();
-		}
+		// if(this.state.resumeID !== '' && this.state.loading){
+		// 	// alert('call getDatas');
+		// 	this.getDatas();
+		// }
 
 
 		console.log('in render() state : ' + JSON.stringify(this.state))

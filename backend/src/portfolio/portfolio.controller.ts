@@ -73,5 +73,12 @@ export class PortController {
       return this.portService.updatePortP(CreateDto,portfolioId,req.user.userId);
   
     }
+  @UseGuards(JwtAuthGuard)
+  @Get('/sort/:sort')
+  //async getThisUserBookmarks(@Param('id') userId: string,@Param('sort') sort: string): Promise<any[]> {
+  async sortportUser(@Request() req,@Param('sort') sort: string){
+      return this.portService.sortport(req.user.userId, sort);
+    }
+  
     
 }
