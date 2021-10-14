@@ -58,7 +58,7 @@ export class PortService {
     const id = new ObjectID(portId);
     const neww= new Portfolio;
     const port_by_id=await this.portRepository.findOne({where:{ _id : id }});
-    //return port_by_id;
+    //return port_by_id.portfolioPictures;
     neww.Port_Date=port_by_id.Port_Date;
     neww.Port_Info=port_by_id.Port_Info
     neww.Owner=port_by_id.Owner

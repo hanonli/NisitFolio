@@ -41,20 +41,28 @@ export class AnalyticsService {
   }
 
   async UpdateCache(id: string): Promise<any> {
+    console.log("*************************************************");
+    console.log("Begin updating cache for " + id);
+    console.log("-------------------------------------------------");
+    console.log(">> Analysing main skills.......");
     const main = await this.findUserJobSkill(id);
+    console.log(">> Analysing additional skills.......")
     const additional = await this.additionalAnalytics(id);
+    console.log(">> Updating database.......");
     const found = await this.AnalyticsModel.find({ UserId: id }).countDocuments();
-    console.log("found: " + found);
+    //console.log("found: " + found);
     if ( found ) {
       await this.AnalyticsModel.updateOne({ UserId: id }, { $set: { Main: main, Additional: additional } });
     }
     else {
-      console.log("NEW");
+      //console.log("NEW");
       const newCache = new this.AnalyticsModel({ UserId: id, Main: main, Additional: additional });
-      console.log(newCache)
+      //console.log(newCache)
       await newCache.save();
     }
-    console.log("SUCCESS");
+    console.log("-------------------------------------------------");
+    console.log("                    Updated.                     ");
+    console.log("*************************************************");
     return "Updated";
   }
   
@@ -73,7 +81,7 @@ export class AnalyticsService {
     for ( var job of Jobs ) {
       const job_name = job._id.Job_JobName;
       const job_THname = await this.JobTitleModel.findOne({ $or: [ { THName: job_name }, { Name: job_name }]}).select({ Name: 1, THName: 1, _id: 0 }).exec();
-      console.log("JobTHName: " ,job_THname) ;
+      //console.log("JobTHName: " ,job_THname) ;
       jobs.push({ name: job_THname.Name, THname: job_THname.THName });
     }
 
@@ -93,7 +101,7 @@ export class AnalyticsService {
       const users = await this.UserJobSkillModel.find({Job_JobName: { "$in": [job_name, job.THname]}}).select({ UserId: 1, _id: 0 }).distinct('UserId').exec();
       //console.log("Users: ",users);
       sameJobUsers = sameJobUsers.concat(users);
-      console.log("Users: " + sameJobUsers);
+      //console.log("Users: " + sameJobUsers);
 
       const numberOfUsers = users.length;
 
@@ -195,24 +203,26 @@ export class AnalyticsService {
                         },
                         { $sort: { _id: 1 }},
     ]) ;
-    //console.log(userSkill) ;
+    // console.log(userSkill) ;
     let array = {} ;
     let InterestedJobs = [] ;
-    let THnameJobs = [] ;
+    let FullNameJobs = [] ;
     //console.log(userSkill) ;
     for ( var job of userSkill ) {
       const job_name = job._id.Job_JobName;
       const job_THname = await this.JobTitleModel.findOne({ $or: [ { THName: job_name }, { Name: job_name }]}).select({ Name: 1,THName: 1, _id: 0 }).exec();
       InterestedJobs.push(job_name) ;
-      THnameJobs.push({ "name": job_THname.Name, "THname": job_THname.THName })
+      FullNameJobs.push({ "name": job_THname.Name, "THname": job_THname.THName })
     }
+    // console.log(InterestedJobs) ;
     //console.log("THName: ", THnameJobs) ;
-    array['InterestedJobs'] = THnameJobs ;
+    array['InterestedJobs'] = FullNameJobs ;
 
     const mySkills = await this.UserJobSkillModel.find({ UserId: UserId }).select({ Job_SkillName: 1 , _id: 0 }).distinct('Job_SkillName').exec();
     //console.log("MySkill: ", mySkills) ;
     array['mySkills'] = mySkills;
 
+    let yourTop = [] ;
     for (var job of InterestedJobs) {
       const SumSkill = await this.UserJobSkillModel.aggregate([
                         { $match: { Job_JobName: job } },
@@ -246,20 +256,28 @@ export class AnalyticsService {
         const _sum = i.total ;
         const mean = i.mean ;
         const AllUser = await this.UserJobSkillModel.find({Job_JobName: job, Job_SkillName: _name}).sort({ Job_Score: 1 }).exec() ;
-        //console.log("AllUser: ", AllUser) ;
+        // console.log("AllUser: ", AllUser) ;
         if ( countTop <= 2 || mySkills.includes(_name) ) {  
           // ---------- AllUser Score --------------//
           
           let AllScore = [] ;
           let UserScore = null ;
+          let last_score = 0 ;
+          let n_percentile = 0 ;
+          let index = null;
           let n = 0 ;
           //console.log(AllUser) ;
           for (var j of AllUser) {
+            if (last_score != j.Job_Score) {
+              n_percentile += 1 ;
+              last_score = j.Job_Score ;
+            }
+            n += 1 ;
             if (UserId == j.UserId) { 
               UserScore = j.Job_Score ;
+              index = n_percentile ;
             }
             AllScore.push(j.Job_Score) ;
-            n += 1 ;
           }
           const detailList = find_mode(AllScore) ;
           const newAllScore = detailList[0]
@@ -268,15 +286,27 @@ export class AnalyticsService {
           
           // console.log(_name);
           // console.log(_sum);
-          temp.push({SkillName: _name, total: _sum, "AllScore": newAllScore, "UserScore": UserScore, "Count": count,"Mean": mean, "Mode": mode, "percentage": n/numberOfUsers*100}) ;
+          if (UserScore != null ) {
+            if (index != 1 || n_percentile == 1) {
+              yourTop.push({"Job_Name": job,"SkillName": _name, "total": _sum, "UserScore": UserScore, "percentile": index/n_percentile*100}) ;
+              temp.push({SkillName: _name, total: _sum, "AllScore": newAllScore, "UserScore": UserScore, "Count": count,"Mean": mean, "Mode": mode, percentage: n/numberOfUsers*100, "percentile": index/n_percentile*100}) ;
+            }
+            else {
+              yourTop.push({"Job_Name": job,"SkillName": _name, "total": _sum, "UserScore": UserScore, "percentile": 0, "p": (100/n_percentile)+(100/n_percentile/4)}) ;
+              temp.push({SkillName: _name, total: _sum, "AllScore": newAllScore, "UserScore": UserScore, "Count": count,"Mean": mean, "Mode": mode, percentage: n/numberOfUsers*100, "percentile": 0, "p": (100/n_percentile)+(100/n_percentile/4)}) ;
+            }
+          }
         }
         else { 
-          temp.push({SkillName: _name, total: _sum, "percentage": AllUser.length/numberOfUsers*100})
+          temp.push({SkillName: _name, total: _sum, percentage: AllUser.length/numberOfUsers*100})
         }
         countTop ++ ;
       }
       array[job]['List'] = temp ;
     }
+    
+    let sorted_Top = yourTop.sort((a,b) => (a.percentile == b.percentile ? (a.UserScore < b.UserScore ? 1 : -1) : (a.percentile < b.percentile ? 1 : -1 )));
+    array['yourBest3'] = [sorted_Top[0], sorted_Top[1], sorted_Top[3]] ;
 
     // ----------------------------------------- Overview -------------------------------------------------
 
@@ -290,7 +320,7 @@ export class AnalyticsService {
       },
       { 
         $group: { 
-          _id: { Job_SkillName: "$Job_SkillName" }, 
+          _id: { Job_SkillName: "$Job_SkillName", Job_JobName: "$Job_JobName" }, 
           mean: { $avg: "$Job_Score"} ,
           total: { $sum: 1 },
         }
@@ -299,7 +329,7 @@ export class AnalyticsService {
         $sort: { total: -1 , _id: 1 },
       },
     ])
-    //console.log("New: ", New) ;
+    // console.log(New) ;
     let temp2 = [] ;
     let percentage = 0 ;
     
@@ -311,14 +341,22 @@ export class AnalyticsService {
       //console.log("AllUserSCore: ", AllUserScore) ;
       let AllScore = [] ;
       let UserScore = null ;
+      let n_percentile = 0 ;
+      let index = null;
+      let last_score = 0 ;
       if (countTop <= 2 || mySkills.includes(Skill)) {
         countTop += 1 ;
         for (var obj of AllUserScore) {
+          if (last_score != j.Job_Score) {
+            n_percentile += 1 ;
+            last_score = j.Job_Score ;
+          }
           // console.log(obj.Score) ;
           // console.log(obj.userId) ;
           AllScore.push(obj.Job_Score) ;
           if (UserId == obj.UserId) {
             UserScore = obj.Job_Score ;
+            index = n_percentile ;
           }
         }
         const details = find_mode(AllScore) ;
@@ -326,10 +364,17 @@ export class AnalyticsService {
         const count = details[1] ;
         const mode = details[2] ;
         percentage = total/numberOfUsers*100 ;
-        temp2.push({"SkillName": Skill, "total": total, "AllScore": newAllScore, "UserScore": UserScore, "Count": count, "Mean": i.mean, "Mode": mode, "percentage": percentage}) ;
+        if (UserScore != null ) {
+          if (index != 1 || n_percentile == 1) {
+            temp2.push({"Job_Name": i._id.Job_JobName, "SkillName": Skill, "total": total, "AllScore": newAllScore, "UserScore": UserScore, "Count": count, "Mean": i.mean, "Mode": mode, percentage: percentage, "percentile": index/n_percentile*100}) ;
+          }
+          else {
+            temp2.push({"Job_Name": i._id.Job_JobName, "SkillName": Skill, "total": total, "AllScore": newAllScore, "UserScore": UserScore, "Count": count, "Mean": i.mean, "Mode": mode, percentage: percentage, "percentile": 0, "p": (100/n_percentile)+(100/n_percentile/4)}) ;
+          }
+        }
       }
       else {
-        temp2.push({ "SkillName": Skill, "total": total, "Percentage": total/numberOfUsers*100 })
+        temp2.push({"Job_Name": i._id.Job_JobName, "SkillName": Skill, "total": total, percentage: total/numberOfUsers*100 })
       }
     }
     array["Overview"] = {};
