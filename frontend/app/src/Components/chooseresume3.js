@@ -9,16 +9,13 @@ class Chooseresume3 extends React.Component {
     constructor(props) {
         super(props);
         this.handleLoad = this.handleLoad.bind(this);
-        this.state = {
-            data3: []
-        }
+        /*this.state = {
+            data3: this.props.mycerti_data
+        }*/
     }
 
     componentDidMount() {
         window.addEventListener('load', this.handleLoad);
-        this.setState({
-            data3: this.props.mycerti_data
-        })
         var list_of_year_certi = {}; //check year
         var year_before_certi = -1;
         var isCheck_certi = {};
@@ -44,12 +41,13 @@ class Chooseresume3 extends React.Component {
                 );
             };
         }
-        const mycert2 = this.props.mycerti_data ? this.props.mycerti_data : [];
-        var tmp1 = [...mycert2];
-        tmp1.sort(compareValues('CertYear', 'desc'));
-        tmp1.forEach(ele => {
-            isCheck_certi[ele.Certificate_id] = false;
-            let grid_certi2 = ` <div id={ele.Certificate_id}>\
+        setTimeout(() => {
+            const mycert2 = this.props.mycerti_data ? this.props.mycerti_data : [];
+            var tmp1 = [...mycert2];
+            tmp1.sort(compareValues('CertYear', 'desc'));
+            tmp1.forEach(ele => {
+                isCheck_certi[ele.Certificate_id] = false;
+                let grid_certi2 = ` <div id={ele.Certificate_id}>\
                                     <input\
                                         class="input-choose-certi1"\
                                         id="{xxx}"\
@@ -68,28 +66,29 @@ class Chooseresume3 extends React.Component {
                                         <div class="icon-checkbox1111"><img height="110" src="assets/images/check_black.png"></img></div>\
                                     </label>\
                                 </div >`;
-            let headOfyear1234 = `  <div id="year-choose-tem-{show-year-resume-certi}"><h1 id="textOfyear_certi">{ele.CertYear}</h1></div>\
+                let headOfyear1234 = `  <div id="year-choose-tem-{show-year-resume-certi}"><h1 id="textOfyear_certi">{ele.CertYear}</h1></div>\
                                     <div class="content-certi1" id="{contentYear}"></div>`;
-            grid_certi2 = grid_certi2.replace("{xxx}", `xxx` + ele.Certificate_id);
-            grid_certi2 = grid_certi2.replace("{ele.Certificate_idvalue}", ele.Certificate_id);
-            grid_certi2 = grid_certi2.replace("{isCheck_certi}", isCheck_certi[ele.Certificate_id]);
-            grid_certi2 = grid_certi2.replace("{forxxx}", `xxx` + ele.Certificate_id);
-            grid_certi2 = grid_certi2.replace("{ele.CertName}", ele.CertName);
-            grid_certi2 = grid_certi2.replace("{ele.CertYear}", ele.CertYear);
-            grid_certi2 = grid_certi2.replace("{ele.CertPic}", ele.CertPic);
-            if (year_before_certi != ele.CertYear) {
-                list_of_year_certi[ele.CertYear] = 1;
-                year_before_certi = ele.CertYear;
-                headOfyear1234 = headOfyear1234.replace("{ele.CertYear}", ele.CertYear);
-                headOfyear1234 = headOfyear1234.replace("{contentYear}", ele.CertYear);
-                headOfyear1234 = headOfyear1234.replace("{show-year-resume-certi}", ele.CertYear);
-                $(".myresume-choose-certi11").append(headOfyear1234);
-            }
-            else {
-                list_of_year_certi[ele.CertYear] += 1;
-            }
-            $("#year-choose-tem-" + String(ele.CertYear)).append(grid_certi2);
-        });
+                grid_certi2 = grid_certi2.replace("{xxx}", `xxx` + ele.Certificate_id);
+                grid_certi2 = grid_certi2.replace("{ele.Certificate_idvalue}", ele.Certificate_id);
+                grid_certi2 = grid_certi2.replace("{isCheck_certi}", isCheck_certi[ele.Certificate_id]);
+                grid_certi2 = grid_certi2.replace("{forxxx}", `xxx` + ele.Certificate_id);
+                grid_certi2 = grid_certi2.replace("{ele.CertName}", ele.CertName);
+                grid_certi2 = grid_certi2.replace("{ele.CertYear}", ele.CertYear);
+                grid_certi2 = grid_certi2.replace("{ele.CertPic}", ele.CertPic);
+                if (year_before_certi != ele.CertYear) {
+                    list_of_year_certi[ele.CertYear] = 1;
+                    year_before_certi = ele.CertYear;
+                    headOfyear1234 = headOfyear1234.replace("{ele.CertYear}", ele.CertYear);
+                    headOfyear1234 = headOfyear1234.replace("{contentYear}", ele.CertYear);
+                    headOfyear1234 = headOfyear1234.replace("{show-year-resume-certi}", ele.CertYear);
+                    $(".myresume-choose-certi11").append(headOfyear1234);
+                }
+                else {
+                    list_of_year_certi[ele.CertYear] += 1;
+                }
+                $("#year-choose-tem-" + String(ele.CertYear)).append(grid_certi2);
+            });
+        }, 5000);
 
         $(document).on("click", ".input-choose-certi1", function () {
             choose_certi = $('.input-choose-certi1:input[type=checkbox]:checked').map(function (_, el) {
@@ -101,6 +100,21 @@ class Chooseresume3 extends React.Component {
         $(document).on("click", ".input-choose-certi1:input:checkbox", function () {
             var bol = $(".input-choose-certi1:input:checkbox:checked").length >= 6;
             $(".input-choose-certi1:input:checkbox").not(":checked").attr("disabled", bol);
+        });
+
+        $(document).on("change", ".input-choose-certi1", function () {
+            if (choose_certi.length === 6) {
+                $("#you-choose-list-resume-certi1").text("คุณเลือกครบ 6 รายการแล้ว");
+                $("#you-choose-list-resume-certi1").addClass("you-choose-list-resume-red");
+            }
+            else if (choose_certi.length === 0) {
+                $("#you-choose-list-resume-certi1").text("");
+                $("#you-choose-list-resume-certi1").removeClass("you-choose-list-resume-red");
+            }
+            else {
+                $("#you-choose-list-resume-certi1").text(`คุณเลือกไปแล้ว ${choose_certi.length} รายการ`);
+                $("#you-choose-list-resume-certi1").removeClass("you-choose-list-resume-red");
+            }
         });
     }
     componentWillReceiveProps(props) {
