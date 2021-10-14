@@ -167,11 +167,12 @@ class Chooseresume1 extends React.Component {
         //this.getDatas();
         //console.log('state : ' + JSON.stringify(this.state))
 		return (
-			<div className="Registab3 regis-box-content1">
-				<div class='container-fluid'>
+			<div className="Registab3">
+				<h2 class="headerChooseResume">คุณสามารถเลือกประวัติการศึกษาที่สอดคล้องกับตำแหน่งงานที่สนใจได้สูงสุด 6 รายการ</h2>
+				<div class='container-fluid regis-box-content1'>
 					<div class='col-16'>
 						<div class='row'>
-								<div className='registab3_formbox col-6'>
+								<div className='choosetab3_formbox col-6'>
                                     <div class='row longlang'>
                                         <div class='col-10'>
                                             <h2 class="font-headert3">อุดมศึกษา</h2>
@@ -182,7 +183,7 @@ class Chooseresume1 extends React.Component {
                                         <div class="list-of-aca" id="in-list-of-aca"></div>
 									</div>
                                 </div>
-								<div className='registab3_formbox col-6'>
+								<div className='choosetab3_formbox col-6'>
                                     <div class='row longlang'>
                                         <div class='col-10'>
 									        <h2 class="font-headert3">มัธยมศึกษา</h2>
@@ -196,6 +197,7 @@ class Chooseresume1 extends React.Component {
 							</div>
 						</div>
 					</div>
+					<h1 id="dangerzonect1" class='normalformzonet3'>คุณเลือกไปแล้ว x รายการ</h1>
 				</div>
 		);
 	}

@@ -8,8 +8,8 @@ import { Link } from "react-router-dom";
 import Chooseresume1 from "./Components/chooseresume1";
 import Chooseresume2 from "./Components/chooseresume2";
 import Chooseresume3 from "./Components/chooseresume3";
-import Registab6 from "./Components/registab6";
-import Registab7 from "./Components/registab7";
+import Chooseresume4 from "./Components/chooseresume4";
+import Chooseresume5 from "./Components/chooseresume5";
 import $ from 'jquery';
 import cookie from 'react-cookies';
 import LoadingS from './Components/loadingS';
@@ -231,12 +231,14 @@ class Chooseresume extends React.Component {
 			});
 
 		});
-
-		var id_list_aca_check='';
+		setTimeout(() => {
+			var id_list_aca_check='';
 		$('.layer_icon1').on('click',function(){
 			id_list_aca_check = $(this).parents().attr('id');
   			alert(`checked:`, id_list_aca_check);
 		});
+		})
+		
 	}
 
 	handleLoad() {
@@ -259,11 +261,11 @@ class Chooseresume extends React.Component {
 							</div>
 						</div>
 					</header>
-					<ol class="tabs-list">
+					<ol class="tabs-list getLeft">
 						<li class="tab-list-item tab-list-active" id="tab-1" type="button">ประวัติการศึกษา</li>
 						<li class="tab-list-item" id="tab-2" type="button">ประวัติการทำงาน</li>
 						<li class="tab-list-item" id="tab-3" type="button">ใบรับรอง</li>
-						<li class="tab-list-item" id="tab-4" type="button">งานที่สนใจ</li>
+						<li class="tab-list-item" id="tab-4" type="button">ผลงาน</li>
 						<li class="tab-list-item" id="tab-5" type="button">ทักษะเสริม</li>
 					</ol>
 					<form class="needs-validation" novalidate>
@@ -278,10 +280,10 @@ class Chooseresume extends React.Component {
 								<Chooseresume3 mycerti_data={certdata} />
 							</div>
 							<div class="tab-content" id="registab4-content">
-								<Registab6 />
+								<Chooseresume4 />
 							</div>
 							<div class="tab-content" id="registab5-content">
-								<Registab7 />
+								<Chooseresume5 />
 							</div>
 						</div>
 						<div class="col block-right2">
