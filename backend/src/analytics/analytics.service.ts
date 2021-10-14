@@ -289,16 +289,16 @@ export class AnalyticsService {
           if (UserScore != null ) {
             if (index != 1 || n_percentile == 1) {
               yourTop.push({"Job_Name": job,"SkillName": _name, "total": _sum, "UserScore": UserScore, "percentile": index/n_percentile*100}) ;
-              temp.push({SkillName: _name, total: _sum, "AllScore": newAllScore, "UserScore": UserScore, "Count": count,"Mean": mean, "Mode": mode, "percentage": n/numberOfUsers*100, "percentile": index/n_percentile*100}) ;
+              temp.push({SkillName: _name, total: _sum, "AllScore": newAllScore, "UserScore": UserScore, "Count": count,"Mean": mean, "Mode": mode, percentage: n/numberOfUsers*100, "percentile": index/n_percentile*100}) ;
             }
             else {
               yourTop.push({"Job_Name": job,"SkillName": _name, "total": _sum, "UserScore": UserScore, "percentile": 0, "p": (100/n_percentile)+(100/n_percentile/4)}) ;
-              temp.push({SkillName: _name, total: _sum, "AllScore": newAllScore, "UserScore": UserScore, "Count": count,"Mean": mean, "Mode": mode, "percentage": n/numberOfUsers*100, "percentile": 0, "p": (100/n_percentile)+(100/n_percentile/4)}) ;
+              temp.push({SkillName: _name, total: _sum, "AllScore": newAllScore, "UserScore": UserScore, "Count": count,"Mean": mean, "Mode": mode, percentage: n/numberOfUsers*100, "percentile": 0, "p": (100/n_percentile)+(100/n_percentile/4)}) ;
             }
           }
         }
         else { 
-          temp.push({SkillName: _name, total: _sum, "percentage": AllUser.length/numberOfUsers*100})
+          temp.push({SkillName: _name, total: _sum, percentage: AllUser.length/numberOfUsers*100})
         }
         countTop ++ ;
       }
@@ -366,15 +366,15 @@ export class AnalyticsService {
         percentage = total/numberOfUsers*100 ;
         if (UserScore != null ) {
           if (index != 1 || n_percentile == 1) {
-            temp2.push({"Job_Name": i._id.Job_JobName, "SkillName": Skill, "total": total, "AllScore": newAllScore, "UserScore": UserScore, "Count": count, "Mean": i.mean, "Mode": mode, "percentage": percentage, "percentile": index/n_percentile*100}) ;
+            temp2.push({"Job_Name": i._id.Job_JobName, "SkillName": Skill, "total": total, "AllScore": newAllScore, "UserScore": UserScore, "Count": count, "Mean": i.mean, "Mode": mode, percentage: percentage, "percentile": index/n_percentile*100}) ;
           }
           else {
-            temp2.push({"Job_Name": i._id.Job_JobName, "SkillName": Skill, "total": total, "AllScore": newAllScore, "UserScore": UserScore, "Count": count, "Mean": i.mean, "Mode": mode, "percentage": percentage, "percentile": 0, "p": (100/n_percentile)+(100/n_percentile/4)}) ;
+            temp2.push({"Job_Name": i._id.Job_JobName, "SkillName": Skill, "total": total, "AllScore": newAllScore, "UserScore": UserScore, "Count": count, "Mean": i.mean, "Mode": mode, percentage: percentage, "percentile": 0, "p": (100/n_percentile)+(100/n_percentile/4)}) ;
           }
         }
       }
       else {
-        temp2.push({"Job_Name": i._id.Job_JobName, "SkillName": Skill, "total": total, "Percentage": total/numberOfUsers*100 })
+        temp2.push({"Job_Name": i._id.Job_JobName, "SkillName": Skill, "total": total, percentage: total/numberOfUsers*100 })
       }
     }
     array["Overview"] = {};
