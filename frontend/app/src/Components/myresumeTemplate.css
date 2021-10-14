@@ -299,7 +299,7 @@
 .choose-color-edit-template11{
     position: absolute;
     left: 17vw;
-    top: -2vh;
+    top: -5vh;
 }
 
 .grid-edit-template{
@@ -383,7 +383,7 @@
 #text-edit-color-template11{
     color: black;
     font-size: 32px;
-    margin-bottom: 20px;
+    margin-left: 0.5vw;
 }
 
 .circle-color-template-FF7370-edit{
@@ -431,4 +431,12 @@
     width: 35px;
     height: 35px;
     background-color: #32A3C7;
+}
+
+#describe-template11-edit{
+    color: black;
+    font-size: 18px;
+    font-weight: 300;
+    margin-bottom: 55px;
+    margin-left: 0.5vw;
 }

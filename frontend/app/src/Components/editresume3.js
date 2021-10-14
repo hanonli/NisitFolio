@@ -5,7 +5,7 @@ import './registab5.css';
 import './chooseresume3.css';
 
 var choose_certi = [];
-class Chooseresume3 extends React.Component {
+class Editresume3 extends React.Component {
     constructor(props) {
         super(props);
         this.handleLoad = this.handleLoad.bind(this);
@@ -144,4 +144,4 @@ class Chooseresume3 extends React.Component {
     }
 }
 
-export default Chooseresume3;
+export default Editresume3;
