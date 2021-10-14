@@ -14,7 +14,7 @@ import $ from 'jquery';
 import cookie from 'react-cookies';
 import LoadingS from './Components/loadingS';
 
-var certdata = [];
+var certdata = [], workdata = [];
 
 class Register extends React.Component {
 
@@ -111,6 +111,21 @@ class Register extends React.Component {
 						CertYear: this.state.data.CertYear[index]
 					})
 				});
+				this.state.data.WorkHistory_id.forEach((ele, index) => {
+					workdata.push({
+						WorkHistory_id: ele,
+						Work_JobName: this.state.data.Work_JobName[index],
+						Work_JobType: this.state.data.Work_JobType[index],
+						Company: this.state.data.Company[index],
+						Work_Start_Month: this.state.data.Work_Start_Month[index],
+						Work_End_Month: this.state.data.Work_End_Month[index],
+						Work_Start_Year: this.state.data.Work_Start_Year[index],
+						Work_End_Year: this.state.data.Work_End_Year[index],
+						SalaryType: this.state.data.SalaryType[index],
+						Salary: this.state.data.Salary[index],
+						Infomation: this.state.data.Infomation[index]
+					})
+				});
 			});
 
 		$(function () {
@@ -189,7 +204,7 @@ class Register extends React.Component {
 								<Chooseresume1 />
 							</div>
 							<div class="tab-content" id="registab2-content">
-								<Chooseresume2 mywork_data={this.state.data} />
+								<Chooseresume2 mywork_data={workdata} />
 							</div>
 							<div class="tab-content" id="registab3-content">
 								<Chooseresume3 mycerti_data={certdata} />
