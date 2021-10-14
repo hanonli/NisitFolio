@@ -54,7 +54,7 @@ class NewAnalytics extends React.Component {
 			leftBox3Name: null,
 			leftBox3Percentage: null,
 			leftBox3Count: null,
-			
+
 			topMainJOv1Job: null,
 			topMainJOv1Name: null,
 			topMainJOv1Score: null,
@@ -73,6 +73,7 @@ class NewAnalytics extends React.Component {
 			topMainJOv3Percentage: null,
 			topMainJOv3Count: null,
 			
+			rightJobTotal: null,
 			rightJobName: null,
 			rightJobSkillName: null,
 			rightJobScore: null,
@@ -406,7 +407,7 @@ class NewAnalytics extends React.Component {
 				leftBox3Name: rawData.Main.Overview.List[2].SkillName,
 				leftBox3Percentage: rawData.Main.Overview.List[2].percentage.toFixed(2),
 				leftBox3Count: rawData.Main.Overview.List[2].total,
-				
+		
 				topMainJOv1Job: rawData.Main.yourBest3[0].Job_Name,
 				topMainJOv1Name: rawData.Main.yourBest3[0].SkillName,
 				topMainJOv1Score: rawData.Main.yourBest3[0].UserScore,
@@ -483,8 +484,6 @@ class NewAnalytics extends React.Component {
 				keyName = rawData.Additional.InterestedJobs[2].name;
 			}
 			
-			//alert(keyName);
-			
 			refThis.setState({ 
 				leftBoxHeader: 'Top 3 เทรนด์ทักษะเสริมยอดนิยม',
 				leftBoxDesc1: 'ในกลุ่มคนที่สนใจตำแหน่งงานเดียวกัน',
@@ -493,17 +492,17 @@ class NewAnalytics extends React.Component {
 				leftBoxOvTotal: rawData.Additional[keyName].numberOfUsers,
 				
 				leftBox1Job: rawData.Additional[keyName].List[0].Type,
-				leftBox1Name: rawData.Additional[keyName].List[0].Type,
+				leftBox1Name: rawData.Additional[keyName].List[0].AdditionalSkill,
 				leftBox1Percentage: rawData.Additional[keyName].List[0].percentage.toFixed(2),
 				leftBox1Count: rawData.Additional[keyName].List[0].total,
 				
 				leftBox2Job: rawData.Additional[keyName].List[1].Type,
-				leftBox2Name: rawData.Additional[keyName].List[1].Type,
+				leftBox2Name: rawData.Additional[keyName].List[1].AdditionalSkill,
 				leftBox2Percentage: rawData.Additional[keyName].List[1].percentage.toFixed(2),
 				leftBox2Count: rawData.Additional[keyName].List[1].total,
 				
 				leftBox3Job: rawData.Additional[keyName].List[2].Type,
-				leftBox3Name: rawData.Additional[keyName].List[2].Type,
+				leftBox3Name: rawData.Additional[keyName].List[2].AdditionalSkill,
 				leftBox3Percentage: rawData.Additional[keyName].List[2].percentage.toFixed(2),
 				leftBox3Count: rawData.Additional[keyName].List[2].total,
 			});
@@ -980,6 +979,8 @@ class NewAnalytics extends React.Component {
 				leftBox3Name: rawData.Main[THname].List[2].SkillName,
 				leftBox3Percentage: rawData.Main[THname].List[2].percentage.toFixed(2),
 				leftBox3Count: rawData.Main[THname].List[2].total,
+				
+				rightJobTotal: rawData.Main[THname].numberOfUsers
 			});
 			
 			UpdateFocusJob('s1');
@@ -1182,7 +1183,7 @@ class NewAnalytics extends React.Component {
 					<div class="overall-right-box">
 						<div class="overall-upper-right-box">
 							<div class="obl-container2">
-								<hhf>Top 3 เทรนด์ทักษะเฉพาะทั้งหมด</hhf>
+								<hhf>Top 3 คะแนนทักษะที่โดดเด่นทั้งหมดของคุณ</hhf>
 								<div class="obs-container">
 									<div class="obs-box obg" id="g1" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
 										<div class="asb-container2">
@@ -1302,7 +1303,7 @@ class NewAnalytics extends React.Component {
 									   
 									</ul>
 								</div>
-								<akf>จากทั้งหมด {this.state.topAddOvTotal} คน</akf>
+								<akf>จากทั้งหมด {this.state.rightJobTotal} คน</akf>
 								<br></br>
 								
 								<div class="obj-container">
@@ -1438,7 +1439,7 @@ class NewAnalytics extends React.Component {
 						<div class="">
 							<div class="analytic-arrow-cls back" id="main-lv2-back"></div>
 							<hhf class="analytic-md-header2">กราฟแสดงการกระจายตัวของคะแนนทักษะ<br/></hhf>
-							<af class="analytic-spc-s analytic-md-sub-header">ในกลุ่มคนที่สนใจตำแหน่งงานเดียวกันกกับคุณ ทักษะนี้มีความนิยม คิดเป็น {this.state.popupDescPercentage}% ({this.state.popupDescCount} คน) ของคนทั้งหมด {this.state.leftBoxOvTotal} คน</af>
+							<af class="analytic-spc-s analytic-md-sub-header">จากคนทั้งหมด {this.state.rightJobTotal} คน ที่สนใจตำแหน่งงานเดียวกัน</af>
 							<div class="ap-flex">
 								<div class="apv-flex">
 									<div class="analytic-right-chart-label2">

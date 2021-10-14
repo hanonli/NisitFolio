@@ -403,26 +403,35 @@
             }
         ],
         "mySkills": [
-            "ทักษะคอมพิวเตอร์",
-            "สกิลแห่งปี 2021"
+            {
+                "AdditionalSkill": "Blockchain",
+                "Type": "ทักษะคอมพิวเตอร์"
+            },
+            {
+                "AdditionalSkill": "การใช้สื่อสังคมออนไลน์",
+                "Type": "สกิลแห่งปี 2021"
+            }
         ],
         "Teaching": {
             "numberOfUsers": 4,
             "List": [
                 {
+                    "AdditionalSkill": "Blockchain",
                     "Type": "ทักษะคอมพิวเตอร์",
                     "total": 1,
                     "percentage": 25
                 },
                 {
+                    "AdditionalSkill": "การใช้สื่อสังคมออนไลน์",
                     "Type": "สกิลแห่งปี 2021",
                     "total": 1,
                     "percentage": 25
                 },
                 {
-                    "Type": "ทักษะกุเอง",
-                    "total": 4,
-                    "percentage": 36.36363636363637
+                    "AdditionalSkill": "สกิลกู",
+                    "Type": "สกิลแห่งปี 2022",
+                    "total": 1,
+                    "percentage": 25
                 }
             ]
         },
@@ -430,17 +439,20 @@
             "numberOfUsers": 11,
             "List": [
                 {
+                    "AdditionalSkill": "Swift, Python, Perl และ XML",
                     "Type": "ทักษะคอมพิวเตอร์",
-                    "total": 10,
-                    "percentage": 90.9090909090909
+                    "total": 5,
+                    "percentage": 45.45454545454545
                 },
                 {
+                    "AdditionalSkill": "การเขียนคำโฆษณา",
                     "Type": "ทักษะการสื่อสาร",
-                    "total": 4,
-                    "percentage": 36.36363636363637
+                    "total": 3,
+                    "percentage": 27.27272727272727
                 },
                 {
-                    "Type": "สกิลแห่งปี 2021",
+                    "AdditionalSkill": "Machine learning (ML)",
+                    "Type": "ทักษะคอมพิวเตอร์",
                     "total": 2,
                     "percentage": 18.181818181818183
                 }
@@ -450,22 +462,25 @@
             "numberOfUsers": 14,
             "List": [
                 {
+                    "AdditionalSkill": "Swift, Python, Perl และ XML",
                     "Type": "ทักษะคอมพิวเตอร์",
-                    "total": 10,
-                    "percentage": 71.42857142857143
+                    "total": 5,
+                    "percentage": 35.714285714285715
                 },
                 {
+                    "AdditionalSkill": "การเขียนคำโฆษณา",
                     "Type": "ทักษะการสื่อสาร",
-                    "total": 4,
-                    "percentage": 28.57142857142857
+                    "total": 3,
+                    "percentage": 21.428571428571427
                 },
                 {
-                    "Type": "สกิลแห่งปี 2021",
+                    "AdditionalSkill": "Machine learning (ML)",
+                    "Type": "ทักษะคอมพิวเตอร์",
                     "total": 2,
                     "percentage": 14.285714285714285
                 }
             ]
         }
     },
-    "updatedAt": "2021-10-13T14:45:05.077Z"
+    "updatedAt": "2021-10-14T06:13:15.996Z"
 }
