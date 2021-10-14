@@ -84,16 +84,20 @@ export class AnalyticsService {
       //console.log("JobTHName: " ,job_THname) ;
       jobs.push({ name: job_THname.Name, THname: job_THname.THName });
     }
-
+  
     //console.log("jobs: ",jobs);
     let finalResults = {};
     finalResults['InterestedJobs'] = jobs;
     const mySkills = await this.AdditionalSkillModel.find({ UserId: id }).select({ AdditionalSkill: 1, Type: 1, _id: 0 }).sort({ Type: 1 }).exec();
     //console.log("My Skill: ", mySkills);
     finalResults['mySkills'] = mySkills;
-
+    let skillList = [];
+    for ( var obj of mySkills ) {
+      skillList.push(obj.AdditionalSkill);
+    }
+    //console.log(skillList);
     let sameJobUsers = [];
-
+  
     for ( var job of jobs ) {
       const job_name = job.name;
       //console.log(job_name);
@@ -102,9 +106,9 @@ export class AnalyticsService {
       //console.log("Users: ",users);
       sameJobUsers = sameJobUsers.concat(users);
       //console.log("Users: " + sameJobUsers);
-
+  
       const numberOfUsers = users.length;
-
+  
       const rawResults = await this.AdditionalSkillModel.aggregate([
         {
           $match: { UserId: { "$in": users } }
@@ -116,22 +120,26 @@ export class AnalyticsService {
           }
         },
         { $sort: { total: -1, _id: 1 }},
-        { $limit: 3 },
       ]).exec();
-
+  
       //console.log("Raw Result :",rawResults);
-
+  
       let ModifiedResults = [];
+      let i = 0;
       for (var result of rawResults) {
         if (result['_id'].Type == null) {continue;};
+        if (i > 2 && !(skillList.includes(result['_id'].AdditionalSkill))) {continue;};
+        
         ModifiedResults.push({ 
                                 AdditionalSkill: result['_id'].AdditionalSkill,
                                 Type: result['_id'].Type,
                                 total: result.total,
-                                percentage: result.total/numberOfUsers * 100
+                                percentage: result.total/numberOfUsers * 100,
+                                isMySkill: skillList.includes(result['_id'].AdditionalSkill),
                             });
+        i++;
       }
-
+  
       finalResults[job_name] = {};
       finalResults[job_name]['numberOfUsers'] = numberOfUsers;
       finalResults[job_name]['List'] = ModifiedResults;
@@ -139,7 +147,7 @@ export class AnalyticsService {
     /*
     * Overview
     */
-
+  
     let userCount = {};
     let totalUsers = [];
     for ( var u of sameJobUsers ){
@@ -161,19 +169,22 @@ export class AnalyticsService {
           }
         },
       { $sort: {total: -1 , _id: 1 }},
-      { $limit: 3 },
     ]).exec();
     //console.log("RawResult2: ",rawResults);
     let ModifiedResults = [];
+    let i=0;
     for (var result of rawResults) {
       if (result['_id'].Type == null) {continue;};
+      //console.log("Skill: " + result['_id'].AdditionalSkill + " >> " + (skillList.includes(result['_id'].AdditionalSkill)));
+      if (i > 2 && !(skillList.includes(result['_id'].AdditionalSkill))) {continue;};
       ModifiedResults.push({ 
                             AdditionalSkill: result['_id'].AdditionalSkill,
                             Type: result['_id'].Type,
                             total: result.total,
-                            percentage: result.total/totalNumberOfUsers * 100
+                            percentage: result.total/totalNumberOfUsers * 100,
+                            isMySkill: skillList.includes(result['_id'].AdditionalSkill),
                           });
-  
+      i++;
     }
     finalResults['Overview'] = {};
     finalResults['Overview']['numberOfUsers'] = totalNumberOfUsers;
