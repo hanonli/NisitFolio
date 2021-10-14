@@ -192,7 +192,7 @@ class Chooseresume2 extends React.Component {
                 grid_work2 = grid_work2.replace("{ele.Work_Start_Month}", ele.Work_Start_Month);
                 grid_work2 = grid_work2.replace("{ele.Work_Start_Year}", ele.Work_Start_Year);
                 if (ele.Work_End_Month === 99 && ele.Work_End_Year === 9999) {
-                    grid_work2 = grid_work2.replace("สิ้นสุด {month_endwork}/{year_endwork}", "สิ้นสุดยังอยู่ในงาน");
+                    grid_work2 = grid_work2.replace("สิ้นสุด {month_endwork}/{year_endwork}", "ยังอยู่ในงาน");
                 }
                 else if (ele.Work_End_Month === 0 && ele.Work_End_Year === 0) {
                     grid_work2 = grid_work2.replace("สิ้นสุด {month_endwork}/{year_endwork}", "");

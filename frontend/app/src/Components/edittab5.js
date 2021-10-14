@@ -8,6 +8,7 @@ class Edittab5 extends React.Component {
         super(props);
     }
     componentDidMount() {
+        console.log("edittab5!!!!:", this.props.mycerti_data);
         var name_certi, year_certi, id_of_certi;
         /*----year option----*/
         $("#icon-upload-112").remove();
@@ -29,8 +30,8 @@ class Edittab5 extends React.Component {
         });
         /*----upload img----*/
         $('#to_upload112').on('click', function () {
-             $('#image-upload112').click();
-        });        
+            $('#image-upload112').click();
+        });
 
         /*---- generate code ID ----*/
         function create_UUID() {
