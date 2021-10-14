@@ -393,6 +393,10 @@
     margin-bottom: 0.1Vw;
     position: relative;
 }
+.myworkobj{
+    width: 100%;
+    height: 100%;
+}
 
 .img-mywork-1{
     /*position: absolute;*/
@@ -404,6 +408,9 @@
     position: relative;
     transition: 0.5s;
     z-index: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     /*background-color: rgba(26, 26, 26, 0.76);*/
 }
 
