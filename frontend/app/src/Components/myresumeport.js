@@ -43,7 +43,9 @@ class MyResumePort extends React.Component {
                         {date}
                     </h4>
                 </div>
-                <img className="img-mywork-1" src={image} />
+                <div className="row">
+                    <img className="img-mywork-1" src={image} />
+                </div>
             </div>
         );
     }
