@@ -3,7 +3,10 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    top: 32vh;
+    top: 25vh;
+    height: 80vh;
+    overflow-y: hidden;
+    overflow-y: hidden;
 }
 
 /*-----------text-nothing myresume-----------*/
