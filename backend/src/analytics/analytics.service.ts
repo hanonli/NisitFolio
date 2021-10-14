@@ -289,6 +289,7 @@ async findUserJobSkill(UserId: string): Promise<any> {
           }
         }
         else {
+          temp.push({SkillName: _name, total: _sum, "AllScore": newAllScore, "UserScore": UserScore, "Count": count,"Mean": mean, "Mode": mode, percentage: n/numberOfUsers*100, "percentile": index/n_percentile*100}) ;
           yourTop.push({"Job_Name": job,"SkillName": _name, "total": _sum, "UserScore": UserScore, "percentile": null}) ;
         }
       // }
