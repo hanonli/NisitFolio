@@ -14,7 +14,7 @@ import $ from 'jquery';
 import cookie from 'react-cookies';
 import LoadingS from './Components/loadingS';
 
-var certdata = [];
+var certdata = [], workdata = [];
 
 class Chooseresume extends React.Component {
 
@@ -25,7 +25,6 @@ class Chooseresume extends React.Component {
 			data: [],
 			render: true,
 			list_of_aca: [],
-			mywork_data:[],
 		}
 	}
 
@@ -128,31 +127,31 @@ class Chooseresume extends React.Component {
 				//console.log('this.state.data :' + this.state.data);
 				/*Zone to use datas*/
 				//console.log(this.state.data.Degree);
-				this.state.data.Degree.forEach(element => {
+				this.state.data.Degree.forEach((element,index) => {
 					if (element == 'มัธยมศึกษาตอนปลาย' || element == 'ปวช.') {
 						list_of_high.push({
-							id: this.state.data.EducationHistory_id,
+							id: this.state.data.EducationHistory_id[index],
 							high_pos: 0,
-							high_name: this.state.data.Academy,
+							high_name: this.state.data.Academy[index],
 							high_faculty: 'none',
-							high_degree: this.state.data.Degree,
-							high_grade: this.state.data.Grade,
-							high_field: this.state.data.Field_of_study,
-							high_year: this.state.data.Education_End_Year,
+							high_degree: this.state.data.Degree[index],
+							high_grade: this.state.data.Grade[index],
+							high_field: this.state.data.Field_of_study[index],
+							high_year: this.state.data.Education_End_Year[index],
 						});
 						get_high_id(list_of_high, 1);
 						console.log(list_of_high);
 					}
 					else {
 						this.state.list_of_aca.push({
-							id: this.state.data.EducationHistory_id,
+							id: this.state.data.EducationHistory_id[index],
 							aca_pos: 0,
-							aca_name: this.state.data.Academy,
-							aca_faculty: this.state.data.Facalty,
-							aca_degree: this.state.data.Degree,
-							aca_grade: this.state.data.Grade,
-							aca_field: this.state.data.Field_of_study,
-							aca_year: this.state.data.Education_End_Year,
+							aca_name: this.state.data.Academy[index],
+							aca_faculty: this.state.data.Facalty[index],
+							aca_degree: this.state.data.Degree[index],
+							aca_grade: this.state.data.Grade[index],
+							aca_field: this.state.data.Field_of_study[index],
+							aca_year: this.state.data.Education_End_Year[index],
 						});
 						get_aca_id(this.state.list_of_aca, 1);
 						//console.log(this.state.list_of_aca);
@@ -174,7 +173,7 @@ class Chooseresume extends React.Component {
 					})
 				});
 				this.state.data.WorkHistory_id.forEach((ele, index) => {
-					this.state.mywork_data.push({
+					workdata.push({
 						WorkHistory_id: ele,
 						Work_JobName: this.state.data.Work_JobName[index],
 						Work_JobType: this.state.data.Work_JobType[index],
@@ -183,9 +182,9 @@ class Chooseresume extends React.Component {
 						Work_End_Month: this.state.data.Work_End_Month[index],
 						Work_Start_Year: this.state.data.Work_Start_Year[index],
 						Work_End_Year: this.state.data.Work_End_Year[index],
+						SalaryType: this.state.data.SalaryType[index],
 						Salary: this.state.data.Salary[index],
-						Salary_type: this.state.data.SalaryType[index],
-						Infomation: this.state.data.Infomation[index],
+						Infomation: this.state.data.Infomation[index]
 					})
 				});
 			});
@@ -236,7 +235,7 @@ class Chooseresume extends React.Component {
 		$('.layer_icon1').on('click',function(){
 			id_list_aca_check = $(this).parents().attr('id');
   			alert(`checked:`, id_list_aca_check);
-		});
+		},3000);
 		})
 		
 	}
@@ -274,7 +273,7 @@ class Chooseresume extends React.Component {
 								<Chooseresume1 list_of_aca={this.state.list_of_aca}/>
 							</div>
 							<div class="tab-content" id="registab2-content">
-								<Chooseresume2 mywork_data={this.state.mywork_data} />
+								<Chooseresume2 mywork_data={workdata} />
 							</div>
 							<div class="tab-content" id="registab3-content">
 								<Chooseresume3 mycerti_data={certdata} />

@@ -254,52 +254,9 @@ class Chooseresume5 extends React.Component {
 		//console.log(this.state.sideskillName);
 		return (
 			<div className="Registab7">
-				<h2 class="headerChooseResume">คุณสามารถเลือกทักษะเสริมที่สอดคล้องกับตำแหน่งงานที่สนใจได้สูงสุด 3 รายการ</h2>
+				<h2 class="headerChooseResume">คุณสามารถเลือกผลงานที่สอดคล้องกับตำแหน่งงานที่สนใจได้ไม่จำกัด</h2>
 				<div class="regis-box-content1" id="yyy">
-					<h1 id="text-add-name-ss">เพิ่มทักษะเสริมที่ถนัด</h1>
-					<div class="transition-component ahhahat7" id="cross-fadegone7">
-                        <img class="registab3_btnplus icon-plus-circleA bottom" type='button' src="assets/images/add_hover.png" ></img>
-                        <img class="registab3_btnplus icon-plus-circleA top" type='button' id='add_sideskill' src="assets/images/add_black.png"></img>
-                    </div>
-					<div class='fff'>
-						<Ddt7 onChange={this.onInputChange} class='margin-bottom1'/>
-					</div>
-					<div class="dropdowntap7 fixed-wrapper">
-					</div>
-					<h1 id="dangerzonet7" class='normalformzonet3'>ท่านสามารถเพิ่มทักษะเสริมที่ถนัดได้สูงสุด 3 อัน</h1>
-					<div class="modal fade" id="Modaltab71" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-						<div class="modal-dialog modal-dialog-centered">
-							<div class="modal-content minisize">
-								<h4 class="del-b">คุณต้องการลบทักษะเสริม ?</h4>
-								<div class="centerverify">
-										<a type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</a>
-										<a type="button" onClick={this.onDel1} class="btn btn-cta-primary-yellowshort profile-button round" id="del_sideskill1" data-bs-dismiss="modal">ลบ</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="modal fade" id="Modaltab72" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-						<div class="modal-dialog modal-dialog-centered">
-							<div class="modal-content minisize">
-								<h4 class="del-b">คุณต้องการลบทักษะเสริม ?</h4>
-								<div class="centerverify">
-										<a type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</a>
-										<a type="button" onClick={this.onDel2} class="btn btn-cta-primary-yellowshort profile-button round" id="del_sideskill2" data-bs-dismiss="modal">ลบ</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="modal fade" id="Modaltab73" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-						<div class="modal-dialog modal-dialog-centered">
-							<div class="modal-content minisize">
-								<h4 class="del-b">คุณต้องการลบทักษะเสริม ?</h4>
-								<div class="centerverify">
-										<a type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</a>
-										<a type="button" onClick={this.onDel3} class="btn btn-cta-primary-yellowshort profile-button round" id="del_sideskill3" data-bs-dismiss="modal">ลบ</a>
-								</div>
-							</div>
-						</div>
-					</div>
+					
 				</div>
 			</div>
 		);

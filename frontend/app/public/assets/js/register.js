@@ -235,8 +235,10 @@ $('#continue2').click(function () {
   var ssss2 = Cookies.get('sideskill2');
   var ssss3 = Cookies.get('sideskill3');
   console.log(ssss1+'+'+ssss2+'+'+ssss3);
+  var checkTab7 = 0;
   if(ssss1==''){
     var last_sideskill = [];
+    checkTab7 = 1;
   }
   else if(ssss1==ssss2&&ssss1==ssss3){
     $('.tab-content').hide();
@@ -246,6 +248,7 @@ $('#continue2').click(function () {
     $('#ssl1').addClass('borderred');
     $('#ssl2').addClass('borderred');
     $('#ssl3').addClass('borderred');
+    checkTab7 = 0;
   }
   else if(ssss1==ssss2&&ssss1!=""&&ssss2!=""){
     $('.tab-content').hide();
@@ -254,6 +257,7 @@ $('#continue2').click(function () {
     $('#registab7-content').show();
     $('#ssl1').addClass('borderred');
     $('#ssl2').addClass('borderred');
+    checkTab7 = 0;
   }
   else if(ssss1==ssss3&&ssss1!=""&&ssss3!=""){
     $('.tab-content').hide();
@@ -262,6 +266,7 @@ $('#continue2').click(function () {
     $('#registab7-content').show();
     $('#ssl1').addClass('borderred');
     $('#ssl3').addClass('borderred');
+    checkTab7 = 0;
   }
   else if(ssss3==ssss2&&ssss3!=""&&ssss2!=""){
     $('.tab-content').hide();
@@ -270,15 +275,19 @@ $('#continue2').click(function () {
     $('#registab7-content').show();
     $('#ssl3').addClass('borderred');
     $('#ssl2').addClass('borderred');
+    checkTab7 = 0;
   }
   else if(ssss2==''){
     var last_sideskill = [ssss1];
+    checkTab7 = 1;
   }
   else if(ssss3==''){
     var last_sideskill = [ssss1,ssss2];
+    checkTab7 = 1;
   }
   else{
     var last_sideskill = [ssss1,ssss2,ssss3];
+    checkTab7 = 1;
   }
   if($('#re03').val()!=""){
     console.log("http://localhost:2000/kuay/"+$('#re03').val())
@@ -318,10 +327,12 @@ $('#continue2').click(function () {
         return response,RequestCount_email;
     })
   }
-  if($('#re03').hasClass('is-valid')){
+  setTimeout(() => {
+    if($('#re03').hasClass('is-valid')){
     RequestCount_email=1;
-  //alert(RequireCount_pass +'+' +RequestCount_email);
-  if(RequireCount_pass==1 && RequestCount_email==1){     
+  }
+  alert(RequireCount_pass +'+' +RequestCount_email+'+'+checkTab7);
+  if(RequireCount_pass==1 && RequestCount_email==1 && checkTab7 == 1){     
     if(avatar1.src=="http://localhost:3000/assets/images/Circleuploadprofile.png"){
       var last_avatar="http://localhost:3000/assets/images/profile_uk.png";
     }
@@ -381,7 +392,8 @@ $('#continue2').click(function () {
     $('.tab-list-item').removeClass('tab-list-active');
     $('#tab-1').addClass('tab-list-active')
     $('#registab1-content').show();
-  }}
+  }
+},1000);
 });
 
 /*var startYear = 1950;
