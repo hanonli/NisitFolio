@@ -269,6 +269,7 @@ class DataHeader extends React.Component {
 						Job_Objective: this.state.data.Job_Objective[index],
 						Job_Score: this.state.data.Job_Score[index],
 						Job_SkillName: this.state.data.Job_JobName[index],
+						Job_Pos: index + 1
 					})
 				});
 			});
