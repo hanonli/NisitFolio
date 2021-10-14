@@ -208,7 +208,7 @@ class DataHeader extends React.Component {
 				})
 				console.log('this.state.data :' + this.state.data);
 				/*Zone to use datas*/
-				console.log(this.state.data.Degree);
+				/*console.log(this.state.data.Degree);
 				this.state.data.Degree.forEach(element => {
 					if (element == 'มัธยมศึกษาตอนปลาย' || element == 'ปวช.') {
 						list_of_high.push({
@@ -238,7 +238,7 @@ class DataHeader extends React.Component {
 						get_aca_id(list_of_aca, 1);
 						console.log(list_of_aca);
 					}
-				});
+				});*/
 				this.state.data.Certificate_id.forEach((ele, index) => {
 					certdata.push({
 						Certificate_id: ele,
