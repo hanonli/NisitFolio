@@ -83,7 +83,7 @@ class SignInLand extends React.Component {
                             <button type="submit" className="btn btn-cta-primary-yellow round profile-button" id="buttonLogIn112">เข้าสู่ระบบ</button>
 
                             <p class="forgot-password text-right fgt" id="forgetText112">
-                                <a href="#" >ลืมรหัสผ่าน?</a>
+                                <a href="forgotpassword" >ลืมรหัสผ่าน?</a>
                             </p>
                             <br />
                             <Link to="/register">

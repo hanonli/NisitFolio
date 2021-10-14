@@ -134,7 +134,9 @@ class MyResumeTemplate extends React.Component {
                         </div>
                     </div>
 
-                    <Link to="/chooseresume">
+                    <Link to={{
+                        pathname: "/chooseresume", state: this.state.value_color
+                    }}>
                         <div class="arrow2nextpage_template"><img src="assets/images/arrowwithyellow.png"></img></div>
                     </Link>
 
