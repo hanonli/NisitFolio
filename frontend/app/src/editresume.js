@@ -7,13 +7,15 @@ import reportWebVitals from './reportWebVitals';
 import { Link } from "react-router-dom";
 import Myresumedittemplate from "./Components/myresumeEditTemplate";
 import Chooseresume1 from "./Components/chooseresume1";
-import Chooseresume2 from "./Components/chooseresume2";
-import Chooseresume3 from "./Components/chooseresume3";
+import Editresume2 from "./Components/editresume2";
+import Editresume3 from "./Components/editresume3";
 import Registab6 from "./Components/registab6";
 import Registab7 from "./Components/registab7";
 import $ from 'jquery';
 import cookie from 'react-cookies';
 import LoadingS from './Components/loadingS';
+
+var certdata = [], workdata = [];
 
 class Editresume extends React.Component {
 
@@ -101,6 +103,29 @@ class Editresume extends React.Component {
 						console.log(list_of_aca);
 					}
 				});
+				this.state.data.Certificate_id.forEach((ele, index) => {
+					certdata.push({
+						Certificate_id: ele,
+						CertName: this.state.data.CertName[index],
+						CertPic: this.state.data.CertPic[index],
+						CertYear: this.state.data.CertYear[index]
+					})
+				});
+				this.state.data.WorkHistory_id.forEach((ele, index) => {
+					workdata.push({
+						WorkHistory_id: ele,
+						Work_JobName: this.state.data.Work_JobName[index],
+						Work_JobType: this.state.data.Work_JobType[index],
+						Company: this.state.data.Company[index],
+						Work_Start_Month: this.state.data.Work_Start_Month[index],
+						Work_End_Month: this.state.data.Work_End_Month[index],
+						Work_Start_Year: this.state.data.Work_Start_Year[index],
+						Work_End_Year: this.state.data.Work_End_Year[index],
+						SalaryType: this.state.data.SalaryType[index],
+						Salary: this.state.data.Salary[index],
+						Infomation: this.state.data.Infomation[index]
+					})
+				});
 			});
 		$(function () {
 			$('.tab-content').hide();
@@ -184,10 +209,10 @@ class Editresume extends React.Component {
 								<Chooseresume1 />
 							</div>
 							<div class="tab-content" id="registab3-content">
-								<Chooseresume2 mywork_data={this.state.data} />
+								<Editresume2 mywork_data={workdata} />
 							</div>
 							<div class="tab-content" id="registab4-content">
-								<Chooseresume3 mycerti_data={this.state.data} />
+								<Editresume3 mycerti_data={certdata} />
 							</div>
 							<div class="tab-content" id="registab5-content">
 								<Registab6 />
