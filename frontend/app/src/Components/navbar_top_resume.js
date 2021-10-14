@@ -1,6 +1,9 @@
 import $, { data, get } from 'jquery';
 import cookie from 'react-cookies';
 import React from 'react';
+import MyResumeNothing1 from './myresumeNothing1.js'
+import MyResumeNothing2 from './myresumeNothing2.js'
+import MyResumeNothing3 from './myresumeNothing3.js'
 import MyResumeContent from './myresumeContent.js';
 import Resume_sideNavbar from './navbar_resume.js';
 import SharingPopup from './sharingpopup';
@@ -34,6 +37,7 @@ class Resume_topNavbar extends React.Component {
 			aboutme : '',
 			ready  : false,
 			loading : true,
+			fetch : true,
 		}
 
 		// GET Parameter(userID) FROM URL 
@@ -47,15 +51,17 @@ class Resume_topNavbar extends React.Component {
 		const script = document.createElement("script");
 		script.src = "assets/js/navbar_top_resume_script.js";
 		document.body.appendChild(script);
-
 	}
 		
-	getResumeID(e=0){
+	getResumeID(e){
 		var userid = this.state.userID ;
-		var index = e ;
+		var index = e;
 		var owner = this.state.is_owner ;
+		// console.log('in resumeid index1: ' + index);
+		// console.log('in resumeid e1: ' + e);
+		// console.log('in resumeid state.index1: ' + this.state.index);
 		// console.log('getResumeID called')
-		console.log('in getResumeID index is :' + index + ' userid is: ' + userid )
+		// console.log('in getResumeID index is :' + index + ' userid is: ' + userid )
 		fetch("http://localhost:2000/myresume/user/"+ userid,{
 			method: "GET",
 			headers: {
@@ -66,10 +72,11 @@ class Resume_topNavbar extends React.Component {
 			},
 		})
 		.then(response => response.json())
-		.then((datas) => {
+		.then((datas) => {	
+			// var index = e;
 			// console.log('real resumeID:' + JSON.stringify(datas[0].ResumeId[0]))
-			console.log('in resumeid datas: ' + JSON.stringify(datas));
-
+			// console.log('in resumeid datas: ' + JSON.stringify(datas));
+			var index=this.state.index
 			// var a = datas[0]
 			// var b = datas[1]
 			// var c = datas[2]
@@ -77,9 +84,22 @@ class Resume_topNavbar extends React.Component {
 			// console.log('in resumeid datas b: ' + JSON.stringify(b));
 			// console.log('in resumeid datas c: ' + JSON.stringify(c));			
 			var Resumedata = datas[index]
-			if(Resumedata === undefined){
-				alert('there is no resumedata Redirect to last path')
-				window.history.go(-1)	
+			// console.log('in resumeid index2: ' + index);
+			// console.log('in resumeid e2: ' + e);
+			// console.log('in resumeid state.index2: ' + this.state.index);
+			// console.log('in resumeid Resumedatas1: ' + JSON.stringify(datas[index]));
+			// console.log('in resumeid Resumedatas2: ' + JSON.stringify(Resumedata));	
+			if(Resumedata == undefined ){
+				// console.log('there is no resumedata Redirect to last path')
+				// console.log('resumeid this.state.loading: '+this.state.loading)
+				// console.log('resumeid this.state.ready: '+this.state.ready)
+				// console.log('resumeid this.state.fetcf: '+this.state.fetch)
+				this.setState({
+					loading : false,
+					ready : true,
+					fetch : false,
+				});
+				// window.history.go(-1)	
 			}else{
 				this.setState({
 					resumeID : Resumedata._id,
@@ -151,12 +171,13 @@ class Resume_topNavbar extends React.Component {
 			educationHistorys : [],
 			certificates : [],
 			additionalSkills : [],
-			interestedJob : [],
+			interestedJob : [],	
 			privacy : '',
 			color : '',
 			index : 0,
-			ready  :  false,
+			ready  : false,
 			loading : true,
+			fetch : true,
 		});
 		// console.log('call GetreumeID from tab1')
 		this.getResumeID(index);
@@ -177,8 +198,9 @@ class Resume_topNavbar extends React.Component {
 			privacy : '',
 			color : '',
 			index : 1,
-			ready  :  false,
+			ready  : false,
 			loading : true,
+			fetch : true,
 		})
 		this.getResumeID(index);
 		// this.getDatas();
@@ -197,8 +219,9 @@ class Resume_topNavbar extends React.Component {
 			privacy : '',
 			color : '',
 			index : 2,
-			ready  :  false,
+			ready  : false,
 			loading : true,
+			fetch : true,
 		})
 		this.getResumeID(index);
 
@@ -245,9 +268,9 @@ class Resume_topNavbar extends React.Component {
 						{/* <SharingPopup></SharingPopup> */}
 
 
-						{/* <a className='topnav_section2'> 
+						<a className='topnav_section2'> 
 							<span className='icon-myresume'> <SharingPopup></SharingPopup></span>
-						</a> */}
+						</a>
 						&nbsp;
 					</div>
 				</div>
@@ -265,6 +288,52 @@ class Resume_topNavbar extends React.Component {
 		}
 	}
 
+	resumeNothing(){
+		var index = this.state.index
+		if(index==0){
+			return(
+				<>
+					<MyResumeNothing1/>
+				</>
+
+			)
+		}else if(index==1){
+			return(
+				<>
+					<MyResumeNothing2/>
+				</>
+
+			)
+		}else if(index==2){
+			return(
+				<>
+					<MyResumeNothing3/>
+				</>
+
+			)
+		}
+		
+	}
+
+	content(){
+		if(this.state.fetch == true){
+			return(
+				<>
+					<div class="tab-content" id="myresume1-content">
+						<MyResumeContent  state={this.state} />
+					</div>
+				</>
+			)
+		}else{
+			return(
+				<>
+					{this.resumeNothing()}
+				</>
+			)
+		}
+			
+	}
+
 	loadingScreen(){
 		return( 
 			<div>
@@ -273,45 +342,44 @@ class Resume_topNavbar extends React.Component {
 	}
 
 	showingScreen(){
-		return(
-			<div>
-				<Resume_sideNavbar color={this.state.color}/>
-				<div className="Resume_topNavbar" id='topNav'>
+			return(
+				<div>
 					
-					<div  className='myresumetoppath'> 
-							{this.handleSection1()}
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<div className='resume_topnav' >
-							<div className='resume_selectresume'> 
-								<h1 className='resume_selectresume_block'> 
-									&nbsp;<a  onClick={this.portfoliotab1}  id='resume_selectresume1'>ตำแหน่งงานที่ 1</a>&nbsp; <span className="resume_verticalline"></span> 
-								</h1>
-								<h1 className='resume_selectresume_block'> 	
-									&nbsp;<a  onClick={this.portfoliotab2} id='resume_selectresume2'>ตำแหน่งงานที่ 2</a>&nbsp; <span className="resume_verticalline"></span> 
-								</h1>
-								<h1 className='resume_selectresume_block'> 
-									&nbsp;<a  onClick={this.portfoliotab3} id='resume_selectresume3'>ตำแหน่งงานที่ 3</a>&nbsp;
-								</h1>
+					<div className="Resume_topNavbar" id='topNav'>
+						
+						<div  className='myresumetoppath'> 
+								{this.handleSection1()}
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<div className='resume_topnav' >
+								<div className='resume_selectresume'> 
+									<h1 className='resume_selectresume_block'> 
+										&nbsp;<a  onClick={this.portfoliotab1}  id='resume_selectresume1'>ตำแหน่งงานที่ 1</a>&nbsp; <span className="resume_verticalline"></span> 
+									</h1>
+									<h1 className='resume_selectresume_block'> 	
+										&nbsp;<a  onClick={this.portfoliotab2} id='resume_selectresume2'>ตำแหน่งงานที่ 2</a>&nbsp; <span className="resume_verticalline"></span> 
+									</h1>
+									<h1 className='resume_selectresume_block'> 
+										&nbsp;<a  onClick={this.portfoliotab3} id='resume_selectresume3'>ตำแหน่งงานที่ 3</a>&nbsp;
+									</h1>
+								</div>
 							</div>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								{this.handleSection2()}
+								{this.injectScript()}
 						</div>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							{this.handleSection2()}
-							{this.injectScript()}
-					</div>
 
-					<div>
-						<div class="tab-content" id="myresume1-content">
-							<MyResumeContent  state={this.state} />
-						</div>
+
+						{this.content()}
+						
+		
 					</div>
 	
 				</div>
-
-			</div>
+				
+			)
 			
-
-
-		)
+		
+		
 
 	}
 
@@ -327,8 +395,8 @@ class Resume_topNavbar extends React.Component {
 		
 		var sPageURL = window.location.search.substring(1)
 		var isURLBlank = (sPageURL == '')
-		console.log(sPageURL)
-		console.log(isURLBlank)
+		// console.log(sPageURL)
+		// console.log(isURLBlank)
 		if( !isURLBlank){
 			var sParam = sPageURL.split('=')
 			var temp_userid = sParam[1]
@@ -367,35 +435,39 @@ class Resume_topNavbar extends React.Component {
 	
 	shouldComponentUpdate(nextProps, nextState){
 		// alert( nextState == this.state )
-		if(this.state.userID===''){
-			console.log('update state')
+		if(this.state.userID==''){
+			// console.log('update state')
 			return true
-		}else if(this.state.resumeID===''){
-			console.log('update state')
-			return true
-		}else if(this.state.resumeID !== nextState.resumeID){
+		}
+		// }else if(this.state.resumeID===''){
+		// 	console.log('update state')
+		// 	return true
+		// }
+		else if(this.state.resumeID != nextState.resumeID){
 			// console.log(3)
-			console.log('update state')
+			// console.log('update state resumeid')
 			return true
-		}else if(this.state.educationHistorys === [] ){
+		}else if(this.state.index != nextState.index){
 			// console.log(3)
-			console.log('update state')
+			// console.log('update state resumeid')
 			return true
-			
-		}else if(this.state.color !== nextState.color ){
+		}else if(this.state.color != nextState.color ){
 			// console.log(3)
-			console.log('update state')
+			// console.log('update state color')
 			return true
 			
 		}else if( !this.state.ready){
 			// console.log('status need to re-render')
-			console.log('update state')
+			// console.log('update state ready')
 			return true
 		}else if( this.state.loading){
 			this.setState({
 				loading : false
 			})
-			// console.log('update state')
+			// console.log('update state loading')
+			return true
+		}else if( this.state.fetch != nextState.fetch){
+			// console.log('update state fetch')
 			return true
 		}else{
 			console.log('not update')
@@ -409,8 +481,8 @@ class Resume_topNavbar extends React.Component {
 		const linestyle = {
             backgroundColor: this.state.color? this.state.color: "#FFCE55"
         };
-
-		if(this.state.userID !== ''  && this.state.resumeID === ''  ){
+		// this.getResumeID(this.state.index);
+		if(this.state.userID != ''  && this.state.resumeID == ''  ){
 			// console.log('call getResumeID');
 			this.getResumeID(this.state.index);
 		}
@@ -421,11 +493,15 @@ class Resume_topNavbar extends React.Component {
 		// }
 
 
-		console.log('in render() state : ' + JSON.stringify(this.state))
+		// console.log('in render() state : ' + JSON.stringify(this.state))
+		// console.log('render this.state.loading: '+this.state.loading)
+		// console.log('render this.state.ready: '+this.state.ready)
+		// console.log('render this.state.fetch: '+this.state.fetch)
 
 		return (
 			
 			this.state.loading ? this.loadingScreen() : this.showingScreen() 
+			// this.state.loading ? this.loadingScreen() : this.state.fetch? this.showingScreen() : this.resumeNothing()
 			// <div className="Resume_topNavbar" id='topNav'>
 				
 			// 	<div  className='myresumetoppath'> 
