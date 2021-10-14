@@ -3,6 +3,7 @@ import MyresumeWork from './myresumeWorkhistory';
 import MyResumeSkill from './myresumeSkill';
 import MyresumeCertificate from './myresumecertificate.js';
 import MyResumeportfoliolayoutP from './Myresume_choiceforportfolio';
+import MyresumePortfolio from './myresumeportfolio';
 
 class MyResume2 extends React.Component {
     constructor(props) {
@@ -126,6 +127,7 @@ class MyResume2 extends React.Component {
                 <MyResumeportfoliolayoutP>
                     <div><h1>content</h1></div>
                 </MyResumeportfoliolayoutP>
+                <MyresumePortfolio></MyresumePortfolio>
             </div>
                 
         );
