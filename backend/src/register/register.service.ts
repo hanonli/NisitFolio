@@ -8,7 +8,7 @@ import { HttpService } from '@nestjs/axios';
 import { AxiosResponse } from 'axios';
 import { Observable } from 'rxjs';
 
-import { Account, Userinfo, AdditionalSkill, Certificate, EducationHistory, InterestedJob, WorkHistory,Portfolio,PortfolioPicture,Resume,UserJobSkill} from './entity/Register.entity'
+import { Account, Userinfo, AdditionalSkill, Certificate, EducationHistory, InterestedJob, WorkHistory,PortfolioPicture,Resume,UserJobSkill} from './entity/Register.entity'
 import { CreateRegisDto } from './dto/create-register.dto';
 import { EmailConfirmationService } from '../emailConfirmation/emailConfirmation.service';
 
@@ -24,6 +24,7 @@ import { UserInfoMongoose } from './entity/register.schema';
 import { UserInfoDocument } from './entity/register.schema';
 import { GetRegisDto } from './dto/get-register.dto';
 import { Bookmark } from './entity/bookmark.entity';
+import { Portfolio } from 'portfolio/entity/portfolio.entity';
 
 @Injectable()
 export class RegisterService {
@@ -47,9 +48,7 @@ export class RegisterService {
     @InjectRepository(Skill)
     private SkillRepository: Repository<Skill>,
     @InjectRepository(HardSkill)
-    private HardSkillRepository: Repository<Skill>,
-    @InjectRepository(HardSkill)
-    private HardSkill2Repository: Repository<HardSkill>,
+    private HardSkillRepository: Repository<HardSkill>,
     @InjectRepository(Portfolio)
     private portfolioRepository: Repository<Portfolio>,
     @InjectRepository(PortfolioPicture)
@@ -62,6 +61,7 @@ export class RegisterService {
     private userJobSkillRepository: Repository<UserJobSkill>,
     @InjectRepository(Bookmark)
     private BookmarkRepository: Repository<Bookmark>,
+
     
     private readonly emailConfirmationService: EmailConfirmationService,
     private httpService: HttpService,
@@ -83,6 +83,7 @@ export class RegisterService {
     account.create_time =  isoTime;
     account.last_modified =  [isoTime] ;
     account.last_login = null;
+    
 
     const accountid = (await this.accountRepository.save(account))._id.toString()
     
@@ -100,7 +101,7 @@ export class RegisterService {
     userinfo.ProfilePic = createDto.ProfilePic; 
     userinfo.create_time = isoTime ;
     userinfo.last_modified =  [isoTime] ;
-
+    //*/
 
     for (var _i = 0; _i < createDto.SoftSkill.length; _i++) {
       
@@ -110,20 +111,12 @@ export class RegisterService {
       additionalskill.create_time = isoTime ;
       additionalskill.last_modified =  [isoTime] ;
       additionalskill.ResumeId =  new Array() ;
-      /*
-      additionalskill.Type= (await this.HardSkill2Repository.findOne({where:{ THName: createDto.SoftSkill[_i] }})).THType;
+      
+      additionalskill.Type= (await this.HardSkillRepository.findOne({where:{ THName: createDto.SoftSkill[_i] }})).THType;
       await this.AdditionalSkillRepository.save(additionalskill);
-      */
-      const x = (await this.HardSkill2Repository.find({where:{ THName: createDto.SoftSkill[_i] }}));
-      for (var _i = 0; _i < createDto.SoftSkill.length; _i++) {
-        if(x[_i].THType=="สกิลแห่งปี 2021"){
-          continue
-        }else{
-          additionalskill.Type= x[_i].THType;
-        }
-      }
-      await this.AdditionalSkillRepository.save(additionalskill);
+
     }
+    
     
     for (var _i = 0; _i < createDto.CertName.length; _i++) {
       const certificate = new Certificate();
@@ -208,6 +201,7 @@ export class RegisterService {
     userinfo.tags = tag_arr;
     userinfo.countSkill = count_skill;
     return (this.userinfoRepository.save(userinfo));
+    
 
   }
 
@@ -232,6 +226,8 @@ export class RegisterService {
     const isoTime = time.toLocaleDateString('th-TH',{ year:'numeric',month: 'long',day:'numeric',hour:"2-digit",minute:"2-digit"});
     const userid = new ObjectID(UserId);
     const acc =  await this.accountRepository.findOne({where:{ _id: userid }});
+
+
 
     if (patchDto.Password != null)
       acc.Password.push(Md5.hashStr(patchDto.Password));
@@ -353,7 +349,7 @@ export class RegisterService {
     if (patchDto.SoftSkill){
       additionalskill.last_modified.push(isoTime);
       additionalskill.AdditionalSkill = patchDto.SoftSkill;
-      additionalskill.Type= (await this.HardSkill2Repository.findOne({where:{ THName: patchDto.SoftSkill }})).THType;
+      additionalskill.Type= (await this.HardSkillRepository.findOne({where:{ THName: patchDto.SoftSkill }})).THType;
       return await this.AdditionalSkillRepository.save(additionalskill);
     }
     throw new BadRequestException('Dto error');

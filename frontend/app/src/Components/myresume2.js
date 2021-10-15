@@ -3,6 +3,7 @@ import MyresumeWork from './myresumeWorkhistory';
 import MyResumeSkill from './myresumeSkill';
 import MyresumeCertificate from './myresumecertificate.js';
 import MyResumeportfoliolayoutP from './Myresume_choiceforportfolio';
+import MyresumePortfolio from './myresumeportfolio';
 
 class MyResume2 extends React.Component {
     constructor(props) {
@@ -112,7 +113,7 @@ class MyResume2 extends React.Component {
                 <p>เหตุผลคือถ้าอุตส่าห์มีสกิลทั้งทีแล้วทำไมต้องรอให้มีสกิลเสริม หรือสกิลตามอาชีพก่อนถึงยอมโชว์ ถ้าเขาใส่มาคงอยากโชว์แหละ</p> */}
                 <MyresumeCertificate data={certdata} owner={owner} colour={color}></MyresumeCertificate>
                 
-                <h1>ไกด์ให้มาย</h1>
+                {/*<h1>ไกด์ให้มาย</h1>
                 <MyResumeportfoliolayoutP>
                     <div>element1</div>
                     <div>element2</div>
@@ -125,7 +126,8 @@ class MyResume2 extends React.Component {
                 </MyResumeportfoliolayoutP>
                 <MyResumeportfoliolayoutP>
                     <div><h1>content</h1></div>
-                </MyResumeportfoliolayoutP>
+                </MyResumeportfoliolayoutP>*/}
+                <MyresumePortfolio></MyresumePortfolio>
             </div>
                 
         );

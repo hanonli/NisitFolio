@@ -1,6 +1,5 @@
 
 .Resume_sideNavbar {
-
     height: 100vh ;/* Full-height: remove this if you want "auto" height */
     width: 20vw; /* Set the width of the sidebar */
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
@@ -17,34 +16,32 @@
 
   } */
 
-  .Resume_sideNavbar a {
-    position: relative;
-
-  }
-  .Resume_sideNavbar .resumeicon:hover {
-    position: relative;
+  .resumeicon:hover {
     background: gray;
-
   }
 
   .resumeblock{
-    font-size: 10vw;
+    position: relative;
+    left: 2vw;
+    width: 20vw;
 
   }
+
   
   #myresumepath{
     height: 100vh;
     
   }
-  #resumetext{
+
+  .resumetext{
+    position: relative;
     display: inline-block;
+    top: 0.3vh;
     color: black;
-    font-weight: 300;
+    font-weight: 100;
     font-size: 2vh;
   }
 
-  .active{
-    background-color: gray;
-  }
+
  
 

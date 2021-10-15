@@ -291,7 +291,7 @@ function set_slider_range3(value3) {
 
 function removeOptionsJob(selectElement) {
     var i, L = selectElement.options.length - 1;
-    for (i = L; i >= 1; i--) {
+    for (let i = L; i >= 1; i--) {
         selectElement.remove(i);
     }
 }
@@ -427,7 +427,7 @@ $(document).on("click", ".frame_add_job_interest", function () {
     $("#obj-job-03").addClass("dis_input3");
 });
 
-var for_edit;
+var for_edit, id_list_job_edit;
 $(document).on("click", "#edit-job", function () {
     $("#nm_job").removeClass("is-invalid");
     id_list_job_edit = $(this).parents().parents().attr('id');
@@ -659,6 +659,8 @@ document.getElementById("submit-job11").addEventListener("click", function () {
         }
     }
 });
+
+var id_list_job_del;
 
 $(document).on("click", "#del-job", function () {
     id_list_job_del = $(this).parents().parents().attr('id');
