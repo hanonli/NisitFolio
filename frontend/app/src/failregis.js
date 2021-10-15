@@ -8,33 +8,33 @@ import cookie from 'react-cookies';
 import $ from 'jquery';
 import {Redirect} from 'react-router-dom';
 
-/* NOT AVALIABLE TO TEST RIGHT NOW BC DONT HAVE PATH TO LINK WITH*/
 class Failregis extends React.Component {
 	constructor(props){
 		super(props);
 	}
 	
 	componentDidMount() {
-		// Simple POST request with a JSON body using fetch
-        /*
-		let params = new URLSearchParams(document.location.search.substring(1));
-		let token = params.get("token");
-		//cookie.save('login-token',token);
-		console.log(token);
-		const requestOptions = {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ token: token })
-		};
-		fetch('http://localhost:2000/email-confirmation/confirm', requestOptions)
-			.then(response => response.json())
-			.then(data => this.setState({ postId: data.id }));
-		//setInterval(window.location = "http://localhost:3000/landing", 5000);  
-        */
         $('#resendEmail').on('click',function(){
-			alert('This feature is now unavaliable! be patient');
-			<Redirect  to="/landing" />
-		});
+			var EmailtoResend = cookie.load('Email-verify');
+			const EmailtoResends = {
+			  method: 'POST',
+			  headers: { 'Content-Type': 'application/json' },
+			  body: JSON.stringify({ Email: EmailtoResend })
+			};
+			fetch('http://localhost:2000/resend-confirmation-link', EmailtoResends)
+			  .then(function (response) {
+				if (!response.ok) {
+				console.log(EmailtoResend);
+				  alert('Resend fail');
+				}
+				else{
+				  alert('Resend success');
+				}
+			  }).catch((error) => {
+				console.log('Token Error!');
+				console.log(EmailtoResend);
+			});
+			  });
 	}
 
 	render (){
@@ -61,7 +61,7 @@ class Failregis extends React.Component {
                     <h1 class="successregis-f margin-bottom1 ">โปรดตรวจสอบการแจ้งเตือนที่อีเมลของคุณเพื่อยืนยันตัวตน</h1>
 					<div class="col failgap">
 						<h5 class='form-b24'>หากไม่ได้รับอีเมลในการยืนยัน</h5>
-						<a class="btn btn-cta-primary-yellowwideE round profile-button" href="#" id='resendEmail' target="_blank">ส่งใหม่อีกครั้ง</a>
+						<a class="btn btn-cta-primary-yellowwideE round profile-button" id='resendEmail' target="_blank">ส่งใหม่อีกครั้ง</a>
 					</div>
 				</div>
 			</div>

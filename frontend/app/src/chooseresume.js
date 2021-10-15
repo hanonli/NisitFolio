@@ -23,14 +23,21 @@ class Chooseresume extends React.Component {
 		this.handleLoad = this.handleLoad.bind(this);
 		this.state = {
 			data: [],
-			render: true,
+			SoftSkillID: [],
+			CertID: [],
+			WorkID: [],
+			PortID: [],
+			JobID: [],
 			list_of_aca: [],
+			render: true
 		}
 	}
 
 	componentDidMount() {
 		window.addEventListener('load', this.handleLoad);
-		var list_of_high = [];
+		var list_of_high = [], list_of_aca = [];
+		const { state } = this.props.location; //get color template
+		console.log("get template color:", state);
 
 		function get_high_id(list_of_high, x) {
 			//var x = 1;

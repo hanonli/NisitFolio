@@ -23,7 +23,7 @@ class Resume_sideNavbar extends React.Component {
 	
 	render (){
 		const linestyle = {
-            backgroundColor: this.props.color? this.props.color: "#FFCE55"
+            background: this.props.color? this.props.color: "#FFCE55"
         };
 		// const color = this.props.color? this.props.color : "#FFCE55" 
 		return (
@@ -34,14 +34,14 @@ class Resume_sideNavbar extends React.Component {
 					<a className='resumeicon' href='myresume#resume-education'>
 						<div className='resumeblock' >
 							<img id='icon-myresume-education'  src="assets/images/ประวัติการศึกษา.png"/> 
-							<h1 class='resumetext'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ประวัติการศึกษา</h1>
+							<span class='resumetext'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ประวัติการศึกษา</span>
 						</div>
 					</a>
 
 					<a className='resumeicon' href="myresume#resume-additionalskills">
 						<div className='resumeblock'>
 							 <img id='icon-myresume-skill'  src="assets/images/ความถนัดและทักษะ.png"></img>  
-							<h1 class='resumetext'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ทักษะที่โดดเด่น</h1>
+							<span class='resumetext'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ทักษะที่โดดเด่น</span>
 						</div>
 					</a>
 

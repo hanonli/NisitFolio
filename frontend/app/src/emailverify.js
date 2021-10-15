@@ -18,7 +18,7 @@ class Emailverify extends React.Component {
 		document.body.appendChild(scripointer);
 		*/
     $('#resendEmail').on('click',function(){
-      var EmailtoResend = cookie.get('Email-verify');
+      var EmailtoResend = cookie.load('Email-verify');
 			const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -27,6 +27,7 @@ class Emailverify extends React.Component {
       fetch('http://localhost:2000/resend-confirmation-link', requestOptions)
         .then(function (response) {
           if (!response.ok) {
+            console.log(EmailtoResend);
             alert('Resend fail');
           }
           else{

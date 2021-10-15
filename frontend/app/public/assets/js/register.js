@@ -311,7 +311,7 @@ $('#continue2').click(function () {
             //alert(RequestCount_email);
             RequestCount_email=1;
             //alert(RequestCount_email);
-            $('#toggleEmailW').hide();
+            //$('#toggleEmailW').hide();
           }
         }
         else{
