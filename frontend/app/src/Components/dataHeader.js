@@ -30,7 +30,7 @@ class DataHeader extends React.Component {
 		//script.src = "assets/js/#.js";
 		//document.body.appendChild(script);
 		$(function () {
-			console.log('Selected tab is '+ cookie.load('Edit_tabselect'));
+			console.log('Selected tab is ' + cookie.load('Edit_tabselect'));
 			$('.tab-content').hide();
 			$('#Edittab1-content').show();
 			$('#basic-date-picker1').attr('placeholder', 'วัน/เดือน/ปี');
@@ -281,11 +281,18 @@ class DataHeader extends React.Component {
 					jobdata.push({
 						InterestedJob_id: ele,
 						Job_JobName: this.state.data.Job_JobName[index],
-						Job_Objective: this.state.data.Job_Objective[index],
-						Job_Score: this.state.data.Job_Score[index],
-						Job_SkillName: this.state.data.Job_JobName[index],
+						Job_Score1: this.state.data.Job_Score[index][0] ? parseFloat(this.state.data.Job_Score[index][0]) : parseFloat(2.5),
+						Job_Score2: this.state.data.Job_Score[index][1] ? parseFloat(this.state.data.Job_Score[index][1]) : parseFloat(2.5),
+						Job_Score3: this.state.data.Job_Score[index][2] ? parseFloat(this.state.data.Job_Score[index][2]) : parseFloat(2.5),
+						Job_SkillName1: this.state.data.Job_SkillName[index][0] ? this.state.data.Job_SkillName[index][0] : "none",
+						Job_SkillName2: this.state.data.Job_SkillName[index][1] ? this.state.data.Job_SkillName[index][1] : "none",
+						Job_SkillName3: this.state.data.Job_SkillName[index][2] ? this.state.data.Job_SkillName[index][2] : "none",
+						Job_Objective1: this.state.data.Job_Objective[index][0] ? this.state.data.Job_Objective[index][0] : "",
+						Job_Objective2: this.state.data.Job_Objective[index][1] ? this.state.data.Job_Objective[index][1] : "",
+						Job_Objective3: this.state.data.Job_Objective[index][2] ? this.state.data.Job_Objective[index][2] : "",
 						Job_Pos: index + 1,
-						token: token
+						token: token,
+						isFetch: true
 					})
 				});
 			});
@@ -293,7 +300,7 @@ class DataHeader extends React.Component {
 
 	componentWillUnmount() {
 		window.removeEventListener('load', this.handleLoad)
-		cookie.save('Edit_tabselect','');
+		cookie.save('Edit_tabselect', '');
 	}
 
 	render() {

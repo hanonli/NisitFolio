@@ -201,11 +201,11 @@ class Edittab5 extends React.Component {
                 if (post.Certificate_id == id_list_certi_del)
                     return true;
             });
-            if (removeIndex.isFetch == true) {
-                fetch("http://localhost:2000/register/certificate/" + removeIndex.Certificate_id, {
+            if (list_of_certi[removeIndex].isFetch === true) {
+                fetch("http://localhost:2000/register/certificate/" + list_of_certi[removeIndex].Certificate_id, {
                     method: "DELETE",
                     headers: {
-                        'Authorization': 'Bearer ' + removeIndex.token,
+                        'Authorization': 'Bearer ' + list_of_certi[removeIndex].token,
                         "Access-Control-Allow-Origin": "*",
                         "Access-Control-Allow-Methods": "*",
                         "Access-Control-Allow-Credentials": true,
