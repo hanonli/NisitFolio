@@ -109,18 +109,15 @@ export class RegisterService {
       additionalskill.create_time = isoTime ;
       additionalskill.last_modified =  [isoTime] ;
       additionalskill.ResumeId =  new Array() ;
-<<<<<<< HEAD
       
-      additionalskill.Type= (await this.HardSkill2Repository.findOne({where:{ THName: createDto.SoftSkill[_i] }})).THType;
+      additionalskill.Type= (await this.HardSkillRepository.findOne({where:{ THName: createDto.SoftSkill[_i] }})).THType;
       await this.AdditionalSkillRepository.save(additionalskill);
       /*
       const x = (await this.HardSkill2Repository.find({where:{ THName: createDto.SoftSkill[_i] }}));
       for (var _i = 0; _i < x.length; _i++) {
-=======
 
       const x = (await this.HardSkillRepository.find({where:{ THName: createDto.SoftSkill[_i] }}));
       for (var _i = 0; _i < createDto.SoftSkill.length; _i++) {
->>>>>>> 7624b62359db12d905091d14ad81c1cdb877febc
         if(x[_i].THType=="สกิลแห่งปี 2021"){
           continue
         }else{
