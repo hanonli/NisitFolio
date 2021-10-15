@@ -24,7 +24,7 @@ import { UserInfoMongoose } from './entity/register.schema';
 import { UserInfoDocument } from './entity/register.schema';
 import { GetRegisDto } from './dto/get-register.dto';
 import { Bookmark } from './entity/bookmark.entity';
-import { Portfolio } from 'portfolio/entity/portfolio.entity';
+import { Portfolio } from '../portfolio/entity/portfolio.entity';
 
 @Injectable()
 export class RegisterService {
