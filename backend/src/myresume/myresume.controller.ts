@@ -35,7 +35,7 @@ export class MyResumeController {
       return this.resumeService.getResumeheader(req.user.userId);
   }
   
-  
+
 
   @UseGuards(JwtAuthGuard)
   @Post()
@@ -63,7 +63,8 @@ export class MyResumeController {
       return this.resumeService.updateResume(CreateDto,resumeId,req.user.userId,ip);
 
     }
-    
+  
+   
   
     //*/
 

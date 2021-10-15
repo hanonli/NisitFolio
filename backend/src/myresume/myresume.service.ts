@@ -492,5 +492,7 @@ export class MyResumeService {
       error: 'Can not Patch Other Data',
     }, HttpStatus.UNAUTHORIZED);
   }
+
+
 }
 

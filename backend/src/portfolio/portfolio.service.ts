@@ -298,5 +298,16 @@ export class PortService {
 
   }
 
+  async getportowner(userId:string ){
+    return  this.portModel.find({UserId : userId});
+  }
+
+  async getportother(userId:string ){
+    return  this.portModel.find({$and: [ {UserId : userId }, { $or: [ {Port_Privacy : "Public"} , {Port_Privacy : "Members"} ] } ]});
+  }
+
+  async getportguest(userId:string ){
+    return  this.portModel.find({$and: [ {UserId : userId }, { Port_Privacy : "Public" } ] });
+  }
 
 }
