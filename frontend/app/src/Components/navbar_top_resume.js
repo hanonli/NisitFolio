@@ -395,31 +395,28 @@ class Resume_topNavbar extends React.Component {
 		
 		// var ssid = this.props.userid
 		
-		var ssid = cookie.load('ssId')
-		console.log('sessionid: '+ ssid)
-		console.log('sessionid: '+ JSON.stringify(ssid))
+		var ssid = cookie.load('search-userid')
+		// console.log('sessionid: '+ ssid)
+		// console.log('sessionid: '+ JSON.stringify(ssid))
 		
 		// var sPageURL = window.location.search.substring(1)
 		// var isURLBlank = (sPageURL == '')
 		// console.log(sPageURL)
 		// console.log(isURLBlank)
-		console.log( 'not undefined: '+ (ssid != 'undefined'))
-		console.log( 'not blank: '+ (ssid != ''))
-		console.log(( undefined))
-		console.log(( null))
+		// console.log( 'not undefined: '+ (ssid != 'undefined'))
+		// console.log( 'not blank: '+ (ssid != ''))
+		// console.log(( undefined))
+		// console.log(( null))
 		if( ssid != 'undefined' && ssid != ''){
-			console.log('case1')
-			console.log('ssid incase1: '+ ssid)
-			// var sParam = sPageURL.split('=')
-			// var temp_userid = sParam[1]
-			// console.log(temp_userid)
+			// console.log('case1')
+			// console.log('ssid incase1: '+ ssid)
 			
 			this.setState({
 				userID : ssid,
 				is_owner : false,		
 			})
 		}else{
-			console.log('case2')
+			// console.log('case2')
 
 			var token = cookie.load('login-token')
 			// console.log('token: ' + token)	
@@ -446,7 +443,7 @@ class Resume_topNavbar extends React.Component {
 	}
 
 	componentWillUnmount(){		
-		cookie.save('ssId', '' );
+		cookie.save('search-userid', '' );
 	}
 	
 	
@@ -456,10 +453,10 @@ class Resume_topNavbar extends React.Component {
 			// console.log('update state')
 			return true
 		}
-		else if(this.state.userID != nextState.userID){
-			console.log('update userid')
-			return true
-		}
+		// else if(this.state.userID != nextState.userID){
+		// 	console.log('update userid')
+		// 	return true
+		// }
 		else if(this.state.resumeID != nextState.resumeID){
 			// console.log(3)
 			// console.log('update state resumeid')
