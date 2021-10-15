@@ -87,6 +87,8 @@ class MyResume2 extends React.Component {
         //         "Job_JobName": "กวาดพื้นที่ logger room",
         //         "Job_SkillName": ["มวยปล้ำ", "ชักกะเย่อ", "การซ่อมแซมหรือเปลี่ยนวาล์ว ปั๊ม เครื่องแลกเปลี่ยนความร้อน คอมเพรสเซอร์ กังหันไอน้ำ และอุปกรณ์ควบคุมไฮดรอลิกหรือนิวแมติก "]
         // }; //มันควรชื่อ jobskill มากกว่าป่าววะ
+        const portfoliodata = this.props.state.portfolio;
+        console.log(portfoliodata);
         const interestedJobnoskill = {
             "id": "6135805cd633f137e4559264",
             "UserId": "61358059d633f137e455925c",
@@ -95,24 +97,24 @@ class MyResume2 extends React.Component {
             "Job_JobName": "กวาดพื้นที่ logger room",
             "Job_SkillName": []
     }; //มันควรชื่อ jobskill มากกว่าป่าววะ
+        console.log(this.props.state);
         return (
             <div class="resume2">
                 <MyResumeSkill addSkill={additionalSkills} intJob={interestedJob} owner={owner} colour={color}></MyResumeSkill>
                 <MyresumeWork data={workdata} owner={owner} colour={color}></MyresumeWork>
-                {/* <MyresumeWork data={[]} owner={true}></MyresumeWork> */}
+                {/*<MyresumeWork owner={true}></MyresumeWork>
                 
-                {/* <h2>ไม่มีเหี้ยไรสักอย่าง แต่เป็นเจ้าของ</h2>
-                <MyResumeSkill addSkill={[]} owner={true}></MyResumeSkill> */}
-                {/* <h2>เคสที่มีแต่ jobskill</h2> */}
-                {/* <MyResumeSkill intJob={interestedJob}></MyResumeSkill>
+                <h2>ไม่มีเหี้ยไรสักอย่าง แต่เป็นเจ้าของ</h2>
+                <MyResumeSkill addSkill={[]} owner={true}></MyResumeSkill> 
+                 <h2>เคสที่มีแต่ jobskill</h2> 
+                <MyResumeSkill intJob={interestedJob} owner={true}></MyResumeSkill>
                 <h2>เคสที่มีแต่ additionalSkills</h2>
                 <MyResumeSkill addSkill={additionalSkills} owner={true}></MyResumeSkill>
                 <h2>เคสที่มี intjob แต่ในนั้น array Job_SkillName ไม่มีสมาชิก</h2>
                 <MyResumeSkill addSkill={[]} intJob={interestedJobnoskill} owner={true}></MyResumeSkill>
-                <MyResumeSkill addSkill={[]} intJob={interestedJobnoskill} owner={false}></MyResumeSkill>
-                <p>เหตุผลคือถ้าอุตส่าห์มีสกิลทั้งทีแล้วทำไมต้องรอให้มีสกิลเสริม หรือสกิลตามอาชีพก่อนถึงยอมโชว์ ถ้าเขาใส่มาคงอยากโชว์แหละ</p> */}
-                <MyresumeCertificate data={certdata} owner={owner} colour={color}></MyresumeCertificate>
-                
+                <MyResumeSkill addSkill={[]} intJob={interestedJobnoskill} owner={true}></MyResumeSkill>
+                <p>เหตุผลคือถ้าอุตส่าห์มีสกิลทั้งทีแล้วทำไมต้องรอให้มีสกิลเสริม หรือสกิลตามอาชีพก่อนถึงยอมโชว์ ถ้าเขาใส่มาคงอยากโชว์แหละ</p>*/}                <MyresumeCertificate data={certdata} owner={owner} colour={color}></MyresumeCertificate>
+                {/*<MyresumeCertificate owner={owner} colour={color}></MyresumeCertificate>*/}
                 {/*<h1>ไกด์ให้มาย</h1>
                 <MyResumeportfoliolayoutP>
                     <div>element1</div>
@@ -127,7 +129,7 @@ class MyResume2 extends React.Component {
                 <MyResumeportfoliolayoutP>
                     <div><h1>content</h1></div>
                 </MyResumeportfoliolayoutP>*/}
-                <MyresumePortfolio></MyresumePortfolio>
+                <MyresumePortfolio data={portfoliodata} state={this.props.state}></MyresumePortfolio>
             </div>
                 
         );

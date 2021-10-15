@@ -291,8 +291,8 @@ class Chooseresume2 extends React.Component {
         let end_work;
         let mysalarywork;
         let mycompanywork;
-        workdata.sort(compareValues('Work_Start_Year', 'desc'));
-        workdata.forEach(ele => {
+        this.state.workdata.sort(compareValues('Work_Start_Year', 'desc'));
+        this.state.workdata.forEach(ele => {
             isCheck_work[ele.WorkHistory_id] = false;
             end_work = [];
             if (ele.Work_End_Month === 99 && ele.Work_End_Year === 9999) {

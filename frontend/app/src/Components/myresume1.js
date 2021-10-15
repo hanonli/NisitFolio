@@ -35,7 +35,9 @@ class MyResume1 extends React.Component {
         var imagepath =  this.props.state.profilepic ? this.props.state.profilepic : null ; //ห้ามเติมข้อมูลกรณีที่ไม่มีข้อมูล ไม่งี้น header จะเข้าใจว่ามีข้อมูลแล้วแสดงผลผิด
         var educationdata = this.props.state.educationHistorys;
         //const certdata = this.props.state.certificates; // certificate move to resume 2 follow the figma!
-        
+        var hometown = this.props.state.hometown ? this.props.state.hometown : null ;
+        console.log("hometown" + hometown)
+        var town = hometown.split(" ");
         var owner = this.props.state.is_owner;
         // const educationdata = [
         //     {
@@ -116,11 +118,11 @@ class MyResume1 extends React.Component {
         return (
             
             <div class="resume1">
-                <MyresumeHeading firstname={firstname} lastname={lastname} occupation={occupation} owner={owner} bio={bio} imagepath={imagepath} colour={color} province="กรุงเทพมหานคร" city="มินบุรี"></MyresumeHeading>
+                <MyresumeHeading firstname={firstname} lastname={lastname} occupation={occupation} owner={owner} bio={bio} imagepath={imagepath} colour={color} province={town[1]?town[1]:''} city={town[2]?town[2]:''}></MyresumeHeading>
 			    {/* <MyresumeHeading firstname={firstname} lastname={lastname} const occupation={occupation} imagepath={imagepath} colour="#FFCE55"></MyresumeHeading> bio={bio}
                 <MyresumeHeading firstname={firstname} lastname={lastname} const occupation={occupation} imagepath={imagepath} colour="#FFCE55" owner={true}></MyresumeHeading> */}
                 <MyResumeEducation data={educationdata} owner={owner} colour={color}></MyResumeEducation>
-                {/* <MyResumeEducation data={[]} owner={true}></MyResumeEducation> */}
+                {/*<MyResumeEducation owner={true}></MyResumeEducation>*/}
                 {/*<MyresumeCertificate data={certdata} owner={owner}></MyresumeCertificate>*/}
                 {/* <MyresumeCertificate data={[]}></MyresumeCertificate> */}
                 {/*certificate move to myresume 2 follow the figma*/}

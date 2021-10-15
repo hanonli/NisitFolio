@@ -22,7 +22,6 @@ class Edittab4 extends React.Component {
             const mywork2 = this.props.mywork_data ? this.props.mywork_data : [];
             list_of_work = [...mywork2];
             show_work();
-
         }, 6000);
         /*---- generate code ID ----*/
         function create_UUID() {
@@ -113,14 +112,14 @@ class Edittab4 extends React.Component {
                     grid_work2 = grid_work2.replace("สิ้นสุด {month_endwork}/{year_endwork}", `ยังอยู่ในงาน`);
                 }
                 else {
-                    if (Number.isNaN(ele["Work_End_Month"]) == true && Number.isNaN(ele["Work_End_Year"]) == true) {
+                    if ((Number.isNaN(ele["Work_End_Month"]) === true && Number.isNaN(ele["Work_End_Year"]) === true) || (ele["Work_End_Month"] === 0 && ele["Work_End_Year"] === 0)) {
                         grid_work2 = "";
                     }
-                    else if (Number.isNaN(ele["Work_End_Month"]) == true && Number.isNaN(ele["Work_End_Year"]) == false) {
+                    else if ((Number.isNaN(ele["Work_End_Month"]) === true && Number.isNaN(ele["Work_End_Year"]) === false) || (ele["Work_End_Month"] === 0 && ele["Work_End_Year"] !== 0)) {
                         grid_work2 = grid_work2.replace("{month_endwork}", `-`);
                         grid_work2 = grid_work2.replace("{year_endwork}", ele["Work_End_Year"]);
                     }
-                    else if (Number.isNaN(ele["Work_End_Year"]) == true && Number.isNaN(ele["Work_End_Month"]) == false) {
+                    else if ((Number.isNaN(ele["Work_End_Year"]) === true && Number.isNaN(ele["Work_End_Month"]) === false) || (ele["Work_End_Month"] !== 0 && ele["Work_End_Year"] === 0)) {
                         grid_work2 = grid_work2.replace("{year_endwork}", `-`);
                         if (ele["Work_End_Month"] < 10) {
                             grid_work2 = grid_work2.replace("{month_endwork}", `0` + ele["Work_End_Month"]);
@@ -165,6 +164,7 @@ class Edittab4 extends React.Component {
                 }
                 $("#contentYear-work_" + String(ele["Work_Start_Year"])).append(grid_work1 + grid_work2 + grid_work3);
             });
+            console.log("list_of_work:", list_of_work);
         }
 
         //open modal to add work
@@ -183,32 +183,49 @@ class Edittab4 extends React.Component {
             $('#registab4Modal').modal('toggle');
             document.querySelector('#submit-work').innerText = 'ตกลง';
             for_edit = list_of_work.find(function (post, index_del) {
-                if (post.id == id_list_work_edit)
+                if (post.WorkHistory_id == id_list_work_edit)
                     return true;
             });
             //document.getElementById("jobtype_work").value = for_edit.type_work;
-            document.getElementById("jobtype_work").selectedIndex = for_edit.type_work_select;
-            document.getElementById("jobname_work").value = for_edit.pos_work;
-            document.getElementById("company_work").value = for_edit.company_work;
+            //document.getElementById("jobtype_work").selectedIndex = for_edit.Work_JobType_select;
+            $("#jobtype_work").val(for_edit.Work_JobType);
+            document.getElementById("jobname_work").value = for_edit.Work_JobName;
+            document.getElementById("company_work").value = for_edit.Company;
             //document.getElementById("salarytype_work").value = for_edit.type_salary_work;
-            document.getElementById("salarytype_work").selectedIndex = for_edit.type_salary_work_select;
-            if (Number.isNaN(for_edit.salary_work) == false) {
-                document.getElementById("salary_work").value = for_edit.salary_work;
+            //document.getElementById("salarytype_work").selectedIndex = for_edit.SalaryType_select;
+            $("#salarytype_work").val(for_edit.SalaryType);
+            if (Number.isNaN(for_edit.Salary) == false) {
+                document.getElementById("salary_work").value = for_edit.Salary;
             }
             else {
                 document.getElementById("salary_work").value = '';
             }
-            if (for_edit.type_salary_work == "ไม่ระบุ" || for_edit.type_salary_work_select == 0) {
+            if (for_edit.SalaryType == "ไม่ระบุ" || for_edit.SalaryType_select == 0) {
                 $("#salary_work").prop("disabled", true);
                 document.getElementById("salary_work").value = "";
             }
             else {
                 $("#salary_work").prop("disabled", false);
             }
-            document.getElementById("year_startwork").selectedIndex = for_edit.year_startwork_select;
-            document.getElementById("month_startwork").selectedIndex = for_edit.month_startwork_select;
-            document.getElementById("year_endwork").selectedIndex = for_edit.year_endwork_select;
-            document.getElementById("month_endwork").selectedIndex = for_edit.month_endwork_select;
+            //document.getElementById("year_startwork").selectedIndex = for_edit.Work_Start_Year_select;
+            $("#year_startwork").val(for_edit.Work_Start_Year);
+            //document.getElementById("month_startwork").selectedIndex = for_edit.Work_Start_Month_select;
+            $("#month_startwork").val(for_edit.Work_Start_Month);
+            //document.getElementById("year_endwork").selectedIndex = for_edit.Work_End_Year_select;
+            if (for_edit.Work_End_Year !== 0 && Number.isNaN(for_edit["Work_End_Year"]) !== true) {
+                $("#year_endwork").val(for_edit.Work_End_Year);
+            }
+            else {
+                $("#year_endwork").val('');
+            }
+            if (for_edit.Work_End_Month !== 0 && Number.isNaN(for_edit["Work_End_Month"]) !== true) {
+                $("#month_endwork").val(for_edit.Work_End_Month);
+            }
+            else {
+                $("#month_endwork").val('');
+            }
+            //document.getElementById("month_endwork").selectedIndex = for_edit.Work_End_Month_select;
+
             backup_year_endwork = for_edit["backup_year_endwork"];
             backup_month_endwork = for_edit["backup_month_endwork"];
             $('#regist4_cb').prop('checked', for_edit.regist4_cb);
@@ -216,11 +233,10 @@ class Edittab4 extends React.Component {
                 $("#year_endwork").prop("disabled", true);
                 $("#month_endwork").prop("disabled", true);
             }
-            document.getElementById("inform_work").value = for_edit.inform_work;
+            document.getElementById("inform_work").value = for_edit.Infomation;
         });
 
         //open modal to delete certi (uncomplete!!!!!!!!!!!!!!!!!!!)
-
         $(document).on("click", "#del-work", function () {
             id_list_work_del = $(this).parents().parents().parents().attr('id');
             $('#Modal_remove_work').modal('toggle');
@@ -228,16 +244,44 @@ class Edittab4 extends React.Component {
 
         $(document).on("click", "#sub_del_work", function () {
             var removeIndex = list_of_work.findIndex(function (post, index_del) {
-                if (post.id == id_list_work_del)
+                if (post.WorkHistory_id == id_list_work_del)
                     return true;
             });
-            list_of_year_work[list_of_work[removeIndex]["year_startwork"]] -= 1;
-            if (list_of_year_work[list_of_work[removeIndex]["year_startwork"]] == 0) {
-                $(`#yearOf_` + String(list_of_work[removeIndex]["year_startwork"])).remove();
+            if (list_of_work[removeIndex].isFetch === true) {
+                fetch("http://localhost:2000/register/workHistory/" + list_of_work[removeIndex].WorkHistory_id, {
+                    method: "DELETE",
+                    headers: {
+                        'Authorization': 'Bearer ' + list_of_work[removeIndex].token,
+                        "Access-Control-Allow-Origin": "*",
+                        "Access-Control-Allow-Methods": "*",
+                        "Access-Control-Allow-Credentials": true,
+                        "Content-Type": "application/json"
+                    },
+                })
+                    .then(response => response.json())
+                    .then((raws) => {
+                        console.log(raws);
+                        list_of_year_work[list_of_work[removeIndex]["Work_Start_Year"]] -= 1;
+                        if (list_of_year_work[list_of_work[removeIndex]["Work_Start_Year"]] == 0) {
+                            $(`#yearOf_` + String(list_of_work[removeIndex]["Work_Start_Year"])).remove();
+                        }
+                        list_of_work.splice(removeIndex, 1);
+                        $(`#` + id_list_work_del).remove();
+                        $('#Modal_remove_work').modal('hide');
+                    }).catch((error) => {
+                        console.log(error);
+                    });
             }
-            list_of_work.splice(removeIndex, 1);
-            $(`#` + id_list_work_del).remove();
-            $('#Modal_remove_work').modal('hide');
+            else {
+                list_of_year_work[list_of_work[removeIndex]["Work_Start_Year"]] -= 1;
+                if (list_of_year_work[list_of_work[removeIndex]["Work_Start_Year"]] == 0) {
+                    $(`#yearOf_` + String(list_of_work[removeIndex]["Work_Start_Year"])).remove();
+                }
+                list_of_work.splice(removeIndex, 1);
+                $(`#` + id_list_work_del).remove();
+                $('#Modal_remove_work').modal('hide');
+            }
+
         });
 
         $(document).on("click", "#can_del_work", function () {
@@ -404,23 +448,23 @@ class Edittab4 extends React.Component {
             }
             else {
                 if (choose_function == 1) {
-                    for_edit["type_workt"] = type_work;
-                    for_edit["type_work_select"] = document.getElementById("jobtype_work").selectedIndex;
-                    for_edit["pos_work"] = pos_work;
-                    for_edit["company_work"] = company_work;
-                    for_edit["type_salary_work"] = type_salary_work;
-                    for_edit["type_salary_work_select"] = document.getElementById("salarytype_work").selectedIndex;
-                    for_edit["salary_work"] = parseInt(salary_work);
-                    for_edit["year_startwork"] = parseInt(year_startwork);
-                    for_edit["year_startwork_select"] = document.getElementById("year_startwork").selectedIndex;
-                    for_edit["month_startwork"] = parseInt(month_startwork);
-                    for_edit["month_startwork_select"] = document.getElementById("month_startwork").selectedIndex;
-                    for_edit["year_endwork"] = parseInt(year_endwork);
-                    for_edit["year_endwork_select"] = document.getElementById("year_endwork").selectedIndex;
-                    for_edit["month_endwork"] = parseInt(month_endwork);
-                    for_edit["month_endwork_select"] = document.getElementById("month_endwork").selectedIndex;
+                    for_edit["Work_JobType"] = type_work;
+                    //for_edit["Work_JobType_select"] = document.getElementById("jobtype_work").selectedIndex;
+                    for_edit["Work_JobName"] = pos_work;
+                    for_edit["Company"] = company_work;
+                    for_edit["SalaryType"] = type_salary_work;
+                    //for_edit["SalaryType_select"] = document.getElementById("salarytype_work").selectedIndex;
+                    for_edit["Salary"] = parseInt(salary_work);
+                    for_edit["Work_Start_Year"] = parseInt(year_startwork);
+                    //for_edit["Work_Start_Year_select"] = document.getElementById("year_startwork").selectedIndex;
+                    for_edit["Work_Start_Month"] = parseInt(month_startwork);
+                    //for_edit["Work_Start_Month_select"] = document.getElementById("month_startwork").selectedIndex;
+                    for_edit["Work_End_Year"] = parseInt(year_endwork);
+                    //for_edit["Work_End_Year_select"] = document.getElementById("year_endwork").selectedIndex;
+                    for_edit["Work_End_Month"] = parseInt(month_endwork);
+                    //for_edit["Work_End_Month_select"] = document.getElementById("month_endwork").selectedIndex;
                     for_edit["regist4_cb"] = regist4_cb;
-                    for_edit["inform_work"] = inform_work;
+                    for_edit["Infomation"] = inform_work;
                     for_edit["backup_year_endwork"] = backup_year_endwork;
                     for_edit["backup_month_endwork"] = backup_month_endwork;
                     //for_edit["backup_salary"] = backup_salary;
@@ -428,26 +472,27 @@ class Edittab4 extends React.Component {
                 else if (choose_function == 2) {
                     //console.log(`add!!!!!`);
                     list_of_work.push({
-                        id: create_UUID(),
-                        type_work: type_work,
-                        type_work_select: document.getElementById("jobtype_work").selectedIndex,
-                        pos_work: pos_work,
-                        company_work: company_work,
-                        type_salary_work: type_salary_work,
-                        type_salary_work_select: document.getElementById("salarytype_work").selectedIndex,
-                        salary_work: parseInt(salary_work),
-                        year_startwork: parseInt(year_startwork),
-                        year_startwork_select: document.getElementById("year_startwork").selectedIndex,
-                        month_startwork: parseInt(month_startwork),
-                        month_startwork_select: document.getElementById("month_startwork").selectedIndex,
-                        year_endwork: parseInt(year_endwork),
-                        year_endwork_select: document.getElementById("year_endwork").selectedIndex,
-                        month_endwork: parseInt(month_endwork),
-                        month_endwork_select: document.getElementById("month_endwork").selectedIndex,
+                        WorkHistory_id: create_UUID(),
+                        Work_JobType: type_work,
+                        //Work_JobType_select: document.getElementById("jobtype_work").selectedIndex,
+                        Work_JobName: pos_work,
+                        Company: company_work,
+                        SalaryType: type_salary_work,
+                        //SalaryType_select: document.getElementById("salarytype_work").selectedIndex,
+                        Salary: parseInt(salary_work),
+                        Work_Start_Year: parseInt(year_startwork),
+                        //Work_Start_Year_select: document.getElementById("year_startwork").selectedIndex,
+                        Work_Start_Month: parseInt(month_startwork),
+                        //Work_Start_Month_select: document.getElementById("month_startwork").selectedIndex,
+                        Work_End_Year: parseInt(year_endwork),
+                        //Work_End_Year_select: document.getElementById("year_endwork").selectedIndex,
+                        Work_End_Month: parseInt(month_endwork),
+                        //Work_End_Month_select: document.getElementById("month_endwork").selectedIndex,
                         regist4_cb: regist4_cb,
-                        inform_work: inform_work,
+                        Infomation: inform_work,
                         backup_year_endwork: backup_year_endwork,
                         backup_month_endwork: backup_month_endwork,
+                        isFetch: false
                     });
                 }
                 console.log(`list_of_work:`, list_of_work);
@@ -520,7 +565,7 @@ class Edittab4 extends React.Component {
                         <div class="modal-dialog modal-dialog-centered modal-xl">
                             <div class="modal-content modalworkhis" >
                                 <div class='modal-body layoutforwork111'>
-                                    <h1 class='modal-title' id='regisModallabelt4_1'>เพิ่มประวัติการทำงาน</h1>
+                                    <h1 class='modal-titleT4only' id='regisModallabelt4_1'>เพิ่มประวัติการทำงาน</h1>
                                     <div className='addWorkHistory'>
                                         <div className="Registab4_addWorkHistory">
 

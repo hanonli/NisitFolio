@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { useHistory } from 'react-router-dom';
+import cookie from 'react-cookies';
+
 class MyresumeCertificateComponent extends React.Component{
     constructor(props){
         super(props)
@@ -153,7 +155,8 @@ class MyresumeCertificateComponent extends React.Component{
 
 class MyresumeCertificate extends React.Component{
     handleRoute = () =>{ 
-        window.location = ("editprofile");
+        cookie.save('Edit_tabselect',4);
+        window.location = ("editresume");
     }
     render(){
         const colour = this.props.colour? this.props.colour: "#FFCE55";
@@ -203,8 +206,8 @@ class MyresumeCertificate extends React.Component{
                     </div>
                 </div>),
                 (<div class="cert-dummy-edit">
-                    <div class="cert-edit"><p>ตอนนี้คุณยังไม่มีข้อมูลเกียรติบัตรและใบรับรอง สำหรับตำแหน่งงาน{occupation}</p>
-                    <button onClick={this.handleRoute}>แก้ไขโปรไฟล์</button></div>
+                    <div class="cert-edit"><p>ตอนนี้คุณยังไม่มีข้อมูลเกียรติบัตรและใบรับรองที่เลือกไว้ สำหรับตำแหน่งงานนี้</p>
+                    <button onClick={this.handleRoute}>เลือกข้อมูล</button></div>
                 </div>)
             ]
         }

@@ -16,37 +16,29 @@
 
   } */
 
-  .Resume_sideNavbar a {
-    position: relative;
-    width: 20vw;
-
-  }
   .resumeicon:hover {
-    position: relative;
-    background: blue;
-    width: 20vw;
-
-  }
-  .resumeicon {
-    position: relative;
-    width: 20vw
-
+    background: gray;
   }
 
   .resumeblock{
-    font-size: 10vw;
+    position: relative;
+    left: 2vw;
+    width: 20vw;
 
   }
-  
+
+  w
   #myresumepath{
     height: 100vh;
     
   }
 
   .resumetext{
+    position: relative;
     display: inline-block;
-    color: white;
-    font-weight: 300;
+    top: 0.3vh;
+    color: black;
+    font-weight: 100;
     font-size: 2vh;
   }
 

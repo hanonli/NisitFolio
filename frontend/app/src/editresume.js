@@ -128,6 +128,8 @@ class Editresume extends React.Component {
 				});
 			});
 		$(function () {
+			$('.name2').text(cookie.load('Job_EditName'));
+			console.log('Selected tab is '+ cookie.load('Edit_tabselect'));
 			$('.tab-content').hide();
 			$('#registab1-content').show();
 			console.log("Yahaha!");
@@ -173,7 +175,17 @@ class Editresume extends React.Component {
 				$('#tab-6').addClass('tab-list-active')
 				$('#registab6-content').show();
 			});
+			console.log("Stored Job_EditName cookies: "+cookie.load('search-entry')); //debug cookies
+   			$('.name2').text(cookie.load('search-entry'));
 		});
+		$('#cancelChoose').on('click',function(){
+			window.history.go(-1);
+		})
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener('load', this.handleLoad)
+		cookie.save('Edit_tabselect','');
 	}
 
 	render() {
@@ -187,6 +199,8 @@ class Editresume extends React.Component {
 								<div class="col">
 									<div class="topData2-content">
 										<h1 class="name inline">เลือกข้อมูลผู้ใช้ที่จะแสดง</h1>
+										<h1 class="symbol inline">.</h1>
+										<h1 class="name2 inline"></h1>
 									</div>
 								</div>
 							</div>
@@ -197,7 +211,7 @@ class Editresume extends React.Component {
 						<li class="tab-list-item" id="tab-2" type="button">ประวัติการศึกษา</li>
 						<li class="tab-list-item" id="tab-3" type="button">ประวัติการทำงาน</li>
 						<li class="tab-list-item" id="tab-4" type="button">ใบรับรอง</li>
-						<li class="tab-list-item" id="tab-5" type="button">งานที่สนใจ</li>
+						<li class="tab-list-item" id="tab-5" type="button">ผลงาน</li>
 						<li class="tab-list-item" id="tab-6" type="button">ทักษะเสริม</li>
 					</ol>
 					<form class="needs-validation" novalidate>
@@ -222,7 +236,7 @@ class Editresume extends React.Component {
 							</div>
 						</div>
 						<div class="col block-right2">
-							<button class="btn btn-cta-primary-blackwide round profile-button" href="/choosenothing" target="_blank" id="cancelChoose">ยกเลิก</button>
+							<button class="btn btn-cta-primary-blackwide round profile-button" target="_blank" id="cancelChoose">ยกเลิก</button>
 							<button class="btn btn-cta-primary-yellowwide round profile-button marginLEx1" href="/myresume" target="_blank" type="submit" id="confirmChoose">ยืนยัน</button>
 						</div>
 					</form>

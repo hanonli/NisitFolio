@@ -1,28 +1,27 @@
-
-
-    $('#icon-myresume-education, #icon-myresume-certi, #icon-myresume-skill, #icon-myresume-work, #icon-myresume-goal, #icon-myresume-resume' )
+$('#icon-myresume-education, #icon-myresume-certi, #icon-myresume-skill, #icon-myresume-work, #icon-myresume-goal, #icon-myresume-resume' )
     .attr({
         
-        'width': ' 10%',
-        'height' : '50%',
+        'width': ' 40px',
+        'height' : '40px',
  
-    });
+});
+    
     // $(".resumeblock").hover(function(){
     //     $(this).css("background-color", "#e6ba4e");
     //     }, function(){
     //     $(this).css("background-color", "#FFCE55");
     //   });
-    $('.resumeicon').css({
+//     $('.resumeicon').css({   
 
-        'padding-right' : '1vw',
+//         'padding-right' : '1vw',
     
-    });
-    $('#icon-myresume-education').attr('title', 'Education');
-    $('#icon-myresume-certi').attr('title', 'Certificate');
-    $('#icon-myresume-skill').attr('title', 'Skill');
-    $('#icon-myresume-work').attr('title', 'Work');
-    $('#icon-myresume-resume').attr('title', 'Resume');
-    $('#icon-myresume-goal').attr('title', 'Goal');
+//     });
+$('#icon-myresume-education').attr('title', 'Education');
+$('#icon-myresume-certi').attr('title', 'Certificate');
+$('#icon-myresume-skill').attr('title', 'Skill');
+$('#icon-myresume-work').attr('title', 'Work');
+$('#icon-myresume-resume').attr('title', 'Resume');
+$('#icon-myresume-goal').attr('title', 'Goal');
     
 
 
@@ -33,22 +32,12 @@ $('.Home').css({
 $('.MyResumeContent').css("padding-left",'20vw');
 
 $('.Resume_sideNavbar').css({
-    "padding-top":"10vh",
+    "padding-top":"6.5vh",
 
 });
 $('.resumeblock').css({
-    "height": "12%",
-    "padding-top" : "10%",
-    "padding-left" : "10%",
-    "font-size" : "1vh",
+    "height": "12vh",
+    "padding-top": "3vh",
     "display" : "block",
 });
 
-$('.resumetext').css({
-    'position': 'relative',
-    'color' : 'black',
-    'top' : '0.3vw',
-    "font-size" : "1.1vw",
-    'font-weight' : '300',
-    "display" : "inline-block",
-});

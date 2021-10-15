@@ -236,7 +236,7 @@ export class WorkHistory {
 @Entity("InterestedJob")
 export class InterestedJob {
   @ObjectIdColumn()
-  id?: ObjectId;
+  _id?: ObjectId;
   
   @Column()
   ResumeId: string[];
