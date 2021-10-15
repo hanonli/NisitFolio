@@ -63,7 +63,7 @@ class Resume_topNavbar extends React.Component {
 		// console.log('getResumeID called')
 		// console.log('in getResumeID index is :' + index + ' userid is: ' + userid )
 		fetch("http://localhost:2000/myresume/user/"+ userid,{
-			method: "GET",
+			method: "GET",	
 			headers: {
 				"Access-Control-Allow-Origin": "*",
 				"Access-Control-Allow-Methods": "*",
@@ -83,7 +83,8 @@ class Resume_topNavbar extends React.Component {
 			// console.log('in resumeid datas a: ' + JSON.stringify(a));
 			// console.log('in resumeid datas b: ' + JSON.stringify(b));
 			// console.log('in resumeid datas c: ' + JSON.stringify(c));			
-			var Resumedata = datas[index]
+			var Resumedata = datas[index];
+			console.log(Resumedata);
 			// console.log('in resumeid index2: ' + index);
 			// console.log('in resumeid e2: ' + e);
 			// console.log('in resumeid state.index2: ' + this.state.index);
@@ -110,6 +111,7 @@ class Resume_topNavbar extends React.Component {
 					interestedJob : Resumedata.interestedJob ? Resumedata.interestedJob : [],
 					color : Resumedata.Color ? Resumedata.Color : '#FFCE55',
 					privacy : Resumedata.Privacy,
+					portfolio : Resumedata.portfolios? Resumedata.portfolios: [],
 					owner : Resumedata.Owner ? Resumedata.Owner : '',
 					firstname: Resumedata.First ? Resumedata.First : '',
 					lastname: Resumedata.Last ? Resumedata.Last : '',
@@ -173,6 +175,7 @@ class Resume_topNavbar extends React.Component {
 			additionalSkills : [],
 			interestedJob : [],	
 			privacy : '',
+			portfolio : [],
 			color : '',
 			index : 0,
 			ready  : false,
@@ -196,6 +199,7 @@ class Resume_topNavbar extends React.Component {
 			additionalSkills : [],
 			interestedJob : [],
 			privacy : '',
+			portfolio : [],
 			color : '',
 			index : 1,
 			ready  : false,
@@ -217,6 +221,7 @@ class Resume_topNavbar extends React.Component {
 			additionalSkills : [],
 			interestedJob : [],
 			privacy : '',
+			portfolio : [],
 			color : '',
 			index : 2,
 			ready  : false,
@@ -393,20 +398,33 @@ class Resume_topNavbar extends React.Component {
 		script.src = "assets/js/navbar_top_resume_script.js";
 		document.body.appendChild(script);
 		
-		var sPageURL = window.location.search.substring(1)
-		var isURLBlank = (sPageURL == '')
+		// var ssid = this.props.userid
+		
+		var ssid = cookie.load('search-userid')
+		// console.log('sessionid: '+ ssid)
+		// console.log('sessionid: '+ JSON.stringify(ssid))
+		
+		// var sPageURL = window.location.search.substring(1)
+		// var isURLBlank = (sPageURL == '')
 		// console.log(sPageURL)
 		// console.log(isURLBlank)
-		if( !isURLBlank){
-			var sParam = sPageURL.split('=')
-			var temp_userid = sParam[1]
-			console.log(temp_userid)
+		// console.log( 'not undefined: '+ (ssid != 'undefined'))
+		// console.log( 'not blank: '+ (ssid != ''))
+		// console.log(( undefined))
+		// console.log(( null))
+		if( ssid != 'undefined' && ssid != ''){
+			// console.log('case1')
+			// console.log('ssid incase1: '+ ssid)
+			
 			this.setState({
-				userID : temp_userid,
+				userID : ssid,
 				is_owner : false,		
 			})
 		}else{
+			// console.log('case2')
+
 			var token = cookie.load('login-token')
+			// console.log('token: ' + token)	
 			fetch("http://localhost:2000/profile/",{
 				method: "GET",
 				headers: {
@@ -427,9 +445,10 @@ class Resume_topNavbar extends React.Component {
 			});
 
 		}
+	}
 
-		// console.log('topnav stop mount')
-		// console.log( 'before update state :' + JSON.stringify(this.state))
+	componentWillUnmount(){		
+		cookie.save('search-userid', '' );
 	}
 	
 	
@@ -439,8 +458,8 @@ class Resume_topNavbar extends React.Component {
 			// console.log('update state')
 			return true
 		}
-		// }else if(this.state.resumeID===''){
-		// 	console.log('update state')
+		// else if(this.state.userID != nextState.userID){
+		// 	console.log('update userid')
 		// 	return true
 		// }
 		else if(this.state.resumeID != nextState.resumeID){
@@ -493,7 +512,7 @@ class Resume_topNavbar extends React.Component {
 		// }
 
 
-		// console.log('in render() state : ' + JSON.stringify(this.state))
+		console.log('in render() state : ' + JSON.stringify(this.state))
 		// console.log('render this.state.loading: '+this.state.loading)
 		// console.log('render this.state.ready: '+this.state.ready)
 		// console.log('render this.state.fetch: '+this.state.fetch)

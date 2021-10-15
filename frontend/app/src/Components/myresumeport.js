@@ -5,8 +5,9 @@ import MultipleRows from './myresume3slidemywork';
 import MyResumeportfoliolayoutP from './Myresume_choiceforportfolio';
 import btnedit from './myresumebuttonedit';
 
+import MyresumePortfolioPrivacybutton from './myresumeportprivacybutton';
 class MyResumePort extends React.Component {
-    handleRoute = () =>{ 
+    handleRoute = () => { 
         const link = this.props.data.link;
         window.location = (link);
     }
@@ -16,9 +17,14 @@ class MyResumePort extends React.Component {
         window.location = (editporfolio);
     }
 
+    voi = () => {
+        console.log("clicked!")
+    }
     render() {
         const data = this.props.data;
-        
+        console.log(data);
+        const port_id = data.port_id;
+        console.log(port_id);
         const date = data.date;
         const image = data.image;
         const owner = data.owner;
@@ -42,10 +48,11 @@ class MyResumePort extends React.Component {
 
         if (owner == true) {
             return (
-                <div class="myworkobj" onClick={this.handleRoute} >
+                <div class="">
                     <div className="img-overlay">
+                        <div class="ghostbutton" onClick={this.handleRoute}></div>
                         <div className="iconmywork">
-                            <img className="img-mywork-select" type="button" src={srcpri} />
+                            <MyresumePortfolioPrivacybutton port_id={port_id} privacy={privacy}></MyresumePortfolioPrivacybutton>
                             <img className="img-mywork-edit" onClick={this.handleClicktoEdit} src="assets/images/whiteedit.png" type="button" />
                         </div>
                         <h3 className="myworkname">
@@ -63,7 +70,7 @@ class MyResumePort extends React.Component {
                 </div>
             );
         }
-        else if (owner == false && (privacy == "Public" || privacy == "Members")) {
+        /*else if (owner == false && (privacy == "Public" || privacy == "Members")) {
             return (
                 <div class="myworkobj" onClick={this.handleRoute}>
                     <div className="img-overlay">
@@ -88,7 +95,7 @@ class MyResumePort extends React.Component {
             return (
                 <div></div>
             );
-        }
+        }*/
     }
 }
 
