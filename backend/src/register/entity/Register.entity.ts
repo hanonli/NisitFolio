@@ -351,10 +351,31 @@ export class PortfolioPicture {
 @Entity("Resume")
 export class Resume {
   @ObjectIdColumn()
-  id?: ObjectId;
+  _id?: ObjectId;
   
   @Column()
   UserId: string;
+
+  @Column()
+  ProfilePic: string;
+
+  @Column()
+  First: string;
+
+  @Column()
+  Last: string;
+
+  @Column()
+  Owner: string;
+
+  @Column()
+  Aboutme: string;
+
+  @Column()
+  Email: string;
+
+  @Column()
+  Location: string;
 
   @Column()
   TAG: string[];
@@ -391,6 +412,7 @@ export class Resume {
 
   @Column()
   modified_by:string[];
+
 
 }
 

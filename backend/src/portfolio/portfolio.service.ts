@@ -2,12 +2,14 @@ import { Injectable, HttpException , HttpStatus } from '@nestjs/common';
 import { CreatePortfolioDto } from './dto/portfolio.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, SimpleConsoleLogger } from 'typeorm';
-import { Account, Userinfo, AdditionalSkill, Certificate, EducationHistory, InterestedJob, WorkHistory,Portfolio,PortfolioPicture} from './entity/portfolio.entity'
+import { Account, Userinfo,AdditionalSkill, Certificate, EducationHistory, InterestedJob, WorkHistory,Portfolio,PortfolioPicture} from './entity/portfolio.entity'
+import { Resume } from '../register/entity/Register.entity';
 import { ObjectID } from 'mongodb';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Portfolio2, PortfolioDocument} from './entity/portfolio.schema';
 //import { Portfolio3} from './dto/portfoli4';
+import { Resume2 , ResumeDocument} from '../myresume/entity/myresume.schema';
 import { UserInfoDocument, UserInfoMongoose } from 'src/register/entity/register.schema';
 import Portfolio3 from './dto/portfolio4.dto';
 import { hearderDto } from 'src/portfolio/dto/haerder.dto';
@@ -28,6 +30,8 @@ export class PortService {
     private accountRepository: Repository<Account>,
     @InjectRepository(Bookmark)
     private BookmarkRepository: Repository<Bookmark>,
+    @InjectModel(Resume2.name) 
+    private resumeModel: Model<ResumeDocument>,
     
 
 
@@ -155,6 +159,7 @@ export class PortService {
     portfoliopic.last_modified=portpic.last_modified;
     portfoliopic.PortId=portpic.PortId;
     portfoliopic.last_modified.push(isoTime)
+    const ID = new ObjectID(portId);
 
     await this.portfolioPictureRepository.remove(portpic);
     portfoliopic.PortId = portid;
@@ -179,6 +184,27 @@ export class PortService {
         portfoliopic.Description =  CreateDto.Description;
       portpic_arr.push(portfoliopic)
       port.portfolioPictures = portpic_arr;
+
+      for (var _i = 0; _i < port.ResumeId.length; _i++) {
+        const resume =  await this.resumeModel.findOne({_id: port.ResumeId[_i] });
+        let copy = JSON.parse(JSON.stringify(resume));
+        await this.resumeModel.remove(resume);
+        for (var _j = 0; _j < copy.portfolios.length; _j++) {
+          if (copy.portfolios[_j].id = ID)
+          {
+            copy.portfolios[_j].Port_Tag = port.Port_Tag;
+            copy.portfolios[_j].Port_Privacy = port.Port_Privacy;
+            copy.portfolios[_j].Port_Name = port.Port_Name
+            copy.portfolios[_j].Port_Info= port.Port_Info
+            copy.portfolios[_j].Port_Date = port.Port_Date
+            copy.portfolios[_j].portfolioPictures = port.portfolioPictures
+          }
+        }
+        copy.last_modified.push(isoTime);
+        copy.modified_by.push("automatic system");
+        await this.resumeModel.create(copy);
+      }
+
       await this.portfolioPictureRepository.save(portfoliopic);
       return await this.portModel.create(port);
     }

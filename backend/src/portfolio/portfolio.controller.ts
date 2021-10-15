@@ -16,9 +16,6 @@ export class PortController {
   async getPort(@Param('portfolioId') portfolioId: string){
     return this.portService.getPort(portfolioId);
   }
-
-  
-
   
   @UseGuards(JwtAuthGuard)
   @Get('/header/:x')
@@ -39,16 +36,12 @@ export class PortController {
       CreateDto.UserId = req.user.userId;
     return this.portService.createPort(CreateDto,ip);
   }
-
-
-
   
   @UseGuards(JwtAuthGuard)
   @Get()
     async GetOwnPort(@Request() req) {
       return this.portService.getPortbyUser(req.user.userId);
   }
-  //*/
 
   @UseGuards(JwtAuthGuard)
   @Delete(":portfolioId")

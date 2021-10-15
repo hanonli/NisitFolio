@@ -27,6 +27,9 @@ function setActiveLink($el) {
     })
         
     // top nav
+    $('.Resume_topNavbar').css({
+        'z-index': '5',
+    })
     $('.resume_topnav').css({
         'padding-bottom': '0.4vh',
         'border-radius': '0.5vw',
