@@ -13,6 +13,8 @@ export class GetRegisDto {
 
   ProfilePic: string;
 
+  ProfilePicBase64: string;
+
   Privacy: string;
 
   isEmailConfirmed: boolean;
