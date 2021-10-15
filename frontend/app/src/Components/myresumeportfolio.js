@@ -10,8 +10,18 @@ class MyresumePortfolio extends React.Component {
         super(props)
         var user = cookie.load('login-user');
         var state = this.props.state;
-        
-        this.state = {cookieid : user, ownerid : state.userID, index : state.index};
+        let whosee;
+        if(user==="none"){
+			console.log("it's none");
+            whosee = "guest";
+		}
+        else if(user===state.userID){
+            whosee = "owner";
+        }
+        else{
+            whosee = "other";
+        }
+        this.state = {cookieid : user, ownerid : state.userID, index : state.index, data : [], seeby : whosee};
         //this.GetUserBookmarkData()
     }
 
@@ -42,6 +52,8 @@ class MyresumePortfolio extends React.Component {
         }, 5000);
     }*/
     render() {
+		
+		
         const monthdict = {
             1: "มกราคม",
             2: "กุมภาพันธ์",
