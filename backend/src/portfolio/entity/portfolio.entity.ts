@@ -251,7 +251,8 @@ export class Portfolio {
   @Column()
   Port_Date: string;
 
-  @OneToMany(type => PortfolioPicture, portfolioPicture => portfolioPicture.portfolio)
+  //@OneToMany(type => PortfolioPicture, portfolioPicture => portfolioPicture.portfolio)
+  @Column()
   portfolioPictures: PortfolioPicture[];
 
   @Column()

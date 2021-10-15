@@ -16,7 +16,7 @@ class MyresumeWorkGoals extends React.Component {
             }
         ]*/
         let Count_Job = 0;
-         const Job_Objective = ["Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.","อยากรวย","อยากมีตัง หิวเงิน"];
+        const Job_Objective = ["Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.","อยากรวย","อยากมีตัง หิวเงิน"];
         // const Job_Objective = ["none", "none", "none"];
         // const interestedJob = this.props.interestedJob;
         // const Job_Objective = this.props.interestedJob.Job_Objective;

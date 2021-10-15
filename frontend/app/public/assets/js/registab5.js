@@ -2,7 +2,7 @@
 $(document).ready(function () {
     var startYear = 1990;
     var endYear = new Date().getFullYear();
-    for (i = endYear; i > startYear; i--) {
+    for (let i = endYear; i > startYear; i--) {
         $('#yearpicker_111').append($('<option />').val(i).html(i));
     }
 });
@@ -80,14 +80,6 @@ function show_certi() {
                               <div class="content-certi1" id="{contentYear}"></div>`;
 
         grid_certi = grid_certi.replace("{no_certi}", ele["id"]);
-        //grid_certi = grid_certi.replace("{name-certi}", ele["name_certi"]);
-        // if (ele["name_certi"].length > 15) {
-        //     grid_certi = grid_certi.replace("{name-certi}", ele["name_certi"].slice(0, 14) + "...");
-        //     grid_certi = grid_certi.replace("{name-certi}", ele["name_certi"]);
-        // }
-        // else {
-        //     grid_certi = grid_certi.replace("{name-certi}", ele["name_certi"]);
-        // }
         grid_certi = grid_certi.replace("{name-certi}", ele["name_certi"]);
         grid_certi = grid_certi.replace("{year-certi}", ele["year_certi"]);
         grid_certi = grid_certi.replace("{pic-of-certi}", ele["path_file_certi"]);
@@ -117,11 +109,13 @@ $(document).ready(function () {
     console.log("hello576");
 });
 
-var picOfCerti = '';
+var picOfCerti = '', file_picOfCerti = '';
 
 $(document).on('change', "#image-upload112", function () {
     var path_img = document.getElementById("image-upload112");
     if (path_img.files[0].type == "image/jpeg" || path_img.files[0].type == "image/jpg" || path_img.files[0].type == "image/png") {
+        console.log("path_img.files", path_img.files);
+        file_picOfCerti = path_img.files;
         var reader = new FileReader();
         reader.onload = function (e) {
             //$("#preview_before_upload").remove();
@@ -141,6 +135,7 @@ $(document).on('change', "#image-upload112", function () {
 
 var choose_function = -1; //default
 var for_edit;
+var id_list_certi_edit;
 
 //open modal to edit certi
 $(document).on("click", "#edit-certi", function () {
@@ -187,6 +182,7 @@ $(document).on("click", ".frame_add_certi", function () {
 });
 
 //open modal to delete certi (uncomplete!!!!!!!!!!!!!!!!!!!)
+var id_list_certi_del;
 $(document).on("click", "#del-certi", function () {
     id_list_certi_del = $(this).parents().parents().parents().attr('id');
     //console.log("id_list_certi111:", id_list_certi_del);
@@ -229,6 +225,7 @@ $(document).on("change", "#yearpicker_111", function () {
     }
 });
 
+var name_certi, year_certi;
 $(document).on('click', "#submit-certi", function () {
     name_certi = document.getElementById("nm_certi").value;
     year_certi = document.getElementById("yearpicker_111").value;
@@ -251,62 +248,44 @@ $(document).on('click', "#submit-certi", function () {
     else {
         if (choose_function == 1) {
             console.log("edit!!!!!!");
-            //console.log(`name: `, name_certi);
-            //console.log(`year: `, year_certi);
-            //console.log('pic: ', file_pic_certi.files[0]);
             console.log(`list_of_certi:`, list_of_certi);
             for_edit["name_certi"] = name_certi;
             for_edit["year_certi"] = parseInt(year_certi);
             for_edit["path_file_certi"] = picOfCerti;
+            for_edit["file_pic"] = file_picOfCerti;
             for_edit["year_certi_select"] = $("#yearpicker_111").prop('selectedIndex');
             var list_edit11 = document.getElementById(id_list_certi_edit);
             //console.log("id_list_certi_edit:", id_list_certi_edit);
         }
         else if (choose_function == 2) {
             //console.log("add!!!!!!")
-            id_of_certi = create_UUID();
-            //console.log(`name: `, name_certi);
-            //console.log(`year: `, year_certi);
-            //console.log('pic: ', file_pic_certi.files[0]);
-            //console.log(`pic_certi: ${pic_certi}`);
+            var id_of_certi = create_UUID();
             list_of_certi.push({
                 id: id_of_certi,
                 name_certi: name_certi,
                 year_certi: parseInt(year_certi),
                 year_certi_select: $("#yearpicker_111").prop('selectedIndex'),
-                path_file_certi: picOfCerti
+                path_file_certi: picOfCerti,
+                file_pic: file_picOfCerti
             });
-            //list_of_certi.push(keepInList);
-            //$(".content-certi1").append(gridListCerti);
-            //document.getElementById(id_preview_pic).style.borderRadius = "16px";
-            //console.log(`list_of_certi:`, list_of_certi);
         }
         $("#nm_certi").val("");
         $("#yearpicker_111").prop('selectedIndex', 0);
         $("#exampleModal11112").modal("hide");
         $(".box-box-box").empty();
-        //console.log(`list_of_certi:`, list_of_certi);
+        console.log(`list_of_certi:`, list_of_certi);
         show_certi();
         $("#preview_before_upload").remove();
         $("#icon-upload-112").remove();
         $("#text-upload-112").remove();
         $("#text-upload-116").remove();
         picOfCerti = '';
+        file_picOfCerti = '';
     }
 });
 
 $(document).on('click', "#hide-modal-certi", function () {
-    /*$('#yearpicker_111').prop('selectedIndex', 0);
-    $("#nm_certi").val("");
-    $("#preview_before_upload").remove();
-    $("#icon-upload-112").remove();
-    $("#text-upload-112").remove();*/
     $("#exampleModal11112").modal("hide");
-    /*if (list_of_certi.length == 0) {
-        $("#preview_before_upload").remove();
-        $(".for_upload112").append('<img id="icon-upload-112" src="assets/images/upload_file.png" width="85px" height="85px" class="up_img"></img>');
-        $(".for_upload112").append('<h2 class="text_up" id="text-upload-112">อัพโหลดใบรับรองของคุณได้ที่นี่</h2>');
-    }*/
 });
 
 $(document).on('hide.bs.modal', "#exampleModal11112", function () {
@@ -318,11 +297,7 @@ $(document).on('hide.bs.modal', "#exampleModal11112", function () {
     $("#text-upload-116").remove();
     $("#to_upload112").removeClass("error_select_certi");
     picOfCerti = '';
-    /*if (list_of_certi.length == 0) {
-        $("#preview_before_upload").remove();
-        $(".for_upload112").append('<img id="icon-upload-112" src="assets/images/upload_file.png" width="85px" height="85px" class="up_img"></img>');
-        $(".for_upload112").append('<h2 class="text_up" id="text-upload-112">อัพโหลดใบรับรองของคุณได้ที่นี่</h2>');
-    }*/
+    file_picOfCerti = '';
 });
 
 $(document).on('click', "#hide-delete-certi", function () {

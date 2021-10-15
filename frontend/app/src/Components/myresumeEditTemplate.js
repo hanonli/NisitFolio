@@ -38,6 +38,7 @@ class MyResumeEditTemplate extends React.Component {
                     </div>
                     <div class="choose-color-edit-template11">
                         <h1 id="text-edit-color-template11">เลือกสีที่เข้ากันและบ่งบอกถึงตัวคุณ</h1>
+                        <h5 id="describe-template11-edit">สีของเทมเพลตจะใช้กับทุกตำแหน่งงาน</h5>
                         <div class="grid-edit-template">
                             <div>
                                 <input

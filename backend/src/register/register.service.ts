@@ -81,6 +81,7 @@ export class RegisterService {
     account.create_time =  isoTime;
     account.last_modified =  [isoTime] ;
     account.last_login = null;
+    
 
     const accountid = (await this.accountRepository.save(account))._id.toString()
     
@@ -98,12 +99,12 @@ export class RegisterService {
     userinfo.ProfilePic = createDto.ProfilePic; 
     userinfo.create_time = isoTime ;
     userinfo.last_modified =  [isoTime] ;
-
+    //*/
 
     for (var _i = 0; _i < createDto.SoftSkill.length; _i++) {
       
       const additionalskill = new AdditionalSkill();
-      additionalskill.UserId = accountid;
+      //additionalskill.UserId = accountid;
       additionalskill.AdditionalSkill  = createDto.SoftSkill[_i]; 
       additionalskill.create_time = isoTime ;
       additionalskill.last_modified =  [isoTime] ;
@@ -119,6 +120,7 @@ export class RegisterService {
       }
       await this.AdditionalSkillRepository.save(additionalskill);
     }
+    
     
     for (var _i = 0; _i < createDto.CertName.length; _i++) {
       const certificate = new Certificate();
@@ -203,6 +205,7 @@ export class RegisterService {
     userinfo.tags = tag_arr;
     userinfo.countSkill = count_skill;
     return (this.userinfoRepository.save(userinfo));
+    
 
   }
 

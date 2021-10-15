@@ -291,7 +291,7 @@ function set_slider_range3(value3) {
 
 function removeOptionsJob(selectElement) {
     var i, L = selectElement.options.length - 1;
-    for (i = L; i >= 1; i--) {
+    for (let i = L; i >= 1; i--) {
         selectElement.remove(i);
     }
 }
@@ -427,7 +427,7 @@ $(document).on("click", ".frame_add_job_interest", function () {
     $("#obj-job-03").addClass("dis_input3");
 });
 
-var for_edit;
+var for_edit, id_list_job_edit;
 $(document).on("click", "#edit-job", function () {
     $("#nm_job").removeClass("is-invalid");
     id_list_job_edit = $(this).parents().parents().attr('id');
@@ -660,6 +660,8 @@ document.getElementById("submit-job11").addEventListener("click", function () {
     }
 });
 
+var id_list_job_del;
+
 $(document).on("click", "#del-job", function () {
     id_list_job_del = $(this).parents().parents().attr('id');
     //console.log("id_list_job111:", id_list_job_del);
@@ -823,24 +825,31 @@ function testPost6() {
         //post skill name
         Job_SkillName.push([ele["skill1"], ele["skill2"], ele["skill3"]]);
         //post job score
-        var total_skill_score = new Float32Array(3);
+        //var total_skill_score = new Float32Array(3);
+        var total_skill_score = [];
         if (ele["skill1"] != "none") {
-            total_skill_score[0] = ele["score_skill1"];
+            //total_skill_score[0] = ele["score_skill1"];
+            total_skill_score.push(parseFloat(ele["score_skill1"]));
         }
         else {
-            total_skill_score[0] = 0;
+            //total_skill_score[0] = 0;
+            total_skill_score.push(0);
         }
         if (ele["skill2"] != "none") {
-            total_skill_score[1] = ele["score_skill2"];
+            //total_skill_score[1] = ele["score_skill2"];
+            total_skill_score.push(parseFloat(ele["score_skill2"]));
         }
         else {
-            total_skill_score[1] = 0;
+            //total_skill_score[1] = 0;
+            total_skill_score.push(0);
         }
         if (ele["skill3"] != "none") {
-            total_skill_score[2] = ele["score_skill3"];
+            //total_skill_score[2] = ele["score_skill3"];
+            total_skill_score.push(parseFloat(ele["score_skill3"]));
         }
         else {
-            total_skill_score[2] = 0;
+            //total_skill_score[2] = 0;
+            total_skill_score.push(0);
         }
         Job_Score1.push(total_skill_score);
         //post job objective
