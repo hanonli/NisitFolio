@@ -174,6 +174,9 @@ class Editresume extends React.Component {
 				$('#registab6-content').show();
 			});
 		});
+		$('#cancelChoose').on('click',function(){
+			window.history.go(-1);
+		})
 	}
 
 	render() {
@@ -197,7 +200,7 @@ class Editresume extends React.Component {
 						<li class="tab-list-item" id="tab-2" type="button">ประวัติการศึกษา</li>
 						<li class="tab-list-item" id="tab-3" type="button">ประวัติการทำงาน</li>
 						<li class="tab-list-item" id="tab-4" type="button">ใบรับรอง</li>
-						<li class="tab-list-item" id="tab-5" type="button">งานที่สนใจ</li>
+						<li class="tab-list-item" id="tab-5" type="button">ผลงาน</li>
 						<li class="tab-list-item" id="tab-6" type="button">ทักษะเสริม</li>
 					</ol>
 					<form class="needs-validation" novalidate>
@@ -222,7 +225,7 @@ class Editresume extends React.Component {
 							</div>
 						</div>
 						<div class="col block-right2">
-							<button class="btn btn-cta-primary-blackwide round profile-button" href="/choosenothing" target="_blank" id="cancelChoose">ยกเลิก</button>
+							<button class="btn btn-cta-primary-blackwide round profile-button" target="_blank" id="cancelChoose">ยกเลิก</button>
 							<button class="btn btn-cta-primary-yellowwide round profile-button marginLEx1" href="/myresume" target="_blank" type="submit" id="confirmChoose">ยืนยัน</button>
 						</div>
 					</form>

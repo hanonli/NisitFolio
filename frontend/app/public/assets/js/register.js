@@ -311,6 +311,7 @@ $('#continue2').click(function () {
             //alert(RequestCount_email);
             RequestCount_email=1;
             //alert(RequestCount_email);
+            $('#toggleEmailW').hide();
           }
         }
         else{
@@ -331,7 +332,7 @@ $('#continue2').click(function () {
     if($('#re03').hasClass('is-valid')){
     RequestCount_email=1;
   }
-  alert(RequireCount_pass +'+' +RequestCount_email+'+'+checkTab7);
+  //alert(RequireCount_pass +'+' +RequestCount_email+'+'+checkTab7);
   if(RequireCount_pass==1 && RequestCount_email==1 && checkTab7 == 1){     
     if(avatar1.src=="http://localhost:3000/assets/images/Circleuploadprofile.png"){
       var last_avatar="http://localhost:3000/assets/images/profile_uk.png";
@@ -340,6 +341,9 @@ $('#continue2').click(function () {
       var last_avatar=avatar1.src;
     }
     console.log('You Pass!'); 
+    Cookies.set('Email-verify',$('#re03').val());
+    var saveEmail = Cookies.get('Email-verify');
+    //alert(saveEmail);
     //window.location.pathname = '/emailverify'
     var FormRegis2 = {
       Email: $('#re03').val(),
@@ -795,8 +799,10 @@ function PostRegis(pack){
         if (!response.ok) {
           throw Error(response.statusText);
         }
-        console.log("ok");
-        window.location.href = "http://localhost:3000/emailverify";
+        else{
+          console.log("ok");
+          window.location.href = "http://localhost:3000/emailverify";
+        }
         return response;
     }).catch(function(error) {
         console.log(error);

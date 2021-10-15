@@ -5,6 +5,8 @@ import Navbarlogo from './Components/navbarlogo';
 import DataHeader from './Components/dataHeader';
 import reportWebVitals from './reportWebVitals';
 import { Link } from "react-router-dom";
+import $ from "jquery";
+import cookie from "react-cookies";
 
 class Emailverify extends React.Component {
 
@@ -15,6 +17,23 @@ class Emailverify extends React.Component {
 		scripointer.src = "assets/js/register2.js";
 		document.body.appendChild(scripointer);
 		*/
+    $('#resendEmail').on('click',function(){
+      var EmailtoResend = cookie.get('Email-verify');
+			const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ Email: EmailtoResend })
+      };
+      fetch('http://localhost:2000/resend-confirmation-link', requestOptions)
+        .then(function (response) {
+          if (!response.ok) {
+            alert('Resend fail');
+          }
+          else{
+            alert('Resend success');
+          }
+        })
+		});
 	}
 
 	render (){
