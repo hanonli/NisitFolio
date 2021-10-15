@@ -1,5 +1,6 @@
 import React from 'react';
 import Myresumetimeline from './myresumeTimeline';
+import cookie from 'react-cookies';
 
 class MyresumeWorkelement extends React.Component {
     render() {
@@ -68,7 +69,8 @@ class MyresumeWorkelement extends React.Component {
 
 class MyresumeWork extends React.Component{
     handleRoute = () =>{ 
-        window.location = ("editprofile");
+        cookie.save('Edit_tabselect',3);
+        window.location = ("editresume");
     }
     render() {
         const data = this.props.data? this.props.data: [];
@@ -152,8 +154,8 @@ class MyresumeWork extends React.Component{
                             </div>
                         <div class="timeline-block">
                             <div class="timeline-dummy">
-                                <p>ตอนนี้คุณยังไม่มีข้อมูลประวัติการศึกษา สำหรับตำแหน่งงาน{occupation}</p>
-                                <button onClick={this.handleRoute}>แก้ไขโปรไฟล์</button>
+                                <p>ตอนนี้คุณยังไม่มีข้อมูลประวัติการทำงานที่เลือกไว้ สำหรับตำแหน่งงาน{occupation}</p>
+                                <button onClick={this.handleRoute}>เลือกข้อมูล</button>
                             </div>
                         </div>
                         <div class="timeline-block">    

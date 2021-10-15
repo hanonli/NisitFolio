@@ -8,7 +8,7 @@ import cookie from 'react-cookies';
 class MyresumePortfolio extends React.Component {
     constructor(props){
         super(props)
-        this.state = {mybookmark : []}
+        
         //this.GetUserBookmarkData()
     }
 
@@ -18,8 +18,10 @@ class MyresumePortfolio extends React.Component {
     }
     /*GetUserBookmarkData(){
         var token = cookie.load('login-token');
-        setInterval(() => {
-            fetch("http://localhost:2000/bookmark/"+userId+"&&time",{
+        var userid = cookie.load('login-user');
+        console.log(userid);
+        /*setInterval(() => {
+            fetch("http://localhost:2000/bookmark/"+userid+"&&time",{
                 method: "GET",
                 headers: {
                     "Access-Control-Allow-Origin": "*",
@@ -30,8 +32,7 @@ class MyresumePortfolio extends React.Component {
             .then(response => response.json())
             //.then(response => response.result)
             .then((datas) => {
-                userBmData = datas;
-                f4 = true;
+                console.log(datas);
             }).catch((error) => {
                 console.log(error);
                 });
@@ -64,13 +65,13 @@ class MyresumePortfolio extends React.Component {
         let day;
         for(var i=0; i<portfolios.length; i++){
             day = portfolios[i].Port_Date.split("/");
-
+            console.log()
             clean_data.push({
                 link: ("portinfo/" + portfolios[i]._id),
                 port_id: portfolios[i]._id,
                 port_name: portfolios[i].Port_Name,
-                image: portfolios[i].portfolioPictures[0].Pic[0],
-                date: day[0] + " "+ monthdict[day[1]] + " " + day[2],
+                image: portfolios[i].portfolioPictures[0].Pic[0]? portfolios[i].portfolioPictures[0].Pic[0]: "assets/images/ldwithgradient.png",
+                date: day[0] + " "+ monthdict[parseInt(day[1])] + " " + day[2],
                 privacy: portfolios[i].Port_Privacy,
                 owner: owner_status
             });
