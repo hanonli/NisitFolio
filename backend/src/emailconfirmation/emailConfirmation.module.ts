@@ -22,7 +22,7 @@ import { join } from 'path';
             secure: false,
             auth: {
               user: 'nisitfoliocorp@gmail.com',
-              pass: 'yhd1248ds',
+              pass: '.>:z2*nAD@mnQyL[',
             },
           },
           defaults: {
