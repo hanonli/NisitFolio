@@ -1,5 +1,5 @@
 import React from "react";
-
+import cookie from 'react-cookies';
 
 class MyresumeHeading extends React.Component{
     render(){
@@ -16,6 +16,8 @@ class MyresumeHeading extends React.Component{
         else{
             nonbioresp = [];
         }
+        cookie.save('Job_EditName', (this.props.occupation? this.props.occupation: "ตำแหน่งงานที่สนใจ"));
+        //console.log(cookie.load('Job_EditName'))
         return(
             <div class="resume-header" id="resume-header">
                 <div class="resume-profile-picture">
