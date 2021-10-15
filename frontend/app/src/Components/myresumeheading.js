@@ -11,7 +11,7 @@ class MyresumeHeading extends React.Component{
         const owner = this.props.owner? this.props.owner: false;
         let nonbioresp;
         if(owner){
-            nonbioresp = <p>ตอนนี้คุณยังไม่ได้เขียน เกี่ยวกับฉัน เพื่ออธิบายตัวตนของคุณ ผู้เข้าชมยังไม่รับรู้ว่าคุณเป็นคนยังไง และสนใจเรื่องอะไรกด <a href="editprofile" style={{color: "black", fontWeight: 700 }}>แก้ไขโปรไฟล์</a> เพื่อแสดง passion ของคุณ!</p>;
+            nonbioresp = <p>ตอนนี้คุณยังไม่ได้เขียน เกี่ยวกับฉัน เพื่ออธิบายตัวตนของคุณ ผู้เข้าชมยังไม่รับรู้ว่าคุณเป็นคนยังไง และสนใจเรื่องอะไรกด <a href="editprofile" onClick={cookie.save('Edit_tabselect',2)} style={{color: "black", fontWeight: 700 }}>แก้ไขโปรไฟล์</a> เพื่อแสดง passion ของคุณ!</p>;
         }
         else{
             nonbioresp = [];
@@ -22,7 +22,7 @@ class MyresumeHeading extends React.Component{
             <div class="resume-header" id="resume-header">
                 <div class="resume-profile-picture">
                     <a> 
-                        <img class="resume-profile-pic" src={this.props.imagepath? this.props.imagepath: "assets/images/profile2.jpg"}></img>
+                        <img class="resume-profile-pic" src={this.props.imagepath? this.props.imagepath: "assets/images/profile_uk.png"}></img>
                     </a> 
                 </div> 
                 <div class="resume-head-darkpart">
