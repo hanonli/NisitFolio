@@ -128,6 +128,7 @@ class Editresume extends React.Component {
 				});
 			});
 		$(function () {
+			console.log('Selected tab is '+ cookie.load('Edit_tabselect'));
 			$('.tab-content').hide();
 			$('#registab1-content').show();
 			console.log("Yahaha!");
@@ -173,10 +174,17 @@ class Editresume extends React.Component {
 				$('#tab-6').addClass('tab-list-active')
 				$('#registab6-content').show();
 			});
+			console.log("Stored Job_EditName cookies: "+cookie.load('search-entry')); //debug cookies
+   			$('.name2').text(cookie.load('search-entry'));
 		});
 		$('#cancelChoose').on('click',function(){
 			window.history.go(-1);
 		})
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener('load', this.handleLoad)
+		cookie.save('Edit_tabselect','');
 	}
 
 	render() {
@@ -190,6 +198,8 @@ class Editresume extends React.Component {
 								<div class="col">
 									<div class="topData2-content">
 										<h1 class="name inline">เลือกข้อมูลผู้ใช้ที่จะแสดง</h1>
+										<h1 class="symbol inline">.</h1>
+										<h1 class="name2 inline"></h1>
 									</div>
 								</div>
 							</div>
