@@ -269,7 +269,7 @@ class PortInfo extends React.Component {
 			console.log(portfolioData);
 				refThis.setState({ render: true });
 				
-				$('#avatar').attr('src',portfolioData.ProfilePic);
+				//$('#avatar').attr('src',portfolioData.ProfilePic);
 				
 				$("#to-regis").click(function() {
 					refThis.setState({ redirect: "/register" });
@@ -713,7 +713,7 @@ class PortInfo extends React.Component {
 				GetUserBookmarkData();
 				
 				//quick fix
-				//GetUserProfilePic();
+				GetUserProfilePic();
 			}).catch((error) => {
 				console.log('Token Error!');
 				console.log(error);
@@ -721,7 +721,7 @@ class PortInfo extends React.Component {
 			});
 			
 		function GetUserProfilePic(){
-			/*fetch("http://localhost:2000/search/top?q="+portfolioData.Owner.split(' ')[0]+"&userId="+userId,{
+			fetch("http://localhost:2000/search/top?q="+portfolioData.Owner.split(' ')[0]+"&userId="+userId,{
 				method: "GET",
 				headers: {
 					"Access-Control-Allow-Origin": "*",
@@ -742,7 +742,7 @@ class PortInfo extends React.Component {
 					});
 				}).catch((error) => {
 					  console.log(error);
-					});*/
+					});
 		}
 		
 		function GetUserBookmarkData(){
