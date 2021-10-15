@@ -118,11 +118,11 @@ class MyResume1 extends React.Component {
         return (
             
             <div class="resume1">
-                <MyresumeHeading firstname={firstname} lastname={lastname} occupation={occupation} owner={owner}  imagepath={imagepath} colour={color} province={town[1]?town[1]:''} city={town[2]?town[2]:''}></MyresumeHeading>
+                <MyresumeHeading firstname={firstname} lastname={lastname} occupation={occupation} owner={owner} bio={bio} imagepath={imagepath} colour={color} province={town[1]?town[1]:''} city={town[2]?town[2]:''}></MyresumeHeading>
 			    {/* <MyresumeHeading firstname={firstname} lastname={lastname} const occupation={occupation} imagepath={imagepath} colour="#FFCE55"></MyresumeHeading> bio={bio}
                 <MyresumeHeading firstname={firstname} lastname={lastname} const occupation={occupation} imagepath={imagepath} colour="#FFCE55" owner={true}></MyresumeHeading> */}
                 <MyResumeEducation data={educationdata} owner={owner} colour={color}></MyResumeEducation>
-                {/* <MyResumeEducation data={[]} owner={true}></MyResumeEducation> */}
+                {/*<MyResumeEducation owner={true}></MyResumeEducation>*/}
                 {/*<MyresumeCertificate data={certdata} owner={owner}></MyresumeCertificate>*/}
                 {/* <MyresumeCertificate data={[]}></MyresumeCertificate> */}
                 {/*certificate move to myresume 2 follow the figma*/}

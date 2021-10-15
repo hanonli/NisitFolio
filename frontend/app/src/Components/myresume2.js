@@ -102,20 +102,19 @@ class MyResume2 extends React.Component {
             <div class="resume2">
                 <MyResumeSkill addSkill={additionalSkills} intJob={interestedJob} owner={owner} colour={color}></MyResumeSkill>
                 <MyresumeWork data={workdata} owner={owner} colour={color}></MyresumeWork>
-                {/* <MyresumeWork data={[]} owner={true}></MyresumeWork> */}
+                {/*<MyresumeWork owner={true}></MyresumeWork>
                 
-                {/* <h2>ไม่มีเหี้ยไรสักอย่าง แต่เป็นเจ้าของ</h2>
-                <MyResumeSkill addSkill={[]} owner={true}></MyResumeSkill> */}
-                {/* <h2>เคสที่มีแต่ jobskill</h2> */}
-                {/* <MyResumeSkill intJob={interestedJob}></MyResumeSkill>
+                <h2>ไม่มีเหี้ยไรสักอย่าง แต่เป็นเจ้าของ</h2>
+                <MyResumeSkill addSkill={[]} owner={true}></MyResumeSkill> 
+                 <h2>เคสที่มีแต่ jobskill</h2> 
+                <MyResumeSkill intJob={interestedJob} owner={true}></MyResumeSkill>
                 <h2>เคสที่มีแต่ additionalSkills</h2>
                 <MyResumeSkill addSkill={additionalSkills} owner={true}></MyResumeSkill>
                 <h2>เคสที่มี intjob แต่ในนั้น array Job_SkillName ไม่มีสมาชิก</h2>
                 <MyResumeSkill addSkill={[]} intJob={interestedJobnoskill} owner={true}></MyResumeSkill>
-                <MyResumeSkill addSkill={[]} intJob={interestedJobnoskill} owner={false}></MyResumeSkill>
-                <p>เหตุผลคือถ้าอุตส่าห์มีสกิลทั้งทีแล้วทำไมต้องรอให้มีสกิลเสริม หรือสกิลตามอาชีพก่อนถึงยอมโชว์ ถ้าเขาใส่มาคงอยากโชว์แหละ</p> */}
-                <MyresumeCertificate data={certdata} owner={owner} colour={color}></MyresumeCertificate>
-                
+                <MyResumeSkill addSkill={[]} intJob={interestedJobnoskill} owner={true}></MyResumeSkill>
+                <p>เหตุผลคือถ้าอุตส่าห์มีสกิลทั้งทีแล้วทำไมต้องรอให้มีสกิลเสริม หรือสกิลตามอาชีพก่อนถึงยอมโชว์ ถ้าเขาใส่มาคงอยากโชว์แหละ</p>*/}                <MyresumeCertificate data={certdata} owner={owner} colour={color}></MyresumeCertificate>
+                {/*<MyresumeCertificate owner={owner} colour={color}></MyresumeCertificate>*/}
                 {/*<h1>ไกด์ให้มาย</h1>
                 <MyResumeportfoliolayoutP>
                     <div>element1</div>

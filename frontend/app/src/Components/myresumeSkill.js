@@ -1,4 +1,5 @@
 import React from 'react';
+import cookie from 'react-cookies';
 
 class MyResumeScoreSkill extends React.Component{
 
@@ -85,8 +86,12 @@ class MyResumeSkill extends React.Component {
 
     handleRoute = () =>{ 
         window.location = ("editprofile");
+        cookie.save('Edit_tabselect',6);
     }
-
+    handleRoute2 = () =>{ 
+        cookie.save('Edit_tabselect',6);
+        window.location = ("editresume");
+    }
     render() {
         // console.log('in skill: ' + JSON.stringify(this.props.addSkill))
         const owner = this.props.owner? this.props.owner: false;
@@ -175,9 +180,9 @@ class MyResumeSkill extends React.Component {
         // let job = interestedJob[0];
         //console.log(this.props.intJob? true: false);
         //console.log(interestedJob.Job_SkillName? true: false);
-        //console.log(interestedJob.Job_SkillName.length !== 0);
+        console.log(additionalSkills.length);
         
-        //console.log(jobskillcheck);
+        console.log(jobskillcheck);
         if((additionalSkills.length===0) && (!jobskillcheck) && (owner)){
             if(topicElement.length === 0){
                 topicElement.push(<h2 class="resumetopic">ทักษะที่โดดเด่น</h2>);
@@ -186,10 +191,42 @@ class MyResumeSkill extends React.Component {
             dummyshow.push(<div class="dummycaseSkill"><MyResumeScoreSkill skillname="ทักษะของคุณ" score={10} level="ระดับคะแนน" colour="#505050"></MyResumeScoreSkill></div>);
             dummyshow.push(
             <div class="dummycaseSkill dummycenter">
-                <p style={{textAlign: "center"}}>ตอนนี้คุณยังไม่มีข้อมูลทักษะที่โดดเด่น สำหรับตำแหน่งงาน{occupation} และทักษะเสริมที่ช่วยแสดงความถนัดด้านอื่น ๆ ของคุณ</p>
-                <button onClick={this.handleRoute}>แก้ไขโปรไฟล์</button>
+                <p style={{textAlign: "center"}}>ตอนนี้คุณยังไม่มีข้อมูลทักษะที่โดดเด่น และทักษะเสริมที่เลือกไว้ สำหรับตำแหน่งงานนี้</p>
+                <button onClick={this.handleRoute}>เพิ่มทักษะ</button>
+                <button onClick={this.handleRoute2}>เลือกทักษะเสริม</button>
             </div>
             );
+        }
+        else if((additionalSkills.length===0) && (jobskillcheck) && (owner)){
+            
+            if(topicElement.length === 0){
+                topicElement.push(<h2 class="resumetopic">ทักษะที่โดดเด่น</h2>);
+                topicElement.push(<div class="resumesectionline" style={linestyle}></div>);
+            }
+            dummyshow.push(<div></div>);
+            dummyshow.push(
+            <div class="dummycaseSkill dummycenter">
+                <p style={{textAlign: "center"}}>ตอนนี้คุณยังไม่มีข้อมูลทักษะเสริมที่เลือกไว้ สำหรับตำแหน่งงานนี้</p>
+                <button onClick={this.handleRoute2}>เลือกทักษะเสริม</button>
+            </div>
+            );
+            console.log(dummyshow);
+        }
+        else if((additionalSkills.length!==0) && (!jobskillcheck) && (owner)){
+            
+            if(topicElement.length === 0){
+                topicElement.push(<h2 class="resumetopic">ทักษะที่โดดเด่น</h2>);
+                topicElement.push(<div class="resumesectionline" style={linestyle}></div>);
+            }
+            dummyshow.push(
+                <div class="dummycaseSkill dummycenter">
+                    <p style={{textAlign: "center"}}>ตอนนี้คุณยังไม่มีข้อมูลทักษะที่โดดเด่น สำหรับตำแหน่งงานนี้</p>
+                    <button onClick={this.handleRoute}>เพิ่มทักษะ</button>
+                </div>
+                );
+            dummyshow.push(<div></div>);
+            
+            console.log(dummyshow);
         }
         let result;
         if((additionalSkills.length===0) && (!jobskillcheck) && (!owner)){

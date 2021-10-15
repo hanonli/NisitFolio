@@ -1,6 +1,6 @@
 import React from 'react';
 import Myresumetimeline from './myresumeTimeline';
-
+import cookie from 'react-cookies';
 
 class EducationContent extends React.Component {
 
@@ -118,8 +118,10 @@ class EducationContent extends React.Component {
 
 class MyResumeEducation extends React.Component {
     handleRoute = () =>{ 
-        window.location = ("editprofile");
+        cookie.save('Edit_tabselect',2);
+        window.location = ("editresume");
     }
+    
     render() {
         function educationSorter(firstKey, secondKey) {
             //console.log("callSort");
@@ -207,8 +209,8 @@ class MyResumeEducation extends React.Component {
                                     <div class="educationcontentLine4"><p class="grade-label inline2">เกรด</p><div class="centerbreak inline2"><div class="breakline inline2"> </div></div><h4 class="grade inline2">X.XX</h4></div></div></div></div>
                         <div class="timeline-block">
                             <div class="timeline-dummy">
-                                <p>ตอนนี้คุณยังไม่มีข้อมูลประวัติการศึกษา สำหรับตำแหน่งงาน{occupation}</p>
-                                <button onClick={this.handleRoute}>แก้ไขโปรไฟล์</button>
+                                <p>ตอนนี้คุณยังไม่มีข้อมูลประวัติการศึกษาที่เลือกไว้ สำหรับตำแหน่งงาน{occupation}</p>
+                                <button onClick={this.handleRoute}>เลือกข้อมูล</button>
                             </div>
                         </div>
                         <div class="timeline-block">
