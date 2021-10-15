@@ -30,6 +30,7 @@ class DataHeader extends React.Component {
 		//script.src = "assets/js/#.js";
 		//document.body.appendChild(script);
 		$(function () {
+			console.log('Selected tab is '+ cookie.load('Edit_tabselect'));
 			$('.tab-content').hide();
 			$('#Edittab1-content').show();
 			$('#basic-date-picker1').attr('placeholder', 'วัน/เดือน/ปี');
@@ -292,6 +293,7 @@ class DataHeader extends React.Component {
 
 	componentWillUnmount() {
 		window.removeEventListener('load', this.handleLoad)
+		cookie.save('Edit_tabselect','');
 	}
 
 	render() {
