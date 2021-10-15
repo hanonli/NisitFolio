@@ -92,7 +92,7 @@ class MyresumePortfolio extends React.Component {
             </div>);
         }
 
-        if (data.length == 0) {
+        if (data.length == 0 && owner_status == true) {
             return (
                 <div class="work-goals-woNb">
                     <h4 class="text-work-goals-wdata">ตอนนี้คุณยังไม่มีข้อมูลผลงานที่เลือกไว้ สำหรับตำแหน่งงานนี้</h4>

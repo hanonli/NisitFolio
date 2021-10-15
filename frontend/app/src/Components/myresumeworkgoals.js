@@ -74,12 +74,19 @@ class MyresumeWorkGoals extends React.Component {
             )
         }
 
-        return (
-            <div class="workgolas" id="resume-goal">
-                <div>{Job_Goals_With_data}</div>
-                <div>{Without_Job_Goals}</div>
-            </div>
-        );
+        if ((Count_Job == 0) && (!owner)) {
+            return (
+                <div />
+            );
+        }
+        else {
+            return (
+                <div class="workgolas" id="resume-goal">
+                    <div>{Job_Goals_With_data}</div>
+                    <div>{Without_Job_Goals}</div>
+                </div>
+            );
+        }
     }
 }
 
