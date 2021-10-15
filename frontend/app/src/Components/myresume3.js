@@ -102,7 +102,7 @@ class MyResume3 extends React.Component {
                         </div>
                         <div class="resumesectionline" style={linestyle}></div>
                     </div>
-                    <MyresumePortfolio data={portfoliodata}></MyresumePortfolio>
+                    <MyresumePortfolio data={portfoliodata} state={this.props.state}></MyresumePortfolio>
                     <br /><br />
                 </div></>
         );

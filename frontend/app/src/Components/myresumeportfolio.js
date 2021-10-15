@@ -60,14 +60,8 @@ class MyresumePortfolio extends React.Component {
         const portfolios = this.props.data? this.props.data: [];
         const owner_status = true;
 
-<<<<<<< HEAD
         console.log(this.state);
         
-=======
-        const linestyle = {
-            backgroundColor: this.props.colour ? this.props.colour : "#FFCE55"
-        };
->>>>>>> dd718b291147951202ebee4bf3d3cb310eaea220
 
         let clean_data = [];
         let day;

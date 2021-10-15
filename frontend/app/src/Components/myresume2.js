@@ -129,11 +129,7 @@ class MyResume2 extends React.Component {
                 <MyResumeportfoliolayoutP>
                     <div><h1>content</h1></div>
                 </MyResumeportfoliolayoutP>*/}
-<<<<<<< HEAD
                 <MyresumePortfolio data={portfoliodata} state={this.props.state}></MyresumePortfolio>
-=======
-                
->>>>>>> dd718b291147951202ebee4bf3d3cb310eaea220
             </div>
                 
         );
