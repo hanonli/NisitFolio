@@ -128,6 +128,7 @@ class Editresume extends React.Component {
 				});
 			});
 		$(function () {
+			$('.name2').text(cookie.load('Job_EditName'));
 			console.log('Selected tab is '+ cookie.load('Edit_tabselect'));
 			$('.tab-content').hide();
 			$('#registab1-content').show();
