@@ -15,6 +15,7 @@ class MyresumePortfolio extends React.Component {
     handleRoute = () => {
         console.log('EDITRESUMETAB5');
         cookie.save('Edit_tabselect', 'editresumetab5');
+        window.location = ("editresume");
     }
     /*GetUserBookmarkData(){
         var token = cookie.load('login-token');
