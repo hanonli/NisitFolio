@@ -10,9 +10,19 @@ class MyresumePortfolio extends React.Component {
         super(props)
         var user = cookie.load('login-user');
         var state = this.props.state;
-        
-        this.state = {cookieid : user, ownerid : state.userID, index : state.index};
-        //this.GetUserBookmarkData()
+        let whosee;
+        if(user==="none"){
+			console.log("it's none");
+            whosee = "guest";
+		}
+        else if(user===state.userID){
+            whosee = "owner";
+        }
+        else{
+            whosee = "other";
+        }
+        this.state = {cookieid : user, ownerid : state.userID, index : state.index, data1 : [], data2 : [], data3 : [], seeby : whosee};
+        this.GetUserPortData()
     }
 
     handleRoute = () => {
@@ -20,29 +30,25 @@ class MyresumePortfolio extends React.Component {
         cookie.save('Edit_tabselect', 'editresumetab5');
         window.location = ("editresume");
     }
-    /*GetUserBookmarkData(){
-        var token = cookie.load('login-token');
-        var userid = cookie.load('login-user');
-        console.log(userid);
-        /*setInterval(() => {
-            fetch("http://localhost:2000/bookmark/"+userid+"&&time",{
-                method: "GET",
-                headers: {
-                    "Access-Control-Allow-Origin": "*",
-                    "Access-Control-Allow-Methods": "*",
-                    "Access-Control-Allow-Credentials": true,
-                    "Content-Type": "application/json"},
-            })
-            .then(response => response.json())
-            //.then(response => response.result)
-            .then((datas) => {
-                console.log(datas);
-            }).catch((error) => {
-                console.log(error);
-                });
-        }, 5000);
-    }*/
+    GetUserPortData(){
+        var id = this.state.ownerid;
+        var seeby = this.state.seeby;
+        fetch("http://localhost:2000/myresume/portfolio/"+ id + "/" + seeby).then(response => response.json())
+        .then(data => {
+            console.log(data)
+            this.setState({data1: data[0]});
+            this.setState({data2: data[1]});
+            this.setState({data3: data[2]});
+        });
+        
+    }
     render() {
+		const linestyle = {
+            backgroundColor:  this.props.state.color ? this.props.state.color : "#FFCE55"
+        };
+        const color = this.props.state.color;
+		console.log(this.state.data1);
+        var index = this.props.state.index;
         const monthdict = {
             1: "มกราคม",
             2: "กุมภาพันธ์",
@@ -58,12 +64,17 @@ class MyresumePortfolio extends React.Component {
             12: "ธันวาคม",
             99: "ยังอยู่ในงาน"
         };
-        const portfolios = this.props.data? this.props.data: [];
-        const owner_status = true;
 
+        let mydata = [];
+        mydata.push(this.state.data1);
+        mydata.push(this.state.data2);
+        mydata.push(this.state.data3);
+        const portfolios = mydata[index];//this.props.data? this.props.data: [];
+        const owner_status = this.props.state.is_owner;
+        console.log(owner_status);
         console.log(this.state);
         
-
+        console.log(portfolios);
         let clean_data = [];
         let day;
         for(var i=0; i<portfolios.length; i++){
@@ -91,19 +102,33 @@ class MyresumePortfolio extends React.Component {
                 <MyResumePort data={clean_data[j]}></MyResumePort>
             </div>);
         }
-
-        if (data.length == 0 && owner_status == true) {
+        let topicele = (
+            <div class="myresume-mywork-woNb">
+                <div class="educationtopic">
+                    <h2 class="myresume-head-woNb">ผลงานของฉัน</h2>
+                </div>
+                <div class="resumesectionline" style={linestyle}></div>
+            </div>
+        );
+        if ((clean_data.length == 0)&&(owner_status)) {
             return (
-                <div class="work-goals-woNb">
-                    <h4 class="text-work-goals-wdata">ตอนนี้คุณยังไม่มีข้อมูลผลงานที่เลือกไว้ สำหรับตำแหน่งงานนี้</h4>
-                    <button class="work-goals-btn" onClick={this.handleRoute}>เลือกข้อมูล</button>
-                    <div class="wgs"></div>
+                <div>
+                    {topicele}
+                    <div class="work-goals-woNb">
+                        <h4 class="text-work-goals-wdata">ตอนนี้คุณยังไม่มีข้อมูลผลงานที่เลือกไว้ สำหรับตำแหน่งงานนี้</h4>
+                        <button class="work-goals-btn" onClick={this.handleRoute}>เลือกข้อมูล</button>
+                        <div class="wgs"></div>
+                    </div>
                 </div>
             );
+        }
+        else if((clean_data.length == 0)&&(!owner_status)){
+            return(<div></div>);
         }
         else {
             return (
                 <div>
+                    {topicele}
                     <div className="img-sp"></div>
                     <MyResumeportfoliolayoutP>
                         {portcontent}

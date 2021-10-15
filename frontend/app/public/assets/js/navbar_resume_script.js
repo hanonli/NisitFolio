@@ -1,8 +1,8 @@
 $('#icon-myresume-education, #icon-myresume-certi, #icon-myresume-skill, #icon-myresume-work, #icon-myresume-goal, #icon-myresume-resume' )
     .attr({
         
-        'width': ' 40px',
-        'height' : '40px',
+        'width': ' 35px',
+        'height' : '35px',
  
 });
     
@@ -29,7 +29,7 @@ $('#icon-myresume-goal').attr('title', 'Goal');
 $('.Home').css({
     'overflow':'hidden',
 });
-$('.MyResumeContent').css("padding-left",'20vw');
+$('.MyResumeContent').css("padding-left",'5vw');
 
 $('.Resume_sideNavbar').css({
     "padding-top":"6.5vh",
@@ -37,7 +37,8 @@ $('.Resume_sideNavbar').css({
 });
 $('.resumeblock').css({
     "height": "12vh",
-    "padding-top": "3vh",
+    "padding-top": "4vh",
+    "padding-bottom": "4vh",
     "display" : "block",
 });
 

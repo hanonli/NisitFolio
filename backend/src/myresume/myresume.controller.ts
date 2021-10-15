@@ -35,7 +35,7 @@ export class MyResumeController {
       return this.resumeService.getResumeheader(req.user.userId);
   }
   
-  
+
 
   @UseGuards(JwtAuthGuard)
   @Post()
@@ -63,7 +63,23 @@ export class MyResumeController {
       return this.resumeService.updateResume(CreateDto,resumeId,req.user.userId,ip);
 
     }
-    
+  
+  @Get('/portfolio/:userid/owner')
+  async getportowner(@Param('userid') userId: string){
+    return this.resumeService.getportowner(userId);
+  }
+
+  @Get('/portfolio/:userid/other')
+  async getportother(@Param('userid') userId: string){
+    return this.resumeService.getportother(userId);
+  }
+
+  @Get('/portfolio/:userid/guest')
+  async getportguest(@Param('userid') userId: string){
+    return this.resumeService.getportguest(userId);
+  }
+
+   
   
     //*/
 

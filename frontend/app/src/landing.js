@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import './landing.css';
 import NavbarTransparent from './Components/navbarTransparent';
@@ -16,8 +15,8 @@ class Landing extends React.Component {
 		script.src = "assets/js/landing.js";
 		document.body.appendChild(script);
 	}
-
-	render() {
+	
+	render() {	
 		return (
 			<div className="Landing">
 				<NavbarTransparent />
