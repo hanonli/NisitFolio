@@ -7,6 +7,7 @@ class MyresumeWorkGoals extends React.Component {
     handleRoute = () => {
         console.log('EDITPROFLIETAB6');
         cookie.save('Edit_tabselect', 'editproflietab6');
+        window.location = ("editproflie");
     }
 
     render() {
@@ -57,7 +58,7 @@ class MyresumeWorkGoals extends React.Component {
             )
         }
 
-        if ((Count_Job == 0)&&(owner)) {
+        if ((Count_Job == 0) && (owner)) {
             Without_Job_Goals.push(
                 <div class="myresume-work-goals-withoutdata">
                     <div class="work-goals-head">
