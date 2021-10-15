@@ -64,6 +64,21 @@ export class MyResumeController {
 
     }
   
+  @Get('/portfolio/:userid/owner')
+  async getportowner(@Param('userid') userId: string){
+    return this.resumeService.getportowner(userId);
+  }
+
+  @Get('/portfolio/:userid/other')
+  async getportother(@Param('userid') userId: string){
+    return this.resumeService.getportother(userId);
+  }
+
+  @Get('/portfolio/:userid/guest')
+  async getportguest(@Param('userid') userId: string){
+    return this.resumeService.getportguest(userId);
+  }
+
    
   
     //*/
