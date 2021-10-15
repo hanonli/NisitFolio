@@ -14,15 +14,12 @@ class MyresumePortfolioPrivacybutton extends React.Component {
         console.log("change to private");
         const portid = this.state.portid;
         console.log("form member " + portid );
-        fetch("http://localhost:2000/portfolio/"+portid,{
-			method: "PATCH",
+        fetch("http://localhost:2000/portfolio/Privacy/"+portid,{
+			
 			headers: {
 				'Authorization': 'Bearer '+token,
-				"Access-Control-Allow-Origin": "*",
-				"Access-Control-Allow-Methods": "*",
-				"Access-Control-Allow-Credentials": true,
-				"Content-Type": "application/json"
 			},
+            method: "PATCH",
 			body: JSON.stringify({
                 "Port_Privacy": "Private"
             }),
@@ -45,14 +42,10 @@ class MyresumePortfolioPrivacybutton extends React.Component {
         console.log("change to public");
         const portid = this.state.portid;
         console.log("form member " + portid );
-        fetch("http://localhost:2000/portfolio/"+portid,{
+        fetch("http://localhost:2000/portfolio/Privacy/"+portid,{
 			method: "PATCH",
 			headers: {
 				'Authorization': 'Bearer '+token,
-				"Access-Control-Allow-Origin": "*",
-				"Access-Control-Allow-Methods": "*",
-				"Access-Control-Allow-Credentials": true,
-				"Content-Type": "application/json"
 			},
 			body: JSON.stringify({
                 "Port_Privacy": "Public"
