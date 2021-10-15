@@ -1,6 +1,8 @@
 import React from 'react';
 import MyResumeportfoliolayoutP from './Myresume_choiceforportfolio';
 import MyResumePort from './myresumeport';
+import { data } from 'jquery';
+import { Link } from "react-router-dom";
 import cookie from 'react-cookies';
 
 class MyresumePortfolio extends React.Component {
@@ -8,6 +10,11 @@ class MyresumePortfolio extends React.Component {
         super(props)
         
         //this.GetUserBookmarkData()
+    }
+
+    handleRoute = () => {
+        console.log('EDITRESUMETAB5');
+        cookie.save('Edit_tabselect', 'editresumetab5');
     }
     /*GetUserBookmarkData(){
         var token = cookie.load('login-token');
@@ -50,13 +57,15 @@ class MyresumePortfolio extends React.Component {
         const portfolios = this.props.data? this.props.data: [];
         const owner_status = true;
 
-        
+        const linestyle = {
+            backgroundColor: this.props.colour ? this.props.colour : "#FFCE55"
+        };
 
         let clean_data = [];
         let day;
         for(var i=0; i<portfolios.length; i++){
             day = portfolios[i].Port_Date.split("/");
-
+            
             clean_data.push({
                 link: ("portinfo/" + portfolios[i]._id),
                 port_id: portfolios[i]._id,
@@ -80,14 +89,25 @@ class MyresumePortfolio extends React.Component {
             </div>);
         }
 
-        return(
-            <div>
-                <MyResumeportfoliolayoutP>
-                    {portcontent}
-                </MyResumeportfoliolayoutP>
-            </div>
-            
-        );
+        if (data.length == 0) {
+            return (
+                <div class="work-goals-woNb">
+                    <h4 class="text-work-goals-wdata">ตอนนี้คุณยังไม่มีข้อมูลผลงานที่เลือกไว้ สำหรับตำแหน่งงานนี้</h4>
+                    <button class="work-goals-btn" onClick={this.handleRoute}>เลือกข้อมูล</button>
+                    <div class="wgs"></div>
+                </div>
+            );
+        }
+        else {
+            return (
+                <div>
+                    <div className="img-sp"></div>
+                    <MyResumeportfoliolayoutP>
+                        {portcontent}
+                    </MyResumeportfoliolayoutP>
+                </div>
+            );
+        }
     }
 }
 export default MyresumePortfolio;

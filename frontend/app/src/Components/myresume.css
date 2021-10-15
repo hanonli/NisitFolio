@@ -380,7 +380,7 @@
 .mywork-col{
     float: left;
     width: 100%;
-    height: 100%;
+    height: 17Vw;
     padding: 0%;
     margin-bottom: 0.5Vw;
     position: relative;
@@ -394,8 +394,8 @@
     position: relative;
 }
 .myworkobj{
-    /*width: 100%;
-    height: 100%;*/
+    width: 100%;
+    height: 100%;
 }
 
 .img-mywork-1{
@@ -437,7 +437,7 @@
 .img-overlay{
     position: absolute;
     width: 100%;
-    height: 17Vw;
+    height: 100%;
     z-index: 1;
     display: flex;
     background-color: rgba(0,0,0,0.6);
@@ -453,14 +453,14 @@
 }
 
 .myworkname{
-    margin-top: 8Vw;
-    margin-left: 2Vw;
+    margin-top: 10.6Vw;
+    margin-left: 1.5Vw;
     font-size: 2Vw;
     color:rgb(255, 255, 255);
 }
 
 .myworkdate{
-    margin-left: 2Vw;
+    margin-left: 1.5Vw;
     font-size: 1Vw;
     font-weight: 500;
     color:white;
@@ -481,17 +481,18 @@
 }
 
 .iconmywork{
-    margin-left: 4Vw;
+    margin-left: 7Vw;
     margin-top: 1Vw;
     margin-bottom: 0.7Vw;
     z-index: 999;
     position: absolute;
 }
 
-.img-mywork-select{
-    width: 1.9Vw;
-    height: 1.9Vw;
-    margin-left: 13.8Vw;
+#img-mywork-select{
+    width: 1.5Vw;
+    height: 1.5Vw;
+    margin-top: 0.5Vw;
+    margin-left: 19.7Vw;
     z-index: 999;
 }
 
@@ -503,10 +504,12 @@
 }
 
 .img-mywork-edit{
-    width: 1.6Vw;
-    height: 1.6Vw;
-    margin-left: 1Vw;
+    width: 1.9Vw;
+    height: 1.9Vw;
+    margin-top: 0.6Vw;
+    margin-left: 11.6Vw;
     z-index: 999;
+    position: absolute;
 }
 
 /*.img-overlay:hover{
