@@ -8,7 +8,7 @@ import { HttpService } from '@nestjs/axios';
 import { AxiosResponse } from 'axios';
 import { Observable } from 'rxjs';
 
-import { Account, Userinfo, AdditionalSkill, Certificate, EducationHistory, InterestedJob, WorkHistory,Portfolio,PortfolioPicture,Resume,UserJobSkill} from './entity/Register.entity'
+import { Account, Userinfo, AdditionalSkill, Certificate, EducationHistory, InterestedJob, WorkHistory,PortfolioPicture,Resume,UserJobSkill} from './entity/Register.entity'
 import { CreateRegisDto } from './dto/create-register.dto';
 import { EmailConfirmationService } from '../emailConfirmation/emailConfirmation.service';
 
@@ -24,6 +24,7 @@ import { UserInfoMongoose } from './entity/register.schema';
 import { UserInfoDocument } from './entity/register.schema';
 import { GetRegisDto } from './dto/get-register.dto';
 import { Bookmark } from './entity/bookmark.entity';
+import { Portfolio } from 'portfolio/entity/portfolio.entity';
 
 @Injectable()
 export class RegisterService {
@@ -60,6 +61,7 @@ export class RegisterService {
     private userJobSkillRepository: Repository<UserJobSkill>,
     @InjectRepository(Bookmark)
     private BookmarkRepository: Repository<Bookmark>,
+
     
     private readonly emailConfirmationService: EmailConfirmationService,
     private httpService: HttpService,
@@ -109,25 +111,10 @@ export class RegisterService {
       additionalskill.create_time = isoTime ;
       additionalskill.last_modified =  [isoTime] ;
       additionalskill.ResumeId =  new Array() ;
-<<<<<<< HEAD
       
-      additionalskill.Type= (await this.HardSkill2Repository.findOne({where:{ THName: createDto.SoftSkill[_i] }})).THType;
+      additionalskill.Type= (await this.HardSkillRepository.findOne({where:{ THName: createDto.SoftSkill[_i] }})).THType;
       await this.AdditionalSkillRepository.save(additionalskill);
-      /*
-      const x = (await this.HardSkill2Repository.find({where:{ THName: createDto.SoftSkill[_i] }}));
-      for (var _i = 0; _i < x.length; _i++) {
-=======
 
-      const x = (await this.HardSkillRepository.find({where:{ THName: createDto.SoftSkill[_i] }}));
-      for (var _i = 0; _i < createDto.SoftSkill.length; _i++) {
->>>>>>> 7624b62359db12d905091d14ad81c1cdb877febc
-        if(x[_i].THType=="สกิลแห่งปี 2021"){
-          continue
-        }else{
-          additionalskill.Type= x[_i].THType;
-        }
-      }
-      //await this.AdditionalSkillRepository.save(additionalskill);*/
     }
     
     
@@ -140,7 +127,7 @@ export class RegisterService {
       certificate.create_time = isoTime ;
       certificate.last_modified =  [isoTime] ;
       certificate.ResumeId = new Array();
-      //await this.CertificateRepository.save(certificate);
+      await this.CertificateRepository.save(certificate);
     }
 
     for (var _i = 0; _i < createDto.Degree.length; _i++) {
@@ -155,7 +142,7 @@ export class RegisterService {
       educationHistory.create_time = isoTime ;
       educationHistory.last_modified =  [isoTime] ;
       educationHistory.ResumeId = new Array();
-      //await this.EducationHistoryRepository.save(educationHistory);
+      await this.EducationHistoryRepository.save(educationHistory);
     }
 
     for (var _i = 0; _i < createDto.Work_JobName.length; _i++) {
@@ -174,7 +161,7 @@ export class RegisterService {
       workHistory.create_time = isoTime ;
       workHistory.last_modified =  [isoTime] ;
       workHistory.ResumeId = new Array();
-      //await this.WorkHistoryRepository.save(workHistory);
+      await this.WorkHistoryRepository.save(workHistory);
     }
 
     const tag_arr=[];
@@ -191,18 +178,18 @@ export class RegisterService {
       interestedJob.create_time = isoTime ;
       interestedJob.last_modified =  [isoTime] ;
       interestedJob.ResumeId = new Array();
-      //const Parentid = (await this.InterestedJobRepository.save(interestedJob))._id.toString()
+      const Parentid = (await this.InterestedJobRepository.save(interestedJob))._id.toString()
       tag_arr.push(createDto.Job_JobName[_i]);
       for (var _j = 0; _j < createDto.Job_Score[_i].length; _j++) {
         const userJobSkill = new UserJobSkill();
-        //userJobSkill.ParentId = Parentid;
+        userJobSkill.ParentId = Parentid;
         userJobSkill.UserId = accountid;
         userJobSkill.Job_JobName = createDto.Job_JobName[_i];
         userJobSkill.Job_Score = createDto.Job_Score[_i][_j];
         sum_score = sum_score + createDto.Job_Score[_i][_j];
         count_skill = count_skill + 1;
         userJobSkill.Job_SkillName = createDto.Job_SkillName[_i][_j];
-        //await this.userJobSkillRepository.save(userJobSkill);
+        await this.userJobSkillRepository.save(userJobSkill);
       }
       
     }
@@ -213,8 +200,7 @@ export class RegisterService {
     userinfo.totalBookmark = 0;
     userinfo.tags = tag_arr;
     userinfo.countSkill = count_skill;
-    //return (this.userinfoRepository.save(userinfo));
-    return "sus"
+    return (this.userinfoRepository.save(userinfo));
     
 
   }
@@ -240,6 +226,8 @@ export class RegisterService {
     const isoTime = time.toLocaleDateString('th-TH',{ year:'numeric',month: 'long',day:'numeric',hour:"2-digit",minute:"2-digit"});
     const userid = new ObjectID(UserId);
     const acc =  await this.accountRepository.findOne({where:{ _id: userid }});
+
+
 
     if (patchDto.Password != null)
       acc.Password.push(Md5.hashStr(patchDto.Password));
