@@ -12,11 +12,6 @@ class MyResumePort extends React.Component {
         window.location = (link);
     }
 
-    handleClicktoEdit = () => {
-        const editporfolio = "editport";
-        window.location = (editporfolio);
-    }
-
     voi = () => {
         console.log("clicked!")
     }
@@ -51,7 +46,7 @@ class MyResumePort extends React.Component {
                     <div className="img-overlay">
                         <div class="ghostbutton" onClick={this.handleRoute}></div>
                             <div className="img-mywork-edit">
-                                <MyresumeEditportButton></MyresumeEditportButton>
+                            <MyresumeEditportButton portid={port_id}></MyresumeEditportButton>
                             </div>
                         <h3 className="myworkname">
                             {port_name}

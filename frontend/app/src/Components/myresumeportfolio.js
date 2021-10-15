@@ -3,12 +3,18 @@ import MyResumeportfoliolayoutP from './Myresume_choiceforportfolio';
 import MyResumePort from './myresumeport';
 import { data } from 'jquery';
 import { Link } from "react-router-dom";
+import cookie from 'react-cookies';
 
 class MyresumePortfolio extends React.Component {
     constructor(props){
         super(props)
         this.state = {mybookmark : []}
         //this.GetUserBookmarkData()
+    }
+
+    handleRoute = () => {
+        console.log('EDITRESUMETAB5');
+        cookie.save('Edit_tabselect', 'editresumetab5');
     }
     /*GetUserBookmarkData(){
         var token = cookie.load('login-token');
@@ -58,13 +64,13 @@ class MyresumePortfolio extends React.Component {
         let day;
         for(var i=0; i<portfolios.length; i++){
             day = portfolios[i].Port_Date.split("/");
-            console.log()
+
             clean_data.push({
                 link: ("portinfo/" + portfolios[i]._id),
                 port_id: portfolios[i]._id,
                 port_name: portfolios[i].Port_Name,
-                //image: portfolios[i].portfolioPictures[0].Pic[0]? portfolios[i].portfolioPictures[0].Pic[0]: "assets/images/ldwithgradient.png",
-                date: day[0] + " "+ monthdict[parseInt(day[1])] + " " + day[2],
+                image: portfolios[i].portfolioPictures[0].Pic[0],
+                date: day[0] + " "+ monthdict[day[1]] + " " + day[2],
                 privacy: portfolios[i].Port_Privacy,
                 owner: owner_status
             });
@@ -82,17 +88,15 @@ class MyresumePortfolio extends React.Component {
             </div>);
         }
 
-        if (data.length != 0) {
+        if (data.length == 0) {
             return (
                 <div class="myresume-mywork-woNb">
                     <div class="myresume-mywork-withoutdata">
                         <h1 class="myresume-head-woNb">ผลงานของฉัน</h1>
                         <div class="line-mywork" style={linestyle}></div>
                         <div class="work-goals-woNb">
-                            <h4 class="text-work-goals-wdata">ตอนนี้คุณยังไม่มีข้อมูลผลงาน สำหรับตำแหน่งงานนี้</h4>
-                            
-                                <button class="work-goals-btn">แก้ไขโปรไฟล์</button>
-                            
+                            <h4 class="text-work-goals-wdata">ตอนนี้คุณยังไม่มีข้อมูลผลงานที่เลือกไว้ สำหรับตำแหน่งงานนี้</h4>
+                            <button class="work-goals-btn" onClick={this.handleRoute}>เลือกข้อมูล</button>
                             <div class="wgs"></div>
                         </div>
                     </div>

@@ -5,8 +5,10 @@ import './myresume.css';
 
 class MyresumeEditportButton extends React.Component {
     handleClicktoEdit = () => {
+        const portid = this.props.port_id;
+        console.log(portid)
         const editporfolio = "editport";
-        window.location = (editporfolio);
+        // window.location = (editporfolio);
     }
 
     render() {
