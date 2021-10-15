@@ -4,19 +4,11 @@ import { Link } from "react-router-dom";
 
 class MyresumeWorkGoals extends React.Component {
     render() {
-        // const interestedJob = this.props.state.interestedJob;
-        /*const interestedJob = [
-            {
-                "id": "6135805cd633f137e4559264",
-                "UserId": "61358059d633f137e455925c",
-                "Job_Objective": "อยากหวั่นไหว",
-                "Job_Score": 10,
-                "Job_JobName": "กวาดพื้นที่ logger room",
-                "Job_SkillName": "มวยปล้ำ"
-            }
-        ]*/
+        console.log(this.props.state);
+        const interestedJob = this.props.state.interestedJob[0]
+        console.log(interestedJob);
         let Count_Job = 0;
-        const Job_Objective = ["Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.","อยากรวย","อยากมีตัง หิวเงิน"];
+        const Job_Objective = interestedJob.Job_Objective;
         // const Job_Objective = ["none", "none", "none"];
         // const interestedJob = this.props.interestedJob;
         // const Job_Objective = this.props.interestedJob.Job_Objective;
@@ -27,12 +19,12 @@ class MyresumeWorkGoals extends React.Component {
         const colornumstyle = {
             color: this.props.colour ? this.props.colour : "#FFCE55"
         };
-
+        const owner = this.props.state.is_owner;
         const Job_Goals = []
         const Job_Goals_With_data = []
         const Without_Job_Goals = []
 
-        for (let i = 0; i <= 2; i++) {
+        for (let i = 0; i < Job_Objective.length; i++) {
             if (Job_Objective[i] != "none") {
                 Count_Job += 1;
                 Job_Goals.push(
@@ -58,7 +50,7 @@ class MyresumeWorkGoals extends React.Component {
             )
         }
 
-        if (Count_Job == 0) {
+        if ((Count_Job == 0)&&(owner)) {
             Without_Job_Goals.push(
                 <div class="myresume-work-goals-withoutdata">
                     <div class="work-goals-head">
