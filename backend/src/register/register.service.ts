@@ -47,9 +47,7 @@ export class RegisterService {
     @InjectRepository(Skill)
     private SkillRepository: Repository<Skill>,
     @InjectRepository(HardSkill)
-    private HardSkillRepository: Repository<Skill>,
-    @InjectRepository(HardSkill)
-    private HardSkill2Repository: Repository<HardSkill>,
+    private HardSkillRepository: Repository<HardSkill>,
     @InjectRepository(Portfolio)
     private portfolioRepository: Repository<Portfolio>,
     @InjectRepository(PortfolioPicture)
@@ -111,12 +109,18 @@ export class RegisterService {
       additionalskill.create_time = isoTime ;
       additionalskill.last_modified =  [isoTime] ;
       additionalskill.ResumeId =  new Array() ;
+<<<<<<< HEAD
       
       additionalskill.Type= (await this.HardSkill2Repository.findOne({where:{ THName: createDto.SoftSkill[_i] }})).THType;
       await this.AdditionalSkillRepository.save(additionalskill);
       /*
       const x = (await this.HardSkill2Repository.find({where:{ THName: createDto.SoftSkill[_i] }}));
       for (var _i = 0; _i < x.length; _i++) {
+=======
+
+      const x = (await this.HardSkillRepository.find({where:{ THName: createDto.SoftSkill[_i] }}));
+      for (var _i = 0; _i < createDto.SoftSkill.length; _i++) {
+>>>>>>> 7624b62359db12d905091d14ad81c1cdb877febc
         if(x[_i].THType=="สกิลแห่งปี 2021"){
           continue
         }else{
@@ -357,7 +361,7 @@ export class RegisterService {
     if (patchDto.SoftSkill){
       additionalskill.last_modified.push(isoTime);
       additionalskill.AdditionalSkill = patchDto.SoftSkill;
-      additionalskill.Type= (await this.HardSkill2Repository.findOne({where:{ THName: patchDto.SoftSkill }})).THType;
+      additionalskill.Type= (await this.HardSkillRepository.findOne({where:{ THName: patchDto.SoftSkill }})).THType;
       return await this.AdditionalSkillRepository.save(additionalskill);
     }
     throw new BadRequestException('Dto error');
