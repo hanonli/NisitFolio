@@ -9,6 +9,7 @@ class MyresumePortfolioBookmarkbutton extends React.Component {
     }
     memberdo = () =>{
         var token = cookie.load('login-token');
+        var userId = cookie.load('login-user');
         console.log(token);
         console.log("change to private");
         this.setState({privacy: "Private"});
