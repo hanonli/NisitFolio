@@ -21,6 +21,9 @@ class Edittab5 extends React.Component {
             console.log("edittab5!!!!:", this.props.mycerti_data);
             const mycert2 = this.props.mycerti_data ? this.props.mycerti_data : [];
             list_of_certi = [...mycert2];
+            $("#icon-upload-112").remove();
+            $("#text-upload-112").remove();
+            $("#text-upload-116").remove();
             show_certi();
         }, 6000);
 
@@ -198,20 +201,56 @@ class Edittab5 extends React.Component {
                 if (post.Certificate_id == id_list_certi_del)
                     return true;
             });
-            list_of_year_certi[list_of_certi[removeIndex]["CertYear"]] -= 1;
-            if (list_of_year_certi[list_of_certi[removeIndex]["CertYear"]] == 0) {
-                $(`#yearOf_` + String(list_of_certi[removeIndex]["CertYear"])).remove();
+            if (removeIndex.isFetch == true) {
+                fetch("http://localhost:2000/register/certificate/" + removeIndex.Certificate_id, {
+                    method: "DELETE",
+                    headers: {
+                        'Authorization': 'Bearer ' + removeIndex.token,
+                        "Access-Control-Allow-Origin": "*",
+                        "Access-Control-Allow-Methods": "*",
+                        "Access-Control-Allow-Credentials": true,
+                        "Content-Type": "application/json"
+                    },
+                })
+                    .then(response => response.json())
+                    .then((raws) => {
+                        console.log(raws);
+                        list_of_year_certi[list_of_certi[removeIndex]["CertYear"]] -= 1;
+                        if (list_of_year_certi[list_of_certi[removeIndex]["CertYear"]] == 0) {
+                            $(`#yearOf_` + String(list_of_certi[removeIndex]["CertYear"])).remove();
+                        }
+                        list_of_certi.splice(removeIndex, 1);
+                        $(`#` + id_list_certi_del).remove();
+                        //console.log(`delete _certi id:`, removeIndex);
+                        //console.log(`list_of_certi:`, list_of_certi);
+                        $("#preview_before_upload").remove();
+                        $("#icon-upload-112").remove();
+                        $("#text-upload-112").remove();
+                        $("#text-upload-116").remove();
+                        $("#exampleModal_remove_certi").modal("hide");
+                        console.log(`list_of_year_certi:`, list_of_year_certi);
+                        console.log(`list_of_certi:`, list_of_certi);
+                    }).catch((error) => {
+                        console.log(error);
+                    });
             }
-            list_of_certi.splice(removeIndex, 1);
-            //console.log(`delete _certi id:`, removeIndex);
-            $(`#` + id_list_certi_del).remove();
-            //console.log(`list_of_certi:`, list_of_certi);
-            $("#preview_before_upload").remove();
-            $("#icon-upload-112").remove();
-            $("#text-upload-112").remove();
-            $("#text-upload-116").remove();
-            $("#exampleModal_remove_certi").modal("hide");
-            console.log(`list_of_year_certi:`, list_of_year_certi);
+            else {
+                list_of_year_certi[list_of_certi[removeIndex]["CertYear"]] -= 1;
+                if (list_of_year_certi[list_of_certi[removeIndex]["CertYear"]] == 0) {
+                    $(`#yearOf_` + String(list_of_certi[removeIndex]["CertYear"])).remove();
+                }
+                list_of_certi.splice(removeIndex, 1);
+                $(`#` + id_list_certi_del).remove();
+                //console.log(`delete _certi id:`, removeIndex);
+                //console.log(`list_of_certi:`, list_of_certi);
+                $("#preview_before_upload").remove();
+                $("#icon-upload-112").remove();
+                $("#text-upload-112").remove();
+                $("#text-upload-116").remove();
+                $("#exampleModal_remove_certi").modal("hide");
+                console.log(`list_of_year_certi:`, list_of_year_certi);
+                console.log(`list_of_certi:`, list_of_certi);
+            }
         });
 
         $(document).on("change", "#nm_certi", function () {
@@ -254,7 +293,7 @@ class Edittab5 extends React.Component {
                     for_edit["CertYear"] = parseInt(year_certi);
                     for_edit["CertPic"] = picOfCerti;
                     for_edit["file_pic"] = file_picOfCerti;
-                    for_edit["CertYear_select"] = $("#yearpicker_111").prop('selectedIndex');
+                    //for_edit["CertYear_select"] = $("#yearpicker_111").prop('selectedIndex');
                     var list_edit11 = document.getElementById(id_list_certi_edit);
                 }
                 else if (choose_function == 2) {
@@ -264,9 +303,10 @@ class Edittab5 extends React.Component {
                         Certificate_id: id_of_certi,
                         CertName: name_certi,
                         CertYear: parseInt(year_certi),
-                        CertYear_select: $("#yearpicker_111").prop('selectedIndex'),
+                        //CertYear_select: $("#yearpicker_111").prop('selectedIndex'),
                         CertPic: picOfCerti,
-                        file_pic: file_picOfCerti
+                        file_pic: file_picOfCerti,
+                        isFetch: false
                     });
                 }
                 $("#nm_certi").val("");
@@ -331,10 +371,7 @@ class Edittab5 extends React.Component {
                         </div>
                     </div>
 
-                    <div class="box-box-box">
-
-                    </div>
-
+                    <div class="box-box-box"></div>
 
                     <div class="modal fade" id="exampleModal_remove_certi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">

@@ -33,7 +33,7 @@ class Registab4 extends React.Component {
                         <div class="modal-dialog modal-dialog-centered modal-xl">
                             <div class="modal-content modalworkhis" >
                                 <div class='modal-body layoutforwork111'>
-                                    <h1 class='modal-title' id='regisModallabelt4_1'>เพิ่มประวัติการทำงาน</h1>
+                                    <h1 class='modal-titleT4only' id='regisModallabelt4_1'>เพิ่มประวัติการทำงาน</h1>
                                     <div className='addWorkHistory'>
                                         <div className="Registab4_addWorkHistory">
 
