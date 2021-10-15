@@ -6,6 +6,8 @@ export class PatchRegisDto {
 
   ProfilePic: string;
 
+  ProfilePicBase64: string;
+
   Privacy: string;
 
   Firstname: string;
@@ -27,6 +29,8 @@ export class PatchRegisDto {
   City: string;
 
   SoftSkill: string;
+
+  SoftSkillType: string;
 
   CertName: string;
 

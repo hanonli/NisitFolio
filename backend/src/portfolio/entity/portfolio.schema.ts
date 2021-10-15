@@ -38,6 +38,9 @@ export class Portfolio2 {
   @Prop()
   Port_Info: string;
 
+  @Prop()
+  Owner: string;
+
   
 }
 

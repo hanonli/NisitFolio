@@ -12,6 +12,8 @@ export class CreateRegisDto {
 
   ProfilePic: string;
 
+  ProfilePicBase64: string;
+  
   Privacy: string;
 
   isEmailConfirmed: boolean;
@@ -42,7 +44,8 @@ export class CreateRegisDto {
   @IsNotEmpty()
   SoftSkill: string[];
 
-  
+  SoftSkillType: string[];
+
   @IsNotEmpty()
   CertName: string[];
 
@@ -75,7 +78,7 @@ export class CreateRegisDto {
   Work_End_Month: number[];
 
   Work_Start_Year: number[];
-  
+
   Work_End_Year: number[];
 
   Salary: number[];
