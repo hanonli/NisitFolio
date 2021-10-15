@@ -11,6 +11,8 @@ import { Portfolio2, PortfolioDocument} from '../portfolio/entity/portfolio.sche
 import { hearderDto } from './dto/haerder.dto';
 import { GetResume } from './dto/get_Port.dto';
 import { Resume3 } from './entity/myresume2.entity';
+import { CreatePortDto } from './dto/get_port2.dto';
+import { count } from 'console';
 
 
 @Injectable()
@@ -45,6 +47,199 @@ export class MyResumeService {
     private Resume3Repository: Repository<Resume3>,
 
   ) {}
+
+  //----------------
+
+  async FuckingGetPort(UserId:string){
+    const result = new CreatePortDto;
+      
+      
+    const userid = new ObjectID(UserId);
+    const account=await this.accountRepository.findOne({where:{_id:userid}});
+    const userinfo=await this.userinfoRepository.findOne({where:{UserId:UserId}});
+    const z=account._id.toString();
+    
+
+    const softskill_arr=[];
+    const softskill_id_arr=[];
+    const kuy=[];
+    const additionalskill=await this.AdditionalSkillRepository.find({where:{UserId:UserId}});
+    for (var _i = 0; _i < additionalskill.length; _i++) {
+      softskill_arr.push(additionalskill[_i].AdditionalSkill);
+      softskill_id_arr.push(additionalskill[_i].id.toString());
+      kuy.push(additionalskill[_i].ResumeId);
+    }
+    result.SoftSkill=softskill_arr;
+    result.AdditionalSkill_ResumeId=kuy
+    
+    result.AdditionalSkill_id=softskill_id_arr
+    //return result
+    
+    const CertName_arr=[];
+    const CertPic_arr=[];
+    const CertYear_arr=[];
+    const CertId_arr=[];
+    const kuy2=[];  
+    const Certificate=await this.CertificateRepository.find({where:{UserId:UserId}});
+
+    const Certificate_sortlist=[];
+    const Certificate_Dictionary = {};
+
+    for (var _i = 0; _i < Certificate.length; _i++) {
+      const z=Certificate[_i].CertYear;
+      Certificate_sortlist.push(z);
+      Certificate_Dictionary[z]=_i;
+    }
+    Certificate_sortlist.sort();
+    Certificate_sortlist.reverse();
+    for (var _i = 0; _i < Certificate_sortlist.length; _i++) {
+      const key_Certificate_sortlist=Certificate_sortlist[_i];
+      const Certificate_NUM_Dictionary=Certificate_Dictionary[key_Certificate_sortlist];
+      CertName_arr.push(Certificate[Certificate_NUM_Dictionary].CertName);
+      CertPic_arr.push(Certificate[Certificate_NUM_Dictionary].CertPic);
+      CertYear_arr.push(Certificate[Certificate_NUM_Dictionary].CertYear);
+      CertId_arr.push(Certificate[Certificate_NUM_Dictionary].id.toString());
+      kuy2.push(Certificate[Certificate_NUM_Dictionary].ResumeId);
+    }
+    
+    result.CertName=CertName_arr;
+    result.CertPic=CertPic_arr;
+    result.CertYear=CertYear_arr;
+    result.Certificate_id=kuy2;
+    
+    result.Certificate_id=CertId_arr;
+    
+    const Degree_arr=[];
+    const Facalty_arr=[];
+    const Field_of_study_arr=[];
+    const Academy_arr=[];
+    const Grade_arr=[];
+    const Education_End_Year_arr=[];
+    const EDId_arr=[];
+    const educationHistory=await this.EducationHistoryRepository.find({where:{UserId:UserId}});
+    const educationHistory_sortlist=[];
+    const educationHistory_Dictionary={};
+    const kuy3 = [];
+
+    for (var _i = 0; _i < educationHistory.length; _i++) {
+      const educationHistory_End_Year=educationHistory[_i].Education_End_Year;
+      educationHistory_sortlist.push(educationHistory_End_Year);
+      educationHistory_Dictionary[educationHistory_End_Year]=_i;
+    }
+    educationHistory_sortlist.sort();
+    educationHistory_sortlist.reverse();
+
+    for (var _i = 0; _i < educationHistory.length; _i++) {
+      const key_educationHistory_Dictionary=educationHistory_sortlist[_i];
+      const educationHistory_Num_sort=educationHistory_Dictionary[key_educationHistory_Dictionary];
+      Degree_arr.push(educationHistory[educationHistory_Num_sort].Degree);
+      Facalty_arr.push(educationHistory[educationHistory_Num_sort].Facalty);
+      Field_of_study_arr.push(educationHistory[educationHistory_Num_sort].Field_of_study);
+      Academy_arr.push(educationHistory[educationHistory_Num_sort].Academy);
+      Grade_arr.push(educationHistory[educationHistory_Num_sort].Grade);
+      Education_End_Year_arr.push(educationHistory[educationHistory_Num_sort].Education_End_Year);
+      EDId_arr.push(educationHistory[educationHistory_Num_sort].id.toString());
+      kuy3.push(educationHistory[educationHistory_Num_sort].ResumeId);
+    }
+    result.Degree=Degree_arr;
+    result.Facalty=Facalty_arr;
+    result.Field_of_study=Field_of_study_arr;
+    result.Academy=Academy_arr;
+    result.Grade=Grade_arr;
+    result.Education_End_Year=Education_End_Year_arr;
+
+    result.EducationHistory_ResumeId=kuy3;
+
+    result.EducationHistory_id=EDId_arr;
+    
+    
+    const Work_JobName_arr=[];
+    const Work_JobType_arr=[];
+    const Company_arr=[];
+    const Work_Start_Month_arr=[];
+    const Work_End_Month_arr=[];
+    const Work_Start_Year_arr=[];
+    const Work_End_Year_arr=[];
+    const Salary_arr=[];
+    const Infomation_arr=[];
+    const SalaryType_arr=[];
+    const WHId_arr=[];
+    const kuy4=[];
+    const workHistory =await this.WorkHistoryRepository.find({where:{UserId:UserId}});
+    //return workHistory;
+
+    const workHistory_sortlist=[];
+    const workHistory_Dictionary={};
+
+    for (var _i = 0; _i < workHistory.length; _i++) {
+      const workHistory_End=workHistory[_i].Work_End_Year+(workHistory[_i].Work_End_Month/12);
+      workHistory_sortlist.push(workHistory_End);
+      workHistory_Dictionary[workHistory_End]=_i;
+    }
+    workHistory_sortlist.sort();
+    workHistory_sortlist.reverse();
+    //return workHistory_Dictionary;
+    
+    for (var _i = 0; _i < workHistory.length; _i++) {
+      const key_workHistory_Dictionary=workHistory_sortlist[_i];
+      const workHistory_Num_Sort=workHistory_Dictionary[key_workHistory_Dictionary];
+
+      Work_JobName_arr.push(workHistory[workHistory_Num_Sort].Work_JobName);
+      Work_JobType_arr.push(workHistory[workHistory_Num_Sort].Work_JobType);
+      Company_arr.push(workHistory[workHistory_Num_Sort].Work_Company);
+      Work_Start_Month_arr.push(workHistory[workHistory_Num_Sort].Work_Start_Month);
+      Work_End_Month_arr.push(workHistory[workHistory_Num_Sort].Work_End_Month);
+      Work_Start_Year_arr.push(workHistory[workHistory_Num_Sort].Work_Start_Year);
+      Work_End_Year_arr.push(workHistory[workHistory_Num_Sort].Work_End_Year);
+      Salary_arr.push(workHistory[workHistory_Num_Sort].Work_Salary);
+      Infomation_arr.push(workHistory[workHistory_Num_Sort].Work_Infomation);
+      SalaryType_arr.push(workHistory[workHistory_Num_Sort].Work_Salary_Type);
+      WHId_arr.push(workHistory[workHistory_Num_Sort].id.toString());
+      kuy4.push(workHistory[workHistory_Num_Sort].ResumeId);
+    }
+    
+    result.Work_JobName=Work_JobName_arr;
+    result.Work_JobType=Work_JobType_arr;
+    result.Company=Company_arr;
+    result.Work_Start_Month=Work_Start_Month_arr;
+    result.Work_End_Month=Work_End_Month_arr;
+    result.Work_Start_Year=Work_Start_Year_arr;
+    result.Work_End_Year=Work_End_Year_arr;
+    result.Salary=Salary_arr;
+    result.Infomation=Infomation_arr;
+    result.SalaryType=SalaryType_arr;
+    result.WorkHistory_ResumeId=kuy4;
+
+    result.WorkHistory_id=WHId_arr;
+    
+    const Job_Objective_arr=[];
+    const Job_Score_arr=[];
+    const Job_JobName_arr=[];
+    const Job_SkillName_arr=[];
+    const  InterestedJob_id_arr=[];
+    const kuy5=[];
+    const IJ=await this.InterestedJobRepository.find({where:{UserId:UserId}});
+    for (var _i = 0; _i < IJ.length; _i++) {
+      Job_Objective_arr.push(IJ[_i].Job_Objective);
+      Job_Score_arr.push(IJ[_i].Job_Score);
+      Job_JobName_arr.push(IJ[_i].Job_JobName);
+      Job_SkillName_arr.push(IJ[_i].Job_SkillName);
+      InterestedJob_id_arr.push(IJ[_i]._id.toString());
+      kuy5.push(IJ[_i].ResumeId);
+
+    }
+    result.InterestedJob_id=kuy5;
+
+    result.Job_Objective=Job_Objective_arr;
+    result.Job_Score=Job_Score_arr;
+    result.Job_JobName=Job_JobName_arr;
+    result.Job_SkillName=Job_SkillName_arr;
+    result.InterestedJob_id=InterestedJob_id_arr;
+    
+    
+    return result;
+  }
+  //---------------------
   
 
   async createResume(CreateDto: CreateResumeDto ,ip:string){
