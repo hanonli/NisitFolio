@@ -14,8 +14,8 @@ class MyResume extends React.Component {
 		super(props);
 		this.handleLoad = this.handleLoad.bind(this);
 		var userid = this.props.match.params.id;
-		console.log('search-userid:'+userid);
-		cookie.save('search-userid', userid );	
+		// console.log('search-userid:'+userid);
+		// cookie.save('search-userid', userid );	
 	 }
 	
 	componentDidMount() {
