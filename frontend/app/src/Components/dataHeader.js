@@ -244,10 +244,21 @@ class DataHeader extends React.Component {
 						Certificate_id: ele,
 						CertName: this.state.data.CertName[index],
 						CertPic: this.state.data.CertPic[index],
-						CertYear: this.state.data.CertYear[index]
+						CertYear: this.state.data.CertYear[index],
+						isFetch: true,
+						token: token
 					})
 				});
 				this.state.data.WorkHistory_id.forEach((ele, index) => {
+					let regist4_cb = false, wey = this.state.data.Work_End_Year[index], wem = this.state.data.Work_End_Month[index];
+					if (this.state.data.Work_End_Year[index] === 9999 && this.state.data.Work_End_Month[index] === 99) {
+						regist4_cb = true;
+					}
+					/*else if (this.state.data.Work_End_Year[index] === 0 && this.state.data.Work_End_Month[index] === 0) {
+						//regist4_cb = true;
+						wey = "";
+						wem = "";
+					}*/
 					workdata.push({
 						WorkHistory_id: ele,
 						Work_JobName: this.state.data.Work_JobName[index],
@@ -259,7 +270,10 @@ class DataHeader extends React.Component {
 						Work_End_Year: this.state.data.Work_End_Year[index],
 						SalaryType: this.state.data.SalaryType[index],
 						Salary: this.state.data.Salary[index],
-						Infomation: this.state.data.Infomation[index]
+						Infomation: this.state.data.Infomation[index],
+						regist4_cb: regist4_cb,
+						token: token,
+						isFetch: true
 					})
 				});
 				this.state.data.InterestedJob_id.forEach((ele, index) => {
@@ -269,7 +283,8 @@ class DataHeader extends React.Component {
 						Job_Objective: this.state.data.Job_Objective[index],
 						Job_Score: this.state.data.Job_Score[index],
 						Job_SkillName: this.state.data.Job_JobName[index],
-						Job_Pos: index + 1
+						Job_Pos: index + 1,
+						token: token
 					})
 				});
 			});

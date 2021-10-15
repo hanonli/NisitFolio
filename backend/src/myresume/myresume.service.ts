@@ -50,14 +50,12 @@ export class MyResumeService {
 
   //----------------
 
-  async FuckingGetPort(UserId:string){
+  async GetResume3(UserId:string){
     const result = new CreatePortDto;
       
       
     const userid = new ObjectID(UserId);
     const account=await this.accountRepository.findOne({where:{_id:userid}});
-    const userinfo=await this.userinfoRepository.findOne({where:{UserId:UserId}});
-    const z=account._id.toString();
     
 
     const softskill_arr=[];

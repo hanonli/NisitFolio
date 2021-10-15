@@ -11,6 +11,12 @@ export class MyResumeController {
   constructor(
     private readonly resumeService: MyResumeService,
   ) {}
+  @UseGuards(JwtAuthGuard)
+  @Get("/myresume/foredit")
+    async GetResume3(@Request() req) {
+      return this.resumeService.GetResume3(req.user.userId);
+  
+    }
 
 
   @Get(':resumeId')
@@ -57,19 +63,17 @@ export class MyResumeController {
       return this.resumeService.updateResume(CreateDto,resumeId,req.user.userId,ip);
 
     }
-    /*
-  @UseGuards(JwtAuthGuard)
-  @Get("/myresume/foredit")
-    async FuckingGetPort(@Request() req) {
-      return this.resumeService.FuckingGetPort(req.user.userId);
+    
   
-    }
     //*/
+
+    /*
   @Get("/foredit/:y")
     async FuckingGetPort(@Param('y') y: string) {
       const x="6153533d8f3c7c47fc36053a"
       return this.resumeService.FuckingGetPort(x);
   }
+  */
 
   /*@Post("makeresume")
     async makeResume(@Body() CreateDto: CreateResumeDto ){
