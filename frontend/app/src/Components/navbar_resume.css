@@ -1,7 +1,7 @@
 
 .Resume_sideNavbar {
     height: 100vh ;/* Full-height: remove this if you want "auto" height */
-    width: 20vw; /* Set the width of the sidebar */
+    width: 5vw; /* Set the width of the sidebar */
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     z-index: 997; /* Stay on top */
     top: 0; /* Stay at the top */
@@ -22,7 +22,7 @@
 
   .resumeblock{
     position: relative;
-    left: 2vw;
+    left: 1.5vw;
     width: 20vw;
 
   }
