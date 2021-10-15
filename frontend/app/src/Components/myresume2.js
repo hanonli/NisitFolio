@@ -87,6 +87,8 @@ class MyResume2 extends React.Component {
         //         "Job_JobName": "กวาดพื้นที่ logger room",
         //         "Job_SkillName": ["มวยปล้ำ", "ชักกะเย่อ", "การซ่อมแซมหรือเปลี่ยนวาล์ว ปั๊ม เครื่องแลกเปลี่ยนความร้อน คอมเพรสเซอร์ กังหันไอน้ำ และอุปกรณ์ควบคุมไฮดรอลิกหรือนิวแมติก "]
         // }; //มันควรชื่อ jobskill มากกว่าป่าววะ
+        const portfoliodata = this.props.state.portfolio;
+        console.log(portfoliodata);
         const interestedJobnoskill = {
             "id": "6135805cd633f137e4559264",
             "UserId": "61358059d633f137e455925c",
@@ -95,6 +97,7 @@ class MyResume2 extends React.Component {
             "Job_JobName": "กวาดพื้นที่ logger room",
             "Job_SkillName": []
     }; //มันควรชื่อ jobskill มากกว่าป่าววะ
+        console.log(this.props.state);
         return (
             <div class="resume2">
                 <MyResumeSkill addSkill={additionalSkills} intJob={interestedJob} owner={owner} colour={color}></MyResumeSkill>
@@ -127,7 +130,7 @@ class MyResume2 extends React.Component {
                 <MyResumeportfoliolayoutP>
                     <div><h1>content</h1></div>
                 </MyResumeportfoliolayoutP>*/}
-                <MyresumePortfolio></MyresumePortfolio>
+                <MyresumePortfolio data={portfoliodata}></MyresumePortfolio>
             </div>
                 
         );

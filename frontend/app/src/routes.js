@@ -41,7 +41,7 @@ const Routes = () => {
       <Route exact path='/editprofile' component={Editprofile}></Route>
       <Route exact path='/register' component={Register}></Route>
       <Route exact path='/emailverify' component={Emailverify}></Route>
-      <Route path='/successregis' component={Successregis}></Route>
+      <Route path='/successregis/:token?' component={Successregis}></Route>
       <Route path='/unsuccessregis' component={Failregis}></Route>
       <Route path='/makepdf' component={PDF}></Route>
     </Switch>

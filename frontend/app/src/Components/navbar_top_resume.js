@@ -83,7 +83,8 @@ class Resume_topNavbar extends React.Component {
 			// console.log('in resumeid datas a: ' + JSON.stringify(a));
 			// console.log('in resumeid datas b: ' + JSON.stringify(b));
 			// console.log('in resumeid datas c: ' + JSON.stringify(c));			
-			var Resumedata = datas[index]
+			var Resumedata = datas[index];
+			console.log(Resumedata);
 			// console.log('in resumeid index2: ' + index);
 			// console.log('in resumeid e2: ' + e);
 			// console.log('in resumeid state.index2: ' + this.state.index);
@@ -110,6 +111,7 @@ class Resume_topNavbar extends React.Component {
 					interestedJob : Resumedata.interestedJob ? Resumedata.interestedJob : [],
 					color : Resumedata.Color ? Resumedata.Color : '#FFCE55',
 					privacy : Resumedata.Privacy,
+					portfolio : Resumedata.portfolios? Resumedata.portfolios: [],
 					owner : Resumedata.Owner ? Resumedata.Owner : '',
 					firstname: Resumedata.First ? Resumedata.First : '',
 					lastname: Resumedata.Last ? Resumedata.Last : '',
@@ -173,6 +175,7 @@ class Resume_topNavbar extends React.Component {
 			additionalSkills : [],
 			interestedJob : [],	
 			privacy : '',
+			portfolio : [],
 			color : '',
 			index : 0,
 			ready  : false,
@@ -196,6 +199,7 @@ class Resume_topNavbar extends React.Component {
 			additionalSkills : [],
 			interestedJob : [],
 			privacy : '',
+			portfolio : [],
 			color : '',
 			index : 1,
 			ready  : false,
@@ -217,6 +221,7 @@ class Resume_topNavbar extends React.Component {
 			additionalSkills : [],
 			interestedJob : [],
 			privacy : '',
+			portfolio : [],
 			color : '',
 			index : 2,
 			ready  : false,
