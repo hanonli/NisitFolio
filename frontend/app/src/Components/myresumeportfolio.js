@@ -65,7 +65,7 @@ class MyresumePortfolio extends React.Component {
         let day;
         for(var i=0; i<portfolios.length; i++){
             day = portfolios[i].Port_Date.split("/");
-            console.log()
+            
             clean_data.push({
                 link: ("portinfo/" + portfolios[i]._id),
                 port_id: portfolios[i]._id,
@@ -91,36 +91,21 @@ class MyresumePortfolio extends React.Component {
 
         if (data.length == 0) {
             return (
-                <div class="myresume-mywork-woNb">
-                    <div class="myresume-mywork-withoutdata">
-                        <h1 class="myresume-head-woNb">ผลงานของฉัน</h1>
-                        <div class="line-mywork" style={linestyle}></div>
-                        <div class="work-goals-woNb">
-                            <h4 class="text-work-goals-wdata">ตอนนี้คุณยังไม่มีข้อมูลผลงานที่เลือกไว้ สำหรับตำแหน่งงานนี้</h4>
-                            <button class="work-goals-btn" onClick={this.handleRoute}>เลือกข้อมูล</button>
-                            <div class="wgs"></div>
-                        </div>
-                    </div>
+                <div class="work-goals-woNb">
+                    <h4 class="text-work-goals-wdata">ตอนนี้คุณยังไม่มีข้อมูลผลงานที่เลือกไว้ สำหรับตำแหน่งงานนี้</h4>
+                    <button class="work-goals-btn" onClick={this.handleRoute}>เลือกข้อมูล</button>
+                    <div class="wgs"></div>
                 </div>
             );
         }
         else {
             return (
                 <div>
-                    <div class="myresume-mywork-woNb">
-                        <div class="educationtopic">
-                            <h2 class="myresume-head-woNb">ผลงานของฉัน</h2>
-                        </div>
-                        <div class="resumesectionline" style={linestyle}></div>
-                        <div className="img-sp"></div>
-                        <div class="showmywork-woNb">
-                            <MyResumeportfoliolayoutP>
-                                {portcontent}
-                            </MyResumeportfoliolayoutP>
-                        </div>
-                    </div>
+                    <div className="img-sp"></div>
+                    <MyResumeportfoliolayoutP>
+                        {portcontent}
+                    </MyResumeportfoliolayoutP>
                 </div>
-            
             );
         }
     }
