@@ -410,9 +410,6 @@ class Resume_topNavbar extends React.Component {
 		if( ssid != 'undefined' && ssid != ''){
 			// console.log('case1')
 			// console.log('ssid incase1: '+ ssid)
-			// var sParam = sPageURL.split('=')
-			// var temp_userid = sParam[1]
-			// console.log(temp_userid)
 			
 			this.setState({
 				userID : ssid,
