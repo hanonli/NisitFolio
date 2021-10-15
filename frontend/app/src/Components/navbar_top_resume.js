@@ -395,7 +395,7 @@ class Resume_topNavbar extends React.Component {
 		
 		// var ssid = this.props.userid
 		
-		var ssid = cookie.load('ssId')
+		var ssid = cookie.load('search-userid')
 		console.log('sessionid: '+ ssid)
 		console.log('sessionid: '+ JSON.stringify(ssid))
 		
@@ -446,7 +446,7 @@ class Resume_topNavbar extends React.Component {
 	}
 
 	componentWillUnmount(){		
-		cookie.save('ssId', '' );
+		cookie.save('search-userid', '' );
 	}
 	
 	
@@ -456,10 +456,10 @@ class Resume_topNavbar extends React.Component {
 			// console.log('update state')
 			return true
 		}
-		else if(this.state.userID != nextState.userID){
-			console.log('update userid')
-			return true
-		}
+		// else if(this.state.userID != nextState.userID){
+		// 	console.log('update userid')
+		// 	return true
+		// }
 		else if(this.state.resumeID != nextState.resumeID){
 			// console.log(3)
 			// console.log('update state resumeid')
