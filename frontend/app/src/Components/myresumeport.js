@@ -3,11 +3,14 @@ import $ from 'jquery';
 import { Link } from "react-router-dom";
 import MultipleRows from './myresume3slidemywork';
 import MyResumeportfoliolayoutP from './Myresume_choiceforportfolio';
-
+import MyresumePortfolioPrivacybutton from './myresumeportprivacybutton';
 class MyResumePort extends React.Component {
     handleRoute = () =>{ 
         const link = this.props.data.link;
         window.location = (link);
+    }
+    voi = () => {
+        console.log("clicked!")
     }
     render() {
         const data = this.props.data;
@@ -32,12 +35,13 @@ class MyResumePort extends React.Component {
         }
 
         return (
-            <div class="myworkobj" onClick={this.handleRoute}>
+            <div class="myworkobj" >
                 <div className="img-overlay">
+                    <div class="ghostbutton" onClick={this.handleRoute}></div>
                     <div className="iconmywork">
-                        <img className="img-mywork-select" type="button" src={srcpri} />
-                        <img className="img-mywork-bin" src="assets/images/white-bin.png" type="button" />
-                        <img className="img-mywork-edit" src="assets/images/whiteedit.png" type="button" />
+                        <MyresumePortfolioPrivacybutton privacy={privacy}></MyresumePortfolioPrivacybutton>
+                        <img className="img-mywork-bin" src="assets/images/white-bin.png" type="button" onClick={this.voi}/>
+                        <img className="img-mywork-edit" src="assets/images/whiteedit.png" type="button" onClick={this.voi}/>
                     </div>
                     <h3 className="myworkname">
                         {port_name}
@@ -46,7 +50,7 @@ class MyResumePort extends React.Component {
                         {date}
                     </h4>
                 </div>
-                <div className="row">
+                <div className="row" >
                     <img className="img-mywork-1" src={image} />
                 </div>
             </div>

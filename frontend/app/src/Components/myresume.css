@@ -474,11 +474,18 @@
     z-index: 999;
 }
 
+.ghostbutton{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
 .iconmywork{
     margin-left: 4Vw;
     margin-top: 1Vw;
     margin-bottom: 0.7Vw;
     z-index: 999;
+    position: absolute;
 }
 
 .img-mywork-select{

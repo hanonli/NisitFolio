@@ -3,6 +3,7 @@ import MyResumeportfoliolayoutP from './Myresume_choiceforportfolio';
 import MyResumePort from './myresumeport';
 
 class MyresumePortfolio extends React.Component {
+    
     render() {
         const monthdict = {
             1: "มกราคม",
@@ -132,6 +133,9 @@ class MyresumePortfolio extends React.Component {
             }
         ];
         const owner_status = true;
+
+        
+
         let clean_data = [];
         let day;
         for(var i=0; i<portfolios.length; i++){
