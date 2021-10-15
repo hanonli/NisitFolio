@@ -22,6 +22,7 @@ class NewAnalytics extends React.Component {
 			redirect: null,
 			
 			topAddOvTotal: null,
+			topAddTotal: null,
 			
 			topAddOv1Name: null,
 			topAddOv1Percentage: null,
@@ -60,18 +61,20 @@ class NewAnalytics extends React.Component {
 			topMainJOv1Score: null,
 			topMainJOv1Percentage: null,
 			topMainJOv1Count: null,
+			topMainJOv1Label: null,
 			
 			topMainJOv2Job: null,
 			topMainJOv2Name: null,
 			topMainJOv2Score: null,
 			topMainJOv2Percentage: null,
-			topMainJOv2Count: null,
+			topMainJOv2Label: null,
 			
 			topMainJOv3Job: null,
 			topMainJOv3Name: null,
 			topMainJOv3Score: null,
 			topMainJOv3Percentage: null,
 			topMainJOv3Count: null,
+			topMainJOv3Label: null,
 			
 			rightJobTotal: null,
 			rightJobName: null,
@@ -82,6 +85,7 @@ class NewAnalytics extends React.Component {
 			rightJobPercentile: null,
 			rightJobMean: null,
 			rightJobMode: null,
+			rightJobPLabel: null,
 			
 			rightBox1AddType: null,
 			rightBox1AddName: null,
@@ -98,6 +102,13 @@ class NewAnalytics extends React.Component {
 			rightBox3AddPercentage: null,
 			rightBox3AddCount: null,
 			
+			popJobTotal: null,
+			popJobName: null,
+			popJobSkillName: null,
+			popJobScore: null,
+			popJobPercentile: null,
+			popJobMean: null,
+			popJobMode: null,
 			popupDescPercentage: null,
 			popupDescCount: null
 		}
@@ -169,7 +180,7 @@ class NewAnalytics extends React.Component {
 			}
 			,
 			options: {
-					  tension: 0.4,
+					  tension: 0.2,
 					  maintainAspectRatio: false,
 					  //responsive: true,
 					  /*legend: {
@@ -180,7 +191,11 @@ class NewAnalytics extends React.Component {
 								radius: 0
 							}
 					   },*/
-
+				  /*layout: {
+						padding: {
+							right: 200
+						}
+					},*/
 					   scales: {
 							y: {
 								grid: {
@@ -261,7 +276,10 @@ class NewAnalytics extends React.Component {
 		var rawData= null;
 		var refThis = this;
 		
-		fetch("http://localhost:3000/temp_cache",{
+		var currentTab = 1;
+		
+		fetch("http://localhost:2000/analytics/cache/"+userID,{
+		//fetch("http://localhost:3000/temp_cache",{
 			method: "GET",
 			headers: {
 				"Access-Control-Allow-Origin": "*",
@@ -313,56 +331,98 @@ class NewAnalytics extends React.Component {
 			$('.overall-lower-right-box').removeClass('overall-lower-right-box-anim');
 		}
 		
+		function DisablePopup(){
+			$('#p1').attr('data-bs-toggle',null);
+			$('#p1').attr('data-bs-target',null);
+			$('#p2').attr('data-bs-toggle',null);
+			$('#p2').attr('data-bs-target',null);
+			$('#p3').attr('data-bs-toggle',null);
+			$('#p3').attr('data-bs-target',null);
+		}
+		
+		function EnablePopup(){
+			$('#p1').attr('data-bs-toggle','modal');
+			$('#p1').attr('data-bs-target','#staticBackdrop');
+			$('#p2').attr('data-bs-toggle','modal');
+			$('#p2').attr('data-bs-target','#staticBackdrop');
+			$('#p3').attr('data-bs-toggle','modal');
+			$('#p3').attr('data-bs-target','#staticBackdrop');
+		}
+		
 		function InitializeAnalytics(){
 			refThis.setState({ render: true});
 			SetupTabs();
 			SetupOverview();
 			
 			$('#tab-1').on('click', function(){
+				currentTab = 1;
+				EnablePopup();
 				NormalMode();
 				SetupOverview();
 				$('.tab-list-item-p').removeClass('tab-list-active');
 				$('#tabT-1').addClass('tab-list-active');
+				$('.ana-head').removeClass('ana-head-anim');
 			});
 			
 			$('#tab-2').on('click', function(){
+				currentTab = 2;
+				EnablePopup();
 				LargeMode();
 				SetupJob(1);
 				$('.tab-list-item-p').removeClass('tab-list-active');
 				$('#tabT-2').addClass('tab-list-active');
+				$('.ana-head').addClass('ana-head-anim');
 			});
 			
 			$('#tab-3').on('click', function(){
+				currentTab = 3;
+				EnablePopup();
 				LargeMode();
 				SetupJob(2);
 				$('.tab-list-item-p').removeClass('tab-list-active');
 				$('#tabT-3').addClass('tab-list-active');
+				$('.ana-head').addClass('ana-head-anim');
 			});
 			
 			$('#tab-4').on('click', function(){
+				currentTab = 4;
+				EnablePopup();
 				LargeMode();
 				SetupJob(3);
 				$('.tab-list-item-p').removeClass('tab-list-active');
 				$('#tabT-4').addClass('tab-list-active');
+				$('.ana-head').addClass('ana-head-anim');
 			});
 			
 			$('#tab-5').on('click', function(){
+				currentTab = 5;
+				DisablePopup();
 				LargeModeAdd();
 				SetupAdd();
 				$('.tab-list-item-p').removeClass('tab-list-active');
 				$('#tabT-5').addClass('tab-list-active');
+				$('.ana-head').addClass('ana-head-anim');
 			});
 			
 			$('#p1').on('click', function(){
-				SetupPopup('p1');
+				if(currentTab == 1) 
+					SetupPopup('p1');
+				else if(currentTab != 1 && currentTab != 5)
+					SetupPopup('c1');
 			});
 			
 			$('#p2').on('click', function(){
-				SetupPopup('p2');
+				if(currentTab == 1)
+					SetupPopup('p2');
+				else if(currentTab != 1 && currentTab != 5)
+					SetupPopup('c2');
 			});
 			
 			$('#p3').on('click', function(){
-				SetupPopup('p3');
+				if(currentTab == 1) 
+					SetupPopup('p3');
+				else if(currentTab != 1 && currentTab != 5)
+					SetupPopup('c3');
 			});
 			
 			$('#g1').on('click', function(){
@@ -382,66 +442,133 @@ class NewAnalytics extends React.Component {
 			$('.right-job-box').hide();
 			$('.overall-lower-right-box').show();
 			$('.overall-upper-right-box').show();
+			$('.obl-container-add').hide();
+			$('.obl-container-add-none').hide();
+			$('.obl-container-add-no-jobL').hide();
+			$('.obl-container-add-no-jobR').hide();
 			
 			$('#dropdownMenuButton1').hide();
 			
 			$('.ana-sub-box-p').removeClass('obc');
+			$('.ana-sub-box-p').removeClass('obcs');
 			$('.ana-sub-box-p').addClass('obp');
+			
+			if(rawData.Main.yourBest3[0] == null || rawData.Main.yourBest3[1] == null || rawData.Main.yourBest3[2] == null){ // don't show best 3
+				$('.obl-container2').hide();
+				$('.obl-container2-none').show();
+			}else{ // show best 3
+				$('.obl-container2').show();
+				$('.obl-container2-none').hide();
+				
+				refThis.setState({ 
+					topMainJOv1Job: rawData.Main.yourBest3[0].Job_Name,
+					topMainJOv1Name: rawData.Main.yourBest3[0].SkillName,
+					topMainJOv1Score: rawData.Main.yourBest3[0].UserScore,
+					topMainJOv1Percentage: rawData.Main.yourBest3[0].percentile == 0 ? rawData.Main.yourBest3[0].p.toFixed(2) : rawData.Main.yourBest3[0].percentile.toFixed(2),
+					topMainJOv1Label: rawData.Main.yourBest3[0].percentile == 0 ? 'ต่ำกว่า' : 'สูงกว่า',
+					topMainJOv1Count: rawData.Main.yourBest3[0].total,
+					
+					topMainJOv2Job: rawData.Main.yourBest3[1].Job_Name,
+					topMainJOv2Name: rawData.Main.yourBest3[1].SkillName,
+					topMainJOv2Score: rawData.Main.yourBest3[1].UserScore,
+					topMainJOv2Percentage: rawData.Main.yourBest3[1].percentile == 0 ? rawData.Main.yourBest3[1].p.toFixed(2) : rawData.Main.yourBest3[1].percentile.toFixed(2),
+					topMainJOv2Label: rawData.Main.yourBest3[1].percentile == 0 ? 'ต่ำกว่า' : 'สูงกว่า',
+					topMainJOv2Count: rawData.Main.yourBest3[1].total,
+					
+					topMainJOv3Job: rawData.Main.yourBest3[2].Job_Name,
+					topMainJOv3Name: rawData.Main.yourBest3[2].SkillName,
+					topMainJOv3Score: rawData.Main.yourBest3[2].UserScore,
+					topMainJOv3Percentage: rawData.Main.yourBest3[2].percentile == 0 ? rawData.Main.yourBest3[2].p.toFixed(2) : rawData.Main.yourBest3[2].percentile.toFixed(2),
+					topMainJOv3Label: rawData.Main.yourBest3[2].percentile == 0 ? 'ต่ำกว่า' : 'สูงกว่า',
+					topMainJOv3Count: rawData.Main.yourBest3[2].total,
+				});
+			}
+			
+			if(rawData.Main.InterestedJobs.length < 1){
+				$('.obl-container').hide();
+				$('.obl-container-none').show();
+			}else{
+				$('.obl-container').show();
+				$('.obl-container-none').hide();
+			}
 			
 			refThis.setState({ 
 				leftBoxHeader: 'Top 3 เทรนด์ทักษะเฉพาะทั้งหมด',
 				leftBoxDesc1: 'จากตำแหน่งงานทั้งหมดที่คุณสนใจ',
 				leftBoxDesc2: 'คนที่เลือกตำแหน่งเดียวกับคุณส่วนใหญ่มีทักษะที่นิยม ดังนี้',
 				leftBoxOvTotal: rawData.Main.Overview.numberOfUser,
-				leftBox1Job: rawData.Main.Overview.List[0].Job_Name,
-				leftBox1Name: rawData.Main.Overview.List[0].SkillName,
-				leftBox1Percentage: rawData.Main.Overview.List[0].percentage.toFixed(2),
-				leftBox1Count: rawData.Main.Overview.List[0].total,
-				
-				leftBox2Job: rawData.Main.Overview.List[1].Job_Name,
-				leftBox2Name: rawData.Main.Overview.List[1].SkillName,
-				leftBox2Percentage: rawData.Main.Overview.List[1].percentage.toFixed(2),
-				leftBox2Count: rawData.Main.Overview.List[1].total,
-				
-				leftBox3Job: rawData.Main.Overview.List[2].Job_Name,
-				leftBox3Name: rawData.Main.Overview.List[2].SkillName,
-				leftBox3Percentage: rawData.Main.Overview.List[2].percentage.toFixed(2),
-				leftBox3Count: rawData.Main.Overview.List[2].total,
-		
-				topMainJOv1Job: rawData.Main.yourBest3[0].Job_Name,
-				topMainJOv1Name: rawData.Main.yourBest3[0].SkillName,
-				topMainJOv1Score: rawData.Main.yourBest3[0].UserScore,
-				topMainJOv1Percentage: rawData.Main.yourBest3[0].percentile,
-				topMainJOv1Count: rawData.Main.yourBest3[0].total,
-				
-				topMainJOv2Job: rawData.Main.yourBest3[1].Job_Name,
-				topMainJOv2Name: rawData.Main.yourBest3[1].SkillName,
-				topMainJOv2Score: rawData.Main.yourBest3[1].UserScore,
-				topMainJOv2Percentage: rawData.Main.yourBest3[1].percentile,
-				topMainJOv2Count: rawData.Main.yourBest3[1].total,
-				
-				topMainJOv3Job: rawData.Main.yourBest3[2].Job_Name,
-				topMainJOv3Name: rawData.Main.yourBest3[2].SkillName,
-				topMainJOv3Score: rawData.Main.yourBest3[2].UserScore,
-				topMainJOv3Percentage: rawData.Main.yourBest3[2].percentile,
-				topMainJOv3Count: rawData.Main.yourBest3[2].total,
+			});
 			
+			var iList = rawData.Main.Overview.List;
+			
+			if(iList.length == 0){
+				$('#p1').hide();
+				$('#p2').hide();
+				$('#p3').hide();
+			}else if(iList.length == 1){
+				$('#p1').show();
+				$('#p2').hide();
+				$('#p3').hide();
+			}else if(iList.length == 2){
+				$('#p1').show();
+				$('#p2').show();
+				$('#p3').hide();
+			}else{
+				$('#p1').show();
+				$('#p2').show();
+				$('#p3').show();
+			}
+
+			if(iList.length > 0){
+				refThis.setState({ 
+					leftBox1Job: rawData.Main.Overview.List[0].Job_Name,
+					leftBox1Name: rawData.Main.Overview.List[0].SkillName,
+					leftBox1Percentage: rawData.Main.Overview.List[0].percentage.toFixed(2),
+					leftBox1Count: rawData.Main.Overview.List[0].total
+				});
+			}
+			if(iList.length > 1){
+				refThis.setState({ 
+					leftBox2Job: rawData.Main.Overview.List[1].Job_Name,
+					leftBox2Name: rawData.Main.Overview.List[1].SkillName,
+					leftBox2Percentage: rawData.Main.Overview.List[1].percentage.toFixed(2),
+					leftBox2Count: rawData.Main.Overview.List[1].total
+				});
+			}
+			if(iList.length > 2){
+				refThis.setState({ 
+					leftBox3Job: rawData.Main.Overview.List[2].Job_Name,
+					leftBox3Name: rawData.Main.Overview.List[2].SkillName,
+					leftBox3Percentage: rawData.Main.Overview.List[2].percentage.toFixed(2),
+					leftBox3Count: rawData.Main.Overview.List[2].total
+				});
+			}
+			
+			iList = rawData.Additional.Overview.List;
+			
+			if(iList.length < 3){
+				$('.obl-container2l').hide();
+				$('.obl-container2l-none').show();
+			}else{
+				$('.obl-container2l').show();
+				$('.obl-container2l-none').hide();
+				
+				refThis.setState({ 
 				topAddOvTotal: rawData.Additional.Overview.numberOfUsers,
 				
-				topAddOv1Name: rawData.Additional.Overview.List[0].Type,
-				topAddOv1Percentage: rawData.Additional.Overview.List[0].percentage.toFixed(2),
-				topAddOv1Count: rawData.Additional.Overview.List[0].total,
+				topAddOv1Name: iList[0].Type,
+				topAddOv1Percentage: iList[0].percentage.toFixed(2),
+				topAddOv1Count: iList[0].total,
 				
-				topAddOv2Name: rawData.Additional.Overview.List[1].Type,
-				topAddOv2Percentage: rawData.Additional.Overview.List[1].percentage.toFixed(2),
-				topAddOv2Count: rawData.Additional.Overview.List[1].total,
+				topAddOv2Name: iList[1].Type,
+				topAddOv2Percentage: iList[1].percentage.toFixed(2),
+				topAddOv2Count: iList[1].total,
 				
-				topAddOv3Name: rawData.Additional.Overview.List[2].Type,
-				topAddOv3Percentage: rawData.Additional.Overview.List[2].percentage.toFixed(2),
-				topAddOv3Count: rawData.Additional.Overview.List[2].total
-				
-				
+				topAddOv3Name: iList[2].Type,
+				topAddOv3Percentage: iList[2].percentage.toFixed(2),
+				topAddOv3Count: iList[2].total
 			});
+			}
 		}
 		
 		function UpdateAddJobR(id){
@@ -454,24 +581,59 @@ class NewAnalytics extends React.Component {
 				keyName = rawData.Additional.InterestedJobs[2].name;
 			}
 			
-			if(rawData.Additional[keyName].List.length == 3){
+			if(rawData.Additional.mySkills.length == 3){
+				$('.mySkl1').show();
+				$('.mySkl2').show();
+				$('.mySkl3').show();
 				$('.newSkl1').hide();
 				$('.newSkl2').hide();
-			}else if(rawData.Additional[keyName].List.length == 2){
+			}else if(rawData.Additional.mySkills.length == 2){
+				$('.mySkl1').show();
+				$('.mySkl2').show();
+				$('.mySkl3').hide();
+				$('.newSkl1').show();
 				$('.newSkl2').hide();
-			}else if(rawData.Additional[keyName].List.length == 1){
-				
+			}else if(rawData.Additional.mySkills.length == 1){
+				$('.mySkl1').show();
+				$('.mySkl2').hide();
+				$('.mySkl3').hide();
+				$('.newSkl1').show();
+				$('.newSkl2').show();
 			}else{
-				alert('User has no skill!');
+				//alert('User has no skill!');
+				return;
 			}
 			
-			/*
-			refThis.setState({ 
-				//rightBox1AddType: 
-				//rightBox1AddName
-				//rightBox1AddPercentage
-				//rightBox1AddCount
-			});*/
+			refThis.setState({ topAddTotal: rawData.Additional[keyName].numberOfUsers });
+			
+			var i=1;
+			rawData.Additional[keyName].List.forEach((entry) => {
+				if(entry.isMySkill){
+					if(i == 1){
+						refThis.setState({ 
+							rightBox1AddType: entry.Type,
+							rightBox1AddName: entry.AdditionalSkill,
+							rightBox1AddPercentage: entry.percentage.toFixed(2),
+							rightBox1AddCount: entry.total
+						});
+					}else if(i == 2){
+						refThis.setState({ 
+							rightBox2AddType: entry.Type,
+							rightBox2AddName: entry.AdditionalSkill,
+							rightBox2AddPercentage: entry.percentage.toFixed(2),
+							rightBox2AddCount: entry.total
+						});
+					}else{
+						refThis.setState({ 
+							rightBox3AddType: entry.Type,
+							rightBox3AddName: entry.AdditionalSkill,
+							rightBox3AddPercentage: entry.percentage.toFixed(2),
+							rightBox3AddCount: entry.total
+						});
+					}
+					i += 1;
+				}
+			});
 		}
 		
 		function UpdateAddJobL(id){
@@ -488,71 +650,128 @@ class NewAnalytics extends React.Component {
 				leftBoxHeader: 'Top 3 เทรนด์ทักษะเสริมยอดนิยม',
 				leftBoxDesc1: 'ในกลุ่มคนที่สนใจตำแหน่งงานเดียวกัน',
 				leftBoxDesc2: 'ส่วนใหญ่มีทักษะเสริมที่นิยม คิดเป็นร้อยละ ดังนี้',
-				
 				leftBoxOvTotal: rawData.Additional[keyName].numberOfUsers,
-				
-				leftBox1Job: rawData.Additional[keyName].List[0].Type,
-				leftBox1Name: rawData.Additional[keyName].List[0].AdditionalSkill,
-				leftBox1Percentage: rawData.Additional[keyName].List[0].percentage.toFixed(2),
-				leftBox1Count: rawData.Additional[keyName].List[0].total,
-				
-				leftBox2Job: rawData.Additional[keyName].List[1].Type,
-				leftBox2Name: rawData.Additional[keyName].List[1].AdditionalSkill,
-				leftBox2Percentage: rawData.Additional[keyName].List[1].percentage.toFixed(2),
-				leftBox2Count: rawData.Additional[keyName].List[1].total,
-				
-				leftBox3Job: rawData.Additional[keyName].List[2].Type,
-				leftBox3Name: rawData.Additional[keyName].List[2].AdditionalSkill,
-				leftBox3Percentage: rawData.Additional[keyName].List[2].percentage.toFixed(2),
-				leftBox3Count: rawData.Additional[keyName].List[2].total,
 			});
+			
+			var iList = rawData.Additional[keyName].List;
+			
+			if(iList.length == 0){
+				$('#p1').hide();
+				$('#p2').hide();
+				$('#p3').hide();
+			}else if(iList.length == 1){
+				$('#p1').show();
+				$('#p2').hide();
+				$('#p3').hide();
+			}else if(iList.length == 2){
+				$('#p1').show();
+				$('#p2').show();
+				$('#p3').hide();
+			}else{
+				$('#p1').show();
+				$('#p2').show();
+				$('#p3').show();
+			}
+			
+			if(iList.length > 0){
+				refThis.setState({ 
+					leftBox1Job: iList[0].Type,
+					leftBox1Name: iList[0].AdditionalSkill,
+					leftBox1Percentage: iList[0].percentage.toFixed(2),
+					leftBox1Count: iList[0].total
+				});
+			}
+			if(iList.length > 1){
+				refThis.setState({ 
+					leftBox2Job: iList[1].Type,
+					leftBox2Name: iList[1].AdditionalSkill,
+					leftBox2Percentage: iList[1].percentage.toFixed(2),
+					leftBox2Count: iList[1].total
+				});
+			}
+			if(iList.length > 2){
+				refThis.setState({ 
+					leftBox3Job: iList[2].Type,
+					leftBox3Name: iList[2].AdditionalSkill,
+					leftBox3Percentage: iList[2].percentage.toFixed(2),
+					leftBox3Count: iList[2].total,
+				});
+			}
 		}
 		
 		function SetupAdd(){
-			$('#dropdownMenuButton1').show();
-			THname = rawData.Additional.InterestedJobs[0].THname;
-			
-			$('#dropdownMenuButton1').text(rawData.Additional.InterestedJobs[0].THname);
-			$('#dropdownMenuButton3').text(rawData.Additional.InterestedJobs[0].THname);
-			focusJob = rawData.Additional.InterestedJobs[0].THname;
-			
-			$('#dropdownContainer1').empty();
-			$('#dropdownContainer3').empty();
-			var i=1;
-			rawData.Additional.InterestedJobs.forEach((entry) => {
-				var div = '<li><div class="dropdown-item ia" id="a'+i+'">'+entry.THname+'</div></li>';
-				var div2 = '<li><div class="dropdown-item ib" id="b'+i+'">'+entry.THname+'</div></li>';
-				$('#dropdownContainer1').append(div);
-				$('#dropdownContainer3').append(div2);
-				i += 1;
-			});
-			
-			$(".ia").click(function(){
-			  $("#dropdownMenuButton1").text($(this).text());
-			  $("#dropdownMenuButton1").val($(this).text());
-			  focusJob = $(this).text();
-			  UpdateAddJobL($(this).attr('id'));
-		    });
-			
-			$(".ib").click(function(){
-			  $("#dropdownMenuButton3").text($(this).text());
-			  $("#dropdownMenuButton3").val($(this).text());
-			  focusJob = $(this).text();
-			  UpdateAddJobR($(this).attr('id'));
-		    });
-			
-			UpdateAddJobL('a1');
-			UpdateAddJobR('b1');
+			if(rawData.Additional.InterestedJobs.length > 0){
+				$('#dropdownMenuButton1').show();
+				THname = rawData.Additional.InterestedJobs[0].THname;
+				
+				$('#dropdownMenuButton1').text(rawData.Additional.InterestedJobs[0].THname);
+				$('#dropdownMenuButton3').text(rawData.Additional.InterestedJobs[0].THname);
+				focusJob = rawData.Additional.InterestedJobs[0].THname;
+				
+				$('#dropdownContainer1').empty();
+				$('#dropdownContainer3').empty();
+				var i=1;
+				rawData.Additional.InterestedJobs.forEach((entry) => {
+					var div = '<li><div class="dropdown-item ia" id="a'+i+'">'+entry.THname+'</div></li>';
+					var div2 = '<li><div class="dropdown-item ib" id="b'+i+'">'+entry.THname+'</div></li>';
+					$('#dropdownContainer1').append(div);
+					$('#dropdownContainer3').append(div2);
+					i += 1;
+				});
+				
+				$(".ia").click(function(){
+				  $("#dropdownMenuButton1").text($(this).text());
+				  $("#dropdownMenuButton1").val($(this).text());
+				  focusJob = $(this).text();
+				  UpdateAddJobL($(this).attr('id'));
+				});
+				
+				$(".ib").click(function(){
+				  $("#dropdownMenuButton3").text($(this).text());
+				  $("#dropdownMenuButton3").val($(this).text());
+				  focusJob = $(this).text();
+				  UpdateAddJobR($(this).attr('id'));
+				});
+				
+				UpdateAddJobL('a1');
+				UpdateAddJobR('b1');
 
-			$('.overall-lower-right-box').hide();
-			$('.overall-upper-right-box').hide();
-			$('.right-job-box').show();
-			
-			$('.obl-container3').hide();
-			$('.obl-container-add').show();
+				$('.overall-lower-right-box').hide();
+				$('.overall-upper-right-box').hide();
+				$('.right-job-box').show();
+				
+				$('.obl-container').show();
+				$('.obl-container-none').hide();
+				
+				$('.obl-container3').hide();
+				$('.obl-container3-none').hide();
+				if(rawData.Additional.mySkills.length > 0){
+					$('.obl-container-add-none').hide();
+					$('.obl-container-add').show();
+				}else{
+					$('.obl-container-add').hide();
+					$('.obl-container-add-none').show();
+				}
 
-			$('.ana-sub-box-p').removeClass('obp');
-			$('.ana-sub-box-p').addClass('obc');
+				$('.ana-sub-box-p').removeClass('obp');
+				$('.ana-sub-box-p').removeClass('obc');
+				$('.ana-sub-box-p').addClass('obcs');
+			}else{
+				$('.overall-lower-right-box').hide();
+				$('.overall-upper-right-box').hide();
+				$('.right-job-box').show();
+				$('.obl-container').hide();
+				$('.obl-container-none').hide();
+				
+				$('.obl-container3').hide();
+				$('.obl-container3-none').hide();
+				
+				$('.obl-container-none').hide();
+				$('.obl-container-add').hide();
+				$('.obl-container-add-none').hide();
+				$('.obl-container-add-no-jobL').show();
+				$('.obl-container-add-no-jobR').show();
+			}
 		}
 		
 		function UpdateFocusJob(id){
@@ -572,7 +791,8 @@ class NewAnalytics extends React.Component {
 				rightJobScore: jobKeyVal[focusJob].UserScore,
 				rightJobPercentage: jobKeyVal[focusJob].percentage.toFixed(2),
 				rightJobCount: jobKeyVal[focusJob].total,
-				rightJobPercentile: jobKeyVal[focusJob].percentile.toFixed(2),
+				rightJobPercentile: jobKeyVal[focusJob].percentile == 0 ? jobKeyVal[focusJob].p.toFixed(2) : jobKeyVal[focusJob].percentile.toFixed(2),
+				rightJobPLabel: jobKeyVal[focusJob].percentile == 0 ? 'ต่ำกว่า' : 'สูงกว่า',
 				rightJobMean: jobKeyVal[focusJob].Mean.toFixed(2),
 				rightJobMode: md
 			});
@@ -580,18 +800,18 @@ class NewAnalytics extends React.Component {
 			var ccr = null;
 			if(id == 's1') {
 				ccr = 'rgb(212,177,205)';
-				$('.jbox').addClass('obp');
-				$('.jbox').removeClass('obg');
+				$('.jbox').addClass('obps');
+				$('.jbox').removeClass('obgs');
 				$('.jbox').removeClass('oby');
 			}else if(id == 's2') {
 				ccr = 'rgb(195,219,197)';
-				$('.jbox').removeClass('obp');
-				$('.jbox').addClass('obg');
+				$('.jbox').removeClass('obps');
+				$('.jbox').addClass('obgs');
 				$('.jbox').removeClass('oby');
 			}else {
 				ccr = 'rgb(255,230,167)';
-				$('.jbox').removeClass('obp');
-				$('.jbox').removeClass('obg');
+				$('.jbox').removeClass('obps');
+				$('.jbox').removeClass('obgs');
 				$('.jbox').addClass('oby');
 			}
 			lineChartConfig.data.datasets[0].borderColor = ccr;
@@ -613,28 +833,36 @@ class NewAnalytics extends React.Component {
 		}
 		
 		function SetupPopup(id){
-			var dataSet = null; var total = null; var ccr = null; var jKey = null; var sKey = null;
+			var dataSet = null; var total = null; var ccr = null; var jKey = null; var sKey = null; var descTotal = null;
+
 			if(id == 'p1'){
 				ccr = 'rgb(212,177,205)';
 				$('.icc').css('background','rgb(212,177,205)');
 				total = rawData.Main.Overview.numberOfUser;
 				dataSet = rawData.Main.Overview.List[0];
+				jKey = rawData.Main.Overview.List[0].Job_Name;
+				descTotal = rawData.Main[jKey].numberOfUsers;
 			}else if(id == 'p2'){
 				ccr = 'rgb(212,177,205)';
 				$('.icc').css('background','rgb(212,177,205)');
 				total = rawData.Main.Overview.numberOfUser;
 				dataSet = rawData.Main.Overview.List[1];
+				jKey = rawData.Main.Overview.List[1].Job_Name;
+				descTotal = rawData.Main[jKey].numberOfUsers;
 			}else if(id == 'p3'){
 				ccr = 'rgb(212,177,205)';
 				$('.icc').css('background','rgb(212,177,205)');
 				total = rawData.Main.Overview.numberOfUser;
 				dataSet = rawData.Main.Overview.List[2];
+				jKey = rawData.Main.Overview.List[2].Job_Name;
+				descTotal = rawData.Main[jKey].numberOfUsers;
 			}else if(id == 'g1'){
 				ccr = 'rgb(195,219,197)';
 				$('.icc').css('background','rgb(195,219,197');
 				jKey = rawData.Main.yourBest3[0].Job_Name;
 				sKey = rawData.Main.yourBest3[0].SkillName;
 				total = rawData.Main[jKey].numberOfUsers;
+				descTotal = rawData.Main[jKey].numberOfUsers;
 				rawData.Main[jKey].List.every((entry) => {
 					if(entry.SkillName == sKey){
 						dataSet = entry;
@@ -648,6 +876,7 @@ class NewAnalytics extends React.Component {
 				jKey = rawData.Main.yourBest3[1].Job_Name;
 				sKey = rawData.Main.yourBest3[1].SkillName;
 				total = rawData.Main[jKey].numberOfUsers;
+				descTotal = rawData.Main[jKey].numberOfUsers;
 				rawData.Main[jKey].List.every((entry) => {
 					if(entry.SkillName == sKey){
 						dataSet = entry;
@@ -661,6 +890,7 @@ class NewAnalytics extends React.Component {
 				jKey = rawData.Main.yourBest3[2].Job_Name;
 				sKey = rawData.Main.yourBest3[2].SkillName;
 				total = rawData.Main[jKey].numberOfUsers;
+				descTotal = rawData.Main[jKey].numberOfUsers;
 				rawData.Main[jKey].List.every((entry) => {
 					if(entry.SkillName == sKey){
 						dataSet = entry;
@@ -668,30 +898,69 @@ class NewAnalytics extends React.Component {
 					}
 					return true;
 				});
+			}else if(id == 'c1'){
+				ccr = 'rgb(182,222,234)';
+				$('.icc').css('background','rgb(182,222,234)');
+				if(currentTab == 2) jKey = rawData.Main.InterestedJobs[0].THname;
+				else if(currentTab == 3) jKey = rawData.Main.InterestedJobs[1].THname;
+				else if(currentTab == 4) jKey = rawData.Main.InterestedJobs[2].THname;
+				total = rawData.Main[jKey].numberOfUsers;
+				dataSet = rawData.Main[jKey].List[0];
+				descTotal = rawData.Main[jKey].numberOfUsers;
+			}else if(id == 'c2'){
+				ccr = 'rgb(182,222,234)';
+				$('.icc').css('background','rgb(182,222,234)');
+				if(currentTab == 2) jKey = rawData.Main.InterestedJobs[0].THname;
+				else if(currentTab == 3) jKey = rawData.Main.InterestedJobs[1].THname;
+				else if(currentTab == 4) jKey = rawData.Main.InterestedJobs[2].THname;
+				total = rawData.Main[jKey].numberOfUsers;
+				dataSet = rawData.Main[jKey].List[1];
+				descTotal = rawData.Main[jKey].numberOfUsers;
+			}else if(id == 'c3'){
+				ccr = 'rgb(182,222,234)';
+				$('.icc').css('background','rgb(182,222,234)');
+				if(currentTab == 2) jKey = rawData.Main.InterestedJobs[0].THname;
+				else if(currentTab == 3) jKey = rawData.Main.InterestedJobs[1].THname;
+				else if(currentTab == 4) jKey = rawData.Main.InterestedJobs[2].THname;
+				total = rawData.Main[jKey].numberOfUsers;
+				dataSet = rawData.Main[jKey].List[2];
+				descTotal = rawData.Main[jKey].numberOfUsers;
 			}
 			
 			var md = null;
 			if(dataSet.Mode.length == 2){
-				$('.md-hid').show();
+				$('.mdp-hid').show();
 				md = dataSet.Mode[0].toFixed(2)+','+ dataSet.Mode[1].toFixed(2)+'คะแนน';
 			}else if(dataSet.Mode.length == 1){
-				$('.md-hid').show();
+				$('.mdp-hid').show();
 				md = dataSet.Mode[0].toFixed(2)+' คะแนน';
 			}else{
-				$('.md-hid').hide();
+				$('.mdp-hid').hide();
 			}
+			
+			//alert(dataSet.percentile);
+			//alert(dataSet.p);
 			refThis.setState({ 
-				rightJobName: dataSet.Job_Name,
-				rightJobSkillName: dataSet.SkillName,
-				rightJobScore: dataSet.UserScore,
+				popJobTotal: descTotal,
+				popJobName: jKey,
+				popJobSkillName: dataSet.SkillName,
 				//rightJobPercentage: dataSet.percentage.toFixed(2),
 				//rightJobCount: dataSet.total,
 				popupDescPercentage:  dataSet.percentage.toFixed(2),
 				popupDescCount: dataSet.total,
-				rightJobPercentile: dataSet.percentile.toFixed(2),
-				rightJobMean: dataSet.Mean.toFixed(2),
-				rightJobMode: md
+				popJobMean: dataSet.Mean.toFixed(2),
+				popJobMode: md
 			});
+			
+			if(dataSet.UserScore != null){
+				$('.youp-hid').show();
+				refThis.setState({  
+					popJobScore: dataSet.UserScore.toFixed(2), 
+					popJobPercentile: dataSet.percentile == 0 ? dataSet.p.toFixed(2) : dataSet.percentile.toFixed(2),
+				});
+			}else{
+				$('.youp-hid').hide();
+			}
 			
 			lineChartConfig.data.datasets[0].borderColor = ccr;
 			lineChartConfig.data.datasets[0].fill.above = ccr;
@@ -814,36 +1083,42 @@ class NewAnalytics extends React.Component {
 						vLabels.push('ยอดเยี่ยม');
 					}else{
 						if(scores[i] == youScr || scores[i] == mean || scores[i] == mode1 || scores[i] == mode2){ // show important score value
-							if(scores[i] == youScr)
-								vLabels.push([scores[i]+' คะแนน','('+entry.percentile.toFixed(2)+'%)']);
-							else
+							if(scores[i] == youScr){
+								var pct = entry.percentile == 0 ? entry.p.toFixed(2) : entry.percentile.toFixed(2);
+								vLabels.push([scores[i]+' คะแนน','('+pct+'%)']);
+							}else{
 								vLabels.push(scores[i]+' คะแนน');
+							}
 						}else{
 							vLabels.push('');
 						}
 					}
 					
-					if(scores[i] == youScr){
-						console.log('set you! at: '+i);
-						if(scores[i] == mean)
-							vPoints.push(avgYou);
-						else
-							vPoints.push(you);
-					}else if(scores[i] == mean){
-						console.log('set mean! at: '+i);
-						vPoints.push(avg);
-					}else if(scores[i] == mode1 && mode1 != -1){
-						console.log('set mode1! at: '+i);
-						if(mode2 != -1)
-							vPoints.push(flagRv);
-						else
-							vPoints.push(flag);
-					}else if(scores[i] == mode2 && mode2 != -1){
-						console.log('set mode2! at: '+i);
-						vPoints.push(flag);
-					}else{
-						console.log('set dummy! at: '+i);
+					if(scores[i] >= 10){ // fix pic bug at max
 						vPoints.push(dummy);
+					}else{
+						if(scores[i] == youScr){
+							console.log('set you! at: '+i);
+							if(scores[i] == mean)
+								vPoints.push(avgYou);
+							else
+								vPoints.push(you);
+						}else if(scores[i] == mean){
+							console.log('set mean! at: '+i);
+							vPoints.push(avg);
+						}else if(scores[i] == mode1 && mode1 != -1){
+							console.log('set mode1! at: '+i);
+							if(mode2 != -1)
+								vPoints.push(flagRv);
+							else
+								vPoints.push(flag);
+						}else if(scores[i] == mode2 && mode2 != -1){
+							console.log('set mode2! at: '+i);
+							vPoints.push(flag);
+						}else{
+							console.log('set dummy! at: '+i);
+							vPoints.push(dummy);
+						}
 					}
 				}
 
@@ -962,37 +1237,76 @@ class NewAnalytics extends React.Component {
 				leftBoxHeader: 'Top 3 เทรนด์ทักษะยอดนิยม',
 				leftBoxDesc1: 'ในกลุ่มคนที่สนใจตำแหน่งงาน'+ THname,
 				leftBoxDesc2: 'ส่วนใหญ่มีทักษะที่นิยม คิดเป็นร้อยละ ดังนี้',
-				
 				leftBoxOvTotal: rawData.Main[THname].numberOfUsers,
-				
-				leftBox1Job: THname,
-				leftBox1Name: rawData.Main[THname].List[0].SkillName,
-				leftBox1Percentage: rawData.Main[THname].List[0].percentage.toFixed(2),
-				leftBox1Count: rawData.Main[THname].List[0].total,
-				
-				leftBox2Job: THname,
-				leftBox2Name: rawData.Main[THname].List[1].SkillName,
-				leftBox2Percentage: rawData.Main[THname].List[1].percentage.toFixed(2),
-				leftBox2Count: rawData.Main[THname].List[1].total,
-				
-				leftBox3Job: THname,
-				leftBox3Name: rawData.Main[THname].List[2].SkillName,
-				leftBox3Percentage: rawData.Main[THname].List[2].percentage.toFixed(2),
-				leftBox3Count: rawData.Main[THname].List[2].total,
-				
 				rightJobTotal: rawData.Main[THname].numberOfUsers
 			});
 			
-			UpdateFocusJob('s1');
+			var iList = rawData.Main[THname].List;
 			
+			if(iList.length == 0){
+				$('#p1').hide();
+				$('#p2').hide();
+				$('#p3').hide();
+			}else if(iList.length == 1){
+				$('#p1').show();
+				$('#p2').hide();
+				$('#p3').hide();
+			}else if(iList.length == 2){
+				$('#p1').show();
+				$('#p2').show();
+				$('#p3').hide();
+			}else{
+				$('#p1').show();
+				$('#p2').show();
+				$('#p3').show();
+			}
+			
+			if(iList.length > 0){
+				refThis.setState({ 
+					leftBox1Job: THname,
+					leftBox1Name: iList[0].SkillName,
+					leftBox1Percentage: iList[0].percentage.toFixed(2),
+					leftBox1Count: iList[0].total,
+				});
+			}
+			if(iList.length > 1){
+				refThis.setState({ 
+					leftBox2Job: THname,
+					leftBox2Name: iList[1].SkillName,
+					leftBox2Percentage: iList[1].percentage.toFixed(2),
+					leftBox2Count: iList[1].total,
+				});
+			}
+			if(iList.length > 2){
+				refThis.setState({ 
+					leftBox3Job: THname,
+					leftBox3Name: iList[2].SkillName,
+					leftBox3Percentage: iList[2].percentage.toFixed(2),
+					leftBox3Count: iList[2].total,
+				});
+			}
+
 			$('.overall-lower-right-box').hide();
 			$('.overall-upper-right-box').hide();
 			$('.right-job-box').show();
 			
-			$('.obl-container3').show();
+			$('.obl-container').show();
+			$('.obl-container-none').hide();
+			
+			if(skillList.length > 0){
+				$('.obl-container3').show();
+				$('.obl-container3-none').hide();
+				
+				UpdateFocusJob('s1');
+			}else{
+				$('.obl-container3').hide();
+				$('.obl-container3-none').show();
+			}
 			$('.obl-container-add').hide();
+			$('.obl-container-add-none').hide();
 
 			$('.ana-sub-box-p').removeClass('obp');
+			$('.ana-sub-box-p').removeClass('obcs');
 			$('.ana-sub-box-p').addClass('obc');
 		}
 		
@@ -1016,29 +1330,11 @@ class NewAnalytics extends React.Component {
 				$('#tab-4').hide();
 				$('#tab-s1').hide();
 			}else{
-				$('#tabT-2').hide();
+				$('#tab-2').hide();
 				$('#tab-3').hide();
 				$('#tab-4').hide();
 			}
 		}
-		
-		/*function GetJobNameFromSkill(skill){
-			var res = null;
-			rawData.Main.InterestedJobs.every((jbs) => {
-				rawData.Main[jbs.name].List.every((entry) => {
-					if(entry.SkillName == skill){
-						res = jbs.THname;
-						return false;
-					}
-					return true;
-				});
-				if(res != null) 
-					return false;
-				return true;
-			});
-			return res;
-		}*/
-		
 	}
 	
 	componentWillUnmount() { 
@@ -1084,7 +1380,7 @@ class NewAnalytics extends React.Component {
 					<div class="container-fluid yahaha2">     
 						<div class="row">
 							<div class="col">
-								<div class="topDataBk-content">
+								<div class="topDataBk-content ana-head">
 									<h1 class="name inline">Analytics</h1>
 								</div>
 							</div>
@@ -1114,7 +1410,9 @@ class NewAnalytics extends React.Component {
 					<div class="smb-1a" id="tab-s3"></div>
 					
 					<div class="smb-2a" id="tab-2">
-						<a class="btn btn-cta-primary-yellow round profile-button" id="new-port" target="_blank">แก้ไขทักษะตนเอง</a>
+						<Link to="/editprofile">
+							<a class="btn bcp-white round-ss profile-button" id="new-port" target="_blank">แก้ไขข้อมูล</a>
+						</Link>
 					</div>
 				</div>
 				
@@ -1127,7 +1425,7 @@ class NewAnalytics extends React.Component {
 							<atf>{this.state.leftBoxDesc2}</atf>
 							<div class="dg-zone">
 								<azf>จากทั้งหมด {this.state.leftBoxOvTotal} คน</azf>
-								<button class="btn btn-cta-primary round grey dropdown-toggle tab-dropdown-pad" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">งานที่ 1</button>
+								<button class="btn btn-cta-primary round grey dropdown-toggle tab-dropdown-pad-flex" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">งานที่ 1</button>
 								<ul class="dropdown-menu" id="dropdownContainer1" aria-labelledby="dropdownMenuButton1">
 								   <li><a class="dropdown-item" id="sort-time">งานที่ 1</a></li>
 								   <li><a class="dropdown-item" id="sort-total">งานที่ 2</a></li>
@@ -1140,12 +1438,12 @@ class NewAnalytics extends React.Component {
 										<div class="asb-left">
 											<hbf>#1</hbf>
 											<atf>{this.state.leftBox1Job}</atf>
-											<af>{this.state.leftBox1Name}</af>
+											<naf>{this.state.leftBox1Name}</naf>
 										</div>
 										<div class="asb-right">
 											<muf>คิดเป็นร้อยละ</muf>
 											<hhf>{this.state.leftBox1Percentage}</hhf>
-											<af>({this.state.leftBox1Count} คน)</af>
+											<naf>({this.state.leftBox1Count} คน)</naf>
 										</div>
 									</div>
 								</div>
@@ -1154,12 +1452,12 @@ class NewAnalytics extends React.Component {
 										<div class="asb-left">
 											<hbf>#2</hbf>
 											<atf>{this.state.leftBox2Job}</atf>
-											<af>{this.state.leftBox2Name}</af>
+											<naf>{this.state.leftBox2Name}</naf>
 										</div>
 										<div class="asb-right">
 											<muf>คิดเป็นร้อยละ</muf>
 											<hhf>{this.state.leftBox2Percentage}</hhf>
-											<af>({this.state.leftBox2Count} คน)</af>
+											<naf>({this.state.leftBox2Count} คน)</naf>
 										</div>
 									</div>
 								</div>
@@ -1168,17 +1466,44 @@ class NewAnalytics extends React.Component {
 										<div class="asb-left">
 											<hbf>#3</hbf>
 											<atf>{this.state.leftBox3Job}</atf>
-											<af>{this.state.leftBox3Name}</af>
+											<naf>{this.state.leftBox3Name}</naf>
 										</div>
 										<div class="asb-right">
 											<muf>คิดเป็นร้อยละ</muf>
 											<hhf>{this.state.leftBox3Percentage}</hhf>
-											<af>({this.state.leftBox3Count} คน)</af>
+											<naf>({this.state.leftBox3Count} คน)</naf>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
+						
+						<div class="obl-container-none">
+							<hrf>Top 3 เทรนด์ทักษะเฉพาะทั้งหมด</hrf>
+							<ktf>จากตำแหน่งงานทั้งหมดที่คุณสนใจ</ktf>
+							<ktf>คนที่เลือกตำแหน่งเดียวกับคุณส่วนใหญ่มีทักษะที่นิยม ดังนี้</ktf>
+							<div class="add-none">
+								<kf>เพิ่มตำแหน่งงานที่คุณสนใจ</kf>
+								<kf>เพื่อดูการวิเคราะห์ข้อมูลทางสถิติโดยเทียบกับผู้ใช้งานคนอื่นในระบบ</kf>
+								<Link to="/editprofile">
+									<a class="btn btn-cta-primary-yellow round profile-button" id="new-port" target="_blank">เพิ่มตำแหน่งงาน</a>
+								</Link>
+							</div>
+						</div>
+						
+						<div class="obl-container-add-no-jobL">
+							<hrf>Top 3 เทรนด์ทักษะเสริมยอดนิยม</hrf>
+							<ktf>ในกลุ่มคนที่สนใจตำแหน่งงานเดียวกัน</ktf>
+							<ktf>ส่วนใหญ่มีทักษะเสริมที่นิยม คิดเป็นร้อยละ ดังนี้</ktf>
+							<div class="add-none">
+								<kf>เพิ่มตำแหน่งงานที่คุณสนใจ</kf>
+								<kf>เพื่อดูการวิเคราะห์ข้อมูลทางสถิติโดยเทียบกับผู้ใช้งานคนอื่นในระบบ</kf>
+								<Link to="/editprofile">
+									<a class="btn btn-cta-primary-yellow round profile-button" id="new-port" target="_blank">เพิ่มตำแหน่งงาน</a>
+								</Link>
+							</div>
+						</div>
+						
 					</div>
 					<div class="overall-right-box">
 						<div class="overall-upper-right-box">
@@ -1191,13 +1516,13 @@ class NewAnalytics extends React.Component {
 												<hbf class="asb-a">#1</hbf>
 												<div class="asb-b">
 													<atf>{this.state.topMainJOv1Job}</atf>
-													<af>{this.state.topMainJOv1Name}</af>
+													<naf>{this.state.topMainJOv1Name}</naf>
 												</div>
 											</div>
 											<div class="asb-lower">
 												<muf>คะแนนของคุณ {this.state.topMainJOv1Score} คะแนน</muf>
 												<div class="asb-l1">
-													<af>สูงกว่า</af>
+													<naf>{this.state.topMainJOv1Label}</naf>
 													<hbf class="spc1">{this.state.topMainJOv1Percentage}%</hbf>
 												</div>
 												<muf>ของคนทั้งหมด {this.state.topMainJOv1Count} คนที่เลือกทักษะนี้</muf>
@@ -1210,13 +1535,13 @@ class NewAnalytics extends React.Component {
 												<hbf class="asb-a">#2</hbf>
 												<div class="asb-b">
 													<atf>{this.state.topMainJOv2Job}</atf>
-													<af>{this.state.topMainJOv2Name}</af>
+													<naf>{this.state.topMainJOv2Name}</naf>
 												</div>
 											</div>
 											<div class="asb-lower">
 												<muf>คะแนนของคุณ {this.state.topMainJOv2Score} คะแนน</muf>
 												<div class="asb-l1">
-													<af>สูงกว่า</af>
+													<naf>{this.state.topMainJOv2Label}</naf>
 													<hbf class="spc1">{this.state.topMainJOv2Percentage}%</hbf>
 												</div>
 												<muf>ของคนทั้งหมด {this.state.topMainJOv2Count} คนที่เลือกทักษะนี้</muf>
@@ -1229,13 +1554,13 @@ class NewAnalytics extends React.Component {
 												<hbf class="asb-a">#3</hbf>
 												<div class="asb-b">
 													<atf>{this.state.topMainJOv3Job}</atf>
-													<af>{this.state.topMainJOv3Name}</af>
+													<naf>{this.state.topMainJOv3Name}</naf>
 												</div>
 											</div>
 											<div class="asb-lower">
 												<muf>คะแนนของคุณ {this.state.topMainJOv3Score} คะแนน</muf>
 												<div class="asb-l1">
-													<af>สูงกว่า</af>
+													<naf>{this.state.topMainJOv3Label}</naf>
 													<hbf class="spc1">{this.state.topMainJOv3Percentage}%</hbf>
 												</div>
 												<muf>ของคนทั้งหมด {this.state.topMainJOv3Count} คนที่เลือกทักษะนี้</muf>
@@ -1244,23 +1569,37 @@ class NewAnalytics extends React.Component {
 									</div>
 								</div>
 							</div>
+							
+							<div class="obl-container2-none">
+								<div class="dg-zone2">
+									<hrf>วิเคราะห์คะแนนทักษะ</hrf>
+								</div>
+								<div class="add-none">
+									<kf>เพิ่มทักษะที่ถนัดในตำแหน่งงานของคุณ</kf>
+									<kf>เพื่อดูการวิเคราะห์ข้อมูลทางสถิติโดยเทียบกับผู้ใช้งานคนอื่นในระบบ</kf>
+									<Link to="/editprofile">
+										<a class="btn btn-cta-primary-yellow round profile-button" id="new-port" target="_blank">เพิ่มทักษะ</a>
+									</Link>
+								</div>
+							</div>
+							
 						</div>
 						<div class="overall-lower-right-box">
-							<div class="obl-container2">
+							<div class="obl-container2l">
 								<hhf>Top 3 เทรนด์ทักษะเสริมทั้งหมด</hhf>
-								<af>จากผู้ใช้ทุกคนในระบบ คนส่วนใหญ่มีทักษะเสริมที่นิยม ดังนี้</af>
+								<naf>จากผู้ใช้ทุกคนในระบบ คนส่วนใหญ่มีทักษะเสริมที่นิยม ดังนี้</naf>
 								<akf>จากทั้งหมด {this.state.topAddOvTotal} คน</akf>
 								<div class="obs-container">
 									<div class="obs-box obo">
 										<div class="asb-container2">
 											<div class="asb-la">
 												<hdf>#1</hdf>
-												<af>{this.state.topAddOv1Name}</af>
+												<naf>{this.state.topAddOv1Name}</naf>
 											</div>
 											<muf class="asb-lb">คิดเป็นร้อยละ</muf>
 											<div class="asb-lc">
 												<hbf>{this.state.topAddOv1Percentage}</hbf>
-												<af class="spc1">({this.state.topAddOv1Count} คน)</af>
+												<naf class="spc1">({this.state.topAddOv1Count} คน)</naf>
 											</div>
 										</div>
 									</div>
@@ -1268,12 +1607,12 @@ class NewAnalytics extends React.Component {
 										<div class="asb-container2">
 											<div class="asb-la">
 												<hdf>#2</hdf>
-												<af>{this.state.topAddOv2Name}</af>
+												<naf>{this.state.topAddOv2Name}</naf>
 											</div>
 											<muf class="asb-lb">คิดเป็นร้อยละ</muf>
 											<div class="asb-lc">
 												<hbf>{this.state.topAddOv2Percentage}</hbf>
-												<af class="spc1">({this.state.topAddOv2Count} คน)</af>
+												<naf class="spc1">({this.state.topAddOv2Count} คน)</naf>
 											</div>
 										</div>
 									</div>
@@ -1281,15 +1620,24 @@ class NewAnalytics extends React.Component {
 										<div class="asb-container2">
 											<div class="asb-la">
 												<hdf>#3</hdf>
-												<af>{this.state.topAddOv3Name}</af>
+												<naf>{this.state.topAddOv3Name}</naf>
 											</div>
 											<muf class="asb-lb">คิดเป็นร้อยละ</muf>
 											<div class="asb-lc">
 												<hbf>{this.state.topAddOv3Percentage}</hbf>
-												<af class="spc1">({this.state.topAddOv3Count} คน)</af>
+												<naf class="spc1">({this.state.topAddOv3Count} คน)</naf>
 											</div>
 										</div>
 									</div>
+								</div>
+							</div>
+							
+							<div class="obl-container2l-none">
+								<div class="dg-zone2">
+									<hrf>Top 3 เทรนด์ทักษะเสริมทั้งหมด</hrf>
+								</div>
+								<div class="add-none">
+									<kf>ขออถัย แต่ข้อมูลทักษะเสริมในระบบไม่เพียงพอที่จะแสดงผลนี้</kf>
 								</div>
 							</div>
 						</div>
@@ -1298,7 +1646,7 @@ class NewAnalytics extends React.Component {
 							<div class="obl-container3">
 								<div class="dg-zone2">
 									<hhf>วิเคราะห์คะแนนทักษะ</hhf>
-									<button class="btn btn-cta-primary round grey dropdown-toggle tab-dropdown-pad" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">งานที่ 1</button>
+									<button class="btn btn-cta-primary round grey dropdown-toggle tab-dropdown-pad-flex" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">งานที่ 1</button>
 									<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2" id="dropdownContainer2">
 									   
 									</ul>
@@ -1307,16 +1655,16 @@ class NewAnalytics extends React.Component {
 								<br></br>
 								
 								<div class="obj-container">
-									<div class="obs-box jbox obp">
+									<div class="obs-box jbox obps">
 										<div class="asb-container2">
 											<div class="asb-pa">
 												<hdf>{this.state.rightJobName}</hdf>
-												<af>{this.state.rightJobSkillName}</af>
+												<naf>{this.state.rightJobSkillName}</naf>
 											</div>
 											<muf class="asb-pb">{this.state.rightJobScore} คะแนน</muf>
 										</div>
 									</div>
-									<div class="obs-box jbox obp">
+									<div class="obs-box jbox obps">
 										<div class="asb-container2">
 											<amf>ในตำแหน่งงานเดียวกัน</amf>
 											<amf>ทักษะนี้มีความนิยมคิดเป็น</amf>
@@ -1324,10 +1672,10 @@ class NewAnalytics extends React.Component {
 											<amf class="asb-pb">({this.state.rightJobCount} คน)</amf>
 										</div>
 									</div>
-									<div class="obs-box jbox obp">
+									<div class="obs-box jbox obps">
 										<div class="asb-container2">
 											<br></br>
-											<amf>คุณมีคะแนนทักษะนี้สูงกว่าคน</amf>
+											<amf>คุณมีคะแนนทักษะนี้{this.state.rightJobPLabel}คน</amf>
 											<hhf>{this.state.rightJobPercentile}%</hhf>
 											<amf class="asb-pb">ที่มีทักษะเดียวกัน</amf>
 										</div>
@@ -1350,26 +1698,39 @@ class NewAnalytics extends React.Component {
 								</div>
 							</div>
 							
+							<div class="obl-container3-none">
+								<div class="dg-zone2">
+									<hrf>วิเคราะห์คะแนนทักษะ</hrf>
+								</div>
+								<div class="add-none">
+									<kf>เพิ่มทักษะที่ถนัดในตำแหน่งงานของคุณ</kf>
+									<kf>เพื่อดูการวิเคราะห์ข้อมูลทางสถิติโดยเทียบกับผู้ใช้งานคนอื่นในระบบ</kf>
+									<Link to="/editprofile">
+										<a class="btn btn-cta-primary-yellow round profile-button" id="new-port" target="_blank">เพิ่มทักษะ</a>
+									</Link>
+								</div>
+							</div>
 							
 							<div class="obl-container-add">
 								<div class="dg-zone2">
 									<hhf>วิเคราะห์ทักษะเสริม</hhf>
 								</div>
-								<akf>จากทั้งหมด {this.state.topAddOvTotal} คน</akf>
+								<akf>จากทั้งหมด {this.state.topAddTotal} คน</akf>
 								<br></br><br></br><br></br>
 								<div class="dg-zone">
 								<azf></azf>
-									<button class="btn btn-cta-primary round grey dropdown-toggle tab-dropdown-pad" type="button" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">งานที่ 1</button>
+									<button class="btn btn-cta-primary round grey dropdown-toggle tab-dropdown-pad-flex" type="button" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">งานที่ 1</button>
 									<ul class="dropdown-menu" id="dropdownContainer3" aria-labelledby="dropdownMenuButton3">
 										
 									</ul>
 								</div>
 								<div class="ana-sub-box-container2">
-									<div class="ana-sub-box-o obo">
+									<div class="ana-sub-box-o mySkl1 obo">
 										<div class="asb-container">
-											<div class="asb-left">
+											<div class="asb-add">
 												<atf>{this.state.rightBox1AddType}</atf>
-												<af>{this.state.rightBox1AddName}</af>
+												<naf>{this.state.rightBox1AddName}</naf>
+												<naf></naf><naf></naf>
 											</div>
 											<div class="asb-right">
 												<amf>ในตำแหน่งงานเดียวกัน</amf>
@@ -1379,11 +1740,11 @@ class NewAnalytics extends React.Component {
 											</div>
 										</div>
 									</div>
-									<div class="ana-sub-box-o obo">
+									<div class="ana-sub-box-o mySkl2 obo">
 										<div class="asb-container">
-											<div class="asb-left">
+											<div class="asb-add">
 												<atf>{this.state.rightBox2AddType}</atf>
-												<af>{this.state.rightBox2AddName}</af>
+												<naf>{this.state.rightBox2AddName}</naf>
 											</div>
 											<div class="asb-right">
 												<amf>ในตำแหน่งงานเดียวกัน</amf>
@@ -1393,11 +1754,11 @@ class NewAnalytics extends React.Component {
 											</div>
 										</div>
 									</div>
-									<div class="ana-sub-box-o obo">
+									<div class="ana-sub-box-o mySkl3 obo">
 										<div class="asb-container">
-											<div class="asb-left">
+											<div class="asb-add">
 												<atf>{this.state.rightBox3AddType}</atf>
-												<af>{this.state.rightBox3AddName}</af>
+												<naf>{this.state.rightBox3AddName}</naf>
 											</div>
 											<div class="asb-right">
 												<amf>ในตำแหน่งงานเดียวกัน</amf>
@@ -1407,18 +1768,47 @@ class NewAnalytics extends React.Component {
 											</div>
 										</div>
 									</div>
-									<div class="ana-sub-box-o newSkl1 obu">
+									<div class="ana-sub-box-o nsb newSkl1 obu">
 										<div class="asb-container-c">
-											<amf>เพิ่มข้อมูล</amf>
+											<img src="assets/images/plus.png" width='36px' height="36px" alt=""/>
+											<naf>เพิ่มทักษะ</naf>
 										</div>
 									</div>
-									<div class="ana-sub-box-o newSkl2 obu">
+									<div class="ana-sub-box-o nsb newSkl2 obu">
 										<div class="asb-container-c">
-											<amf>เพิ่มข้อมูล</amf>
+											<img src="assets/images/plus.png" width='36px' height="36px" alt=""/>
+											<naf>เพิ่มทักษะ</naf>
 										</div>
 									</div>
 								</div>
 							</div>
+							
+							
+							<div class="obl-container-add-none">
+								<div class="dg-zone2">
+									<hrf>วิเคราะห์ทักษะเสริม</hrf>
+								</div>
+								<div class="add-none">
+									<kf>เพิ่มทักษะเสริมที่ถนัด</kf>
+									<kf>เพื่อดูการวิเคราะห์ข้อมูลทางสถิติโดยเทียบกับผู้ใช้งานคนอื่นในระบบ</kf>
+									<Link to="/editprofile">
+										<a class="btn btn-cta-primary-yellow round profile-button" id="new-port" target="_blank">เพิ่มทักษะเสริม</a>
+									</Link>
+								</div>
+							</div>
+							
+							<div class="obl-container-add-no-jobR">
+								<hrf>วิเคราะห์ทักษะเสริม</hrf>
+								<div class="add-none">
+									<kf>เพิ่มตำแหน่งงานที่คุณสนใจ</kf>
+									<kf>เพื่อดูการวิเคราะห์ข้อมูลทางสถิติโดยเทียบกับผู้ใช้งานคนอื่นในระบบ</kf>
+									<Link to="/editprofile">
+										<a class="btn btn-cta-primary-yellow round profile-button" id="new-port" target="_blank">เพิ่มตำแหน่งงาน</a>
+									</Link>
+								</div>
+							</div>
+
+
 						</div>
 					</div>
 				</div>
@@ -1439,19 +1829,19 @@ class NewAnalytics extends React.Component {
 						<div class="">
 							<div class="analytic-arrow-cls back" id="main-lv2-back"></div>
 							<hhf class="analytic-md-header2">กราฟแสดงการกระจายตัวของคะแนนทักษะ<br/></hhf>
-							<af class="analytic-spc-s analytic-md-sub-header">จากคนทั้งหมด {this.state.rightJobTotal} คน ที่สนใจตำแหน่งงานเดียวกัน</af>
+							<naf class="analytic-spc-s analytic-md-sub-header">จากคนทั้งหมด {this.state.popJobTotal} คน ที่สนใจตำแหน่งงานเดียวกัน</naf>
 							<div class="ap-flex">
 								<div class="apv-flex">
 									<div class="analytic-right-chart-label2">
 										<div class="ia-box">
 											<div class="iaa">
 												<div class="icc">
-													
+													<muf class="pkh">จำนวนคน</muf>
 												</div>
 											</div>
 											<div class="ibb">
-												<muf id="arc-label">{this.state.rightJobName}</muf>
-												<muf class="" id="arc-label">{this.state.rightJobSkillName}</muf>
+												<muf id="arc-label">{this.state.popJobName}</muf>
+												<muf class="" id="arc-label">{this.state.popJobSkillName}</muf>
 											</div>
 										</div>
 									</div>
@@ -1460,25 +1850,25 @@ class NewAnalytics extends React.Component {
 										<div class="sp-text2">
 											<muf >ค่าเฉลี่ย</muf>
 										</div>
-										<div class="sp-text2 md-hid">
-											<muf class="md-hid">ค่าฐานนิยม</muf>
+										<div class="sp-text2 mdp-hid">
+											<muf class="mdp-hid">ค่าฐานนิยม</muf>
 										</div>
-										<div class="sp-text2">
+										<div class="sp-text2 youp-hid">
 											<muf >คะแนนของคุณ</muf>
 										</div>
 									</div>
 									<div class="arc-x">
 										<div class="sp-text2">
-											<muf >คือ {this.state.rightJobMean} คะแนน</muf>
+											<muf >คือ {this.state.popJobMean} คะแนน</muf>
 										</div>
-										<div class="sp-text2 md-hid">
-											<muf class="md-hid">คือ {this.state.rightJobMode}</muf>
+										<div class="sp-text2 mdp-hid">
+											<muf class="mdp-hid">คือ {this.state.popJobMode}</muf>
 										</div>
-										<div class="sp-text2">
-											<muf >คือ {this.state.rightJobScore} คะแนน</muf>
+										<div class="sp-text2 youp-hid">
+											<muf >คือ {this.state.popJobScore} คะแนน</muf>
 										</div>
-										<div class="sp-text2">
-											<muf >อยู่ที่ตำแหน่ง {this.state.rightJobPercentile}%</muf>
+										<div class="sp-text2 youp-hid">
+											<muf >อยู่ที่ตำแหน่ง {this.state.popJobPercentile}%</muf>
 										</div>
 									</div>
 									

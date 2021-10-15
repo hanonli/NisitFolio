@@ -23,6 +23,40 @@
             "numberOfUsers": 4,
             "List": [
                 {
+                    "SkillName": "การกำหนดขอบเขต",
+                    "total": 2,
+                    "AllScore": [
+                        10
+                    ],
+                    "UserScore": null,
+                    "Count": [
+                        2
+                    ],
+                    "Mean": 10,
+                    "Mode": [
+                        10
+                    ],
+                    "percentage": 50,
+                    "percentile": null
+                },
+                {
+                    "SkillName": "การค้นคว้า",
+                    "total": 1,
+                    "AllScore": [
+                        10
+                    ],
+                    "UserScore": null,
+                    "Count": [
+                        1
+                    ],
+                    "Mean": 10,
+                    "Mode": [
+                        10
+                    ],
+                    "percentage": 25,
+                    "percentile": null
+                },
+                {
                     "SkillName": "การจัดตารางเวลา",
                     "total": 1,
                     "AllScore": [
@@ -38,11 +72,6 @@
                     ],
                     "percentage": 25,
                     "percentile": 100
-                },
-                {
-                    "SkillName": "การปรับตัว",
-                    "total": 1,
-                    "percentage": 25
                 },
                 {
                     "SkillName": "การวางแผน",
@@ -77,21 +106,6 @@
                     ],
                     "percentage": 25,
                     "percentile": 100
-                },
-                {
-                    "SkillName": "การเขียนรายงาน",
-                    "total": 1,
-                    "percentage": 25
-                },
-                {
-                    "SkillName": "ร้องเพลง",
-                    "total": 1,
-                    "percentage": 25
-                },
-                {
-                    "SkillName": "เอาใจลูกค้า",
-                    "total": 1,
-                    "percentage": 25
                 }
             ]
         },
@@ -131,6 +145,31 @@
                     "p": 13.88888888888889
                 },
                 {
+                    "SkillName": "ความรู้ด้านการเงิน",
+                    "total": 6,
+                    "AllScore": [
+                        3.3,
+                        5.3,
+                        6.5,
+                        6.9,
+                        8.5,
+                        8.7
+                    ],
+                    "UserScore": null,
+                    "Count": [
+                        1,
+                        1,
+                        1,
+                        1,
+                        1,
+                        1
+                    ],
+                    "Mean": 6.533333333333334,
+                    "Mode": [],
+                    "percentage": 54.54545454545454,
+                    "percentile": null
+                },
+                {
                     "SkillName": "มีความรู้ด้านอาชีพหลากหลาย",
                     "total": 5,
                     "AllScore": [
@@ -154,11 +193,6 @@
                     "percentile": 100
                 },
                 {
-                    "SkillName": "มีข้อมูลอ้างอิงจากนักจิตวิทยาหรือนักบำบัด",
-                    "total": 4,
-                    "percentage": 36.36363636363637
-                },
-                {
                     "SkillName": "การให้คำปรึกษา",
                     "total": 3,
                     "AllScore": [
@@ -176,11 +210,6 @@
                     "Mode": [],
                     "percentage": 27.27272727272727,
                     "percentile": 100
-                },
-                {
-                    "SkillName": "ระบุอุปสรรคได้",
-                    "total": 1,
-                    "percentage": 9.090909090909092
                 }
             ]
         },
@@ -240,7 +269,34 @@
                     "Mean": 6.211111111111112,
                     "Mode": [],
                     "percentage": 64.28571428571429,
-                    "percentile": 100
+                    "percentile": 0,
+                    "p": 13.88888888888889
+                },
+                {
+                    "Job_Name": "ที่ปรึกษาด้านอาชีพ",
+                    "SkillName": "ความรู้ด้านการเงิน",
+                    "total": 6,
+                    "AllScore": [
+                        3.3,
+                        5.3,
+                        6.5,
+                        6.9,
+                        8.5,
+                        8.7
+                    ],
+                    "UserScore": null,
+                    "Count": [
+                        1,
+                        1,
+                        1,
+                        1,
+                        1,
+                        1
+                    ],
+                    "Mean": 6.533333333333334,
+                    "Mode": [],
+                    "percentage": 42.857142857142854,
+                    "percentile": null
                 },
                 {
                     "Job_Name": "ที่ปรึกษาด้านอาชีพ",
@@ -268,12 +324,6 @@
                 },
                 {
                     "Job_Name": "ที่ปรึกษาด้านอาชีพ",
-                    "SkillName": "มีข้อมูลอ้างอิงจากนักจิตวิทยาหรือนักบำบัด",
-                    "total": 4,
-                    "percentage": 28.57142857142857
-                },
-                {
-                    "Job_Name": "ที่ปรึกษาด้านอาชีพ",
                     "SkillName": "การให้คำปรึกษา",
                     "total": 3,
                     "AllScore": [
@@ -294,18 +344,6 @@
                 },
                 {
                     "Job_Name": "ครู",
-                    "SkillName": "การกำหนดขอบเขต",
-                    "total": 2,
-                    "percentage": 14.285714285714285
-                },
-                {
-                    "Job_Name": "ครู",
-                    "SkillName": "การค้นคว้า",
-                    "total": 1,
-                    "percentage": 7.142857142857142
-                },
-                {
-                    "Job_Name": "ครู",
                     "SkillName": "การจัดตารางเวลา",
                     "total": 1,
                     "AllScore": [
@@ -321,12 +359,6 @@
                     ],
                     "percentage": 7.142857142857142,
                     "percentile": 100
-                },
-                {
-                    "Job_Name": "ครู",
-                    "SkillName": "การปรับตัว",
-                    "total": 1,
-                    "percentage": 7.142857142857142
                 },
                 {
                     "Job_Name": "ครู",
@@ -363,30 +395,6 @@
                     ],
                     "percentage": 7.142857142857142,
                     "percentile": 100
-                },
-                {
-                    "Job_Name": "ครู",
-                    "SkillName": "การเขียนรายงาน",
-                    "total": 1,
-                    "percentage": 7.142857142857142
-                },
-                {
-                    "Job_Name": "ที่ปรึกษาด้านอาชีพ",
-                    "SkillName": "ระบุอุปสรรคได้",
-                    "total": 1,
-                    "percentage": 7.142857142857142
-                },
-                {
-                    "Job_Name": "ครู",
-                    "SkillName": "ร้องเพลง",
-                    "total": 1,
-                    "percentage": 7.142857142857142
-                },
-                {
-                    "Job_Name": "ครู",
-                    "SkillName": "เอาใจลูกค้า",
-                    "total": 1,
-                    "percentage": 7.142857142857142
                 }
             ]
         }
@@ -419,19 +427,15 @@
                     "AdditionalSkill": "Blockchain",
                     "Type": "ทักษะคอมพิวเตอร์",
                     "total": 1,
-                    "percentage": 25
+                    "percentage": 25,
+                    "isMySkill": true
                 },
                 {
                     "AdditionalSkill": "การใช้สื่อสังคมออนไลน์",
                     "Type": "สกิลแห่งปี 2021",
                     "total": 1,
-                    "percentage": 25
-                },
-                {
-                    "AdditionalSkill": "สกิลกู",
-                    "Type": "สกิลแห่งปี 2022",
-                    "total": 1,
-                    "percentage": 25
+                    "percentage": 25,
+                    "isMySkill": true
                 }
             ]
         },
@@ -442,19 +446,36 @@
                     "AdditionalSkill": "Swift, Python, Perl และ XML",
                     "Type": "ทักษะคอมพิวเตอร์",
                     "total": 5,
-                    "percentage": 45.45454545454545
+                    "percentage": 45.45454545454545,
+                    "isMySkill": false
                 },
                 {
                     "AdditionalSkill": "การเขียนคำโฆษณา",
                     "Type": "ทักษะการสื่อสาร",
                     "total": 3,
-                    "percentage": 27.27272727272727
+                    "percentage": 27.27272727272727,
+                    "isMySkill": false
                 },
                 {
                     "AdditionalSkill": "Machine learning (ML)",
                     "Type": "ทักษะคอมพิวเตอร์",
                     "total": 2,
-                    "percentage": 18.181818181818183
+                    "percentage": 18.181818181818183,
+                    "isMySkill": false
+                },
+                {
+                    "AdditionalSkill": "การใช้สื่อสังคมออนไลน์",
+                    "Type": "สกิลแห่งปี 2021",
+                    "total": 2,
+                    "percentage": 18.181818181818183,
+                    "isMySkill": true
+                },
+                {
+                    "AdditionalSkill": "Blockchain",
+                    "Type": "ทักษะคอมพิวเตอร์",
+                    "total": 1,
+                    "percentage": 9.090909090909092,
+                    "isMySkill": true
                 }
             ]
         },
@@ -465,22 +486,39 @@
                     "AdditionalSkill": "Swift, Python, Perl และ XML",
                     "Type": "ทักษะคอมพิวเตอร์",
                     "total": 5,
-                    "percentage": 35.714285714285715
+                    "percentage": 35.714285714285715,
+                    "isMySkill": false
                 },
                 {
                     "AdditionalSkill": "การเขียนคำโฆษณา",
                     "Type": "ทักษะการสื่อสาร",
                     "total": 3,
-                    "percentage": 21.428571428571427
+                    "percentage": 21.428571428571427,
+                    "isMySkill": false
                 },
                 {
                     "AdditionalSkill": "Machine learning (ML)",
                     "Type": "ทักษะคอมพิวเตอร์",
                     "total": 2,
-                    "percentage": 14.285714285714285
+                    "percentage": 14.285714285714285,
+                    "isMySkill": false
+                },
+                {
+                    "AdditionalSkill": "การใช้สื่อสังคมออนไลน์",
+                    "Type": "สกิลแห่งปี 2021",
+                    "total": 2,
+                    "percentage": 14.285714285714285,
+                    "isMySkill": true
+                },
+                {
+                    "AdditionalSkill": "Blockchain",
+                    "Type": "ทักษะคอมพิวเตอร์",
+                    "total": 1,
+                    "percentage": 7.142857142857142,
+                    "isMySkill": true
                 }
             ]
         }
     },
-    "updatedAt": "2021-10-14T06:13:15.996Z"
+    "updatedAt": "2021-10-14T08:43:21.717Z"
 }

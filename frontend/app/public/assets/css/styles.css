@@ -49,6 +49,7 @@ unf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 18px; font-we
 uf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 24px; font-weight: 200;  color: #939393; }
 muf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 16px; font-weight: lighter;  color: black;}
 af { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 22px; font-weight: lighter;  color: black;}
+naf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 19px; font-weight: lighter;  color: black;}
 amf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 18px; font-weight: lighter;  color: black;}
 atf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 22px; font-weight: bold;  color: black;}
 agf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 22px; font-weight: lighter;  color: grey;}
@@ -64,13 +65,14 @@ hff { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 42px; font-we
 hdf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 22px; font-weight: bold;  color: black; }
 hbf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 32px; font-weight: bold;  color: black; }
 hhf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 42px; font-weight: bold;  color: black; }
+hrf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 42px; font-weight: bold;  color: #C7C7C7; }
 mf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 18px; font-weight: 600;  color: black; }
 mef { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 24px; font-weight: 600;  color: black; }
 mhf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 32px; font-weight: 600;  color: black; }
 mff { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 18px; font-weight: 400;  color: grey; }
 mdf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 32px; font-weight: 500;  color: #C7C7C7; }
-
-
+kf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 19px; font-weight: lighter;  color: #C7C7C7;}
+ktf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 22px; font-weight: bold;  color: #C7C7C7;}
 .text-extra{
 	line-height: 1.2;
 }
@@ -516,6 +518,26 @@ a:focus {
 	border-radius: 24px;
 }
 
+.bcp-white {
+  color: #000000;
+  font-weight: 600;
+  text-transform: uppercase;
+  border: 1px solid #C7C7C7;
+  background: white;
+  padding-left: 70px !important;
+  padding-right: 70px !important;
+  transition: all 0.3s ease;
+}
+
+.bcp-white:hover{
+	background: black;
+	color: white;
+}
+
+.round-ss{
+	border-radius: 8px;
+}
+
 a.btn-cta-primary-yellow, .btn-cta-primary-yellow {
   color: #000000;
   font-weight: 600;
@@ -849,6 +871,18 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 	right: 10px;
 }
 
+.ana-head{
+	position: relative;
+	right: 0px;
+	transform: scale(1);
+	transition: all 0.3s ease;
+}
+
+.ana-head-anim{
+	right: 180px;
+	transform: scale(0.8);
+}
+
 .animate-yahaha32{ opacity: 100% }
 
 .animate-hard-lv1{ transform: scale(0.0); }
@@ -1156,7 +1190,43 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 	margin: auto;
 }
 
+.obl-container-none{
+	display: flex;
+	flex-flow: column;
+	width: 95%;
+	/*background: orange;*/
+	height: 95%;
+	margin: auto;
+}
+
 .obl-container2{
+	display: flex;
+	flex-flow: column;
+	width: 95%;
+	/*background: orange;*/
+	height: 90%;
+	margin: auto;
+}
+
+.obl-container2l{
+	display: flex;
+	flex-flow: column;
+	width: 95%;
+	/*background: orange;*/
+	height: 90%;
+	margin: auto;
+}
+
+.obl-container2l-none{
+	display: flex;
+	flex-flow: column;
+	width: 95%;
+	/*background: orange;*/
+	height: 90%;
+	margin: auto;
+}
+
+.obl-container2-none{
 	display: flex;
 	flex-flow: column;
 	width: 95%;
@@ -1173,6 +1243,7 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 	gap: 2.5%;
 }
 
+
 .obs-box{
 	display: flex;
 	flex-flow: column;
@@ -1188,6 +1259,10 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 	transition: all 0.3s ease;
 }
 
+.obgs{
+	background: rgb(195,219,197);
+}
+
 .obg:hover{
 	background: rgb(148,167,150);
 }
@@ -1201,9 +1276,16 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 	background: rgb(255,232,221);
 }
 
+.obu:hover{
+	background: rgb(205,182,171);
+}
 
 .obp{
 	transition: all 0.3s ease;
+	background: rgb(212,177,205);
+}
+
+.obps{
 	background: rgb(212,177,205);
 }
 
@@ -1216,8 +1298,12 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 	background: rgb(182,222,234);
 }
 
+.obcs{
+	background: rgb(182,222,234);
+}
+
 .obc:hover{
-	/*background: rgb(135,165,174);*/
+	background: rgb(135,165,174);
 }
 
 .oby{
@@ -1229,6 +1315,10 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 	/*background: rgb(202,182,132);*/
 }
 
+.nsb{
+	cursor: pointer;
+}
+
 .anl-tabs{
 	position: relative;
 	transition: all 0.3s ease;
@@ -1238,9 +1328,9 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 }
 
 .anl-tabs-anim{
-	transform: scale(0.95);
+	transform: scale(0.98);
 	top: -75px;
-	right: -175px;
+	right: -140px;
 }
 
 .dg-zone{
@@ -1266,6 +1356,17 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 	/*background: red;*/
 }
 
+.obl-container3-none{
+	display: flex;
+	flex-flow: column;
+	justify-content: start;
+	width: 95%;
+	/*background: orange;*/
+	height: 94%;
+	margin: 2% auto auto auto;
+	/*background: red;*/
+}
+
 .obl-container-add{
 	display: flex;
 	flex-flow: column;
@@ -1275,6 +1376,50 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 	height: 94%;
 	margin: 2% auto auto auto;
 	/*background: red;*/
+}
+
+.obl-container-add-none{
+	display: flex;
+	flex-flow: column;
+	justify-content: start;
+	width: 95%;
+	/*background: orange;*/
+	height: 94%;
+	margin: 2% auto auto auto;
+	/*background: red;*/
+}
+
+.obl-container-add-no-jobR{
+	display: flex;
+	flex-flow: column;
+	justify-content: start;
+	width: 95%;
+	/*background: orange;*/
+	height: 94%;
+	margin: 2% auto auto auto;
+	/*background: red;*/
+}
+
+.obl-container-add-no-jobL{
+	display: flex;
+	flex-flow: column;
+	justify-content: start;
+	width: 95%;
+	/*background: orange;*/
+	height: 94%;
+	margin: 2% auto auto auto;
+	/*background: red;*/
+}
+
+.add-none{
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	align-items: center;
+	width: 90%;
+	height: 80%;
+	/*background: red;*/
+	margin: auto;
 }
 
 .dg-zone2{
@@ -1352,6 +1497,16 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 	line-height: 1.3;
 }
 
+.asb-add{
+	display: flex;
+	flex-flow: column;
+	justify-content: flex-start;
+	width: 65%;
+	/*background: red;*/
+	height: 100%;
+	line-height: 1.3;
+}
+
 .asb-right{
 	display: flex;
 	flex-flow: column;
@@ -1423,11 +1578,11 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 
 .asb-container-c{
 	display: flex;
-	flex-flow: column;
 	width: 90%;
 	/*background: grey;*/
 	height: 85%;
 	margin: auto;
+	gap: 10px;
 	justify-content: center;
 	align-items: center;
 }
@@ -1559,8 +1714,9 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 }
 
 .an-chart-container2 { 
-	height: 550px;
-	width: 100%;
+	height: 500px;
+	width: 95%;
+	margin: auto;
 }
 
 .ap-flex{
@@ -1605,6 +1761,7 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 }
 
 .ibb{
+	position: relative;
 	display:flex;
 	flex-flow: column;
 	/*background: cyan;*/
@@ -1613,6 +1770,7 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 }
 
 .icc{
+	position: relative;
 	height: 40px;
 	width: 40px;
 	background: black;
@@ -1655,6 +1813,13 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
     right: -28px;
     top: -25px;
     transition: all 0.5s;
+}
+
+.pkh{
+	position: absolute;
+    top: 70px;
+    right: -90px;
+    width: 100px;
 }
 	
 .inline{
@@ -3069,6 +3234,19 @@ a.btn-cta-primary-white:hover, .btn-cta-primary-white:hover {
     position: relative;
     top: -2px;
 	
+}
+
+.tab-dropdown-pad-flex{
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 120px;
+    /* margin-right: 12px; */
+    padding: 5px 20px 5px 25px;
+    position: relative;
+    top: -2px;
+	background: rgb(234,234,234);
+	border-color: rgb(234,234,234);
 }
 
 .dropdown-toggle::after {
