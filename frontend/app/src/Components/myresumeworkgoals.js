@@ -1,8 +1,14 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import { Link } from "react-router-dom";
+import cookie from 'react-cookies';
 
 class MyresumeWorkGoals extends React.Component {
+    handleRoute = () => {
+        console.log('EDITPROFLIETAB6');
+        cookie.save('Edit_tabselect', 'editproflietab6');
+    }
+
     render() {
         console.log(this.props.state);
         const interestedJob = this.props.state.interestedJob[0]
@@ -12,6 +18,7 @@ class MyresumeWorkGoals extends React.Component {
         // const Job_Objective = ["none", "none", "none"];
         // const interestedJob = this.props.interestedJob;
         // const Job_Objective = this.props.interestedJob.Job_Objective;
+        // console.log(Job_Objective)
         // alert(JSON.stringify(interestedJob[0]))
         const linestyle = {
             backgroundColor: this.props.colour ? this.props.colour : "#FFCE55"
@@ -59,9 +66,7 @@ class MyresumeWorkGoals extends React.Component {
                     <div class="resumesectionline" style={linestyle}></div>
                     <div class="work-goals-woNb">
                         <h4 class="text-work-goals-wdata">ตอนนี้คุณยังไม่มีข้อมูลเป้าหมายการทำงาน สำหรับตำแหน่งงานนี้</h4>
-                        <Link to="/editprofile">
-                            <button class="work-goals-btn">แก้ไขโปรไฟล์</button>
-                        </Link>
+                        <button class="work-goals-btn" onClick={this.handleRoute}>เพิ่มเป้าหมาย</button>
                         <div class="wgs"></div>
                     </div>
                 </div>
