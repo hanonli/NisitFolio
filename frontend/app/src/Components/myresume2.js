@@ -129,7 +129,6 @@ class MyResume2 extends React.Component {
                 <MyResumeportfoliolayoutP>
                     <div><h1>content</h1></div>
                 </MyResumeportfoliolayoutP>*/}
-                <MyresumePortfolio data={portfoliodata} state={this.props.state}></MyresumePortfolio>
             </div>
                 
         );
