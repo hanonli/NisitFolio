@@ -95,6 +95,7 @@ class MyResume2 extends React.Component {
             "Job_JobName": "กวาดพื้นที่ logger room",
             "Job_SkillName": []
     }; //มันควรชื่อ jobskill มากกว่าป่าววะ
+        console.log(this.props.state);
         return (
             <div class="resume2">
                 <MyResumeSkill addSkill={additionalSkills} intJob={interestedJob} owner={owner} colour={color}></MyResumeSkill>

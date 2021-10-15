@@ -14,7 +14,9 @@ class MyResumePort extends React.Component {
     }
     render() {
         const data = this.props.data;
-        
+        console.log(data);
+        const port_id = data.port_id;
+        console.log(port_id);
         const date = data.date;
         const image = data.image;
         const owner = data.owner;
@@ -39,7 +41,7 @@ class MyResumePort extends React.Component {
                 <div className="img-overlay">
                     <div class="ghostbutton" onClick={this.handleRoute}></div>
                     <div className="iconmywork">
-                        <MyresumePortfolioPrivacybutton privacy={privacy}></MyresumePortfolioPrivacybutton>
+                        <MyresumePortfolioPrivacybutton port_id={port_id} privacy={privacy}></MyresumePortfolioPrivacybutton>
                         <img className="img-mywork-bin" src="assets/images/white-bin.png" type="button" onClick={this.voi}/>
                         <img className="img-mywork-edit" src="assets/images/whiteedit.png" type="button" onClick={this.voi}/>
                     </div>

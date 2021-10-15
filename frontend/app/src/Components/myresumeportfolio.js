@@ -3,7 +3,32 @@ import MyResumeportfoliolayoutP from './Myresume_choiceforportfolio';
 import MyResumePort from './myresumeport';
 
 class MyresumePortfolio extends React.Component {
-    
+    constructor(props){
+        super(props)
+        this.state = {mybookmark : []}
+        //this.GetUserBookmarkData()
+    }
+    /*GetUserBookmarkData(){
+        var token = cookie.load('login-token');
+        setInterval(() => {
+            fetch("http://localhost:2000/bookmark/"+userId+"&&time",{
+                method: "GET",
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Methods": "*",
+                    "Access-Control-Allow-Credentials": true,
+                    "Content-Type": "application/json"},
+            })
+            .then(response => response.json())
+            //.then(response => response.result)
+            .then((datas) => {
+                userBmData = datas;
+                f4 = true;
+            }).catch((error) => {
+                console.log(error);
+                });
+        }, 5000);
+    }*/
     render() {
         const monthdict = {
             1: "มกราคม",
@@ -21,8 +46,9 @@ class MyresumePortfolio extends React.Component {
             99: "ยังอยู่ในงาน"
         };
         const portfolios = [
+            
             {
-                _id: "615ac3f2a7acb0008091f7f1",
+                _id: "615dcc18cba95e1ccdda5319",
                 UserId: "6142fd75f8b2b96640bc542d",
                 Port_Name: "โปรโตไทป์-3244",
                 Port_Info: "โปรโตไทป์ โปรโตไทป์ โปรโตไทป์ โปรโตไทป์",
@@ -55,7 +81,7 @@ class MyresumePortfolio extends React.Component {
                             "4 ตุลาคม 2564 16:54",
                             "4 ตุลาคม 2564 17:00"
                         ],
-                        PortId: "615ac3f2a7acb0008091f7f1",
+                        PortId: "615dcc18cba95e1ccdda5319",
                         Pic: [
                             "https://nisitfolio.s3.amazonaws.com/images/61508ce5f3a324659c4de1c2_ad196d56-2b35-45d6-b176-3472c6a8fbaf.png",
                             "https://nisitfolio.s3.amazonaws.com/images/61508ce5f3a324659c4de1c2_74e5cebd-407e-4af8-a80d-38cd476bf2d3.png",
@@ -143,6 +169,7 @@ class MyresumePortfolio extends React.Component {
 
             clean_data.push({
                 link: ("portinfo/" + portfolios[i]._id),
+                port_id: portfolios[i]._id,
                 port_name: portfolios[i].Port_Name,
                 image: portfolios[i].portfolioPictures[0].Pic[0],
                 date: day[0] + " "+ monthdict[day[1]] + " " + day[2],
