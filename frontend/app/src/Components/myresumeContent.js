@@ -18,6 +18,7 @@ class MyResumeContent extends React.Component {
 	render (){
 		const educationdata = this.props.state.educationHistorys;
 		// console.log('In Content : ' + JSON.stringify(educationdata) )
+		console.log(this.props.state);
 		return (
 			<div className="MyResumeContent">
 				<Resume_sideNavbar color={this.props.state.color}/>
