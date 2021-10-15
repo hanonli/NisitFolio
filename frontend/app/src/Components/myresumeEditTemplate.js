@@ -14,9 +14,9 @@ class MyResumeEditTemplate extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value_color: "#FE9666",
-            selectedOption: "#FE9666",
-            sample_template: "assets/images/previewRO.png",
+            value_color: "#FFCE55",
+            selectedOption: "#FFCE55",
+            sample_template: "assets/images/previewRY.png",
         };
     }
 
@@ -26,6 +26,7 @@ class MyResumeEditTemplate extends React.Component {
             selectedOption: e.target.value,
             sample_template: myTemplate[e.target.value]
         });
+        console.log("choose color:", this.state.value_color);
     };
 
     render() {
@@ -40,18 +41,19 @@ class MyResumeEditTemplate extends React.Component {
                         <h1 id="text-edit-color-template11">เลือกสีที่เข้ากันและบ่งบอกถึงตัวคุณ</h1>
                         <h5 id="describe-template11-edit">สีของเทมเพลตจะใช้กับทุกตำแหน่งงาน</h5>
                         <div class="grid-edit-template">
+
                             <div>
                                 <input
-                                    id="edit-template-color-FF7370"
-                                    value="#FF7370"
+                                    id="edit-template-color-FFCE55"
+                                    value="#FFCE55"
                                     onChange={this.handleChange}
-                                    checked={this.state.selectedOption === "#FF7370"}
+                                    checked={this.state.selectedOption === "#FFCE55"}
                                     name="platform"
                                     type="radio"
                                 />
-                                <label id="color-edit-template1" class="edit-template-color-FF7370" for="edit-template-color-FF7370">
-                                    <div class="circle-color-template-FF7370-edit"></div>
-                                    <div class="text-template11">แดง</div>
+                                <label id="color-edit-template1" class="edit-template-color-FFCE55" for="edit-template-color-FFCE55">
+                                    <div class="circle-color-template-FFCE55-edit"></div>
+                                    <div class="text-template33">เหลือง (ค่าเริ่มต้น)</div>
                                 </label>
                             </div>
 
@@ -72,31 +74,16 @@ class MyResumeEditTemplate extends React.Component {
 
                             <div>
                                 <input
-                                    id="edit-template-color-FFCE55"
-                                    value="#FFCE55"
+                                    id="edit-template-color-FF7370"
+                                    value="#FF7370"
                                     onChange={this.handleChange}
-                                    checked={this.state.selectedOption === "#FFCE55"}
+                                    checked={this.state.selectedOption === "#FF7370"}
                                     name="platform"
                                     type="radio"
                                 />
-                                <label id="color-edit-template1" class="edit-template-color-FFCE55" for="edit-template-color-FFCE55">
-                                    <div class="circle-color-template-FFCE55-edit"></div>
-                                    <div class="text-template33">เหลือง</div>
-                                </label>
-                            </div>
-
-                            <div>
-                                <input
-                                    id="edit-template-color-01B8AA"
-                                    value="#01B8AA"
-                                    name="platform"
-                                    onChange={this.handleChange}
-                                    checked={this.state.selectedOption === "#01B8AA"}
-                                    type="radio"
-                                />
-                                <label id="color-edit-template1" class="edit-template-color-01B8AA" for="edit-template-color-01B8AA">
-                                    <div class="circle-color-template-01B8AA-edit"></div>
-                                    <div class="text-template44">เขียว</div>
+                                <label id="color-edit-template1" class="edit-template-color-FF7370" for="edit-template-color-FF7370">
+                                    <div class="circle-color-template-FF7370-edit"></div>
+                                    <div class="text-template11">ชมพู</div>
                                 </label>
                             </div>
 
@@ -112,6 +99,21 @@ class MyResumeEditTemplate extends React.Component {
                                 <label id="color-edit-template1" class="edit-template-color-32A3C7" for="edit-template-color-32A3C7">
                                     <div class="circle-color-template-32A3C7-edit"></div>
                                     <div class="text-template55">ฟ้า</div>
+                                </label>
+                            </div>
+
+                            <div>
+                                <input
+                                    id="edit-template-color-01B8AA"
+                                    value="#01B8AA"
+                                    name="platform"
+                                    onChange={this.handleChange}
+                                    checked={this.state.selectedOption === "#01B8AA"}
+                                    type="radio"
+                                />
+                                <label id="color-edit-template1" class="edit-template-color-01B8AA" for="edit-template-color-01B8AA">
+                                    <div class="circle-color-template-01B8AA-edit"></div>
+                                    <div class="text-template44">เขียว</div>
                                 </label>
                             </div>
 

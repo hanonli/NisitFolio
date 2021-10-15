@@ -15,17 +15,17 @@ class Edittab6 extends React.Component {
         var id_list_job;
         var tabId;
         var list_of_job = []; //list of job
-        var score_slider1, score_slider2, score_slider3, pre_click_slider1 = -1, pre_click_slider2 = -1, pre_click_slider3 = -1;
         setTimeout(() => {
             console.log("edittab6!!!!:", this.props.myjob_data);
             const myjob2 = this.props.myjob_data ? this.props.myjob_data : [];
             list_of_job = [...myjob2];
-            show_all_job();
             $(".step-marks").remove();
             $(".step-labels").remove();
             $("#input_mySlider1").remove();
             $("#input_mySlider2").remove();
             $("#input_mySlider3").remove();
+            show_all_job();
+
         }, 6000);
 
         $(document).on('click', '.tabs_pop li', function () {
@@ -42,7 +42,7 @@ class Edittab6 extends React.Component {
         function get_job_id(list_of_job, x) {
             //var x = 1;
             list_of_job.forEach(ele => {
-                ele["job_pos"] = x;
+                ele["Job_Pos"] = x;
                 //console.log("x:", x);
                 x++;
             });
@@ -92,42 +92,51 @@ class Edittab6 extends React.Component {
                 grid_Job2 = grid_Job2.replace("{no_list}", ele["InterestedJob_id"]);
                 grid_Job1 = grid_Job1.replace("{no_job}", ele["Job_Pos"]);
                 grid_Job1 = grid_Job1.replace("{name_job}", ele["Job_JobName"]);
-                /*if (ele["skill1"] == "none" && ele["skill2"] == "none" && ele["skill3"] == "none") {
+                if (ele["Job_SkillName1"] == "none" && ele["Job_SkillName2"] == "none" && ele["Job_SkillName3"] == "none") {
                     grid_Job1 = grid_Job1.replace(`<h1 id="mySkil-job">ทักษะของฉัน</h1>`, "");
                 }
-                if (ele["skill1"] != "none") {
-                    if (ele["skill1"].length > 12) {
-                        grid_Job_skill1 = grid_Job_skill1.replace("{skill1}", ele["skill1"].slice(0, 11) + "...");
+                if (ele["Job_SkillName1"] != "none") {
+                    if (ele["Job_SkillName1"].length > 12) {
+                        grid_Job_skill1 = grid_Job_skill1.replace("{skill1}", ele["Job_SkillName1"].slice(0, 11) + "...");
                     }
                     else {
-                        grid_Job_skill1 = grid_Job_skill1.replace("{skill1}", ele["skill1"]);
+                        grid_Job_skill1 = grid_Job_skill1.replace("{skill1}", ele["Job_SkillName1"]);
                     }
                 }
                 else {
                     grid_Job_skill1 = "";
                 }
-                if (ele["skill2"] != "none") {
-                    if (ele["skill2"].length > 12) {
-                        grid_Job_skill2 = grid_Job_skill2.replace("{skill2}", ele["skill2"].slice(0, 11) + "...");
+                if (ele["Job_SkillName2"] != "none") {
+                    if (ele["Job_SkillName2"].length > 12) {
+                        grid_Job_skill2 = grid_Job_skill2.replace("{skill2}", ele["Job_SkillName2"].slice(0, 11) + "...");
                     }
                     else {
-                        grid_Job_skill2 = grid_Job_skill2.replace("{skill2}", ele["skill2"]);
+                        grid_Job_skill2 = grid_Job_skill2.replace("{skill2}", ele["Job_SkillName2"]);
                     }
                 }
                 else {
                     grid_Job_skill2 = "";
                 }
-                if (ele["skill3"] != "none") {
-                    if (ele["skill3"].length > 12) {
-                        grid_Job_skill3 = grid_Job_skill3.replace("{skill3}", ele["skill3"].slice(0, 11) + "...");
+                if (ele["Job_SkillName3"] != "none") {
+                    if (ele["Job_SkillName3"].length > 12) {
+                        grid_Job_skill3 = grid_Job_skill3.replace("{skill3}", ele["Job_SkillName3"].slice(0, 11) + "...");
                     }
                     else {
-                        grid_Job_skill3 = grid_Job_skill3.replace("{skill3}", ele["skill3"]);
+                        grid_Job_skill3 = grid_Job_skill3.replace("{skill3}", ele["Job_SkillName3"]);
                     }
                 }
                 else {
                     grid_Job_skill3 = "";
-                }*/
+                }
+                if (list_of_job.length < 3) {
+                    $(".limit-job-pos-3").removeClass("limit-job-pos-3-red");
+                    $('.limit-job-pos-3').text('ท่านสามารถเพิ่มตำแหน่งงานที่สนใจได้สูงสุด 3 อัน');
+                }
+                else {
+                    $(".frame_add_job_interest").hide();
+                    $(".limit-job-pos-3").addClass("limit-job-pos-3-red");
+                    $('.limit-job-pos-3').text('*ท่านเพิ่มตำแหน่งงานที่สนใจครบจำนวนแล้ว');
+                }
 
                 $(".list-of-job").append(grid_Job1 + grid_Job_skill1 + grid_Job_skill2 + grid_Job_skill3 + grid_Job2);
             });
@@ -164,7 +173,7 @@ class Edittab6 extends React.Component {
             $(`#${id}`).show();
         }
 
-
+        var score_slider1, score_slider2, score_slider3, pre_click_slider1 = -1, pre_click_slider2 = -1, pre_click_slider3 = -1;
         function set_slider_range1(value1) {
             pre_click_slider1 = -1;
             setupSlider('mySlider1', ["พอได้เล็กน้อย", "พื้นฐาน", "ดี", "ยอดเยี่ยม"], value1);
@@ -347,7 +356,6 @@ class Edittab6 extends React.Component {
                 });
         }
 
-
         $(document).on("change", "#each_skill2", function () {
             if (document.getElementById("each_skill2").value == document.getElementById("each_skill1").value) {
                 $("#each_skill2").addClass("is-invalid");
@@ -385,7 +393,6 @@ class Edittab6 extends React.Component {
                 removeOptionsJob(document.getElementById("each_skill2"));
                 removeOptionsJob(document.getElementById("each_skill3"));
                 GetSkill(tomapjobeng);
-
             }
             $(".step-marks").remove();
             $(".step-labels").remove();
@@ -433,7 +440,7 @@ class Edittab6 extends React.Component {
             id_list_job_edit = $(this).parents().parents().attr('id');
             //console.log(`edit:`, id_list_job_edit);
             for_edit = list_of_job.find(function (post, index_del) {
-                if (post.id == id_list_job_edit)
+                if (post.InterestedJob_id == id_list_job_edit)
                     return true;
             });
             $('#each_skill1').prop("disabled", false);
@@ -442,34 +449,35 @@ class Edittab6 extends React.Component {
             $('#each_skill2').removeClass("dis_input3");
             $('#each_skill3').prop("disabled", false);
             $('#each_skill3').removeClass("dis_input3");
-            document.getElementById("nm_job").selectedIndex = for_edit["name_job_select"];
+            //document.getElementById("nm_job").selectedIndex = for_edit["Job_JobName_select"];
+            $("#nm_job").val(for_edit.Job_JobName);
             let tomapjobeng = mapEngNameJob[document.getElementById("nm_job").value];
             GetSkill(tomapjobeng);
-            set_slider_range1(for_edit["score_skill1"]);
-            set_slider_range2(for_edit["score_skill2"]);
-            set_slider_range3(for_edit["score_skill3"]);
+            set_slider_range1(for_edit["Job_Score1"]);
+            set_slider_range2(for_edit["Job_Score2"]);
+            set_slider_range3(for_edit["Job_Score3"]);
             choose_function = 1;
             $('#submit-job11').text('ยืนยัน');
             $('#obj-job-01').prop("disabled", false);
             $("#obj-job-01").removeClass("dis_input3");
 
-            $("#obj-job-01").val(for_edit["obj1"]);
-            $("#obj-job-02").val(for_edit["obj2"]);
-            $("#obj-job-03").val(for_edit["obj3"]);
+            $("#obj-job-01").val(for_edit["Job_Objective1"]);
+            $("#obj-job-02").val(for_edit["Job_Objective2"]);
+            $("#obj-job-03").val(for_edit["Job_Objective3"]);
 
-            if (for_edit["obj1"] == "") {
+            if (for_edit["Job_Objective1"] == "") {
                 $("#pos-del-obj-button1").hide();
             }
             else {
                 $("#pos-del-obj-button1").show();
             }
-            if (for_edit["obj2"] == "") {
+            if (for_edit["Job_Objective2"] == "") {
                 $("#pos-del-obj-button2").hide();
             }
             else {
                 $("#pos-del-obj-button2").show();
             }
-            if (for_edit["obj3"] == "") {
+            if (for_edit["Job_Objective3"] == "") {
                 $("#pos-del-obj-button3").hide();
             }
             else {
@@ -491,27 +499,27 @@ class Edittab6 extends React.Component {
 
             $('#exampleModalJob').modal('toggle');
             setTimeout(function () {
-                if (for_edit["skill1"] == "none") {
+                if (for_edit["Job_SkillName1"] == "none") {
                     //set_slider_range1(2.5);
                     //document.getElementById("input_mySlider1").disabled = true;
                     //$('#each_skill1 :selected').text('เลือกทักษะของคุณที่เหมาะกับงาน');
                     //document.getElementById("each_skill1").selectedIndex = 0;
                 }
                 else {
-                    $("#each_skill1").prop('selectedIndex', for_edit["skill1_select"]);
+                    $("#each_skill1").val(for_edit["Job_SkillName1"]);
                     document.getElementById("input_mySlider1").disabled = false;
                 }
-                if (for_edit["skill2"] == "none") {
+                if (for_edit["Job_SkillName2"] == "none") {
                     //set_slider_range2(2.5);
                     //document.getElementById("input_mySlider2").disabled = true;
                     //$('#each_skill2 :selected').text('เลือกทักษะของคุณที่เหมาะกับงาน');
                     //document.getElementById("each_skill2").selectedIndex = 0;
                 }
                 else {
-                    $("#each_skill2").prop('selectedIndex', for_edit["skill2_select"]);
+                    $("#each_skill2").val(for_edit["Job_SkillName2"]);
                     document.getElementById("input_mySlider2").disabled = false;
                 }
-                if (for_edit["skill3"] == "none") {
+                if (for_edit["Job_SkillName3"] == "none") {
                     //set_slider_range3(2.5);
                     //document.getElementById("input_mySlider3").disabled = true;
                     ///$('#each_skill3 :selected').text('เลือกทักษะของคุณที่เหมาะกับงาน');
@@ -519,10 +527,10 @@ class Edittab6 extends React.Component {
                     //document.getElementById("each_skill3").selectedIndex = 0;
                 }
                 else {
-                    $("#each_skill3").prop('selectedIndex', for_edit["skill3_select"]);
+                    $("#each_skill3").val(for_edit["Job_SkillName3"]);
                     document.getElementById("input_mySlider3").disabled = false;
                 }
-            }, 280);
+            }, 300);
         });
 
         document.getElementById("submit-job11").addEventListener("click", function () {
@@ -562,39 +570,39 @@ class Edittab6 extends React.Component {
                 }
                 if (choose_function == 1) { //edit job after add
                     console.log("edit!!!!!!");
-                    for_edit["name_job"] = name_job;
-                    for_edit["name_job_select"] = $("#nm_job").prop('selectedIndex');
-                    for_edit["skill1"] = skill_job_1;
-                    for_edit["skill1_select"] = document.getElementById("each_skill1").selectedIndex;
-                    for_edit["score_skill1"] = parseFloat(score_slider11).toFixed(1);
-                    for_edit["skill2"] = skill_job_2;
-                    for_edit["skill2_select"] = document.getElementById("each_skill2").selectedIndex;
-                    for_edit["score_skill2"] = parseFloat(score_slider12).toFixed(1);
-                    for_edit["skill3"] = skill_job_3;
-                    for_edit["skill3_select"] = document.getElementById("each_skill3").selectedIndex;
-                    for_edit["score_skill3"] = parseFloat(score_slider13).toFixed(1);
-                    for_edit["obj1"] = obj_job_1;
-                    for_edit["obj2"] = obj_job_2;
-                    for_edit["obj3"] = obj_job_3;
+                    for_edit["Job_JobName"] = name_job;
+                    for_edit["Job_JobName_select"] = $("#nm_job").prop('selectedIndex');
+                    for_edit["Job_SkillName1"] = skill_job_1;
+                    //for_edit["Job_SkillName1_select"] = document.getElementById("each_skill1").selectedIndex;
+                    for_edit["Job_Score1"] = parseFloat(score_slider11).toFixed(1);
+                    for_edit["Job_SkillName2"] = skill_job_2;
+                    //for_edit["Job_SkillName2_select"] = document.getElementById("each_skill2").selectedIndex;
+                    for_edit["Job_Score2"] = parseFloat(score_slider12).toFixed(1);
+                    for_edit["Job_SkillName3"] = skill_job_3;
+                    //for_edit["Job_SkillName3_select"] = document.getElementById("each_skill3").selectedIndex;
+                    for_edit["Job_Score3"] = parseFloat(score_slider13).toFixed(1);
+                    for_edit["Job_Objective1"] = obj_job_1;
+                    for_edit["Job_Objective2"] = obj_job_2;
+                    for_edit["Job_Objective3"] = obj_job_3;
                 }
                 else if (choose_function == 2) { //add job in list
                     push2list = {
-                        id: create_UUID(),
-                        job_pos: 0,
-                        name_job: name_job,
-                        name_job_select: $("#nm_job").prop('selectedIndex'),
-                        skill1: skill_job_1,
-                        skill1_select: document.getElementById("each_skill1").selectedIndex,
-                        score_skill1: parseFloat(score_slider11).toFixed(1),
-                        skill2: skill_job_2,
-                        skill2_select: document.getElementById("each_skill2").selectedIndex,
-                        score_skill2: parseFloat(score_slider12).toFixed(1),
-                        skill3: skill_job_3,
-                        skill3_select: document.getElementById("each_skill3").selectedIndex,
-                        score_skill3: parseFloat(score_slider13).toFixed(1),
-                        obj1: obj_job_1,
-                        obj2: obj_job_2,
-                        obj3: obj_job_3
+                        InterestedJob_id: create_UUID(),
+                        Job_Pos: 0,
+                        Job_JobName: name_job,
+                        Job_JobName_select: $("#nm_job").prop('selectedIndex'),
+                        Job_SkillName1: skill_job_1,
+                        //Job_SkillName1_select: document.getElementById("each_skill1").selectedIndex,
+                        Job_Score1: parseFloat(score_slider11).toFixed(1),
+                        Job_SkillName2: skill_job_2,
+                        //Job_SkillName2_select: document.getElementById("each_skill2").selectedIndex,
+                        Job_Score2: parseFloat(score_slider12).toFixed(1),
+                        Job_SkillName3: skill_job_3,
+                        //Job_SkillName3_select: document.getElementById("each_skill3").selectedIndex,
+                        Job_Score3: parseFloat(score_slider13).toFixed(1),
+                        Job_Objective1: obj_job_1,
+                        Job_Objective2: obj_job_2,
+                        Job_Objective3: obj_job_3
                     }
                     list_of_job.push(push2list);
                     get_job_id(list_of_job, 1);
@@ -615,7 +623,7 @@ class Edittab6 extends React.Component {
                 $("#input_mySlider1").remove();
                 $("#input_mySlider2").remove();
                 $("#input_mySlider3").remove();
-                if (list_of_job.length < 3) {
+                /*if (list_of_job.length < 3) {
                     $(".limit-job-pos-3").removeClass("limit-job-pos-3-red");
                     $('.limit-job-pos-3').text('ท่านสามารถเพิ่มตำแหน่งงานที่สนใจได้สูงสุด 3 อัน');
                 }
@@ -623,7 +631,7 @@ class Edittab6 extends React.Component {
                     $(".frame_add_job_interest").hide();
                     $(".limit-job-pos-3").addClass("limit-job-pos-3-red");
                     $('.limit-job-pos-3').text('*ท่านเพิ่มตำแหน่งงานที่สนใจครบจำนวนแล้ว');
-                }
+                }*/
             }
         });
 
@@ -631,33 +639,71 @@ class Edittab6 extends React.Component {
 
         $(document).on("click", "#del-job", function () {
             id_list_job_del = $(this).parents().parents().attr('id');
-            //console.log("id_list_job111:", id_list_job_del);
+            console.log("id_list_job111:", id_list_job_del);
             $('#exampleModal_remove_job').modal('toggle');
         });
 
         $(document).on('click', "#summit-to-delete", function () {
             var removeIndex = list_of_job.findIndex(function (post, index_del) {
-                if (post.id == id_list_job_del)
+                if (post.InterestedJob_id === id_list_job_del)
                     return true;
             });
-            //console.log("id_list_job:", id_list_job_del);
-            list_of_job.splice(removeIndex, 1);
-            //console.log(`delete job id:`, removeIndex);
-            $('#exampleModal_remove_job').modal('hide');
-            $(".list-of-job").empty();
-            //console.log(list_of_job);
-            get_job_id(list_of_job, 1);
-            show_all_job()
-            $(".step-marks").remove();
-            $(".step-labels").remove();
-            $("#input_mySlider1").remove();
-            $("#input_mySlider2").remove();
-            $("#input_mySlider3").remove();
-            if (list_of_job.length < 3) {
-                $(".frame_add_job_interest").show();
-                $(".limit-job-pos-3").removeClass("limit-job-pos-3-red");
-                $('.limit-job-pos-3').text('ท่านสามารถเพิ่มตำแหน่งงานที่สนใจได้สูงสุด 3 อัน');
+            console.log("removeIndex:", removeIndex);
+            if (list_of_job[removeIndex].isFetch === true) {
+                fetch("http://localhost:2000/register/interestedJob/" + list_of_job[removeIndex].InterestedJob_id, {
+                    method: "DELETE",
+                    headers: {
+                        'Authorization': 'Bearer ' + list_of_job[removeIndex].token,
+                        "Access-Control-Allow-Origin": "*",
+                        "Access-Control-Allow-Methods": "*",
+                        "Access-Control-Allow-Credentials": true,
+                        "Content-Type": "application/json"
+                    },
+                })
+                    .then(response => response.json())
+                    .then((raws) => {
+                        console.log(raws);
+                        list_of_job.splice(removeIndex, 1);
+                        //console.log(`delete job id:`, removeIndex);
+                        $('#exampleModal_remove_job').modal('hide');
+                        $(".list-of-job").empty();
+                        //console.log(list_of_job);
+                        get_job_id(list_of_job, 1);
+                        show_all_job()
+                        $(".step-marks").remove();
+                        $(".step-labels").remove();
+                        $("#input_mySlider1").remove();
+                        $("#input_mySlider2").remove();
+                        $("#input_mySlider3").remove();
+                        if (list_of_job.length < 3) {
+                            $(".frame_add_job_interest").show();
+                            $(".limit-job-pos-3").removeClass("limit-job-pos-3-red");
+                            $('.limit-job-pos-3').text('ท่านสามารถเพิ่มตำแหน่งงานที่สนใจได้สูงสุด 3 อัน');
+                        }
+                    }).catch((error) => {
+                        console.log(error);
+                    });
             }
+            else {
+                list_of_job.splice(removeIndex, 1);
+                //console.log(`delete job id:`, removeIndex);
+                $('#exampleModal_remove_job').modal('hide');
+                $(".list-of-job").empty();
+                //console.log(list_of_job);
+                get_job_id(list_of_job, 1);
+                show_all_job()
+                $(".step-marks").remove();
+                $(".step-labels").remove();
+                $("#input_mySlider1").remove();
+                $("#input_mySlider2").remove();
+                $("#input_mySlider3").remove();
+                if (list_of_job.length < 3) {
+                    $(".frame_add_job_interest").show();
+                    $(".limit-job-pos-3").removeClass("limit-job-pos-3-red");
+                    $('.limit-job-pos-3').text('ท่านสามารถเพิ่มตำแหน่งงานที่สนใจได้สูงสุด 3 อัน');
+                }
+            }
+
         });
 
         $(document).on('click', "#hide-modal-tab6", function () {
