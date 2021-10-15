@@ -8,7 +8,10 @@ import cookie from 'react-cookies';
 class MyresumePortfolio extends React.Component {
     constructor(props){
         super(props)
+        var user = cookie.load('login-user');
+        var state = this.props.state;
         
+        this.state = {cookieid : user, ownerid : state.userID, index : state.index};
         //this.GetUserBookmarkData()
     }
 
@@ -58,9 +61,8 @@ class MyresumePortfolio extends React.Component {
         const portfolios = this.props.data? this.props.data: [];
         const owner_status = true;
 
-        const linestyle = {
-            backgroundColor: this.props.colour ? this.props.colour : "#FFCE55"
-        };
+        console.log(this.state);
+        
 
         let clean_data = [];
         let day;
