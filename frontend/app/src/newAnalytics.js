@@ -701,6 +701,11 @@ class NewAnalytics extends React.Component {
 		
 		function SetupAdd(){
 			if(rawData.Additional.InterestedJobs.length > 0){
+				
+				$('.nsb').click(function(){
+					refThis.setState({ redirect: "/editprofile" });
+				});
+				
 				$('#dropdownMenuButton1').show();
 				THname = rawData.Additional.InterestedJobs[0].THname;
 				
@@ -1840,7 +1845,7 @@ class NewAnalytics extends React.Component {
 												</div>
 											</div>
 											<div class="ibb">
-												<muf id="arc-label">{this.state.popJobName}</muf>
+												<mzf id="arc-label">{this.state.popJobName}</mzf>
 												<muf class="" id="arc-label">{this.state.popJobSkillName}</muf>
 											</div>
 										</div>
