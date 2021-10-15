@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import './myresume.css';
 
 
-export default class btnedit extends React.Component {
+class MyresumeEditportButton extends React.Component {
     handleClicktoEdit = () => {
         const editporfolio = "editport";
         window.location = (editporfolio);
@@ -15,3 +15,5 @@ export default class btnedit extends React.Component {
         );
     }
 }
+
+export default MyresumeEditportButton;

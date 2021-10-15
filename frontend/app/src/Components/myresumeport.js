@@ -3,9 +3,9 @@ import $ from 'jquery';
 import { Link } from "react-router-dom";
 import MultipleRows from './myresume3slidemywork';
 import MyResumeportfoliolayoutP from './Myresume_choiceforportfolio';
-import btnedit from './myresumebuttonedit';
-
+import MyresumeEditportButton from './myresumebuttonedit';
 import MyresumePortfolioPrivacybutton from './myresumeportprivacybutton';
+
 class MyResumePort extends React.Component {
     handleRoute = () => { 
         const link = this.props.data.link;
@@ -34,7 +34,6 @@ class MyResumePort extends React.Component {
         let srcpri = "";
 
         // let owner = false;
-        // let privacy = "Private";
 
         if (privacy == "Members") {
             srcpri = "assets/images/outline_people_white_24dp.png";
@@ -51,10 +50,9 @@ class MyResumePort extends React.Component {
                 <div class="">
                     <div className="img-overlay">
                         <div class="ghostbutton" onClick={this.handleRoute}></div>
-                        <div className="iconmywork">
-                            <MyresumePortfolioPrivacybutton port_id={port_id} privacy={privacy}></MyresumePortfolioPrivacybutton>
-                            <img className="img-mywork-edit" onClick={this.handleClicktoEdit} src="assets/images/whiteedit.png" type="button" />
-                        </div>
+                            <div className="img-mywork-edit">
+                                <MyresumeEditportButton></MyresumeEditportButton>
+                            </div>
                         <h3 className="myworkname">
                             {port_name}
                         </h3>
@@ -70,12 +68,10 @@ class MyResumePort extends React.Component {
                 </div>
             );
         }
-        /*else if (owner == false && (privacy == "Public" || privacy == "Members")) {
+        else{
             return (
                 <div class="myworkobj" onClick={this.handleRoute}>
                     <div className="img-overlay">
-                        <img className="img-mywork-bookmark" src="assets/images/outline_bookmark_border_white_24dp.png" />
-                        <img className="img-mywork-bookmark" src="assets/images/outline_bookmark_white_48dp.png" />
                         <h3 className="myworkname">
                             {port_name}
                         </h3>
@@ -91,11 +87,6 @@ class MyResumePort extends React.Component {
                 </div>
             );
         }
-        else {
-            return (
-                <div></div>
-            );
-        }*/
     }
 }
 

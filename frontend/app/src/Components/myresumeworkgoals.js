@@ -67,9 +67,9 @@ class MyresumeWorkGoals extends React.Component {
                     <div class="resumesectionline" style={linestyle}></div>
                     <div class="work-goals-woNb">
                         <h4 class="text-work-goals-wdata">ตอนนี้คุณยังไม่มีข้อมูลเป้าหมายการทำงาน สำหรับตำแหน่งงานนี้</h4>
-                        <Link to="/editprofile">
-                            <button class="work-goals-btn">แก้ไขโปรไฟล์</button>
-                        </Link>
+                        
+                            <button class="work-goals-btn">เพิ่มเป้าหมาย</button>
+                        
                         <div class="wgs"></div>
                     </div>
                 </div>

@@ -445,7 +445,7 @@
     flex-direction: column;
     transition: 0.5s;
     overflow: hidden;
-    /*opacity: 0;*/
+    opacity: 0;
 }
 
 .img-overlay:hover{
@@ -453,7 +453,7 @@
 }
 
 .myworkname{
-    margin-top: 7Vw;
+    margin-top: 10.6Vw;
     margin-left: 1.5Vw;
     font-size: 2Vw;
     color:rgb(255, 255, 255);
@@ -488,10 +488,11 @@
     position: absolute;
 }
 
-.img-mywork-select{
-    width: 1.9Vw;
-    height: 1.9Vw;
-    margin-left: 13.8Vw;
+#img-mywork-select{
+    width: 1.5Vw;
+    height: 1.5Vw;
+    margin-top: 0.5Vw;
+    margin-left: 19.7Vw;
     z-index: 999;
 }
 
@@ -503,9 +504,10 @@
 }
 
 .img-mywork-edit{
-    width: 1.6Vw;
-    height: 1.6Vw;
-    margin-left: 0Vw;
+    width: 1.9Vw;
+    height: 1.9Vw;
+    margin-top: 0.6Vw;
+    margin-left: 11.6Vw;
     z-index: 999;
     position: absolute;
 }

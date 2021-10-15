@@ -1,6 +1,8 @@
 import React from 'react';
 import MyResumeportfoliolayoutP from './Myresume_choiceforportfolio';
 import MyResumePort from './myresumeport';
+import { data } from 'jquery';
+import { Link } from "react-router-dom";
 
 class MyresumePortfolio extends React.Component {
     constructor(props){
@@ -48,7 +50,9 @@ class MyresumePortfolio extends React.Component {
         const portfolios = this.props.data? this.props.data: [];
         const owner_status = true;
 
-        
+        const linestyle = {
+            backgroundColor: this.props.colour ? this.props.colour : "#FFCE55"
+        };
 
         let clean_data = [];
         let day;
@@ -78,14 +82,42 @@ class MyresumePortfolio extends React.Component {
             </div>);
         }
 
-        return(
-            <div>
-                <MyResumeportfoliolayoutP>
-                    {portcontent}
-                </MyResumeportfoliolayoutP>
-            </div>
+        if (data.length != 0) {
+            return (
+                <div class="myresume-mywork-woNb">
+                    <div class="myresume-mywork-withoutdata">
+                        <h1 class="myresume-head-woNb">ผลงานของฉัน</h1>
+                        <div class="line-mywork" style={linestyle}></div>
+                        <div class="work-goals-woNb">
+                            <h4 class="text-work-goals-wdata">ตอนนี้คุณยังไม่มีข้อมูลผลงาน สำหรับตำแหน่งงานนี้</h4>
+                            
+                                <button class="work-goals-btn">แก้ไขโปรไฟล์</button>
+                            
+                            <div class="wgs"></div>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+        else {
+            return (
+                <div>
+                    <div class="myresume-mywork-woNb">
+                        <div class="educationtopic">
+                            <h2 class="myresume-head-woNb">ผลงานของฉัน</h2>
+                        </div>
+                        <div class="resumesectionline" style={linestyle}></div>
+                        <div className="img-sp"></div>
+                        <div class="showmywork-woNb">
+                            <MyResumeportfoliolayoutP>
+                                {portcontent}
+                            </MyResumeportfoliolayoutP>
+                        </div>
+                    </div>
+                </div>
             
-        );
+            );
+        }
     }
 }
 export default MyresumePortfolio;
