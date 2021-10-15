@@ -8,15 +8,15 @@ import { Link } from "react-router-dom";
 import Chooseresume1 from "./Components/chooseresume1";
 import Chooseresume2 from "./Components/chooseresume2";
 import Chooseresume3 from "./Components/chooseresume3";
-import Registab6 from "./Components/registab6";
-import Registab7 from "./Components/registab7";
+import Chooseresume4 from "./Components/chooseresume4";
+import Chooseresume5 from "./Components/chooseresume5";
 import $ from 'jquery';
 import cookie from 'react-cookies';
 import LoadingS from './Components/loadingS';
 
 var certdata = [], workdata = [];
 
-class Register extends React.Component {
+class Chooseresume extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -28,6 +28,7 @@ class Register extends React.Component {
 			WorkID: [],
 			PortID: [],
 			JobID: [],
+			list_of_aca: [],
 			render: true
 		}
 	}
@@ -42,7 +43,7 @@ class Register extends React.Component {
 			//var x = 1;
 			list_of_high.forEach(ele => {
 				ele["high_pos"] = x;
-				console.log("x:", x);
+				//console.log("x:", x);
 				x++;
 			});
 			return list_of_high;
@@ -52,10 +53,63 @@ class Register extends React.Component {
 			//var x = 1;
 			list_of_aca.forEach(ele => {
 				ele["aca_pos"] = x;
-				console.log("x:", x);
+				//console.log("x:", x);
 				x++;
 			});
 			return list_of_aca;
+		}
+
+		function show_all_aca(list_of_aca) {
+			list_of_aca.forEach(ele => {
+				var grid_aca1 = '<div class="t3-content1 row">\
+									<div class="col-3">\
+										<div class="font-titlet3_1 font-boldt3">{degree_aca}</div>\
+										<div class="font-titlet3_1 font-khotboldt3">{year_aca}</div>\
+									</div>\
+									<div class="col-9">\
+										<div class="font-titlet3_1">{field_aca}</div>\
+										<div class="font-titlet3_1">{faculty_aca}</div>\
+										<div class="font-titlet3_1">{name_aca}</div>\
+										<div class="font-titlet3_1">เกรด {grade_aca}</div>\
+									</div>';
+		
+				var grid_aca2 = `
+									<div class="layer_icon1" id={no-list-aca} type='button'>\
+									</div>\
+								</div>`;
+				grid_aca2 = grid_aca2.replace("{no-list-aca}", ele["id"]);
+				grid_aca1 = grid_aca1.replace("{no_aca}", ele["aca_pos"]);
+				//grid_aca1 = grid_aca1.replace("{name_aca}", ele["aca_name"]);
+				grid_aca1 = grid_aca1.replace("{degree_aca}", ele["aca_degree"]);
+				//grid_aca1 = grid_aca1.replace("{field_aca}", ele["aca_field"]);
+				//grid_aca1 = grid_aca1.replace("{faculty_aca}", ele["aca_faculty"]);
+				//grid_aca1 = grid_aca1.replace("{year_aca}", ele["aca_year"]);
+				grid_aca1 = grid_aca1.replace("{name_aca}", ele["aca_name"]);
+				grid_aca1 = grid_aca1.replace("{faculty_aca}", ele["aca_faculty"]);
+				if(ele["aca_grade"]=="0.00"){
+				grid_aca1 = grid_aca1.replace("{grade_aca}", '-');
+				}
+				else{
+				grid_aca1 = grid_aca1.replace("{grade_aca}", ele["aca_grade"]);
+				}
+				if(ele["aca_field"]=="none"){
+				grid_aca1 = grid_aca1.replace("{field_aca}", '-');
+				}
+				else{
+				grid_aca1 = grid_aca1.replace("{field_aca}", ele["aca_field"]);
+				}
+				if(ele["aca_year"]=="0"){
+				grid_aca1 = grid_aca1.replace("{year_aca}", '-');
+				}
+				else if(ele["aca_year"]=="9999"){
+				grid_aca1 = grid_aca1.replace("{year_aca}", 'กำลังศึกษา');
+				}
+				else{
+				grid_aca1 = grid_aca1.replace("{year_aca}", ele["aca_year"]);
+				}
+				$(".list-of-aca").append(grid_aca1 + grid_aca2);
+				console.log(`list_of_aca:`, list_of_aca);
+			});
 		}
 
 		var token = cookie.load('login-token')
@@ -77,39 +131,46 @@ class Register extends React.Component {
 				this.setState({
 					data: datas,
 				})
-				console.log('this.state.data :' + this.state.data);
+				//console.log('this.state.data :' + this.state.data);
 				/*Zone to use datas*/
-				console.log(this.state.data.Degree);
-				this.state.data.Degree.forEach(element => {
+				//console.log(this.state.data.Degree);
+				this.state.data.Degree.forEach((element,index) => {
 					if (element == 'มัธยมศึกษาตอนปลาย' || element == 'ปวช.') {
 						list_of_high.push({
-							id: this.state.data.EducationHistory_id,
+							id: this.state.data.EducationHistory_id[index],
 							high_pos: 0,
-							high_name: this.state.data.Academy,
+							high_name: this.state.data.Academy[index],
 							high_faculty: 'none',
-							high_degree: this.state.data.Degree,
-							high_grade: this.state.data.Grade,
-							high_field: this.state.data.Field_of_study,
-							high_year: this.state.data.Education_End_Year,
+							high_degree: this.state.data.Degree[index],
+							high_grade: this.state.data.Grade[index],
+							high_field: this.state.data.Field_of_study[index],
+							high_year: this.state.data.Education_End_Year[index],
 						});
 						get_high_id(list_of_high, 1);
 						console.log(list_of_high);
 					}
 					else {
-						list_of_aca.push({
-							id: this.state.data.EducationHistory_id,
+						this.state.list_of_aca.push({
+							id: this.state.data.EducationHistory_id[index],
 							aca_pos: 0,
-							aca_name: this.state.data.Academy,
-							aca_faculty: this.state.data.Facalty,
-							aca_degree: this.state.data.Degree,
-							aca_grade: this.state.data.Grade,
-							aca_field: this.state.data.Field_of_study,
-							aca_year: this.state.data.Education_End_Year,
+							aca_name: this.state.data.Academy[index],
+							aca_faculty: this.state.data.Facalty[index],
+							aca_degree: this.state.data.Degree[index],
+							aca_grade: this.state.data.Grade[index],
+							aca_field: this.state.data.Field_of_study[index],
+							aca_year: this.state.data.Education_End_Year[index],
 						});
-						get_aca_id(list_of_aca, 1);
-						console.log(list_of_aca);
+						get_aca_id(this.state.list_of_aca, 1);
+						//console.log(this.state.list_of_aca);
 					}
 				});
+				if(this.state.list_of_aca!=[]){
+					console.log('My ACA NOT EMPTY!');
+					show_all_aca(this.state.list_of_aca);
+				}
+				/*if(list_of_high!=[]){
+					show_all_high();
+				}*/
 				this.state.data.Certificate_id.forEach((ele, index) => {
 					certdata.push({
 						Certificate_id: ele,
@@ -176,6 +237,14 @@ class Register extends React.Component {
 			});
 
 		});
+		setTimeout(() => {
+			var id_list_aca_check='';
+		$('.layer_icon1').on('click',function(){
+			id_list_aca_check = $(this).parents().attr('id');
+  			alert(`checked:`, id_list_aca_check);
+		},3000);
+		})
+		
 	}
 
 	handleLoad() {
@@ -198,17 +267,17 @@ class Register extends React.Component {
 							</div>
 						</div>
 					</header>
-					<ol class="tabs-list">
+					<ol class="tabs-list getLeft">
 						<li class="tab-list-item tab-list-active" id="tab-1" type="button">ประวัติการศึกษา</li>
 						<li class="tab-list-item" id="tab-2" type="button">ประวัติการทำงาน</li>
 						<li class="tab-list-item" id="tab-3" type="button">ใบรับรอง</li>
-						<li class="tab-list-item" id="tab-4" type="button">งานที่สนใจ</li>
+						<li class="tab-list-item" id="tab-4" type="button">ผลงาน</li>
 						<li class="tab-list-item" id="tab-5" type="button">ทักษะเสริม</li>
 					</ol>
 					<form class="needs-validation" novalidate>
 						<div>
 							<div class="tab-content" id="registab1-content">
-								<Chooseresume1 />
+								<Chooseresume1 list_of_aca={this.state.list_of_aca}/>
 							</div>
 							<div class="tab-content" id="registab2-content">
 								<Chooseresume2 mywork_data={workdata} />
@@ -217,10 +286,10 @@ class Register extends React.Component {
 								<Chooseresume3 mycerti_data={certdata} />
 							</div>
 							<div class="tab-content" id="registab4-content">
-								<Registab6 />
+								<Chooseresume4 />
 							</div>
 							<div class="tab-content" id="registab5-content">
-								<Registab7 />
+								<Chooseresume5 />
 							</div>
 						</div>
 						<div class="col block-right2">
@@ -239,4 +308,4 @@ class Register extends React.Component {
 	}
 }
 
-export default Register;
+export default Chooseresume;

@@ -146,7 +146,7 @@ class MyResumeSkill extends React.Component {
         }
         let jobskillcontent = [];
         let dummyshow = [];
-        
+        var jobskillcheck = false;
         // console.log('in skill intJob: ' + interestedJob.length)
         // console.log('in skill tf: ' + this.props.intJob)
         if(this.props.intJob?true:false){
@@ -167,12 +167,16 @@ class MyResumeSkill extends React.Component {
                             <MyResumeScoreSkill skillname={job.Job_SkillName[i]} score={job.Job_Score[i]} colour={color}></MyResumeScoreSkill>
                         );
                     }
+                    jobskillcheck = true;
                 }
             }
             
         }
         // let job = interestedJob[0];
-        const jobskillcheck = (this.props.intJob?true:false)&&(interestedJob.Job_SkillName? (interestedJob.Job_SkillName.length !== 0):false);
+        //console.log(this.props.intJob? true: false);
+        //console.log(interestedJob.Job_SkillName? true: false);
+        //console.log(interestedJob.Job_SkillName.length !== 0);
+        
         //console.log(jobskillcheck);
         if((additionalSkills.length===0) && (!jobskillcheck) && (owner)){
             if(topicElement.length === 0){

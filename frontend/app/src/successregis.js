@@ -25,6 +25,10 @@ class Successregis extends React.Component {
 		let params = new URLSearchParams(document.location.search.substring(1));
 		let token = params.get("token");
 		//cookie.save('login-token',token);
+		//const ssId = this.props.match.params.id;
+		//alert(ssId);
+		// you can also have only query string
+		//var params = new URLSearchParams("?mode=night&page=2");
 		console.log(token);
 		const requestOptions = {
 			method: 'POST',
@@ -33,12 +37,15 @@ class Successregis extends React.Component {
 		};
 		fetch('http://localhost:2000/email-confirmation/confirm', requestOptions)
 			.then(function (response) {
-				if(token==null){
+				/*if(token==null){
 					alert('You dont have token!!');
-				}
-				else if (!response.ok) {
-					//window.location = "http://localhost:3000/unsuccessregis";
+				}*/
+				if (!response.ok) {
 					alert('Fetch Fail!!');
+					window.location = "http://localhost:3000/unsuccessregis";
+					/*return (
+						<Redirect  to="/unsuccessregis" />
+					)*/
 				}
 				else{
 					alert('Fetch True!!');
@@ -47,15 +54,24 @@ class Successregis extends React.Component {
 					var fetchtrue = true;
 				}
 			})
-			.then(data => this.setState({ postdata: data }));
+			.then(data => this.setState({ postdata: data }
+			)).catch((error) => {
+				console.log('Token Error!');
+				return (
+					<Redirect  to="/unsuccessregis" />
+				)
+			});
+			console.log(this.state.postdata);
 			//.then(data => this.setState({ postId: data.id }));
 		//setInterval(window.location = "http://localhost:3000/landing", 5000); 
 		$('#gotolanding').on('click',function(){
-			alert(fetchtrue);
+			//alert(fetchtrue);
 			if(fetchtrue){
-				<Redirect  to="/landing" />
+				return (
+					<Redirect  to="/landing" />
+				)
 			}
-			alert('This feature is now unavaliable! be patient');
+			//alert('This feature is now unavaliable! be patient');
 		});
 	}
 

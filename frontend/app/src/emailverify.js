@@ -5,16 +5,36 @@ import Navbarlogo from './Components/navbarlogo';
 import DataHeader from './Components/dataHeader';
 import reportWebVitals from './reportWebVitals';
 import { Link } from "react-router-dom";
+import $ from "jquery";
+import cookie from "react-cookies";
 
 class Emailverify extends React.Component {
 
 	componentDidMount() {
 		/*window.addEventListener('load', this.handleLoad);
 		console.log("YEAHXXX!");
-		const script = document.createElement("script");
-		script.src = "assets/js/register2.js";
-		document.body.appendChild(script);
+		const scripointer = document.createElement("scripointer");
+		scripointer.src = "assets/js/register2.js";
+		document.body.appendChild(scripointer);
 		*/
+    $('#resendEmail').on('click',function(){
+      var EmailtoResend = cookie.load('Email-verify');
+			const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ Email: EmailtoResend })
+      };
+      fetch('http://localhost:2000/resend-confirmation-link', requestOptions)
+        .then(function (response) {
+          if (!response.ok) {
+            console.log(EmailtoResend);
+            alert('Resend fail');
+          }
+          else{
+            alert('Resend success');
+          }
+        })
+		});
 	}
 
 	render (){

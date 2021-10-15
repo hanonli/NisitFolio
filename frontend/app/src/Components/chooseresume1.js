@@ -7,11 +7,17 @@ class Chooseresume1 extends React.Component {
 
 	constructor(props) {
 		super(props);
+		this.handleLoad = this.handleLoad.bind(this);
+		this.state = {
+			data: [],
+			render: true,
+			list_of_aca: this.props.list_of_aca,
+		}
 	}
 
     componentDidMount() {
-				
-		function get_high_id(list_of_high, x) {
+		console.log(`list_of_aca:`, this.state.list_of_aca);
+		/*function get_high_id(list_of_high, x) {
 			//var x = 1;
 			list_of_high.forEach(ele => {
 				ele["high_pos"] = x;
@@ -21,7 +27,7 @@ class Chooseresume1 extends React.Component {
 			return list_of_high;
 		}
 		console.log('i am resumetab1'+data);
-				/*
+		
 		function show_all_high() {
 		
 			list_of_high.forEach(ele => {
@@ -86,59 +92,71 @@ class Chooseresume1 extends React.Component {
 		const script = document.createElement("script");
 		script.src = "assets/js/chooseresume.js";
 		document.body.appendChild(script);
-        /*var data_aca = [], data_high = [],list_of_high=[],list_of_aca=[];
-		var token = cookie.load('login-token')
-        console.log('Your Token is: '+token);
-		fetch("http://localhost:2000/register/getinfo",{
-			method: "GET",
-			headers: {
-				'Authorization': 'Bearer '+token,	
-				"Access-Control-Allow-Origin": "*",
-				"Access-Control-Allow-Methods": "*",
-				"Access-Control-Allow-Credentials": true,
-				"Content-Type": "application/json"
-			},
-		})
-		.then(response => response.json())
-		.then((datas) => {
-            console.log('You Fetch Success!');
-			console.log(datas);
-			this.setState({
-				data : datas,
-			})
-			 console.log('this.state.data :'+this.state.data);
-			 console.log(this.state.data.Degree);
-			 this.state.data.Degree.forEach(element => {
-			if(element=='มัธยมศึกษาตอนปลาย'||element=='ปวช.'){
-				list_of_high.push({
-					id: this.state.data.EducationHistory_id,
-					high_pos: 0,
-					high_name: this.state.data.Academy,
-					high_faculty: 'none',
-					high_degree: this.state.data.Degree,
-					high_grade: this.state.data.Grade,
-					high_field: this.state.data.Field_of_study,
-					high_year: this.state.data.Education_End_Year,
-				});
-				get_high_id(list_of_high, 1);
-				console.log(list_of_high);
-			}
-			else{
-				list_of_aca.push({
-					id: this.state.data.EducationHistory_id,
-					aca_pos: 0,
-					aca_name: this.state.data.Academy,
-					aca_faculty: 'none',
-					aca_degree: this.state.data.Degree,
-					aca_grade: this.state.data.Grade,
-					aca_field: this.state.data.Field_of_study,
-					aca_year: this.state.data.Education_End_Year,
-				});
-				get_high_id(list_of_aca, 1);
-				console.log(list_of_aca);
-			}
-		});
-		});*/
+		*/		
+		function show_all_aca() {
+			this.state.list_of_aca.forEach(ele => {
+				var grid_aca1 = '<div class="t3-content1 row">\
+									<div class="col-3">\
+										<div class="font-titlet3_1 font-boldt3">{degree_aca}</div>\
+										<div class="font-titlet3_1 font-khotboldt3">{year_aca}</div>\
+									</div>\
+									<div class="col-9">\
+										<div class="font-titlet3_1">{field_aca}</div>\
+										<div class="font-titlet3_1">{faculty_aca}</div>\
+										<div class="font-titlet3_1">{name_aca}</div>\
+										<div class="font-titlet3_1">เกรด {grade_aca}</div>\
+									</div>';
+		
+				var grid_aca2 = `
+									<div class="layer_icon1" id={no-list-aca}>\
+									<button type="button" class="btn button1" id="edit-aca"><img src="assets/images/blackedit.png" width="27" height="27"></img></button>\
+									<button type="button" class="btn button2" id="del-aca"><img src="assets/images/bin.png" width="30" height="30"></img></button>\
+									</div>\
+								</div>`;
+				grid_aca2 = grid_aca2.replace("{no-list-aca}", ele["id"]);
+				grid_aca1 = grid_aca1.replace("{no_aca}", ele["aca_pos"]);
+				//grid_aca1 = grid_aca1.replace("{name_aca}", ele["aca_name"]);
+				grid_aca1 = grid_aca1.replace("{degree_aca}", ele["aca_degree"]);
+				//grid_aca1 = grid_aca1.replace("{field_aca}", ele["aca_field"]);
+				//grid_aca1 = grid_aca1.replace("{faculty_aca}", ele["aca_faculty"]);
+				//grid_aca1 = grid_aca1.replace("{year_aca}", ele["aca_year"]);
+				grid_aca1 = grid_aca1.replace("{name_aca}", ele["aca_name"]);
+				grid_aca1 = grid_aca1.replace("{faculty_aca}", ele["aca_faculty"]);
+				if(ele["aca_grade"]=="0.00"){
+				grid_aca1 = grid_aca1.replace("{grade_aca}", '-');
+				}
+				else{
+				grid_aca1 = grid_aca1.replace("{grade_aca}", ele["aca_grade"]);
+				}
+				if(ele["aca_field"]=="none"){
+				grid_aca1 = grid_aca1.replace("{field_aca}", '-');
+				}
+				else{
+				grid_aca1 = grid_aca1.replace("{field_aca}", ele["aca_field"]);
+				}
+				if(ele["aca_year"]=="0"){
+				grid_aca1 = grid_aca1.replace("{year_aca}", '-');
+				}
+				else if(ele["aca_year"]=="9999"){
+				grid_aca1 = grid_aca1.replace("{year_aca}", 'กำลังศึกษา');
+				}
+				else{
+				grid_aca1 = grid_aca1.replace("{year_aca}", ele["aca_year"]);
+				}
+				$(".list-of-aca").append(grid_aca1 + grid_aca2);
+				console.log(`list_of_aca:`, this.state.list_of_aca);
+			});
+		}
+		/*if(this.state.list_of_aca!=[]){
+			console.log('My ACA NOT EMPTY!');
+			show_all_aca();
+		}/*
+		if(list_of_high!=[]){
+			show_all_high();
+		}*/
+	}
+	handleLoad() {
+		console.log("YEAH!");
 	}
 
 	componentWillUnmount() { 
@@ -149,11 +167,12 @@ class Chooseresume1 extends React.Component {
         //this.getDatas();
         //console.log('state : ' + JSON.stringify(this.state))
 		return (
-			<div className="Registab3 regis-box-content1">
-				<div class='container-fluid'>
+			<div className="Registab3">
+				<h2 class="headerChooseResume">คุณสามารถเลือกประวัติการศึกษาที่สอดคล้องกับตำแหน่งงานที่สนใจได้สูงสุด 6 รายการ</h2>
+				<div class='container-fluid regis-box-content1'>
 					<div class='col-16'>
 						<div class='row'>
-								<div className='registab3_formbox col-6'>
+								<div className='choosetab3_formbox col-6'>
                                     <div class='row longlang'>
                                         <div class='col-10'>
                                             <h2 class="font-headert3">อุดมศึกษา</h2>
@@ -161,10 +180,10 @@ class Chooseresume1 extends React.Component {
                                     </div>
 									<div className=''>
                                         <h5 class='font-dest3'>ระดับอุดมศึกษาจะประกอบไปด้วย ปวส. ปริญญาตรี ปริญญาโท และปริญญาเอก</h5>
-                                        <div class="list-of-aca" id="in-list-of-aca" state={this.state}></div>
+                                        <div class="list-of-aca" id="in-list-of-aca"></div>
 									</div>
                                 </div>
-								<div className='registab3_formbox col-6'>
+								<div className='choosetab3_formbox col-6'>
                                     <div class='row longlang'>
                                         <div class='col-10'>
 									        <h2 class="font-headert3">มัธยมศึกษา</h2>
@@ -172,12 +191,13 @@ class Chooseresume1 extends React.Component {
                                     </div>
 									<div className=''>		
                                         <h5 class='font-dest3'>ระดับมัธยมศึกษาในที่นี้จะประกอบไปด้วย มัธยมศึกษาตอนปลาย และปวช.</h5>
-                                        <div class="list-of-high" id="in-list-of-high" state={this.state}></div>
+                                        <div class="list-of-high" id="in-list-of-high"></div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+					<h1 id="dangerzonect1" class='normalformzonet3'>คุณเลือกไปแล้ว x รายการ</h1>
 				</div>
 		);
 	}
