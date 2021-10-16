@@ -287,19 +287,19 @@
 
 /*---------------------------- edit template ----------------------------*/
 .layout-edit-template{
-    position: relative;
-    top: 10vh;
+    position: absolute;
+    /*top: 6vh;*/
 }
 
 .sample-color-edit-template{
     position: relative;
-    top: -4.5vh;
+    /*top: -4.5vh;*/
 }
 
 .choose-color-edit-template11{
     position: absolute;
     left: 20vw;
-    top: -6vh;
+    top: 0vh;
 }
 
 .grid-edit-template{
@@ -383,7 +383,6 @@
 #text-edit-color-template11{
     color: black;
     font-size: 32px;
-    margin-left: 0.5vw;
 }
 
 .circle-color-template-FF7370-edit{
@@ -438,5 +437,9 @@
     font-size: 18px;
     font-weight: 300;
     margin-bottom: 3.5vh;
-    margin-left: 0.5vw;
+}
+
+.myresumeEditTemplate{
+    position: relative;
+    margin-bottom: 2.9vh;
 }

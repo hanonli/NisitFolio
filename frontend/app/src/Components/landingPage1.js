@@ -15,8 +15,8 @@ class LandingPage1 extends React.Component {
                 <div className="container">
                     <div class="d-flex justify-content-center">
                         <div>
-                            <img class="pic-new" src="assets/images/ldwithgradient.png" />
-                            <img class="pic-logo" src="assets/images/nisitfolio_logo_white3.png" />
+                            <img class="pic-new" src="assets/images/ldwithgradient.png" onContextMenu={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()} />
+                            <img class="pic-logo" src="assets/images/nisitfolio_logo_white3.png" onContextMenu={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()} />
                             <h1 class="sc1-sub">เริ่มต้นชีวิตในรั้วมหาลัยที่ดีกว่า<br />ด้วยระบบจัดเก็บและโชว์ผลงานที่ดีกว่า</h1>
                             <div class="col-6" id="searchHuaKuay">
                                 <SearchLanding1 />
@@ -25,7 +25,7 @@ class LandingPage1 extends React.Component {
                             <div id="signInX">
                                 <SignInLand />
                             </div>
-                            <img class="sc1-footer" src="assets/images/arrow_down1.png" />
+                            <img class="sc1-footer" src="assets/images/arrow_down1.png" onContextMenu={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()} />
                             <h1 class="text-of-arrow">ฟีเจอร์ที่เรามีไว้ช่วยคุณ</h1>
                         </div>
                     </div>

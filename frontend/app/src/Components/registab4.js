@@ -20,7 +20,7 @@ class Registab4 extends React.Component {
                     <div class="registab4_formbox">
                         <div className="registab4_btnplus">
                             <button type="button" class="btn" id="add_work" >
-                                <img src="assets/images/+.png" width="57" height="57" ></img>
+                                <img src="assets/images/+.png" width="57" height="57" onContextMenu={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()}></img>
                             </button>
                         </div>
                     </div>
