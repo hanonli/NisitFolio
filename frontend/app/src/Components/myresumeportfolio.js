@@ -130,9 +130,11 @@ class MyresumePortfolio extends React.Component {
                 <div>
                     {topicele}
                     <div className="img-sp"></div>
+                    
                     <MyResumeportfoliolayoutP>
                         {portcontent}
                     </MyResumeportfoliolayoutP>
+                    
                 </div>
             );
         }

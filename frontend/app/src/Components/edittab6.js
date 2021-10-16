@@ -82,8 +82,8 @@ class Edittab6 extends React.Component {
                             </div>\
                             <div class="layer_icon" id="{no_list}">\
                                 <div class="set-layer-button-job">\
-								    <button type="button" class="btn" id="edit-job"><img src="assets/images/blackedit.png" width="35" height="35"></img></button>\
-								    <button type="button" class="btn" id="del-job"><img src="assets/images/bin.png" width="50" height="50"></img></button>\
+								    <button type="button" class="btn" id="edit-job"><img src="assets/images/blackedit.png" width="35" height="35" oncontextmenu="return false;" ondragstart="return false;"></img></button>\
+								    <button type="button" class="btn" id="del-job"><img src="assets/images/bin.png" width="50" height="50" oncontextmenu="return false;" ondragstart="return false;"></img></button>\
                                 </div>\
                             </div>\
                         </div>\
@@ -650,7 +650,7 @@ class Edittab6 extends React.Component {
             });
             console.log("removeIndex:", removeIndex);
             if (list_of_job[removeIndex].isFetch === true) {
-                fetch("http://localhost:2000/register/interestedJob/" + list_of_job[removeIndex].InterestedJob_id, {
+                /*fetch("http://localhost:2000/register/interestedJob/" + list_of_job[removeIndex].InterestedJob_id, {
                     method: "DELETE",
                     headers: {
                         'Authorization': 'Bearer ' + list_of_job[removeIndex].token,
@@ -662,27 +662,27 @@ class Edittab6 extends React.Component {
                 })
                     .then(response => response.json())
                     .then((raws) => {
-                        console.log(raws);
-                        list_of_job.splice(removeIndex, 1);
-                        //console.log(`delete job id:`, removeIndex);
-                        $('#exampleModal_remove_job').modal('hide');
-                        $(".list-of-job").empty();
-                        //console.log(list_of_job);
-                        get_job_id(list_of_job, 1);
-                        show_all_job()
-                        $(".step-marks").remove();
-                        $(".step-labels").remove();
-                        $("#input_mySlider1").remove();
-                        $("#input_mySlider2").remove();
-                        $("#input_mySlider3").remove();
-                        if (list_of_job.length < 3) {
-                            $(".frame_add_job_interest").show();
-                            $(".limit-job-pos-3").removeClass("limit-job-pos-3-red");
-                            $('.limit-job-pos-3').text('ท่านสามารถเพิ่มตำแหน่งงานที่สนใจได้สูงสุด 3 อัน');
-                        }
-                    }).catch((error) => {
-                        console.log(error);
-                    });
+                        console.log(raws);*/
+                list_of_job.splice(removeIndex, 1);
+                //console.log(`delete job id:`, removeIndex);
+                $('#exampleModal_remove_job').modal('hide');
+                $(".list-of-job").empty();
+                //console.log(list_of_job);
+                get_job_id(list_of_job, 1);
+                show_all_job()
+                $(".step-marks").remove();
+                $(".step-labels").remove();
+                $("#input_mySlider1").remove();
+                $("#input_mySlider2").remove();
+                $("#input_mySlider3").remove();
+                if (list_of_job.length < 3) {
+                    $(".frame_add_job_interest").show();
+                    $(".limit-job-pos-3").removeClass("limit-job-pos-3-red");
+                    $('.limit-job-pos-3').text('ท่านสามารถเพิ่มตำแหน่งงานที่สนใจได้สูงสุด 3 อัน');
+                }
+                /*}).catch((error) => {
+                    console.log(error);
+                });*/
             }
             else {
                 list_of_job.splice(removeIndex, 1);
@@ -846,7 +846,7 @@ class Edittab6 extends React.Component {
                     <div class="frame_add_job_interest">
                         <div className="button_add_job_interest">
                             <button id="add-job" type="button" class="btn">
-                                <img src="assets/images/+.png" width="57" height="57"></img>
+                                <img src="assets/images/+.png" width="57" height="57" onContextMenu={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()}></img>
                             </button>
                         </div>
                     </div>
@@ -899,7 +899,7 @@ class Edittab6 extends React.Component {
                                                     <div class="box-slider1">
                                                         <div class="sliderWithLabels" id="mySlider1"></div>
                                                     </div>
-                                                    <div class="reset-button11" id="reset-skill1"><img src="assets/images/reset.png" width="25" height="25"></img></div>
+                                                    <div class="reset-button11" id="reset-skill1"><img src="assets/images/reset.png" width="25" height="25" onContextMenu={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()}></img></div>
                                                 </div>
                                             </div>
 
@@ -913,7 +913,7 @@ class Edittab6 extends React.Component {
                                                     <div class="box-slider2">
                                                         <div class="sliderWithLabels" id="mySlider2"></div>
                                                     </div>
-                                                    <div class="reset-button11" id="reset-skill2"><img src="assets/images/reset.png" width="25" height="25"></img></div>
+                                                    <div class="reset-button11" id="reset-skill2"><img src="assets/images/reset.png" width="25" height="25" onContextMenu={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()}></img></div>
                                                 </div>
                                             </div>
 
@@ -927,7 +927,7 @@ class Edittab6 extends React.Component {
                                                     <div class="box-slider3">
                                                         <div class="sliderWithLabels" id="mySlider3"></div>
                                                     </div>
-                                                    <div class="reset-button11" id="reset-skill3"><img src="assets/images/reset.png" width="25" height="25"></img></div>
+                                                    <div class="reset-button11" id="reset-skill3"><img src="assets/images/reset.png" width="25" height="25" onContextMenu={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()}></img></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -940,7 +940,7 @@ class Edittab6 extends React.Component {
                                                 <div class="col-4">
                                                     <div class="contend-of-obj" >
                                                         <div class="pos-del-obj-button" id="pos-del-obj-button1">
-                                                            <button type="button" class="btn del-obj-icon"><img src="assets/images/bin.png" width="25" height="25"></img></button>
+                                                            <button type="button" class="btn del-obj-icon"><img src="assets/images/bin.png" width="25" height="25" onContextMenu={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()}></img></button>
                                                         </div>
                                                         <textarea maxlength="280" type="text" class="form-control dropbtn margin-bottom1 height-job1" id="obj-job-01" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
                                                     </div>
@@ -954,7 +954,7 @@ class Edittab6 extends React.Component {
                                                 <div class="col-4">
                                                     <div class="contend-of-obj" >
                                                         <div class="pos-del-obj-button" id="pos-del-obj-button2">
-                                                            <button type="button" class="btn del-obj-icon"><img src="assets/images/bin.png" width="25" height="25"></img></button>
+                                                            <button type="button" class="btn del-obj-icon"><img src="assets/images/bin.png" width="25" height="25" onContextMenu={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()}></img></button>
                                                         </div>
                                                         <textarea maxlength="280" type="text" class="form-control dropbtn margin-bottom1 height-job2" id="obj-job-02" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
                                                     </div>
@@ -968,7 +968,7 @@ class Edittab6 extends React.Component {
                                                 <div class="col-4">
                                                     <div class="contend-of-obj" >
                                                         <div class="pos-del-obj-button" id="pos-del-obj-button3">
-                                                            <button type="button" class="btn del-obj-icon"><img src="assets/images/bin.png" width="25" height="25"></img></button>
+                                                            <button type="button" class="btn del-obj-icon"><img src="assets/images/bin.png" width="25" height="25" onContextMenu={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()}></img></button>
                                                         </div>
                                                         <textarea maxlength="280" type="text" class="form-control dropbtn margin-bottom1 height-job3" id="obj-job-03" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
                                                     </div>

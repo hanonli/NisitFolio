@@ -9,6 +9,20 @@ import LoadingL from './loadingL';
 import { Link } from "react-router-dom";
 import './navbar_resume.css'
 
+const Activestyle = {
+	backgroundColor : "#bcbcbc",
+};
+const ActiveFontstyle  = {
+	color : "white",
+};
+
+const DisableFontstyle  = {
+	color : "#bcbcbc",
+};
+
+const DefaultFontstyle  = {
+	color : "black",
+};
 
 class Resume_topNavbar extends React.Component {
 
@@ -41,6 +55,10 @@ class Resume_topNavbar extends React.Component {
 			fetch: true,
 		}
 
+		
+
+		
+
 		// GET Parameter(userID) FROM URL 
 
 
@@ -72,68 +90,68 @@ class Resume_topNavbar extends React.Component {
 				"Content-Type": "application/json"
 			},
 		})
-			.then(response => response.json())
-			.then((datas) => {
-				// var index = e;
-				// console.log('real resumeID:' + JSON.stringify(datas[0].ResumeId[0]))
-				// console.log('in resumeid datas: ' + JSON.stringify(datas));
-				var index = this.state.index
-				var resume1 = datas[0] ? datas[0] : undefined
-				var resume2 = datas[1] ? datas[1] : undefined
-				var resume3 = datas[2] ? datas[2] : undefined
-				var job1 = resume1 ? resume1.interestedJob[0].Job_JobName : 'ยังไม่มีตำแหน่งงาน'
-				var job2 = resume2 ? resume2.interestedJob[0].Job_JobName : 'ยังไม่มีตำแหน่งงาน'
-				var job3 = resume3 ? resume3.interestedJob[0].Job_JobName : 'ยังไม่มีตำแหน่งงาน'
+		.then(response => response.json())
+		.then((datas) => {	
+			// var index = e;
+			// console.log('real resumeID:' + JSON.stringify(datas[0].ResumeId[0]))
+			// console.log('in resumeid datas: ' + JSON.stringify(datas));
+			var index = this.state.index
+			var resume1 = datas[0] ? datas[0] : undefined
+			var resume2 = datas[1] ? datas[1] : undefined
+			var resume3 = datas[2] ? datas[2] : undefined
+			var job1 = resume1 ? resume1.interestedJob[0].Job_JobName : 'ยังไม่มีตำแหน่งงาน'
+			var job2 = resume2 ? resume2.interestedJob[0].Job_JobName : 'ยังไม่มีตำแหน่งงาน'
+			var job3 = resume3 ? resume3.interestedJob[0].Job_JobName : 'ยังไม่มีตำแหน่งงาน'
 
-				// console.log('in resumeid datas a: ' + JSON.stringify(a));
-				// console.log('in resumeid datas b: ' + JSON.stringify(b));
-				// console.log('in resumeid datas c: ' + JSON.stringify(c));			
-				var Resumedata = datas[index];
-				// console.log('Resumedata is: ' + JSON.stringify(Resumedata));
-				// console.log('in resumeid index2: ' + index);
-				// console.log('in resumeid e2: ' + e);
-				// console.log('in resumeid state.index2: ' + this.state.index);
-				// console.log('in resumeid Resumedatas1: ' + JSON.stringify(datas[index]));
-				// console.log('in resumeid Resumedatas2: ' + JSON.stringify(Resumedata));	
-				if (Resumedata == undefined) {
-					// console.log('there is no resumedata Redirect to last path')
-					// console.log('resumeid this.state.loading: '+this.state.loading)
-					// console.log('resumeid this.state.ready: '+this.state.ready)
-					// console.log('resumeid this.state.fetcf: '+this.state.fetch)
-					this.setState({
-						loading: false,
-						ready: true,
-						fetch: false,
-					});
-					// window.history.go(-1)	
-				} else {
-					this.setState({
-						resumeID: Resumedata._id,
-						jobname1: job1,
-						jobname2: job2,
-						jobname3: job3,
-						workHistorys: Resumedata.workHistorys ? Resumedata.workHistorys : [],
-						educationHistorys: Resumedata.educationHistorys ? Resumedata.educationHistorys : [],
-						certificates: Resumedata.certificates ? Resumedata.certificates : [],
-						additionalSkills: Resumedata.additionalSkills ? Resumedata.additionalSkills : [],
-						interestedJob: Resumedata.interestedJob ? Resumedata.interestedJob : [],
-						color: Resumedata.Color ? Resumedata.Color : '#FFCE55',
-						privacy: Resumedata.Privacy,
-						hometown: Resumedata.Location ? Resumedata.Location : '',
-						portfolio: Resumedata.portfolios ? Resumedata.portfolios : [],
-						owner: Resumedata.Owner ? Resumedata.Owner : '',
-						firstname: Resumedata.First ? Resumedata.First : '',
-						lastname: Resumedata.Last ? Resumedata.Last : '',
-						profilepic: Resumedata.ProfilePic !== null ? Resumedata.ProfilePic : '',
-						aboutme: Resumedata.Aboutme !== null ? Resumedata.Aboutme : '',
-						ready: true,
-					})
-				}
-
-				// console.log('real resumeID:' + JSON.stringify(datas[0].ResumeId[index]))
-				// this.setState({
-				// 	resumeID : datas[0].ResumeId[index],
-				// })
+			// console.log('in resumeid datas a: ' + JSON.stringify(resume1));
+			// console.log('in resumeid datas b: ' + JSON.stringify(resume2));
+			// console.log('in resumeid datas c: ' + JSON.stringify(resume3));			
+			var Resumedata = datas[index];
+			// console.log('Resumedata is: ' + JSON.stringify(Resumedata));
+			// console.log('in resumeid index2: ' + index);
+			// console.log('in resumeid e2: ' + e);
+			// console.log('in resumeid state.index2: ' + this.state.index);
+			// console.log('in resumeid Resumedatas1: ' + JSON.stringify(datas[index]));
+			// console.log('in resumeid Resumedatas2: ' + JSON.stringify(Resumedata));
+			this.setState({
+				jobname1 : job1,
+				jobname2 : job2,
+				jobname3 : job3,
+			});
+			if(Resumedata == undefined ){
+				// console.log('there is no resumedata Redirect to last path')
+				// console.log('resumeid this.state.loading: '+this.state.loading)
+				// console.log('resumeid this.state.ready: '+this.state.ready)
+				// console.log('resumeid this.state.fetcf: '+this.state.fetch)
+				this.setState({
+					loading : false,
+					ready : true,
+					fetch : false,
+				});
+				// window.history.go(-1)	
+			}else{
+				this.setState({
+					resumeID : Resumedata._id,
+					jobname1 : job1,
+					jobname2 : job2,
+					jobname3 : job3,
+					workHistorys : Resumedata.workHistorys ? Resumedata.workHistorys : [],
+					educationHistorys : Resumedata.educationHistorys ? Resumedata.educationHistorys : [],
+					certificates : Resumedata.certificates ?  Resumedata.certificates : [],
+					additionalSkills : Resumedata.additionalSkills ? Resumedata.additionalSkills : [],
+					interestedJob : Resumedata.interestedJob ? Resumedata.interestedJob : [],
+					color : Resumedata.Color ? Resumedata.Color : '#FFCE55',
+					privacy : Resumedata.Privacy,
+					hometown : Resumedata.Location? Resumedata.Location: '',
+					portfolio : Resumedata.portfolios? Resumedata.portfolios: [],
+					owner : Resumedata.Owner ? Resumedata.Owner : '',
+					firstname: Resumedata.First ? Resumedata.First : '',
+					lastname: Resumedata.Last ? Resumedata.Last : '',
+					profilepic : Resumedata.ProfilePic !== null ? Resumedata.ProfilePic : '',
+					aboutme : Resumedata.Aboutme !== null ? Resumedata.Aboutme : '',
+					ready : true,
+				})
+			}
 
 			})
 	}
@@ -184,6 +202,10 @@ class Resume_topNavbar extends React.Component {
 			})
 		}
 
+	}
+
+	handleEdit = () =>{
+		window.location = 'choosetemplate'
 	}
 
 	portfoliotab1 = () => {
@@ -305,82 +327,75 @@ class Resume_topNavbar extends React.Component {
 					</div>
 				)
 			}
+			else{
+				return (
+					<div className='resume_topnav' >
+						<div className='topnav_section1'>
+							
+							<img type='button' id='icon-myresume-private' src="assets/images/outline_lock_black_24dp.png"/> 
+							
+						</div>
+						
+					</div>
+					)
+			}
+			
 
-
-		} else {
-			// console.log('you are outsider1')
-			return (
-				<div className='resume_topnav' >
-					<a className='topnav_section1' >
-						<img className='icon-myresume' id='icon-myresume-lock-bookmark' src="assets/images/bookmark_2.png" />
-					</a>
-				</div>
-
-			)
 		}
+
 	}
 
 	handleSection2 = () => {
 		if (this.state.is_owner) {
-			// console.log('you are owner2')
+				console.log('you are owner2')
 			return (
-				<div className='resume_selectoption'>
-
-					<div className='topnav_section2'>
-						<a>
-							&nbsp;
-							<img id='icon-myresume-edit' src="assets/images/blackedit.png" />
-						</a>
-						<span className='resume_verticalline2'> </span>
-						<a>
-							<img class="obj-icon tooltips-item" id='icon-myresume-share' src="assets/images/outline_ios_share_black_48dp.png" type="button" data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharingResume" alt="" width="30" height="30" />
-							{/* <img id='icon-myresume-share' src="assets/images/outline_ios_share_black_48dp.png"/>  */}
-							{/* <span id='icon-myresume-share'> <SharingPopup></SharingPopup></span> */}
-							&nbsp;
-						</a>
-
+				
+				<div className='resume_selectoption' >
+					<div className='resume_selectoption_block'>
+						<div type='button'>
+							<img  onClick={this.handleEdit}  id='icon-myresume-edit' src="assets/images/blackedit.png"/>
+						</div>
+									
 					</div>
+					
+					<span className='resume_verticalline2'> </span>
 
+					<div className='resume_selectoption_block'>
+						<div type='button'>
+							<img   id='icon-myresume-share' src="assets/images/outline_ios_share_black_48dp.png"data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharingResume" alt="" />
+						</div>
+						
+									
+					</div>
+							
+							
 
-					{/* <SharingPopup></SharingPopup> */}
+						
+
+						
 				</div>
+					
+					
+				// <div className='resume_selectoption'> 
+				// 		<text> We ARE HERE AI SUS Do qui non ad voluptate tempor. Laborum incididunt amet ea veniam culpa veniam velit culpa officia. Occaecat ea elit nostrud mollit non incididunt deserunt id pariatur pariatur. Aliquip est dolor officia deserunt occaecat veniam et consectetur.</text>
+						
 
-			)
-		} else {
-			// console.log('you are outsider2')
-			return (
-				<div className='resume_topnav' >
-					<a className='topnav_section1' href='#myresume' >
-						<img id='icon-myresume-lock' src="assets/images/bookmark_2.png" />
-					</a>
-				</div>
 
+				// 	{/* <SharingPopup></SharingPopup> */}
+				// </div> 
+				
 			)
-		}
+		} 
 	}
 
 	resumeNothing() {
 		var index = this.state.index
 		cookie.save('Edit_tabselect', 6);
-		if (index == 0) {
-			return (
-				<>
-					<MyResumeNothing />
-				</>
-			)
-		} else if (index == 1) {
-			return (
-				<>
-					<MyResumeNothing />
-				</>
-			)
-		} else if (index == 2) {
-			return (
-				<>
-					<MyResumeNothing />
-				</>
-			)
-		}
+		return (
+			<>
+				<MyResumeNothing />
+			</>
+		)
 	}
 
 	content() {
@@ -409,41 +424,58 @@ class Resume_topNavbar extends React.Component {
 			</div>)
 	}
 
-	showingScreen() {
-		return (
-			<div>
-				<SharingPopup />
+	showingScreen(){
+			return(
+				<div>
+					<SharingPopup/>
+					
+					<div className="Resume_topNavbar" id='topNav'>
+						
+						<div  className='myresumetoppath'> 
+								{this.handleSection1()}
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<div className='resume_topnav' >
+								<div className='resume_selectresume'> 
+									<div className='resume_selectresume_block'> 
+										<div type='button' className='resume_selectresume_text' style={this.state.index == 0 && this.state.jobname1 != 'ยังไม่มีตำแหน่งงาน' ? Activestyle : null}>
+											<text  id='resume_selectresume1' style={this.state.jobname1 != 'ยังไม่มีตำแหน่งงาน' ?  this.state.index == 0 ? ActiveFontstyle : DefaultFontstyle : DisableFontstyle} onClick={this.state.jobname1 != 'ยังไม่มีตำแหน่งงาน' ? this.portfoliotab1 : null} >{this.state.jobname1}</text> 
+										</div>
+										<div className='resume_selectresume_text' >
+											<span className="resume_verticalline"></span>
+										</div>
+										
+									</div>
+									<div className='resume_selectresume_block'> 		
+										<div type='button' className='resume_selectresume_text' style={this.state.index == 1 && this.state.jobname2 != 'ยังไม่มีตำแหน่งงาน' ? Activestyle : null}>
+											<text  id='resume_selectresume2' style={this.state.jobname2 != 'ยังไม่มีตำแหน่งงาน' ? this.state.index == 1 ? ActiveFontstyle : DefaultFontstyle : DisableFontstyle} onClick={this.state.jobname2 != 'ยังไม่มีตำแหน่งงาน' ? this.portfoliotab2 : null} >{this.state.jobname2}</text> 
+										</div>
+										<div className='resume_selectresume_text' >
+											<span className="resume_verticalline"></span>
+										</div>
 
-				<div className="Resume_topNavbar" id='topNav'>
-
-					<div className='myresumetoppath'>
-						{this.handleSection1()}
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<div className='resume_topnav' >
-							<div className='resume_selectresume'>
-								<h1 className='resume_selectresume_block'>
-									&nbsp;<a onClick={this.portfoliotab1} id='resume_selectresume1'>{this.state.jobname1}</a>&nbsp; <span className="resume_verticalline"></span>
-								</h1>
-								<h1 className='resume_selectresume_block'>
-									&nbsp;<a onClick={this.portfoliotab2} id='resume_selectresume2'>{this.state.jobname2}</a>&nbsp; <span className="resume_verticalline"></span>
-								</h1>
-								<h1 className='resume_selectresume_block'>
-									&nbsp;<a onClick={this.portfoliotab3} id='resume_selectresume3'>{this.state.jobname3}</a>&nbsp;
-								</h1>
+									</div>
+									<div className='resume_selectresume_block'> 
+										<div type='button' className='resume_selectresume_text' style={this.state.index == 2 && this.state.jobname3 != 'ยังไม่มีตำแหน่งงาน'? Activestyle : null}>
+											<text  id='resume_selectresume3' style={this.state.jobname3 != 'ยังไม่มีตำแหน่งงาน' ? this.state.index == 2 ? ActiveFontstyle : DefaultFontstyle : DisableFontstyle} onClick={this.state.jobname3 != 'ยังไม่มีตำแหน่งงาน' ? this.portfoliotab3 : null} >{this.state.jobname3}</text> 
+										</div>
+									</div>
+								</div>
 							</div>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								{this.handleSection2()}
 						</div>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						{this.handleSection2()}
-						{this.injectScript()}
+
+						
 					</div>
 
 
+					{this.injectScript()}
 					{this.content()}
 
 
 				</div>
 
-			</div>
+			
 
 		)
 
@@ -560,10 +592,9 @@ class Resume_topNavbar extends React.Component {
 	}
 
 
-	render() {
-		const linestyle = {
-			backgroundColor: this.state.color ? this.state.color : "#FFCE55"
-		};
+	render (){
+
+		
 		// this.getResumeID(this.state.index);
 		if (this.state.userID != '' && this.state.resumeID == '') {
 			// console.log('call getResumeID');
@@ -577,7 +608,7 @@ class Resume_topNavbar extends React.Component {
 
 
 		console.log('in render() state : ' + JSON.stringify(this.state))
-		console.log('in render() skil : ' + JSON.stringify(this.state.additionalSkills))
+		// console.log('in render() skil : ' + JSON.stringify(this.state.additionalSkills))
 		// console.log('render this.state.loading: '+this.state.loading)
 		// console.log('render this.state.ready: '+this.state.ready)
 		// console.log('render this.state.fetch: '+this.state.fetch)
