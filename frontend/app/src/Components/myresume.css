@@ -347,7 +347,7 @@
     border: rgba(0,0,0,0);
 
     position: absolute;
-    margin-left: 24%;
+    margin-left: 31.2Vw;
     /*margin: auto;
     top: 86vh;
     left: 78vw;
@@ -361,6 +361,19 @@
     
     position: center;*/
     /*display: block;*/
+}
+
+.mywork-btn{
+    font-size: 1.4vw;
+    background: #F9DC5C;
+    border-radius: 2vw;
+    padding: 0.8vw;
+    color: black;
+    padding-inline: 3.6vw;
+    border: rgba(0,0,0,0);
+
+    position: absolute;
+    margin-left: 32.7Vw;
 }
 
 .wgs{
@@ -437,7 +450,7 @@
 .img-overlay{
     position: absolute;
     width: 100%;
-    height: 100%;
+    height: 17Vw;
     z-index: 1;
     display: flex;
     background-color: rgba(0,0,0,0.6);
@@ -453,7 +466,7 @@
 }
 
 .myworkname{
-    margin-top: 10.6Vw;
+    margin-top: 11.4Vw;
     margin-left: 1.5Vw;
     font-size: 2Vw;
     color:rgb(255, 255, 255);
@@ -507,7 +520,7 @@
     width: 1.9Vw;
     height: 1.9Vw;
     margin-top: 0.6Vw;
-    margin-left: 11.6Vw;
+    margin-left: 14Vw;
     z-index: 999;
     position: absolute;
 }

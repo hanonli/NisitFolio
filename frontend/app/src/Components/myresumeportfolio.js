@@ -116,7 +116,7 @@ class MyresumePortfolio extends React.Component {
                     {topicele}
                     <div class="work-goals-woNb">
                         <h4 class="text-work-goals-wdata">ตอนนี้คุณยังไม่มีข้อมูลผลงานที่เลือกไว้ สำหรับตำแหน่งงานนี้</h4>
-                        <button class="work-goals-btn" onClick={this.handleRoute}>เลือกข้อมูล</button>
+                        <button class="mywork-btn" onClick={this.handleRoute}>เลือกข้อมูล</button>
                         <div class="wgs"></div>
                     </div>
                 </div>
