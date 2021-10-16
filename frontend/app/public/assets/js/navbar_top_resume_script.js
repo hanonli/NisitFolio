@@ -1,20 +1,20 @@
-function setActiveLink($el) {
-    $el.addClass('active');
-    $el.click();
-}
+// function setActiveLink($el) {
+//     $el.addClass('active');
+//     $el.click();
+// }
 
  $(document).ready(function() {
 
     // click  
 
-    $('#icon-myresume-edit' ).click(function(){
-        window.location = 'editprofile'
-    })
-    $('#icon-myresume-edit' ).hover(function(){
-        $(this).css("background-color", "gray");
-        }, function(){
-        $(this).css("background-color", "transparent");
-    })
+    // $('#icon-myresume-edit' ).click(function(){
+    //     window.location = 'editprofile'
+    // })
+    // $('#icon-myresume-edit' ).hover(function(){
+    //     $(this).css("background-color", "gray");
+    //     }, function(){
+    //     $(this).css("background-color", "transparent");
+    // })
         // top path
     $('.myresumetoppath').css({
         'position' : 'fixed',
@@ -38,7 +38,7 @@ function setActiveLink($el) {
 
     // | topnav left  section|
     $('.topnav_section1').css({
-        'font-size' : '3.5vh',
+        'font-size' : '3.2vh',
         'padding-top': '-0.1vh',
         'padding-bottom': '0.3vh',
         'border' : '0.1vw solid black',
@@ -48,16 +48,18 @@ function setActiveLink($el) {
 
     // | topnav right section |
     $('.topnav_section2').css({
+        'padding-top' : '0.5vh',
+        'height' : '45px',
         'text-decoration' : 'None',
         'text-decoration-color' : 'None',
     })
 
 
 
-    // | topnav middle section |
+    // | topnav right section |
     $('.resume_selectoption').css({
-       'padding-top': '0.7vh',
-        'padding-bottom': '0.2vh',
+        
+        'font-size' : '2.5vh',
         'border' : '0.1vw solid black',
         'border-radius': '0.5vw',
         'display' : 'inline-block',
@@ -124,56 +126,34 @@ function setActiveLink($el) {
         localStorage.setItem('active-resume', $(this).attr('active'));
     });        
 
-    // loading aimation 
-
-    // $('.resume-loadingScreen').css({
-    //     'border': '16px solid #f3f3f3' ,
-    //     'border-radius': '50%' ,
-    //     'border-top' : '16px solid blue',
-    //     'border-right': '16px solid green',
-    //     'border-bottom': '16px solid red',
-    //     'border-left' : '16px solid orange',
-    //     'width': '120px',
-    //     'height': '120px',
-    //     'top' : '50vh',
-    //     'left' : '50vw' ,
-    //     'position' : 'absolute',
-    // })
-
     // icom myresume
 
-    $('.icon-myresume' ).css({
-        'width': '50px',
-        'height' : '50px',
-    });
-    //icon lock
-    $('#icon-myresume-lock' ).css({
-        'width': '45px',
-        'height' : 'auto',
+ 
+    //icon-lock
+    $('#icon-myresume-lock' ).attr({
+        'width': '40px',
+        'height' : '40px',
     });
     
-    //iconedit
+    //icon-edit
+    $('#icon-myresume-edit' ).attr({
+        'width': '35px',
+        'height' : '35px',
+    
+    });
     $('#icon-myresume-edit' ).css({
-        'width': '45px',
-        'height' : 'auto',
-        'margin-top': '-1vh',
-        'padding-top': '0.2vh',
-        'padding-bottom': '0.5vh',
-        'padding-left': '0.2vw',
-        'padding-right': '0.2vw',
-        'border-radius' : '0.5vw',
+
     
     });
-    
+    //icon-share
     $('#icon-myresume-share' ).css({
-        'width': '42px',
-        'height' : 'auto',
-        'margin-top': '-1.4vh',
+        'width': '35px',
+        'height' : '35px',
     });
     
-    $('#icon-myresume-share' ).click(function(){
-        window.location = 'editprofile'
-    })
+    // $('#icon-myresume-share' ).click(function(){
+    //     window.location = 'editprofile'
+    // })
 
 
     

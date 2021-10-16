@@ -239,14 +239,25 @@ class Resume_topNavbar extends React.Component {
 	handleSection1 = () => {
 		if(this.state.is_owner){
 			// console.log('you are owner1')
-			return (
-			<div className='resume_topnav' >
-				<a className='topnav_section1' > 
-					<img onClick={this.handlePrivacy()} className='icon-myresume' id='icon-myresume-lock' src="assets/images/outline_lock_black_24dp.png"/> 
-				</a>
-			</div>
+			if(this.state.privacy == 'Private'){
+				return (
+					<div className='resume_topnav' >
+						<a className='topnav_section1' > 
+							<img onClick={this.handlePrivacy()} className='icon-myresume' id='icon-myresume-lock' src="assets/images/outline_lock_black_24dp.png"/> 
+						</a>
+					</div>
+					)
+			}else if(this.state.privacy == 'Public'){
+				return (
+					<div className='resume_topnav' >
+						<a className='topnav_section1' > 
+							<img onClick={this.handlePrivacy()} className='icon-myresume' id='icon-myresume-lock' src="assets/images/outline_lock_black_24dp.png"/> 
+						</a>
+					</div>
+					)
+			}
 			
-			)
+
 		}else{
 			// console.log('you are outsider1')
 			return (
@@ -264,25 +275,28 @@ class Resume_topNavbar extends React.Component {
 		if(this.state.is_owner){
 			// console.log('you are owner2')
 			return (
-				<div className='resume_topnav' >
+				<div className='resume_selectoption'> 
 
-					<div className='resume_selectoption'> 
+						<div className='topnav_section2'>
+							<a> 
+								&nbsp;
+								<img id='icon-myresume-edit' src="assets/images/blackedit.png"/> 
+								&nbsp;
+							</a>
+							<span className='resume_verticalline'> </span>
+							<a href='<SharingPopup></SharingPopup>'> 
+								
+								<img id='icon-myresume-share' src="assets/images/outline_ios_share_black_48dp.png"/> 
+								{/* <span id='icon-myresume-share'> <SharingPopup></SharingPopup></span> */}
+								&nbsp;
+							</a>
 
-						<a className='topnav_section2'> 
-							&nbsp;
-							<img className='icon-myresume' id='icon-myresume-edit' src="assets/images/blackedit.png"/> 
-							&nbsp;
-						</a>
-						<span className='resume_verticalline2'> </span>
+						</div>
+						
+						
 						{/* <SharingPopup></SharingPopup> */}
-
-
-						<a className='topnav_section2'> 
-							<span className='icon-myresume'> <SharingPopup></SharingPopup></span>
-						</a>
-						&nbsp;
-					</div>
 				</div>
+				
 			)
 		}else{
 			// console.log('you are outsider2')
@@ -304,24 +318,20 @@ class Resume_topNavbar extends React.Component {
 				<>
 					<MyResumeNothing1/>
 				</>
-
 			)
 		}else if(index==1){
 			return(
 				<>
 					<MyResumeNothing2/>
 				</>
-
 			)
 		}else if(index==2){
 			return(
 				<>
 					<MyResumeNothing3/>
 				</>
-
 			)
 		}
-		
 	}
 
 	content(){
