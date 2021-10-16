@@ -130,7 +130,7 @@ class Editresume extends React.Component {
 		$(function () {
 			$('.nameedit').text('"'+cookie.load('Job_EditName')+'"');
 			console.log('Edit Job is '+ cookie.load('Job_EditName'));
-			alert('Selected tab is '+ cookie.load('Edit_tabselect'));
+			//alert('Selected tab is '+ cookie.load('Edit_tabselect'));
 			var Tab_select = cookie.load('Edit_tabselect');
 			$('.tab-content').hide();
 			if(Tab_select==1){
@@ -232,11 +232,11 @@ class Editresume extends React.Component {
 						<div class="container">
 							<div class="row align-items-end">
 								<div class="col">
-									<div class="topData2-content">
+									<div class="topData2-content relatt">
 										<h1 class="name inline">เลือกข้อมูลผู้ใช้ที่จะแสดง</h1>
 										<h1 class="symboledit inline">.</h1>
 										<h1 class="nameedit inline"></h1>
-										<p class="btn-cta-primary-whitewide inline editbtn-resume" id="goToeditProfile">แก้ไขข้อมูล</p>
+										<p class="btn-cta-primary-whitewide inline absoluteforedit" id="goToeditProfile">แก้ไขข้อมูล</p>
 									</div>
 								</div>
 							</div>
@@ -250,6 +250,8 @@ class Editresume extends React.Component {
 						<li class="tab-list-item" id="tab-5" type="button">ผลงาน</li>
 						<li class="tab-list-item" id="tab-6" type="button">ทักษะเสริม</li>
 					</ol>
+					<div class="underline_tabeditresume">
+					</div>
 					<form class="needs-validation" novalidate>
 						<div>
 							<div class="tab-content" id="registab1-content">
