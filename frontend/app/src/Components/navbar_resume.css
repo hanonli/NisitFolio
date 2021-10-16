@@ -17,7 +17,7 @@
   } */
 
   .resumeicon:hover {
-    background: gray;
+    background-color : #bcbcbc;
   }
 
   .resumeblock{
@@ -30,6 +30,7 @@
   w
   #myresumepath{
     height: 100vh;
+
     
   }
 
