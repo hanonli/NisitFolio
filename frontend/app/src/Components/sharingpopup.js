@@ -79,7 +79,6 @@ class SharingPopup extends React.Component {
                 </div>
             </div>
         </div>
-        <img class="obj-icon tooltips-item" src="assets/images/outline_ios_share_black_48dp.png" type="button" data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharingResume" alt="" width="30" height="30"/>
         </div>
     )}
 }

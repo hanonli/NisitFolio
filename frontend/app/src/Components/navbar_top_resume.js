@@ -21,6 +21,9 @@ class Resume_topNavbar extends React.Component {
 		this.state = {
 			userID : '',
 			resumeID : '',
+			jobname1 : '',
+			jobname2 : '',
+			jobname3 : '',
 			workHistorys : [],
 			educationHistorys : [],
 			certificates : [],
@@ -76,15 +79,19 @@ class Resume_topNavbar extends React.Component {
 			// var index = e;
 			// console.log('real resumeID:' + JSON.stringify(datas[0].ResumeId[0]))
 			// console.log('in resumeid datas: ' + JSON.stringify(datas));
-			var index=this.state.index
-			// var a = datas[0]
-			// var b = datas[1]
-			// var c = datas[2]
+			var index = this.state.index
+			var resume1 = datas[0] ? datas[0] : undefined
+			var resume2 = datas[1] ? datas[1] : undefined
+			var resume3 = datas[2] ? datas[2] : undefined
+			var job1 = resume1 ? resume1.interestedJob[0].Job_JobName : 'ยังไม่มีตำแหน่งงาน'
+			var job2 = resume2 ? resume2.interestedJob[0].Job_JobName : 'ยังไม่มีตำแหน่งงาน'
+			var job3 = resume3 ? resume3.interestedJob[0].Job_JobName :'ยังไม่มีตำแหน่งงาน'
+
 			// console.log('in resumeid datas a: ' + JSON.stringify(a));
 			// console.log('in resumeid datas b: ' + JSON.stringify(b));
 			// console.log('in resumeid datas c: ' + JSON.stringify(c));			
 			var Resumedata = datas[index];
-			console.log(Resumedata);
+			// console.log('Resumedata is: ' + JSON.stringify(Resumedata));
 			// console.log('in resumeid index2: ' + index);
 			// console.log('in resumeid e2: ' + e);
 			// console.log('in resumeid state.index2: ' + this.state.index);
@@ -104,6 +111,9 @@ class Resume_topNavbar extends React.Component {
 			}else{
 				this.setState({
 					resumeID : Resumedata._id,
+					jobname1 : job1,
+					jobname2 : job2,
+					jobname3 : job3,
 					workHistorys : Resumedata.workHistorys ? Resumedata.workHistorys : [],
 					educationHistorys : Resumedata.educationHistorys ? Resumedata.educationHistorys : [],
 					certificates : Resumedata.certificates ?  Resumedata.certificates : [],
@@ -170,6 +180,9 @@ class Resume_topNavbar extends React.Component {
 		var index = 0;
 		this.setState({
 			resumeID : '',
+			jobname1 : '',
+			jobname2 : '',
+			jobname3 : '',
 			workHistorys : [],
 			educationHistorys : [],
 			certificates : [],
@@ -195,6 +208,9 @@ class Resume_topNavbar extends React.Component {
 		var index = 1 ;
 		this.setState({
 			resumeID : '',
+			jobname1 : '',
+			jobname2 : '',
+			jobname3 : '',
 			workHistorys : [],
 			educationHistorys : [],
 			certificates : [],
@@ -218,6 +234,9 @@ class Resume_topNavbar extends React.Component {
 		var index = 2;
 		this.setState({
 			resumeID : '',
+			jobname1 : '',
+			jobname2 : '',
+			jobname3 : '',
 			workHistorys : [],
 			educationHistorys : [],
 			certificates : [],
@@ -234,7 +253,7 @@ class Resume_topNavbar extends React.Component {
 		})
 		this.getResumeID(index);
 
-	}
+	}	
 
 	handleSection1 = () => {
 		if(this.state.is_owner){
@@ -369,68 +388,7 @@ class Resume_topNavbar extends React.Component {
 	showingScreen(){
 			return(
 				<div>
-					<div class="modal fade" id="sharingResume" aria-hidden="true" tabindex="-1">
-						<div class="modal-dialog modal-dialog-centered">
-							<div class="modal-content container-fluid sharingSize">
-								<div class="row">
-									<p class="SharingFontHead col-10">Sharing</p>
-								</div>
-								<div class="row mg-l1">
-									<div class="col-4 transition-component scale-up-s" id="cross-fade">
-										<img class="col-10 bottom" src="assets/images/share_link_hover.png" type="button" data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharinglink"/>
-										<img class="col-10  top" src="assets/images/share_link.png" type="button" data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharinglink"/>
-									</div>
-									<div class="col-4 transition-component scale-up-s" id="cross-fade">
-										<img class="col-10 bottom" src="assets/images/share_qr_hover.png" type="button" data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharingqr"/>
-										<img class="col-10 top" src="assets/images/share_qr.png" type="button" data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharingqr"/>
-									</div>
-									<div class="col-4 transition-component scale-up-s" id="cross-fade">
-									<img class="col-10 bottom" src="assets/images/share_pdf_hover.png" type="button" data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharingpdf"/>
-									<img class="col-10 top" src="assets/images/share_pdf.png" type="button" data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharingpdf"/>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="modal fade" id="sharinglink" aria-hidden="true" tabindex="-1">
-						<div class="modal-dialog modal-dialog-centered">
-							<div class="modal-content sharingSize container-fluid">
-								<div class="row marginBEx1">
-									<h1 class="SharingFontHead col-10" id="exampleModalToggleLabel2">Sharing</h1>
-								</div>
-								<div class="row dropbtn margin1">
-									<h5 class="col-10 link-text" id="copylink1">link</h5>
-									<img class="col-2 block-right3 del-pad-col1" href="" src="assets/images/outline_content_copy_black_48dp.png" onclick="copyToCliBoard()" type="button"/>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="modal fade" id="sharingpdf" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-						<div class="modal-dialog modal-dialog-centered">
-							<div class="modal-content sharingSize2 container-fluid">
-								<div class="row">
-									<h1 class="SharingFontHead col-10" id="exampleModalToggleLabel2">Sharing PDF</h1>
-								</div>
-								<div class="row">
-									<div class="dropbtn col-5">
-										<img src="assets/images/previewRY.png" height="200" width="150"/>
-										<button class="form-check-input round" id="agree1"></button>
-									</div>
-									
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="modal fade" id="sharingqr" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-						<div class="modal-dialog modal-dialog-centered">
-							<div class="modal-content sharingSize container-fluid">
-								<div class="row">
-									<h1 class="SharingFontHead col-10" id="exampleModalToggleLabel2">Sharing QR</h1>
-
-								</div>
-							</div>
-						</div>
-					</div>
+					<SharingPopup/>
 					
 					<div className="Resume_topNavbar" id='topNav'>
 						
@@ -440,13 +398,13 @@ class Resume_topNavbar extends React.Component {
 							<div className='resume_topnav' >
 								<div className='resume_selectresume'> 
 									<h1 className='resume_selectresume_block'> 
-										&nbsp;<a  onClick={this.portfoliotab1}  id='resume_selectresume1'>ตำแหน่งงานที่ 1</a>&nbsp; <span className="resume_verticalline"></span> 
+										&nbsp;<a  onClick={this.portfoliotab1}  id='resume_selectresume1'>{this.state.jobname1}</a>&nbsp; <span className="resume_verticalline"></span> 
 									</h1>
 									<h1 className='resume_selectresume_block'> 	
-										&nbsp;<a  onClick={this.portfoliotab2} id='resume_selectresume2'>ตำแหน่งงานที่ 2</a>&nbsp; <span className="resume_verticalline"></span> 
+										&nbsp;<a  onClick={this.portfoliotab2} id='resume_selectresume2'>{this.state.jobname2}</a>&nbsp; <span className="resume_verticalline"></span> 
 									</h1>
 									<h1 className='resume_selectresume_block'> 
-										&nbsp;<a  onClick={this.portfoliotab3} id='resume_selectresume3'>ตำแหน่งงานที่ 3</a>&nbsp;
+										&nbsp;<a  onClick={this.portfoliotab3} id='resume_selectresume3'>{this.state.jobname3}</a>&nbsp;
 									</h1>
 								</div>
 							</div>
@@ -595,6 +553,7 @@ class Resume_topNavbar extends React.Component {
 
 
 		console.log('in render() state : ' + JSON.stringify(this.state))
+		console.log('in render() skil : ' + JSON.stringify(this.state.additionalSkills))
 		// console.log('render this.state.loading: '+this.state.loading)
 		// console.log('render this.state.ready: '+this.state.ready)
 		// console.log('render this.state.fetch: '+this.state.fetch)

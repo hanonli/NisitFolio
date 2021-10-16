@@ -20,6 +20,7 @@
         'position' : 'fixed',
         'z-index' : '10',
         'top' : '8vh',
+        'left' : '10vw',
         'width' : '100vw',
         'text-align' : 'center',
         'background-color' : 'transparent',
@@ -39,7 +40,6 @@
     // | topnav left  section|
     $('.topnav_section1').css({
         'position' : 'relative',
-        'top' : '1.8vh',
         'height' : '45px',
         'width' : '45px',
         'padding-top': '0.7vh',
@@ -138,12 +138,6 @@
     $('#icon-myresume-lock' ).attr({
         'width': '40px',
         'height' : '40px',
-    });
-    $('#icon-myresume-lock' ).css({
-        'position' : 'fixed',
-        'left' : '27.4vw',
-                
-    
     });
     
     //icon-edit
