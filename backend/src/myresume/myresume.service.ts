@@ -56,6 +56,8 @@ export class MyResumeService {
       
     const userid = new ObjectID(UserId);
     const account=await this.accountRepository.findOne({where:{_id:userid}});
+    const resumeColor=(await this.resumePictureRepository.findOne({where:{UserId:UserId}})).Color;
+    result.Color_ResumeId=resumeColor;
     
 
     const softskill_arr=[];
@@ -329,6 +331,8 @@ export class MyResumeService {
     myresume.portfolios = port_arr;
 
     myresume.Color = CreateDto.Color;
+
+
     myresume.create_time =  isoTime;
     myresume.last_modified =  [isoTime] ;
     myresume.modified_by = [ip];

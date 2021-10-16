@@ -37,6 +37,6 @@ export class CreatePortDto {
     Job_SkillName: string[][];
     InterestedJob_id: string[];
     InterestedJob_ResumeId : string[];
-    Color_ResumeId : string[]
+    Color_ResumeId : string;
  
 }
