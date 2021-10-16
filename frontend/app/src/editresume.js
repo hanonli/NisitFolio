@@ -15,7 +15,7 @@ import $ from 'jquery';
 import cookie from 'react-cookies';
 import LoadingS from './Components/loadingS';
 
-var certdata = [], workdata = [], Color_Resume, firstchoosecolor = false;
+var certdata = [], workdata = [], Color_Resume, firstchoosecolor = false,list_of_aca=[],list_of_high=[],sideskilldata=[];
 
 class Editresume extends React.Component {
 
@@ -28,6 +28,11 @@ class Editresume extends React.Component {
 		}
 	}
 
+	handleSubmitEdit = e => {
+		alert('Confirm Edit Resume');
+		window.location = ("myresume");
+	};
+
 	componentDidMount() {
 		var list_of_high = [], list_of_aca = [];
 
@@ -35,7 +40,7 @@ class Editresume extends React.Component {
 			//var x = 1;
 			list_of_high.forEach(ele => {
 				ele["high_pos"] = x;
-				console.log("x:", x);
+				//console.log("x:", x);
 				x++;
 			});
 			return list_of_high;
@@ -45,7 +50,7 @@ class Editresume extends React.Component {
 			//var x = 1;
 			list_of_aca.forEach(ele => {
 				ele["aca_pos"] = x;
-				console.log("x:", x);
+				//console.log("x:", x);
 				x++;
 			});
 			return list_of_aca;
@@ -128,6 +133,13 @@ class Editresume extends React.Component {
 						SalaryType: this.state.data.SalaryType[index],
 						Salary: this.state.data.Salary[index],
 						Infomation: this.state.data.Infomation[index]
+					})
+				});
+				this.state.data.AdditionalSkill_id.forEach((ele, index) => {
+					sideskilldata.push({
+						sideskill_id: ele,
+						sideskillName: this.state.data.Softskill[index],
+						sideskillResume: this.state.data.AdditionalSkill_ResumeId[index]
 					})
 				});
 			});
@@ -262,7 +274,7 @@ class Editresume extends React.Component {
 								<Myresumedittemplate Color_Resume={Color_Resume} firstchoosecolor={firstchoosecolor} />
 							</div>
 							<div class="tab-content" id="registab2-content">
-								<Chooseresume1 />
+								<Chooseresume1 list_of_aca={list_of_aca} list_of_high={list_of_high}/>
 							</div>
 							<div class="tab-content" id="registab3-content">
 								<Editresume2 mywork_data={workdata} />
@@ -274,12 +286,12 @@ class Editresume extends React.Component {
 								<Chooseresume4 />
 							</div>
 							<div class="tab-content" id="registab6-content">
-								<Chooseresume5 />
+								<Chooseresume5 sideskilldata={sideskilldata}/>
 							</div>
 						</div>
 						<div class="col block-right2">
 							<button class="btn btn-cta-primary-blackwide round profile-button" target="_blank" id="cancelChoose">ยกเลิก</button>
-							<button class="btn btn-cta-primary-yellowwide round profile-button marginLEx1" href="/myresume" target="_blank" type="submit" id="confirmChoose">ยืนยัน</button>
+							<button class="btn btn-cta-primary-yellowwide round profile-button marginLEx1" target="_blank" type="submit" id="confirmChoose" onChange={this.handleSubmitEdit}>ยืนยัน</button>
 						</div>
 					</form>
 				</div>

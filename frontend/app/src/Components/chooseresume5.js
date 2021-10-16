@@ -16,10 +16,8 @@ class Chooseresume5 extends React.Component {
 		  checkstatust7: false,
 		  countsideskill:0,
 		};
-		cookie.save('sideskill1',"");
-		cookie.save('sideskill2',"");
-		cookie.save('sideskill3',"");
 	  }
+	  
 	  onInputChange = value => {
 		this.setState({
 			sideskillName: value,
