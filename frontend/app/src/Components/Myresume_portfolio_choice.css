@@ -1,8 +1,9 @@
 .portfoliolayoutP_Frame{
     position: relative;
-    overflow: overlay;
+    /*overflow: overlay;*/
     width: 100%;
-    padding-top: 40%;
+    height: auto;
+    /*padding-top: 60%;*/
     /*background-color: turquoise;*/
 }
 .portfoliolayoutP_Framesmall{
@@ -48,4 +49,11 @@
 
 .portfoliolayout_P{
     width: 100%;
+}
+
+.Gallery{
+    width: 100%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
 }

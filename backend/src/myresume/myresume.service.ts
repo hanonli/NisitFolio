@@ -258,7 +258,12 @@ export class MyResumeService {
         for (var _i = 0; _i < CreateDto.SoftSkillID.length; _i++) {
           const softskillid = new ObjectID(CreateDto.SoftSkillID[_i]);
           const additionalskill = await this.AdditionalSkillRepository.findOne({where:{ _id: softskillid }});
-          softskill_arr.push(additionalskill);
+          additionalskill.ResumeId.push(resumeId);
+          const subAdditionalskill = new AdditionalSkill();
+          subAdditionalskill.AdditionalSkill = additionalskill.AdditionalSkill;
+          subAdditionalskill.Type = additionalskill.Type;
+          softskill_arr.push(subAdditionalskill);
+          await this.AdditionalSkillRepository.save(additionalskill);
         }
         resume.additionalSkills = softskill_arr;
       }
@@ -268,7 +273,13 @@ export class MyResumeService {
         for (var _i = 0; _i < CreateDto.CertID.length; _i++) {
           const certid = new ObjectID(CreateDto.CertID[_i]);
           const certificate = await this.CertificateRepository.findOne({where:{ _id: certid }});
-          cert_arr.push(certificate);
+          certificate.ResumeId.push(resumeId);
+          const subCertificate = new Certificate();
+          subCertificate.CertName = certificate.CertName;
+          subCertificate.CertPic = certificate.CertPic;
+          subCertificate.CertYear = certificate.CertYear;
+          cert_arr.push(subCertificate);
+          await this.CertificateRepository.save(certificate);
         }
         resume.certificates = cert_arr;
       }
@@ -278,7 +289,16 @@ export class MyResumeService {
         for (var _i = 0; _i < CreateDto.EducationID.length; _i++) {
           const educationid = new ObjectID(CreateDto.EducationID[_i]);
           const educationhistory = await this.EducationHistoryRepository.findOne({where:{ _id: educationid }});
-          education_arr.push(educationhistory);
+          educationhistory.ResumeId.push(resumeId);
+          const subEducationhistory = new EducationHistory();
+          subEducationhistory.Degree = educationhistory.Degree;
+          subEducationhistory.Academy = educationhistory.Academy;
+          subEducationhistory.Education_End_Year = educationhistory.Education_End_Year;
+          subEducationhistory.Facalty = educationhistory.Facalty;
+          subEducationhistory.Field_of_study = educationhistory.Field_of_study;
+          subEducationhistory.Grade = educationhistory.Grade;
+          education_arr.push(subEducationhistory);
+          await this.EducationHistoryRepository.save(educationhistory);
         }
         resume.educationHistorys = education_arr;
       }
@@ -288,26 +308,48 @@ export class MyResumeService {
         for (var _i = 0; _i < CreateDto.WorkID.length; _i++) {
           const workid = new ObjectID(CreateDto.WorkID[_i]);
           const workhistory = await this.WorkHistoryRepository.findOne({where:{ _id: workid }});
-          work_arr.push(workhistory);
+          workhistory.ResumeId.push(resumeId);
+          const subWorkhistory = new WorkHistory();
+          subWorkhistory.Work_Company = workhistory.Work_Company;
+          subWorkhistory.Work_End_Month = workhistory.Work_End_Month;
+          subWorkhistory.Work_End_Year =  workhistory.Work_End_Year;
+          subWorkhistory.Work_Infomation = workhistory.Work_Infomation;
+          subWorkhistory.Work_JobName = workhistory.Work_JobName;
+          subWorkhistory.Work_JobType = workhistory.Work_JobType;
+          subWorkhistory.Work_Salary = workhistory.Work_Salary;
+          subWorkhistory.Work_Salary_Type = workhistory.Work_Salary_Type;
+          subWorkhistory.Work_Start_Month = workhistory.Work_Start_Month;
+          subWorkhistory.Work_Start_Year = workhistory.Work_Start_Year;
+          work_arr.push(subWorkhistory);
+          await this.WorkHistoryRepository.save(workhistory);
         }
       }
+
       if (CreateDto.PortID != null){
         var port_arr = [];
         for (var _i = 0; _i < CreateDto.PortID.length; _i++) {
           const portid = new ObjectID(CreateDto.PortID[_i]);
           const portfolio = await this.portModel.findOne({ _id: portid });
-          port_arr.push(portfolio);
+          portfolio.ResumeId.push(resumeId);
+          const subportfolio = await this.portModel.findOne({ _id: portid },["Port_Tag","Port_Privacy","portfolioPictures"]);
+          port_arr.push(subportfolio);
+          await this.portModel.create(portfolio);
         }
         resume.portfolios = port_arr;
       }
+
       if (CreateDto.JobID != null){
         var job_arr = [];
         const jobid = new ObjectID(CreateDto.JobID);
         const interestedjob = await this.InterestedJobRepository.findOne({where:{ _id: jobid }});
+        interestedjob.ResumeId.push(resumeId);
         job_arr.push(interestedjob);
+        await this.InterestedJobRepository.save(interestedjob);
         resume.interestedJob = job_arr;
 
       }
+
+      resume.Privacy = CreateDto.Resume_Privacy;
       resume.Color = CreateDto.Color;
       const CColor = await this.resumePictureRepository.find({where:{UserId:CreateDto.UserId}});
       for (var _i = 0; _i < CColor.length; _i++) {

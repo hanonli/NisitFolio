@@ -62,8 +62,8 @@ function show_all_job() {
                             </div>\
                             <div class="layer_icon" id="{no_list}">\
                                 <div class="set-layer-button-job">\
-								    <button type="button" class="btn" id="edit-job"><img src="assets/images/blackedit.png" width="35" height="35"></img></button>\
-								    <button type="button" class="btn" id="del-job"><img src="assets/images/bin.png" width="50" height="50"></img></button>\
+								    <button type="button" class="btn" id="edit-job"><img src="assets/images/blackedit.png" width="35" height="35" oncontextmenu="return false;" ondragstart="return false;"></img></button>\
+								    <button type="button" class="btn" id="del-job"><img src="assets/images/bin.png" width="50" height="50" oncontextmenu="return false;" ondragstart="return false;"></img></button>\
                                 </div>\
                             </div>\
                         </div>\
