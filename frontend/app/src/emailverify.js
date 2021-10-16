@@ -63,7 +63,7 @@ class Emailverify extends React.Component {
 					</div>
 					<div class="col">
 						<h5 class='form-b24'>หากไม่ได้รับอีเมลในการยืนยัน</h5>
-						<a class="btn btn-cta-primary-yellowwideE round profile-button" href="#" id='resendEmail' target="_blank">ส่งใหม่อีกครั้ง</a>
+						<a class="btn btn-cta-primary-yellowwideE round profile-button" id='resendEmail' target="_blank">ส่งใหม่อีกครั้ง</a>
 					</div>
 				</div>
 			</div>
