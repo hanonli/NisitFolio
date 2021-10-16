@@ -90,7 +90,12 @@ class Editresume2 extends React.Component {
                 else {
                     grid_work2 = grid_work2.replace("{company_work}", ele.Company);
                 }
-                grid_work2 = grid_work2.replace("{ele.Work_Start_Month}", ele.Work_Start_Month);
+                if (ele.Work_Start_Month < 10) {
+                    grid_work2 = grid_work2.replace("{ele.Work_Start_Month}", `0` + ele.Work_Start_Month);
+                }
+                else {
+                    grid_work2 = grid_work2.replace("{ele.Work_Start_Month}", ele.Work_Start_Month);
+                }
                 grid_work2 = grid_work2.replace("{ele.Work_Start_Year}", ele.Work_Start_Year);
                 if (ele.Work_End_Month === 99 && ele.Work_End_Year === 9999) {
                     grid_work2 = grid_work2.replace("สิ้นสุด {month_endwork}/{year_endwork}", "ยังอยู่ในงาน");

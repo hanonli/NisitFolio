@@ -256,8 +256,8 @@ class Chooseresume5 extends React.Component {
 			<div className="Registab7">
 				<h2 class="headerChooseResume">คุณสามารถเลือกผลงานที่สอดคล้องกับตำแหน่งงานที่สนใจได้ไม่จำกัด</h2>
 				<div class="regis-box-content1" id="yyy">
-					
 				</div>
+				<h1 id="dangerzonect5" class='normalformzonet3'>คุณเลือกไปแล้ว x รายการ</h1>
 			</div>
 		);
 	}

@@ -142,7 +142,7 @@ class Chooseresume5 extends React.Component {
 				<div class="regis-box-content1" id="yyy">
 					<div class="dropdowntap7 fixed-wrapper">
 					</div>
-					<h1 id="dangerzonet7" class='normalformzonet3'>คุณเลือกไปแล้ว x รายการ</h1>
+					<h1 id="dangerzonet6" class='normalformzonet3'>คุณเลือกไปแล้ว x รายการ</h1>
 				</div>
 			</div>
 		);

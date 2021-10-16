@@ -26,6 +26,7 @@ import { UserInfoDocument } from './entity/register.schema';
 import { GetRegisDto } from './dto/get-register.dto';
 import { Bookmark } from './entity/bookmark.entity';
 import { Portfolio } from '../portfolio/entity/portfolio.entity';
+import {PatchRegisDto2} from './dto/patch-register_2.dto';
 
 @Injectable()
 export class RegisterService {
@@ -1014,5 +1015,130 @@ export class RegisterService {
   }
 
 
+  async Fullupdate(patchDto: PatchRegisDto2,UserId: string){
+    /*
+    const x={"c":1,"u":2};
+    if(x["x"]==null){
+      return "true"-----
+    }else{
+      return "F"
+    }
+    */
+   /*
+    const x={"wasd":{"x":50},"u":2};
+    //return x["wasd"]["x"];
+    if(x["wasd"]["x"]==null){
+      return "true"
+    }else{
+      return "F"-----
+    }
+    */
+
+    const counter = 0;
+    
+    const time = new Date();
+    const isoTime = time.toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: 'numeric', hour: "2-digit", minute: "2-digit" });
+    
+    const userid = new ObjectID(UserId);
+    const acc = await this.accountRepository.findOne({ where: { _id: userid } });
+
+
+
+    if (patchDto.Password != null)
+      acc.Password.push(Md5.hashStr(patchDto.Password));
+    acc.last_modified.push(isoTime);
+    if (patchDto.ProfilePic != null)
+      acc.ProfilePic = patchDto.ProfilePic;
+    if (patchDto.Privacy != null)
+      acc.Privacy = patchDto.Privacy;
+
+    await this.accountRepository.save(acc);
+  
+    const userinfo = await this.userInfoModel.findOne({ UserId: UserId });
+
+    if (patchDto.Firstname || patchDto.Lastname || patchDto.Birthday || patchDto.Gender || patchDto.AboutMe || patchDto.Email2nd || patchDto.Country || patchDto.City || patchDto.Province)
+      userinfo.last_modified.push(isoTime);
+    if (patchDto.Firstname != null)
+      userinfo.Firstname = patchDto.Firstname;
+    if (patchDto.Lastname != null)
+      userinfo.Lastname = patchDto.Lastname;
+    if (patchDto.Birthday != null)
+      userinfo.Birthday = patchDto.Birthday;
+    if (patchDto.Gender != null)
+      userinfo.Gender = patchDto.Gender;
+    if (patchDto.AboutMe != null)
+      userinfo.AboutMe = patchDto.AboutMe;
+    if (patchDto.Email2nd != null)
+      userinfo.Email2nd = patchDto.Email2nd;
+    if (patchDto.Country != null)
+      userinfo.Country = patchDto.Country;
+    if (patchDto.Province != null)
+      userinfo.Province = patchDto.Province;
+    if (patchDto.City != null)
+      userinfo.City = patchDto.City;
+    if (patchDto.ProfilePic != null)
+      userinfo.ProfilePic = patchDto.ProfilePic;
+
+    const resume =  await this.resumeModel.find({UserId: UserId });
+    for (var _i = 0; _i < resume.length; _i++) {
+      if (patchDto.ProfilePicBase64 || patchDto.Country || patchDto.Province || patchDto.City || patchDto.Firstname || patchDto.Lastname)
+      {
+        resume[_i].last_modified.push(isoTime);
+        resume[_i].modified_by.push("automatic system");
+      }
+      if (patchDto.ProfilePicBase64 != null)
+        resume[_i].ProfilePic =  patchDto.ProfilePicBase64;
+      if (patchDto.Country || patchDto.Province || patchDto.City)
+        resume[_i].Location = patchDto.Country + " " + patchDto.Province + " " + patchDto.City;
+      if (patchDto.Firstname){
+        resume[_i].First = patchDto.Firstname;
+        resume[_i].Owner = patchDto.Firstname + " " + userinfo.Lastname;
+      }
+      if (patchDto.Lastname)
+        resume[_i].Last = patchDto.Lastname;
+        resume[_i].Owner = userinfo.Firstname + " " + patchDto.Lastname;
+    }
+    await this.resumeModel.create(resume);
+
+    const port = await this.portModel.find({UserId: UserId });
+    for (var _i = 0; _i < port.length; _i++) {
+      if (patchDto.Firstname || patchDto.Lastname)
+      {
+        port[_i].last_modified.push(isoTime);
+        port[_i].modified_by.push("automatic system");
+      }
+      if (patchDto.Firstname){
+        port[_i].Owner = patchDto.Firstname + " " + userinfo.Lastname;
+      }
+      if (patchDto.Lastname)
+        port[_i].Owner = userinfo.Firstname + " " + patchDto.Lastname;
+    }
+    await this.portModel.create(port);
+    
+    return await this.userInfoModel.create(userinfo);
+    //*/
+    return "sus";
+    /*
+    const Certificate_sortlist=[];
+      const Certificate_Dictionary = {};
+  
+      for (var _i = 0; _i < Certificate.length; _i++) {
+        const z=Certificate[_i].CertYear;
+        Certificate_sortlist.push(z);
+        Certificate_Dictionary[z]=_i;
+      }
+      Certificate_sortlist.sort();
+      Certificate_sortlist.reverse();
+      for (var _i = 0; _i < Certificate_sortlist.length; _i++) {
+        const key_Certificate_sortlist=Certificate_sortlist[_i];
+        const Certificate_NUM_Dictionary=Certificate_Dictionary[key_Certificate_sortlist];
+        CertName_arr.push(Certificate[Certificate_NUM_Dictionary].CertName);
+        CertPic_arr.push(Certificate[Certificate_NUM_Dictionary].CertPic);
+        CertYear_arr.push(Certificate[Certificate_NUM_Dictionary].CertYear);
+        CertId_arr.push(Certificate[Certificate_NUM_Dictionary].id.toString());
+      }
+      */
+    
+  }
 
 }

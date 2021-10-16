@@ -529,11 +529,30 @@ datalist {
 }
 
 #dangerzonect1 {
-  font-size: 16px;
+    font-size: 16px;
     font-weight: 300;
     position: absolute;
-    top: 40vw;
-    left:21vw;
+    left: 20vw;
+    top: 90%;
+    color: #939393;
+}
+
+#dangerzonect5 {
+  font-size: 16px;
+  font-weight: 300;
+  position: absolute;
+  left: 20vw;
+  top: 90%;
+  color: #939393;
+}
+
+#dangerzonect6 {
+  font-size: 16px;
+  font-weight: 300;
+  position: absolute;
+  left: 20vw;
+  top: 90%;
+  color: #939393;
 }
 
 .Registab3 .choosetab3_formbox {
@@ -570,4 +589,22 @@ datalist {
 .editbtn-resume {
   margin-top: 40px;
 	margin-left: 20%;
+}
+
+.relatt {
+  position: relative;
+}
+
+.absoluteforedit {
+  position: absolute;
+  top:60px;
+  left:1400px;
+}
+
+.underline_tabeditresume {
+  width: 50%;
+  display: block;
+  height: 0.1px;
+  background-color: #c4c4c4;
+  margin: -2vh auto 0;
 }
