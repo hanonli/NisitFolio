@@ -53,7 +53,7 @@ class MyResumeEditTemplate extends React.Component {
                 <div class="layout-edit-template">
 
                     <div class="sample-color-edit-template">
-                        <img src={this.state.sample_template} width="245px"></img>
+                        <img src={this.state.sample_template} width="245px" oncontextmenu="return false;" ondragstart="return false;"></img>
                     </div>
                     <div class="choose-color-edit-template11">
                         <h1 id="text-edit-color-template11">เลือกสีที่เข้ากันและบ่งบอกถึงตัวคุณ</h1>

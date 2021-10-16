@@ -93,6 +93,9 @@ export class AdditionalSkill {
   UserId: string;
 
   @Column()
+  Type: string;
+
+  @Column()
   AdditionalSkill: string;
 
   @Column()
@@ -281,6 +284,9 @@ export class Portfolio {
 
   @Column()
   Port_Privacy: string;
+
+  @Column()
+  Port_Name: string;
 
   @OneToMany(type => PortfolioPicture, portfolioPicture => portfolioPicture.portfolio)
   portfolioPictures: PortfolioPicture[];

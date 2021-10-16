@@ -61,9 +61,9 @@ class Editresume3 extends React.Component {
                                         <h1 id="name-of-certi">{ele.CertName}</h1>\
                                         <h1 id="year-of-certi">{ele.CertYear}</h1>\
                                         <div class="pos-pic-of-certi">\
-                                            <img height="142" src="{ele.CertPic}" id="border_certi"></img>\
+                                            <img height="142" src="{ele.CertPic}" id="border_certi" oncontextmenu="return false;" ondragstart="return false;" ></img>\
                                         </div>\
-                                        <div class="icon-checkbox1111"><img height="110" src="assets/images/check_black.png"></img></div>\
+                                        <div class="icon-checkbox1111"><img height="110" src="assets/images/check_black.png" oncontextmenu="return false;" ondragstart="return false;" ></img></div>\
                                     </label>\
                                 </div >`;
                 let headOfyear1234 = `  <div id="year-choose-tem-{show-year-resume-certi}"><h1 id="textOfyear_certi">{ele.CertYear}</h1></div>\

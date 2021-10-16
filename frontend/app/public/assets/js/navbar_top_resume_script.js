@@ -44,8 +44,7 @@
         'width' : '45px',
         'padding-top': '0.7vh',
         'padding-bottom': '0.7vh',
-        'background-color' : 'white',
-        // 'border' : '0.1vw solid black',
+        'background-color' : '#eaeaea',
         'border-radius': '0.5vw',
 
     })
@@ -68,50 +67,54 @@
         // 'border' : '0.1vw solid black',
         'border-radius': '0.5vw',
         'display' : 'inline-block',
-        'background-color' : 'white',
+        'background-color' : '#eaeaea',
     })
                 
     //  | vertical line |
     $('.resume_verticalline').css({
-        'font-size' : '2.5vh',
+        'margin-top': '3px',
+        'margin-left': '3px',
+        'padding-bottom': '3px',
+        'font-size' : '25px',
         'border-left' : '0.1vw solid  black',
-        'height' : '10vh',
-        'background-color' : 'white',
+        'background-color' : '#eaeaea',
     })
 
     $('.resume_verticalline2').css({
         'font-size' : '2.5vh',
         'border-right' : '0.1vw solid black',
         'height' : '1vh',
-        'background-color' : 'white',
+        'background-color' : '#eaeaea',
     })
      // | select resume |
     $('.resume_selectresume').css({
         // 'border' : '0.1vw solid black',
         'border-radius': '0.5vw',
         'display' : 'inline-block',
-        'background-color' : 'white',
+        'background-color' : '#eaeaea',
     })
-    // | select resume block |
 
+    // | select resume block |
     $('.resume_selectresume_block').css({
-        'height': '4vh',
-        'border-radius': '0.5vw',
-        'padding-top': '1vh',
+        'padding': '3px',
         'font-size' : '2.5vh',
         'display' : 'inline-block',
+        'text-decoration' : 'None',
+        'text-decoration-color' : 'None',
 
+    })
+    // | select resume text |
+    $('.resume_selectresume_text').css({
+        'display' : 'inline-block',
+        'border-radius' : '0.5vw',  
     })
 
 
     // | select resume 1 2 3|
     $('#resume_selectresume1 ,#resume_selectresume2 ,#resume_selectresume3').css({
-        'text-decoration' : 'None',
-        'padding-top': '0.2vh',
-        'padding-left': '3vh',
-        'padding-right': '3vh',
+        'padding-left': '2vh',
+        'padding-right': '2vh',
         'border-radius' : '0.5vw',
-        'color': 'black',
     })
         
     // $('#resume_selectresume1').click(function(){
@@ -177,7 +180,6 @@
     // })
 
 
-    
 
  }); 
  

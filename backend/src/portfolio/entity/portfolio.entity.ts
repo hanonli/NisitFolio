@@ -270,6 +270,8 @@ export class Portfolio {
   @Column()
   ProfilePic: string;
 
+  @Column()
+  ResumeId:string[];
 }
 
 //--------------------PortfolioPicture--------------------------//
@@ -295,6 +297,7 @@ export class PortfolioPicture {
 
   @Column()
   last_modified:string[];
+
 
 }
 

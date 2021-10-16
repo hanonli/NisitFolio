@@ -248,7 +248,7 @@ class Edittab4 extends React.Component {
                     return true;
             });
             if (list_of_work[removeIndex].isFetch === true) {
-                fetch("http://localhost:2000/register/workHistory/" + list_of_work[removeIndex].WorkHistory_id, {
+                /*fetch("http://localhost:2000/register/workHistory/" + list_of_work[removeIndex].WorkHistory_id, {
                     method: "DELETE",
                     headers: {
                         'Authorization': 'Bearer ' + list_of_work[removeIndex].token,
@@ -260,17 +260,17 @@ class Edittab4 extends React.Component {
                 })
                     .then(response => response.json())
                     .then((raws) => {
-                        console.log(raws);
-                        list_of_year_work[list_of_work[removeIndex]["Work_Start_Year"]] -= 1;
-                        if (list_of_year_work[list_of_work[removeIndex]["Work_Start_Year"]] == 0) {
-                            $(`#yearOf_` + String(list_of_work[removeIndex]["Work_Start_Year"])).remove();
-                        }
-                        list_of_work.splice(removeIndex, 1);
-                        $(`#` + id_list_work_del).remove();
-                        $('#Modal_remove_work').modal('hide');
-                    }).catch((error) => {
-                        console.log(error);
-                    });
+                console.log(raws);*/
+                list_of_year_work[list_of_work[removeIndex]["Work_Start_Year"]] -= 1;
+                if (list_of_year_work[list_of_work[removeIndex]["Work_Start_Year"]] == 0) {
+                    $(`#yearOf_` + String(list_of_work[removeIndex]["Work_Start_Year"])).remove();
+                }
+                list_of_work.splice(removeIndex, 1);
+                $(`#` + id_list_work_del).remove();
+                $('#Modal_remove_work').modal('hide');
+                /*}).catch((error) => {
+                    console.log(error);
+                });*/
             }
             else {
                 list_of_year_work[list_of_work[removeIndex]["Work_Start_Year"]] -= 1;
@@ -552,7 +552,7 @@ class Edittab4 extends React.Component {
                     <div class="registab4_formbox">
                         <div className="registab4_btnplus">
                             <button type="button" class="btn" id="add_work" >
-                                <img src="assets/images/+.png" width="57" height="57" ></img>
+                                <img src="assets/images/+.png" width="57" height="57" onContextMenu={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()}></img>
                             </button>
                         </div>
                     </div>
