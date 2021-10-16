@@ -29,7 +29,7 @@ $('#icon-myresume-goal').attr('title', 'Goal');
 $('.Home').css({
     'overflow':'hidden',
 });
-$('.MyResumeContent').css("padding-left",'5vw');
+$('.MyResumeContent').css("padding-left",'20vw');
 
 $('.Resume_sideNavbar').css({
     "padding-top":"6.5vh",

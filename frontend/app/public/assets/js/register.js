@@ -80,6 +80,7 @@ $('#continue2').click(function () {
   var last_city = $('#townny').val();
   var last_aboutme = $('#aboutme2').val();
   var last_sideskill = [];
+  var last_typesideskill = [];
   if(last_province==null){
     last_province='';
   }
@@ -232,12 +233,17 @@ $('#continue2').click(function () {
     }
   });
   var ssss1 = Cookies.get('sideskill1');
+  var tssss1 = Cookies.get('typesideskill1');
   var ssss2 = Cookies.get('sideskill2');
+  var tssss2 = Cookies.get('typesideskill2');
   var ssss3 = Cookies.get('sideskill3');
-  console.log(ssss1+'+'+ssss2+'+'+ssss3);
+  var tssss3 = Cookies.get('typesideskill3');
+  console.log('type'+tssss1+'+'+tssss2+'+'+tssss3);
+  console.log('skill'+ssss1+'+'+ssss2+'+'+ssss3);
   var checkTab7 = 0;
   if(ssss1==''){
     var last_sideskill = [];
+    var last_typesideskill = [];
     checkTab7 = 1;
   }
   else if(ssss1==ssss2&&ssss1==ssss3){
@@ -279,14 +285,17 @@ $('#continue2').click(function () {
   }
   else if(ssss2==''){
     var last_sideskill = [ssss1];
+    var last_typesideskill = [tssss1];
     checkTab7 = 1;
   }
   else if(ssss3==''){
     var last_sideskill = [ssss1,ssss2];
+    var last_typesideskill = [tssss1,tssss2];
     checkTab7 = 1;
   }
   else{
     var last_sideskill = [ssss1,ssss2,ssss3];
+    var last_typesideskill = [tssss1,tssss2,tssss3];
     checkTab7 = 1;
   }
   if($('#re03').val()!=""){
@@ -359,6 +368,7 @@ $('#continue2').click(function () {
       Province:last_province,
       City:last_city,
       SoftSkill:last_sideskill,
+      SoftSkillType: last_typesideskill,
       CertName:last_certname,
       CertPic:last_certpic,
       CertYear:last_certyear,

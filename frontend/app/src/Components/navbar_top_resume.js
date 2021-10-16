@@ -21,6 +21,9 @@ class Resume_topNavbar extends React.Component {
 		this.state = {
 			userID : '',
 			resumeID : '',
+			jobname1 : '',
+			jobname2 : '',
+			jobname3 : '',
 			workHistorys : [],
 			educationHistorys : [],
 			certificates : [],
@@ -76,15 +79,19 @@ class Resume_topNavbar extends React.Component {
 			// var index = e;
 			// console.log('real resumeID:' + JSON.stringify(datas[0].ResumeId[0]))
 			// console.log('in resumeid datas: ' + JSON.stringify(datas));
-			var index=this.state.index
-			// var a = datas[0]
-			// var b = datas[1]
-			// var c = datas[2]
+			var index = this.state.index
+			var resume1 = datas[0] ? datas[0] : undefined
+			var resume2 = datas[1] ? datas[1] : undefined
+			var resume3 = datas[2] ? datas[2] : undefined
+			var job1 = resume1 ? resume1.interestedJob[0].Job_JobName : 'ยังไม่มีตำแหน่งงาน'
+			var job2 = resume2 ? resume2.interestedJob[0].Job_JobName : 'ยังไม่มีตำแหน่งงาน'
+			var job3 = resume3 ? resume3.interestedJob[0].Job_JobName : 'ยังไม่มีตำแหน่งงาน'
+
 			// console.log('in resumeid datas a: ' + JSON.stringify(a));
 			// console.log('in resumeid datas b: ' + JSON.stringify(b));
 			// console.log('in resumeid datas c: ' + JSON.stringify(c));			
 			var Resumedata = datas[index];
-			console.log(Resumedata);
+			// console.log('Resumedata is: ' + JSON.stringify(Resumedata));
 			// console.log('in resumeid index2: ' + index);
 			// console.log('in resumeid e2: ' + e);
 			// console.log('in resumeid state.index2: ' + this.state.index);
@@ -104,6 +111,9 @@ class Resume_topNavbar extends React.Component {
 			}else{
 				this.setState({
 					resumeID : Resumedata._id,
+					jobname1 : job1,
+					jobname2 : job2,
+					jobname3 : job3,
 					workHistorys : Resumedata.workHistorys ? Resumedata.workHistorys : [],
 					educationHistorys : Resumedata.educationHistorys ? Resumedata.educationHistorys : [],
 					certificates : Resumedata.certificates ?  Resumedata.certificates : [],
@@ -161,7 +171,20 @@ class Resume_topNavbar extends React.Component {
 
 	}
 
-	handlePrivacy(){
+	handlePrivacy = () =>{
+		if(this.state.privacy == 'Private'){
+			this.setState({
+				privacy : 'Member'
+			})
+		}else if(this.state.privacy == 'Member'){
+			this.setState({
+				privacy : 'Public'
+			})
+		}else if(this.state.privacy == 'Public'){
+			this.setState({
+				privacy : 'Private'
+			})
+		}
 
 	}
 
@@ -170,6 +193,9 @@ class Resume_topNavbar extends React.Component {
 		var index = 0;
 		this.setState({
 			resumeID : '',
+			jobname1 : '',
+			jobname2 : '',
+			jobname3 : '',
 			workHistorys : [],
 			educationHistorys : [],
 			certificates : [],
@@ -195,6 +221,9 @@ class Resume_topNavbar extends React.Component {
 		var index = 1 ;
 		this.setState({
 			resumeID : '',
+			jobname1 : '',
+			jobname2 : '',
+			jobname3 : '',
 			workHistorys : [],
 			educationHistorys : [],
 			certificates : [],
@@ -218,6 +247,9 @@ class Resume_topNavbar extends React.Component {
 		var index = 2;
 		this.setState({
 			resumeID : '',
+			jobname1 : '',
+			jobname2 : '',
+			jobname3 : '',
 			workHistorys : [],
 			educationHistorys : [],
 			certificates : [],
@@ -234,19 +266,49 @@ class Resume_topNavbar extends React.Component {
 		})
 		this.getResumeID(index);
 
-	}
+	}	
 
 	handleSection1 = () => {
 		if(this.state.is_owner){
 			// console.log('you are owner1')
-			return (
-			<div className='resume_topnav' >
-				<a className='topnav_section1' > 
-					<img onClick={this.handlePrivacy()} className='icon-myresume' id='icon-myresume-lock' src="assets/images/outline_lock_black_24dp.png"/> 
-				</a>
-			</div>
+			if(this.state.privacy == 'Private'){
+				return (
+					<div className='resume_topnav' >
+						<div className='topnav_section1'>
+							
+							<img type='button' onClick={this.handlePrivacy} id='icon-myresume-private' src="assets/images/outline_lock_black_24dp.png"/> 
+							
+						</div>
+						
+					</div>
+					)
+			}
+			else if(this.state.privacy == 'Member'){
+				return (
+					<div className='resume_topnav' >
+						<div className='topnav_section1'>
+							
+							<img type='button' onClick={this.handlePrivacy} id='icon-myresume-member' src="assets/images/outline_people_black_24dp.png"/> 
+							
+						</div>
+						
+					</div>
+					)
+			}
+			else if(this.state.privacy == 'Public'){
+				return (
+					<div className='resume_topnav' >
+						<div className='topnav_section1'>
+							
+							<img type='button' onClick={this.handlePrivacy} id='icon-myresume-public' src="assets/images/outline_public_black_24dp.png"/> 
+							
+						</div>
+						
+					</div>
+					)
+			}
 			
-			)
+
 		}else{
 			// console.log('you are outsider1')
 			return (
@@ -264,25 +326,27 @@ class Resume_topNavbar extends React.Component {
 		if(this.state.is_owner){
 			// console.log('you are owner2')
 			return (
-				<div className='resume_topnav' >
+				<div className='resume_selectoption'> 
 
-					<div className='resume_selectoption'> 
+						<div className='topnav_section2'>
+							<a> 
+								&nbsp;
+								<img id='icon-myresume-edit' src="assets/images/blackedit.png"/> 
+							</a>
+							<span className='resume_verticalline2'> </span>
+							<a> 
+								<img class="obj-icon tooltips-item"  id='icon-myresume-share' src="assets/images/outline_ios_share_black_48dp.png" type="button" data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharingResume" alt="" width="30" height="30"/>
+								{/* <img id='icon-myresume-share' src="assets/images/outline_ios_share_black_48dp.png"/>  */}
+								{/* <span id='icon-myresume-share'> <SharingPopup></SharingPopup></span> */}
+								&nbsp;
+							</a>
 
-						<a className='topnav_section2'> 
-							&nbsp;
-							<img className='icon-myresume' id='icon-myresume-edit' src="assets/images/blackedit.png"/> 
-							&nbsp;
-						</a>
-						<span className='resume_verticalline2'> </span>
+						</div>
+						
+						
 						{/* <SharingPopup></SharingPopup> */}
-
-
-						<a className='topnav_section2'> 
-							<span className='icon-myresume'> <SharingPopup></SharingPopup></span>
-						</a>
-						&nbsp;
-					</div>
 				</div>
+				
 			)
 		}else{
 			// console.log('you are outsider2')
@@ -299,29 +363,26 @@ class Resume_topNavbar extends React.Component {
 
 	resumeNothing(){
 		var index = this.state.index
+		cookie.save('Edit_tabselect', 6);
 		if(index==0){
 			return(
 				<>
 					<MyResumeNothing1/>
 				</>
-
 			)
 		}else if(index==1){
 			return(
 				<>
 					<MyResumeNothing2/>
 				</>
-
 			)
 		}else if(index==2){
 			return(
 				<>
 					<MyResumeNothing3/>
 				</>
-
 			)
 		}
-		
 	}
 
 	content(){
@@ -353,6 +414,7 @@ class Resume_topNavbar extends React.Component {
 	showingScreen(){
 			return(
 				<div>
+					<SharingPopup/>
 					
 					<div className="Resume_topNavbar" id='topNav'>
 						
@@ -362,13 +424,13 @@ class Resume_topNavbar extends React.Component {
 							<div className='resume_topnav' >
 								<div className='resume_selectresume'> 
 									<h1 className='resume_selectresume_block'> 
-										&nbsp;<a  onClick={this.portfoliotab1}  id='resume_selectresume1'>ตำแหน่งงานที่ 1</a>&nbsp; <span className="resume_verticalline"></span> 
+										&nbsp;<a  onClick={this.portfoliotab1}  id='resume_selectresume1'>{this.state.jobname1}</a>&nbsp; <span className="resume_verticalline"></span> 
 									</h1>
 									<h1 className='resume_selectresume_block'> 	
-										&nbsp;<a  onClick={this.portfoliotab2} id='resume_selectresume2'>ตำแหน่งงานที่ 2</a>&nbsp; <span className="resume_verticalline"></span> 
+										&nbsp;<a  onClick={this.portfoliotab2} id='resume_selectresume2'>{this.state.jobname2}</a>&nbsp; <span className="resume_verticalline"></span> 
 									</h1>
 									<h1 className='resume_selectresume_block'> 
-										&nbsp;<a  onClick={this.portfoliotab3} id='resume_selectresume3'>ตำแหน่งงานที่ 3</a>&nbsp;
+										&nbsp;<a  onClick={this.portfoliotab3} id='resume_selectresume3'>{this.state.jobname3}</a>&nbsp;
 									</h1>
 								</div>
 							</div>
@@ -462,10 +524,10 @@ class Resume_topNavbar extends React.Component {
 			// console.log('update state')
 			return true
 		}
-		// else if(this.state.userID != nextState.userID){
-		// 	console.log('update userid')
-		// 	return true
-		// }
+		else if(this.state.privacy != nextState.privacy){
+			console.log('update privacy')
+			return true
+		}
 		else if(this.state.resumeID != nextState.resumeID){
 			// console.log(3)
 			// console.log('update state resumeid')
@@ -517,6 +579,7 @@ class Resume_topNavbar extends React.Component {
 
 
 		console.log('in render() state : ' + JSON.stringify(this.state))
+		console.log('in render() skil : ' + JSON.stringify(this.state.additionalSkills))
 		// console.log('render this.state.loading: '+this.state.loading)
 		// console.log('render this.state.ready: '+this.state.ready)
 		// console.log('render this.state.fetch: '+this.state.fetch)

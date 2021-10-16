@@ -1,7 +1,16 @@
 import React from 'react';
 import './myresumeNothing.css'
+import { Link } from 'react-router-dom';
+import cookie from "react-cookies";
+import $ from 'jquery';
 
 class MyResumeNothing extends React.Component {
+    componentDidMount() {
+        $('#goToeditProfile').on('click', function () {
+            cookie.save('Edit_tabselect', 6);
+            window.location = ("editprofile");
+        })
+    }
     render() {
         return (
             <div class="layout-nothing">
@@ -17,7 +26,7 @@ class MyResumeNothing extends React.Component {
                             <h4 class="del-b">คุณยังไม่มีตำแหน่งงานที่ต้องการ<br />ต้องการเพิ่มตอนนี้เลยหรือไม่?</h4>
                             <div class="centerverify">
                                 <a type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">ยกเลิก</a>
-                                <a type="button" class="btn btn-cta-primary-yellowshort profile-button round" href="/chooseresume" target="_blank">เพิ่ม</a>
+                                <a type="button" class="btn btn-cta-primary-yellowshort profile-button round" target="_blank" id="goToeditProfile">เพิ่ม</a>
                             </div>
                         </div>
                     </div>

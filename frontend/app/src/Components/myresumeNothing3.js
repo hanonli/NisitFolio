@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './myresumeNothing.css'
 
 class MyResumeNothing3 extends React.Component {
@@ -8,7 +9,9 @@ class MyResumeNothing3 extends React.Component {
                 <div class="nothing-content">
                     <img src="assets/images/outline_cancel_black_24dp 1.png" width="250" />
                     <h1 id="text-nothing">ตอนนี้คุณยังไม่มีตำแหน่งงานเพื่อแสดงผล MyResume</h1>
-                    <button id="create-myResume" type="button" class="btn btn-cta-primary-yellowshort profile-button round" >เพิ่มตำแหน่งงานที่สนใจ</button>
+                    <Link to="/editprofile">
+                        <button id="create-myResume" type="button" class="btn btn-cta-primary-yellowshort profile-button round" >เพิ่มตำแหน่งงานที่สนใจ</button>
+                    </Link>
                 </div>
             </div>
         );
