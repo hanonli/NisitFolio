@@ -150,7 +150,7 @@ export class PortService {
         await this.resumeModel.remove(resume);
         var move = false;
         for (var _j = 0; _j < copy.portfolios.length-1; _j++) {
-          if (copy.portfolios[_j]._id == ID || move == true) 
+          if (copy.portfolios[_j]._id == portId || move == true || copy.portfolios[_j]._id == ID) 
           {
             move = true;
             copy.portfolios[_j] = copy.portfolios[_j+1];
