@@ -37,6 +37,11 @@ export class MyResumeController {
   
 
 
+  @Post("/test/:x")
+    async x(@Body() CreateDto: CreateResumeDto,@Param('x') x: string) {
+      CreateDto.UserId = "xtest";
+    return this.resumeService.createResume(CreateDto,x);
+  }
   @UseGuards(JwtAuthGuard)
   @Post()
     async CreateResume(@Body() CreateDto: CreateResumeDto ,@Request() req,@RealIP() ip: string) {
