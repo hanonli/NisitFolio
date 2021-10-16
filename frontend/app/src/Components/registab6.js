@@ -22,7 +22,7 @@ class Registab6 extends React.Component {
 					<div class="frame_add_job_interest">
 						<div className="button_add_job_interest">
 							<button id="add-job" type="button" class="btn">
-								<img src="assets/images/+.png" width="57" height="57"></img>
+								<img src="assets/images/+.png" width="57" height="57" onContextMenu={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()}></img>
 							</button>
 						</div>
 					</div>
@@ -75,7 +75,7 @@ class Registab6 extends React.Component {
 													<div class="box-slider1">
 														<div class="sliderWithLabels" id="mySlider1"></div>
 													</div>
-													<div class="reset-button11" id="reset-skill1"><img src="assets/images/reset.png" width="25" height="25"></img></div>
+													<div class="reset-button11" id="reset-skill1"><img src="assets/images/reset.png" width="25" height="25" onContextMenu={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()}></img></div>
 												</div>
 											</div>
 
@@ -89,7 +89,7 @@ class Registab6 extends React.Component {
 													<div class="box-slider2">
 														<div class="sliderWithLabels" id="mySlider2"></div>
 													</div>
-													<div class="reset-button11" id="reset-skill2"><img src="assets/images/reset.png" width="25" height="25"></img></div>
+													<div class="reset-button11" id="reset-skill2"><img src="assets/images/reset.png" width="25" height="25" onContextMenu={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()}></img></div>
 												</div>
 											</div>
 
@@ -103,7 +103,7 @@ class Registab6 extends React.Component {
 													<div class="box-slider3">
 														<div class="sliderWithLabels" id="mySlider3"></div>
 													</div>
-													<div class="reset-button11" id="reset-skill3"><img src="assets/images/reset.png" width="25" height="25"></img></div>
+													<div class="reset-button11" id="reset-skill3"><img src="assets/images/reset.png" width="25" height="25" onContextMenu={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()}></img></div>
 												</div>
 											</div>
 										</div>
@@ -116,7 +116,7 @@ class Registab6 extends React.Component {
 												<div class="col-4">
 													<div class="contend-of-obj" >
 														<div class="pos-del-obj-button" id="pos-del-obj-button1">
-															<button type="button" class="btn del-obj-icon"><img src="assets/images/bin.png" width="25" height="25"></img></button>
+															<button type="button" class="btn del-obj-icon"><img src="assets/images/bin.png" width="25" height="25" onContextMenu={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()}></img></button>
 														</div>
 														<textarea maxlength="280" type="text" class="form-control dropbtn margin-bottom1 height-job1" id="obj-job-01" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
 													</div>
@@ -130,7 +130,7 @@ class Registab6 extends React.Component {
 												<div class="col-4">
 													<div class="contend-of-obj" >
 														<div class="pos-del-obj-button" id="pos-del-obj-button2">
-															<button type="button" class="btn del-obj-icon"><img src="assets/images/bin.png" width="25" height="25"></img></button>
+															<button type="button" class="btn del-obj-icon"><img src="assets/images/bin.png" width="25" height="25" onContextMenu={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()}></img></button>
 														</div>
 														<textarea maxlength="280" type="text" class="form-control dropbtn margin-bottom1 height-job2" id="obj-job-02" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
 													</div>
@@ -144,7 +144,7 @@ class Registab6 extends React.Component {
 												<div class="col-4">
 													<div class="contend-of-obj" >
 														<div class="pos-del-obj-button" id="pos-del-obj-button3">
-															<button type="button" class="btn del-obj-icon"><img src="assets/images/bin.png" width="25" height="25"></img></button>
+															<button type="button" class="btn del-obj-icon"><img src="assets/images/bin.png" width="25" height="25" onContextMenu={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()}></img></button>
 														</div>
 														<textarea maxlength="280" type="text" class="form-control dropbtn margin-bottom1 height-job3" id="obj-job-03" placeholder="พิมพ์เป้าหมายในการทำงานของคุณเพิ่ม" required></textarea>
 													</div>
