@@ -45,47 +45,37 @@
         'padding-top': '0.7vh',
         'padding-bottom': '0.7vh',
         'background-color' : '#eaeaea',
-        'border-radius': '0.5vw',
+        'border-radius': '0.6vw',
 
     })
 
     // | topnav right section |
     $('.topnav_section2').css({
-        'padding-top' : '0.6vh',
-        'font-size' : '2.5vh',
+        'position' : 'relative',
         'height' : '45px',
+        'width' : 'auto',
+        'padding-top': '0.5vh',
+        'background-color' : '#eaeaea',
+        'border-radius': '0.5vw',
+    })
+
+    // | topnav right section |
+    $('.resume_selectoption').css({
+        'border-radius': '0.5vw',
+        'display' : 'inline-block',
+        'background-color' : '#eaeaea',
+       
+    })
+    // | topnav right section resume select |
+    $('.resume_selectoption_block').css({
+        'padding': '3px 10px 3px 10px',
+        'font-size' : '2.5vh',
+        'display' : 'inline-block',
         'text-decoration' : 'None',
         'text-decoration-color' : 'None',
     })
 
-
-
-    // | topnav right section |
-    $('.resume_selectoption').css({
-        
-        'font-size' : '2.5vh',
-        // 'border' : '0.1vw solid black',
-        'border-radius': '0.5vw',
-        'display' : 'inline-block',
-        'background-color' : '#eaeaea',
-    })
-                
-    //  | vertical line |
-    $('.resume_verticalline').css({
-        'margin-top': '3px',
-        'margin-left': '3px',
-        'padding-bottom': '3px',
-        'font-size' : '25px',
-        'border-left' : '0.1vw solid  black',
-        'background-color' : '#eaeaea',
-    })
-
-    $('.resume_verticalline2').css({
-        'font-size' : '2.5vh',
-        'border-right' : '0.1vw solid black',
-        'height' : '1vh',
-        'background-color' : '#eaeaea',
-    })
+ 
      // | select resume |
     $('.resume_selectresume').css({
         // 'border' : '0.1vw solid black',
@@ -103,6 +93,8 @@
         'text-decoration-color' : 'None',
 
     })
+
+
     // | select resume text |
     $('.resume_selectresume_text').css({
         'display' : 'inline-block',
@@ -134,6 +126,28 @@
     //     localStorage.setItem('active-resume', $(this).attr('active'));
     // });        
 
+
+                   
+    //  | vertical line |
+    $('.resume_verticalline').css({
+        'margin-top': '3px',
+        'margin-left': '3px',
+        'padding-bottom': '3px',
+        'font-size' : '25px',
+        'border-left' : '0.1vw solid  black',
+        'background-color' : '#eaeaea',
+    })
+
+    $('.resume_verticalline2').css({
+        'margin-top': '3px',
+        'margin-left': '3px',
+        'padding-bottom': '3px',
+        'font-size' : '25px',
+        'border-left' : '0.1vw solid  black',
+        'background-color' : '#eaeaea',
+    })
+
+
     // icom myresume
 
  
@@ -160,7 +174,7 @@
     
     });
     $('#icon-myresume-edit' ).css({
-        'margin-right': '5px',
+        'margin-left': '3px',
     
     });
     //icon-share
@@ -168,9 +182,9 @@
         'width': '35px',
         'height' : '35px',
     });
-
     $('#icon-myresume-share' ).css({
-        'margin-right': '5px',
+        'margin-left': '-7px',
+        'margin-right': '2px',
 
     
     });

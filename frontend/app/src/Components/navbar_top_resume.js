@@ -342,80 +342,60 @@ class Resume_topNavbar extends React.Component {
 			
 
 		}
-		//else{
-		// 	// console.log('you are outsider1')
-		// 	return (
-		// 	<div className='resume_topnav' >
-		// 		<div className='topnav_section1' > 
-		// 			<img className='icon-myresume' id='icon-myresume-lock-bookmark' src="assets/images/bookmark_2.png"/> 
-		// 		</div>
-		// 	</div>
 
-		// 	)
-		// }
 	}
 
 	handleSection2 = () => {
 		if (this.state.is_owner) {
-			// console.log('you are owner2')
+				console.log('you are owner2')
 			return (
-				<div className='resume_selectoption'> 
-
-						<div className='topnav_section2'>
-							
-							&nbsp;
-							<img type='button' onClick={this.handleEdit}  id='icon-myresume-edit' src="assets/images/blackedit.png"/> 
-						
-							<span className='resume_verticalline2'> </span>
-							
-							<img type='button' class="obj-icon tooltips-item"  id='icon-myresume-share' src="assets/images/outline_ios_share_black_48dp.png" type="button" data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharingResume" alt="" width="30" height="30"/>
-								{/* <img id='icon-myresume-share' src="assets/images/outline_ios_share_black_48dp.png"/>  */}
-								{/* <span id='icon-myresume-share'> <SharingPopup></SharingPopup></span> */}
-								&nbsp;
-						
-
+				
+				<div className='resume_selectoption' >
+					<div className='resume_selectoption_block'>
+						<div type='button'>
+							<img  onClick={this.handleEdit}  id='icon-myresume-edit' src="assets/images/blackedit.png"/>
+						</div>
+									
 					</div>
+					
+					<span className='resume_verticalline2'> </span>
 
+					<div className='resume_selectoption_block'>
+						<div type='button'>
+							<img   id='icon-myresume-share' src="assets/images/outline_ios_share_black_48dp.png"data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharingResume" alt="" />
+						</div>
+						
+									
+					</div>
+							
+							
 
-					{/* <SharingPopup></SharingPopup> */}
+						
+
+						
 				</div>
+					
+					
+				// <div className='resume_selectoption'> 
+				// 		<text> We ARE HERE AI SUS Do qui non ad voluptate tempor. Laborum incididunt amet ea veniam culpa veniam velit culpa officia. Occaecat ea elit nostrud mollit non incididunt deserunt id pariatur pariatur. Aliquip est dolor officia deserunt occaecat veniam et consectetur.</text>
+						
 
-			)
-		} else {
-			// console.log('you are outsider2')
-			return (
-				<div className='resume_topnav' >
-					<a className='topnav_section1' href='#myresume' >
-						<img id='icon-myresume-lock' src="assets/images/bookmark_2.png" />
-					</a>
-				</div>
 
+				// 	{/* <SharingPopup></SharingPopup> */}
+				// </div> 
+				
 			)
-		}
+		} 
 	}
 
 	resumeNothing() {
 		var index = this.state.index
 		cookie.save('Edit_tabselect', 6);
-		if (index == 0) {
-			return (
-				<>
-					<MyResumeNothing />
-				</>
-			)
-		} else if (index == 1) {
-			return (
-				<>
-					<MyResumeNothing />
-				</>
-			)
-		} else if (index == 2) {
-			return (
-				<>
-					<MyResumeNothing />
-				</>
-			)
-		}
+		return (
+			<>
+				<MyResumeNothing />
+			</>
+		)
 	}
 
 	content() {
@@ -457,10 +437,7 @@ class Resume_topNavbar extends React.Component {
 							<div className='resume_topnav' >
 								<div className='resume_selectresume'> 
 									<div className='resume_selectresume_block'> 
-										{/* <div className='resume_selectresume_text' >
-											&nbsp;
-										</div> */}
-										<div type='button' className='resume_selectresume_text' style={this.state.index == 0 ? Activestyle : null}>
+										<div type='button' className='resume_selectresume_text' style={this.state.index == 0 && this.state.jobname1 != 'ยังไม่มีตำแหน่งงาน' ? Activestyle : null}>
 											<text  id='resume_selectresume1' style={this.state.jobname1 != 'ยังไม่มีตำแหน่งงาน' ?  this.state.index == 0 ? ActiveFontstyle : DefaultFontstyle : DisableFontstyle} onClick={this.state.jobname1 != 'ยังไม่มีตำแหน่งงาน' ? this.portfoliotab1 : null} >{this.state.jobname1}</text> 
 										</div>
 										<div className='resume_selectresume_text' >
@@ -469,7 +446,7 @@ class Resume_topNavbar extends React.Component {
 										
 									</div>
 									<div className='resume_selectresume_block'> 		
-										<div type='button' className='resume_selectresume_text' style={this.state.index == 1 ? Activestyle : null}>
+										<div type='button' className='resume_selectresume_text' style={this.state.index == 1 && this.state.jobname2 != 'ยังไม่มีตำแหน่งงาน' ? Activestyle : null}>
 											<text  id='resume_selectresume2' style={this.state.jobname2 != 'ยังไม่มีตำแหน่งงาน' ? this.state.index == 1 ? ActiveFontstyle : DefaultFontstyle : DisableFontstyle} onClick={this.state.jobname2 != 'ยังไม่มีตำแหน่งงาน' ? this.portfoliotab2 : null} >{this.state.jobname2}</text> 
 										</div>
 										<div className='resume_selectresume_text' >
@@ -478,24 +455,27 @@ class Resume_topNavbar extends React.Component {
 
 									</div>
 									<div className='resume_selectresume_block'> 
-										<div type='button' className='resume_selectresume_text' style={this.state.index == 2 ? Activestyle : null}>
+										<div type='button' className='resume_selectresume_text' style={this.state.index == 2 && this.state.jobname3 != 'ยังไม่มีตำแหน่งงาน'? Activestyle : null}>
 											<text  id='resume_selectresume3' style={this.state.jobname3 != 'ยังไม่มีตำแหน่งงาน' ? this.state.index == 2 ? ActiveFontstyle : DefaultFontstyle : DisableFontstyle} onClick={this.state.jobname3 != 'ยังไม่มีตำแหน่งงาน' ? this.portfoliotab3 : null} >{this.state.jobname3}</text> 
 										</div>
 									</div>
 								</div>
 							</div>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								{this.handleSection2()}
 						</div>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						{this.handleSection2()}
-						{this.injectScript()}
+
+						
 					</div>
 
 
+					{this.injectScript()}
 					{this.content()}
 
 
 				</div>
 
+			
 
 		)
 
