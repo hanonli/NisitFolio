@@ -73,5 +73,19 @@ export class PortController {
       return this.portService.sortport(req.user.userId, sort);
     }
   
-    
+  @Get(':userid/owner')
+  async getportowner(@Param('userid') userId: string){
+    return this.portService.getportowner(userId);
+  }
+
+  @Get(':userid/other')
+  async getportother(@Param('userid') userId: string){
+    return this.portService.getportother(userId);
+  }
+
+  @Get(':userid/guest')
+  async getportguest(@Param('userid') userId: string){
+    return this.portService.getportguest(userId);
+  }
+
 }

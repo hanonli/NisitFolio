@@ -20,7 +20,7 @@ class MyResume2 extends React.Component {
 
     render() {
         const workdata = this.props.state.workHistorys;
-        const owner = this.props.state.owner;
+        const owner = this.props.state.is_owner;
         const certdata = this.props.state.certificates;
         const color = this.props.state.color;
         // const workdata = [

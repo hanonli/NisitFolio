@@ -492,5 +492,78 @@ export class MyResumeService {
       error: 'Can not Patch Other Data',
     }, HttpStatus.UNAUTHORIZED);
   }
-}
 
+  async getportowner(userId:string ){
+    var res_arr1 = [];
+    var res_arr2 = [];
+    var res_arr3 = [];
+    var res_arr = [];
+    const resume = await this.resumeModel.find({UserId : userId});
+    for (var _i = 0; _i < resume.length; _i++) 
+    {
+      for (var _j = 0; _j < resume[_i].portfolios.length; _j++) 
+      {
+        if (_i == 0)
+          res_arr1.push(resume[_i].portfolios[_j]);
+        if (_i == 1)
+          res_arr2.push(resume[_i].portfolios[_j]);
+        if (_i == 2)
+          res_arr3.push(resume[_i].portfolios[_j]);
+      }
+    }
+    res_arr.push(res_arr1);
+    res_arr.push(res_arr2);
+    res_arr.push(res_arr3);
+    return res_arr;
+  }
+
+  async getportother(userId:string ){
+    var res_arr1 = [];
+    var res_arr2 = [];
+    var res_arr3 = [];
+    var res_arr = [];
+    const resume = await this.resumeModel.find({UserId : userId});
+    for (var _i = 0; _i < resume.length; _i++) 
+    {
+      for (var _j = 0; _j < resume[_i].portfolios.length; _j++) 
+      {
+        if ( _i == 0 && ((resume[_i].portfolios[_j].Port_Privacy == "Public") ||  (resume[_i].portfolios[_j].Port_Privacy == "Members")) )
+          res_arr1.push(resume[_i].portfolios[_j]);
+        if ( _i == 1 && ((resume[_i].portfolios[_j].Port_Privacy == "Public") ||  (resume[_i].portfolios[_j].Port_Privacy == "Members")) )
+          res_arr2.push(resume[_i].portfolios[_j]);
+        if ( _i == 2 && ((resume[_i].portfolios[_j].Port_Privacy == "Public") ||  (resume[_i].portfolios[_j].Port_Privacy == "Members")) )
+          res_arr3.push(resume[_i].portfolios[_j]);
+      }
+
+    }
+    res_arr.push(res_arr1);
+    res_arr.push(res_arr2);
+    res_arr.push(res_arr3);
+    return res_arr;
+  }
+
+  async getportguest(userId:string ){
+    var res_arr1 = [];
+    var res_arr2 = [];
+    var res_arr3 = [];
+    var res_arr = [];
+    const resume = await this.resumeModel.find({UserId : userId});
+    for (var _i = 0; _i < resume.length; _i++) 
+    {
+      for (var _j = 0; _j < resume[_i].portfolios.length; _j++) 
+      {
+        if ( _i == 0 && resume[_i].portfolios[_j].Port_Privacy == "Public"  )
+          res_arr1.push(resume[_i].portfolios[_j]);
+        if ( _i == 1 && resume[_i].portfolios[_j].Port_Privacy == "Public"  )
+          res_arr2.push(resume[_i].portfolios[_j]);
+        if ( _i == 2 && resume[_i].portfolios[_j].Port_Privacy == "Public"  )
+          res_arr3.push(resume[_i].portfolios[_j]);
+      }
+
+    }
+    res_arr.push(res_arr1);
+    res_arr.push(res_arr2);
+    res_arr.push(res_arr3);
+    return res_arr;
+  }
+}

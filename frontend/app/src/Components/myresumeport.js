@@ -72,8 +72,7 @@ class MyResumePort extends React.Component {
                     </div>
                 </div>
             );
-        }
-        else{
+        }else {
             return (
                 <div class="myworkobj" onClick={this.handleRoute}>
                     <div className="img-overlay">
