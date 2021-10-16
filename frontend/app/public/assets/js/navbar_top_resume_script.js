@@ -20,7 +20,7 @@
         'position' : 'fixed',
         'z-index' : '10',
         'top' : '8vh',
-        'left' : '10vw',
+        'left' : '0vw',
         'width' : '100vw',
         'text-align' : 'center',
         'background-color' : 'transparent',
@@ -155,16 +155,21 @@
     $('#icon-myresume-private' ).attr({
         'width': '40px',
         'height' : '40px',
+        'margin-top': '-3px',
     });
     $('#icon-myresume-member' ).attr({
         'width': '40px',
         'height' : '40px',
+        'margin-top': '-3px',
     });
     $('#icon-myresume-public' ).attr({
         'width': '40px',
         'height' : '40px',
     });
-
+    $('#icon-myresume-public ,#icon-myresume-member ,#icon-myresume-private' ).css({
+        'margin-top': '-3.3px',
+    
+    });
 
     
     //icon-edit
