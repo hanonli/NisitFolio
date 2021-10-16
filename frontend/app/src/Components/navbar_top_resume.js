@@ -327,7 +327,6 @@ class Resume_topNavbar extends React.Component {
 					</div>
 				)
 			}
-<<<<<<< HEAD
 			else{
 				return (
 					<div className='resume_topnav' >
@@ -342,20 +341,6 @@ class Resume_topNavbar extends React.Component {
 			}
 			
 
-=======
-
-
-		} else {
-			// console.log('you are outsider1')
-			return (
-				<div className='resume_topnav' >
-					<a className='topnav_section1' >
-						<img className='icon-myresume' id='icon-myresume-lock-bookmark' src="assets/images/bookmark_2.png" />
-					</a>
-				</div>
-
-			)
->>>>>>> fa7e455ac234b60f279cd373127e8cd351b9a9e3
 		}
 		//else{
 		// 	// console.log('you are outsider1')
@@ -374,7 +359,6 @@ class Resume_topNavbar extends React.Component {
 		if (this.state.is_owner) {
 			// console.log('you are owner2')
 			return (
-<<<<<<< HEAD
 				<div className='resume_selectoption'> 
 
 						<div className='topnav_section2'>
@@ -389,22 +373,6 @@ class Resume_topNavbar extends React.Component {
 								{/* <span id='icon-myresume-share'> <SharingPopup></SharingPopup></span> */}
 								&nbsp;
 						
-=======
-				<div className='resume_selectoption'>
-
-					<div className='topnav_section2'>
-						<a>
-							&nbsp;
-							<img id='icon-myresume-edit' src="assets/images/blackedit.png" />
-						</a>
-						<span className='resume_verticalline2'> </span>
-						<a>
-							<img class="obj-icon tooltips-item" id='icon-myresume-share' src="assets/images/outline_ios_share_black_48dp.png" type="button" data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharingResume" alt="" width="30" height="30" />
-							{/* <img id='icon-myresume-share' src="assets/images/outline_ios_share_black_48dp.png"/>  */}
-							{/* <span id='icon-myresume-share'> <SharingPopup></SharingPopup></span> */}
-							&nbsp;
-						</a>
->>>>>>> fa7e455ac234b60f279cd373127e8cd351b9a9e3
 
 					</div>
 
@@ -476,7 +444,6 @@ class Resume_topNavbar extends React.Component {
 			</div>)
 	}
 
-<<<<<<< HEAD
 	showingScreen(){
 			return(
 				<div>
@@ -516,29 +483,6 @@ class Resume_topNavbar extends React.Component {
 										</div>
 									</div>
 								</div>
-=======
-	showingScreen() {
-		return (
-			<div>
-				<SharingPopup />
-
-				<div className="Resume_topNavbar" id='topNav'>
-
-					<div className='myresumetoppath'>
-						{this.handleSection1()}
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<div className='resume_topnav' >
-							<div className='resume_selectresume'>
-								<h1 className='resume_selectresume_block'>
-									&nbsp;<a onClick={this.portfoliotab1} id='resume_selectresume1'>{this.state.jobname1}</a>&nbsp; <span className="resume_verticalline"></span>
-								</h1>
-								<h1 className='resume_selectresume_block'>
-									&nbsp;<a onClick={this.portfoliotab2} id='resume_selectresume2'>{this.state.jobname2}</a>&nbsp; <span className="resume_verticalline"></span>
-								</h1>
-								<h1 className='resume_selectresume_block'>
-									&nbsp;<a onClick={this.portfoliotab3} id='resume_selectresume3'>{this.state.jobname3}</a>&nbsp;
-								</h1>
->>>>>>> fa7e455ac234b60f279cd373127e8cd351b9a9e3
 							</div>
 						</div>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -552,7 +496,6 @@ class Resume_topNavbar extends React.Component {
 
 				</div>
 
-			</div>
 
 		)
 
@@ -669,16 +612,9 @@ class Resume_topNavbar extends React.Component {
 	}
 
 
-<<<<<<< HEAD
 	render (){
 
 		
-=======
-	render() {
-		const linestyle = {
-			backgroundColor: this.state.color ? this.state.color : "#FFCE55"
-		};
->>>>>>> fa7e455ac234b60f279cd373127e8cd351b9a9e3
 		// this.getResumeID(this.state.index);
 		if (this.state.userID != '' && this.state.resumeID == '') {
 			// console.log('call getResumeID');
