@@ -199,6 +199,7 @@ export class RegisterService {
         await this.userJobSkillRepository.save(userJobSkill);
       }
       const resume2 = new Resume();
+      resume2._id = resumeid;
       resume2.UserId = accountid;
       resume2.Privacy = "Private";
       resume2.ProfilePic =  createDto.ProfilePicBase64;
@@ -642,7 +643,7 @@ export class RegisterService {
       if (patchDto.Work_JobName)
         workHistory.Work_JobName = patchDto.Work_JobName;
       if (patchDto.Work_JobType)
-        workHistory.Work_JobType = patchDto.Work_JobName;
+        workHistory.Work_JobType = patchDto.Work_JobType;
       if (patchDto.Company)
         workHistory.Work_Company = patchDto.Company;
       if (patchDto.Work_End_Month)
@@ -782,10 +783,11 @@ export class RegisterService {
       await this.userJobSkillRepository.save(userJobSkill);
     }
 
+
     for (var _i = 0; _i < interestedJob.ResumeId.length; _i++) {
       const resume =  await this.resumeModel.findOne({_id: interestedJob.ResumeId[_i] });
       let copy = JSON.parse(JSON.stringify(resume));
-      await this.resumeModel.remove(resume);
+      //await this.resumeModel.remove(resume);
       for (var _j = 0; _j < copy.interestedJob.length; _j++) {
         if (copy.interestedJob[_j].id == id)
         {
@@ -797,7 +799,7 @@ export class RegisterService {
       }
       copy.last_modified.push(isoTime);
       copy.modified_by.push("automatic system");
-      await this.resumeModel.create(copy);
+      //await this.resumeModel.create(copy);
     }
 
     return await this.InterestedJobRepository.save(interestedJob);      
