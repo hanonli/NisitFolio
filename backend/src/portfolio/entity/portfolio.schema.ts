@@ -41,6 +41,7 @@ export class Portfolio2 {
   @Prop()
   Owner: string;
 
+
   
 }
 

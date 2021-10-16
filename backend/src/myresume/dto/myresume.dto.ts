@@ -4,6 +4,7 @@ export class CreateResumeDto {
 
 
   UserId: string;
+  Resume_Privacy: string; 
   Color:string;
   //--------------------------AddictionalSkill----------------------------//
   SoftSkillID: string[];

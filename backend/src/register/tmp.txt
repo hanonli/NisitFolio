@@ -374,4 +374,34 @@ async GetInfo(UserId:string) {
     
     
     return result;
+
+/*
+/*
+    const PR=new Public_resume;
+    PR.Color=CreateDto.Color
+    PR.UserId=CreateDto.UserId
+    //await this.Public_resumeRepository.save(PR);
+    /*
+    const x=await this.Public_resumeRepository.findOne({where:{ UserId: CreateDto.UserId }});
+    x.Color=CreateDto.Color;
+    await this.Public_resumeRepository.save(x);
+    /*
+    if(x==null){
+      await this.Public_resumeRepository.save(PR);
+    }else{
+      await this.Public_resumeRepository.remove(x);
+      await this.Public_resumeRepository.save(PR);
+    }
+    //
+    
+    const x=await this.Public_resumeRepository.find({where:{ UserId: CreateDto.UserId }});
+    
+    for (var _i = 0; _i < x.length; _i++) {
+      x[_i].Color=CreateDto.Color
+      await this.Public_resumeRepository.save(x[_i])
+    }
+    //
+    return "sus";
+    //*/
+*/
     

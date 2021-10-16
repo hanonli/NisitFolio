@@ -24,9 +24,7 @@ class MyResumeportfoliolayoutP extends React.Component{
         else if(childlength === 1){
             result = (
                 <div class={frameclass}>
-                    <div class="portfoliolayoutP">
-                        <div class="portfoliolayoutP_child"><div class="portfoliolayoutP_child_element"><div class="portfoliolayoutP_child_innerbox">{child}</div></div></div>
-                    </div>
+                    <div class="portfoliolayoutP"><div class="portfoliolayoutP_child"><div class="portfoliolayoutP_child_element"><div class="portfoliolayoutP_child_innerbox">{child}</div></div></div></div>
                 </div>
             );
         }
@@ -39,7 +37,7 @@ class MyResumeportfoliolayoutP extends React.Component{
                 </div>
             );
         }
-        return(
+        return (
             <div class="portfoliolayout_p">
                 {result}
             </div>

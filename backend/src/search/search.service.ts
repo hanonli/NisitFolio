@@ -175,13 +175,16 @@ export class SearchService {
       (a.last_modified[a.last_modified.length-1] < b.last_modified[b.last_modified.length-1] ? 1 : -1) 
       : (a.totalBookmark < b.totalBookmark ? 1 : -1)
     )) ;
+    console.log(sorted_profile) ;
+    console.log(sorted_work) ;
     let is_Bookmarking ;
     for (var obj1 of sorted_profile) {
       if (BookmarkUserList.includes(obj1.UserId)) 
         is_Bookmarking = true ;
       else 
         is_Bookmarking = false ;
-      result.push({"name": obj1.Firstname + " " + obj1.Lastname, "type": "profile", "thatUserId": obj1.UserId, "pic": obj1.ProfilePic, "about": obj1.AboutMe, "tags": obj1.tags, "bookmark": is_Bookmarking}) ;
+      if (obj1.tags.length > 0) 
+        result.push({"name": obj1.Firstname + " " + obj1.Lastname, "type": "profile", "thatUserId": obj1.UserId, "pic": obj1.ProfilePic, "about": obj1.AboutMe, "tags": obj1.tags, "bookmark": is_Bookmarking}) ;
     } 
     for (var obj2 of sorted_work) {
       if (BookmarkWorkList.includes(obj2.Port_Name))
@@ -190,6 +193,7 @@ export class SearchService {
         is_Bookmarking = false ;
       result.push({"name": obj2.Port_Name, "Port_id": obj2._id.toString(),"type": "work", "thatUserId": obj2.UserId, "pic": obj2.portfolioPictures, "about": obj2.Port_Info, "owner": obj2.Owner, "bookmark": is_Bookmarking}) ;
     }
+    console.log("result:", result) ;
     // result["Profile"] = sorted_profile ;
     // result["Work"] = sorted_work ;
     return result ;

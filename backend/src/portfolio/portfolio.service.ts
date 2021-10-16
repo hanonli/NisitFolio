@@ -102,6 +102,7 @@ export class PortService {
     port.UserId = CreateDto.UserId;
     port.Port_Name = CreateDto.Port_Name;
     port.Port_Info = CreateDto.Port_Info;
+    port.ResumeId = new Array();
     port.Owner = user.Firstname + " " + user.Lastname;
     port.totalBookmark = 0;
     port.Port_Tag = CreateDto.Port_Tag;
@@ -117,12 +118,14 @@ export class PortService {
     port.create_time = isoTime;
     port.last_modified = [isoTime];
     port.modified_by = [ip];
+    
 
     const portid = (await this.portRepository.save(port))._id;
     portpic.PortId = portid;
 
     portpic.last_modified =  [isoTime];
     portpic.create_time = isoTime;
+    
 
     return await this.portfolioPictureRepository.save(portpic);
   }

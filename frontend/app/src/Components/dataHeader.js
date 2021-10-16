@@ -30,7 +30,7 @@ class DataHeader extends React.Component {
 		//script.src = "assets/js/#.js";
 		//document.body.appendChild(script);
 		$(function () {
-			alert('Selected tab is ' + cookie.load('Edit_tabselect'));
+			//alert('Selected tab is ' + cookie.load('Edit_tabselect'));
 			var Tab_select = cookie.load('Edit_tabselect');
 			$('.tab-content').hide();
 			if(Tab_select==1){
@@ -358,7 +358,7 @@ class DataHeader extends React.Component {
 					</div>
 				</header>
 				<ol class="tabs-list">
-					<li class="tab-list-item tab-list-active" id="tab-1" type="button">ข้อมูลสำคัญ</li>
+					<li class="tab-list-item tab-list-active" id="tab-1" type="button">ข้อมูลสำคัญ<label class="red_markTitle">*</label></li>
 					<li class="tab-list-item" id="tab-2" type="button">ข้อมูลเพิ่มเติม</li>
 					<li class="tab-list-item" id="tab-3" type="button">ประวัติการศึกษา</li>
 					<li class="tab-list-item" id="tab-4" type="button">ประวัติการทำงาน</li>
@@ -366,6 +366,8 @@ class DataHeader extends React.Component {
 					<li class="tab-list-item" id="tab-6" type="button">งานที่สนใจ</li>
 					<li class="tab-list-item" id="tab-7" type="button">ทักษะเสริม</li>
 				</ol>
+				<div class="underline-tabJob2">
+				</div>
 				<div>
 					<div class="tab-content" id="Edittab1-content" state={this.state}>
 						<Edittab1 />

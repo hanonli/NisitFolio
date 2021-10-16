@@ -1035,7 +1035,7 @@ export class RegisterService {
     */
 
     const counter = 0;
-    /*
+    
     const time = new Date();
     const isoTime = time.toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: 'numeric', hour: "2-digit", minute: "2-digit" });
     
