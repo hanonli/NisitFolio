@@ -205,3 +205,19 @@
     display: inline-block;
     color: #FFFFFF;
 }*/
+
+.bg-center-signin78888888{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+#center-signin78888888{
+    position: absolute;
+    left: 35vw;
+    bottom: 90vh;
+    z-index: 999;
+    display: inline-block;
+    width: 5vw;
+    height: 4vh;
+}

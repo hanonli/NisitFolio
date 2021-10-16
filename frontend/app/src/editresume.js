@@ -15,7 +15,7 @@ import $ from 'jquery';
 import cookie from 'react-cookies';
 import LoadingS from './Components/loadingS';
 
-var certdata = [], workdata = [];
+var certdata = [], workdata = [], Color_Resume, firstchoosecolor = false;
 
 class Editresume extends React.Component {
 
@@ -53,7 +53,7 @@ class Editresume extends React.Component {
 
 		var token = cookie.load('login-token')
 		console.log('Your Token is: ' + token);
-		fetch("http://localhost:2000/register/getinfo", {
+		fetch("http://localhost:2000/myresume/myresume/foredit", {
 			method: "GET",
 			headers: {
 				'Authorization': 'Bearer ' + token,
@@ -74,6 +74,10 @@ class Editresume extends React.Component {
 				/*Zone to use datas*/
 				console.log(this.state.data.Degree);
 				this.state.data.Degree.forEach(element => {
+					Color_Resume = this.state.data.Color_ResumeId ? this.state.data.Color_ResumeId : "";
+					if (!("Color_ResumeId" in this.state.data)) {
+						firstchoosecolor = true;
+					}
 					if (element == 'มัธยมศึกษาตอนปลาย' || element == 'ปวช.') {
 						list_of_high.push({
 							id: this.state.data.EducationHistory_id,
@@ -128,40 +132,40 @@ class Editresume extends React.Component {
 				});
 			});
 		$(function () {
-			$('.nameedit').text('"'+cookie.load('Job_EditName')+'"');
-			console.log('Edit Job is '+ cookie.load('Job_EditName'));
-			alert('Selected tab is '+ cookie.load('Edit_tabselect'));
+			$('.nameedit').text('"' + cookie.load('Job_EditName') + '"');
+			console.log('Edit Job is ' + cookie.load('Job_EditName'));
+			alert('Selected tab is ' + cookie.load('Edit_tabselect'));
 			var Tab_select = cookie.load('Edit_tabselect');
 			$('.tab-content').hide();
-			if(Tab_select==1){
+			if (Tab_select == 1) {
 				$('#registab1-content').show();
 			}
-			else if(Tab_select==2){
+			else if (Tab_select == 2) {
 				$('#registab2-content').show();
 				$('.tab-list-item').removeClass('tab-list-active');
 				$('#tab-2').addClass('tab-list-active')
 			}
-			else if(Tab_select==3){
+			else if (Tab_select == 3) {
 				$('#registab3-content').show();
 				$('.tab-list-item').removeClass('tab-list-active');
 				$('#tab-3').addClass('tab-list-active')
 			}
-			else if(Tab_select==4){
+			else if (Tab_select == 4) {
 				$('#registab4-content').show();
 				$('.tab-list-item').removeClass('tab-list-active');
 				$('#tab-4').addClass('tab-list-active')
 			}
-			else if(Tab_select==5){
+			else if (Tab_select == 5) {
 				$('#registab5-content').show();
 				$('.tab-list-item').removeClass('tab-list-active');
 				$('#tab-5').addClass('tab-list-active')
 			}
-			else if(Tab_select==6){
+			else if (Tab_select == 6) {
 				$('#registab6-content').show();
 				$('.tab-list-item').removeClass('tab-list-active');
 				$('#tab-6').addClass('tab-list-active')
 			}
-			else{
+			else {
 				alert("Don't selected");
 				$('#registab1-content').show();
 			}
@@ -209,18 +213,18 @@ class Editresume extends React.Component {
 				$('#registab6-content').show();
 			});
 		});
-		$('#cancelChoose').on('click',function(){
+		$('#cancelChoose').on('click', function () {
 			window.history.go(-1);
 		});
-		$('#goToeditProfile').on('click',function(){
+		$('#goToeditProfile').on('click', function () {
 			cookie.save('Edit_tabselect', '1');
-        	window.location = ("editprofile");
+			window.location = ("editprofile");
 		})
 	}
 
 	componentWillUnmount() {
 		window.removeEventListener('load', this.handleLoad)
-		cookie.save('Edit_tabselect','');
+		cookie.save('Edit_tabselect', '');
 	}
 
 	render() {
@@ -253,7 +257,7 @@ class Editresume extends React.Component {
 					<form class="needs-validation" novalidate>
 						<div>
 							<div class="tab-content" id="registab1-content">
-								<Myresumedittemplate />
+								<Myresumedittemplate Color_Resume={Color_Resume} firstchoosecolor={firstchoosecolor} />
 							</div>
 							<div class="tab-content" id="registab2-content">
 								<Chooseresume1 />
