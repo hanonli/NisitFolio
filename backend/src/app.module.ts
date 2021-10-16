@@ -39,11 +39,11 @@ import * as Joi from 'joi';
       })
     }),
     MongooseModule.forRoot(
-      'mongodb+srv://backend:VQfKYfFePGMdMSdd@cluster0.39z7o.mongodb.net/nisitfolio'
+      'mongodb+srv://backend:VQfKYfFePGMdMSdd@cluster0.39z7o.mongodb.net/nisitfolio2'
       ),
     TypeOrmModule.forRoot({
       type: 'mongodb',
-      url: 'mongodb+srv://backend:VQfKYfFePGMdMSdd@cluster0.39z7o.mongodb.net/nisitfolio',
+      url: 'mongodb+srv://backend:VQfKYfFePGMdMSdd@cluster0.39z7o.mongodb.net/nisitfolio2',
       autoLoadEntities: true,
       synchronize: true,
     }),

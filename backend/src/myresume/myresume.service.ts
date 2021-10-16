@@ -260,6 +260,7 @@ export class MyResumeService {
           const additionalskill = await this.AdditionalSkillRepository.findOne({where:{ _id: softskillid }});
           additionalskill.ResumeId.push(resumeId);
           const subAdditionalskill = new AdditionalSkill();
+          subAdditionalskill.id= additionalskill.id;
           subAdditionalskill.AdditionalSkill = additionalskill.AdditionalSkill;
           subAdditionalskill.Type = additionalskill.Type;
           softskill_arr.push(subAdditionalskill);
@@ -275,6 +276,7 @@ export class MyResumeService {
           const certificate = await this.CertificateRepository.findOne({where:{ _id: certid }});
           certificate.ResumeId.push(resumeId);
           const subCertificate = new Certificate();
+          subCertificate.id= certificate.id;
           subCertificate.CertName = certificate.CertName;
           subCertificate.CertPic = certificate.CertPic;
           subCertificate.CertYear = certificate.CertYear;
@@ -283,7 +285,6 @@ export class MyResumeService {
         }
         resume.certificates = cert_arr;
       }
-
       if (CreateDto.EducationID != null){
         var education_arr = [];
         for (var _i = 0; _i < CreateDto.EducationID.length; _i++) {
@@ -291,6 +292,7 @@ export class MyResumeService {
           const educationhistory = await this.EducationHistoryRepository.findOne({where:{ _id: educationid }});
           educationhistory.ResumeId.push(resumeId);
           const subEducationhistory = new EducationHistory();
+          subEducationhistory.id= educationhistory.id;
           subEducationhistory.Degree = educationhistory.Degree;
           subEducationhistory.Academy = educationhistory.Academy;
           subEducationhistory.Education_End_Year = educationhistory.Education_End_Year;
@@ -302,7 +304,6 @@ export class MyResumeService {
         }
         resume.educationHistorys = education_arr;
       }
-
       if (CreateDto.WorkID != null){
         var work_arr = [];
         for (var _i = 0; _i < CreateDto.WorkID.length; _i++) {
@@ -310,6 +311,7 @@ export class MyResumeService {
           const workhistory = await this.WorkHistoryRepository.findOne({where:{ _id: workid }});
           workhistory.ResumeId.push(resumeId);
           const subWorkhistory = new WorkHistory();
+          subWorkhistory.id= workhistory.id;
           subWorkhistory.Work_Company = workhistory.Work_Company;
           subWorkhistory.Work_End_Month = workhistory.Work_End_Month;
           subWorkhistory.Work_End_Year =  workhistory.Work_End_Year;
@@ -323,8 +325,8 @@ export class MyResumeService {
           work_arr.push(subWorkhistory);
           await this.WorkHistoryRepository.save(workhistory);
         }
+        resume.workHistorys = work_arr;
       }
-
       if (CreateDto.PortID != null){
         var port_arr = [];
         for (var _i = 0; _i < CreateDto.PortID.length; _i++) {
@@ -337,7 +339,6 @@ export class MyResumeService {
         }
         resume.portfolios = port_arr;
       }
-
       if (CreateDto.JobID != null){
         var job_arr = [];
         const jobid = new ObjectID(CreateDto.JobID);

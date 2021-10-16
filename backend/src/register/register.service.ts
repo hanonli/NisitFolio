@@ -73,7 +73,7 @@ export class RegisterService {
 
   ) { }
 
-  async createRegis(createDto: CreateRegisDto) {
+  async createRegis(createDto: CreateRegisDto,ip:string) {
     const time = new Date();
     const isoTime = time.toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: 'numeric', hour: "2-digit", minute: "2-digit" });
 
@@ -203,7 +203,7 @@ export class RegisterService {
       resume2.Privacy = "Private";
       resume2.ProfilePic =  createDto.ProfilePicBase64;
       resume2.Owner =  createDto.Firstname + " " + createDto.Lastname;
-      resume2.Location = createDto.Country + createDto.Province + createDto.City;
+      resume2.Location = createDto.Country + " " + createDto.Province + " "+ createDto.City;
       resume2.Color = "#ffce55";
       resume2.Email = createDto.Email;
       resume2.First = createDto.Firstname;
@@ -214,7 +214,9 @@ export class RegisterService {
       resume2.interestedJob.Job_JobName = interestedJob.Job_JobName;
       resume2.interestedJob.Job_Objective = interestedJob.Job_Objective;
       resume2.interestedJob.Job_SkillName = interestedJob.Job_SkillName;
-
+      resume2.create_time =  isoTime;
+      resume2.last_modified =  [isoTime] ;
+      resume2.modified_by = [ip];
       await this.resumeRepository.save(resume2);
     }
     let avg_score = sum_score / count_skill;
@@ -402,7 +404,7 @@ export class RegisterService {
         let copy = JSON.parse(JSON.stringify(resume));
         await this.resumeModel.remove(resume);
         for (var _j = 0; _j < copy.additionalSkills.length; _j++) {
-          if (copy.additionalSkills[_j].id = ID)
+          if (copy.additionalSkills[_j].id == ID)
           {
             copy.additionalSkills[_j].AdditionalSkill = patchDto.SoftSkill;
             copy.additionalSkills[_j].Type = patchDto.SoftSkillType;
@@ -439,7 +441,7 @@ export class RegisterService {
       let copy = JSON.parse(JSON.stringify(resume));
       await this.resumeModel.remove(resume);
       for (var _j = 0; _j < copy.additionalSkills.length; _j++) {
-        if (copy.additionalSkills[_j].id = ID)
+        if (copy.additionalSkills[_j].id == ID)
         {
           copy.additionalSkills[_j] = null;
         }
@@ -479,12 +481,12 @@ export class RegisterService {
         const resume =  await this.resumeModel.findOne({_id: certificate.ResumeId[_i] });
         let copy = JSON.parse(JSON.stringify(resume));
         await this.resumeModel.remove(resume);
-        for (var _j = 0; _j < copy.certificate.length; _j++) {
-          if (copy.certificate[_j].id = id)
+        for (var _j = 0; _j < copy.certificates.length; _j++) {
+          if (copy.certificates[_j].id == id)
           {
-            copy.certificate[_j].CertName = certificate.CertName;
-            copy.certificate[_j].CertYear = certificate.CertYear;
-            copy.certificate[_j].CertPic = certificate.CertPic;
+            copy.certificates[_j].CertName = certificate.CertName;
+            copy.certificates[_j].CertYear = certificate.CertYear;
+            copy.certificates[_j].CertPic = certificate.CertPic;
           }
         }
         copy.last_modified.push(isoTime);
@@ -518,10 +520,10 @@ export class RegisterService {
       const resume =  await this.resumeModel.findOne({_id: certificate.ResumeId[_i] });
       let copy = JSON.parse(JSON.stringify(resume));
       await this.resumeModel.remove(resume);
-      for (var _j = 0; _j < copy.certificate.length; _j++) {
-        if (copy.certificate[_j].id = id)
+      for (var _j = 0; _j < copy.certificates.length; _j++) {
+        if (copy.certificates[_j].id == id)
         {
-          copy.certificate[_j] = null;
+          copy.certificates[_j] = null;
         }
       }
       copy.last_modified.push(isoTime);
@@ -566,15 +568,15 @@ export class RegisterService {
         const resume =  await this.resumeModel.findOne({_id: educationHistory.ResumeId[_i] });
         let copy = JSON.parse(JSON.stringify(resume));
         await this.resumeModel.remove(resume);
-        for (var _j = 0; _j < copy.educationHistory.length; _j++) {
-          if (copy.educationHistory[_j].id = id)
+        for (var _j = 0; _j < copy.educationHistorys.length; _j++) {
+          if (copy.educationHistorys[_j].id == id)
           {
-            copy.educationHistory[_j].Degree = educationHistory.Degree;
-            copy.educationHistory[_j].Facalty = educationHistory.Facalty;
-            copy.educationHistory[_j].Field_of_study  = educationHistory.Field_of_study;
-            copy.educationHistory[_j].Academy = educationHistory.Academy ;
-            copy.educationHistory[_j].Grade = educationHistory.Grade;
-            copy.educationHistory[_j].Education_End_Year = educationHistory.Education_End_Year;
+            copy.educationHistorys[_j].Degree = educationHistory.Degree;
+            copy.educationHistorys[_j].Facalty = educationHistory.Facalty;
+            copy.educationHistorys[_j].Field_of_study  = educationHistory.Field_of_study;
+            copy.educationHistorys[_j].Academy = educationHistory.Academy ;
+            copy.educationHistorys[_j].Grade = educationHistory.Grade;
+            copy.educationHistorys[_j].Education_End_Year = educationHistory.Education_End_Year;
           }
         }
         copy.last_modified.push(isoTime);
@@ -607,10 +609,10 @@ export class RegisterService {
       const resume =  await this.resumeModel.findOne({_id: educationHistory.ResumeId[_i] });
       let copy = JSON.parse(JSON.stringify(resume));
       await this.resumeModel.remove(resume);
-      for (var _j = 0; _j < copy.educationHistory.length; _j++) {
-        if (copy.educationHistory[_j].id = id)
+      for (var _j = 0; _j < copy.educationHistorys.length; _j++) {
+        if (copy.educationHistorys[_j].id == id)
         {
-          copy.educationHistory[_j] = null;
+          copy.educationHistorys[_j] = null;
         }
       }
       copy.last_modified.push(isoTime);
@@ -662,19 +664,19 @@ export class RegisterService {
         const resume =  await this.resumeModel.findOne({_id: workHistory.ResumeId[_i] });
         let copy = JSON.parse(JSON.stringify(resume));
         await this.resumeModel.remove(resume);
-        for (var _j = 0; _j < copy.workHistory.length; _j++) {
-          if (copy.workHistory[_j].id = id)
+        for (var _j = 0; _j < copy.workHistorys.length; _j++) {
+          if (copy.workHistorys[_j].id == id)
           {
-            copy.workHistory[_j].Work_JobName = workHistory.Work_JobName ;
-            copy.workHistory[_j].Work_JobType = workHistory.Work_JobType;
-            copy.workHistory[_j].Work_Company  = workHistory.Work_Company;
-            copy.workHistory[_j].Work_End_Month = workHistory.Work_End_Month ;
-            copy.workHistory[_j].Work_End_Year = workHistory.Work_End_Year;
-            copy.workHistory[_j].Work_Start_Month = workHistory.Work_Start_Month;
-            copy.workHistory[_j].Work_Start_Year = workHistory.Work_Start_Year;
-            copy.workHistory[_j].Work_Salary = workHistory.Work_Salary;
-            copy.workHistory[_j].Work_Salary_Type = workHistory.Work_Salary_Type;
-            copy.workHistory[_j].Work_Infomation =workHistory.Work_Infomation;
+            copy.workHistorys[_j].Work_JobName = workHistory.Work_JobName ;
+            copy.workHistorys[_j].Work_JobType = workHistory.Work_JobType;
+            copy.workHistorys[_j].Work_Company  = workHistory.Work_Company;
+            copy.workHistorys[_j].Work_End_Month = workHistory.Work_End_Month ;
+            copy.workHistorys[_j].Work_End_Year = workHistory.Work_End_Year;
+            copy.workHistorys[_j].Work_Start_Month = workHistory.Work_Start_Month;
+            copy.workHistorys[_j].Work_Start_Year = workHistory.Work_Start_Year;
+            copy.workHistorys[_j].Work_Salary = workHistory.Work_Salary;
+            copy.workHistorys[_j].Work_Salary_Type = workHistory.Work_Salary_Type;
+            copy.workHistorys[_j].Work_Infomation =workHistory.Work_Infomation;
           }
         }
         copy.last_modified.push(isoTime);
@@ -708,10 +710,10 @@ export class RegisterService {
       const resume =  await this.resumeModel.findOne({_id: workHistory.ResumeId[_i] });
       let copy = JSON.parse(JSON.stringify(resume));
       await this.resumeModel.remove(resume);
-      for (var _j = 0; _j < copy.workHistory.length; _j++) {
-        if (copy.workHistory[_j].id = id)
+      for (var _j = 0; _j < copy.workHistorys.length; _j++) {
+        if (copy.workHistorys[_j].id == id)
         {
-          copy.workHistory[_j] = null;
+          copy.workHistorys[_j] = null;
         }
       }
       copy.last_modified.push(isoTime);
@@ -785,7 +787,7 @@ export class RegisterService {
       let copy = JSON.parse(JSON.stringify(resume));
       await this.resumeModel.remove(resume);
       for (var _j = 0; _j < copy.interestedJob.length; _j++) {
-        if (copy.interestedJob[_j].id = id)
+        if (copy.interestedJob[_j].id == id)
         {
           copy.interestedJob[_j].Job_JobName = interestedJob.Job_JobName ;
           copy.interestedJob[_j].Job_Objective  = interestedJob.Job_Objective;
@@ -822,7 +824,7 @@ export class RegisterService {
       let copy = JSON.parse(JSON.stringify(resume));
       await this.resumeModel.remove(resume);
       for (var _j = 0; _j < copy.interestedJob.length; _j++) {
-        if (copy.interestedJob[_j].id = id)
+        if (copy.interestedJob[_j].id == id)
         {
           copy.interestedJob[_j] = null;
         }
