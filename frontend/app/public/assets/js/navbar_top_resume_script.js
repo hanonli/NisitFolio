@@ -20,6 +20,7 @@
         'position' : 'fixed',
         'z-index' : '10',
         'top' : '8vh',
+        'left' : '10vw',
         'width' : '100vw',
         'text-align' : 'center',
         'background-color' : 'transparent',
@@ -38,17 +39,21 @@
 
     // | topnav left  section|
     $('.topnav_section1').css({
-        'font-size' : '3.2vh',
-        'padding-top': '-0.1vh',
-        'padding-bottom': '0.3vh',
-        'border' : '0.1vw solid black',
-        'border-radius': '0.5vw',
+        'position' : 'relative',
+        'height' : '45px',
+        'width' : '45px',
+        'padding-top': '0.7vh',
+        'padding-bottom': '0.7vh',
         'background-color' : 'white',
+        // 'border' : '0.1vw solid black',
+        'border-radius': '0.5vw',
+
     })
 
     // | topnav right section |
     $('.topnav_section2').css({
-        'padding-top' : '0.5vh',
+        'padding-top' : '0.6vh',
+        'font-size' : '2.5vh',
         'height' : '45px',
         'text-decoration' : 'None',
         'text-decoration-color' : 'None',
@@ -60,7 +65,7 @@
     $('.resume_selectoption').css({
         
         'font-size' : '2.5vh',
-        'border' : '0.1vw solid black',
+        // 'border' : '0.1vw solid black',
         'border-radius': '0.5vw',
         'display' : 'inline-block',
         'background-color' : 'white',
@@ -69,20 +74,20 @@
     //  | vertical line |
     $('.resume_verticalline').css({
         'font-size' : '2.5vh',
-        'border-left' : '0.2vw solid black',
+        'border-left' : '0.1vw solid  black',
         'height' : '10vh',
         'background-color' : 'white',
     })
 
     $('.resume_verticalline2').css({
         'font-size' : '2.5vh',
-        'border-left' : '0.2vw solid black',
+        'border-right' : '0.1vw solid black',
         'height' : '1vh',
         'background-color' : 'white',
     })
      // | select resume |
     $('.resume_selectresume').css({
-        'border' : '0.1vw solid black',
+        // 'border' : '0.1vw solid black',
         'border-radius': '0.5vw',
         'display' : 'inline-block',
         'background-color' : 'white',
@@ -109,22 +114,22 @@
         'color': 'black',
     })
         
-    $('#resume_selectresume1').click(function(){
-        $('#resume_selectresume2 ,#resume_selectresume3').removeClass('active')
-        $(this).addClass('active')
-        localStorage.setItem('active-resume', $(this).attr('active'));
+    // $('#resume_selectresume1').click(function(){
+    //     $('#resume_selectresume2 ,#resume_selectresume3').removeClass('active')
+    //     $(this).addClass('active')
+    //     localStorage.setItem('active-resume', $(this).attr('active'));
 
-    });
-    $('#resume_selectresume2').click(function(){
-        $('#resume_selectresume1 ,#resume_selectresume3').removeClass('active')
-        $(this).addClass('active')
-        localStorage.setItem('active-resume', $(this).attr('active'));
-    });
-    $('#resume_selectresume3').click(function(){
-        $('#resume_selectresume1 ,#resume_selectresume2').removeClass('active')
-        $(this).addClass('active')
-        localStorage.setItem('active-resume', $(this).attr('active'));
-    });        
+    // });
+    // $('#resume_selectresume2').click(function(){
+    //     $('#resume_selectresume1 ,#resume_selectresume3').removeClass('active')
+    //     $(this).addClass('active')
+    //     localStorage.setItem('active-resume', $(this).attr('active'));
+    // });
+    // $('#resume_selectresume3').click(function(){
+    //     $('#resume_selectresume1 ,#resume_selectresume2').removeClass('active')
+    //     $(this).addClass('active')
+    //     localStorage.setItem('active-resume', $(this).attr('active'));
+    // });        
 
     // icom myresume
 
@@ -137,18 +142,24 @@
     
     //icon-edit
     $('#icon-myresume-edit' ).attr({
-        'width': '35px',
-        'height' : '35px',
+        'width': '30px',
+        'height' : '30px',
     
     });
     $('#icon-myresume-edit' ).css({
-
+        'margin-right': '5px',
     
     });
     //icon-share
-    $('#icon-myresume-share' ).css({
+    $('#icon-myresume-share' ).attr({
         'width': '35px',
         'height' : '35px',
+    });
+
+    $('#icon-myresume-share' ).css({
+        'margin-right': '5px',
+
+    
     });
     
     // $('#icon-myresume-share' ).click(function(){
