@@ -134,11 +134,21 @@
     // icom myresume
 
  
-    //icon-lock
-    $('#icon-myresume-lock' ).attr({
+    //icon
+    $('#icon-myresume-private' ).attr({
         'width': '40px',
         'height' : '40px',
     });
+    $('#icon-myresume-member' ).attr({
+        'width': '40px',
+        'height' : '40px',
+    });
+    $('#icon-myresume-public' ).attr({
+        'width': '40px',
+        'height' : '40px',
+    });
+
+
     
     //icon-edit
     $('#icon-myresume-edit' ).attr({

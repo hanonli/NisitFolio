@@ -85,7 +85,7 @@ class Resume_topNavbar extends React.Component {
 			var resume3 = datas[2] ? datas[2] : undefined
 			var job1 = resume1 ? resume1.interestedJob[0].Job_JobName : 'ยังไม่มีตำแหน่งงาน'
 			var job2 = resume2 ? resume2.interestedJob[0].Job_JobName : 'ยังไม่มีตำแหน่งงาน'
-			var job3 = resume3 ? resume3.interestedJob[0].Job_JobName :'ยังไม่มีตำแหน่งงาน'
+			var job3 = resume3 ? resume3.interestedJob[0].Job_JobName : 'ยังไม่มีตำแหน่งงาน'
 
 			// console.log('in resumeid datas a: ' + JSON.stringify(a));
 			// console.log('in resumeid datas b: ' + JSON.stringify(b));
@@ -171,7 +171,20 @@ class Resume_topNavbar extends React.Component {
 
 	}
 
-	handlePrivacy(){
+	handlePrivacy = () =>{
+		if(this.state.privacy == 'Private'){
+			this.setState({
+				privacy : 'Member'
+			})
+		}else if(this.state.privacy == 'Member'){
+			this.setState({
+				privacy : 'Public'
+			})
+		}else if(this.state.privacy == 'Public'){
+			this.setState({
+				privacy : 'Private'
+			})
+		}
 
 	}
 
@@ -262,21 +275,33 @@ class Resume_topNavbar extends React.Component {
 				return (
 					<div className='resume_topnav' >
 						<div className='topnav_section1'>
-							<a  > 
-								<img onClick={this.handlePrivacy()} id='icon-myresume-lock' src="assets/images/outline_lock_black_24dp.png"/> 
-							</a>
+							
+							<img type='button' onClick={this.handlePrivacy} id='icon-myresume-private' src="assets/images/outline_lock_black_24dp.png"/> 
+							
 						</div>
 						
 					</div>
 					)
-			}else if(this.state.privacy == 'Public'){
+			}
+			else if(this.state.privacy == 'Member'){
 				return (
 					<div className='resume_topnav' >
 						<div className='topnav_section1'>
-							<a > 
-								<img onClick={this.handlePrivacy()} id='icon-myresume-lock' src="assets/images/outline_lock_black_24dp.png"/> 
-							</a>
-
+							
+							<img type='button' onClick={this.handlePrivacy} id='icon-myresume-member' src="assets/images/outline_people_black_24dp.png"/> 
+							
+						</div>
+						
+					</div>
+					)
+			}
+			else if(this.state.privacy == 'Public'){
+				return (
+					<div className='resume_topnav' >
+						<div className='topnav_section1'>
+							
+							<img type='button' onClick={this.handlePrivacy} id='icon-myresume-public' src="assets/images/outline_public_black_24dp.png"/> 
+							
 						</div>
 						
 					</div>
@@ -498,10 +523,10 @@ class Resume_topNavbar extends React.Component {
 			// console.log('update state')
 			return true
 		}
-		// else if(this.state.userID != nextState.userID){
-		// 	console.log('update userid')
-		// 	return true
-		// }
+		else if(this.state.privacy != nextState.privacy){
+			console.log('update privacy')
+			return true
+		}
 		else if(this.state.resumeID != nextState.resumeID){
 			// console.log(3)
 			// console.log('update state resumeid')
