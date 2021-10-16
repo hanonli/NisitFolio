@@ -253,6 +253,11 @@
     background-color: rgb(255, 255, 255);
 }
 
+.myresume-mywork-1{
+    background-color: white;
+    position: relative;
+}
+
 .myresume-head-woNb{
     color: black;
     font-size: 3vw;
@@ -347,9 +352,8 @@
     border: rgba(0,0,0,0);
 
     position: absolute;
-    margin-left: 31.2Vw;
-    /*margin: auto;
-    top: 86vh;
+    margin-left: 23.6%;
+    /*top: 86vh;
     left: 78vw;
 
     width: 30%;
@@ -373,7 +377,7 @@
     border: rgba(0,0,0,0);
 
     position: absolute;
-    margin-left: 32.7Vw;
+    margin-left: 25.2%;
 }
 
 .wgs{
@@ -395,15 +399,15 @@
     width: 100%;
     height: 17Vw;
     padding: 0%;
-    margin-bottom: 0.5Vw;
+    margin-bottom: 0Vw;
     position: relative;
 }
 
-.mywork-col-overlay{
+.mywork-col-2{
     float: left;
     width: 33.33%;
     padding: 0%;
-    margin-bottom: 0.1Vw;
+    margin-bottom: 0Vw;
     position: relative;
 }
 .myworkobj{
@@ -450,7 +454,7 @@
 .img-overlay{
     position: absolute;
     width: 100%;
-    height: 17Vw;
+    height: 100%;
     z-index: 1;
     display: flex;
     background-color: rgba(0,0,0,0.6);
@@ -466,7 +470,7 @@
 }
 
 .myworkname{
-    margin-top: 11.4Vw;
+    margin-top: 11Vw;
     margin-left: 1.5Vw;
     font-size: 2Vw;
     color:rgb(255, 255, 255);
@@ -479,13 +483,13 @@
     color:white;
 }
 
-.img-mywork-bookmark{
+/*.img-mywork-bookmark{
     width: 2.5Vw;
     height: 2.5Vw;
     margin-top: 1Vw;
     margin-left: 23.2Vw;
     z-index: 999;
-}
+}*/
 
 .ghostbutton{
     width: 100%;
@@ -493,7 +497,7 @@
     position: absolute;
 }
 
-.iconmywork{
+/*.iconmywork{
     margin-left: 7Vw;
     margin-top: 1Vw;
     margin-bottom: 0.7Vw;
@@ -514,13 +518,13 @@
     height: 1.9Vw;
     margin-left: 1Vw;
     z-index: 999;
-}
+}*/
 
 .img-mywork-edit{
     width: 1.9Vw;
     height: 1.9Vw;
     margin-top: 0.6Vw;
-    margin-left: 14Vw;
+    margin-left: 11.7Vw;
     z-index: 999;
     position: absolute;
 }
