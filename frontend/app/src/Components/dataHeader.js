@@ -3,12 +3,12 @@ import React from 'react';
 import $ from 'jquery';
 import cookie from 'react-cookies';
 import Edittab1 from "./edittab1";
-import Edittab2 from "./registab2";
-import Edittab3 from "./registab3";
+import Edittab2 from "./edittab2";
+import Edittab3 from "./edittab3";
 import Edittab4 from "./edittab4";
 import Edittab5 from "./edittab5";
 import Edittab6 from "./edittab6";
-import Edittab7 from "./registab7";
+import Edittab7 from "./edittab7";
 
 var certdata = [], workdata = [], jobdata = [];
 var list_of_high = [], list_of_aca = [];
@@ -30,11 +30,48 @@ class DataHeader extends React.Component {
 		//script.src = "assets/js/#.js";
 		//document.body.appendChild(script);
 		$(function () {
-			console.log('Selected tab is ' + cookie.load('Edit_tabselect'));
+			alert('Selected tab is ' + cookie.load('Edit_tabselect'));
+			var Tab_select = cookie.load('Edit_tabselect');
 			$('.tab-content').hide();
-			$('#Edittab1-content').show();
-			$('#basic-date-picker1').attr('placeholder', 'วัน/เดือน/ปี');
-			$('.reset-pass').hide();
+			if(Tab_select==1){
+				$('#Edittab1-content').show();
+				$('#basic-date-picker1').attr('placeholder', 'วัน/เดือน/ปี');
+				$('.reset-pass').hide();
+			}
+			else if(Tab_select==2){
+				$('#Edittab2-content').show();
+				$('.tab-list-item').removeClass('tab-list-active');
+				$('#tab-2').addClass('tab-list-active')
+			}
+			else if(Tab_select==3){
+				$('#Edittab3-content').show();
+				$('.tab-list-item').removeClass('tab-list-active');
+				$('#tab-3').addClass('tab-list-active')
+			}
+			else if(Tab_select==4){
+				$('#Edittab4-content').show();
+				$('.tab-list-item').removeClass('tab-list-active');
+				$('#tab-4').addClass('tab-list-active')
+			}
+			else if(Tab_select==5){
+				$('#Edittab5-content').show();
+				$('.tab-list-item').removeClass('tab-list-active');
+				$('#tab-5').addClass('tab-list-active')
+			}
+			else if(Tab_select==6){
+				$('#Edittab6-content').show();
+				$('.tab-list-item').removeClass('tab-list-active');
+				$('#tab-6').addClass('tab-list-active')
+			}
+			else if(Tab_select==7){
+				$('#Edittab7-content').show();
+				$('.tab-list-item').removeClass('tab-list-active');
+				$('#tab-7').addClass('tab-list-active')
+			}
+			else{
+				alert("Don't selected");
+				$('#Edittab1-content').show();
+			}
 			console.log("Yahaha!");
 			$('#tab-1').on('click', function () {
 				$('.tab-content').hide();
@@ -42,7 +79,7 @@ class DataHeader extends React.Component {
 				$('#tab-1').addClass('tab-list-active')
 				$('#Edittab1-content').show();
 				$('#basic-date-picker1').attr('placeholder', 'วัน/เดือน/ปี');
-				//$('.reset-pass').hide();
+				$('.reset-pass').hide();
 			});
 
 			$('#tab-2').on('click', function () {
@@ -296,6 +333,7 @@ class DataHeader extends React.Component {
 					})
 				});
 			});
+			console.log('This is job data : '+ jobdata);
 	}
 
 	componentWillUnmount() {

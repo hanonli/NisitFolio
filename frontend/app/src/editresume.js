@@ -9,8 +9,8 @@ import Myresumedittemplate from "./Components/myresumeEditTemplate";
 import Chooseresume1 from "./Components/chooseresume1";
 import Editresume2 from "./Components/editresume2";
 import Editresume3 from "./Components/editresume3";
-import Registab6 from "./Components/registab6";
-import Registab7 from "./Components/registab7";
+import Chooseresume4 from "./Components/chooseresume4";
+import Chooseresume5 from "./Components/chooseresume5";
 import $ from 'jquery';
 import cookie from 'react-cookies';
 import LoadingS from './Components/loadingS';
@@ -128,10 +128,43 @@ class Editresume extends React.Component {
 				});
 			});
 		$(function () {
-			$('.name2').text(cookie.load('Job_EditName'));
-			console.log('Selected tab is '+ cookie.load('Edit_tabselect'));
+			$('.nameedit').text('"'+cookie.load('Job_EditName')+'"');
+			console.log('Edit Job is '+ cookie.load('Job_EditName'));
+			alert('Selected tab is '+ cookie.load('Edit_tabselect'));
+			var Tab_select = cookie.load('Edit_tabselect');
 			$('.tab-content').hide();
-			$('#registab1-content').show();
+			if(Tab_select==1){
+				$('#registab1-content').show();
+			}
+			else if(Tab_select==2){
+				$('#registab2-content').show();
+				$('.tab-list-item').removeClass('tab-list-active');
+				$('#tab-2').addClass('tab-list-active')
+			}
+			else if(Tab_select==3){
+				$('#registab3-content').show();
+				$('.tab-list-item').removeClass('tab-list-active');
+				$('#tab-3').addClass('tab-list-active')
+			}
+			else if(Tab_select==4){
+				$('#registab4-content').show();
+				$('.tab-list-item').removeClass('tab-list-active');
+				$('#tab-4').addClass('tab-list-active')
+			}
+			else if(Tab_select==5){
+				$('#registab5-content').show();
+				$('.tab-list-item').removeClass('tab-list-active');
+				$('#tab-5').addClass('tab-list-active')
+			}
+			else if(Tab_select==6){
+				$('#registab6-content').show();
+				$('.tab-list-item').removeClass('tab-list-active');
+				$('#tab-6').addClass('tab-list-active')
+			}
+			else{
+				alert("Don't selected");
+				$('#registab1-content').show();
+			}
 			console.log("Yahaha!");
 			$('#tab-1').on('click', function () {
 				$('.tab-content').hide();
@@ -175,11 +208,13 @@ class Editresume extends React.Component {
 				$('#tab-6').addClass('tab-list-active')
 				$('#registab6-content').show();
 			});
-			console.log("Stored Job_EditName cookies: "+cookie.load('search-entry')); //debug cookies
-   			$('.name2').text(cookie.load('search-entry'));
 		});
 		$('#cancelChoose').on('click',function(){
 			window.history.go(-1);
+		});
+		$('#goToeditProfile').on('click',function(){
+			cookie.save('Edit_tabselect', '1');
+        	window.location = ("editprofile");
 		})
 	}
 
@@ -199,8 +234,9 @@ class Editresume extends React.Component {
 								<div class="col">
 									<div class="topData2-content">
 										<h1 class="name inline">เลือกข้อมูลผู้ใช้ที่จะแสดง</h1>
-										<h1 class="symbol inline">.</h1>
-										<h1 class="name2 inline"></h1>
+										<h1 class="symboledit inline">.</h1>
+										<h1 class="nameedit inline"></h1>
+										<p class="btn-cta-primary-whitewide inline editbtn-resume" id="goToeditProfile">แก้ไขข้อมูล</p>
 									</div>
 								</div>
 							</div>
@@ -229,10 +265,10 @@ class Editresume extends React.Component {
 								<Editresume3 mycerti_data={certdata} />
 							</div>
 							<div class="tab-content" id="registab5-content">
-								<Registab6 />
+								<Chooseresume4 />
 							</div>
 							<div class="tab-content" id="registab6-content">
-								<Registab7 />
+								<Chooseresume5 />
 							</div>
 						</div>
 						<div class="col block-right2">

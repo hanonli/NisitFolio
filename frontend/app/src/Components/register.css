@@ -548,3 +548,26 @@ datalist {
   margin-right: 1%;
   position: relative;
 }
+
+
+.symboledit {
+  color: #2560A5;
+  font-weight: bold;
+  font-size: 48px;
+  margin-right: 30px;
+  /*margin-left: 30px;*/
+  margin-top: 20px;
+  padding-bottom: 12px;
+}
+
+.nameedit {
+  color: #2560A5;
+  font-weight: 500;
+  font-size: 48px;
+  margin-top: 40px;
+}
+
+.editbtn-resume {
+  margin-top: 40px;
+	margin-left: 20%;
+}

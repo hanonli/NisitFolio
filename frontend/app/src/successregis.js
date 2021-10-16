@@ -57,9 +57,10 @@ class Successregis extends React.Component {
 			.then(data => this.setState({ postdata: data }
 			)).catch((error) => {
 				console.log('Token Error!');
-				return (
+				/*return (
 					<Redirect  to="/unsuccessregis" />
-				)
+				)*/
+				window.location = ("unsuccessregis");
 			});
 			console.log(this.state.postdata);
 			//.then(data => this.setState({ postId: data.id }));
@@ -67,9 +68,10 @@ class Successregis extends React.Component {
 		$('#gotolanding').on('click',function(){
 			//alert(fetchtrue);
 			if(fetchtrue){
-				return (
+				/*return (
 					<Redirect  to="/landing" />
-				)
+				)*/
+				window.location = ("landing");
 			}
 			//alert('This feature is now unavaliable! be patient');
 		});
