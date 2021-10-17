@@ -19,7 +19,7 @@ class Successregis extends React.Component {
 	}
 	
 	componentDidMount() {
-		$('.DataHeader').hide();
+		$('.Successregis').hide();
 		// Simple POST request with a JSON body using fetch
 		var fetchtrue = false;
 		let params = new URLSearchParams(document.location.search.substring(1));
@@ -41,35 +41,39 @@ class Successregis extends React.Component {
 					alert('You dont have token!!');
 				}*/
 				if (!response.ok) {
-					alert('Fetch Fail!!');
+					//alert('Fetch Fail!!');
 					window.location = "http://localhost:3000/unsuccessregis";
 					/*return (
 						<Redirect  to="/unsuccessregis" />
 					)*/
+					//$('.Successregis').show();
+					//fetchtrue = true;
 				}
 				else{
-					alert('Fetch True!!');
+					//alert('Fetch True!!');
 					console.log('BAKABAKA');
-					//$('.DataHeader').show();
-					var fetchtrue = true;
+					$('.Successregis').show();
+					fetchtrue = true;
 				}
 			})
 			.then(data => this.setState({ postdata: data }
 			)).catch((error) => {
 				console.log('Token Error!');
-				return (
+				/*return (
 					<Redirect  to="/unsuccessregis" />
-				)
+				)*/
+				window.location = ("unsuccessregis");
 			});
 			console.log(this.state.postdata);
 			//.then(data => this.setState({ postId: data.id }));
 		//setInterval(window.location = "http://localhost:3000/landing", 5000); 
 		$('#gotolanding').on('click',function(){
-			//alert(fetchtrue);
+			alert(fetchtrue);
 			if(fetchtrue){
-				return (
+				/*return (
 					<Redirect  to="/landing" />
-				)
+				)*/
+				window.location = "http://localhost:3000/landing"
 			}
 			//alert('This feature is now unavaliable! be patient');
 		});

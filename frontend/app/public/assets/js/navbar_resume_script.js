@@ -1,8 +1,8 @@
 $('#icon-myresume-education, #icon-myresume-certi, #icon-myresume-skill, #icon-myresume-work, #icon-myresume-goal, #icon-myresume-resume' )
     .attr({
         
-        'width': ' 40px',
-        'height' : '40px',
+        'width': ' 35px',
+        'height' : '35px',
  
 });
     
@@ -37,7 +37,8 @@ $('.Resume_sideNavbar').css({
 });
 $('.resumeblock').css({
     "height": "12vh",
-    "padding-top": "3vh",
+    "padding-top": "4vh",
+    "padding-bottom": "4vh",
     "display" : "block",
 });
 

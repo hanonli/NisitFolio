@@ -14,8 +14,13 @@ class MyResumeportfoliolayoutP extends React.Component{
             frameclass = "portfoliolayoutP_Framesmall";
         }
         let content = [];
-        for(var i=0; i<childlength; i++){
+        /*for(var i=0; i<childlength; i++){
             content.push(<div class="portfoliolayoutP_child"><div class="portfoliolayoutP_child_element"><div class="portfoliolayoutP_child_innerbox">{child[i]}</div></div></div>);
+        }*/
+        for (var i = 0; i < childlength; i++) {
+            content.push(
+                <div class="portfoliolayoutP_child"><div class="portfoliolayoutP_child_element"><div class="portfoliolayoutP_child_innerbox">{child[i]}</div></div></div>
+            );
         }
         let result;
         if(childlength === 0){
@@ -24,22 +29,20 @@ class MyResumeportfoliolayoutP extends React.Component{
         else if(childlength === 1){
             result = (
                 <div class={frameclass}>
-                    <div class="portfoliolayoutP">
-                        <div class="portfoliolayoutP_child"><div class="portfoliolayoutP_child_element"><div class="portfoliolayoutP_child_innerbox">{child}</div></div></div>
-                    </div>
+                    <div class="portfoliolayoutP"><div class="portfoliolayoutP_child"><div class="portfoliolayoutP_child_element"><div class="portfoliolayoutP_child_innerbox">{child}</div></div></div></div>
                 </div>
             );
         }
         else{
             result = (
-                <div class={frameclass}>
-                    <div class="portfoliolayoutP">
-                        {content}
+                <div className="Gallery">
+                    <div>
+                    {content}
                     </div>
                 </div>
             );
         }
-        return(
+        return (
             <div class="portfoliolayout_p">
                 {result}
             </div>

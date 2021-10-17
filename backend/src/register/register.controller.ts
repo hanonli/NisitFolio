@@ -5,6 +5,8 @@ import { RegisterService } from './register.service';
 import { CreateRegisDto } from './dto/create-register.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { PatchRegisDto } from './dto/patch-register.dto';
+import {PatchRegisDto2} from './dto/patch-register_2.dto';
+import { RealIP } from 'nestjs-real-ip';
 
 
 @Controller('register')
@@ -12,8 +14,8 @@ export class RegisterController {
   constructor(private registerService: RegisterService,private httpService: HttpService,) {}
 
   @Post()
-  async CreateRegister(@Body() CreateDto: CreateRegisDto ) {
-    return this.registerService.createRegis(CreateDto);
+  async CreateRegister(@Body() CreateDto: CreateRegisDto,@RealIP() ip: string) {
+    return this.registerService.createRegis(CreateDto,ip);
   }
 
   @UseGuards(JwtAuthGuard)
@@ -21,6 +23,13 @@ export class RegisterController {
   async UpdateRegister(@Body() CreateDto: PatchRegisDto  ,@Request() req) {
     return this.registerService.UpdateRegis(CreateDto,req.user.userId);
   }
+  //------------------------------------test
+  @Patch("/testupdate/:y")
+  async Fullupdate2(@Body() CreateDto: PatchRegisDto2 ,@Param('y') jobtitle: string) {
+    const x="xtest";
+    return this.registerService.Fullupdate(CreateDto,x);
+  }
+  //--------------------------------------
 
   @UseGuards(JwtAuthGuard)
   @Delete()

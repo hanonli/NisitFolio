@@ -1,4 +1,4 @@
-import { Injectable, HttpException, HttpStatus, BadRequestException } from '@nestjs/common';
+import { Injectable ,HttpException,HttpStatus,BadRequestException, ConsoleLogger} from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Md5 } from 'ts-md5/dist/md5';
@@ -11,7 +11,8 @@ import { Observable } from 'rxjs';
 import { Account, Userinfo, AdditionalSkill, Certificate, EducationHistory, InterestedJob, WorkHistory, PortfolioPicture, Resume, UserJobSkill } from './entity/Register.entity'
 import { CreateRegisDto } from './dto/create-register.dto';
 import { EmailConfirmationService } from '../emailConfirmation/emailConfirmation.service';
-
+import { Resume2 , ResumeDocument} from '../myresume/entity/myresume.schema';
+import { Portfolio2, PortfolioDocument} from '../portfolio/entity/portfolio.schema';
 
 import { JobTitle } from 'src/register/entity/JobTitle.entrity'
 import { Skill } from 'src/register/entity/Skill.entrity'
@@ -25,6 +26,7 @@ import { UserInfoDocument } from './entity/register.schema';
 import { GetRegisDto } from './dto/get-register.dto';
 import { Bookmark } from './entity/bookmark.entity';
 import { Portfolio } from '../portfolio/entity/portfolio.entity';
+import {PatchRegisDto2} from './dto/patch-register_2.dto';
 
 @Injectable()
 export class RegisterService {
@@ -61,14 +63,17 @@ export class RegisterService {
     private userJobSkillRepository: Repository<UserJobSkill>,
     @InjectRepository(Bookmark)
     private BookmarkRepository: Repository<Bookmark>,
-
+    @InjectModel(Resume2.name) 
+    private resumeModel: Model<ResumeDocument>,
+    @InjectModel(Portfolio2.name) 
+    private portModel: Model<PortfolioDocument>,
 
     private readonly emailConfirmationService: EmailConfirmationService,
     private httpService: HttpService,
 
   ) { }
 
-  async createRegis(createDto: CreateRegisDto) {
+  async createRegis(createDto: CreateRegisDto,ip:string) {
     const time = new Date();
     const isoTime = time.toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: 'numeric', hour: "2-digit", minute: "2-digit" });
 
@@ -81,8 +86,7 @@ export class RegisterService {
     account.create_time = isoTime;
     account.last_modified = [isoTime];
     account.last_login = null;
-
-
+    
     const accountid = (await this.accountRepository.save(account))._id.toString()
 
     const userinfo = new Userinfo();
@@ -96,25 +100,23 @@ export class RegisterService {
     userinfo.Country = createDto.Country;
     userinfo.Province = createDto.Province;
     userinfo.City = createDto.City;
-    userinfo.ProfilePic = createDto.ProfilePic;
-    userinfo.create_time = isoTime;
-    userinfo.last_modified = [isoTime];
-    //*/
+    userinfo.ProfilePic = createDto.ProfilePic; 
+    userinfo.create_time = isoTime ;
+    userinfo.last_modified =  [isoTime] ;
 
     for (var _i = 0; _i < createDto.SoftSkill.length; _i++) {
 
       const additionalskill = new AdditionalSkill();
       additionalskill.UserId = accountid;
-      additionalskill.AdditionalSkill = createDto.SoftSkill[_i];
-      additionalskill.create_time = isoTime;
-      additionalskill.last_modified = [isoTime];
-      additionalskill.ResumeId = new Array();
-
-      additionalskill.Type = (await this.HardSkillRepository.findOne({ where: { THName: createDto.SoftSkill[_i] } })).THType;
+      additionalskill.AdditionalSkill  = createDto.SoftSkill[_i]; 
+      additionalskill.create_time = isoTime ;
+      additionalskill.last_modified =  [isoTime] ;
+      additionalskill.ResumeId =  new Array() ;
+      additionalskill.Type = createDto.SoftSkillType[_i]; 
+   
       await this.AdditionalSkillRepository.save(additionalskill);
     }
-
-
+    
     for (var _i = 0; _i < createDto.CertName.length; _i++) {
       const certificate = new Certificate();
       certificate.UserId = accountid;
@@ -166,6 +168,10 @@ export class RegisterService {
     let count_skill = 0;
 
     for (var _i = 0; _i < createDto.Job_JobName.length; _i++) {
+
+      const resume = new Resume();
+      const resumeid = ((await this.resumeRepository.save(resume))._id);
+      await this.resumeRepository.remove(resume);
       const interestedJob = new InterestedJob();
       interestedJob.UserId = accountid;
       interestedJob.Job_JobName = createDto.Job_JobName[_i];
@@ -175,11 +181,15 @@ export class RegisterService {
       interestedJob.create_time = isoTime;
       interestedJob.last_modified = [isoTime];
       interestedJob.ResumeId = new Array();
-      const Parentid = (await this.InterestedJobRepository.save(interestedJob))._id.toString()
+      interestedJob.ResumeId.push(resumeid.toString());
+
+      const Parentid = (await this.InterestedJobRepository.save(interestedJob))._id;
+      const Parentid_string = Parentid.toString();
+
       tag_arr.push(createDto.Job_JobName[_i]);
       for (var _j = 0; _j < createDto.Job_Score[_i].length; _j++) {
         const userJobSkill = new UserJobSkill();
-        userJobSkill.ParentId = Parentid;
+        userJobSkill.ParentId = Parentid_string;
         userJobSkill.UserId = accountid;
         userJobSkill.Job_JobName = createDto.Job_JobName[_i];
         userJobSkill.Job_Score = createDto.Job_Score[_i][_j];
@@ -188,7 +198,27 @@ export class RegisterService {
         userJobSkill.Job_SkillName = createDto.Job_SkillName[_i][_j];
         await this.userJobSkillRepository.save(userJobSkill);
       }
-
+      const resume2 = new Resume();
+      resume2._id = resumeid;
+      resume2.UserId = accountid;
+      resume2.Privacy = "Private";
+      resume2.ProfilePic =  createDto.ProfilePicBase64;
+      resume2.Owner =  createDto.Firstname + " " + createDto.Lastname;
+      resume2.Location = createDto.Country + " " + createDto.Province + " "+ createDto.City;
+      resume2.Color = "#ffce55";
+      resume2.Email = createDto.Email;
+      resume2.First = createDto.Firstname;
+      resume2.Last = createDto.Lastname;
+      resume2.interestedJob = new InterestedJob();
+      resume2.interestedJob._id = Parentid;
+      resume2.interestedJob.Job_Score = interestedJob.Job_Score;
+      resume2.interestedJob.Job_JobName = interestedJob.Job_JobName;
+      resume2.interestedJob.Job_Objective = interestedJob.Job_Objective;
+      resume2.interestedJob.Job_SkillName = interestedJob.Job_SkillName;
+      resume2.create_time =  isoTime;
+      resume2.last_modified =  [isoTime] ;
+      resume2.modified_by = [ip];
+      await this.resumeRepository.save(resume2);
     }
     let avg_score = sum_score / count_skill;
 
@@ -198,8 +228,7 @@ export class RegisterService {
     userinfo.tags = tag_arr;
     userinfo.countSkill = count_skill;
     return (this.userinfoRepository.save(userinfo));
-
-
+    
   }
 
   async findJobTitle() {
@@ -231,8 +260,7 @@ export class RegisterService {
       acc.Privacy = patchDto.Privacy;
 
     await this.accountRepository.save(acc);
-
-
+  
     const userinfo = await this.userInfoModel.findOne({ UserId: UserId });
 
     if (patchDto.Firstname || patchDto.Lastname || patchDto.Birthday || patchDto.Gender || patchDto.AboutMe || patchDto.Email2nd || patchDto.Country || patchDto.City || patchDto.Province)
@@ -258,31 +286,60 @@ export class RegisterService {
     if (patchDto.ProfilePic != null)
       userinfo.ProfilePic = patchDto.ProfilePic;
 
+    const resume =  await this.resumeModel.find({UserId: UserId });
+    for (var _i = 0; _i < resume.length; _i++) {
+      if (patchDto.ProfilePicBase64 || patchDto.Country || patchDto.Province || patchDto.City || patchDto.Firstname || patchDto.Lastname)
+      {
+        resume[_i].last_modified.push(isoTime);
+        resume[_i].modified_by.push("automatic system");
+      }
+      if (patchDto.ProfilePicBase64 != null)
+        resume[_i].ProfilePic =  patchDto.ProfilePicBase64;
+      if (patchDto.Country || patchDto.Province || patchDto.City)
+        resume[_i].Location = patchDto.Country + " " + patchDto.Province + " " + patchDto.City;
+      if (patchDto.Firstname){
+        resume[_i].First = patchDto.Firstname;
+        resume[_i].Owner = patchDto.Firstname + " " + userinfo.Lastname;
+      }
+      if (patchDto.Lastname)
+        resume[_i].Last = patchDto.Lastname;
+        resume[_i].Owner = userinfo.Firstname + " " + patchDto.Lastname;
+    }
+    await this.resumeModel.create(resume);
 
+    const port = await this.portModel.find({UserId: UserId });
+    for (var _i = 0; _i < port.length; _i++) {
+      if (patchDto.Firstname || patchDto.Lastname)
+      {
+        port[_i].last_modified.push(isoTime);
+        port[_i].modified_by.push("automatic system");
+      }
+      if (patchDto.Firstname){
+        port[_i].Owner = patchDto.Firstname + " " + userinfo.Lastname;
+      }
+      if (patchDto.Lastname)
+        port[_i].Owner = userinfo.Firstname + " " + patchDto.Lastname;
+    }
+    await this.portModel.create(port);
+    
     return await this.userInfoModel.create(userinfo);
 
   }
 
-  async DeleteRegis(UserId: string) {
-
-
+  async DeleteRegis(UserId:string)
+  {
     const userid = new ObjectID(UserId);
     const acc = await this.accountRepository.findOne({ where: { _id: userid } });
     await this.accountRepository.remove(acc);
+    
+    const userinfo =  await this.userinfoRepository.findOne({where:{UserId: UserId }});
 
-
-    const userinfo = await this.userinfoRepository.findOne({ where: { UserId: UserId } });
-
-
-    const x = userinfo.id;
-
-    const thatbookmark = await this.BookmarkRepository.find({ where: { id: x } });
+    const thatbookmark = await this.BookmarkRepository.find({where:{ id: userinfo.id }});
     for (var _i = 0; _i < thatbookmark.length; _i++) {
       await this.BookmarkRepository.remove(thatbookmark[_i]);
     }
-
-
-    const additionalskill = await this.AdditionalSkillRepository.find({ where: { UserId: UserId } });
+    
+    const additionalskill = await this.AdditionalSkillRepository.find({where:{ UserId: UserId}});
     for (var _i = 0; _i < additionalskill.length; _i++) {
       await this.AdditionalSkillRepository.remove(additionalskill[_i]);
     }
@@ -338,10 +395,26 @@ export class RegisterService {
         error: 'Can not Patch Other Data',
       }, HttpStatus.UNAUTHORIZED);
     }
-    if (patchDto.SoftSkill) {
+    if (patchDto.SoftSkill && patchDto.SoftSkillType){
       additionalskill.last_modified.push(isoTime);
       additionalskill.AdditionalSkill = patchDto.SoftSkill;
-      additionalskill.Type = (await this.HardSkillRepository.findOne({ where: { THName: patchDto.SoftSkill } })).THType;
+      additionalskill.Type = patchDto.SoftSkillType;
+    
+      for (var _i = 0; _i < additionalskill.ResumeId.length; _i++) {
+        const resume =  await this.resumeModel.findOne({_id: additionalskill.ResumeId[_i] });
+        let copy = JSON.parse(JSON.stringify(resume));
+        await this.resumeModel.remove(resume);
+        for (var _j = 0; _j < copy.additionalSkills.length; _j++) {
+          if (copy.additionalSkills[_j].id == ID)
+          {
+            copy.additionalSkills[_j].AdditionalSkill = patchDto.SoftSkill;
+            copy.additionalSkills[_j].Type = patchDto.SoftSkillType;
+          }
+        }
+        copy.last_modified.push(isoTime);
+        copy.modified_by.push("automatic system");
+        await this.resumeModel.create(copy);
+      }
       return await this.AdditionalSkillRepository.save(additionalskill);
     }
     throw new BadRequestException('Dto error');
@@ -351,8 +424,10 @@ export class RegisterService {
 
   async DeleteAdditionalSkill(UserId: string, id: string) {
     const ID = new ObjectID(id);
-    const additionalskill = await this.AdditionalSkillRepository.findOne({ where: { _id: ID } });
-    if (!additionalskill) {
+    const time =  new Date();
+    const isoTime = time.toLocaleDateString('th-TH',{ year:'numeric',month: 'long',day:'numeric',hour:"2-digit",minute:"2-digit"});
+    const additionalskill = await this.AdditionalSkillRepository.findOne({where:{ _id: ID}});
+    if (!additionalskill){
       throw new BadRequestException('Invalid oject');
     }
     if (additionalskill.UserId != UserId) {
@@ -361,10 +436,27 @@ export class RegisterService {
         error: 'Can not Delete Other Data',
       }, HttpStatus.UNAUTHORIZED);
     }
+    
+    for (var _i = 0; _i < additionalskill.ResumeId.length; _i++) {
+      const resume =  await this.resumeModel.findOne({_id: additionalskill.ResumeId[_i] });
+      let copy = JSON.parse(JSON.stringify(resume));
+      await this.resumeModel.remove(resume);
+      var move = false;
+      for (var _j = 0; _j < copy.additionalSkills.length - 1; _j++) {
+        if (copy.additionalSkills[_j].id == ID || move == true)
+        {
+          var move = true;
+          copy.additionalSkills[_j] = copy.additionalSkills[_j+1];
+        }
+      }
+      copy.additionalSkills.pop();
+      copy.last_modified.push(isoTime);
+      copy.modified_by.push("automatic system");
+      await this.resumeModel.create(copy);
+    }
 
     return await this.AdditionalSkillRepository.remove(additionalskill);
-
-  }
+}
 
   async UpdateCertificate(patchDto: PatchRegisDto, UserId: string, id: string) {
     const time = new Date();
@@ -388,6 +480,24 @@ export class RegisterService {
         certificate.CertYear = patchDto.CertYear;
       if (patchDto.CertPic)
         certificate.CertPic = patchDto.CertPic;
+        
+      for (var _i = 0; _i < certificate.ResumeId.length; _i++) {
+        const resume =  await this.resumeModel.findOne({_id: certificate.ResumeId[_i] });
+        let copy = JSON.parse(JSON.stringify(resume));
+        await this.resumeModel.remove(resume);
+        for (var _j = 0; _j < copy.certificates.length; _j++) {
+          if (copy.certificates[_j].id == id)
+          {
+            copy.certificates[_j].CertName = certificate.CertName;
+            copy.certificates[_j].CertYear = certificate.CertYear;
+            copy.certificates[_j].CertPic = certificate.CertPic;
+          }
+        }
+        copy.last_modified.push(isoTime);
+        copy.modified_by.push("automatic system");
+        await this.resumeModel.create(copy);
+      }
+
       return await this.CertificateRepository.save(certificate);
     }
     throw new BadRequestException('Dto error');
@@ -395,7 +505,9 @@ export class RegisterService {
 
   }
 
-  async DeleteCertificate(UserId: string, id: string) {
+  async DeleteCertificate(UserId:string,id:string){
+    const time =  new Date();
+    const isoTime = time.toLocaleDateString('th-TH',{ year:'numeric',month: 'long',day:'numeric',hour:"2-digit",minute:"2-digit"});
     const ID = new ObjectID(id);
     const certificate = await this.CertificateRepository.findOne({ where: { _id: ID } });
     if (!certificate) {
@@ -407,7 +519,25 @@ export class RegisterService {
         error: 'Can not Delete Other Data',
       }, HttpStatus.UNAUTHORIZED);
     }
-
+         
+    for (var _i = 0; _i < certificate.ResumeId.length; _i++) {
+      const resume =  await this.resumeModel.findOne({_id: certificate.ResumeId[_i] });
+      let copy = JSON.parse(JSON.stringify(resume));
+      var move = false;
+      await this.resumeModel.remove(resume);
+      for (var _j = 0; _j < copy.certificates.length-1; _j++) {
+        if (copy.certificates[_j].id == id || move == true)
+        {
+          var move = true;
+          copy.certificates[_j] = copy.certificates[_j+1];
+        }
+      }
+      copy.certificates.pop();
+      copy.last_modified.push(isoTime);
+      copy.modified_by.push("automatic system");
+      await this.resumeModel.create(copy);
+    }
+    
     return await this.CertificateRepository.remove(certificate);
 
   }
@@ -440,6 +570,27 @@ export class RegisterService {
         educationHistory.Grade = patchDto.Grade;
       if (patchDto.Education_End_Year)
         educationHistory.Education_End_Year = patchDto.Education_End_Year;
+      
+      for (var _i = 0; _i < educationHistory.ResumeId.length; _i++) {
+        const resume =  await this.resumeModel.findOne({_id: educationHistory.ResumeId[_i] });
+        let copy = JSON.parse(JSON.stringify(resume));
+        await this.resumeModel.remove(resume);
+        for (var _j = 0; _j < copy.educationHistorys.length; _j++) {
+          if (copy.educationHistorys[_j].id == id)
+          {
+            copy.educationHistorys[_j].Degree = educationHistory.Degree;
+            copy.educationHistorys[_j].Facalty = educationHistory.Facalty;
+            copy.educationHistorys[_j].Field_of_study  = educationHistory.Field_of_study;
+            copy.educationHistorys[_j].Academy = educationHistory.Academy ;
+            copy.educationHistorys[_j].Grade = educationHistory.Grade;
+            copy.educationHistorys[_j].Education_End_Year = educationHistory.Education_End_Year;
+          }
+        }
+        copy.last_modified.push(isoTime);
+        copy.modified_by.push("automatic system");
+        await this.resumeModel.create(copy);
+      }
+
       return await this.EducationHistoryRepository.save(educationHistory);
     }
     throw new BadRequestException('Dto error');
@@ -447,7 +598,9 @@ export class RegisterService {
 
   }
 
-  async DeleteEducationHistory(UserId: string, id: string) {
+  async DeleteEducationHistory(UserId:string,id:string){
+    const time =  new Date();
+    const isoTime = time.toLocaleDateString('th-TH',{ year:'numeric',month: 'long',day:'numeric',hour:"2-digit",minute:"2-digit"});
     const ID = new ObjectID(id);
     const educationHistory = await this.EducationHistoryRepository.findOne({ where: { _id: ID } });
     if (!educationHistory) {
@@ -459,7 +612,23 @@ export class RegisterService {
         error: 'Can not Delete Other Data',
       }, HttpStatus.UNAUTHORIZED);
     }
-
+    for (var _i = 0; _i < educationHistory.ResumeId.length; _i++) {
+      const resume =  await this.resumeModel.findOne({_id: educationHistory.ResumeId[_i] });
+      let copy = JSON.parse(JSON.stringify(resume));
+      await this.resumeModel.remove(resume);
+      var move = false;
+      for (var _j = 0; _j < copy.educationHistorys.length - 1; _j++) {
+        if (copy.educationHistorys[_j].id == id || move == true)
+        {
+          move = true;
+          copy.educationHistorys[_j] = copy.educationHistorys[_j+1];
+        }
+      }
+      copy.educationHistorys.pop()
+      copy.last_modified.push(isoTime);
+      copy.modified_by.push("automatic system");
+      await this.resumeModel.create(copy);
+    }
     return await this.EducationHistoryRepository.remove(educationHistory);
 
   }
@@ -483,7 +652,7 @@ export class RegisterService {
       if (patchDto.Work_JobName)
         workHistory.Work_JobName = patchDto.Work_JobName;
       if (patchDto.Work_JobType)
-        workHistory.Work_JobType = patchDto.Work_JobName;
+        workHistory.Work_JobType = patchDto.Work_JobType;
       if (patchDto.Company)
         workHistory.Work_Company = patchDto.Company;
       if (patchDto.Work_End_Month)
@@ -500,6 +669,31 @@ export class RegisterService {
         workHistory.Work_Salary_Type = patchDto.SalaryType;
       if (patchDto.Infomation)
         workHistory.Work_Infomation = patchDto.Infomation;
+
+      for (var _i = 0; _i < workHistory.ResumeId.length; _i++) {
+        const resume =  await this.resumeModel.findOne({_id: workHistory.ResumeId[_i] });
+        let copy = JSON.parse(JSON.stringify(resume));
+        await this.resumeModel.remove(resume);
+        for (var _j = 0; _j < copy.workHistorys.length; _j++) {
+          if (copy.workHistorys[_j].id == id)
+          {
+            copy.workHistorys[_j].Work_JobName = workHistory.Work_JobName ;
+            copy.workHistorys[_j].Work_JobType = workHistory.Work_JobType;
+            copy.workHistorys[_j].Work_Company  = workHistory.Work_Company;
+            copy.workHistorys[_j].Work_End_Month = workHistory.Work_End_Month ;
+            copy.workHistorys[_j].Work_End_Year = workHistory.Work_End_Year;
+            copy.workHistorys[_j].Work_Start_Month = workHistory.Work_Start_Month;
+            copy.workHistorys[_j].Work_Start_Year = workHistory.Work_Start_Year;
+            copy.workHistorys[_j].Work_Salary = workHistory.Work_Salary;
+            copy.workHistorys[_j].Work_Salary_Type = workHistory.Work_Salary_Type;
+            copy.workHistorys[_j].Work_Infomation =workHistory.Work_Infomation;
+          }
+        }
+        copy.last_modified.push(isoTime);
+        copy.modified_by.push("automatic system");
+        await this.resumeModel.create(copy);
+      }
+
       return await this.WorkHistoryRepository.save(workHistory);
     }
     throw new BadRequestException('Dto error');
@@ -507,7 +701,9 @@ export class RegisterService {
 
   }
 
-  async DeleteWorkHistory(UserId: string, id: string) {
+  async DeleteWorkHistory(UserId:string,id:string){
+    const time =  new Date();
+    const isoTime = time.toLocaleDateString('th-TH',{ year:'numeric',month: 'long',day:'numeric',hour:"2-digit",minute:"2-digit"});
     const ID = new ObjectID(id);
     const workHistory = await this.WorkHistoryRepository.findOne({ where: { _id: ID } });
     if (!workHistory) {
@@ -519,7 +715,24 @@ export class RegisterService {
         error: 'Can not Delete Other Data',
       }, HttpStatus.UNAUTHORIZED);
     }
-
+    
+    for (var _i = 0; _i < workHistory.ResumeId.length; _i++) {
+      const resume =  await this.resumeModel.findOne({_id: workHistory.ResumeId[_i] });
+      let copy = JSON.parse(JSON.stringify(resume));
+      await this.resumeModel.remove(resume);
+      var move = false;
+      for (var _j = 0; _j < copy.workHistorys.length-1; _j++) {
+        if (copy.workHistorys[_j].id == id || move == true)
+        {
+          move = true;
+          copy.workHistorys[_j] = copy.workHistorys[_j+1];
+        }
+      }
+      copy.workHistorys.pop()
+      copy.last_modified.push(isoTime);
+      copy.modified_by.push("automatic system");
+      await this.resumeModel.create(copy);
+    }
     return await this.WorkHistoryRepository.remove(workHistory);
 
   }
@@ -581,11 +794,34 @@ export class RegisterService {
       userJobSkill.Job_SkillName = patchDto.Job_SkillName[_i];
       await this.userJobSkillRepository.save(userJobSkill);
     }
-    return await this.InterestedJobRepository.save(interestedJob);
+
+
+    for (var _i = 0; _i < interestedJob.ResumeId.length; _i++) {
+      const resume =  await this.resumeModel.findOne({_id: interestedJob.ResumeId[_i] });
+      let copy = JSON.parse(JSON.stringify(resume));
+      await this.resumeModel.deleteOne({_id: interestedJob.ResumeId[_i] });
+      for (var _j = 0; _j < copy.interestedJob.length; _j++) {
+        if (copy.interestedJob[_j]._id == id)
+        {
+          console.log(interestedJob.Job_JobName);
+          copy.interestedJob[_j].Job_JobName = interestedJob.Job_JobName ;
+          copy.interestedJob[_j].Job_Objective  = interestedJob.Job_Objective;
+          copy.interestedJob[_j].Job_Score = interestedJob.Job_Score ;
+          copy.interestedJob[_j].Job_SkillName = interestedJob.Job_SkillName;
+        }
+      }
+      copy.last_modified.push(isoTime);
+      copy.modified_by.push("automatic system");
+      await this.resumeModel.create(copy);
+    }
+
+    return await this.InterestedJobRepository.save(interestedJob);      
 
   }
 
-  async DeleteInterestedJob(UserId: string, id: string) {
+  async DeleteInterestedJob(UserId:string,id:string){
+    const time =  new Date();
+    const isoTime = time.toLocaleDateString('th-TH',{ year:'numeric',month: 'long',day:'numeric',hour:"2-digit",minute:"2-digit"});
     const ID = new ObjectID(id);
     const interestedJob = await this.InterestedJobRepository.findOne({ where: { _id: ID } });
     if (!interestedJob) {
@@ -597,208 +833,318 @@ export class RegisterService {
         error: 'Can not Delete Other Data',
       }, HttpStatus.UNAUTHORIZED);
     }
-
+    
+    for (var _i = 0; _i < interestedJob.ResumeId.length; _i++) {
+      await this.resumeModel.deleteOne({_id: interestedJob.ResumeId[_i] });
+    }
     return await this.InterestedJobRepository.remove(interestedJob);
 
   }
 
-  async GetInfo(UserId: string) {
-    const result = new GetRegisDto;
+  async GetInfo(UserId:string) {
+      const result = new GetRegisDto;  
+      const userid = new ObjectID(UserId);
+      const account=await this.accountRepository.findOne({where:{_id:userid}});
+      const userinfo=await this.userinfoRepository.findOne({where:{UserId:UserId}});
+      
+      result.Email=account.Email;
+      result.Password=account.Password[account.Password.length - 1];
+      result.ProfilePic=account.ProfilePic;
+      result.Privacy=account.Privacy;
+      result.Account_id=account._id.toString();
+      result.Firstname=userinfo.Firstname;
+      result.Lastname=userinfo.Lastname;
+      result.Birthday=userinfo.Birthday;
+      result.Gender=userinfo.Gender;
+      result.AboutMe=userinfo.AboutMe;
+      result.Email2nd=userinfo.Email2nd;
+      result.Country=userinfo.Country;
+      result.Province=userinfo.Province;
+      result.City=userinfo.City;
+      result.user_id=userinfo.id.toString();
 
-
-    const userid = new ObjectID(UserId);
-    const account = await this.accountRepository.findOne({ where: { _id: userid } });
-    const userinfo = await this.userinfoRepository.findOne({ where: { UserId: UserId } });
-    const z = account._id.toString();
-
-
-    result.Email = account.Email;
-    result.Password = account.Password[account.Password.length - 1];
-    result.ProfilePic = account.ProfilePic;
-    result.Privacy = account.Privacy;
-
-    result.Account_id = account._id.toString();
-
-    //return [result,z];
-    result.Firstname = userinfo.Firstname;
-    result.Lastname = userinfo.Lastname;
-    result.Birthday = userinfo.Birthday;
-    result.Gender = userinfo.Gender;
-    result.AboutMe = userinfo.AboutMe;
-    result.Email2nd = userinfo.Email2nd;
-    result.Country = userinfo.Country;
-    result.Province = userinfo.Province;
-    result.City = userinfo.City;
-
-    result.user_id = userinfo.id.toString();
-    //return userinfo.id;
-
-
-    const softskill_arr = [];
-    const softskill_id_arr = [];
-    const additionalskill = await this.AdditionalSkillRepository.find({ where: { UserId: UserId } });
-    for (var _i = 0; _i < additionalskill.length; _i++) {
-      softskill_arr.push(additionalskill[_i].AdditionalSkill);
-      softskill_id_arr.push(additionalskill[_i].id.toString());
-    }
-    result.SoftSkill = softskill_arr;
-
-    result.AdditionalSkill_id = softskill_id_arr
-
-    const CertName_arr = [];
-    const CertPic_arr = [];
-    const CertYear_arr = [];
-    const CertId_arr = [];
-    const Certificate = await this.CertificateRepository.find({ where: { UserId: UserId } });
-
-    const Certificate_sortlist = [];
-    const Certificate_Dictionary = {};
-
-    for (var _i = 0; _i < Certificate.length; _i++) {
-      const z = Certificate[_i].CertYear;
-      Certificate_sortlist.push(z);
-      Certificate_Dictionary[z] = _i;
-    }
-    Certificate_sortlist.sort();
-    Certificate_sortlist.reverse();
-    for (var _i = 0; _i < Certificate_sortlist.length; _i++) {
-      const key_Certificate_sortlist = Certificate_sortlist[_i];
-      const Certificate_NUM_Dictionary = Certificate_Dictionary[key_Certificate_sortlist];
-      CertName_arr.push(Certificate[Certificate_NUM_Dictionary].CertName);
-      CertPic_arr.push(Certificate[Certificate_NUM_Dictionary].CertPic);
-      CertYear_arr.push(Certificate[Certificate_NUM_Dictionary].CertYear);
-      CertId_arr.push(Certificate[Certificate_NUM_Dictionary].id.toString());
-    }
-
-    result.CertName = CertName_arr;
-    result.CertPic = CertPic_arr;
-    result.CertYear = CertYear_arr;
-
-    result.Certificate_id = CertId_arr;
-
-    const Degree_arr = [];
-    const Facalty_arr = [];
-    const Field_of_study_arr = [];
-    const Academy_arr = [];
-    const Grade_arr = [];
-    const Education_End_Year_arr = [];
-    const EDId_arr = [];
-    const educationHistory = await this.EducationHistoryRepository.find({ where: { UserId: UserId } });
-    const educationHistory_sortlist = [];
-    const educationHistory_Dictionary = {};
-
-    for (var _i = 0; _i < educationHistory.length; _i++) {
-      const educationHistory_End_Year = educationHistory[_i].Education_End_Year;
-      educationHistory_sortlist.push(educationHistory_End_Year);
-      educationHistory_Dictionary[educationHistory_End_Year] = _i;
-    }
-    educationHistory_sortlist.sort();
-    educationHistory_sortlist.reverse();
-
-    for (var _i = 0; _i < educationHistory.length; _i++) {
-      const key_educationHistory_Dictionary = educationHistory_sortlist[_i];
-      const educationHistory_Num_sort = educationHistory_Dictionary[key_educationHistory_Dictionary];
-      Degree_arr.push(educationHistory[educationHistory_Num_sort].Degree);
-      Facalty_arr.push(educationHistory[educationHistory_Num_sort].Facalty);
-      Field_of_study_arr.push(educationHistory[educationHistory_Num_sort].Field_of_study);
-      Academy_arr.push(educationHistory[educationHistory_Num_sort].Academy);
-      Grade_arr.push(educationHistory[educationHistory_Num_sort].Grade);
-      Education_End_Year_arr.push(educationHistory[educationHistory_Num_sort].Education_End_Year);
-      EDId_arr.push(educationHistory[educationHistory_Num_sort].id.toString());
-    }
-    result.Degree = Degree_arr;
-    result.Facalty = Facalty_arr;
-    result.Field_of_study = Field_of_study_arr;
-    result.Academy = Academy_arr;
-    result.Grade = Grade_arr;
-    result.Education_End_Year = Education_End_Year_arr;
-
-    result.EducationHistory_id = EDId_arr;
-
-
-    const Work_JobName_arr = [];
-    const Work_JobType_arr = [];
-    const Company_arr = [];
-    const Work_Start_Month_arr = [];
-    const Work_End_Month_arr = [];
-    const Work_Start_Year_arr = [];
-    const Work_End_Year_arr = [];
-    const Salary_arr = [];
-    const Infomation_arr = [];
-    const SalaryType_arr = [];
-    const WHId_arr = [];
-    const workHistory = await this.WorkHistoryRepository.find({ where: { UserId: UserId } });
-    //return workHistory;
-
-    const workHistory_sortlist = [];
-    const workHistory_Dictionary = {};
-
-    for (var _i = 0; _i < workHistory.length; _i++) {
-      const workHistory_End = workHistory[_i].Work_End_Year + (workHistory[_i].Work_End_Month / 12);
-      workHistory_sortlist.push(workHistory_End);
-      workHistory_Dictionary[workHistory_End] = _i;
-    }
-    workHistory_sortlist.sort();
-    workHistory_sortlist.reverse();
-    //return workHistory_Dictionary;
-
-    for (var _i = 0; _i < workHistory.length; _i++) {
-      const key_workHistory_Dictionary = workHistory_sortlist[_i];
-      const workHistory_Num_Sort = workHistory_Dictionary[key_workHistory_Dictionary];
-
-      Work_JobName_arr.push(workHistory[workHistory_Num_Sort].Work_JobName);
-      Work_JobType_arr.push(workHistory[workHistory_Num_Sort].Work_JobType);
-      Company_arr.push(workHistory[workHistory_Num_Sort].Work_Company);
-      Work_Start_Month_arr.push(workHistory[workHistory_Num_Sort].Work_Start_Month);
-      Work_End_Month_arr.push(workHistory[workHistory_Num_Sort].Work_End_Month);
-      Work_Start_Year_arr.push(workHistory[workHistory_Num_Sort].Work_Start_Year);
-      Work_End_Year_arr.push(workHistory[workHistory_Num_Sort].Work_End_Year);
-      Salary_arr.push(workHistory[workHistory_Num_Sort].Work_Salary);
-      Infomation_arr.push(workHistory[workHistory_Num_Sort].Work_Infomation);
-      SalaryType_arr.push(workHistory[workHistory_Num_Sort].Work_Salary_Type);
-      WHId_arr.push(workHistory[workHistory_Num_Sort].id.toString());
-    }
-
-    result.Work_JobName = Work_JobName_arr;
-    result.Work_JobType = Work_JobType_arr;
-    result.Company = Company_arr;
-    result.Work_Start_Month = Work_Start_Month_arr;
-    result.Work_End_Month = Work_End_Month_arr;
-    result.Work_Start_Year = Work_Start_Year_arr;
-    result.Work_End_Year = Work_End_Year_arr;
-    result.Salary = Salary_arr;
-    result.Infomation = Infomation_arr;
-    result.SalaryType = SalaryType_arr;
-
-    result.WorkHistory_id = WHId_arr;
-
-    const Job_Objective_arr = [];
-    const Job_Score_arr = [];
-    const Job_JobName_arr = [];
-    const Job_SkillName_arr = [];
-    const InterestedJob_id_arr = [];
-    const IJ = await this.InterestedJobRepository.find({ where: { UserId: UserId } });
-    for (var _i = 0; _i < IJ.length; _i++) {
-      Job_Objective_arr.push(IJ[_i].Job_Objective);
-      Job_Score_arr.push(IJ[_i].Job_Score);
-      Job_JobName_arr.push(IJ[_i].Job_JobName);
-      Job_SkillName_arr.push(IJ[_i].Job_SkillName);
-      InterestedJob_id_arr.push(IJ[_i]._id.toString());
-
-    }
-
-    result.Job_Objective = Job_Objective_arr;
-    result.Job_Score = Job_Score_arr;
-    result.Job_JobName = Job_JobName_arr;
-    result.Job_SkillName = Job_SkillName_arr;
-    result.InterestedJob_id = InterestedJob_id_arr;
-
-
-    return result;
-
-    //*/  
+      const softskill_arr=[];
+      const softskill_id_arr=[];
+      const additionalskill=await this.AdditionalSkillRepository.find({where:{UserId:UserId}});
+      for (var _i = 0; _i < additionalskill.length; _i++) {
+        softskill_arr.push(additionalskill[_i].AdditionalSkill);
+        softskill_id_arr.push(additionalskill[_i].id.toString());
+      }
+      result.SoftSkill=softskill_arr;
+      
+      result.AdditionalSkill_id=softskill_id_arr
+      
+      const CertName_arr=[];
+      const CertPic_arr=[];
+      const CertYear_arr=[];
+      const CertId_arr=[];
+      const Certificate=await this.CertificateRepository.find({where:{UserId:UserId}});
+  
+      const Certificate_sortlist=[];
+      const Certificate_Dictionary = {};
+  
+      for (var _i = 0; _i < Certificate.length; _i++) {
+        const z=Certificate[_i].CertYear;
+        Certificate_sortlist.push(z);
+        Certificate_Dictionary[z]=_i;
+      }
+      Certificate_sortlist.sort();
+      Certificate_sortlist.reverse();
+      for (var _i = 0; _i < Certificate_sortlist.length; _i++) {
+        const key_Certificate_sortlist=Certificate_sortlist[_i];
+        const Certificate_NUM_Dictionary=Certificate_Dictionary[key_Certificate_sortlist];
+        CertName_arr.push(Certificate[Certificate_NUM_Dictionary].CertName);
+        CertPic_arr.push(Certificate[Certificate_NUM_Dictionary].CertPic);
+        CertYear_arr.push(Certificate[Certificate_NUM_Dictionary].CertYear);
+        CertId_arr.push(Certificate[Certificate_NUM_Dictionary].id.toString());
+      }
+      
+      result.CertName=CertName_arr;
+      result.CertPic=CertPic_arr;
+      result.CertYear=CertYear_arr;
+      
+      result.Certificate_id=CertId_arr;
+      
+      const Degree_arr=[];
+      const Facalty_arr=[];
+      const Field_of_study_arr=[];
+      const Academy_arr=[];
+      const Grade_arr=[];
+      const Education_End_Year_arr=[];
+      const EDId_arr=[];
+      const educationHistory=await this.EducationHistoryRepository.find({where:{UserId:UserId}});
+      const educationHistory_sortlist=[];
+      const educationHistory_Dictionary={};
+  
+      for (var _i = 0; _i < educationHistory.length; _i++) {
+        const educationHistory_End_Year=educationHistory[_i].Education_End_Year;
+        educationHistory_sortlist.push(educationHistory_End_Year);
+        educationHistory_Dictionary[educationHistory_End_Year]=_i;
+      }
+      educationHistory_sortlist.sort();
+      educationHistory_sortlist.reverse();
+  
+      for (var _i = 0; _i < educationHistory.length; _i++) {
+        const key_educationHistory_Dictionary=educationHistory_sortlist[_i];
+        const educationHistory_Num_sort=educationHistory_Dictionary[key_educationHistory_Dictionary];
+        Degree_arr.push(educationHistory[educationHistory_Num_sort].Degree);
+        Facalty_arr.push(educationHistory[educationHistory_Num_sort].Facalty);
+        Field_of_study_arr.push(educationHistory[educationHistory_Num_sort].Field_of_study);
+        Academy_arr.push(educationHistory[educationHistory_Num_sort].Academy);
+        Grade_arr.push(educationHistory[educationHistory_Num_sort].Grade);
+        Education_End_Year_arr.push(educationHistory[educationHistory_Num_sort].Education_End_Year);
+        EDId_arr.push(educationHistory[educationHistory_Num_sort].id.toString());
+      }
+      result.Degree=Degree_arr;
+      result.Facalty=Facalty_arr;
+      result.Field_of_study=Field_of_study_arr;
+      result.Academy=Academy_arr;
+      result.Grade=Grade_arr;
+      result.Education_End_Year=Education_End_Year_arr;
+      result.EducationHistory_id=EDId_arr;
+    
+      const Work_JobName_arr=[];
+      const Work_JobType_arr=[];
+      const Company_arr=[];
+      const Work_Start_Month_arr=[];
+      const Work_End_Month_arr=[];
+      const Work_Start_Year_arr=[];
+      const Work_End_Year_arr=[];
+      const Salary_arr=[];
+      const Infomation_arr=[];
+      const SalaryType_arr=[];
+      const WHId_arr=[];
+      const workHistory =await this.WorkHistoryRepository.find({where:{UserId:UserId}});
+  
+      const workHistory_sortlist=[];
+      const workHistory_Dictionary={};
+  
+      for (var _i = 0; _i < workHistory.length; _i++) {
+        const workHistory_End=workHistory[_i].Work_End_Year+(workHistory[_i].Work_End_Month/12);
+        workHistory_sortlist.push(workHistory_End);
+        workHistory_Dictionary[workHistory_End]=_i;
+      }
+      workHistory_sortlist.sort();
+      workHistory_sortlist.reverse();
+      
+      for (var _i = 0; _i < workHistory.length; _i++) {
+        const key_workHistory_Dictionary=workHistory_sortlist[_i];
+        const workHistory_Num_Sort=workHistory_Dictionary[key_workHistory_Dictionary];
+  
+        Work_JobName_arr.push(workHistory[workHistory_Num_Sort].Work_JobName);
+        Work_JobType_arr.push(workHistory[workHistory_Num_Sort].Work_JobType);
+        Company_arr.push(workHistory[workHistory_Num_Sort].Work_Company);
+        Work_Start_Month_arr.push(workHistory[workHistory_Num_Sort].Work_Start_Month);
+        Work_End_Month_arr.push(workHistory[workHistory_Num_Sort].Work_End_Month);
+        Work_Start_Year_arr.push(workHistory[workHistory_Num_Sort].Work_Start_Year);
+        Work_End_Year_arr.push(workHistory[workHistory_Num_Sort].Work_End_Year);
+        Salary_arr.push(workHistory[workHistory_Num_Sort].Work_Salary);
+        Infomation_arr.push(workHistory[workHistory_Num_Sort].Work_Infomation);
+        SalaryType_arr.push(workHistory[workHistory_Num_Sort].Work_Salary_Type);
+        WHId_arr.push(workHistory[workHistory_Num_Sort].id.toString());
+      }
+      
+      result.Work_JobName=Work_JobName_arr;
+      result.Work_JobType=Work_JobType_arr;
+      result.Company=Company_arr;
+      result.Work_Start_Month=Work_Start_Month_arr;
+      result.Work_End_Month=Work_End_Month_arr;
+      result.Work_Start_Year=Work_Start_Year_arr;
+      result.Work_End_Year=Work_End_Year_arr;
+      result.Salary=Salary_arr;
+      result.Infomation=Infomation_arr;
+      result.SalaryType=SalaryType_arr;
+      result.WorkHistory_id=WHId_arr;
+      
+      const Job_Objective_arr=[];
+      const Job_Score_arr=[];
+      const Job_JobName_arr=[];
+      const Job_SkillName_arr=[];
+      const  InterestedJob_id_arr=[];
+      const IJ=await this.InterestedJobRepository.find({where:{UserId:UserId}});
+      for (var _i = 0; _i < IJ.length; _i++) {
+        Job_Objective_arr.push(IJ[_i].Job_Objective);
+        Job_Score_arr.push(IJ[_i].Job_Score);
+        Job_JobName_arr.push(IJ[_i].Job_JobName);
+        Job_SkillName_arr.push(IJ[_i].Job_SkillName);
+        InterestedJob_id_arr.push(IJ[_i]._id.toString());
+  
+      }
+  
+      result.Job_Objective=Job_Objective_arr;
+      result.Job_Score=Job_Score_arr;
+      result.Job_JobName=Job_JobName_arr;
+      result.Job_SkillName=Job_SkillName_arr;
+      result.InterestedJob_id=InterestedJob_id_arr;
+      
+      return result;
   }
 
 
+  async Fullupdate(patchDto: PatchRegisDto2,UserId: string){
+    /*
+    const x={"c":1,"u":2};
+    if(x["x"]==null){
+      return "true"-----
+    }else{
+      return "F"
+    }
+    */
+   /*
+    const x={"wasd":{"x":50},"u":2};
+    //return x["wasd"]["x"];
+    if(x["wasd"]["x"]==null){
+      return "true"
+    }else{
+      return "F"-----
+    }
+    */
+
+    const counter = 0;
+    
+    const time = new Date();
+    const isoTime = time.toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: 'numeric', hour: "2-digit", minute: "2-digit" });
+    
+    const userid = new ObjectID(UserId);
+    const acc = await this.accountRepository.findOne({ where: { _id: userid } });
+
+
+
+    if (patchDto.Password != null)
+      acc.Password.push(Md5.hashStr(patchDto.Password));
+    acc.last_modified.push(isoTime);
+    if (patchDto.ProfilePic != null)
+      acc.ProfilePic = patchDto.ProfilePic;
+    if (patchDto.Privacy != null)
+      acc.Privacy = patchDto.Privacy;
+
+    await this.accountRepository.save(acc);
+  
+    const userinfo = await this.userInfoModel.findOne({ UserId: UserId });
+
+    if (patchDto.Firstname || patchDto.Lastname || patchDto.Birthday || patchDto.Gender || patchDto.AboutMe || patchDto.Email2nd || patchDto.Country || patchDto.City || patchDto.Province)
+      userinfo.last_modified.push(isoTime);
+    if (patchDto.Firstname != null)
+      userinfo.Firstname = patchDto.Firstname;
+    if (patchDto.Lastname != null)
+      userinfo.Lastname = patchDto.Lastname;
+    if (patchDto.Birthday != null)
+      userinfo.Birthday = patchDto.Birthday;
+    if (patchDto.Gender != null)
+      userinfo.Gender = patchDto.Gender;
+    if (patchDto.AboutMe != null)
+      userinfo.AboutMe = patchDto.AboutMe;
+    if (patchDto.Email2nd != null)
+      userinfo.Email2nd = patchDto.Email2nd;
+    if (patchDto.Country != null)
+      userinfo.Country = patchDto.Country;
+    if (patchDto.Province != null)
+      userinfo.Province = patchDto.Province;
+    if (patchDto.City != null)
+      userinfo.City = patchDto.City;
+    if (patchDto.ProfilePic != null)
+      userinfo.ProfilePic = patchDto.ProfilePic;
+
+    const resume =  await this.resumeModel.find({UserId: UserId });
+    for (var _i = 0; _i < resume.length; _i++) {
+      if (patchDto.ProfilePicBase64 || patchDto.Country || patchDto.Province || patchDto.City || patchDto.Firstname || patchDto.Lastname)
+      {
+        resume[_i].last_modified.push(isoTime);
+        resume[_i].modified_by.push("automatic system");
+      }
+      if (patchDto.ProfilePicBase64 != null)
+        resume[_i].ProfilePic =  patchDto.ProfilePicBase64;
+      if (patchDto.Country || patchDto.Province || patchDto.City)
+        resume[_i].Location = patchDto.Country + " " + patchDto.Province + " " + patchDto.City;
+      if (patchDto.Firstname){
+        resume[_i].First = patchDto.Firstname;
+        resume[_i].Owner = patchDto.Firstname + " " + userinfo.Lastname;
+      }
+      if (patchDto.Lastname)
+        resume[_i].Last = patchDto.Lastname;
+        resume[_i].Owner = userinfo.Firstname + " " + patchDto.Lastname;
+    }
+    await this.resumeModel.create(resume);
+
+    const port = await this.portModel.find({UserId: UserId });
+    for (var _i = 0; _i < port.length; _i++) {
+      if (patchDto.Firstname || patchDto.Lastname)
+      {
+        port[_i].last_modified.push(isoTime);
+        port[_i].modified_by.push("automatic system");
+      }
+      if (patchDto.Firstname){
+        port[_i].Owner = patchDto.Firstname + " " + userinfo.Lastname;
+      }
+      if (patchDto.Lastname)
+        port[_i].Owner = userinfo.Firstname + " " + patchDto.Lastname;
+    }
+    await this.portModel.create(port);
+    
+    return await this.userInfoModel.create(userinfo);
+    //*/
+    return "sus";
+    /*
+    const Certificate_sortlist=[];
+      const Certificate_Dictionary = {};
+  
+      for (var _i = 0; _i < Certificate.length; _i++) {
+        const z=Certificate[_i].CertYear;
+        Certificate_sortlist.push(z);
+        Certificate_Dictionary[z]=_i;
+      }
+      Certificate_sortlist.sort();
+      Certificate_sortlist.reverse();
+      for (var _i = 0; _i < Certificate_sortlist.length; _i++) {
+        const key_Certificate_sortlist=Certificate_sortlist[_i];
+        const Certificate_NUM_Dictionary=Certificate_Dictionary[key_Certificate_sortlist];
+        CertName_arr.push(Certificate[Certificate_NUM_Dictionary].CertName);
+        CertPic_arr.push(Certificate[Certificate_NUM_Dictionary].CertPic);
+        CertYear_arr.push(Certificate[Certificate_NUM_Dictionary].CertYear);
+        CertId_arr.push(Certificate[Certificate_NUM_Dictionary].id.toString());
+      }
+      */
+    
+  }
 
 }

@@ -4464,6 +4464,26 @@ a.btn-cta-primary-yellowwideE:hover, .btn-cta-primary-yellowwideE:hover {
   border: 1px solid #e0c652;
 }
 
+
+a.btn-cta-primary-whitewide, .btn-cta-primary-whitewide {
+	color: #000000;
+	font-weight: 400;
+	font-size: 2.2vh;
+	text-align: center;
+	border: 1px solid #7A8492;
+	background: #ffffff;
+	height: 50px;
+	width: 200px;
+	justify-content: center;
+	border-radius: 10px;
+	padding: 10px;
+  }
+  
+  a.btn-cta-primary-whitewide:hover, .btn-cta-primary-whitewide:hover {
+	background: #cdcdcd;
+	border: 1px solid #7A8492;
+  }
+
 .tabs-list {
   text-align: center;
   font-weight: 300;

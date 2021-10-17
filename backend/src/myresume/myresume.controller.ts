@@ -35,8 +35,13 @@ export class MyResumeController {
       return this.resumeService.getResumeheader(req.user.userId);
   }
   
-  
 
+
+  @Post("/test/:x")
+    async x(@Body() CreateDto: CreateResumeDto,@Param('x') x: string) {
+      CreateDto.UserId = "xtest";
+    return this.resumeService.createResume(CreateDto,x);
+  }
   @UseGuards(JwtAuthGuard)
   @Post()
     async CreateResume(@Body() CreateDto: CreateResumeDto ,@Request() req,@RealIP() ip: string) {
@@ -63,7 +68,23 @@ export class MyResumeController {
       return this.resumeService.updateResume(CreateDto,resumeId,req.user.userId,ip);
 
     }
-    
+  
+  @Get('/portfolio/:userid/owner')
+  async getportowner(@Param('userid') userId: string){
+    return this.resumeService.getportowner(userId);
+  }
+
+  @Get('/portfolio/:userid/other')
+  async getportother(@Param('userid') userId: string){
+    return this.resumeService.getportother(userId);
+  }
+
+  @Get('/portfolio/:userid/guest')
+  async getportguest(@Param('userid') userId: string){
+    return this.resumeService.getportguest(userId);
+  }
+
+   
   
     //*/
 

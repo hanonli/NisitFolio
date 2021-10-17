@@ -3,12 +3,25 @@ import $ from 'jquery';
 import { Link } from "react-router-dom";
 import MultipleRows from './myresume3slidemywork';
 import MyResumeportfoliolayoutP from './Myresume_choiceforportfolio';
+import MyresumeEditportButton from './myresumebuttonedit';
 import MyresumePortfolioPrivacybutton from './myresumeportprivacybutton';
+import cookie from 'react-cookies';
+
 class MyResumePort extends React.Component {
-    handleRoute = () =>{ 
+    handleRoute = () => { 
         const link = this.props.data.link;
         window.location = (link);
     }
+
+    handleClicktoEdit = () => {
+        const port_id = this.props.data.port_id;
+        console.log(port_id)
+        cookie.save('port-entry', 'edit', { path: '/' })
+        cookie.save('port-focus', port_id, { path: '/' })
+        const editportfolio = "/editport"
+        window.location = (editportfolio);
+    }
+
     voi = () => {
         console.log("clicked!")
     }
@@ -25,8 +38,9 @@ class MyResumePort extends React.Component {
         console.log(this.props.data);
         let srcpri = "";
 
+        // let owner = false;
 
-        if (privacy == "Members") {
+        /*if (privacy == "Members") {
             srcpri = "assets/images/outline_people_white_24dp.png";
         }
         else if (privacy == "Private") {
@@ -34,29 +48,47 @@ class MyResumePort extends React.Component {
         }
         else if (privacy == "Public") {
             srcpri = "assets/images/outline_public_white_24dp.png";
-        }
+        }*/
 
-        return (
-            <div class="myworkobj" >
-                <div className="img-overlay">
-                    <div class="ghostbutton" onClick={this.handleRoute}></div>
-                    <div className="iconmywork">
-                        <MyresumePortfolioPrivacybutton port_id={port_id} privacy={privacy}></MyresumePortfolioPrivacybutton>
-                        <img className="img-mywork-bin" src="assets/images/white-bin.png" type="button" onClick={this.voi}/>
-                        <img className="img-mywork-edit" src="assets/images/whiteedit.png" type="button" onClick={this.voi}/>
+        if (owner == true) {
+            return (
+                <div class="">
+                    <div className="img-overlay">
+                        <div class="ghostbutton" onClick={this.handleRoute}></div>
+                            <div className="img-mywork-edit">
+                                <img className="img-mywork-edit" onClick={this.handleClicktoEdit} src="assets/images/whiteedit.png" type="button" />
+                            </div>
+                        <h3 className="myworkname">
+                            {port_name}
+                        </h3>
+                        <h4 className="myworkdate">
+                            {date}
+                        </h4>
                     </div>
-                    <h3 className="myworkname">
-                        {port_name}
-                    </h3>
-                    <h4 className="myworkdate">
-                        {date}
-                    </h4>
+                        <div className="mywork-col">
+                            <img className="img-mywork-1" src={image} />
+                        </div>
                 </div>
-                <div className="row" >
-                    <img className="img-mywork-1" src={image} />
+            );
+        }else {
+            return (
+                <div class="myworkobj" onClick={this.handleRoute}>
+                    <div className="img-overlay">
+                        <h3 className="myworkname">
+                            {port_name}
+                        </h3>
+                        <h4 className="myworkdate">
+                            {date}
+                        </h4>
+                    </div>
+                    <div className="row">
+                        <div className="mywork-col">
+                            <img className="img-mywork-1" src={image} />
+                        </div>
+                    </div>
                 </div>
-            </div>
-        );
+            );
+        }
     }
 }
 

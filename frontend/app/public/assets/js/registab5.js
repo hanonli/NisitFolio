@@ -65,12 +65,12 @@ function show_certi() {
                                 <h1 id="name-of-certi">{name-certi}</h1>\
                                 <h1 id="year-of-certi">{year-certi}</h1>\
                                 <div class="pos-pic-of-certi">\
-                                    <img height="142" src="{pic-of-certi}" id="border_certi"></img>\
+                                    <img height="142" src="{pic-of-certi}" id="border_certi" oncontextmenu="return false;" ondragstart="return false;"></img>\
                                 </div>\
                                 <div class="layer-button-certi">\
                                     <div class="set-layer-button-certi">\
-                                        <button type="button" class="btn" id="edit-certi"><img src="assets/images/blackedit.png" width="35" height="35"></img></button>\
-                                        <button type="button" class="btn" id="del-certi"><img src="assets/images/bin.png" width="50" height="50"></img></button>\                                    
+                                        <button type="button" class="btn" id="edit-certi"><img src="assets/images/blackedit.png" width="35" height="35" oncontextmenu="return false;" ondragstart="return false;"></img></button>\
+                                        <button type="button" class="btn" id="del-certi"><img src="assets/images/bin.png" width="50" height="50" oncontextmenu="return false;" ondragstart="return false;"></img></button>\                                    
                                     </div>\
                                 </div>\
                             </div>`;
@@ -128,7 +128,7 @@ $(document).on('change', "#image-upload112", function () {
         $("#icon-upload-112").remove();
         $("#text-upload-112").remove();
         $("#text-upload-116").remove();
-        $(".for_upload112").append('<img id="preview_before_upload" height="145"></img>');
+        $(".for_upload112").append('<img id="preview_before_upload" height="145" oncontextmenu="return false;" ondragstart="return false;"></img>');
         $("#to_upload112").removeClass("error_select_certi");
     }
 });
@@ -159,7 +159,7 @@ $(document).on("click", "#edit-certi", function () {
     document.getElementById("nm_certi").value = for_edit["name_certi"];
     document.getElementById("yearpicker_111").selectedIndex = for_edit["year_certi_select"];
     picOfCerti = for_edit["path_file_certi"];
-    $(".for_upload112").append(`<img src="` + picOfCerti + `" id="preview_before_upload" height="145"></img>`);
+    $(".for_upload112").append(`<img src="` + picOfCerti + `" id="preview_before_upload" height="145" oncontextmenu="return false;" ondragstart="return false;"></img>`);
 
 });
 
@@ -174,7 +174,7 @@ $(document).on("click", ".frame_add_certi", function () {
     $("#preview_before_upload").remove();
     $("#nm_certi").removeClass("is-invalid");
     $("#yearpicker_111").removeClass("is-invalid");
-    $('.for_upload112').append(`<img id="icon-upload-112" src="assets/images/upload_file.png" width="85px" height="85px" class="up_img"></img>`);
+    $('.for_upload112').append(`<img id="icon-upload-112" src="assets/images/upload_file.png" width="85px" height="85px" class="up_img" oncontextmenu="return false;" ondragstart="return false;"></img>`);
     $('.for_upload112').append(`<h2 class="text_up5" id="text-upload-112">อัพโหลดใบรับรองของคุณได้ที่นี่</h2>`);
     $('.for_upload112').append(`<h2 class="text_up5-1" id="text-upload-116">(ไฟล์สกุล jpg jpeg หรือ png เท่านั้น)</h2>`);
     $('#submit-certi').text('เพิ่ม');

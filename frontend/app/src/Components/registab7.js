@@ -16,8 +16,11 @@ class Registab7 extends React.Component {
 		  countsideskill:0,
 		};
 		cookie.save('sideskill1',"");
+		cookie.save('typesideskill1',"");
 		cookie.save('sideskill2',"");
+		cookie.save('typesideskill2',"");
 		cookie.save('sideskill3',"");
+		cookie.save('typesideskill3',"");
 	  }
 	  onInputChange = value => {
 		this.setState({
@@ -65,6 +68,7 @@ class Registab7 extends React.Component {
 		</div>\
 	</div>\
 		';
+		var status_now = cookie.load('StatusSelecttab7');
 		if(value!="unselected"){
 			if(this.state.countsideskill==0){
 				ddt7_un1 = ddt7_un1.replace("{sideskillName}", value);
@@ -96,7 +100,17 @@ class Registab7 extends React.Component {
 		}
 		else{
 			console.log('u r uncomplete select');
+			if(this.state.countsideskill==0){
+				cookie.save('typesideskill1', status_now);
+			}
+			else if(this.state.countsideskill==1){
+				cookie.save('typesideskill2', status_now);
+			}
+			else if(this.state.countsideskill==2){
+				cookie.save('typesideskill3', status_now);
+			}
 		}
+		//alert('ตอนนี้อยู่หมวด : '+status_now);
 	  };
 
 	  onDel1 = () => {
@@ -129,8 +143,11 @@ class Registab7 extends React.Component {
 	</div>\
 		';
 		cookie.save('sideskill1',cookie.load('sideskill2'));
+		cookie.save('typesideskill1',cookie.load('typesideskill2'));
 		cookie.save('sideskill2',cookie.load('sideskill3'));
+		cookie.save('typesideskill2',cookie.load('typesideskill3'));
 		cookie.save('sideskill3',"");
+		cookie.save('typesideskill3',"");
 		$('#ssl1').remove();
 		if(this.state.countsideskill==1){
 			this.setState({countsideskill:0})
@@ -174,7 +191,9 @@ class Registab7 extends React.Component {
 	</div>\
 		';
 		cookie.save('sideskill2',cookie.load('sideskill3'));
+		cookie.save('typesideskill2',cookie.load('typesideskill3'));
 		cookie.save('sideskill3',"");
+		cookie.save('typesideskill3',"");
 		$('#ssl2').remove();
 		if(this.state.countsideskill==2){
 			this.setState({countsideskill:1})
@@ -195,6 +214,7 @@ class Registab7 extends React.Component {
 		//alert(cookie.load('sideskill1')+ '+' +cookie.load('sideskill2')+'+'+cookie.load('sideskill3'));
 		this.setState({countsideskill:2})
 		cookie.save('sideskill3',"");
+		cookie.save('typesideskill3',"");
 		$('#ssl3').remove();
 		$('#dangerzonet7').removeClass('red_markOnly');
 		$('#dangerzonet7').text('ท่านสามารถเพิ่มทักษะเสริมที่ถนัดได้สูงสุด 3 อัน');
@@ -231,23 +251,14 @@ class Registab7 extends React.Component {
 				$('.ahhahat7').hide();
 			}
 		  });
-		/*$('#del_sideskill1').on('click',function(){
-			cookie.save('sideskill1',cookie.load('sideskill2'));
-			cookie.save('sideskill2',cookie.load('sideskill3'));
-			cookie.save('sideskill3',"");
-		})
-		$('#del_sideskill2').on('click',function(){
-			cookie.save('sideskill2',cookie.load('sideskill3'));
-			cookie.save('sideskill3',"");
-		})
-		$('#del_sideskill3').on('click',function(){
-			cookie.save('sideskill3',"");
-		})*/
 	}
 	componentWillUnmount(){
 		cookie.save('sideskill1', "",);
+		cookie.save('typesideskill1', "",);
 		cookie.save('sideskill2', "",);
+		cookie.save('typesideskill2', "",);
 		cookie.save('sideskill3', "",);
+		cookie.save('typesideskill3', "",);
 	}
 	render (){
 		//console.log(this.state.sideskillName);

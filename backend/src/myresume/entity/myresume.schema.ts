@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
+import { Account, Userinfo, AdditionalSkill, Certificate, EducationHistory, InterestedJob, WorkHistory,Portfolio,PortfolioPicture,Resume,UserJobSkill} from '../../register/entity/Register.entity'
 
 export type ResumeDocument = Resume2 & Document;
 
@@ -36,22 +37,22 @@ export class Resume2 {
   Color: string;
 
   @Prop()
-  interestedJob: string[];
+  interestedJob: InterestedJob[];
 
   @Prop()
-  additionalSkills: string[];
+  additionalSkills: AdditionalSkill[];
 
   @Prop()
-  certificates: string[];
+  certificates: Certificate[];
   
   @Prop()
-  educationHistorys: string[];
+  educationHistorys: EducationHistory[];
 
   @Prop()
-  workHistorys: string[];
+  workHistorys: WorkHistory[];
   
   @Prop()
-  portfolios: string[];
+  portfolios: Portfolio[];
 
   @Prop()
   create_time:string;

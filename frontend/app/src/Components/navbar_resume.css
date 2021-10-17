@@ -3,7 +3,7 @@
     height: 100vh ;/* Full-height: remove this if you want "auto" height */
     width: 20vw; /* Set the width of the sidebar */
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-    z-index: 1; /* Stay on top */
+    z-index: 997; /* Stay on top */
     top: 0; /* Stay at the top */
     left: 0;
     overflow-x: hidden; /* Disable horizontal scroll */
@@ -11,26 +11,23 @@
   
 
   }
-  /* .Resume_sideNavbar .resumeblock{
-    padding-bottom: 20%;
-
-  } */
 
   .resumeicon:hover {
-    background: gray;
+    background-color : #999999;
+    transition-duration: 0.7s;
+
   }
 
   .resumeblock{
     position: relative;
-    left: 2vw;
+    left: 1.5vw;
     width: 20vw;
 
   }
 
-  
+  w
   #myresumepath{
     height: 100vh;
-    
   }
 
   .resumetext{
