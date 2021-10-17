@@ -441,12 +441,15 @@ export class RegisterService {
       const resume =  await this.resumeModel.findOne({_id: additionalskill.ResumeId[_i] });
       let copy = JSON.parse(JSON.stringify(resume));
       await this.resumeModel.remove(resume);
-      for (var _j = 0; _j < copy.additionalSkills.length; _j++) {
-        if (copy.additionalSkills[_j].id == ID)
+      var move = false;
+      for (var _j = 0; _j < copy.additionalSkills.length - 1; _j++) {
+        if (copy.additionalSkills[_j].id == ID || move == true)
         {
-          copy.additionalSkills[_j] = null;
+          var move = true;
+          copy.additionalSkills[_j] = copy.additionalSkills[_j+1];
         }
       }
+      copy.additionalSkills.pop();
       copy.last_modified.push(isoTime);
       copy.modified_by.push("automatic system");
       await this.resumeModel.create(copy);
@@ -520,13 +523,16 @@ export class RegisterService {
     for (var _i = 0; _i < certificate.ResumeId.length; _i++) {
       const resume =  await this.resumeModel.findOne({_id: certificate.ResumeId[_i] });
       let copy = JSON.parse(JSON.stringify(resume));
+      var move = false;
       await this.resumeModel.remove(resume);
-      for (var _j = 0; _j < copy.certificates.length; _j++) {
-        if (copy.certificates[_j].id == id)
+      for (var _j = 0; _j < copy.certificates.length-1; _j++) {
+        if (copy.certificates[_j].id == id || move == true)
         {
-          copy.certificates[_j] = null;
+          var move = true;
+          copy.certificates[_j] = copy.certificates[_j+1];
         }
       }
+      copy.certificates.pop();
       copy.last_modified.push(isoTime);
       copy.modified_by.push("automatic system");
       await this.resumeModel.create(copy);
@@ -610,12 +616,15 @@ export class RegisterService {
       const resume =  await this.resumeModel.findOne({_id: educationHistory.ResumeId[_i] });
       let copy = JSON.parse(JSON.stringify(resume));
       await this.resumeModel.remove(resume);
-      for (var _j = 0; _j < copy.educationHistorys.length; _j++) {
-        if (copy.educationHistorys[_j].id == id)
+      var move = false;
+      for (var _j = 0; _j < copy.educationHistorys.length - 1; _j++) {
+        if (copy.educationHistorys[_j].id == id || move == true)
         {
-          copy.educationHistorys[_j] = null;
+          move = true;
+          copy.educationHistorys[_j] = copy.educationHistorys[_j+1];
         }
       }
+      copy.educationHistorys.pop()
       copy.last_modified.push(isoTime);
       copy.modified_by.push("automatic system");
       await this.resumeModel.create(copy);
@@ -711,12 +720,15 @@ export class RegisterService {
       const resume =  await this.resumeModel.findOne({_id: workHistory.ResumeId[_i] });
       let copy = JSON.parse(JSON.stringify(resume));
       await this.resumeModel.remove(resume);
-      for (var _j = 0; _j < copy.workHistorys.length; _j++) {
-        if (copy.workHistorys[_j].id == id)
+      var move = false;
+      for (var _j = 0; _j < copy.workHistorys.length-1; _j++) {
+        if (copy.workHistorys[_j].id == id || move == true)
         {
-          copy.workHistorys[_j] = null;
+          move = true;
+          copy.workHistorys[_j] = copy.workHistorys[_j+1];
         }
       }
+      copy.workHistorys.pop()
       copy.last_modified.push(isoTime);
       copy.modified_by.push("automatic system");
       await this.resumeModel.create(copy);
@@ -787,10 +799,11 @@ export class RegisterService {
     for (var _i = 0; _i < interestedJob.ResumeId.length; _i++) {
       const resume =  await this.resumeModel.findOne({_id: interestedJob.ResumeId[_i] });
       let copy = JSON.parse(JSON.stringify(resume));
-      //await this.resumeModel.remove(resume);
+      await this.resumeModel.deleteOne({_id: interestedJob.ResumeId[_i] });
       for (var _j = 0; _j < copy.interestedJob.length; _j++) {
-        if (copy.interestedJob[_j].id == id)
+        if (copy.interestedJob[_j]._id == id)
         {
+          console.log(interestedJob.Job_JobName);
           copy.interestedJob[_j].Job_JobName = interestedJob.Job_JobName ;
           copy.interestedJob[_j].Job_Objective  = interestedJob.Job_Objective;
           copy.interestedJob[_j].Job_Score = interestedJob.Job_Score ;
@@ -799,7 +812,7 @@ export class RegisterService {
       }
       copy.last_modified.push(isoTime);
       copy.modified_by.push("automatic system");
-      //await this.resumeModel.create(copy);
+      await this.resumeModel.create(copy);
     }
 
     return await this.InterestedJobRepository.save(interestedJob);      
@@ -822,18 +835,7 @@ export class RegisterService {
     }
     
     for (var _i = 0; _i < interestedJob.ResumeId.length; _i++) {
-      const resume =  await this.resumeModel.findOne({_id: interestedJob.ResumeId[_i] });
-      let copy = JSON.parse(JSON.stringify(resume));
-      await this.resumeModel.remove(resume);
-      for (var _j = 0; _j < copy.interestedJob.length; _j++) {
-        if (copy.interestedJob[_j].id == id)
-        {
-          copy.interestedJob[_j] = null;
-        }
-      }
-      copy.last_modified.push(isoTime);
-      copy.modified_by.push("automatic system");
-      await this.resumeModel.create(copy);
+      await this.resumeModel.deleteOne({_id: interestedJob.ResumeId[_i] });
     }
     return await this.InterestedJobRepository.remove(interestedJob);
 

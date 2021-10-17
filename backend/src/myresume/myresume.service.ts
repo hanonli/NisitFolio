@@ -138,8 +138,7 @@ export class MyResumeService {
     for (var _i = 0; _i < CreateDto.PortID.length; _i++) {
       const portid = new ObjectID(CreateDto.PortID[_i]);
       const portfolio = await this.portModel.findOne({ _id: portid });
-      const subportfolio = await this.portModel.findOne({ _id: portid },["Port_Tag","Port_Privacy","portfolioPictures"]);
-      port_arr.push(subportfolio);
+      port_arr.push(portfolio);
       portfolio.ResumeId.push(resumeID);
       await this.portModel.create(portfolio)
     }
@@ -333,8 +332,7 @@ export class MyResumeService {
           const portid = new ObjectID(CreateDto.PortID[_i]);
           const portfolio = await this.portModel.findOne({ _id: portid });
           portfolio.ResumeId.push(resumeId);
-          const subportfolio = await this.portModel.findOne({ _id: portid },["Port_Tag","Port_Privacy","portfolioPictures"]);
-          port_arr.push(subportfolio);
+          port_arr.push(portfolio);
           await this.portModel.create(portfolio);
         }
         resume.portfolios = port_arr;
