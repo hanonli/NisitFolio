@@ -15,7 +15,7 @@ import $ from 'jquery';
 import cookie from 'react-cookies';
 import LoadingS from './Components/loadingS';
 
-var certdata = [], workdata = [], list_of_aca=[],list_of_high=[],sideskilldata=[];
+var certdata = [], workdata = [], list_of_aca = [], list_of_high = [], sideskilldata = [];
 
 class Editresume extends React.Component {
 
@@ -82,11 +82,12 @@ class Editresume extends React.Component {
 				console.log(this.state.data.Degree);
 				//Color_Resume = this.state.data.Color_ResumeId ? this.state.data.Color_ResumeId : "";
 				if (this.state.data.Color_ResumeId === undefined) {
-					this.setState({firstchoosecolor: true});
-				}		
-				else{
-					this.setState({Color_Resume: this.state.data.Color_ResumeId});
-				}		
+					console.log("gsegwsg:", this.state.data.Color_ResumeId);
+					this.setState({ firstchoosecolor: true });
+				}
+				else {
+					this.setState({ Color_Resume: this.state.data.Color_ResumeId });
+				}
 				this.state.data.Degree.forEach((element, index) => {
 
 					if (element == 'มัธยมศึกษาตอนปลาย' || element == 'ปวช.') {
@@ -123,7 +124,8 @@ class Editresume extends React.Component {
 						Certificate_id: ele,
 						CertName: this.state.data.CertName[index],
 						CertPic: this.state.data.CertPic[index],
-						CertYear: this.state.data.CertYear[index]
+						CertYear: this.state.data.CertYear[index],
+						//isCheckCert: ele in this.state.data.Certificate_ResumeId[index] ? true : false
 					})
 				});
 				this.state.data.WorkHistory_id.forEach((ele, index) => {
@@ -138,7 +140,8 @@ class Editresume extends React.Component {
 						Work_End_Year: this.state.data.Work_End_Year[index],
 						SalaryType: this.state.data.SalaryType[index],
 						Salary: this.state.data.Salary[index],
-						Infomation: this.state.data.Infomation[index]
+						Infomation: this.state.data.Infomation[index],
+						isCheckWork: ele in this.state.data.WorkHistory_ResumeId[index] ? true : false
 					})
 				});
 				this.state.data.AdditionalSkill_id.forEach((ele, index) => {
@@ -151,8 +154,8 @@ class Editresume extends React.Component {
 				console.log(sideskilldata);
 			});
 		$(function () {
-			$('.nameedit').text('"'+cookie.load('Job_EditName')+'"');
-			console.log('Edit Job is '+ cookie.load('Job_EditName'));
+			$('.nameedit').text('"' + cookie.load('Job_EditName') + '"');
+			console.log('Edit Job is ' + cookie.load('Job_EditName'));
 			//alert('Selected tab is '+ cookie.load('Edit_tabselect'));
 			var Tab_select = cookie.load('Edit_tabselect');
 			$('.tab-content').hide();
@@ -281,7 +284,7 @@ class Editresume extends React.Component {
 								<Myresumedittemplate Color_Resume={this.state.Color_Resume} firstchoosecolor={this.state.firstchoosecolor} />
 							</div>
 							<div class="tab-content" id="registab2-content">
-								<Chooseresume1 list_of_aca={list_of_aca} list_of_high={list_of_high}/>
+								<Chooseresume1 list_of_aca={list_of_aca} list_of_high={list_of_high} />
 							</div>
 							<div class="tab-content" id="registab3-content">
 								<Editresume2 mywork_data={workdata} />
@@ -293,7 +296,7 @@ class Editresume extends React.Component {
 								<Chooseresume4 />
 							</div>
 							<div class="tab-content" id="registab6-content">
-								<Chooseresume5 sideskill_data={sideskilldata}/>
+								<Chooseresume5 sideskill_data={sideskilldata} />
 							</div>
 						</div>
 						<div class="col block-right2">
