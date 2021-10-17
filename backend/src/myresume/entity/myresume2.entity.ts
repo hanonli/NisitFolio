@@ -31,6 +31,9 @@ export class Resume3 {
   Location: string;
 
   @Column()
+  ProfilePic_URL: string;
+
+  @Column()
   TAG: string[];
 
   @Column()
