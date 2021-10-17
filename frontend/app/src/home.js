@@ -134,7 +134,12 @@ class Home extends React.Component {
 				$('#avatar').attr("src", datas.ProfilePic);
 				datas.Job_JobName.forEach((entry) => {
 					console.log('HHHH');
-					$('#tags-container').append('<a class="btn btn-cta-secondary btn-small round margin-right-s" href="#" target="_blank">'+entry+'</a>');
+					$('#tags-container').append('<a class="btn btn-cta-secondary btn-small round margin-right-s tag-button" target="_blank">'+entry+'</a>');
+				});
+				
+				
+				$('.tag-button').on('click', function(){
+					alert($(this).text());
 				});
 
 				  var avatar = document.getElementById('avatar');

@@ -345,8 +345,8 @@ class NewAnalytics extends React.Component {
 		
 		var currentTab = 1;
 		
-		fetch("http://localhost:2000/analytics/cache/"+userID,{
-		//fetch("http://localhost:3000/temp_cache",{
+		//fetch("http://localhost:2000/analytics/cache/"+userID,{
+		fetch("http://localhost:3000/temp_cache",{
 			method: "GET",
 			headers: {
 				"Access-Control-Allow-Origin": "*",
@@ -503,6 +503,17 @@ class NewAnalytics extends React.Component {
 			$('#g3').on('click', function(){
 				SetupPopup('g3');
 			});
+			
+			$('.edit-job').on('click', function(){
+				cookie.save('Edit_tabselect', 6);
+				refThis.setState({ redirect: "/editprofile" });
+			});
+			
+			$('.edit-add').on('click', function(){
+				cookie.save('Edit_tabselect', 7);
+				refThis.setState({ redirect: "/editprofile" });
+			});
+					
 		}
 		
 		function SetupOverview(){
@@ -770,6 +781,7 @@ class NewAnalytics extends React.Component {
 			if(rawData.Additional.InterestedJobs.length > 0){
 				
 				$('.nsb').click(function(){
+						cookie.save('Edit_tabselect', 7);
 					refThis.setState({ redirect: "/editprofile" });
 				});
 				
@@ -1518,9 +1530,7 @@ class NewAnalytics extends React.Component {
 					<div class="smb-1a" id="tab-s3"></div>
 					
 					<div class="smb-2a" id="tab-2">
-						<Link to="/editprofile">
-							<a class="btn bcp-white round-ss profile-button" id="new-port" target="_blank">แก้ไขข้อมูล</a>
-						</Link>
+						<a class="btn bcp-white round-ss profile-button edit-job" id="new-port" target="_blank">แก้ไขข้อมูล</a>
 					</div>
 				</div>
 				
@@ -1593,9 +1603,7 @@ class NewAnalytics extends React.Component {
 							<div class="add-none">
 								<kf>เพิ่มตำแหน่งงานที่คุณสนใจ</kf>
 								<kf>เพื่อดูการวิเคราะห์ข้อมูลทางสถิติโดยเทียบกับผู้ใช้งานคนอื่นในระบบ</kf>
-								<Link to="/editprofile">
-									<a class="btn btn-cta-primary-yellow round profile-button" id="new-port" target="_blank">เพิ่มตำแหน่งงาน</a>
-								</Link>
+								<a class="btn btn-cta-primary-yellow round profile-button edit-job" id="new-port" target="_blank">เพิ่มตำแหน่งงาน</a>
 							</div>
 						</div>
 						
@@ -1606,9 +1614,7 @@ class NewAnalytics extends React.Component {
 							<div class="add-none">
 								<kf>เพิ่มตำแหน่งงานที่คุณสนใจ</kf>
 								<kf>เพื่อดูการวิเคราะห์ข้อมูลทางสถิติโดยเทียบกับผู้ใช้งานคนอื่นในระบบ</kf>
-								<Link to="/editprofile">
-									<a class="btn btn-cta-primary-yellow round profile-button" id="new-port" target="_blank">เพิ่มตำแหน่งงาน</a>
-								</Link>
+								<a class="btn btn-cta-primary-yellow round profile-button edit-job" id="new-port" target="_blank">เพิ่มตำแหน่งงาน</a>
 							</div>
 						</div>
 						
@@ -1685,9 +1691,7 @@ class NewAnalytics extends React.Component {
 								<div class="add-none">
 									<kf>เพิ่มทักษะที่ถนัดในตำแหน่งงานของคุณ</kf>
 									<kf>เพื่อดูการวิเคราะห์ข้อมูลทางสถิติโดยเทียบกับผู้ใช้งานคนอื่นในระบบ</kf>
-									<Link to="/editprofile">
-										<a class="btn btn-cta-primary-yellow round profile-button" id="new-port" target="_blank">เพิ่มทักษะ</a>
-									</Link>
+									<a class="btn btn-cta-primary-yellow round profile-button edit-job" id="new-port" target="_blank">เพิ่มทักษะ</a>
 								</div>
 							</div>
 							
@@ -1813,9 +1817,7 @@ class NewAnalytics extends React.Component {
 								<div class="add-none">
 									<kf>เพิ่มทักษะที่ถนัดในตำแหน่งงานของคุณ</kf>
 									<kf>เพื่อดูการวิเคราะห์ข้อมูลทางสถิติโดยเทียบกับผู้ใช้งานคนอื่นในระบบ</kf>
-									<Link to="/editprofile">
-										<a class="btn btn-cta-primary-yellow round profile-button" id="new-port" target="_blank">เพิ่มทักษะ</a>
-									</Link>
+									<a class="btn btn-cta-primary-yellow round profile-button edit-job" id="new-port" target="_blank">เพิ่มทักษะ</a>
 								</div>
 							</div>
 							
@@ -1899,9 +1901,7 @@ class NewAnalytics extends React.Component {
 								<div class="add-none">
 									<kf>เพิ่มทักษะเสริมที่ถนัด</kf>
 									<kf>เพื่อดูการวิเคราะห์ข้อมูลทางสถิติโดยเทียบกับผู้ใช้งานคนอื่นในระบบ</kf>
-									<Link to="/editprofile">
-										<a class="btn btn-cta-primary-yellow round profile-button" id="new-port" target="_blank">เพิ่มทักษะเสริม</a>
-									</Link>
+									<a class="btn btn-cta-primary-yellow round profile-button edit-add" id="new-port" target="_blank">เพิ่มทักษะเสริม</a>
 								</div>
 							</div>
 							
@@ -1910,9 +1910,7 @@ class NewAnalytics extends React.Component {
 								<div class="add-none">
 									<kf>เพิ่มตำแหน่งงานที่คุณสนใจ</kf>
 									<kf>เพื่อดูการวิเคราะห์ข้อมูลทางสถิติโดยเทียบกับผู้ใช้งานคนอื่นในระบบ</kf>
-									<Link to="/editprofile">
-										<a class="btn btn-cta-primary-yellow round profile-button" id="new-port" target="_blank">เพิ่มตำแหน่งงาน</a>
-									</Link>
+									<a class="btn btn-cta-primary-yellow round profile-button add-job" id="new-port" target="_blank">เพิ่มตำแหน่งงาน</a>
 								</div>
 							</div>
 
