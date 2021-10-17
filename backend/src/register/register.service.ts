@@ -28,6 +28,7 @@ import { Bookmark } from './entity/bookmark.entity';
 import { Portfolio } from '../portfolio/entity/portfolio.entity';
 import {PatchRegisDto2} from './dto/patch-register_2.dto';
 import { object, string } from 'joi';
+import { Allow } from 'class-validator';
 
 @Injectable()
 export class RegisterService {
@@ -1028,6 +1029,37 @@ export class RegisterService {
 
 
   async Fullupdate(patchDto: PatchRegisDto2,UserId: string){
+    /*
+    const counter=[0];
+    counter[0]=counter[0]+1
+    return counter
+    //*/
+    /*
+    const x =await this.resumeModel.findOne({_id:new ObjectID("616bcadaee6fe9963bd717d9")})
+    x.Privacy="sdf"
+    return await this.resumeModel.create(x)
+    */
+    
+    /*
+    const sad={};
+    const x=0
+    const y = 0
+    //sad["616958be554b0a4b94598c54"]={"WH_work":10,"WH_COM":15,""};
+    sad["616958be554b0a4b94598c54"]={}
+    //return sad["616958be554b0a4b94598c54"]
+    sad["616958be554b0a4b94598c54"]["WH_work"]=10
+    sad["616958be554b0a4b94598c54"]["WH_COM"]=15
+    return [x,y,sad]
+    //return [sad["s"],sad["w"]]/*
+    const asd=sad["616958be554b0a4b94598c54"];
+    if(asd["WH_work"]==10){
+      return sad
+    }else{
+      return "sus"
+    }
+    //*/
+
+    
 
   
 
@@ -1036,10 +1068,15 @@ export class RegisterService {
     
     const userid = new ObjectID(UserId);
     const acc = await this.accountRepository.findOne({ where: { _id: userid } });
+    const all_resume={};
+    const dele_resume={};
+
+
     
 
 
-/*
+    /*
+
     if (patchDto.Password != null)
       acc.Password.push(Md5.hashStr(patchDto.Password));
     acc.last_modified.push(isoTime);
@@ -1119,20 +1156,14 @@ export class RegisterService {
 
     const dto_addskill_arr= patchDto.AS_OBJID;
     const old_addskill_arr = await this.AdditionalSkillRepository.find({ where: { UserId: UserId } });
-    //return old_addskill_arr
     const old_addskill_arr_id = [];
     const old_addskill_arr_id_save = [];
-    const x=[]
     for (var _i = 0; _i < old_addskill_arr.length; _i++) {
       old_addskill_arr_id.push((old_addskill_arr[_i].id).toString());
       old_addskill_arr_id_save.push((old_addskill_arr[_i].id).toString());
     }
     for (var _z = 0; _z < dto_addskill_arr.length; _z++) {
-
       if(old_addskill_arr_id.indexOf(dto_addskill_arr[_z])==-1){
-        //return [_z,old_addskill_arr_id,dto_addskill_arr]
-        //return ["Fsd", old_addskill_arr_id,old_addskill_arr_id.indexOf(dto_addskill_arr[_z])];
-          
           const additionalskill = new AdditionalSkill();
           additionalskill.UserId = UserId;
           additionalskill.AdditionalSkill  = patchDto.SoftSkill[_z]; 
@@ -1140,7 +1171,6 @@ export class RegisterService {
           additionalskill.last_modified =  [isoTime] ;
           additionalskill.ResumeId =  new Array() ;
           additionalskill.Type = patchDto.SoftSkillType[_z]; 
-          //return [additionalskill,_z,dto_addskill_arr];
           await this.AdditionalSkillRepository.save(additionalskill);
       }
       else{
@@ -1152,32 +1182,121 @@ export class RegisterService {
         additionalskill.last_modified.push(isoTime);
         additionalskill.AdditionalSkill = patchDto.SoftSkill[_z];
         additionalskill.Type = patchDto.SoftSkillType[_z];
+
         for (var _i = 0; _i < additionalskill.ResumeId.length; _i++) {
-          const resume =  await this.resumeModel.findOne({_id: additionalskill.ResumeId[_i] });
-          let copy = JSON.parse(JSON.stringify(resume));
-          await this.resumeModel.remove(resume);
-          for (var _j = 0; _j < copy.additionalSkills.length; _j++) {
-            if (copy.additionalSkills[_j].id = ID)
-            {
-              copy.additionalSkills[_j].AdditionalSkill = patchDto.SoftSkill[_z];
-              copy.additionalSkills[_j].Type = patchDto.SoftSkillType[_z];
-            }
+          if(all_resume[additionalskill.ResumeId[_i]]==null){
+            all_resume[additionalskill.ResumeId[_i]]={}
           }
-          copy.last_modified.push(isoTime);
-          copy.modified_by.push("automatic system");
-          await this.resumeModel.create(copy);
+          all_resume[additionalskill.ResumeId[_i]]["id"]=ID
+          all_resume[additionalskill.ResumeId[_i]]["AdditionalSkill"]=patchDto.SoftSkill[_z]
+          all_resume[additionalskill.ResumeId[_i]]["Type"]=patchDto.SoftSkillType[_z];
+
         }
         await this.AdditionalSkillRepository.save(additionalskill);
       }
       old_addskill_arr_id.splice(old_addskill_arr_id.indexOf(dto_addskill_arr[_z]),1);
+      }
+    }
 
+    if(old_addskill_arr_id.length!=0){
+      for (var _x = 0; _x< old_addskill_arr_id.length; _x++) {
+      const additionalskill=old_addskill_arr[old_addskill_arr_id_save.indexOf(old_addskill_arr_id[_x])]
+      const ID=additionalskill.id
+        for (var _i = 0; _i < additionalskill.ResumeId.length; _i++) {
+          if(dele_resume[additionalskill.ResumeId[_i]]==null){
+            dele_resume[additionalskill.ResumeId[_i]]={}
+          }
+          dele_resume[additionalskill.ResumeId[_i]]["id"]=ID
+        }
+      }
+    }
+    return dele_resume
+  return "sus";
+  //------------------------CA
+  const dto_CC_arr= patchDto.CC_OBJID;
+    const old_CC_arr = await this.CertificateRepository.find({ where: { UserId: UserId } });
+    const old_CC_arr_id = [];
+    for (var _i = 0; _i < old_CC_arr.length; _i++) {
+      old_CC_arr_id.push(old_CC_arr[_i].id);
+    }
+    for (var _z = 0; _z < dto_CC_arr.length; _z++) {
+      if(old_CC_arr_id.indexOf(dto_CC_arr[_z])==-1){
+        for (var _i = 0; _i < patchDto.CertName.length; _i++) {
+          const certificate = new Certificate();
+          certificate.UserId = UserId;
+          certificate.CertName = patchDto.CertName[_i]
+          certificate.CertPic = patchDto.CertPic[_i]
+          certificate.CertYear = patchDto.CertYear[_i]
+          certificate.create_time = isoTime;
+          certificate.last_modified = [isoTime];
+          certificate.ResumeId = new Array();
+          await this.CertificateRepository.save(certificate);
+        }
+      }else{
+        const ID= new ObjectID(  dto_CC_arr[_z])
+      const certificate=old_CC_arr[_z];
+
+        if (patchDto.CertName || patchDto.CertYear || patchDto.CertPic) {
+          certificate.last_modified.push(isoTime);
+          if (patchDto.CertName)
+            certificate.CertName = patchDto.CertName;
+          if (patchDto.CertYear)
+            certificate.CertYear = patchDto.CertYear;
+          if (patchDto.CertPic)
+            certificate.CertPic = patchDto.CertPic;
+            
+          for (var _i = 0; _i < certificate.ResumeId.length; _i++) {
+            const resume =  await this.resumeModel.findOne({_id: certificate.ResumeId[_i] });
+            let copy = JSON.parse(JSON.stringify(resume));
+            await this.resumeModel.remove(resume);
+            for (var _j = 0; _j < copy.certificate.length; _j++) {
+              if (copy.certificate[_j].id = ID)
+              {
+                copy.certificate[_j].CertName = certificate.CertName;
+                copy.certificate[_j].CertYear = certificate.CertYear;
+                copy.certificate[_j].CertPic = certificate.CertPic;
+              }
+            }
+            copy.last_modified.push(isoTime);
+            copy.modified_by.push("automatic system");
+            await this.resumeModel.create(copy);
+          }
+    
+          await this.CertificateRepository.save(certificate);
+        }
+        old_CC_arr_id.splice(_z,1);
 
       }
 
+
     }
-    ///
-    return "sus"
-    /*
+    if(old_CC_arr_id.length!=0){
+      for (var _x = 0; _x< old_CC_arr_id.length; _x++) {
+        const ID=old_CC_arr[_x].id
+        const Certificate=old_CC_arr[_x]
+      for (var _i = 0; _i < Certificate.ResumeId.length; _i++) {
+        const resume =  await this.resumeModel.findOne({_id: Certificate.ResumeId[_i] });
+        let copy = JSON.parse(JSON.stringify(resume));
+        await this.resumeModel.remove(resume);
+        for (var _j = 0; _j < copy.certificate.length; _j++) {
+          if (copy.certificate[_j].id = ID)
+          {
+            copy.certificate[_j] = null;
+          }
+        }
+        copy.last_modified.push(isoTime);
+        copy.modified_by.push("automatic system");
+        await this.resumeModel.create(copy);
+      }
+
+      await this.CertificateRepository.remove(old_CC_arr_id[_i]);
+    }
+
+    }
+}//end funstion
+}//end
+
+/*
     
     if(old_addskill_arr_id.length!=0){
       for (var _x = 0; _x< old_addskill_arr_id.length; _x++) {
@@ -1483,10 +1602,6 @@ export class RegisterService {
     }
   }
   //*/
-  return "sus";
-}
-}
-
   //----------------IJ*/
   /*
   const dto_IJ_arr= patchDto.IJ_OBJID;
