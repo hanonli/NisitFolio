@@ -9,11 +9,11 @@ class SearchLanding1 extends React.Component {
         <form class="d-flex" >
           <input class="form-control btn-search-box" id="stupidSearch" type="search" placeholder="ค้นหาบุคคลและผลงานคุณภาพได้ที่นี่" aria-label="Search" />
           <Link to="/search" class="d-flex">
-			  <button class="btn btn-search btn-search-static yellow" type="submit" >
-				<img src="assets/images/search.png" alt="" id="btnstupidSearch" />
-			  </button>
-		  </Link>
-        </form>        
+            <button class="btn btn-search btn-search-static yellow" type="submit" >
+              <img src="assets/images/search.png" alt="" id="btnstupidSearch" onContextMenu={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()} />
+            </button>
+          </Link>
+        </form>
       </div>
 
 

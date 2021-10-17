@@ -15,7 +15,7 @@ import $ from 'jquery';
 import cookie from 'react-cookies';
 import LoadingS from './Components/loadingS';
 
-var certdata = [], workdata = [], Color_Resume, firstchoosecolor = false;
+var certdata = [], workdata = [], list_of_aca=[],list_of_high=[],sideskilldata=[];
 
 class Editresume extends React.Component {
 
@@ -24,9 +24,16 @@ class Editresume extends React.Component {
 
 		this.state = {
 			data: [],
-			render: true
+			render: true,
+			Color_Resume: '',
+			firstchoosecolor: false
 		}
 	}
+
+	handleSubmitEdit = e => {
+		alert('Confirm Edit Resume');
+		window.location = ("myresume");
+	};
 
 	componentDidMount() {
 		var list_of_high = [], list_of_aca = [];
@@ -35,7 +42,7 @@ class Editresume extends React.Component {
 			//var x = 1;
 			list_of_high.forEach(ele => {
 				ele["high_pos"] = x;
-				console.log("x:", x);
+				//console.log("x:", x);
 				x++;
 			});
 			return list_of_high;
@@ -45,7 +52,7 @@ class Editresume extends React.Component {
 			//var x = 1;
 			list_of_aca.forEach(ele => {
 				ele["aca_pos"] = x;
-				console.log("x:", x);
+				//console.log("x:", x);
 				x++;
 			});
 			return list_of_aca;
@@ -73,35 +80,39 @@ class Editresume extends React.Component {
 				console.log('this.state.data :' + this.state.data);
 				/*Zone to use datas*/
 				console.log(this.state.data.Degree);
-				this.state.data.Degree.forEach(element => {
-					Color_Resume = this.state.data.Color_ResumeId ? this.state.data.Color_ResumeId : "";
-					if (!("Color_ResumeId" in this.state.data)) {
-						firstchoosecolor = true;
-					}
+				//Color_Resume = this.state.data.Color_ResumeId ? this.state.data.Color_ResumeId : "";
+				if (this.state.data.Color_ResumeId === undefined) {
+					this.setState({firstchoosecolor: true});
+				}		
+				else{
+					this.setState({Color_Resume: this.state.data.Color_ResumeId});
+				}		
+				this.state.data.Degree.forEach((element, index) => {
+
 					if (element == 'มัธยมศึกษาตอนปลาย' || element == 'ปวช.') {
 						list_of_high.push({
-							id: this.state.data.EducationHistory_id,
+							id: this.state.data.EducationHistory_id[index],
 							high_pos: 0,
-							high_name: this.state.data.Academy,
+							high_name: this.state.data.Academy[index],
 							high_faculty: 'none',
-							high_degree: this.state.data.Degree,
-							high_grade: this.state.data.Grade,
-							high_field: this.state.data.Field_of_study,
-							high_year: this.state.data.Education_End_Year,
+							high_degree: this.state.data.Degree[index],
+							high_grade: this.state.data.Grade[index],
+							high_field: this.state.data.Field_of_study[index],
+							high_year: this.state.data.Education_End_Year[index],
 						});
 						get_high_id(list_of_high, 1);
 						console.log(list_of_high);
 					}
 					else {
 						list_of_aca.push({
-							id: this.state.data.EducationHistory_id,
+							id: this.state.data.EducationHistory_id[index],
 							aca_pos: 0,
-							aca_name: this.state.data.Academy,
-							aca_faculty: this.state.data.Facalty,
-							aca_degree: this.state.data.Degree,
-							aca_grade: this.state.data.Grade,
-							aca_field: this.state.data.Field_of_study,
-							aca_year: this.state.data.Education_End_Year,
+							aca_name: this.state.data.Academy[index],
+							aca_faculty: this.state.data.Facalty[index],
+							aca_degree: this.state.data.Degree[index],
+							aca_grade: this.state.data.Grade[index],
+							aca_field: this.state.data.Field_of_study[index],
+							aca_year: this.state.data.Education_End_Year[index],
 						});
 						get_aca_id(list_of_aca, 1);
 						console.log(list_of_aca);
@@ -130,11 +141,19 @@ class Editresume extends React.Component {
 						Infomation: this.state.data.Infomation[index]
 					})
 				});
+				this.state.data.AdditionalSkill_id.forEach((ele, index) => {
+					sideskilldata.push({
+						sideskill_id: ele,
+						sideskillName: this.state.data.SoftSkill[index],
+						sideskillResume: this.state.data.AdditionalSkill_ResumeId[index]
+					})
+				});
+				console.log(sideskilldata);
 			});
 		$(function () {
-			$('.nameedit').text('"' + cookie.load('Job_EditName') + '"');
-			console.log('Edit Job is ' + cookie.load('Job_EditName'));
-			alert('Selected tab is ' + cookie.load('Edit_tabselect'));
+			$('.nameedit').text('"'+cookie.load('Job_EditName')+'"');
+			console.log('Edit Job is '+ cookie.load('Job_EditName'));
+			//alert('Selected tab is '+ cookie.load('Edit_tabselect'));
 			var Tab_select = cookie.load('Edit_tabselect');
 			$('.tab-content').hide();
 			if (Tab_select == 1) {
@@ -236,11 +255,11 @@ class Editresume extends React.Component {
 						<div class="container">
 							<div class="row align-items-end">
 								<div class="col">
-									<div class="topData2-content">
+									<div class="topData2-content relatt">
 										<h1 class="name inline">เลือกข้อมูลผู้ใช้ที่จะแสดง</h1>
 										<h1 class="symboledit inline">.</h1>
 										<h1 class="nameedit inline"></h1>
-										<p class="btn-cta-primary-whitewide inline editbtn-resume" id="goToeditProfile">แก้ไขข้อมูล</p>
+										<p class="btn-cta-primary-whitewide inline absoluteforedit" id="goToeditProfile">แก้ไขข้อมูล</p>
 									</div>
 								</div>
 							</div>
@@ -254,13 +273,15 @@ class Editresume extends React.Component {
 						<li class="tab-list-item" id="tab-5" type="button">ผลงาน</li>
 						<li class="tab-list-item" id="tab-6" type="button">ทักษะเสริม</li>
 					</ol>
+					<div class="underline_tabeditresume">
+					</div>
 					<form class="needs-validation" novalidate>
 						<div>
 							<div class="tab-content" id="registab1-content">
-								<Myresumedittemplate Color_Resume={Color_Resume} firstchoosecolor={firstchoosecolor} />
+								<Myresumedittemplate Color_Resume={this.state.Color_Resume} firstchoosecolor={this.state.firstchoosecolor} />
 							</div>
 							<div class="tab-content" id="registab2-content">
-								<Chooseresume1 />
+								<Chooseresume1 list_of_aca={list_of_aca} list_of_high={list_of_high}/>
 							</div>
 							<div class="tab-content" id="registab3-content">
 								<Editresume2 mywork_data={workdata} />
@@ -272,12 +293,12 @@ class Editresume extends React.Component {
 								<Chooseresume4 />
 							</div>
 							<div class="tab-content" id="registab6-content">
-								<Chooseresume5 />
+								<Chooseresume5 sideskill_data={sideskilldata}/>
 							</div>
 						</div>
 						<div class="col block-right2">
 							<button class="btn btn-cta-primary-blackwide round profile-button" target="_blank" id="cancelChoose">ยกเลิก</button>
-							<button class="btn btn-cta-primary-yellowwide round profile-button marginLEx1" href="/myresume" target="_blank" type="submit" id="confirmChoose">ยืนยัน</button>
+							<button class="btn btn-cta-primary-yellowwide round profile-button marginLEx1" target="_blank" type="submit" id="confirmChoose" onChange={this.handleSubmitEdit}>ยืนยัน</button>
 						</div>
 					</form>
 				</div>

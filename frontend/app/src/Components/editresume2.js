@@ -84,18 +84,23 @@ class Editresume2 extends React.Component {
                 grid_work2 = grid_work2.replace("{isCheck_work[ele.WorkHistory_id]}", isCheck_work[ele.WorkHistory_id]);
                 grid_work2 = grid_work2.replace("{yyyxxcxele.WorkHistory_id}", "yyy" + ele.WorkHistory_id);
                 grid_work2 = grid_work2.replace("{ele.Work_JobName}", ele.Work_JobName);
-                if (ele.Company == "none") {
+                if (ele.Company == "none" || ele.Company == "") {
                     grid_work2 = grid_work2.replace("{company_work}", "-");
                 }
                 else {
                     grid_work2 = grid_work2.replace("{company_work}", ele.Company);
                 }
-                grid_work2 = grid_work2.replace("{ele.Work_Start_Month}", ele.Work_Start_Month);
+                if (ele.Work_Start_Month < 10) {
+                    grid_work2 = grid_work2.replace("{ele.Work_Start_Month}", `0` + ele.Work_Start_Month);
+                }
+                else {
+                    grid_work2 = grid_work2.replace("{ele.Work_Start_Month}", ele.Work_Start_Month);
+                }
                 grid_work2 = grid_work2.replace("{ele.Work_Start_Year}", ele.Work_Start_Year);
                 if (ele.Work_End_Month === 99 && ele.Work_End_Year === 9999) {
                     grid_work2 = grid_work2.replace("สิ้นสุด {month_endwork}/{year_endwork}", "ยังอยู่ในงาน");
                 }
-                else if (ele.Work_End_Month === 0 && ele.Work_End_Year === 0) {
+                else if ((ele.Work_End_Month === 0 && ele.Work_End_Year === 0)||(ele.Work_End_Month === null && ele.Work_End_Year === null)) {
                     grid_work2 = grid_work2.replace("สิ้นสุด {month_endwork}/{year_endwork}", "");
                 }
                 else if (ele.Work_End_Month === 0 && ele.Work_End_Year != 0) {
@@ -121,10 +126,10 @@ class Editresume2 extends React.Component {
                     grid_work2 = grid_work2.replace("{year_endwork}", ele.Work_End_Year);
                 }
                 grid_work2 = grid_work2.replace("{ele.Salary_type}", ele.SalaryType);
-                if (ele.SalaryType === "ไม่ระบุ" && ele.Salary === 0) {
+                if ((ele.SalaryType === "ไม่ระบุ" || ele.SalaryType === "") && (ele.Salary === 0 || ele.Salary === null)) {
                     grid_work2 = grid_work2.replace("{salary_work} บาท", "");
                 }
-                else if (ele.SalaryType != "ไม่ระบุ" && ele.Salary === 0) {
+                else if (ele.SalaryType != "ไม่ระบุ" && ele.Salary === 0 && (ele.Salary === 0 || ele.Salary === null)) {
                     grid_work2 = grid_work2.replace("{salary_work}", "-");
                 }
                 else {
@@ -144,7 +149,7 @@ class Editresume2 extends React.Component {
                 }
                 $(`#contentYear-workresume_` + String(ele.Work_Start_Year)).append(grid_work2);
             });
-        }, 5000);
+        }, 9000);
         $(document).on("click", ".input-choose-work1", function () {
             choose_work = $('.input-choose-work1:input[type=checkbox]:checked').map(function (_, el) {
                 return $(el).val();
@@ -189,7 +194,7 @@ class Editresume2 extends React.Component {
         return (
             <div className="Registab4">
                 <h2 class="head-of-choose-resume-tab2">คุณสามารถเลือกประวัติการทำงานที่สอดคล้องกับตำแหน่งงานที่สนใจได้สูงสุด 3 รายการ</h2>
-                <div class="regis-box-content1">
+                <div class="Editresume-box-content1">
                     <div class="myresume-choose-work11">
                     </div>
                 </div>

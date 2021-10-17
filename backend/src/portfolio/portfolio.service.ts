@@ -1,4 +1,4 @@
-import { Injectable, HttpException , HttpStatus } from '@nestjs/common';
+import { Injectable, HttpException , HttpStatus, ConsoleLogger } from '@nestjs/common';
 import { CreatePortfolioDto } from './dto/portfolio.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, SimpleConsoleLogger } from 'typeorm';
@@ -102,6 +102,7 @@ export class PortService {
     port.UserId = CreateDto.UserId;
     port.Port_Name = CreateDto.Port_Name;
     port.Port_Info = CreateDto.Port_Info;
+    port.ResumeId = new Array();
     port.Owner = user.Firstname + " " + user.Lastname;
     port.totalBookmark = 0;
     port.Port_Tag = CreateDto.Port_Tag;
@@ -117,12 +118,14 @@ export class PortService {
     port.create_time = isoTime;
     port.last_modified = [isoTime];
     port.modified_by = [ip];
+    
 
     const portid = (await this.portRepository.save(port))._id;
     portpic.PortId = portid;
 
     portpic.last_modified =  [isoTime];
     portpic.create_time = isoTime;
+    
 
     return await this.portfolioPictureRepository.save(portpic);
   }
@@ -130,13 +133,35 @@ export class PortService {
   async removePort(portId:string, userId:string){
     const portid = new ObjectID(portId);
     const port =  await this.portRepository.findOne({where:{ _id: portid }});
-    const thatbookmark = await this.BookmarkRepository.find({where:{ id: portid }});
-    for (var _i = 0; _i < thatbookmark.length; _i++) {
-      await this.BookmarkRepository.remove(thatbookmark[_i]);
-    }
-    
     if (port && port.UserId === userId) {
+      const thatbookmark = await this.BookmarkRepository.find({where:{ id: portid }});
+      for (var _i = 0; _i < thatbookmark.length; _i++) {
+        await this.BookmarkRepository.remove(thatbookmark[_i]);
+      }
+      
+      const time =  new Date();
+      const isoTime = time.toLocaleDateString('th-TH',{ year:'numeric',month: 'long',day:'numeric',hour:"2-digit",minute:"2-digit"});
+      const ID = new ObjectID(portId);
       const portpic =  await this.portfolioPictureRepository.findOne({where:{ PortId: port._id }});
+
+      for (var _i = 0; _i < port.ResumeId.length; _i++) {
+        const resume =  await this.resumeModel.findOne({_id: port.ResumeId[_i] });
+        let copy = JSON.parse(JSON.stringify(resume));
+        await this.resumeModel.remove(resume);
+        var move = false;
+        for (var _j = 0; _j < copy.portfolios.length-1; _j++) {
+          if (copy.portfolios[_j]._id == portId || move == true || copy.portfolios[_j]._id == ID) 
+          {
+            move = true;
+            copy.portfolios[_j] = copy.portfolios[_j+1];
+          }
+        }
+        copy.portfolios.pop();
+        copy.last_modified.push(isoTime);
+        copy.modified_by.push("automatic system");
+        await this.resumeModel.create(copy);
+      }
+
       await this.portfolioPictureRepository.remove(portpic);
       return await this.portRepository.remove(port);
     }
@@ -150,22 +175,22 @@ export class PortService {
   async updatePort(CreateDto: CreatePortfolioDto,portId:string, userId:string){
     const portid = new ObjectID(portId);
     const port =  await this.portModel.findById(portid);
-    const portpic =  await this.portfolioPictureRepository.findOne({where:{ PortId: portid }});
-    
-    const time =  new Date();
-    const isoTime = time.toLocaleDateString('th-TH',{ year:'numeric',month: 'long',day:'numeric',hour:"2-digit",minute:"2-digit"});
-    const portfoliopic = new PortfolioPicture();
-    portfoliopic.create_time=portpic.create_time;
-    portfoliopic.last_modified=portpic.last_modified;
-    portfoliopic.PortId=portpic.PortId;
-    portfoliopic.last_modified.push(isoTime)
-    const ID = new ObjectID(portId);
-
-    await this.portfolioPictureRepository.remove(portpic);
-    portfoliopic.PortId = portid;
-    
-    var portpic_arr = [];
     if (port && port.UserId === userId) {
+      const portpic =  await this.portfolioPictureRepository.findOne({where:{ PortId: portid }});
+      const time =  new Date();
+      const isoTime = time.toLocaleDateString('th-TH',{ year:'numeric',month: 'long',day:'numeric',hour:"2-digit",minute:"2-digit"});
+      const portfoliopic = new PortfolioPicture();
+      portfoliopic.create_time=portpic.create_time;
+      portfoliopic.last_modified=portpic.last_modified;
+      portfoliopic.PortId=portpic.PortId;
+      portfoliopic.last_modified.push(isoTime)
+      const ID = new ObjectID(portId);
+
+      await this.portfolioPictureRepository.remove(portpic);
+      portfoliopic.PortId = portid;
+      
+      var portpic_arr = [];
+      
       if (CreateDto.Port_Tag != null)
         port.Port_Tag = CreateDto.Port_Tag;
       if (CreateDto.Port_Privacy != null)
@@ -190,7 +215,7 @@ export class PortService {
         let copy = JSON.parse(JSON.stringify(resume));
         await this.resumeModel.remove(resume);
         for (var _j = 0; _j < copy.portfolios.length; _j++) {
-          if (copy.portfolios[_j].id = ID)
+          if (copy.portfolios[_j]._id == ID)
           {
             copy.portfolios[_j].Port_Tag = port.Port_Tag;
             copy.portfolios[_j].Port_Privacy = port.Port_Privacy;
@@ -208,6 +233,10 @@ export class PortService {
       await this.portfolioPictureRepository.save(portfoliopic);
       return await this.portModel.create(port);
     }
+    throw new HttpException({
+      status: HttpStatus.UNAUTHORIZED,
+      error: 'Can not Delete Other Data',
+    }, HttpStatus.UNAUTHORIZED);
   }
   async updatePortP(CreateDto: CreatePortfolioDto,portId:string, userId:string){
     const portid = new ObjectID(portId);

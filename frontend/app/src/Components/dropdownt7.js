@@ -5,6 +5,8 @@ import { useState } from 'react';
 import AsyncSelect from 'react-select/async';
 import axios from 'axios';
 import $ from 'jquery';
+import { setRawCookie } from 'react-cookies';
+import cookie from 'react-cookies'
 
 const options = [
   { value: 'Technical', label: 'Technical' },
@@ -133,10 +135,12 @@ const customStyles = {
    neww = e.label;
    //console.log(neww);
    //console.log("http://localhost:2000/register/" + e.value +"/hardskill");
-   if(this.state.checkddt7==0){
-    this.getOptions(e.value);
-   }
    const inputText = e.label;
+   if(this.state.checkddt7==0){
+      this.getOptions(e.value);
+      cookie.save('StatusSelecttab7',e.label);
+   }
+   //alert(inputText);
    if(this.state.checkddt7==1){
     this.setState({
       value: inputText,
@@ -154,6 +158,7 @@ const customStyles = {
       ],
     });
     this.props.onChange(inputText);
+    cookie.save('StatusSelecttab7','ได้สกิล');
     this.setState({startval:null,checkddt7:0});
     $('#ddt7s').hide();
    }

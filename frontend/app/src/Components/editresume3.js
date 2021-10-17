@@ -61,9 +61,9 @@ class Editresume3 extends React.Component {
                                         <h1 id="name-of-certi">{ele.CertName}</h1>\
                                         <h1 id="year-of-certi">{ele.CertYear}</h1>\
                                         <div class="pos-pic-of-certi">\
-                                            <img height="142" src="{ele.CertPic}" id="border_certi"></img>\
+                                            <img height="142" src="{ele.CertPic}" id="border_certi" oncontextmenu="return false;" ondragstart="return false;" ></img>\
                                         </div>\
-                                        <div class="icon-checkbox1111"><img height="110" src="assets/images/check_black.png"></img></div>\
+                                        <div class="icon-checkbox1111"><img height="110" src="assets/images/check_black.png" oncontextmenu="return false;" ondragstart="return false;" ></img></div>\
                                     </label>\
                                 </div >`;
                 let headOfyear1234 = `  <div id="year-choose-tem-{show-year-resume-certi}"><h1 id="textOfyear_certi">{ele.CertYear}</h1></div>\
@@ -88,7 +88,7 @@ class Editresume3 extends React.Component {
                 }
                 $("#year-choose-tem-" + String(ele.CertYear)).append(grid_certi2);
             });
-        }, 5000);
+        }, 9000);
 
         $(document).on("click", ".input-choose-certi1", function () {
             choose_certi = $('.input-choose-certi1:input[type=checkbox]:checked').map(function (_, el) {
@@ -135,7 +135,7 @@ class Editresume3 extends React.Component {
         return (
             <div className="Registab5">
                 <h2 class="head-of-choose-resume-tab3">คุณสามารถเลือกใบรับรองที่สอดคล้องกับตำแหน่งงานที่สนใจได้สูงสุด 6 รายการ</h2>
-                <div class="regis-box-content1">
+                <div class="Editresume-box-content1">
                     <div class="myresume-choose-certi11"></div>
                 </div>
                 <h5 class="you-choose-list-resume" id="you-choose-list-resume-certi1"></h5>
