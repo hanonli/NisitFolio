@@ -40,6 +40,7 @@ class Home extends React.Component {
 	
 	componentDidMount() {
 		var refThis = this;
+		var PicBase64=null;
 		
 		window.addEventListener('load', this.handleLoad);
 		console.log("YEAHXXX!");
@@ -206,7 +207,8 @@ class Home extends React.Component {
 						maxHeight: 2048,
 					  });
 					  initialAvatarURL = avatar.src;
-					  avatar.src = canvas.toDataURL();
+					  PicBase64 = canvas.toDataURL();
+					  avatar.src = PicBase64;
 					  console.log(avatar.src);
 					  $alert.removeClass('alert-success alert-warning');
 					  canvas.toBlob(function (blob) {
@@ -221,7 +223,7 @@ class Home extends React.Component {
 
 				$('#crop').on('click', function(){
 					 //alert('Crop!');
-					setTimeout(function() { UploadProfile(); }, 300);
+					 //setTimeout(function() { UploadProfile(); }, 300);
 				});
 				
 				$('#editport').on('click', function(){
@@ -261,9 +263,11 @@ class Home extends React.Component {
 			});
 			
 			function UploadProfile(picUrl){
+				alert(PicBase64);
 				//alert(111);
 					var data = {
 						"ProfilePic":picUrl,
+						"ProfilePicBase64":PicBase64,
 					}
 					
 					fetch("http://localhost:2000/register/",{
