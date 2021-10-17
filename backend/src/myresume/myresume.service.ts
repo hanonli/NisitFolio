@@ -73,6 +73,7 @@ export class MyResumeService {
     resume.Aboutme = user.AboutMe; 
     resume.Email = user.Email2nd;
     resume.Location = user.Country + " " + user.Province + " "+ user.City;
+    resume.ProfilePic = user.ProfilePic;
 
     const jobid = new ObjectID(CreateDto.JobID);
 
