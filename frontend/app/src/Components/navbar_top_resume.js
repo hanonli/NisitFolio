@@ -209,12 +209,12 @@ class Resume_topNavbar extends React.Component {
 		// var index = this.state.index
 		// console.log('handlePrivacy called')
 		if (this.state.privacy == 'Private') {
-			var message = { "Resume_Privacy" : "Member"}
+			var message = { "Resume_Privacy" : "Members"}
 			this.changePrivacy(message)
 			this.setState({
-				privacy: 'Member'
+				privacy: 'Members'
 			})
-		} else if (this.state.privacy == 'Member') {
+		} else if (this.state.privacy == 'Member' || this.state.privacy == 'Members') {
 			var message = { "Resume_Privacy" : "Public"}
 			this.changePrivacy(message)
 			this.setState({
