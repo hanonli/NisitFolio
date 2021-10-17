@@ -330,7 +330,7 @@ class Resume_topNavbar extends React.Component {
 					</div>
 				)
 			}
-			else if (this.state.privacy == 'Member') {
+			else if (this.state.privacy == 'Members' ) {
 				return (
 					<div className='resume_topnav' >
 						<div className='topnav_section1' type='button' onClick={this.handlePrivacy}>
