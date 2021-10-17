@@ -226,7 +226,7 @@ export class MyResumeService {
   }
 
   async getResumebyUser(userId:string ){
-    return this.portModel.find({UserId : userId});
+    return this.resumeModel.find({UserId : userId});
   }
 
 
