@@ -24,8 +24,8 @@ export class RegisterController {
   }
   //------------------------------------test
   @Patch("/testupdate/:y")
-  async Fullupdate2(@Body() CreateDto: PatchRegisDto2 ,@Param('y') jobtitle: string) {
-    const x="xtest";
+  async Fullupdate2(@Body() CreateDto: PatchRegisDto2 ,@Param('y') y: string) {
+    const x="61694b9e65b7f193870b5bc2";
     return this.registerService.Fullupdate(CreateDto,x);
   }
   //--------------------------------------

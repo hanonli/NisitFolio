@@ -150,7 +150,7 @@ export class MyResumeService {
     const CColor = await this.resumePictureRepository.find({where:{UserId:CreateDto.UserId}});
     for (var _i = 0; _i < CColor.length; _i++) {
       CColor[_i].Color=CreateDto.Color
-      await this.portModel.create(CColor[_i])
+      await this.resumePictureRepository.save(CColor[_i])
     }
 
 
@@ -227,7 +227,7 @@ export class MyResumeService {
   }
 
   async getResumebyUser(userId:string ){
-    return this.resumeModel.find({UserId : userId});
+    return this.resumePictureRepository.find({UserId : userId});
   }
 
 
@@ -312,7 +312,7 @@ export class MyResumeService {
       const CColor = await this.resumePictureRepository.find({where:{UserId:CreateDto.UserId}});
       for (var _i = 0; _i < CColor.length; _i++) {
       CColor[_i].Color=CreateDto.Color
-      await this.portModel.create(CColor[_i])
+      await this.resumePictureRepository.save(CColor[_i])
     }
       resume.last_modified.push(isoTime);
       resume.modified_by.push(ip);
