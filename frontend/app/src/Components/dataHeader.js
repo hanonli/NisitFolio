@@ -126,24 +126,6 @@ class DataHeader extends React.Component {
 			});
 
 		});
-		var min_abme_count = -1;
-		var el;
-
-		function countCharactersAbme() {
-			var textEntered, countRemaining, counter;
-			textEntered = document.getElementById('aboutme2').value;
-			counter = (280 - (textEntered.length));
-			countRemaining = document.getElementById('charactersRemaining');
-			//console.log('Char left : ' + counter);
-			countRemaining.textContent = counter;
-			if (counter <= min_abme_count) {
-				console.log('Warning!');
-				$('.aboutmee').addClass('is-invalid');
-			}
-			else {
-				$('.aboutmee').removeClass('is-invalid');
-			}
-		}
 		function GetProvince() {
 			fetch("https://thaiaddressapi-thaikub.herokuapp.com/v1/thailand/provinces",
 				{ method: "GET", })
@@ -195,16 +177,6 @@ class DataHeader extends React.Component {
 				});
 
 		}
-
-		el = document.getElementById('aboutme2');
-		el.addEventListener('keyup', countCharactersAbme, false);
-
-		$('.aboutmee').on('change', 'input', function () {
-			var abme = $('.aboutmee').val();
-			var abme_count = abme.length;
-			//console.log('L : ' + abme_count);
-
-		});
 
 		function get_high_id(list_of_high, x) {
 			//var x = 1;

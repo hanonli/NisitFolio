@@ -89,7 +89,7 @@ $(function(){
         }
         /*else if(ele["aca_field"].length > 38){
           grid_aca1 = grid_aca1.replace("{field_aca}", ele["aca_field"].slice(0, 38) + "...");
-        }*/
+        }
         else{
           grid_aca1 = grid_aca1.replace("{field_aca}", ele["aca_field"]);
         }
@@ -110,7 +110,7 @@ $(function(){
   $(document).ready(function () {
     show_all_aca();
   });
-*/
+
   //func add new aca form
   $(document).on("click", "#add_aca", function () {
     $("#aca_name").removeClass("is-invalid");
@@ -316,7 +316,7 @@ $(function(){
   $(document).ready(function () {
     show_all_high();
   });
-  */
+  
   //func add new high form
   $(document).on("click", "#add_high", function () {
     $("#high_degree").removeClass("is-invalid");
