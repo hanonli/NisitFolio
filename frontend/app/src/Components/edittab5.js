@@ -25,7 +25,7 @@ class Edittab5 extends React.Component {
             $("#text-upload-112").remove();
             $("#text-upload-116").remove();
             show_certi();
-        }, 6000);
+        }, 9000);
 
         $(document).ready(function () {
             var startYear = 1900;
