@@ -207,6 +207,7 @@ export class RegisterService {
       resume2.Owner =  createDto.Firstname + " " + createDto.Lastname;
       resume2.Location = createDto.Country + " " + createDto.Province + " "+ createDto.City;
       resume2.Color = "#ffce55";
+      resume2.AboutMe = createDto.AboutMe;
       resume2.Email = createDto.Email;
       resume2.First = createDto.Firstname;
       resume2.Last = createDto.Lastname;
@@ -302,9 +303,12 @@ export class RegisterService {
         resume[_i].First = patchDto.Firstname;
         resume[_i].Owner = patchDto.Firstname + " " + userinfo.Lastname;
       }
-      if (patchDto.Lastname)
+      if (patchDto.Lastname){
         resume[_i].Last = patchDto.Lastname;
         resume[_i].Owner = userinfo.Firstname + " " + patchDto.Lastname;
+      }
+      if (patchDto.AboutMe)
+        resume[_i].AboutMe = patchDto.AboutMe;
     }
     await this.resumeModel.create(resume);
 

@@ -362,7 +362,7 @@ $('#continue2').click(function () {
       Lastname: $('#re02').val(),
       Birthday: BDDate,
       Gender: $('#sexgen').val(),
-      Aboutme: last_aboutme,
+      AboutMe: last_aboutme,
       Email2nd:"-",
       Country:"ประเทศไทย",
       Province:last_province,

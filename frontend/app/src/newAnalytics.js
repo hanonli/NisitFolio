@@ -778,7 +778,7 @@ class NewAnalytics extends React.Component {
 		}
 		
 		function SetupAdd(){
-			if(rawData.Additional.InterestedJobs.length > 0){
+			if(rawData.Additional.InterestedJobs.length > 0 && rawData.Additional.mySkills.length > 0){
 				
 				$('.nsb').click(function(){
 						cookie.save('Edit_tabselect', 7);
@@ -1410,6 +1410,8 @@ class NewAnalytics extends React.Component {
 			$('.overall-upper-right-box').hide();
 			$('.right-job-box').show();
 			
+			$('.obl-container-add-no-jobL').hide();
+			
 			$('.obl-container').show();
 			$('.obl-container-none').hide();
 			
@@ -1609,12 +1611,10 @@ class NewAnalytics extends React.Component {
 						
 						<div class="obl-container-add-no-jobL">
 							<hrf>Top 3 เทรนด์ทักษะเสริมยอดนิยม</hrf>
-							<ktf>ในกลุ่มคนที่สนใจตำแหน่งงานเดียวกัน</ktf>
-							<ktf>ส่วนใหญ่มีทักษะเสริมที่นิยม คิดเป็นร้อยละ ดังนี้</ktf>
 							<div class="add-none">
-								<kf>เพิ่มตำแหน่งงานที่คุณสนใจ</kf>
+								<kf>เพิ่มตำแหน่งงานหรือทักษะที่คุณสนใจ</kf>
 								<kf>เพื่อดูการวิเคราะห์ข้อมูลทางสถิติโดยเทียบกับผู้ใช้งานคนอื่นในระบบ</kf>
-								<a class="btn btn-cta-primary-yellow round profile-button edit-job" id="new-port" target="_blank">เพิ่มตำแหน่งงาน</a>
+								<a class="btn btn-cta-primary-yellow round profile-button edit-job" id="new-port" target="_blank">แก้ไขข้อมูล</a>
 							</div>
 						</div>
 						
@@ -1749,7 +1749,7 @@ class NewAnalytics extends React.Component {
 									<hrf>Top 3 เทรนด์ทักษะเสริมทั้งหมด</hrf>
 								</div>
 								<div class="add-none">
-									<kf>ขออถัย แต่ข้อมูลทักษะเสริมในระบบไม่เพียงพอที่จะแสดงผลนี้</kf>
+									<kf>ขออภัย แต่ข้อมูลทักษะเสริมในระบบไม่เพียงพอที่จะแสดงผลนี้</kf>
 								</div>
 							</div>
 						</div>

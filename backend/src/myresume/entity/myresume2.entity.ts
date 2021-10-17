@@ -22,7 +22,7 @@ export class Resume3 {
   Owner: string;
 
   @Column()
-  Aboutme: string;
+  AboutMe: string;
 
   @Column()
   Email: string;

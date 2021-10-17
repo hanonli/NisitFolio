@@ -198,7 +198,7 @@ export class AnalyticsService {
 
 async findUserJobSkill(UserId: string): Promise<any> {
   const userSkill = await this.UserJobSkillModel.aggregate([
-                      { $match: {UserId: UserId} },
+                      { $match: {UserId: UserId, Job_SkillName: {"$nin": ["none"]}} },
                       { 
                         $group: { 
                           _id: { Job_JobName: "$Job_JobName" } 
@@ -213,7 +213,7 @@ async findUserJobSkill(UserId: string): Promise<any> {
   //console.log(userSkill) ;
   for ( var job of userSkill ) {
     const job_name = job._id.Job_JobName;
-    const job_THname = await this.JobTitleModel.findOne({ $or: [ { THName: job_name }, { Name: job_name }]}).select({ Name: 1,THName: 1, _id: 0 }).exec();
+    const job_THname = await this.JobTitleModel.findOne({$or: [ { THName: job_name }, { Name: job_name }]}).select({ Name: 1,THName: 1, _id: 0 }).exec();
     InterestedJobs.push(job_name) ;
     FullNameJobs.push({ "name": job_THname.Name, "THname": job_THname.THName })
   }
@@ -221,14 +221,14 @@ async findUserJobSkill(UserId: string): Promise<any> {
   //console.log("THName: ", THnameJobs) ;
   array['InterestedJobs'] = FullNameJobs ;
 
-  const mySkills = await this.UserJobSkillModel.find({ UserId: UserId }).select({ Job_SkillName: 1 , _id: 0 }).distinct('Job_SkillName').exec();
+  const mySkills = await this.UserJobSkillModel.find({ UserId: UserId, Job_SkillName: { "$nin": ["none"] } }).select({ Job_SkillName: 1 , _id: 0 }).distinct('Job_SkillName').exec();
   //console.log("MySkill: ", mySkills) ;
   array['mySkills'] = mySkills;
 
   let yourTop = [] ;
   for (var job of InterestedJobs) {
     const SumSkill = await this.UserJobSkillModel.aggregate([
-                      { $match: { Job_JobName: job } },
+                      { $match: { Job_JobName: job, Job_SkillName: {"$nin": ["none"]} } },
                       {
                         $group: {
                           _id: { Job_SkillName: "$Job_SkillName"},
@@ -240,7 +240,7 @@ async findUserJobSkill(UserId: string): Promise<any> {
     ])
     //console.log("SumSkill: ", SumSkill) ; 
     const userList = await this.UserJobSkillModel.aggregate([
-                      { $match: { Job_JobName: job } },
+                      { $match: { Job_JobName: job, Job_SkillName: {"$nin": ["none"]} } },
                       { 
                         $group: {
                           _id: { UserId : "$UserId"}, 
@@ -256,58 +256,60 @@ async findUserJobSkill(UserId: string): Promise<any> {
     let temp = [] ;
     for (var i of SumSkill){ 
       const _name = i._id.Job_SkillName ;
-      const _sum = i.total ;
-      const mean = i.mean ;
-      const AllUser = await this.UserJobSkillModel.find({Job_JobName: job, Job_SkillName: _name}).sort({ Job_Score: 1 }).exec() ;
-      // console.log("AllUser: ", AllUser) ;
-      if ( countTop <= 2 || mySkills.includes(_name) ) {  
-        // ---------- AllUser Score --------------//
-        
-        let AllScore = [] ;
-        let UserScore = null ;
-        let last_score = 0 ;
-        let n_percentile = 0 ;
-        let index = null;
-        let n = 0 ;
-        //console.log(AllUser) ;
-        for (var j of AllUser) {
-          if (last_score != j.Job_Score) {
-            n_percentile += 1 ;
-            last_score = j.Job_Score ;
+      if (_name != "none") {
+        const _sum = i.total ;
+        const mean = i.mean ;
+        const AllUser = await this.UserJobSkillModel.find({Job_JobName: job, Job_SkillName: _name}).sort({ Job_Score: 1 }).exec() ;
+        // console.log("AllUser: ", AllUser) ;
+        if ( countTop <= 2 || mySkills.includes(_name) ) {  
+          // ---------- AllUser Score --------------//
+          
+          let AllScore = [] ;
+          let UserScore = null ;
+          let last_score = 0 ;
+          let n_percentile = 0 ;
+          let index = null;
+          let n = 0 ;
+          //console.log(AllUser) ;
+          for (var j of AllUser) {
+            if (last_score != j.Job_Score) {
+              n_percentile += 1 ;
+              last_score = j.Job_Score ;
+            }
+            n += 1 ;
+            if (UserId == j.UserId) { 
+              UserScore = j.Job_Score ;
+              index = n_percentile ;
+            }
+            AllScore.push(j.Job_Score) ;
           }
-          n += 1 ;
-          if (UserId == j.UserId) { 
-            UserScore = j.Job_Score ;
-            index = n_percentile ;
-          }
-          AllScore.push(j.Job_Score) ;
-        }
-        const detailList = find_mode(AllScore) ;
-        const newAllScore = detailList[0]
-        const count = detailList[1] ;
-        const mode = detailList[2] ;
-        
-        // console.log(_name);
-        // console.log(_sum);
-        if (UserScore != null ) {
-          if (index != 1 || n_percentile == 1) {
-            yourTop.push({"Job_Name": job,"SkillName": _name, "total": _sum, "UserScore": UserScore, "percentile": index/n_percentile*100}) ;
-            temp.push({SkillName: _name, total: _sum, "AllScore": newAllScore, "UserScore": UserScore, "Count": count,"Mean": mean, "Mode": mode, percentage: n/numberOfUsers*100, "percentile": index/n_percentile*100}) ;
+          const detailList = find_mode(AllScore) ;
+          const newAllScore = detailList[0]
+          const count = detailList[1] ;
+          const mode = detailList[2] ;
+          
+          // console.log(_name);
+          // console.log(_sum);
+          if (UserScore != null ) {
+            if (index != 1 || n_percentile == 1) {
+              yourTop.push({"Job_Name": job,"SkillName": _name, "total": _sum, "UserScore": UserScore, "percentile": index/n_percentile*100}) ;
+              temp.push({SkillName: _name, total: _sum, "AllScore": newAllScore, "UserScore": UserScore, "Count": count,"Mean": mean, "Mode": mode, percentage: n/numberOfUsers*100, "percentile": index/n_percentile*100}) ;
+            }
+            else {
+              yourTop.push({"Job_Name": job,"SkillName": _name, "total": _sum, "UserScore": UserScore, "percentile": 0, "p": (100/n_percentile)+(100/n_percentile/4)}) ;
+              temp.push({SkillName: _name, total: _sum, "AllScore": newAllScore, "UserScore": UserScore, "Count": count,"Mean": mean, "Mode": mode, percentage: n/numberOfUsers*100, "percentile": 0, "p": (100/n_percentile)+(100/n_percentile/4)}) ;
+            }
           }
           else {
-            yourTop.push({"Job_Name": job,"SkillName": _name, "total": _sum, "UserScore": UserScore, "percentile": 0, "p": (100/n_percentile)+(100/n_percentile/4)}) ;
-            temp.push({SkillName: _name, total: _sum, "AllScore": newAllScore, "UserScore": UserScore, "Count": count,"Mean": mean, "Mode": mode, percentage: n/numberOfUsers*100, "percentile": 0, "p": (100/n_percentile)+(100/n_percentile/4)}) ;
+            temp.push({SkillName: _name, total: _sum, "AllScore": newAllScore, "UserScore": UserScore, "Count": count,"Mean": mean, "Mode": mode, percentage: n/numberOfUsers*100, "percentile": null}) ;
+            yourTop.push({"Job_Name": job,"SkillName": _name, "total": _sum, "UserScore": UserScore, "percentile": null}) ;
           }
+          countTop ++ ;
         }
-        else {
-          temp.push({SkillName: _name, total: _sum, "AllScore": newAllScore, "UserScore": UserScore, "Count": count,"Mean": mean, "Mode": mode, percentage: n/numberOfUsers*100, "percentile": null}) ;
-          yourTop.push({"Job_Name": job,"SkillName": _name, "total": _sum, "UserScore": UserScore, "percentile": null}) ;
-        }
-        countTop ++ ;
-      }
       // else { 
       //   temp.push({SkillName: _name, total: _sum, percentage: AllUser.length/numberOfUsers*100})
       // }
+      }
     }
     array[job]['List'] = temp ;
   }
@@ -317,13 +319,13 @@ async findUserJobSkill(UserId: string): Promise<any> {
 
   // ----------------------------------------- Overview -------------------------------------------------
 
-  const users = await this.UserJobSkillModel.find( {Job_JobName: { "$in" : InterestedJobs }} ).select({ UserId: 1, _id: 0 }).distinct('UserId');
+  const users = await this.UserJobSkillModel.find( {Job_JobName: { "$in" : InterestedJobs }, Job_SkillName: {"$nin": ["none"]}} ).select({ UserId: 1, _id: 0 }).distinct('UserId');
   //console.log("users :", users) ;
   const numberOfUsers = users.length;
   
   const New = await this.UserJobSkillModel.aggregate([
     { 
-      $match: { Job_JobName: { "$in" : InterestedJobs } } 
+      $match: { Job_JobName: { "$in" : InterestedJobs }, Job_SkillName: {"$nin": ["none"]}} 
     },
     { 
       $group: { 
@@ -343,44 +345,46 @@ async findUserJobSkill(UserId: string): Promise<any> {
   let countTop = 0 ;
   for (var i of New) {
     const Skill = i._id.Job_SkillName ;
-    const total = i.total ;
-    const AllUserScore = await this.UserJobSkillModel.find( { Job_JobName: { "$in": InterestedJobs }, Job_SkillName: Skill } ).select({ UserId: 1, Job_Score: 1, _id: 0 }).sort({Job_Score: 1}) ;
-    //console.log("AllUserSCore: ", AllUserScore) ;
-    let AllScore = [] ;
-    let UserScore = null ;
-    let n_percentile = 0 ;
-    let index = null;
-    let last_score = 0 ;
-    if (countTop <= 2 || mySkills.includes(Skill)) {
-      countTop += 1 ;
-      for (var obj of AllUserScore) {
-        if (last_score != obj.Job_Score) {
-          n_percentile += 1 ;
-          last_score = obj.Job_Score ;
+    if (Skill != "none") {
+      const total = i.total ;
+      const AllUserScore = await this.UserJobSkillModel.find( { Job_JobName: { "$in": InterestedJobs }, Job_SkillName: Skill } ).select({ UserId: 1, Job_Score: 1, _id: 0 }).sort({Job_Score: 1}) ;
+      //console.log("AllUserSCore: ", AllUserScore) ;
+      let AllScore = [] ;
+      let UserScore = null ;
+      let n_percentile = 0 ;
+      let index = null;
+      let last_score = 0 ;
+      if (countTop <= 2 || mySkills.includes(Skill)) {
+        countTop += 1 ;
+        for (var obj of AllUserScore) {
+          if (last_score != obj.Job_Score) {
+            n_percentile += 1 ;
+            last_score = obj.Job_Score ;
+          }
+          // console.log(obj.Score) ;
+          // console.log(obj.userId) ;
+          AllScore.push(obj.Job_Score) ;
+          if (UserId == obj.UserId) {
+            UserScore = obj.Job_Score ;
+            index = n_percentile ;
+          }
         }
-        // console.log(obj.Score) ;
-        // console.log(obj.userId) ;
-        AllScore.push(obj.Job_Score) ;
-        if (UserId == obj.UserId) {
-          UserScore = obj.Job_Score ;
-          index = n_percentile ;
-        }
-      }
-      const details = find_mode(AllScore) ;
-      const newAllScore = details[0] ;
-      const count = details[1] ;
-      const mode = details[2] ;
-      percentage = total/numberOfUsers*100 ;
-      if (UserScore != null ) {
-        if (index != 1 || n_percentile == 1) {
-          temp2.push({"Job_Name": i._id.Job_JobName, "SkillName": Skill, "total": total, "AllScore": newAllScore, "UserScore": UserScore, "Count": count, "Mean": i.mean, "Mode": mode, percentage: percentage, "percentile": index/n_percentile*100}) ;
+        const details = find_mode(AllScore) ;
+        const newAllScore = details[0] ;
+        const count = details[1] ;
+        const mode = details[2] ;
+        percentage = total/numberOfUsers*100 ;
+        if (UserScore != null ) {
+          if (index != 1 || n_percentile == 1) {
+            temp2.push({"Job_Name": i._id.Job_JobName, "SkillName": Skill, "total": total, "AllScore": newAllScore, "UserScore": UserScore, "Count": count, "Mean": i.mean, "Mode": mode, percentage: percentage, "percentile": index/n_percentile*100}) ;
+          }
+          else {
+            temp2.push({"Job_Name": i._id.Job_JobName, "SkillName": Skill, "total": total, "AllScore": newAllScore, "UserScore": UserScore, "Count": count, "Mean": i.mean, "Mode": mode, percentage: percentage, "percentile": 0, "p": (100/n_percentile)+(100/n_percentile/4)}) ;
+          }
         }
         else {
-          temp2.push({"Job_Name": i._id.Job_JobName, "SkillName": Skill, "total": total, "AllScore": newAllScore, "UserScore": UserScore, "Count": count, "Mean": i.mean, "Mode": mode, percentage: percentage, "percentile": 0, "p": (100/n_percentile)+(100/n_percentile/4)}) ;
+          temp2.push({"Job_Name": i._id.Job_JobName, "SkillName": Skill, "total": total, "AllScore": newAllScore, "UserScore": UserScore, "Count": count, "Mean": i.mean, "Mode": mode, percentage: percentage, "percentile": null}) ;
         }
-      }
-      else {
-        temp2.push({"Job_Name": i._id.Job_JobName, "SkillName": Skill, "total": total, "AllScore": newAllScore, "UserScore": UserScore, "Count": count, "Mean": i.mean, "Mode": mode, percentage: percentage, "percentile": null}) ;
       }
     }
   }
