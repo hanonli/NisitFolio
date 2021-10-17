@@ -50,7 +50,7 @@ class MyResumeEditTemplate extends React.Component {
     render() {
         return (
             <div class="myresumeEditTemplate">
-                <div class="regis-box-content1">
+                <div class="Editresume-box-content6">
                     <div class="layout-edit-template">
                         <div class="sample-color-edit-template">
                             <img src={this.state.sample_template} width="245px" oncontextmenu="return false;" ondragstart="return false;"></img>
