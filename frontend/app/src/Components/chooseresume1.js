@@ -203,7 +203,7 @@ class Chooseresume1 extends React.Component {
 							</div>
 						</div>
 					</div>
-					<h5 id="dangerzonect1" class='normalformzonet3'></h5>
+					<h5 id="dangerzonect1"></h5>
 				</div>
 		);
 	}
