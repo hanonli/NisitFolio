@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Navbar from './Components/navbar';
+import { Link } from "react-router-dom";
 import BookmarkTabs from './Components/bookmarkTabs';
 import SearchHeader from './Components/searchHeader';
 import reportWebVitals from './reportWebVitals';
@@ -128,6 +129,19 @@ class Search extends React.Component {
 						</div>
 					
 				</div> 
+				
+				<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered">
+						<div class="modal-content minisize">
+							<h4 class="del-b">คุณยังไม่ได้สมัครสมาชิก ?</h4>
+							<div class="centerverify">
+								<a type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">คราวหลัง</a>
+								<a id="cancel-port" type="button" id="to-regis" class="btn btn-cta-primary-yellowshort profile-button round" data-bs-dismiss="modal">สมัครเลย</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				
 			</div>
 		);
 	}

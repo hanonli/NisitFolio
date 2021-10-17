@@ -19,14 +19,46 @@ class Navbar extends React.Component {
 		script.src = "assets/js/navbar.js";
 		document.body.appendChild(script);
 		
-		var x = cookie.load('login-user');
-		if(x == 'none') this.setState({tpId : 'public'});
+		var x = cookie.load('login-token');
+		
+		//Is token still valid?
+		fetch("http://localhost:2000/profile/",{
+				method: "GET",
+				headers: {
+					'Authorization': 'Bearer '+x,
+					"Access-Control-Allow-Origin": "*",
+					"Access-Control-Allow-Methods": "*",
+					"Access-Control-Allow-Credentials": true,
+					"Content-Type": "application/json"
+				},
+			})
+			.then(function(response) {
+				return response.text().then(function(text) {
+				  //alert(text);
+				  if(text == '{"statusCode":401,"message":"Unauthorized"}'){
+						this.setState({tpId : 'public'});
+				  }else{ // token valid
+				  
+				  }
+				});
+			 })
+			 .catch((error) => {
+					console.log('token invalid!');
+					this.setState({tpId : 'public'});
+					//this.setState({ redirect: "/landing" });
+			});
+			
+		
+		/*if(x != null){
+			if(x == 'none') 
+				this.setState({tpId : 'public'});
+		}*/
 		
 		$(function(){
 			$("#logout").click(function(){
 			  //alert('logout!');
 			  cookie.save('login-token', 'none', { path: '/' })
-			   cookie.save('login-user', 'none', { path: '/' })
+			  cookie.save('login-user', 'none', { path: '/' })
 		   });
 		});
 		
@@ -78,11 +110,11 @@ class Navbar extends React.Component {
 									</button>
 									<div>
 									  <div class="lg-view">
-											<Link to="/register">
-												<a class="btn btn-cta-primary nav-round blue regis-mar" id="nav-regis" target="_blank">สมัครสมาชิก</a> 
-											</Link>
 											<Link to="/landing">
-												<a class="btn btn-cta-primary-yellow nav-round" id="nav-login" target="_blank">เข้าสู่ระบบ</a>
+												<a class="btn btn-cta-primary-yellow nav-round regis-mar" id="nav-login" target="_blank">เข้าสู่ระบบ</a>
+											</Link>
+											<Link to="/register">
+												<a class="btn btn-cta-primary nav-round blue" id="nav-regis" target="_blank">สมัครสมาชิก</a> 
 											</Link>
 										</div>
 									</div>

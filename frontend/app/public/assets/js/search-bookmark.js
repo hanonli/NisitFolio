@@ -151,6 +151,8 @@ var entityIdInfo = [];
 
 var currentTooltip = null;
 
+ var $modal = window.$('#modal');
+
 ClearCache(); // gotta need this line for changing between search & bookmark
 
 function ResetData(){
@@ -584,6 +586,8 @@ function GetFormattedSearchData(datas){
 	datas.forEach((data) => {
 		//alert(data.thatUserId);
 		var datt = {};
+		console.log(data.type);
+		console.log(data.name);
 		if(data.type == "profile") {
 			datt['type'] = data.type;
 			datt['thatUserId'] = data.thatUserId;
@@ -597,13 +601,23 @@ function GetFormattedSearchData(datas){
 			datt['type'] = data.type;
 			datt['thatUserId'] = data.thatUserId;
 			datt['name'] = data.name;
-			if(data.pic[0].Pic.length > 0) datt['profilePic'] = data.pic[0].Pic[0];
-			else datt['profilePic'] = 'assets/images/emp_thumb.jpg';
+			if(data.pic[0].Pic != null){
+				if(data.pic[0].Pic.length > 0){
+					datt['profilePic'] = data.pic[0].Pic[0];
+					datt['port'] = data.pic[0].Pic.length;
+				}else{ 
+					datt['profilePic'] = 'assets/images/emp_thumb.jpg';
+					datt['port'] = 0;
+				}
+			}else{ // port has no pic
+				datt['profilePic'] = 'assets/images/emp_thumb.jpg';
+				datt['port'] = 0;
+			}
 			datt['portId'] = data.Port_id;
 			console.log(data);
 			datt['about'] = data.about;
 			datt['owner'] = data.owner;
-			datt['port'] = data.pic[0].Pic.length;
+			
 			datt['bookmark'] = data.bookmark;
 			fData.push(datt);
 		}
@@ -891,10 +905,10 @@ function AddBookmark(id){
 }
 
 function AddListenerToDynamicComponents(){
-	if($('#tpId').text() != 'user' && pageName == 'search'){ // hide for public
+	/*if($('#tpId').text() != 'user' && pageName == 'search'){ // hide for public
 		$('.obj-icon').hide();
 		return;
-	}
+	}*/
 	
 	if(view_type != 'grid'){
 		$('.obj-icon').addClass('ic-margin');
@@ -910,87 +924,58 @@ function AddListenerToDynamicComponents(){
    });
    
    $(".obj-icon").unbind('click');
-   $('.obj-icon').click(function(e) {
-	   e.stopPropagation();
-	  // alert(pageName);
-	   /*if(pageName == "search"){
-		  //console.log("change icon--!!!");
-		  //alert(this.id);
-		  var id = $(this).attr('id');
-		  var nId = entityIdInfo[id].split("-");
-		  console.log(entityIdInfo[id]);
-		  //alert(id);
-		   //console.log(cacheDataTime);
-		  //console.log(cacheDataTime[id]);
-		  if (nId[0] == 'true') {
-			  //alert('remove!');
-			$(this).attr('src', 'assets/images/bookmark_1.png');
-			$(this).attr('data-bs-original-title', 'บันทึก');
-			entityIdInfo[id] = entityIdInfo[id].replace('true','false');
-			if(sortType == 'total')
-				cacheDataTotal[id].bookmark = 'false';
-			else
-				cacheDataTime[id].bookmark = 'false';
-			console.log("Remove bookmark!");
-			DeleteBookmark(nId[1]);
-		  }else if(nId[0] == 'false'){
-			  //alert('add!');
-			$(this).attr('src', 'assets/images/bookmark_2.png');
-			$(this).attr('data-bs-original-title', 'ยกเลิกการบันทึก');
-			entityIdInfo[id] = entityIdInfo[id].replace('false','true');
-			if(sortType == 'total')
-				cacheDataTotal[id].bookmark = 'true';
-			else
-				cacheDataTime[id].bookmark = 'true';
-			console.log("Add bookmark!");
-			AddBookmark(nId[1]);
-		  }
-	   }else{
-		   var id = $(this).attr('id');
-		   DeleteBookmark(entityIdInfo[id]);
-	   }*/
-	   
-	   
-	   
-	   
-	   
-		  //console.log("change icon--!!!");
-		  //alert(this.id);
-		  var id = $(this).attr('id');
-		  var nId = entityIdInfo[id].split("-");
-		  console.log(entityIdInfo[id]);
-		  //alert(id);
-		   //console.log(cacheDataTime);
-		  //console.log(cacheDataTime[id]);
-		  if (nId[0] == 'true') {
-			  //alert('remove!');
-			$(this).attr('src', 'assets/images/bookmark_1.png');
-			$(this).attr('data-bs-original-title', 'บันทึก');
-			entityIdInfo[id] = entityIdInfo[id].replace('true','false');
-			if(sortType == 'total')
-				cacheDataTotal[id].bookmark = 'false';
-			else
-				cacheDataTime[id].bookmark = 'false';
-			console.log("Remove bookmark!");
-			DeleteBookmark(nId[1]);
-		  }else if(nId[0] == 'false'){
-			  //alert('add!');
-			$(this).attr('src', 'assets/images/bookmark_2.png');
-			$(this).attr('data-bs-original-title', 'ยกเลิกการบันทึก');
-			entityIdInfo[id] = entityIdInfo[id].replace('false','true');
-			if(sortType == 'total')
-				cacheDataTotal[id].bookmark = 'true';
-			else
-				cacheDataTime[id].bookmark = 'true';
-			console.log("Add bookmark!");
-			AddBookmark(nId[1]);
-		  }
-	   
-	  $(this).tooltip('hide');
-	  //setTimeout(function() { ReinitializeTooltips();  }, 500);
-	  //$(this).tooltip('show'); });
+   
+   if($('#tpId').text() != 'user' && pageName == 'search'){ // public event
+		$('.obj-icon').click(function(e) {
+			e.stopPropagation();	   
+		   	//alert('You are not user!');
+			 $modal.modal('show');
+		});
+		
+		$('#to-regis').click(function(e) {
+			window.location.assign("/register");
+		});
+   }else{ // user event
+	   $('.obj-icon').click(function(e) {
+		   e.stopPropagation();	   
+			  //console.log("change icon--!!!");
+			  //alert(this.id);
+			  var id = $(this).attr('id');
+			  var nId = entityIdInfo[id].split("-");
+			  console.log(entityIdInfo[id]);
+			  //alert(id);
+			   //console.log(cacheDataTime);
+			  //console.log(cacheDataTime[id]);
+			  if (nId[0] == 'true') {
+				  //alert('remove!');
+				$(this).attr('src', 'assets/images/bookmark_1.png');
+				$(this).attr('data-bs-original-title', 'บันทึก');
+				entityIdInfo[id] = entityIdInfo[id].replace('true','false');
+				if(sortType == 'total')
+					cacheDataTotal[id].bookmark = 'false';
+				else
+					cacheDataTime[id].bookmark = 'false';
+				console.log("Remove bookmark!");
+				DeleteBookmark(nId[1]);
+			  }else if(nId[0] == 'false'){
+				  //alert('add!');
+				$(this).attr('src', 'assets/images/bookmark_2.png');
+				$(this).attr('data-bs-original-title', 'ยกเลิกการบันทึก');
+				entityIdInfo[id] = entityIdInfo[id].replace('false','true');
+				if(sortType == 'total')
+					cacheDataTotal[id].bookmark = 'true';
+				else
+					cacheDataTime[id].bookmark = 'true';
+				console.log("Add bookmark!");
+				AddBookmark(nId[1]);
+			  }
+		   
+		  $(this).tooltip('hide');
+		  //setTimeout(function() { ReinitializeTooltips();  }, 500);
+		  //$(this).tooltip('show'); });
 
-	});
+		});
+   }
 	
 	$('.obj-icon').mouseover(function() {
 		console.log('mouseover icon!');

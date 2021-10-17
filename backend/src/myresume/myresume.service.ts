@@ -73,6 +73,7 @@ export class MyResumeService {
     resume.Aboutme = user.AboutMe; 
     resume.Email = user.Email2nd;
     resume.Location = user.Country + " " + user.Province + " "+ user.City;
+    resume.ProfilePic = user.ProfilePic;
 
     const jobid = new ObjectID(CreateDto.JobID);
 
@@ -226,7 +227,7 @@ export class MyResumeService {
   }
 
   async getResumebyUser(userId:string ){
-    return this.resumePictureRepository.find({UserId : userId});
+    return this.resumeModel.find({UserId : userId});
   }
 
 
