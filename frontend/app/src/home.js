@@ -139,7 +139,9 @@ class Home extends React.Component {
 				
 				
 				$('.tag-button').on('click', function(){
-					alert($(this).text());
+					//alert($(this).text());
+					cookie.save('search-entry', $(this).text(), { path: '/' })
+					refThis.setState({ redirect: '/search' });
 				});
 
 				  var avatar = document.getElementById('avatar');
