@@ -18,9 +18,10 @@ class MyResumeEditTemplate extends React.Component {
         this.handleLoad = this.handleLoad.bind(this);
         this.state = {
             //value_color: "#FFCE55",
-            selectedOption: "#FFCE55",
-            sample_template: "assets/images/previewRY.png",
+            selectedOption: this.props.firstchoosecolor? "#FFCE55":this.props.Color_Resume,
+            sample_template: myTemplate[this.props.firstchoosecolor? "#FFCE55":this.props.Color_Resume],
         };
+        select_color_template = this.props.firstchoosecolor? "#FFCE55":this.props.Color_Resume; //
     }
 
     handleChange = e => {

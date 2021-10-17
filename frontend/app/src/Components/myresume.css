@@ -469,16 +469,22 @@
 .img-overlay:hover{
     opacity: 1;
 }
-
+.myworkalllabel{
+    width: 100%;
+    height: auto;
+    bottom: 2%;
+    padding: 0.75vw;
+    position: absolute;
+}
 .myworkname{
-    margin-top: 10.8Vw;
-    margin-left: 1.5Vw;
+    /*margin-top: 10.8Vw;*/
+    /*margin-left: 1.5Vw;*/
     font-size: 2Vw;
     color:rgb(255, 255, 255);
 }
 
 .myworkdate{
-    margin-left: 1.5Vw;
+    /*margin-left: 1.5Vw;*/
     font-size: 1Vw;
     font-weight: 500;
     color:white;

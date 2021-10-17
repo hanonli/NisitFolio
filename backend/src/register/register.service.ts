@@ -405,7 +405,7 @@ export class RegisterService {
         let copy = JSON.parse(JSON.stringify(resume));
         await this.resumeModel.remove(resume);
         for (var _j = 0; _j < copy.additionalSkills.length; _j++) {
-          if (copy.additionalSkills[_j].id == ID)
+          if (copy.additionalSkills[_j].id == ID || copy.additionalSkills[_j].id == id)
           {
             copy.additionalSkills[_j].AdditionalSkill = patchDto.SoftSkill;
             copy.additionalSkills[_j].Type = patchDto.SoftSkillType;
@@ -443,7 +443,7 @@ export class RegisterService {
       await this.resumeModel.remove(resume);
       var move = false;
       for (var _j = 0; _j < copy.additionalSkills.length - 1; _j++) {
-        if (copy.additionalSkills[_j].id == ID || move == true)
+        if (copy.additionalSkills[_j].id == ID || move == true || copy.additionalSkills[_j].id == id)
         {
           var move = true;
           copy.additionalSkills[_j] = copy.additionalSkills[_j+1];
@@ -486,7 +486,7 @@ export class RegisterService {
         let copy = JSON.parse(JSON.stringify(resume));
         await this.resumeModel.remove(resume);
         for (var _j = 0; _j < copy.certificates.length; _j++) {
-          if (copy.certificates[_j].id == id)
+          if (copy.certificates[_j].id == id || copy.certificates[_j].id == ID ) 
           {
             copy.certificates[_j].CertName = certificate.CertName;
             copy.certificates[_j].CertYear = certificate.CertYear;
@@ -526,7 +526,7 @@ export class RegisterService {
       var move = false;
       await this.resumeModel.remove(resume);
       for (var _j = 0; _j < copy.certificates.length-1; _j++) {
-        if (copy.certificates[_j].id == id || move == true)
+        if (copy.certificates[_j].id == id || move == true || copy.certificates[_j].id == ID)
         {
           var move = true;
           copy.certificates[_j] = copy.certificates[_j+1];
@@ -576,7 +576,7 @@ export class RegisterService {
         let copy = JSON.parse(JSON.stringify(resume));
         await this.resumeModel.remove(resume);
         for (var _j = 0; _j < copy.educationHistorys.length; _j++) {
-          if (copy.educationHistorys[_j].id == id)
+          if (copy.educationHistorys[_j].id == id || copy.educationHistorys[_j].id == ID)
           {
             copy.educationHistorys[_j].Degree = educationHistory.Degree;
             copy.educationHistorys[_j].Facalty = educationHistory.Facalty;
@@ -618,7 +618,7 @@ export class RegisterService {
       await this.resumeModel.remove(resume);
       var move = false;
       for (var _j = 0; _j < copy.educationHistorys.length - 1; _j++) {
-        if (copy.educationHistorys[_j].id == id || move == true)
+        if (copy.educationHistorys[_j].id == id || move == true || copy.educationHistorys[_j].id == ID)
         {
           move = true;
           copy.educationHistorys[_j] = copy.educationHistorys[_j+1];
@@ -675,7 +675,7 @@ export class RegisterService {
         let copy = JSON.parse(JSON.stringify(resume));
         await this.resumeModel.remove(resume);
         for (var _j = 0; _j < copy.workHistorys.length; _j++) {
-          if (copy.workHistorys[_j].id == id)
+          if (copy.workHistorys[_j].id == id || copy.workHistorys[_j].id == ID)
           {
             copy.workHistorys[_j].Work_JobName = workHistory.Work_JobName ;
             copy.workHistorys[_j].Work_JobType = workHistory.Work_JobType;
@@ -722,7 +722,7 @@ export class RegisterService {
       await this.resumeModel.remove(resume);
       var move = false;
       for (var _j = 0; _j < copy.workHistorys.length-1; _j++) {
-        if (copy.workHistorys[_j].id == id || move == true)
+        if (copy.workHistorys[_j].id == id || move == true || copy.workHistorys[_j].id == ID)
         {
           move = true;
           copy.workHistorys[_j] = copy.workHistorys[_j+1];
@@ -801,7 +801,7 @@ export class RegisterService {
       let copy = JSON.parse(JSON.stringify(resume));
       await this.resumeModel.deleteOne({_id: interestedJob.ResumeId[_i] });
       for (var _j = 0; _j < copy.interestedJob.length; _j++) {
-        if (copy.interestedJob[_j]._id == id)
+        if (copy.interestedJob[_j]._id == id || copy.interestedJob[_j]._id == ID)
         {
           console.log(interestedJob.Job_JobName);
           copy.interestedJob[_j].Job_JobName = interestedJob.Job_JobName ;

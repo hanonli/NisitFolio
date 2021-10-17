@@ -77,15 +77,22 @@ class MyresumePortfolio extends React.Component {
         console.log(portfolios);
         let clean_data = [];
         let day;
+        let udate;
         for(var i=0; i<portfolios.length; i++){
-            day = portfolios[i].Port_Date.split("/");
-            
+            if(portfolios[i].Port_Date !== null){
+                day = portfolios[i].Port_Date.split("/");
+                udate = day[0] + " "+ monthdict[parseInt(day[1])] + " " + day[2];
+            }
+            else{
+                day = portfolios[i].create_time.split(" ");
+                udate = day[0] + " " + day[1] + " " + day[2];
+            }
             clean_data.push({
                 link: ("portinfo/" + portfolios[i]._id),
                 port_id: portfolios[i]._id,
                 port_name: portfolios[i].Port_Name,
                 image: portfolios[i].portfolioPictures[0].Pic[0]? portfolios[i].portfolioPictures[0].Pic[0]: "assets/images/ldwithgradient.png",
-                date: day[0] + " "+ monthdict[parseInt(day[1])] + " " + day[2],
+                date: udate,
                 privacy: portfolios[i].Port_Privacy,
                 owner: owner_status
             });
