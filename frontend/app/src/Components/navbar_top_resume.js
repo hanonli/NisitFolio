@@ -231,7 +231,8 @@ class Resume_topNavbar extends React.Component {
 	}
 
 	handleEdit = () =>{
-		window.location = 'choosetemplate'
+		cookie.save('Edit_tabselect',1);
+		window.location = 'editresume'
 	}
 
 	portfoliotab1 = () => {
