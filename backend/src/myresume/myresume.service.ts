@@ -62,6 +62,7 @@ export class MyResumeService {
     const isoTime = time.toLocaleDateString('th-TH',{ year:'numeric',month: 'long',day:'numeric',hour:"2-digit",minute:"2-digit"});
 
     const user = await this.userinfoRepository.findOne({where:{ UserId: CreateDto.UserId }});
+    const acc = await this.accountRepository.findOne({where:{ UserId: CreateDto.UserId }});
     
 
     const resume = new Resume(); 
@@ -73,7 +74,7 @@ export class MyResumeService {
     resume.Aboutme = user.AboutMe; 
     resume.Email = user.Email2nd;
     resume.Location = user.Country + " " + user.Province + " "+ user.City;
-    //resume.ProfilePic = user.ProfilePic;
+    resume.ProfilePic = acc.ProfilePic;
 
     const jobid = new ObjectID(CreateDto.JobID);
 
