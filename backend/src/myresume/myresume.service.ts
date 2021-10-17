@@ -226,7 +226,7 @@ export class MyResumeService {
   }
 
   async getResumebyUser(userId:string ){
-    return this.resumePictureRepository.find({UserId : userId});
+    return this.portModel.find({UserId : userId});
   }
 
 
