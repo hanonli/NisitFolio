@@ -77,36 +77,37 @@ class Editresume extends React.Component {
 				})
 				console.log('this.state.data :' + this.state.data);
 				/*Zone to use datas*/
+
 				console.log(this.state.data.Degree);
-				this.state.data.Degree.forEach(element => {
+				this.state.data.Degree.forEach((element, index) => {
 					Color_Resume = this.state.data.Color_ResumeId ? this.state.data.Color_ResumeId : "";
 					if (!("Color_ResumeId" in this.state.data)) {
 						firstchoosecolor = true;
 					}
 					if (element == 'มัธยมศึกษาตอนปลาย' || element == 'ปวช.') {
 						list_of_high.push({
-							id: this.state.data.EducationHistory_id,
+							id: this.state.data.EducationHistory_id[index],
 							high_pos: 0,
-							high_name: this.state.data.Academy,
+							high_name: this.state.data.Academy[index],
 							high_faculty: 'none',
-							high_degree: this.state.data.Degree,
-							high_grade: this.state.data.Grade,
-							high_field: this.state.data.Field_of_study,
-							high_year: this.state.data.Education_End_Year,
+							high_degree: this.state.data.Degree[index],
+							high_grade: this.state.data.Grade[index],
+							high_field: this.state.data.Field_of_study[index],
+							high_year: this.state.data.Education_End_Year[index],
 						});
 						get_high_id(list_of_high, 1);
 						console.log(list_of_high);
 					}
 					else {
 						list_of_aca.push({
-							id: this.state.data.EducationHistory_id,
+							id: this.state.data.EducationHistory_id[index],
 							aca_pos: 0,
-							aca_name: this.state.data.Academy,
-							aca_faculty: this.state.data.Facalty,
-							aca_degree: this.state.data.Degree,
-							aca_grade: this.state.data.Grade,
-							aca_field: this.state.data.Field_of_study,
-							aca_year: this.state.data.Education_End_Year,
+							aca_name: this.state.data.Academy[index],
+							aca_faculty: this.state.data.Facalty[index],
+							aca_degree: this.state.data.Degree[index],
+							aca_grade: this.state.data.Grade[index],
+							aca_field: this.state.data.Field_of_study[index],
+							aca_year: this.state.data.Education_End_Year[index],
 						});
 						get_aca_id(list_of_aca, 1);
 						console.log(list_of_aca);
@@ -138,10 +139,11 @@ class Editresume extends React.Component {
 				this.state.data.AdditionalSkill_id.forEach((ele, index) => {
 					sideskilldata.push({
 						sideskill_id: ele,
-						sideskillName: this.state.data.Softskill[index],
+						sideskillName: this.state.data.SoftSkill[index],
 						sideskillResume: this.state.data.AdditionalSkill_ResumeId[index]
 					})
 				});
+				console.log(sideskilldata);
 			});
 		$(function () {
 			$('.nameedit').text('"'+cookie.load('Job_EditName')+'"');
@@ -286,7 +288,7 @@ class Editresume extends React.Component {
 								<Chooseresume4 />
 							</div>
 							<div class="tab-content" id="registab6-content">
-								<Chooseresume5 sideskilldata={sideskilldata}/>
+								<Chooseresume5 sideskill_data={sideskilldata}/>
 							</div>
 						</div>
 						<div class="col block-right2">

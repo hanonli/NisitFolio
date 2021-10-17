@@ -194,7 +194,7 @@ class Editresume2 extends React.Component {
         return (
             <div className="Registab4">
                 <h2 class="head-of-choose-resume-tab2">คุณสามารถเลือกประวัติการทำงานที่สอดคล้องกับตำแหน่งงานที่สนใจได้สูงสุด 3 รายการ</h2>
-                <div class="regis-box-content1">
+                <div class="Editresume-box-content1">
                     <div class="myresume-choose-work11">
                     </div>
                 </div>

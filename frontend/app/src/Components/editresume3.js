@@ -135,7 +135,7 @@ class Editresume3 extends React.Component {
         return (
             <div className="Registab5">
                 <h2 class="head-of-choose-resume-tab3">คุณสามารถเลือกใบรับรองที่สอดคล้องกับตำแหน่งงานที่สนใจได้สูงสุด 6 รายการ</h2>
-                <div class="regis-box-content1">
+                <div class="Editresume-box-content1">
                     <div class="myresume-choose-certi11"></div>
                 </div>
                 <h5 class="you-choose-list-resume" id="you-choose-list-resume-certi1"></h5>
