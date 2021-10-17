@@ -33,6 +33,7 @@
     position: absolute;
     left: 12.2vw;
     top: 5.4vh;    
+    /*justify-content: center;*/
 }
 
 .myresume-choose-work11 .t4-content{
@@ -59,7 +60,7 @@
 .you-choose-list-resume{
     position: fixed;
     left: 20vw;
-    top: 94vh;
+    top: 90%;
     font-size: 16px;
     font-weight: 300;
     color: #939393;
@@ -67,4 +68,27 @@
 
 .you-choose-list-resume-red{
     color: red;
+}
+
+
+/*---------------- resume tab6 ----------------*/
+
+.myresume-choose-ssl1 .icon-checkboxct6{
+    visibility: hidden;
+    position: absolute;
+    left: 95%;
+    top: 1.5%;
+}
+
+.myresume-choose-ssl1 {
+    cursor: pointer;
+}
+
+.myresume-choose-ssl1 input[type=checkbox]:checked + label#list-ssl-22{
+    background: #E1E1E1;
+    opacity: 0.7; 
+}
+
+.myresume-choose-ssl1 input[type=checkbox]:checked + label#list-ssl-22 > .icon-checkboxct6{
+    visibility: visible;
 }

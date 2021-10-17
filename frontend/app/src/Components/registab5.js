@@ -19,7 +19,7 @@ class Registab5 extends React.Component {
 					<div class="frame_add_certi">
 						<div className="button_add_certi">
 							<button id="add-certi-button1" type="button" class="btn">
-								<img src="assets/images/+.png" width="57" height="57"></img>
+								<img src="assets/images/+.png" width="57" height="57" onContextMenu={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()}></img>
 							</button>
 						</div>
 					</div>

@@ -38,6 +38,14 @@ class MyResume1 extends React.Component {
         var hometown = this.props.state.hometown ? this.props.state.hometown : null ;
         console.log("hometown" + hometown)
         var town = hometown.split(" ");
+        console.log(town.length);
+        if(town.length === 1){
+            town.push("");
+            town.push("");
+        }
+        else if(town.length === 2){
+            town.push("");
+        }
         var owner = this.props.state.is_owner;
         // const educationdata = [
         //     {

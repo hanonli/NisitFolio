@@ -40,6 +40,32 @@
   position: relative;
 }
 
+.Editresume-box-content1 {
+  height: 27.7vw;
+  width: 60vw;
+  margin-left:20%;
+  /*margin-bottom: 0.5vw;*/
+  margin-top: 1.5vw;
+  /*padding: 1%;*/
+  margin-right: 20%;
+  overflow-y: scroll;
+  position: relative;
+}
+
+.Editresume-box-content6 {
+  height: 27.7vw;
+  width: 60vw;
+  margin-left:20%;
+  /*margin-bottom: 0.5vw;*/
+  margin-top: 1.5vw;
+  /*padding: 1%;*/
+  margin-right: 20%;
+  overflow-y: scroll;
+  position: relative;
+  padding-top: 1vw;
+}
+
+
 .css-1vpl199-control{
   margin-bottom: 20px;
 }
@@ -559,7 +585,7 @@ datalist {
   background-color: white;
   border: 1px solid black;
   border-radius: 25px;
-  height: 22vw;
+  height: 24vw;
   width: 48%;
   margin-top: 5px;
   margin-bottom: 5px;

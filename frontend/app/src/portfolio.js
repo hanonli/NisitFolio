@@ -23,6 +23,7 @@ import DatePicker from '@mui/lab/DatePicker';
 import thLocale from 'date-fns/locale/th';
 import { uploadFile } from 'react-s3';
 import { v4 as uuidv4 } from 'uuid';
+import { isValidDate } from './Components/CheckValidDateFormat';
 
 //import Cropper from "react-cropper";
 window.jQuery = $;
@@ -76,7 +77,7 @@ class Portfolio extends React.Component {
 				  { value: 'vanilla', label: 'Vanilla' }
 				],
 			values: [],
-			currentDate: null
+			currentDate: new Date()
 		}
 	 }
 	
@@ -143,7 +144,15 @@ class Portfolio extends React.Component {
 				.catch(err => console.error(err))
 			});
 			return;*/
-			
+			var inputDate = $('#basic-date-picker').attr('value');
+			if(isValidDate(inputDate)){
+				//alert('right format: '+inputDate);
+				//return;
+			}else{
+				alert('wrong date format: '+inputDate);
+				return;
+			}
+
 			var pCount = refThis.state.list.length;
 			/*if(pCount > 0) pics.push($('#upload-id-1').attr('src'));
 			if(pCount > 1) pics.push($('#upload-id-2').attr('src'));
@@ -1045,16 +1054,6 @@ class Portfolio extends React.Component {
 						<img class="static-popup-arrow" src="assets/images/arrow_down2.png"></img>
 						<div class="pu-label">
 							ซ่อน
-						</div>
-						<div class="pu2-label">
-							ไฟล์แนบ
-						</div>
-						<div class="pu-attach" >
-						
-						</div>
-						<img class="popup-file-icon" src="assets/images/file_ic.png"></img>
-						<div class="pua-label">
-							เพิ่มไฟล์แนบ (สูงสุด 8MB)
 						</div>
 						<div class="pu3-label">
 							วันที่เข้าร่วม/ได้รับ

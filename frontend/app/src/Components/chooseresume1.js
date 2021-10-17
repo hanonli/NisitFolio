@@ -11,12 +11,17 @@ class Chooseresume1 extends React.Component {
 		this.state = {
 			data: [],
 			render: true,
-			list_of_aca: this.props.list_of_aca,
+			//list_of_aca: this.props.list_of_aca,
 		}
 	}
 
     componentDidMount() {
-		console.log(`list_of_aca:`, this.state.list_of_aca);
+		setTimeout(() => {
+		const list_of_aca = this.props.list_of_aca ? this.props.list_of_aca : [];
+		var locc = [...list_of_aca];
+		//console.log(`list_of_aca:`, this.state.list_of_aca);
+		console.log(`list_of_aca:`, list_of_aca);
+		console.log(`locc:`, locc);
 		/*function get_high_id(list_of_high, x) {
 			//var x = 1;
 			list_of_high.forEach(ele => {
@@ -94,7 +99,7 @@ class Chooseresume1 extends React.Component {
 		document.body.appendChild(script);
 		*/		
 		function show_all_aca() {
-			this.state.list_of_aca.forEach(ele => {
+			list_of_aca.forEach(ele => {
 				var grid_aca1 = '<div class="t3-content1 row">\
 									<div class="col-3">\
 										<div class="font-titlet3_1 font-boldt3">{degree_aca}</div>\
@@ -134,17 +139,17 @@ class Chooseresume1 extends React.Component {
 				else{
 				grid_aca1 = grid_aca1.replace("{field_aca}", ele["aca_field"]);
 				}
-				if(ele["aca_year"]=="0"){
+				if(ele["aca_year"]==0){
 				grid_aca1 = grid_aca1.replace("{year_aca}", '-');
 				}
-				else if(ele["aca_year"]=="9999"){
+				else if(ele["aca_year"]==9999){
 				grid_aca1 = grid_aca1.replace("{year_aca}", 'กำลังศึกษา');
 				}
 				else{
 				grid_aca1 = grid_aca1.replace("{year_aca}", ele["aca_year"]);
 				}
 				$(".list-of-aca").append(grid_aca1 + grid_aca2);
-				console.log(`list_of_aca:`, this.state.list_of_aca);
+				console.log(`list_of_aca:`, list_of_aca);
 			});
 		}
 		/*if(this.state.list_of_aca!=[]){
@@ -154,6 +159,7 @@ class Chooseresume1 extends React.Component {
 		if(list_of_high!=[]){
 			show_all_high();
 		}*/
+	},2000);
 	}
 	handleLoad() {
 		console.log("YEAH!");
@@ -169,7 +175,7 @@ class Chooseresume1 extends React.Component {
 		return (
 			<div className="Registab3">
 				<h2 class="headerChooseResume">คุณสามารถเลือกประวัติการศึกษาที่สอดคล้องกับตำแหน่งงานที่สนใจได้สูงสุด 6 รายการ</h2>
-				<div class='container-fluid regis-box-content1'>
+				<div class='container-fluid Editresume-box-content6'>
 					<div class='col-16'>
 						<div class='row'>
 								<div className='choosetab3_formbox col-6'>
@@ -197,7 +203,7 @@ class Chooseresume1 extends React.Component {
 							</div>
 						</div>
 					</div>
-					<h1 id="dangerzonect1" class='normalformzonet3'>คุณเลือกไปแล้ว x รายการ</h1>
+					<h5 id="dangerzonect1" class='normalformzonet3'></h5>
 				</div>
 		);
 	}

@@ -17,6 +17,19 @@ export class MyResumeController {
       return this.resumeService.GetResume3(req.user.userId);
   
     }
+    //--------test
+  @Get("/testget/x")
+    async Gettest() {
+      const x="616bcaa7ac041b2bb0e01bed"
+      return this.resumeService.getResumebyUser(x);
+  
+    }
+    @Post("/test/:x")
+    async x(@Body() CreateDto: CreateResumeDto,@Param('x') x: string) {
+      CreateDto.UserId = "xtest";
+    return this.resumeService.createResume(CreateDto,x);
+  }
+    //---------
 
 
   @Get(':resumeId')
@@ -36,12 +49,6 @@ export class MyResumeController {
   }
   
 
-
-  @Post("/test/:x")
-    async x(@Body() CreateDto: CreateResumeDto,@Param('x') x: string) {
-      CreateDto.UserId = "xtest";
-    return this.resumeService.createResume(CreateDto,x);
-  }
   @UseGuards(JwtAuthGuard)
   @Post()
     async CreateResume(@Body() CreateDto: CreateResumeDto ,@Request() req,@RealIP() ip: string) {

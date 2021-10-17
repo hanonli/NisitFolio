@@ -20,7 +20,7 @@
         'position' : 'fixed',
         'z-index' : '10',
         'top' : '8vh',
-        'left' : '10vw',
+        'left' : '0vw',
         'width' : '100vw',
         'text-align' : 'center',
         'background-color' : 'transparent',
@@ -44,74 +44,69 @@
         'width' : '45px',
         'padding-top': '0.7vh',
         'padding-bottom': '0.7vh',
-        'background-color' : 'white',
-        // 'border' : '0.1vw solid black',
-        'border-radius': '0.5vw',
+        'background-color' : '#eaeaea',
+        'border-radius': '0.6vw',
 
     })
 
     // | topnav right section |
     $('.topnav_section2').css({
-        'padding-top' : '0.6vh',
-        'font-size' : '2.5vh',
+        'position' : 'relative',
         'height' : '45px',
+        'width' : 'auto',
+        'padding-top': '0.5vh',
+        'background-color' : '#eaeaea',
+        'border-radius': '0.5vw',
+    })
+
+    // | topnav right section |
+    $('.resume_selectoption').css({
+        'border-radius': '0.5vw',
+        'display' : 'inline-block',
+        'background-color' : '#eaeaea',
+       
+    })
+    // | topnav right section resume select |
+    $('.resume_selectoption_block').css({
+        'padding': '3px 10px 3px 10px',
+        'font-size' : '2.5vh',
+        'display' : 'inline-block',
         'text-decoration' : 'None',
         'text-decoration-color' : 'None',
     })
 
-
-
-    // | topnav right section |
-    $('.resume_selectoption').css({
-        
-        'font-size' : '2.5vh',
-        // 'border' : '0.1vw solid black',
-        'border-radius': '0.5vw',
-        'display' : 'inline-block',
-        'background-color' : 'white',
-    })
-                
-    //  | vertical line |
-    $('.resume_verticalline').css({
-        'font-size' : '2.5vh',
-        'border-left' : '0.1vw solid  black',
-        'height' : '10vh',
-        'background-color' : 'white',
-    })
-
-    $('.resume_verticalline2').css({
-        'font-size' : '2.5vh',
-        'border-right' : '0.1vw solid black',
-        'height' : '1vh',
-        'background-color' : 'white',
-    })
+ 
      // | select resume |
     $('.resume_selectresume').css({
         // 'border' : '0.1vw solid black',
         'border-radius': '0.5vw',
         'display' : 'inline-block',
-        'background-color' : 'white',
+        'background-color' : '#eaeaea',
     })
-    // | select resume block |
 
+    // | select resume block |
     $('.resume_selectresume_block').css({
-        'height': '4vh',
-        'border-radius': '0.5vw',
-        'padding-top': '1vh',
+        'padding': '3px',
         'font-size' : '2.5vh',
         'display' : 'inline-block',
+        'text-decoration' : 'None',
+        'text-decoration-color' : 'None',
 
+    })
+
+
+    // | select resume text |
+    $('.resume_selectresume_text').css({
+        'display' : 'inline-block',
+        'border-radius' : '0.5vw',  
     })
 
 
     // | select resume 1 2 3|
     $('#resume_selectresume1 ,#resume_selectresume2 ,#resume_selectresume3').css({
-        'text-decoration' : 'None',
-        'padding-top': '0.2vh',
-        'padding-left': '3vh',
-        'padding-right': '3vh',
+        'padding-left': '2vh',
+        'padding-right': '2vh',
         'border-radius' : '0.5vw',
-        'color': 'black',
     })
         
     // $('#resume_selectresume1').click(function(){
@@ -131,6 +126,28 @@
     //     localStorage.setItem('active-resume', $(this).attr('active'));
     // });        
 
+
+                   
+    //  | vertical line |
+    $('.resume_verticalline').css({
+        'margin-top': '3px',
+        'margin-left': '3px',
+        'padding-bottom': '3px',
+        'font-size' : '25px',
+        'border-left' : '0.1vw solid  black',
+        'background-color' : '#eaeaea',
+    })
+
+    $('.resume_verticalline2').css({
+        'margin-top': '3px',
+        'margin-left': '3px',
+        'padding-bottom': '3px',
+        'font-size' : '25px',
+        'border-left' : '0.1vw solid  black',
+        'background-color' : '#eaeaea',
+    })
+
+
     // icom myresume
 
  
@@ -138,16 +155,21 @@
     $('#icon-myresume-private' ).attr({
         'width': '40px',
         'height' : '40px',
+        'margin-top': '-3px',
     });
     $('#icon-myresume-member' ).attr({
         'width': '40px',
         'height' : '40px',
+        'margin-top': '-3px',
     });
     $('#icon-myresume-public' ).attr({
         'width': '40px',
         'height' : '40px',
     });
-
+    $('#icon-myresume-public ,#icon-myresume-member ,#icon-myresume-private' ).css({
+        'margin-top': '-3.3px',
+    
+    });
 
     
     //icon-edit
@@ -157,7 +179,7 @@
     
     });
     $('#icon-myresume-edit' ).css({
-        'margin-right': '5px',
+        'margin-left': '3px',
     
     });
     //icon-share
@@ -165,9 +187,9 @@
         'width': '35px',
         'height' : '35px',
     });
-
     $('#icon-myresume-share' ).css({
-        'margin-right': '5px',
+        'margin-left': '-7px',
+        'margin-right': '2px',
 
     
     });
@@ -177,7 +199,6 @@
     // })
 
 
-    
 
  }); 
  

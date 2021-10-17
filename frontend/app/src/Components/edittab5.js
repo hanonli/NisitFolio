@@ -25,7 +25,7 @@ class Edittab5 extends React.Component {
             $("#text-upload-112").remove();
             $("#text-upload-116").remove();
             show_certi();
-        }, 6000);
+        }, 9000);
 
         $(document).ready(function () {
             var startYear = 1900;
@@ -87,12 +87,12 @@ class Edittab5 extends React.Component {
                                 <h1 id="name-of-certi">{name-certi}</h1>\
                                 <h1 id="year-of-certi">{year-certi}</h1>\
                                 <div class="pos-pic-of-certi">\
-                                    <img height="142" src="{pic-of-certi}" id="border_certi"></img>\
+                                    <img height="142" src="{pic-of-certi}" id="border_certi" oncontextmenu="return false;" ondragstart="return false;"></img>\
                                 </div>\
                                 <div class="layer-button-certi">\
                                     <div class="set-layer-button-certi">\
-                                        <button type="button" class="btn" id="edit-certi"><img src="assets/images/blackedit.png" width="35" height="35"></img></button>\
-                                        <button type="button" class="btn" id="del-certi"><img src="assets/images/bin.png" width="50" height="50"></img></button>\                                    
+                                        <button type="button" class="btn" id="edit-certi"><img src="assets/images/blackedit.png" width="35" height="35" oncontextmenu="return false;" ondragstart="return false;"></img></button>\
+                                        <button type="button" class="btn" id="del-certi"><img src="assets/images/bin.png" width="50" height="50" oncontextmenu="return false;" ondragstart="return false;"></img></button>\                                    
                                     </div>\
                                 </div>\
                             </div>`;
@@ -138,7 +138,7 @@ class Edittab5 extends React.Component {
                 $("#icon-upload-112").remove();
                 $("#text-upload-112").remove();
                 $("#text-upload-116").remove();
-                $(".for_upload112").append('<img id="preview_before_upload" height="145"></img>');
+                $(".for_upload112").append('<img id="preview_before_upload" height="145" oncontextmenu="return false;" ondragstart="return false;"></img>');
                 $("#to_upload112").removeClass("error_select_certi");
             }
         });
@@ -166,7 +166,7 @@ class Edittab5 extends React.Component {
             //document.getElementById("yearpicker_111").selectedIndex = for_edit["CertYear_select"];
             $("#yearpicker_111").val(for_edit["CertYear"]);
             picOfCerti = for_edit["CertPic"];
-            $(".for_upload112").append(`<img src="` + picOfCerti + `" id="preview_before_upload" height="145"></img>`);
+            $(".for_upload112").append(`<img src="` + picOfCerti + `" id="preview_before_upload" height="145" oncontextmenu="return false;" ondragstart="return false;"></img>`);
         });
 
         //open modal to add certi
@@ -180,7 +180,7 @@ class Edittab5 extends React.Component {
             $("#preview_before_upload").remove();
             $("#nm_certi").removeClass("is-invalid");
             $("#yearpicker_111").removeClass("is-invalid");
-            $('.for_upload112').append(`<img id="icon-upload-112" src="assets/images/upload_file.png" width="85px" height="85px" class="up_img"></img>`);
+            $('.for_upload112').append(`<img id="icon-upload-112" src="assets/images/upload_file.png" width="85px" height="85px" class="up_img" oncontextmenu="return false;" ondragstart="return false;"></img>`);
             $('.for_upload112').append(`<h2 class="text_up5" id="text-upload-112">อัพโหลดใบรับรองของคุณได้ที่นี่</h2>`);
             $('.for_upload112').append(`<h2 class="text_up5-1" id="text-upload-116">(ไฟล์สกุล jpg jpeg หรือ png เท่านั้น)</h2>`);
             $('#submit-certi').text('เพิ่ม');
@@ -202,7 +202,7 @@ class Edittab5 extends React.Component {
                     return true;
             });
             if (list_of_certi[removeIndex].isFetch === true) {
-                fetch("http://localhost:2000/register/certificate/" + list_of_certi[removeIndex].Certificate_id, {
+                /*fetch("http://localhost:2000/register/certificate/" + list_of_certi[removeIndex].Certificate_id, {
                     method: "DELETE",
                     headers: {
                         'Authorization': 'Bearer ' + list_of_certi[removeIndex].token,
@@ -214,25 +214,25 @@ class Edittab5 extends React.Component {
                 })
                     .then(response => response.json())
                     .then((raws) => {
-                        console.log(raws);
-                        list_of_year_certi[list_of_certi[removeIndex]["CertYear"]] -= 1;
-                        if (list_of_year_certi[list_of_certi[removeIndex]["CertYear"]] == 0) {
-                            $(`#yearOf_` + String(list_of_certi[removeIndex]["CertYear"])).remove();
-                        }
-                        list_of_certi.splice(removeIndex, 1);
-                        $(`#` + id_list_certi_del).remove();
-                        //console.log(`delete _certi id:`, removeIndex);
-                        //console.log(`list_of_certi:`, list_of_certi);
-                        $("#preview_before_upload").remove();
-                        $("#icon-upload-112").remove();
-                        $("#text-upload-112").remove();
-                        $("#text-upload-116").remove();
-                        $("#exampleModal_remove_certi").modal("hide");
-                        console.log(`list_of_year_certi:`, list_of_year_certi);
-                        console.log(`list_of_certi:`, list_of_certi);
-                    }).catch((error) => {
-                        console.log(error);
-                    });
+                        console.log(raws);*/
+                list_of_year_certi[list_of_certi[removeIndex]["CertYear"]] -= 1;
+                if (list_of_year_certi[list_of_certi[removeIndex]["CertYear"]] == 0) {
+                    $(`#yearOf_` + String(list_of_certi[removeIndex]["CertYear"])).remove();
+                }
+                list_of_certi.splice(removeIndex, 1);
+                $(`#` + id_list_certi_del).remove();
+                //console.log(`delete _certi id:`, removeIndex);
+                //console.log(`list_of_certi:`, list_of_certi);
+                $("#preview_before_upload").remove();
+                $("#icon-upload-112").remove();
+                $("#text-upload-112").remove();
+                $("#text-upload-116").remove();
+                $("#exampleModal_remove_certi").modal("hide");
+                console.log(`list_of_year_certi:`, list_of_year_certi);
+                console.log(`list_of_certi:`, list_of_certi);
+                /*}).catch((error) => {
+                    console.log(error);
+                });*/
             }
             else {
                 list_of_year_certi[list_of_certi[removeIndex]["CertYear"]] -= 1;
@@ -366,7 +366,7 @@ class Edittab5 extends React.Component {
                     <div class="frame_add_certi">
                         <div className="button_add_certi">
                             <button id="add-certi-button1" type="button" class="btn">
-                                <img src="assets/images/+.png" width="57" height="57"></img>
+                                <img src="assets/images/+.png" width="57" height="57" onContextMenu={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()}></img>
                             </button>
                         </div>
                     </div>

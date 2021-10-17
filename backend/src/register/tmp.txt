@@ -404,4 +404,23 @@ async GetInfo(UserId:string) {
     return "sus";
     //*/
 */
+    /*
+    const x={"c":1,"u":2};
+    if(x["x"]==null){
+      return "true"-----
+    }else{
+      return "F"
+    }
+    */
+   /*
+    const x={"wasd":{"x":50},"u":2};
+    //return x["wasd"]["x"];
+    if(x["wasd"]["x"]==null){
+      return "true"
+    }else{
+      return "F"-----
+    }
+    */
+   
+
     
