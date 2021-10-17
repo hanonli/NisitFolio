@@ -215,7 +215,7 @@ export class PortService {
         let copy = JSON.parse(JSON.stringify(resume));
         await this.resumeModel.remove(resume);
         for (var _j = 0; _j < copy.portfolios.length; _j++) {
-          if (copy.portfolios[_j]._id == ID)
+          if (copy.portfolios[_j].id == ID || copy.portfolios[_j].id == portId )
           {
             copy.portfolios[_j].Port_Tag = port.Port_Tag;
             copy.portfolios[_j].Port_Privacy = port.Port_Privacy;

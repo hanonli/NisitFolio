@@ -38,7 +38,8 @@ class Chooseresume5 extends React.Component {
 		console.log('Sideskill_data : ',myssdt2);
         var ssl = [...myssdt2];
 		console.log('SSL : ',ssl);
-		ssl.forEach(ele => {
+		myssdt2.forEach(ele => {
+			alert(ele.sideskillName);
 			isCheck_sideskill[ele.sideskill_id] = false;
 			var ddt7_un =` <div id={ele.sideskill_id}>\
 			<input\
@@ -63,7 +64,7 @@ class Chooseresume5 extends React.Component {
 			$(".dropdowntap7").append(ddt7_un);
 		});
 		console.log("isCheck_sideskill :", isCheck_sideskill);
-	},3000);
+	},4000);
 		$(document).on("click", ".myresume-choose-ssl1", function () {
             choose_sideskill = $('.myresume-choose-ssl1:input[type=checkbox]:checked').map(function (_, el) {
                 return $(el).val();
