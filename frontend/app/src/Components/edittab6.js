@@ -26,7 +26,7 @@ class Edittab6 extends React.Component {
             $("#input_mySlider3").remove();
             show_all_job();
 
-        }, 6000);
+        }, 9000);
 
         $(document).on('click', '.tabs_pop li', function () {
             $('.tabs_pop li').removeClass('current2');

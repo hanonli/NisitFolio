@@ -22,7 +22,7 @@ class Edittab4 extends React.Component {
             const mywork2 = this.props.mywork_data ? this.props.mywork_data : [];
             list_of_work = [...mywork2];
             show_work();
-        }, 6000);
+        },9000);
         /*---- generate code ID ----*/
         function create_UUID() {
             var dt = new Date().getTime();
@@ -112,7 +112,7 @@ class Edittab4 extends React.Component {
                     grid_work2 = grid_work2.replace("สิ้นสุด {month_endwork}/{year_endwork}", `ยังอยู่ในงาน`);
                 }
                 else {
-                    if ((Number.isNaN(ele["Work_End_Month"]) === true && Number.isNaN(ele["Work_End_Year"]) === true) || (ele["Work_End_Month"] === 0 && ele["Work_End_Year"] === 0)) {
+                    if ((Number.isNaN(ele["Work_End_Month"]) === true && Number.isNaN(ele["Work_End_Year"]) === true) || (ele["Work_End_Month"] === 0 && ele["Work_End_Year"] === 0)||(ele.Work_End_Month === null && ele.Work_End_Year === null)) {
                         grid_work2 = "";
                     }
                     else if ((Number.isNaN(ele["Work_End_Month"]) === true && Number.isNaN(ele["Work_End_Year"]) === false) || (ele["Work_End_Month"] === 0 && ele["Work_End_Year"] !== 0)) {
@@ -139,8 +139,8 @@ class Edittab4 extends React.Component {
                     }
                 }
                 grid_work3 = grid_work3.replace("{type_salary}", ele["SalaryType"]);
-                if (ele["type_salary_work"] != "ไม่ระบุ" && ele["SalaryType_select"] != 0) {
-                    if (Number.isNaN(ele["salary_work"]) == false) {
+                /*if (ele.SalaryType !== "ไม่ระบุ" || ele.SalaryType !== "") {
+                    if (Number.isNaN(ele.Salary) == false) {
                         grid_work3 = grid_work3.replace("{salary_work}", ele["Salary"]);
                     }
                     else {
@@ -149,7 +149,22 @@ class Edittab4 extends React.Component {
                 }
                 else {
                     grid_work3 = grid_work3.replace("{salary_work} บาท", "");
+                }  */ 
+                
+                if ((ele.SalaryType === "ไม่ระบุ" || ele.SalaryType === "") && (ele.Salary === 0 || ele.Salary === null)) {
+                    grid_work3 = grid_work3.replace("{salary_work} บาท", "");
                 }
+                else if (ele.SalaryType != "ไม่ระบุ" && ele.Salary === 0 && (ele.Salary === 0 || ele.Salary === null)) {
+                    grid_work3 = grid_work3.replace("{salary_work}", "-");
+                }
+                else {
+                    if (Number.isNaN(ele.Salary) == false) {
+                        grid_work3 = grid_work3.replace("{salary_work}", ele["Salary"]);
+                    }
+                    else {
+                        grid_work3 = grid_work3.replace("{salary_work}", "-");
+                    }
+                }                
                 grid_work3 = grid_work3.replace("{inform_work}", ele["Infomation"]);
                 if (year_before_work != ele["Work_Start_Year"]) {
                     list_of_year_work[ele["Work_Start_Year"]] = 1;
@@ -232,11 +247,13 @@ class Edittab4 extends React.Component {
             if (for_edit.regist4_cb == true) {
                 $("#year_endwork").prop("disabled", true);
                 $("#month_endwork").prop("disabled", true);
+                $("#year_endwork").val('');
+                $("#month_endwork").val('');
             }
             document.getElementById("inform_work").value = for_edit.Infomation;
         });
 
-        //open modal to delete certi (uncomplete!!!!!!!!!!!!!!!!!!!)
+        //open modal to delete certi (uncomplete!!!!!!!!!!!!!!!!!!)
         $(document).on("click", "#del-work", function () {
             id_list_work_del = $(this).parents().parents().parents().attr('id');
             $('#Modal_remove_work').modal('toggle');

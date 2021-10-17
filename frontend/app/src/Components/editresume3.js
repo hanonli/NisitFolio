@@ -88,7 +88,7 @@ class Editresume3 extends React.Component {
                 }
                 $("#year-choose-tem-" + String(ele.CertYear)).append(grid_certi2);
             });
-        }, 5000);
+        }, 9000);
 
         $(document).on("click", ".input-choose-certi1", function () {
             choose_certi = $('.input-choose-certi1:input[type=checkbox]:checked').map(function (_, el) {

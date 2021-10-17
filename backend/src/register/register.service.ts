@@ -27,6 +27,7 @@ import { GetRegisDto } from './dto/get-register.dto';
 import { Bookmark } from './entity/bookmark.entity';
 import { Portfolio } from '../portfolio/entity/portfolio.entity';
 import {PatchRegisDto2} from './dto/patch-register_2.dto';
+import { object, string } from 'joi';
 
 @Injectable()
 export class RegisterService {
@@ -1022,34 +1023,18 @@ export class RegisterService {
 
 
   async Fullupdate(patchDto: PatchRegisDto2,UserId: string){
-    /*
-    const x={"c":1,"u":2};
-    if(x["x"]==null){
-      return "true"-----
-    }else{
-      return "F"
-    }
-    */
-   /*
-    const x={"wasd":{"x":50},"u":2};
-    //return x["wasd"]["x"];
-    if(x["wasd"]["x"]==null){
-      return "true"
-    }else{
-      return "F"-----
-    }
-    */
 
-    const counter = 0;
-    
+  
+
     const time = new Date();
     const isoTime = time.toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: 'numeric', hour: "2-digit", minute: "2-digit" });
     
     const userid = new ObjectID(UserId);
     const acc = await this.accountRepository.findOne({ where: { _id: userid } });
+    
 
 
-
+/*
     if (patchDto.Password != null)
       acc.Password.push(Md5.hashStr(patchDto.Password));
     acc.last_modified.push(isoTime);
@@ -1121,30 +1106,486 @@ export class RegisterService {
     }
     await this.portModel.create(port);
     
-    return await this.userInfoModel.create(userinfo);
+    await this.userInfoModel.create(userinfo);
     //*/
-    return "sus";
-    /*
-    const Certificate_sortlist=[];
-      const Certificate_Dictionary = {};
-  
-      for (var _i = 0; _i < Certificate.length; _i++) {
-        const z=Certificate[_i].CertYear;
-        Certificate_sortlist.push(z);
-        Certificate_Dictionary[z]=_i;
-      }
-      Certificate_sortlist.sort();
-      Certificate_sortlist.reverse();
-      for (var _i = 0; _i < Certificate_sortlist.length; _i++) {
-        const key_Certificate_sortlist=Certificate_sortlist[_i];
-        const Certificate_NUM_Dictionary=Certificate_Dictionary[key_Certificate_sortlist];
-        CertName_arr.push(Certificate[Certificate_NUM_Dictionary].CertName);
-        CertPic_arr.push(Certificate[Certificate_NUM_Dictionary].CertPic);
-        CertYear_arr.push(Certificate[Certificate_NUM_Dictionary].CertYear);
-        CertId_arr.push(Certificate[Certificate_NUM_Dictionary].id.toString());
-      }
-      */
+
+    //----------------------------add*/
     
+
+    const dto_addskill_arr= patchDto.AS_OBJID;
+    const old_addskill_arr = await this.AdditionalSkillRepository.find({ where: { UserId: UserId } });
+    //return old_addskill_arr
+    const old_addskill_arr_id = [];
+    const old_addskill_arr_id_save = [];
+    const x=[]
+    for (var _i = 0; _i < old_addskill_arr.length; _i++) {
+      old_addskill_arr_id.push((old_addskill_arr[_i].id).toString());
+      old_addskill_arr_id_save.push((old_addskill_arr[_i].id).toString());
+    }
+    for (var _z = 0; _z < dto_addskill_arr.length; _z++) {
+
+      if(old_addskill_arr_id.indexOf(dto_addskill_arr[_z])==-1){
+        //return [_z,old_addskill_arr_id,dto_addskill_arr]
+        //return ["Fsd", old_addskill_arr_id,old_addskill_arr_id.indexOf(dto_addskill_arr[_z])];
+          
+          const additionalskill = new AdditionalSkill();
+          additionalskill.UserId = UserId;
+          additionalskill.AdditionalSkill  = patchDto.SoftSkill[_z]; 
+          additionalskill.create_time = isoTime ;
+          additionalskill.last_modified =  [isoTime] ;
+          additionalskill.ResumeId =  new Array() ;
+          additionalskill.Type = patchDto.SoftSkillType[_z]; 
+          //return [additionalskill,_z,dto_addskill_arr];
+          await this.AdditionalSkillRepository.save(additionalskill);
+      }
+      else{
+
+        const ID=new ObjectID(dto_addskill_arr[_z])
+      const additionalskill=old_addskill_arr[old_addskill_arr_id_save.indexOf(dto_addskill_arr[_z])];
+
+      if (patchDto.SoftSkill[_z] && patchDto.SoftSkillType[_z]){
+        additionalskill.last_modified.push(isoTime);
+        additionalskill.AdditionalSkill = patchDto.SoftSkill[_z];
+        additionalskill.Type = patchDto.SoftSkillType[_z];
+        for (var _i = 0; _i < additionalskill.ResumeId.length; _i++) {
+          const resume =  await this.resumeModel.findOne({_id: additionalskill.ResumeId[_i] });
+          let copy = JSON.parse(JSON.stringify(resume));
+          await this.resumeModel.remove(resume);
+          for (var _j = 0; _j < copy.additionalSkills.length; _j++) {
+            if (copy.additionalSkills[_j].id = ID)
+            {
+              copy.additionalSkills[_j].AdditionalSkill = patchDto.SoftSkill[_z];
+              copy.additionalSkills[_j].Type = patchDto.SoftSkillType[_z];
+            }
+          }
+          copy.last_modified.push(isoTime);
+          copy.modified_by.push("automatic system");
+          await this.resumeModel.create(copy);
+        }
+        await this.AdditionalSkillRepository.save(additionalskill);
+      }
+      old_addskill_arr_id.splice(old_addskill_arr_id.indexOf(dto_addskill_arr[_z]),1);
+
+
+      }
+
+    }
+    ///
+    return "sus"
+    /*
+    
+    if(old_addskill_arr_id.length!=0){
+      for (var _x = 0; _x< old_addskill_arr_id.length; _x++) {
+      //const ID=old_addskill_arr[_x].id
+      const additionalskill=old_addskill_arr[old_addskill_arr_id_save.indexOf(old_addskill_arr_id[_x])]
+      const ID=additionalskill.id
+      //return [additionalskill,ID,additionalskill.ResumeId]
+      
+
+        for (var _i = 0; _i < additionalskill.ResumeId.length; _i++) {
+        const resume =  await this.resumeModel.findOne({_id: additionalskill.ResumeId[_i] });
+        let copy = JSON.parse(JSON.stringify(resume));
+        return copy
+        await this.resumeModel.remove(resume);
+        for (var _j = 0; _j < copy.additionalSkills.length; _j++) {
+          if (copy.additionalSkills[_j].id = ID)
+          {
+            copy.additionalSkills[_j] = null;
+          }
+        }
+        copy.last_modified.push(isoTime);
+        copy.modified_by.push("automatic system");
+        await this.resumeModel.create(copy);
+        }
+        //return "sus"
+        
+        //await this.AdditionalSkillRepository.remove(additionalskill);
+      }
+    }
+    /*
+    //------------------------CA
+    const dto_CC_arr= patchDto.CC_OBJID;
+    const old_CC_arr = await this.CertificateRepository.find({ where: { UserId: UserId } });
+    const old_CC_arr_id = [];
+    for (var _i = 0; _i < old_CC_arr.length; _i++) {
+      old_CC_arr_id.push(old_CC_arr[_i].id);
+    }
+    for (var _z = 0; _z < dto_CC_arr.length; _z++) {
+      if(old_CC_arr_id.indexOf(dto_CC_arr[_z])==-1){
+        for (var _i = 0; _i < patchDto.CertName.length; _i++) {
+          const certificate = new Certificate();
+          certificate.UserId = UserId;
+          certificate.CertName = patchDto.CertName[_i]
+          certificate.CertPic = patchDto.CertPic[_i]
+          certificate.CertYear = patchDto.CertYear[_i]
+          certificate.create_time = isoTime;
+          certificate.last_modified = [isoTime];
+          certificate.ResumeId = new Array();
+          await this.CertificateRepository.save(certificate);
+        }
+      }else{
+        const ID= new ObjectID(  dto_CC_arr[_z])
+      const certificate=old_CC_arr[_z];
+
+        if (patchDto.CertName || patchDto.CertYear || patchDto.CertPic) {
+          certificate.last_modified.push(isoTime);
+          if (patchDto.CertName)
+            certificate.CertName = patchDto.CertName;
+          if (patchDto.CertYear)
+            certificate.CertYear = patchDto.CertYear;
+          if (patchDto.CertPic)
+            certificate.CertPic = patchDto.CertPic;
+            
+          for (var _i = 0; _i < certificate.ResumeId.length; _i++) {
+            const resume =  await this.resumeModel.findOne({_id: certificate.ResumeId[_i] });
+            let copy = JSON.parse(JSON.stringify(resume));
+            await this.resumeModel.remove(resume);
+            for (var _j = 0; _j < copy.certificate.length; _j++) {
+              if (copy.certificate[_j].id = ID)
+              {
+                copy.certificate[_j].CertName = certificate.CertName;
+                copy.certificate[_j].CertYear = certificate.CertYear;
+                copy.certificate[_j].CertPic = certificate.CertPic;
+              }
+            }
+            copy.last_modified.push(isoTime);
+            copy.modified_by.push("automatic system");
+            await this.resumeModel.create(copy);
+          }
+    
+          await this.CertificateRepository.save(certificate);
+        }
+        old_CC_arr_id.splice(_z,1);
+
+      }
+
+
+    }
+    if(old_CC_arr_id.length!=0){
+      for (var _x = 0; _x< old_CC_arr_id.length; _x++) {
+        const ID=old_CC_arr[_x].id
+        const Certificate=old_CC_arr[_x]
+      for (var _i = 0; _i < Certificate.ResumeId.length; _i++) {
+        const resume =  await this.resumeModel.findOne({_id: Certificate.ResumeId[_i] });
+        let copy = JSON.parse(JSON.stringify(resume));
+        await this.resumeModel.remove(resume);
+        for (var _j = 0; _j < copy.certificate.length; _j++) {
+          if (copy.certificate[_j].id = ID)
+          {
+            copy.certificate[_j] = null;
+          }
+        }
+        copy.last_modified.push(isoTime);
+        copy.modified_by.push("automatic system");
+        await this.resumeModel.create(copy);
+      }
+
+      await this.CertificateRepository.remove(old_CC_arr_id[_i]);
+    }
+
+    }
+    //----------------EH
+    const dto_EH_arr= patchDto.ED_OBJID;
+    const old_EH_arr = await this.EducationHistoryRepository.find({ where: { UserId: UserId } });
+    const old_EH_arr_id = [];
+    for (var _i = 0; _i < old_EH_arr.length; _i++) {
+      old_EH_arr_id.push(old_EH_arr[_i].id);
+    }
+    for (var _z = 0; _z < dto_EH_arr.length; _z++) {
+      if(old_EH_arr_id.indexOf(dto_EH_arr[_z])==-1){
+        for (var _i = 0; _i < patchDto.Degree.length; _i++) {
+          const educationHistory = new EducationHistory();
+          educationHistory.UserId = UserId;
+          educationHistory.Degree = patchDto.Degree[_i];
+          educationHistory.Facalty = patchDto.Facalty[_i];
+          educationHistory.Field_of_study = patchDto.Field_of_study[_i];
+          educationHistory.Academy = patchDto.Academy[_i];
+          educationHistory.Grade = patchDto.Grade[_i];
+          educationHistory.Education_End_Year = patchDto.Education_End_Year[_i];
+          educationHistory.create_time = isoTime;
+          educationHistory.last_modified = [isoTime];
+          educationHistory.ResumeId = new Array();
+          await this.EducationHistoryRepository.save(educationHistory);
+        }
+
+      }else{
+        const ID=dto_EH_arr[_i]
+        const educationHistory=old_EH_arr[_i];
+        if (patchDto.Degree || patchDto.Facalty || patchDto.Field_of_study || patchDto.Academy || patchDto.Grade || patchDto.Education_End_Year) {
+          educationHistory.last_modified.push(isoTime);
+          if (patchDto.Degree)
+            educationHistory.Degree = patchDto.Degree;
+          if (patchDto.Facalty)
+            educationHistory.Facalty = patchDto.Facalty;
+          if (patchDto.Field_of_study)
+            educationHistory.Field_of_study = patchDto.Field_of_study;
+          if (patchDto.Academy)
+            educationHistory.Academy = patchDto.Academy;
+          if (patchDto.Grade)
+            educationHistory.Grade = patchDto.Grade;
+          if (patchDto.Education_End_Year)
+            educationHistory.Education_End_Year = patchDto.Education_End_Year;
+          
+          for (var _i = 0; _i < educationHistory.ResumeId.length; _i++) {
+            const resume =  await this.resumeModel.findOne({_id: educationHistory.ResumeId[_i] });
+            let copy = JSON.parse(JSON.stringify(resume));
+            await this.resumeModel.remove(resume);
+            for (var _j = 0; _j < copy.educationHistory.length; _j++) {
+              if (copy.educationHistory[_j].id = ID)
+              {
+                copy.educationHistory[_j].Degree = educationHistory.Degree;
+                copy.educationHistory[_j].Facalty = educationHistory.Facalty;
+                copy.educationHistory[_j].Field_of_study  = educationHistory.Field_of_study;
+                copy.educationHistory[_j].Academy = educationHistory.Academy ;
+                copy.educationHistory[_j].Grade = educationHistory.Grade;
+                copy.educationHistory[_j].Education_End_Year = educationHistory.Education_End_Year;
+              }
+            }
+            copy.last_modified.push(isoTime);
+            copy.modified_by.push("automatic system");
+            await this.resumeModel.create(copy);
+          }
+    
+          await this.EducationHistoryRepository.save(educationHistory);
+        }
+        
+
+        old_EH_arr_id.splice(_z,1);
+      }
+    }
+    if(old_EH_arr_id.length!=0){
+      for (var _x = 0; _x < old_EH_arr_id.length; _x++) {
+        const ID=old_EH_arr[_x]
+        const EducationHistory=old_EH_arr[_x]
+      for (var _i = 0; _i < EducationHistory[_x].ResumeId.length; _i++) {
+        const resume =  await this.resumeModel.findOne({_id: EducationHistory[_x].ResumeId[_i] });
+        let copy = JSON.parse(JSON.stringify(resume));
+        await this.resumeModel.remove(resume);
+        for (var _j = 0; _j < copy.educationHistory.length; _j++) {
+          if (copy.educationHistory[_j].id = ID[_x])
+          {
+            copy.educationHistory[_j] = null;
+          }
+        }
+        copy.last_modified.push(isoTime);
+        copy.modified_by.push("automatic system");
+        await this.resumeModel.create(copy);
+      }
+      await this.EducationHistoryRepository.remove(EducationHistory);
+    }
   }
+  //----------------WH
+  const dto_WH_arr= patchDto.WH_OBJID;
+    const old_WH_arr = await this.WorkHistoryRepository.find({ where: { UserId: UserId } });
+    const old_WH_arr_id = [];
+    for (var _i = 0; _i < old_WH_arr.length; _i++) {
+      old_WH_arr_id.push(old_WH_arr[_i].id);
+    }
+    for (var _z = 0; _z < dto_WH_arr.length; _z++) {
+    if(old_WH_arr_id.indexOf(dto_WH_arr[_z])==-1){
+      for (var _i = 0; _i < patchDto.Work_JobName.length; _i++) {
+        const workHistory = new WorkHistory();
+        workHistory.UserId = UserId;
+        workHistory.Work_JobName = patchDto.Work_JobName[_i];
+        workHistory.Work_JobType = patchDto.Work_JobType[_i];
+        workHistory.Work_Company = patchDto.Company[_i];
+        workHistory.Work_Start_Month = patchDto.Work_Start_Month[_i];
+        workHistory.Work_End_Month = patchDto.Work_End_Month[_i];
+        workHistory.Work_Start_Year = patchDto.Work_Start_Year[_i];
+        workHistory.Work_End_Year = patchDto.Work_End_Year[_i];
+        workHistory.Work_Salary = patchDto.Salary[_i];
+        workHistory.Work_Infomation = patchDto.Infomation[_i];
+        workHistory.Work_Salary_Type = patchDto.SalaryType[_i];
+        workHistory.create_time = isoTime;
+        workHistory.last_modified = [isoTime];
+        workHistory.ResumeId = new Array();
+        await this.WorkHistoryRepository.save(workHistory);
+      }
+    }else{
+      const ID=dto_WH_arr[_z]
+        const workHistory=old_WH_arr[_z];
+      if (patchDto.Work_JobName || patchDto.Work_JobType || patchDto.Company || patchDto.Work_Start_Month || patchDto.Work_End_Month || patchDto.Work_Start_Year || patchDto.Work_End_Year || patchDto.Salary || patchDto.Infomation || patchDto.SalaryType) {
+        workHistory.last_modified.push(isoTime);
+        if (patchDto.Work_JobName)
+          workHistory.Work_JobName = patchDto.Work_JobName;
+        if (patchDto.Work_JobType)
+          workHistory.Work_JobType = patchDto.Work_JobName;
+        if (patchDto.Company)
+          workHistory.Work_Company = patchDto.Company;
+        if (patchDto.Work_End_Month)
+          workHistory.Work_End_Month = patchDto.Work_End_Month;
+        if (patchDto.Work_End_Year)
+          workHistory.Work_End_Year = patchDto.Work_End_Year;
+        if (patchDto.Work_Start_Month)
+          workHistory.Work_Start_Month = patchDto.Work_Start_Month;
+        if (patchDto.Work_Start_Year)
+          workHistory.Work_Start_Year = patchDto.Work_Start_Year;
+        if (patchDto.Salary)
+          workHistory.Work_Salary = patchDto.Salary;
+        if (patchDto.SalaryType)
+          workHistory.Work_Salary_Type = patchDto.SalaryType;
+        if (patchDto.Infomation)
+          workHistory.Work_Infomation = patchDto.Infomation;
+  
+        for (var _i = 0; _i < workHistory.ResumeId.length; _i++) {
+          const resume =  await this.resumeModel.findOne({_id: workHistory.ResumeId[_i] });
+          let copy = JSON.parse(JSON.stringify(resume));
+          await this.resumeModel.remove(resume);
+          for (var _j = 0; _j < copy.workHistory.length; _j++) {
+            if (copy.workHistory[_j].id = ID)
+            {
+              copy.workHistory[_j].Work_JobName = workHistory.Work_JobName ;
+              copy.workHistory[_j].Work_JobType = workHistory.Work_JobType;
+              copy.workHistory[_j].Work_Company  = workHistory.Work_Company;
+              copy.workHistory[_j].Work_End_Month = workHistory.Work_End_Month ;
+              copy.workHistory[_j].Work_End_Year = workHistory.Work_End_Year;
+              copy.workHistory[_j].Work_Start_Month = workHistory.Work_Start_Month;
+              copy.workHistory[_j].Work_Start_Year = workHistory.Work_Start_Year;
+              copy.workHistory[_j].Work_Salary = workHistory.Work_Salary;
+              copy.workHistory[_j].Work_Salary_Type = workHistory.Work_Salary_Type;
+              copy.workHistory[_j].Work_Infomation =workHistory.Work_Infomation;
+            }
+          }
+          copy.last_modified.push(isoTime);
+          copy.modified_by.push("automatic system");
+          await this.resumeModel.create(copy);
+        }
+  
+        return await this.WorkHistoryRepository.save(workHistory);
+      }
+      old_WH_arr_id.splice(_i,1);
+    }//end else
+  }//end loop
+  if(old_WH_arr_id.length!=0){
+    for (var _x = 0; _x < old_WH_arr_id.length; _x++) {
+      const ID=old_WH_arr[_x]
+      const WorkHistory=old_WH_arr[_x]
+    for (var _i = 0; _i < WorkHistory[_x].ResumeId.length; _i++) {
+      const resume =  await this.resumeModel.findOne({_id: WorkHistory[_x].ResumeId[_i] });
+      let copy = JSON.parse(JSON.stringify(resume));
+      await this.resumeModel.remove(resume);
+      for (var _j = 0; _j < copy.educationHistory.length; _j++) {
+        if (copy.educationHistory[_j].id = ID[_x])
+        {
+          copy.educationHistory[_j] = null;
+        }
+      }
+      copy.last_modified.push(isoTime);
+      copy.modified_by.push("automatic system");
+      await this.resumeModel.create(copy);
+    }
+    await this.WorkHistoryRepository.remove(WorkHistory);
+    }
+  }
+  //*/
+  return "sus";
+}
+}
+
+  //----------------IJ*/
+  /*
+  const dto_IJ_arr= patchDto.IJ_OBJID;
+    const old_IJ_arr = await this.InterestedJobRepository.find({ where: { UserId: UserId } });
+    const old_IJ_arr_id = [];
+    for (var _i = 0; _i < old_IJ_arr.length; _i++) {
+      old_IJ_arr_id.push(old_IJ_arr[_i]._id);
+    }
+    for (var _z = 0; _z < dto_EH_arr.length; _z++) {
+    if(old_EH_arr_id.indexOf(dto_EH_arr[_z])==-1){
+
+      
+    }else{
+      const ID=dto_IJ_arr[_z]
+      const interestedJob=old_IJ_arr[_z];
+      interestedJob.last_modified.push(isoTime);
+    const oldname = interestedJob.Job_JobName;
+    let oldscore = 0;
+    let newscore = 0;
+    for (var _i = 0; _i < interestedJob.Job_Score.length; _i++) {
+      oldscore = oldscore + interestedJob.Job_Score[_i];
+    }
+    interestedJob.Job_JobName = patchDto.Job_JobName;
+    interestedJob.Job_Objective = patchDto.Job_Objective;
+    let add = patchDto.Job_Score.length - interestedJob.Job_Score.length;
+    for (var _i = 0; _i < patchDto.Job_Score.length; _i++) {
+      newscore = newscore + patchDto.Job_Score[_i];
+    }
+    interestedJob.Job_Score = patchDto.Job_Score;
+    interestedJob.Job_SkillName = patchDto.Job_SkillName;
+
+    let tag_arr = [...userinfo.tags];
+    tag_arr[tag_arr.indexOf(oldname)] = patchDto.Job_JobName;
+    let sum_score = userinfo.AvgScore * userinfo.countSkill;
+    sum_score = sum_score - oldscore + newscore;
+    let avg_score = sum_score / (userinfo.countSkill + add);
+
+    userinfo.countSkill = userinfo.countSkill + add;
+    userinfo.tags = tag_arr;
+    userinfo.AvgScore = avg_score;
+
+    await this.userInfoModel.create(userinfo);
+
+    const userJobSkill = await this.userJobSkillRepository.find({ where: { ParentId: ID } });
+    for (var _i = 0; _i < userJobSkill.length; _i++) {
+      await this.userJobSkillRepository.remove(userJobSkill[_i]);
+    }
+
+    for (var _i = 0; _i < patchDto.Job_Score.length; _i++) {
+      const userJobSkill = new UserJobSkill();
+      userJobSkill.ParentId = ID;
+      userJobSkill.UserId = UserId;
+      userJobSkill.Job_JobName = patchDto.Job_JobName;
+      userJobSkill.Job_Score = patchDto.Job_Score[_i];
+      userJobSkill.Job_SkillName = patchDto.Job_SkillName[_i];
+      await this.userJobSkillRepository.save(userJobSkill);
+    }
+
+    for (var _i = 0; _i < interestedJob.ResumeId.length; _i++) {
+      const resume =  await this.resumeModel.findOne({_id: interestedJob.ResumeId[_i] });
+      let copy = JSON.parse(JSON.stringify(resume));
+      await this.resumeModel.remove(resume);
+      for (var _j = 0; _j < copy.interestedJob.length; _j++) {
+        if (copy.interestedJob[_j].id = ID)
+        {
+          copy.interestedJob[_j].Job_JobName = interestedJob.Job_JobName ;
+          copy.interestedJob[_j].Job_Objective  = interestedJob.Job_Objective;
+          copy.interestedJob[_j].Job_Score = interestedJob.Job_Score ;
+          copy.interestedJob[_j].Job_SkillName = interestedJob.Job_SkillName;
+        }
+      }
+      copy.last_modified.push(isoTime);
+      copy.modified_by.push("automatic system");
+      await this.resumeModel.create(copy);
+    }
+
+      await this.InterestedJobRepository.save(interestedJob);
+      
+      old_IJ_arr_id.splice(_i,1);
+    }//end else
+  }//end loop
+  if(old_IJ_arr_id.length!=0){
+    for (var _x = 0; _x < old_IJ_arr_id.length; _x++) {
+      const ID=old_IJ_arr[_x]
+      const InterestedJob=old_IJ_arr[_x]
+      for (var _i = 0; _i < InterestedJob.ResumeId.length; _i++) {
+        const resume =  await this.resumeModel.findOne({_id: InterestedJob.ResumeId[_i] });
+        let copy = JSON.parse(JSON.stringify(resume));
+        await this.resumeModel.remove(resume);
+        for (var _j = 0; _j < copy.interestedJob.length; _j++) {
+          if (copy.interestedJob[_j].id = ID)
+          {
+            copy.interestedJob[_j] = null;
+          }
+        }
+        copy.last_modified.push(isoTime);
+        copy.modified_by.push("automatic system");
+        await this.resumeModel.create(copy);
+      }
+      await this.InterestedJobRepository.remove(InterestedJob);
 
 }
+    
+
+    
+  }
+  //*/

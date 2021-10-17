@@ -1,250 +1,360 @@
 {
     "InterestedJobs": [
         {
-            "name": "Big_Data",
-            "THname": "วิเคราะห์ข้อมูลระดับใหญ่"
+            "name": "Career_Counselor",
+            "THname": "ที่ปรึกษาด้านอาชีพ"
         },
         {
-            "name": "Software_Developer",
-            "THname": "นักพัฒนาซอฟต์แวร์"
-        },
-        {
-            "name": "Software_Engineer",
-            "THname": "วิศวกรซอฟต์แวร์"
+            "name": "Teaching",
+            "THname": "ครู"
         }
     ],
     "mySkills": [
-        "Copywriting",
-        "Digital communication",
-        "Graphic Design"
+        "Blockchain",
+        "การใช้สื่อสังคมออนไลน์"
     ],
-    "Big_Data": {
-        "numberOfUsers": 3,
-        "List": [
-            {
-                "AdditionalSkill": "Copywriting",
-                "total": 2,
-                "percentage": 66.66666666666666
-            },
-            {
-                "AdditionalSkill": "Graphic Design",
-                "total": 2,
-                "percentage": 66.66666666666666
-            },
-            {
-                "AdditionalSkill": "Digital Marketing",
-                "total": 1,
-                "percentage": 33.33333333333333
-            },
-            {
-                "AdditionalSkill": "Digital communication",
-                "total": 1,
-                "percentage": 33.33333333333333
-            },
-            {
-                "AdditionalSkill": "Photoshop",
-                "total": 1,
-                "percentage": 33.33333333333333
-            },
-            {
-                "AdditionalSkill": "Presentations",
-                "total": 1,
-                "percentage": 33.33333333333333
-            }
-        ]
-    },
-    "Software_Developer": {
-        "numberOfUsers": 3,
-        "List": [
-            {
-                "AdditionalSkill": "Graphic Design",
-                "total": 2,
-                "percentage": 66.66666666666666
-            },
-            {
-                "AdditionalSkill": "Reporting",
-                "total": 2,
-                "percentage": 66.66666666666666
-            },
-            {
-                "AdditionalSkill": "Copywriting",
-                "total": 1,
-                "percentage": 33.33333333333333
-            },
-            {
-                "AdditionalSkill": "Digital communication",
-                "total": 1,
-                "percentage": 33.33333333333333
-            },
-            {
-                "AdditionalSkill": "Photoshop",
-                "total": 1,
-                "percentage": 33.33333333333333
-            }
-        ]
-    },
-    "Software_Engineer": {
-        "numberOfUsers": 2,
-        "List": [
-            {
-                "AdditionalSkill": "Graphic Design",
-                "total": 2,
-                "percentage": 100
-            },
-            {
-                "AdditionalSkill": "Copywriting",
-                "total": 1,
-                "percentage": 50
-            },
-            {
-                "AdditionalSkill": "Digital communication",
-                "total": 1,
-                "percentage": 50
-            },
-            {
-                "AdditionalSkill": "Reporting",
-                "total": 1,
-                "percentage": 50
-            }
-        ]
-    },
-    "Overview": {
+    "Career_Counselor": {
         "numberOfUsers": 11,
         "List": [
             {
-                "AdditionalSkill": "Photoshop",
-                "total": 7,
-                "percentage": 63.63636363636363
-            },
-            {
-                "AdditionalSkill": "C",
+                "AdditionalSkill": "Swift, Python, Perl และ XML",
                 "total": 5,
                 "percentage": 45.45454545454545
             },
             {
-                "AdditionalSkill": "Painting",
-                "total": 5,
-                "percentage": 45.45454545454545
-            },
-            {
-                "AdditionalSkill": "Web",
-                "total": 5,
-                "percentage": 45.45454545454545
-            },
-            {
-                "AdditionalSkill": "Graphic Design",
-                "total": 4,
-                "percentage": 36.36363636363637
-            },
-            {
-                "AdditionalSkill": "Reporting",
-                "total": 4,
-                "percentage": 36.36363636363637
-            },
-            {
-                "AdditionalSkill": "Copywriting",
+                "AdditionalSkill": "การเขียนคำโฆษณา",
                 "total": 3,
                 "percentage": 27.27272727272727
             },
             {
-                "AdditionalSkill": "Digital communication",
-                "total": 3,
-                "percentage": 27.27272727272727
-            },
-            {
-                "AdditionalSkill": "Presentations",
-                "total": 3,
-                "percentage": 27.27272727272727
-            },
-            {
-                "AdditionalSkill": "กำจัดเหล่าร้าย",
-                "total": 3,
-                "percentage": 27.27272727272727
-            },
-            {
-                "AdditionalSkill": "Python",
+                "AdditionalSkill": "Machine learning (ML)",
                 "total": 2,
                 "percentage": 18.181818181818183
             },
             {
-                "AdditionalSkill": "ช่วยเหลือชาวบ้าน",
+                "AdditionalSkill": "Natural language processing (NLP)",
                 "total": 2,
                 "percentage": 18.181818181818183
             },
             {
-                "AdditionalSkill": "A/B testing",
-                "total": 1,
-                "percentage": 9.090909090909092
-            },
-            {
-                "AdditionalSkill": "CAD",
-                "total": 1,
-                "percentage": 9.090909090909092
-            },
-            {
-                "AdditionalSkill": "Diagnostics",
-                "total": 1,
-                "percentage": 9.090909090909092
-            },
-            {
-                "AdditionalSkill": "Digital Marketing",
-                "total": 1,
-                "percentage": 9.090909090909092
-            },
-            {
-                "AdditionalSkill": "Drawing",
-                "total": 1,
-                "percentage": 9.090909090909092
-            },
-            {
-                "AdditionalSkill": "Multivariate analysis",
-                "total": 1,
-                "percentage": 9.090909090909092
-            },
-            {
-                "AdditionalSkill": "Storytelling",
-                "total": 1,
-                "percentage": 9.090909090909092
-            },
-            {
-                "AdditionalSkill": "Video Cutting",
-                "total": 1,
-                "percentage": 9.090909090909092
-            },
-            {
-                "AdditionalSkill": "Video Editing",
-                "total": 1,
-                "percentage": 9.090909090909092
-            },
-            {
-                "AdditionalSkill": "การจัดทำโฆษณาแบบ Search Engine Marketing (SEM)",
-                "total": 1,
-                "percentage": 9.090909090909092
-            },
-            {
-                "AdditionalSkill": "การสื่อสารดิจิทัล",
-                "total": 1,
-                "percentage": 9.090909090909092
+                "AdditionalSkill": "การใช้งาน Office และ Workspace",
+                "total": 2,
+                "percentage": 18.181818181818183
             },
             {
                 "AdditionalSkill": "การใช้สื่อสังคมออนไลน์",
+                "total": 2,
+                "percentage": 18.181818181818183
+            },
+            {
+                "AdditionalSkill": "ทักษะด้านภาษาต่างประเทศ",
+                "total": 2,
+                "percentage": 18.181818181818183
+            },
+            {
+                "AdditionalSkill": "Blockchain",
                 "total": 1,
                 "percentage": 9.090909090909092
             },
             {
-                "AdditionalSkill": "ช่วยเหลือคุณยาย",
+                "AdditionalSkill": "Combat activeness",
                 "total": 1,
                 "percentage": 9.090909090909092
             },
             {
-                "AdditionalSkill": "วิศวกรรมข้อมูล",
+                "AdditionalSkill": "Coordination",
                 "total": 1,
                 "percentage": 9.090909090909092
+            },
+            {
+                "AdditionalSkill": "HTML, Javascript และ CSS",
+                "total": 1,
+                "percentage": 9.090909090909092
+            },
+            {
+                "AdditionalSkill": "SAS, MySQL และ Apache",
+                "total": 1,
+                "percentage": 9.090909090909092
+            },
+            {
+                "AdditionalSkill": "security",
+                "total": 1,
+                "percentage": 9.090909090909092
+            },
+            {
+                "AdditionalSkill": "การนำเสนอ",
+                "total": 1,
+                "percentage": 9.090909090909092
+            },
+            {
+                "AdditionalSkill": "การใช้งาน Pivot table ใน Excel",
+                "total": 1,
+                "percentage": 9.090909090909092
+            },
+            {
+                "AdditionalSkill": "การใช้งาน Trello",
+                "total": 1,
+                "percentage": 9.090909090909092
+            },
+            {
+                "AdditionalSkill": "การใช้งาน Zoom",
+                "total": 1,
+                "percentage": 9.090909090909092
+            }
+        ]
+    },
+    "Teaching": {
+        "numberOfUsers": 13,
+        "List": [
+            {
+                "AdditionalSkill": "SAS, MySQL และ Apache",
+                "total": 4,
+                "percentage": 30.76923076923077
+            },
+            {
+                "AdditionalSkill": "การใช้สื่อสังคมออนไลน์",
+                "total": 4,
+                "percentage": 30.76923076923077
+            },
+            {
+                "AdditionalSkill": "Swift, Python, Perl และ XML",
+                "total": 3,
+                "percentage": 23.076923076923077
+            },
+            {
+                "AdditionalSkill": "การใช้งาน Pivot table ใน Excel",
+                "total": 3,
+                "percentage": 23.076923076923077
+            },
+            {
+                "AdditionalSkill": "Blockchain",
+                "total": 2,
+                "percentage": 15.384615384615385
+            },
+            {
+                "AdditionalSkill": "HTML, Javascript และ CSS",
+                "total": 2,
+                "percentage": 15.384615384615385
+            },
+            {
+                "AdditionalSkill": "Natural language processing (NLP)",
+                "total": 2,
+                "percentage": 15.384615384615385
+            },
+            {
+                "AdditionalSkill": "การใช้งาน Office และ Workspace",
+                "total": 2,
+                "percentage": 15.384615384615385
+            },
+            {
+                "AdditionalSkill": "Machine learning (ML)",
+                "total": 1,
+                "percentage": 7.6923076923076925
+            },
+            {
+                "AdditionalSkill": "การใช้งาน Trello",
+                "total": 1,
+                "percentage": 7.6923076923076925
             },
             {
                 "AdditionalSkill": "แต่งเพลง",
                 "total": 1,
-                "percentage": 9.090909090909092
+                "percentage": 7.6923076923076925
+            }
+        ]
+    },
+    "Overview": {
+        "numberOfUsers": 38,
+        "List": [
+            {
+                "AdditionalSkill": "Swift, Python, Perl และ XML",
+                "total": 8,
+                "percentage": 21.052631578947366
+            },
+            {
+                "AdditionalSkill": "การใช้สื่อสังคมออนไลน์",
+                "total": 6,
+                "percentage": 15.789473684210526
+            },
+            {
+                "AdditionalSkill": "แต่งเพลง",
+                "total": 6,
+                "percentage": 15.789473684210526
+            },
+            {
+                "AdditionalSkill": "C",
+                "total": 5,
+                "percentage": 13.157894736842104
+            },
+            {
+                "AdditionalSkill": "Painting",
+                "total": 5,
+                "percentage": 13.157894736842104
+            },
+            {
+                "AdditionalSkill": "SAS, MySQL และ Apache",
+                "total": 5,
+                "percentage": 13.157894736842104
+            },
+            {
+                "AdditionalSkill": "Web",
+                "total": 5,
+                "percentage": 13.157894736842104
+            },
+            {
+                "AdditionalSkill": "HTML, Javascript และ CSS",
+                "total": 4,
+                "percentage": 10.526315789473683
+            },
+            {
+                "AdditionalSkill": "Natural language processing (NLP)",
+                "total": 4,
+                "percentage": 10.526315789473683
+            },
+            {
+                "AdditionalSkill": "Photoshop",
+                "total": 4,
+                "percentage": 10.526315789473683
+            },
+            {
+                "AdditionalSkill": "การใช้งาน Office และ Workspace",
+                "total": 4,
+                "percentage": 10.526315789473683
+            },
+            {
+                "AdditionalSkill": "การใช้งาน Pivot table ใน Excel",
+                "total": 4,
+                "percentage": 10.526315789473683
+            },
+            {
+                "AdditionalSkill": "Machine learning (ML)",
+                "total": 3,
+                "percentage": 7.894736842105263
+            },
+            {
+                "AdditionalSkill": "การเขียนคำโฆษณา",
+                "total": 3,
+                "percentage": 7.894736842105263
+            },
+            {
+                "AdditionalSkill": "กำจัดเหล่าร้าย",
+                "total": 3,
+                "percentage": 7.894736842105263
+            },
+            {
+                "AdditionalSkill": "Blockchain",
+                "total": 2,
+                "percentage": 5.263157894736842
+            },
+            {
+                "AdditionalSkill": "Python",
+                "total": 2,
+                "percentage": 5.263157894736842
+            },
+            {
+                "AdditionalSkill": "การนำเสนอ",
+                "total": 2,
+                "percentage": 5.263157894736842
+            },
+            {
+                "AdditionalSkill": "การใช้งาน Trello",
+                "total": 2,
+                "percentage": 5.263157894736842
+            },
+            {
+                "AdditionalSkill": "ช่วยเหลือชาวบ้าน",
+                "total": 2,
+                "percentage": 5.263157894736842
+            },
+            {
+                "AdditionalSkill": "ทักษะด้านภาษาต่างประเทศ",
+                "total": 2,
+                "percentage": 5.263157894736842
+            },
+            {
+                "AdditionalSkill": "CAD",
+                "total": 1,
+                "percentage": 2.631578947368421
+            },
+            {
+                "AdditionalSkill": "Combat activeness",
+                "total": 1,
+                "percentage": 2.631578947368421
+            },
+            {
+                "AdditionalSkill": "Coordination",
+                "total": 1,
+                "percentage": 2.631578947368421
+            },
+            {
+                "AdditionalSkill": "Diagnostics",
+                "total": 1,
+                "percentage": 2.631578947368421
+            },
+            {
+                "AdditionalSkill": "Digital communication",
+                "total": 1,
+                "percentage": 2.631578947368421
+            },
+            {
+                "AdditionalSkill": "Drawing",
+                "total": 1,
+                "percentage": 2.631578947368421
+            },
+            {
+                "AdditionalSkill": "Graphic Design",
+                "total": 1,
+                "percentage": 2.631578947368421
+            },
+            {
+                "AdditionalSkill": "Multivariate analysis",
+                "total": 1,
+                "percentage": 2.631578947368421
+            },
+            {
+                "AdditionalSkill": "Presentations",
+                "total": 1,
+                "percentage": 2.631578947368421
+            },
+            {
+                "AdditionalSkill": "Video Cutting",
+                "total": 1,
+                "percentage": 2.631578947368421
+            },
+            {
+                "AdditionalSkill": "security",
+                "total": 1,
+                "percentage": 2.631578947368421
+            },
+            {
+                "AdditionalSkill": "การจัดทำโฆษณาแบบ Search Engine Marketing (SEM)",
+                "total": 1,
+                "percentage": 2.631578947368421
+            },
+            {
+                "AdditionalSkill": "การพัฒนาแอพ Android",
+                "total": 1,
+                "percentage": 2.631578947368421
+            },
+            {
+                "AdditionalSkill": "การสื่อสารดิจิทัล",
+                "total": 1,
+                "percentage": 2.631578947368421
+            },
+            {
+                "AdditionalSkill": "การใช้งาน Zoom",
+                "total": 1,
+                "percentage": 2.631578947368421
+            },
+            {
+                "AdditionalSkill": "ช่วยเหลือคุณยาย",
+                "total": 1,
+                "percentage": 2.631578947368421
+            },
+            {
+                "AdditionalSkill": "วิศวกรรมข้อมูล",
+                "total": 1,
+                "percentage": 2.631578947368421
             }
         ]
     }

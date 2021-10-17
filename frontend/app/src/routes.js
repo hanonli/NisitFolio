@@ -6,7 +6,7 @@ import MyResume from './myresume';
 import PortfolioRoot from './portRoot';
 import Portfolio from './portfolio';
 import PortInfo from './portInfo';
-import Analytics from './analytics';
+import Analytics from './newAnalytics';
 import Bookmark from './bookmark';
 import Search from './search';
 import Editprofile from './editprofile';
