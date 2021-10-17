@@ -76,6 +76,9 @@ export class Userinfo {
   create_time:string;
 
   @Column()
+  ProfilePic:string;
+
+  @Column()
   last_modified:string[];
 
 }
@@ -344,7 +347,7 @@ export class Resume {
   Owner: string;
 
   @Column()
-  Aboutme: string;
+  AboutMe: string;
 
   @Column()
   Email: string;

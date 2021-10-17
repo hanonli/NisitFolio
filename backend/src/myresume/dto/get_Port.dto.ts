@@ -15,7 +15,7 @@ export class GetResume {
 
   Owner: string;
 
-  Aboutme: string;
+  AboutMe: string;
 
   Email: string;
 

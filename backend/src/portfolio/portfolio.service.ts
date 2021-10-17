@@ -180,10 +180,16 @@ export class PortService {
       const time =  new Date();
       const isoTime = time.toLocaleDateString('th-TH',{ year:'numeric',month: 'long',day:'numeric',hour:"2-digit",minute:"2-digit"});
       const portfoliopic = new PortfolioPicture();
+      const subportfoliopic = new PortfolioPicture();
+      portfoliopic._id = portpic._id;
+      subportfoliopic._id =  portpic._id;
       portfoliopic.create_time=portpic.create_time;
       portfoliopic.last_modified=portpic.last_modified;
       portfoliopic.PortId=portpic.PortId;
       portfoliopic.last_modified.push(isoTime)
+      portfoliopic.Pic = portpic.Pic;
+      portfoliopic.Description = portpic.Description;
+      
       const ID = new ObjectID(portId);
 
       await this.portfolioPictureRepository.remove(portpic);
@@ -207,7 +213,10 @@ export class PortService {
         portfoliopic.Pic = CreateDto.Pic;
       if (CreateDto.Description != null)
         portfoliopic.Description =  CreateDto.Description;
-      portpic_arr.push(portfoliopic)
+
+      subportfoliopic.Pic = portfoliopic.Pic;
+      subportfoliopic.Description = portfoliopic.Description;
+      portpic_arr.push(subportfoliopic)
       port.portfolioPictures = portpic_arr;
 
       for (var _i = 0; _i < port.ResumeId.length; _i++) {
@@ -235,7 +244,7 @@ export class PortService {
     }
     throw new HttpException({
       status: HttpStatus.UNAUTHORIZED,
-      error: 'Can not Delete Other Data',
+      error: 'Can not Update Other Data',
     }, HttpStatus.UNAUTHORIZED);
   }
   async updatePortP(CreateDto: CreatePortfolioDto,portId:string, userId:string){

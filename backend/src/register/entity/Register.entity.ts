@@ -369,7 +369,7 @@ export class Resume {
   Owner: string;
 
   @Column()
-  Aboutme: string;
+  AboutMe: string;
 
   @Column()
   Email: string;

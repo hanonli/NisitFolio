@@ -70,7 +70,7 @@ export class MyResumeService {
     resume.Owner = user.Firstname + " " + user.Lastname;
     resume.First = user.Firstname;
     resume.Last = user.Lastname;
-    resume.Aboutme = user.AboutMe; 
+    resume.AboutMe = user.AboutMe; 
     resume.Email = user.Email2nd;
     resume.Location = user.Country + " " + user.Province + " "+ user.City;
     resume.ProfilePic = user.ProfilePic;
@@ -198,7 +198,7 @@ export class MyResumeService {
     thisy.UserId=thisx.UserId
     thisy.Privacy=thisx.Privacy
     thisy.Owner=thisx.Owner
-    thisy.Aboutme=thisx.Aboutme
+    thisy.AboutMe=thisx.AboutMe
     thisy.interestedJob=thisx.interestedJob
     thisy.certificates=thisx.certificates
     thisy.educationHistorys=thisx.educationHistorys
@@ -210,7 +210,8 @@ export class MyResumeService {
     thisy.modified_by=thisx.modified_by
     thisy.ProfilePic=thisx.ProfilePic
     thisy.Email=thisx.Email
-
+    thisy.First=thisx.First
+    thisy.Last=thisx.Last
     
 
     const userid=thisx.UserId;
