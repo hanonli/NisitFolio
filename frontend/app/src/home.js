@@ -263,7 +263,7 @@ class Home extends React.Component {
 			});
 			
 			function UploadProfile(picUrl){
-				alert(PicBase64);
+				//alert(PicBase64);
 				//alert(111);
 					var data = {
 						"ProfilePic":picUrl,
