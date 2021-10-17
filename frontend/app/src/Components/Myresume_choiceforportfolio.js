@@ -14,13 +14,8 @@ class MyResumeportfoliolayoutP extends React.Component{
             frameclass = "portfoliolayoutP_Framesmall";
         }
         let content = [];
-        /*for(var i=0; i<childlength; i++){
+        for(var i=0; i<childlength; i++){
             content.push(<div class="portfoliolayoutP_child"><div class="portfoliolayoutP_child_element"><div class="portfoliolayoutP_child_innerbox">{child[i]}</div></div></div>);
-        }*/
-        for (var i = 0; i < childlength; i++) {
-            content.push(
-                <div class="portfoliolayoutP_child"><div class="portfoliolayoutP_child_element"><div class="portfoliolayoutP_child_innerbox">{child[i]}</div></div></div>
-            );
         }
         let result;
         if(childlength === 0){
@@ -37,7 +32,7 @@ class MyResumeportfoliolayoutP extends React.Component{
             result = (
                 <div className="Gallery">
                     <div>
-                    {content}
+                        {content}
                     </div>
                 </div>
             );
