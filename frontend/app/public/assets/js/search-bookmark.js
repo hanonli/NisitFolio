@@ -586,6 +586,8 @@ function GetFormattedSearchData(datas){
 	datas.forEach((data) => {
 		//alert(data.thatUserId);
 		var datt = {};
+		console.log(data.type);
+		console.log(data.name);
 		if(data.type == "profile") {
 			datt['type'] = data.type;
 			datt['thatUserId'] = data.thatUserId;
@@ -599,13 +601,23 @@ function GetFormattedSearchData(datas){
 			datt['type'] = data.type;
 			datt['thatUserId'] = data.thatUserId;
 			datt['name'] = data.name;
-			if(data.pic[0].Pic.length > 0) datt['profilePic'] = data.pic[0].Pic[0];
-			else datt['profilePic'] = 'assets/images/emp_thumb.jpg';
+			if(data.pic[0].Pic != null){
+				if(data.pic[0].Pic.length > 0){
+					datt['profilePic'] = data.pic[0].Pic[0];
+					datt['port'] = data.pic[0].Pic.length;
+				}else{ 
+					datt['profilePic'] = 'assets/images/emp_thumb.jpg';
+					datt['port'] = 0;
+				}
+			}else{ // port has no pic
+				datt['profilePic'] = 'assets/images/emp_thumb.jpg';
+				datt['port'] = 0;
+			}
 			datt['portId'] = data.Port_id;
 			console.log(data);
 			datt['about'] = data.about;
 			datt['owner'] = data.owner;
-			datt['port'] = data.pic[0].Pic.length;
+			
 			datt['bookmark'] = data.bookmark;
 			fData.push(datt);
 		}

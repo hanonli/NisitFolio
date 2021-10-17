@@ -9,6 +9,7 @@ import { Redirect } from "react-router-dom";
 import { withRouter } from "react-router";
 import $ from 'jquery';
 import { OverlayTrigger, Overlay, Tooltip, Button } from 'react-bootstrap';
+import { GetDominantColorFromImage } from './Components/GetDominantColorFromImage'
 
 class PortInfo extends React.Component {
 	constructor(props) {
@@ -37,8 +38,8 @@ class PortInfo extends React.Component {
 		
 		var pftDiv = '<div class="lb-container" id={id}>\
 							<div class="pft-ibox">\
-								<img class="pft-bg" src="assets/images/black.jpg" alt=""/>\
-								<img class="pft-i" src="{img}" alt=""/>\
+								<div style="z-index: -1;position: absolute;cursor: pointer;height: 100%;width: 100%;left: 0%;background: {dominantColor};" id="c{__id}"></div>\
+								<img class="pft-i" id="i{_id}" src="{img}" alt=""</img>\
 							</div>\
 							<div class="hover-box">\
 								<img class="pft-overlay" src="assets/images/black.jpg" alt=""/>\
@@ -365,7 +366,6 @@ class PortInfo extends React.Component {
 					portfolioData.portfolioPictures[0].Pic.forEach((entry) => {
 						var hDiv = '<div class="pft-c"/>\
 										<img class="pft-uc" id="port-pic-' + pdd + '" src="'+entry+'" alt=""/>\
-										<img class="pft-ub" src="assets/images/black.jpg" alt=""/>\
 									</div>';
 						$('#h-scroll').append(hDiv);
 						//$('#port-pic-'+pdd).attr('src',entry);
@@ -388,7 +388,7 @@ class PortInfo extends React.Component {
 					$('#port-tag1').text(portfolioData.Port_Tag[0]);
 					$('#port-tag2').text(portfolioData.Port_Tag[1]);
 					$('#port-tag3').hide();
-				}else if(tagCount == 3){
+				}else if(tagCount >= 3){
 					$('#port-tag1').text(portfolioData.Port_Tag[0]);
 					$('#port-tag2').text(portfolioData.Port_Tag[1]);
 					$('#port-tag3').text(portfolioData.Port_Tag[2]);
@@ -472,9 +472,53 @@ class PortInfo extends React.Component {
 							hid = 'ic-hidden';
 						}
 						
-						$('.pft-flex').append(pftDiv.replace('{id}',index).replace('{img}',thumb).replace('{name}',data.Port_Name)
-							.replace('{date}',date).replace('{privacy}',privacyImg).replace('{var-ic}',vi)
-							.replace('{var-ic-img}',vii).replace('{hidden1}',hid).replace('{hidden2}',hid).replace('{var-id}',vid));
+						$('.pft-flex').append(pftDiv.replace('{id}',index).replace('{_id}',index).replace('{__id}',index)
+								.replace('{name}',data.Port_Name).replace('{date}',date).replace('{privacy}',privacyImg).replace('{var-ic}',vi)
+								.replace('{var-ic-img}',vii).replace('{hidden1}',hid).replace('{hidden2}',hid).replace('{var-id}',vid));
+								
+						function ModifyImg(dataUrl){
+							$('#i'+_i).css('opacity','0%');
+							  $('#i'+_i).attr('src',dataUrl);
+								setTimeout(function() { 
+									var rgb = GetDominantColorFromImage(document.getElementById('i'+_i));
+									var currentStyle = $('#c'+_i).attr('style');
+									
+									if(!currentStyle) // change page during calculation
+										return;
+									
+									currentStyle = currentStyle.replace('{dominantColor}','rgb('+rgb.r+','+rgb.g+','+rgb.b+')')
+									$('#c'+_i).attr('style',currentStyle);
+									$('#i'+_i).css('opacity','100%');
+								}, 1); 
+						}
+						
+						function toDataURL(url, callback) {
+							  var xhr = new XMLHttpRequest();
+							  
+							  xhr.onload = function(e) {
+								var reader = new FileReader();
+								reader.onloadend = function() {
+								  callback(reader.result);
+								}
+								reader.readAsDataURL(xhr.response);
+							  };
+
+								xhr.onerror = function (e) {
+									console.log('Fail to request base64 from source');
+									console.log(e);
+									ModifyImg(url);
+								};
+							  xhr.open('GET', url);
+							  xhr.responseType = 'blob';
+							  xhr.send();
+						}
+						
+						//toDataURL('https://nisitfolio.s3.ap-southeast-1.amazonaws.com/images/614e14097f9f24b335174047_809da582-625b-4bbe-bcbc-c86c9c3dcb29', function(dataUrl) {
+						var _i = index;
+						toDataURL(thumb, function(dataUrl) {
+						  //console.log('RESULT:', dataUrl)
+						  ModifyImg(dataUrl);
+						})
 							
 						focusId = index;
 						if(_bookmarked){
@@ -734,7 +778,10 @@ class PortInfo extends React.Component {
 				.then((datas) => {
 					datas.every((entry) => {
 						if(entry.thatUserId == portfolioData.UserId){
-							userProfilePic = entry.pic;
+							userProfilePic = "assets/images/profile_uk.png";
+							if(entry.pic != null && typeof(entry.pic) == 'string'){ 
+								userProfilePic = entry.pic;
+							}
 							$('#avatar').attr('src',userProfilePic);
 							return false;
 						}
@@ -886,21 +933,17 @@ class PortInfo extends React.Component {
 					<br></br><br></br><br></br><br></br>
 					
 					<div class="swf-flex-single">
-						<div class="pft-s">
+
 							<img class="pft-uc" id="port-pic-single" src="assets/images/emp_thumb.jpg" alt=""/>
-							<img class="pft-ub" src="assets/images/black.jpg" alt=""/>
-						</div>
+
 					</div>
 					
 					<div class="swf-flex-double">
-						<div class="pft-d">
 							<img class="pft-uc" id="port-pic-d1" src="assets/images/emp_thumb.jpg" alt=""/>
-							<img class="pft-ub" src="assets/images/black.jpg" alt=""/>
-						</div>
-						<div class="pft-d">
+
+
 							<img class="pft-uc" id="port-pic-d2" src="assets/images/emp_thumb.jpg" alt=""/>
-							<img class="pft-ub" src="assets/images/black.jpg" alt=""/>
-						</div>
+
 					</div>
 					
 					<div class="swf-flex">
@@ -913,9 +956,6 @@ class PortInfo extends React.Component {
 					<br></br><br></br><br></br><br></br>
 					
 					<div class="anf-flex">
-						<mdf >ไฟล์แนบ</mdf>
-						<img src="assets/images/sample_attach.png" alt="" width="281.25" height="125" />
-						<br></br>
 						<mef >ตำแหน่งงานที่เกี่ยวข้อง</mef>
 						<div class="ptag-flex">
 							<a class="pft-tag btn btn-cta-secondary btn-small round no-margin tag" id="port-tag1" target="_blank">tag1</a>

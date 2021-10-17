@@ -1823,9 +1823,9 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
     width: 100px;
 }
 	
-.inline{
+/*.inline{
 	display: inline;
-}
+}*/
 	
 .sbm-flex{
 	display: flex;
@@ -2223,7 +2223,7 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 }
 
 .pt-header{
-	height: 140px;
+	height: 180px;
 	position:fixed;
 	top: 60px;
 	left: 0px;
@@ -2240,7 +2240,7 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 }
 
 .pt-pad{
-	margin-bottom: 120px;
+	margin-bottom: 160px;
 	transition: all 0.3s ease;
 }
 
@@ -2276,6 +2276,7 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 .pf-fx-anim{
 	/*opacity: 100%;*/
 	top: 70px;
+	
 }
 
 .dfa-flex{
@@ -2485,18 +2486,17 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 	/*cursor: pointer;*/
 	position: relative;
 	height: 472.5px;
-	width: 840px;
+	width: auto;
 	flex: 0 0 auto;
     margin-right: 3px;
 }
 
 .pft-uc {
 	z-index:1;
-	position: absolute;
-	height: 100%;
+
+	height: 472.5px;
 	width: auto;
-	left: 50%;
-	transform: translate(-50%);
+
 }
 
 .pft-ub {
@@ -2586,7 +2586,7 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 	position: relative;
 	/*cursor: pointer;*/
 	height: 472.5px;
-	width: 840px;
+	width: auto;
 	/*flex: 0 0 auto;
     margin-right: 3px;*/
 }
@@ -2606,7 +2606,7 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 100%;
+	width: auto;
 	margin: 0 auto 0 auto;
 	max-width: 1920px;
 	max-height: 472.5px;
@@ -2676,6 +2676,7 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
     height: 100%;
     width: 100%;
     left: 0%;
+	background: red;
 	/* top: 50%; */
     /* transform: translate(-50%, -50%); */
     /* pointer-events: none; */
@@ -3546,7 +3547,7 @@ body {
 
 .pu-label{
 	position: absolute;
-	top:12%;
+	top:20%;
 	right:50vw;
 	transform: translate(50%, 0%);
 	font-size: 2.5vh;
@@ -3592,8 +3593,8 @@ body {
 .pu-date-picker{
 	display: none;
 	position:absolute;
-	left:27.5%;
-	top: 82%;
+	left:25%;
+	top: 62%;
 	right:20%;
     width: 20vw;
     height: 8%;
@@ -3670,8 +3671,8 @@ body {
 
 .pu3-label{
 	position: absolute;
-	top:84.3%;
-	left:19.5vw;
+	top:66.3%;
+	left:15vw;
 	width: 10vw;
 	font-size: 2vh;
 	color: black;
@@ -3679,7 +3680,7 @@ body {
 }
 
 .anim-inner-popup-folio{
-	height: 52vh; /*position*/
+	height: 26vh; /*position*/
 }
 
 #inner-fixed-folio-3 {
@@ -4251,6 +4252,30 @@ body {
 
 .flex-child-right{
 	align-self: 
+}
+
+.pf-fx2{
+	z-index: -1;
+	position: fixed;
+	top: 180px;
+	right:90px;
+	background: white;
+	border-color: white;
+	/*opacity: 0%;*/
+	transform: scale(0.9);
+	transition: all 0.3s ease;
+	padding: 0;
+}
+
+.pf-fx2-anim{
+	right: 300px;
+	top: 81px;
+}
+
+.pf-fx2:hover{
+	border-color: white;
+	color: black;
+	background: white;
 }
 
 .df-f{ margin-top: 2%; height:92% }
