@@ -104,7 +104,7 @@ class PortRoot extends React.Component {
 			  });
 		}
 		
-		fetch("http://localhost:2000/portfolio/",{
+		fetch("http://localhost:2000/portfolio/sort/descendingOrder",{
 			method: "GET",
 			headers: {
 				'Authorization': 'Bearer '+token,
@@ -443,11 +443,11 @@ class PortRoot extends React.Component {
 							</div>        
 						</div>
 						<a class="btn btn-cta-primary-yellow round profile-button pf-fx" id="new-port" target="_blank">เพิ่มกิจกรรมของคุณ</a>
-						<button class="btn btn-cta-primary round grey dropdown-toggle pf-fx2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">เรียงตามการเพิ่มกิจกรรมล่าสุด</button>
+						<button class="btn btn-cta-primary round grey dropdown-toggle pf-fx2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">เรียงตามวันทำกิจกรรมล่าสุด</button>
 						<ul class="dropdown-menu" id="dropdownContainer1" aria-labelledby="dropdownMenuButton1">
-						   <li><a class="dropdown-item" id="sort-create">เรียงตามการเพิ่มกิจกรรมล่าสุด</a></li>
 						   <li><a class="dropdown-item" id="sort-descend">เรียงตามวันทำกิจกรรมล่าสุด</a></li>
 						    <li><a class="dropdown-item" id="sort-ascend">เรียงตามวันทำกิจกรรมเก่าสุด</a></li>
+							<li><a class="dropdown-item" id="sort-create">เรียงตามการเพิ่มกิจกรรมล่าสุด</a></li>
 						</ul>
 					</header>
 					<div class="pt-pad"></div>

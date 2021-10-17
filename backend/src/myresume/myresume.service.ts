@@ -62,6 +62,7 @@ export class MyResumeService {
     const isoTime = time.toLocaleDateString('th-TH',{ year:'numeric',month: 'long',day:'numeric',hour:"2-digit",minute:"2-digit"});
 
     const user = await this.userinfoRepository.findOne({where:{ UserId: CreateDto.UserId }});
+    const acc = await this.accountRepository.findOne({where:{ UserId: CreateDto.UserId }});
     
 
     const resume = new Resume(); 
@@ -73,7 +74,7 @@ export class MyResumeService {
     resume.AboutMe = user.AboutMe; 
     resume.Email = user.Email2nd;
     resume.Location = user.Country + " " + user.Province + " "+ user.City;
-    resume.ProfilePic = user.ProfilePic;
+    resume.ProfilePic = acc.ProfilePic;
 
     const jobid = new ObjectID(CreateDto.JobID);
 
@@ -461,9 +462,8 @@ export class MyResumeService {
       
       
     const userid = new ObjectID(UserId);
+
     const account=await this.accountRepository.findOne({where:{_id:userid}});
-    const resumeColor=(await this.resumePictureRepository.findOne({where:{UserId:UserId}})).Color;
-    result.Color_ResumeId=resumeColor;
     
 
     const softskill_arr=[];
@@ -473,7 +473,7 @@ export class MyResumeService {
     for (var _i = 0; _i < additionalskill.length; _i++) {
       softskill_arr.push(additionalskill[_i].AdditionalSkill);
       softskill_id_arr.push(additionalskill[_i].id.toString());
-      kuy.push(additionalskill[_i].ResumeId);
+      kuy.push([additionalskill[_i].ResumeId]);
     }
     result.SoftSkill=softskill_arr;
     result.AdditionalSkill_ResumeId=kuy
@@ -505,7 +505,7 @@ export class MyResumeService {
       CertPic_arr.push(Certificate[Certificate_NUM_Dictionary].CertPic);
       CertYear_arr.push(Certificate[Certificate_NUM_Dictionary].CertYear);
       CertId_arr.push(Certificate[Certificate_NUM_Dictionary].id.toString());
-      kuy2.push(Certificate[Certificate_NUM_Dictionary].ResumeId);
+      kuy2.push([Certificate[Certificate_NUM_Dictionary].ResumeId]);
     }
     
     result.CertName=CertName_arr;
@@ -545,7 +545,7 @@ export class MyResumeService {
       Grade_arr.push(educationHistory[educationHistory_Num_sort].Grade);
       Education_End_Year_arr.push(educationHistory[educationHistory_Num_sort].Education_End_Year);
       EDId_arr.push(educationHistory[educationHistory_Num_sort].id.toString());
-      kuy3.push(educationHistory[educationHistory_Num_sort].ResumeId);
+      kuy3.push([educationHistory[educationHistory_Num_sort].ResumeId]);
     }
     result.Degree=Degree_arr;
     result.Facalty=Facalty_arr;
@@ -601,7 +601,7 @@ export class MyResumeService {
       Infomation_arr.push(workHistory[workHistory_Num_Sort].Work_Infomation);
       SalaryType_arr.push(workHistory[workHistory_Num_Sort].Work_Salary_Type);
       WHId_arr.push(workHistory[workHistory_Num_Sort].id.toString());
-      kuy4.push(workHistory[workHistory_Num_Sort].ResumeId);
+      kuy4.push([workHistory[workHistory_Num_Sort].ResumeId]);
     }
     
     result.Work_JobName=Work_JobName_arr;
@@ -631,7 +631,7 @@ export class MyResumeService {
       Job_JobName_arr.push(IJ[_i].Job_JobName);
       Job_SkillName_arr.push(IJ[_i].Job_SkillName);
       InterestedJob_id_arr.push(IJ[_i]._id.toString());
-      kuy5.push(IJ[_i].ResumeId);
+      kuy5.push([IJ[_i].ResumeId]);
 
     }
     result.InterestedJob_id=kuy5;
