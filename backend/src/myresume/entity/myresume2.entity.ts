@@ -22,13 +22,16 @@ export class Resume3 {
   Owner: string;
 
   @Column()
-  Aboutme: string;
+  AboutMe: string;
 
   @Column()
   Email: string;
 
   @Column()
   Location: string;
+
+  @Column()
+  ProfilePic_URL: string;
 
   @Column()
   TAG: string[];

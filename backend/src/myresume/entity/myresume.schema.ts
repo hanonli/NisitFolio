@@ -25,7 +25,10 @@ export class Resume2 {
   ProfilePic: string;
 
   @Prop()
-  Aboutme: string;
+  ProfilePic_URL: string;
+
+  @Prop()
+  AboutMe: string;
 
   @Prop()
   Email: string;

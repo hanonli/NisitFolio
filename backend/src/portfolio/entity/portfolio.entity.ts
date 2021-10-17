@@ -278,7 +278,7 @@ export class Portfolio {
 @Entity("PortfolioPicture")
 export class PortfolioPicture {
   @ObjectIdColumn()
-  id?: ObjectId;
+  _id?: ObjectId;
   
   @ObjectIdColumn()
   PortId: ObjectId;

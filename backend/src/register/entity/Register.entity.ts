@@ -360,6 +360,9 @@ export class Resume {
   ProfilePic: string;
 
   @Column()
+  ProfilePic_URL: string;
+
+  @Column()
   First: string;
 
   @Column()
@@ -369,7 +372,7 @@ export class Resume {
   Owner: string;
 
   @Column()
-  Aboutme: string;
+  AboutMe: string;
 
   @Column()
   Email: string;
