@@ -6,6 +6,7 @@ import { CreateRegisDto } from './dto/create-register.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { PatchRegisDto } from './dto/patch-register.dto';
 import {PatchRegisDto2} from './dto/patch-register_2.dto';
+import { RealIP } from 'nestjs-real-ip';
 
 
 @Controller('register')
@@ -13,8 +14,8 @@ export class RegisterController {
   constructor(private registerService: RegisterService,private httpService: HttpService,) {}
 
   @Post()
-  async CreateRegister(@Body() CreateDto: CreateRegisDto ) {
-    return this.registerService.createRegis(CreateDto);
+  async CreateRegister(@Body() CreateDto: CreateRegisDto,@RealIP() ip: string) {
+    return this.registerService.createRegis(CreateDto,ip);
   }
 
   @UseGuards(JwtAuthGuard)
