@@ -345,8 +345,8 @@ class NewAnalytics extends React.Component {
 		
 		var currentTab = 1;
 		
-		//fetch("http://localhost:2000/analytics/cache/"+userID,{
-		fetch("http://localhost:3000/temp_cache",{
+		fetch("http://localhost:2000/analytics/cache/"+userID,{
+		//fetch("http://localhost:3000/temp_cache",{
 			method: "GET",
 			headers: {
 				"Access-Control-Allow-Origin": "*",
