@@ -5,9 +5,8 @@ import cookie from 'react-cookies';
 
 class MyresumeWorkGoals extends React.Component {
     handleRoute = () => {
-        console.log('EDITPROFLIETAB6');
-        cookie.save('Edit_tabselect', 'editproflietab6');
-        window.location = ("editproflie");
+        cookie.save('Edit_tabselect', 6);
+        window.location = ("editprofile");
     }
 
     render() {

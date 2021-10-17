@@ -55,13 +55,7 @@ class Resume_topNavbar extends React.Component {
 			fetch: true,
 		}
 
-		
-
-		
-
 		// GET Parameter(userID) FROM URL 
-
-
 
 		// var resumeID = '6142398e3e8c5c1df01304cc'
 	}
@@ -148,7 +142,7 @@ class Resume_topNavbar extends React.Component {
 					firstname: Resumedata.First ? Resumedata.First : '',
 					lastname: Resumedata.Last ? Resumedata.Last : '',
 					profilepic : Resumedata.ProfilePic !== null ? Resumedata.ProfilePic : '',
-					aboutme : Resumedata.Aboutme !== null ? Resumedata.Aboutme : '',
+					aboutme : Resumedata.AboutMe !== null ? Resumedata.AboutMe : '',
 					ready : true,
 				})
 			}
@@ -157,35 +151,10 @@ class Resume_topNavbar extends React.Component {
 	}
 
 	getDatas() {
-		// 	console.log('getDatas called')
-		// 	console.log( 'in getDatas :' + this.state.resumeID)
-		// 	fetch("http://localhost:2000/myresume/"+this.state.resumeID,{
-		// 		method: "GET",
-		// 		headers: {
-		// 			"Access-Control-Allow-Origin": "*",
-		// 			"Access-Control-Allow-Methods": "*",
-		// 			"Access-Control-Allow-Credentials": true,
-		// 			"Content-Type": "application/json"
-		// 		},
-		// 	})
-		// 	.then(response => response.json())
-		// 	.then((datas) => {
-		// 		// console.log( 'in getDatas1 :' + JSON.stringify(datas))
-		// 		this.setState({
-		// 			workHistorys : datas.workHistorys,	
-		// 			educationHistorys : datas.educationHistorys,
-		// 			certificates : datas.certificates,
-		// 			additionalSkills : datas.additionalSkills,
-		// 			interestedJob : datas.interestedJob,
-		// 			color : datas.Color,
-		// 			privacy : datas.Privacy,
-		// 			ready : true,
-		// 		})
 
-		// 		// console.log( 'in getDatas2 :' + JSON.stringify(datas.educationHistorys))
-		// 	});
 
 	}
+
 	changePrivacy = (message) => {
 		var resumeid = this.state.resumeID
 		var token = cookie.load('login-token')
