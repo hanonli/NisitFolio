@@ -46,30 +46,58 @@ class Home extends React.Component {
 		var token = cookie.load('login-token');
 		var userId = null;
 		console.log(token);
-		 
-		 fetch("http://localhost:2000/profile/",{
-			method: "GET",
-			headers: {
-				'Authorization': 'Bearer '+token,
-				"Access-Control-Allow-Origin": "*",
-				"Access-Control-Allow-Methods": "*",
-				"Access-Control-Allow-Credentials": true,
-				"Content-Type": "application/json"
-			},
-		})
-		.then(function(response) {
-			return response.text().then(function(text) {
-			  //alert(text);
-			  if(text == '{"statusCode":401,"message":"Unauthorized"}'){
-				 // alert('set cookie as null:');
-				cookie.save('login-user', 'none', { path: '/' })
-			  }else{
-				  // alert('set cookie as '+text);
-				cookie.save('login-user', text, { path: '/' })
-				userId = text;
-			  }
+		
+		function SaveToken(){
+			fetch("http://localhost:2000/profile/",{
+				method: "GET",
+				headers: {
+					'Authorization': 'Bearer '+token,
+					"Access-Control-Allow-Origin": "*",
+					"Access-Control-Allow-Methods": "*",
+					"Access-Control-Allow-Credentials": true,
+					"Content-Type": "application/json"
+				},
+			})
+			.then(function(response) {
+				return response.text().then(function(text) {
+				  //alert(text);
+				  if(text == '{"statusCode":401,"message":"Unauthorized"}'){
+					 // alert('set cookie as null:');
+					cookie.save('login-user', 'none', { path: '/' })
+				  }else{
+					  // alert('set cookie as '+text);
+					cookie.save('login-user', text, { path: '/' })
+					userId = text;
+					UpdateAnalyticsCache();
+				  }
+				});
+			 })
+			 .catch((error) => {
+					console.log('Failed to get userId with current token!');
+					//this.setState({ redirect: "/landing" });
 			});
-		 });
+		}
+		 
+		function UpdateAnalyticsCache(){
+			fetch("http://localhost:2000/analytics/cache/"+userId,{
+				method: "POST",
+				headers: {
+					"Access-Control-Allow-Origin": "*",
+					"Access-Control-Allow-Methods": "*",
+					"Access-Control-Allow-Credentials": true,
+					"Content-Type": "application/json"
+				}
+			})
+				.then(response =>  {
+					//console.log(datas);
+					console.log(response);
+					//GetSearchBookmarkData();
+				})
+				.catch((error) => {
+					console.log('Failed to update analytics!');
+					//this.setState({ redirect: "/landing" });
+				});
+		}
 		 
 		function UploadProfileToS3(file){
 			uploadFile(file, config)
@@ -91,6 +119,7 @@ class Home extends React.Component {
 		})
 			.then(response => response.json())
 			.then((datas) => {
+				SaveToken();
 				//console.log(datas);
 				console.log(datas.Firstname);
 				console.log(datas.Lastname);
@@ -105,16 +134,13 @@ class Home extends React.Component {
 				$('#avatar').attr("src", datas.ProfilePic);
 				datas.Job_JobName.forEach((entry) => {
 					console.log('HHHH');
-					$('#tags-container').append('<a class="btn btn-cta-secondary btn-small round margin-right-s" href="#" target="_blank">'+entry+'</a>');
+					$('#tags-container').append('<a class="btn btn-cta-secondary btn-small round margin-right-s tag-button" target="_blank">'+entry+'</a>');
 				});
 				
-				//InitializeHome();
-				/*const script = document.createElement("script");
-				script.src = "assets/js/home.js";
-				script.async = true;
-				document.body.appendChild(script);*/
 				
-				//$.getScript('assets/js/home.js');
+				$('.tag-button').on('click', function(){
+					alert($(this).text());
+				});
 
 				  var avatar = document.getElementById('avatar');
 				  var image = document.getElementById('image');

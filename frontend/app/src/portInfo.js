@@ -9,6 +9,7 @@ import { Redirect } from "react-router-dom";
 import { withRouter } from "react-router";
 import $ from 'jquery';
 import { OverlayTrigger, Overlay, Tooltip, Button } from 'react-bootstrap';
+import { GetDominantColorFromImage } from './Components/GetDominantColorFromImage'
 
 class PortInfo extends React.Component {
 	constructor(props) {
@@ -19,7 +20,7 @@ class PortInfo extends React.Component {
 			allow: true,
 			redirect: null,
 			portEmpty: true,
-			tooltip1: '...',
+			tooltip1: 'บันทึก',
 			tooltip2: 'ติดต่อ',
 			show1: false,
 			show2: false,
@@ -37,8 +38,8 @@ class PortInfo extends React.Component {
 		
 		var pftDiv = '<div class="lb-container" id={id}>\
 							<div class="pft-ibox">\
-								<img class="pft-bg" src="assets/images/black.jpg" alt=""/>\
-								<img class="pft-i" src="{img}" alt=""/>\
+								<div style="z-index: -1;position: absolute;cursor: pointer;height: 100%;width: 100%;left: 0%;background: {dominantColor};" id="c{__id}"></div>\
+								<img class="pft-i" id="i{_id}" src="{img}" alt=""</img>\
 							</div>\
 							<div class="hover-box">\
 								<img class="pft-overlay" src="assets/images/black.jpg" alt=""/>\
@@ -55,16 +56,19 @@ class PortInfo extends React.Component {
 		var pftVipData= [];
 		
 		var token = cookie.load('login-token');
-		var userId = cookie.load('login-user');
+		var userId = null;
 		
 		var refThis = this;
 		var focusId = null;
+		setInterval(function() { console.log(focusId); }, 1000); 
 		
 		var portfolioData = null;
 		var userData = null;
 		var userPortData = null;
 		var userBmData = null;
 		var thatUserId = null;
+		
+		var isUser = null;
 		
 		var bookmarked = false;
 		//var pftBookmark = [];
@@ -143,14 +147,7 @@ class PortInfo extends React.Component {
 		
 		function AddBookmarkClickFunc(){
 			//alert('add bookmark!');
-			bookmarked = true;
-			$('#uic-1').attr('src','assets/images/bookmark_2.png');
-			//$('#uic-1').attr('title','ยกเลิกการบันทึก');
-			//$('#tooltip-uic-1').text('ยกเลิกการบันทึก');
 			setTimeout(function() { refThis.setState({ tooltip1: 'ยกเลิกการบันทึก' }); }, 500); 
-			if(focusId != null)
-				AddBookmark(thatUserId,portfolioData._id);
-			$('#uic-1').off('click');
 			$('#uic-1').on('mouseover', function(){
 			  refThis.setState({ show1: true });
 			});
@@ -158,23 +155,33 @@ class PortInfo extends React.Component {
 			$('#uic-1').on('mouseleave', function(){
 			  refThis.setState({ show1: false });
 			});
-			$("#uic-1").click(function() {
-				refThis.setState({ show1: false });
-				RemoveBookmarkClickFunc();
-			});
+			
+			if(isUser){
+				bookmarked = true;
+				$('#uic-1').attr('src','assets/images/bookmark_2.png');
+				//$('#uic-1').attr('title','ยกเลิกการบันทึก');
+				//$('#tooltip-uic-1').text('ยกเลิกการบันทึก');
+				//if(focusId != null)
+				AddBookmark(thatUserId,portId);
+				$('#uic-1').off('click');
+				
+				$("#uic-1").click(function() {
+					refThis.setState({ show1: false });
+					RemoveBookmarkClickFunc();
+				});
+			}else{
+				//alert('You are not user!');
+				$('#uic-1').click(function(e) {
+					e.stopPropagation();
+				});
+				$('#uic-1').attr('data-bs-target','#staticBackdropB');
+				$('#uic-1').attr('data-bs-toggle','modal');
+			}
 		}
 		
 		function RemoveBookmarkClickFunc(){
 			//alert('delete bookmark!');
-			bookmarked = false;
-			$('#uic-1').attr('src','assets/images/bookmark_1.png');
-			//$('#uic-1').attr('title','บันทึก');
-			//$('#tooltip-uic-1').text('บันทึก');
-			
 			setTimeout(function() { refThis.setState({ tooltip1: 'บันทึก' }); }, 500); 
-			if(focusId != null)
-				DeleteBookmark(thatUserId,portfolioData._id);
-			$('#uic-1').off('click');
 			$('#uic-1').on('mouseover', function(){
 			  refThis.setState({ show1: true });
 			});
@@ -182,44 +189,97 @@ class PortInfo extends React.Component {
 			$('#uic-1').on('mouseleave', function(){
 			  refThis.setState({ show1: false });
 			});
-			$("#uic-1").click(function() {
-				refThis.setState({ show1: false });
-				AddBookmarkClickFunc();
-			});
+			
+			if(isUser){
+				bookmarked = false;
+				$('#uic-1').attr('src','assets/images/bookmark_1.png');
+				//$('#uic-1').attr('title','บันทึก');
+				//$('#tooltip-uic-1').text('บันทึก');
+
+				//if(focusId != null)
+				DeleteBookmark(thatUserId,portId);
+				$('#uic-1').off('click');
+				
+				$("#uic-1").click(function() {
+					refThis.setState({ show1: false });
+					AddBookmarkClickFunc();
+				});
+			}else{
+				//alert('You are not user!');
+				$('#uic-1').click(function(e) {
+					e.stopPropagation();
+				});
+				$('#uic-1').attr('data-bs-target','#staticBackdropB');
+				$('#uic-1').attr('data-bs-toggle','modal');
+			}
 		}
 		
 		function AddBookmarkClickFuncSub(){
-			//alert('add bookmark!');
 			//pftBookmark[focusId] = true;
-			$('#bm-'+focusId).attr('src','assets/images/bookmark_2w.png');
+			
 			//alert('add: '+userPortData[focusId].Port_Name+' from user: '+userPortData[focusId].Owner);
-			if(focusId != null)
-				AddBookmark(userPortData[focusId].UserId, userPortData[focusId]._id);
-			$('#bm-'+focusId).off('click');
-			$('#bm-'+focusId).click(function(e) {
-				e.stopPropagation();
-				RemoveBookmarkClickFuncSub();
-			});
+			if(isUser){
+				//alert('You are user!');
+				$('#bm-'+focusId).attr('src','assets/images/bookmark_2w.png');
+				if(focusId != null)
+					AddBookmark(userPortData[focusId].UserId, userPortData[focusId]._id);
+				$('#bm-'+focusId).off('click');
+				$('#bm-'+focusId).click(function(e) {
+					//alert('CCC');
+					e.stopPropagation();
+					RemoveBookmarkClickFuncSub();
+				});
+			}else{
+				//alert('You are not user!');
+				$('#bm-'+focusId).click(function(e) {
+					e.stopPropagation();
+				});
+				$('#bm-'+focusId).attr('data-bs-target','#staticBackdropB');
+				$('#bm-'+focusId).attr('data-bs-toggle','modal');
+			}
+			focusId = null;
 		}
 		
 		function RemoveBookmarkClickFuncSub(){
 			//alert('add bookmark!');
+			//alert(focusId);
 			//pftBookmark[focusId] = true;
-			$('#bm-'+focusId).attr('src','assets/images/bookmark_1w.png');
-			//alert('delete: '+userPortData[focusId].Port_Name+' from user: '+userPortData[focusId].Owner);
-			if(focusId != null)
-				DeleteBookmark(userPortData[focusId].UserId, userPortData[focusId]._id);
-			$('#bm-'+focusId).off('click');
-			$('#bm-'+focusId).click(function(e) {
-				e.stopPropagation();
-				AddBookmarkClickFuncSub();
-			});
+			if(isUser){
+				//alert('You are user!');
+				$('#bm-'+focusId).attr('src','assets/images/bookmark_1w.png');
+				//alert('delete: '+userPortData[focusId].Port_Name+' from user: '+userPortData[focusId].Owner);
+				if(focusId != null)
+					DeleteBookmark(userPortData[focusId].UserId, userPortData[focusId]._id);
+				$('#bm-'+focusId).off('click');
+				$('#bm-'+focusId).click(function(e) {
+					e.stopPropagation();
+					AddBookmarkClickFuncSub();
+				});
+			}else{
+				//alert('You are not user!');
+				$('#bm-'+focusId).click(function(e) {
+					e.stopPropagation();
+				});
+				$('#bm-'+focusId).attr('data-bs-target','#staticBackdropB');
+				$('#bm-'+focusId).attr('data-bs-toggle','modal');
+			}
+			focusId = null;
 		}
 		
 		function InitializePortInfo(){
 			console.log(portfolioData);
 				refThis.setState({ render: true });
 				
+				//$('#avatar').attr('src',portfolioData.ProfilePic);
+				
+				$("#to-regis").click(function() {
+					refThis.setState({ redirect: "/register" });
+				});
+				
+				$("#to-login").click(function() {
+					refThis.setState({ redirect: "/landing" });
+				});
+
 				if(portfolioData.UserId == userId){ //user is viewing user's port
 					$('#uic-1').attr('src','assets/images/black_edit2.png');
 					$("#uic-1").click(function() {
@@ -306,7 +366,6 @@ class PortInfo extends React.Component {
 					portfolioData.portfolioPictures[0].Pic.forEach((entry) => {
 						var hDiv = '<div class="pft-c"/>\
 										<img class="pft-uc" id="port-pic-' + pdd + '" src="'+entry+'" alt=""/>\
-										<img class="pft-ub" src="assets/images/black.jpg" alt=""/>\
 									</div>';
 						$('#h-scroll').append(hDiv);
 						//$('#port-pic-'+pdd).attr('src',entry);
@@ -329,7 +388,7 @@ class PortInfo extends React.Component {
 					$('#port-tag1').text(portfolioData.Port_Tag[0]);
 					$('#port-tag2').text(portfolioData.Port_Tag[1]);
 					$('#port-tag3').hide();
-				}else if(tagCount == 3){
+				}else if(tagCount >= 3){
 					$('#port-tag1').text(portfolioData.Port_Tag[0]);
 					$('#port-tag2').text(portfolioData.Port_Tag[1]);
 					$('#port-tag3').text(portfolioData.Port_Tag[2]);
@@ -339,7 +398,7 @@ class PortInfo extends React.Component {
 				
 				//$('#avatar').attr('src',userData.ProfilePic);
 				//$('#avatar').attr('src',userProfilePic);
-				$('#port-user-email').text(userData.Email);
+				$('#port-user-email').text(portfolioData.Email);
 				
 				//refThis.setState({ render: true });
 				var index=0;
@@ -413,11 +472,55 @@ class PortInfo extends React.Component {
 							hid = 'ic-hidden';
 						}
 						
-						$('.pft-flex').append(pftDiv.replace('{id}',index).replace('{img}',thumb).replace('{name}',data.Port_Name)
-							.replace('{date}',date).replace('{privacy}',privacyImg).replace('{var-ic}',vi)
-							.replace('{var-ic-img}',vii).replace('{hidden1}',hid).replace('{hidden2}',hid).replace('{var-id}',vid));
+						$('.pft-flex').append(pftDiv.replace('{id}',index).replace('{_id}',index).replace('{__id}',index)
+								.replace('{name}',data.Port_Name).replace('{date}',date).replace('{privacy}',privacyImg).replace('{var-ic}',vi)
+								.replace('{var-ic-img}',vii).replace('{hidden1}',hid).replace('{hidden2}',hid).replace('{var-id}',vid));
+								
+						function ModifyImg(dataUrl){
+							$('#i'+_i).css('opacity','0%');
+							  $('#i'+_i).attr('src',dataUrl);
+								setTimeout(function() { 
+									var rgb = GetDominantColorFromImage(document.getElementById('i'+_i));
+									var currentStyle = $('#c'+_i).attr('style');
+									
+									if(!currentStyle) // change page during calculation
+										return;
+									
+									currentStyle = currentStyle.replace('{dominantColor}','rgb('+rgb.r+','+rgb.g+','+rgb.b+')')
+									$('#c'+_i).attr('style',currentStyle);
+									$('#i'+_i).css('opacity','100%');
+								}, 1); 
+						}
+						
+						function toDataURL(url, callback) {
+							  var xhr = new XMLHttpRequest();
+							  
+							  xhr.onload = function(e) {
+								var reader = new FileReader();
+								reader.onloadend = function() {
+								  callback(reader.result);
+								}
+								reader.readAsDataURL(xhr.response);
+							  };
+
+								xhr.onerror = function (e) {
+									console.log('Fail to request base64 from source');
+									console.log(e);
+									ModifyImg(url);
+								};
+							  xhr.open('GET', url);
+							  xhr.responseType = 'blob';
+							  xhr.send();
+						}
+						
+						//toDataURL('https://nisitfolio.s3.ap-southeast-1.amazonaws.com/images/614e14097f9f24b335174047_809da582-625b-4bbe-bcbc-c86c9c3dcb29', function(dataUrl) {
+						var _i = index;
+						toDataURL(thumb, function(dataUrl) {
+						  //console.log('RESULT:', dataUrl)
+						  ModifyImg(dataUrl);
+						})
 							
-						//focusId = index;
+						focusId = index;
 						if(_bookmarked){
 							AddBookmarkClickFuncSub();
 						}else{
@@ -606,6 +709,33 @@ class PortInfo extends React.Component {
 					  });
 		}
 		
+		fetch("http://localhost:2000/profile/",{
+			method: "GET",
+			headers: {
+				'Authorization': 'Bearer '+token,
+				"Access-Control-Allow-Origin": "*",
+				"Access-Control-Allow-Methods": "*",
+				"Access-Control-Allow-Credentials": true,
+				"Content-Type": "application/json"
+			},
+		})
+		.then(function(response) {
+			return response.text().then(function(text) {
+			  //alert(text);
+			  if(text == '{"statusCode":401,"message":"Unauthorized"}'){
+					isUser = false;
+			  }else{ // token valid
+					isUser = true;
+					userId = text;
+			  }
+			});
+		 })
+		 .catch((error) => {
+				console.log('token invalid!');
+				isUser = false;
+				//this.setState({ redirect: "/landing" });
+		});
+		
 		fetch("http://localhost:2000/portfolio/"+portId,{
 			method: "GET",
 			headers: {
@@ -648,7 +778,10 @@ class PortInfo extends React.Component {
 				.then((datas) => {
 					datas.every((entry) => {
 						if(entry.thatUserId == portfolioData.UserId){
-							userProfilePic = entry.pic;
+							userProfilePic = "assets/images/profile_uk.png";
+							if(entry.pic != null && typeof(entry.pic) == 'string'){ 
+								userProfilePic = entry.pic;
+							}
 							$('#avatar').attr('src',userProfilePic);
 							return false;
 						}
@@ -776,7 +909,7 @@ class PortInfo extends React.Component {
 						<phf id="port-name">ชื่อหัวข้ออะไรสักอย่าง สุดแล้วแต่คุณท่านจะตั้ง</phf>
 						<div class="pfic-flex">
 							<OverlayTrigger key={'bottom'} placement={'bottom'} show={this.state.show1} overlay={ <Tooltip id='tooltip-uic-1'>{this.state.tooltip1}</Tooltip> }>
-								<img class="tooltips-item obj-icon" id="uic-1" src="assets/images/bookmark_2.png" type="button" alt="" width="45" height="45"/>
+								<img class="tooltips-item obj-icon" id="uic-1" src="assets/images/bookmark_1.png" type="button" alt="" width="45" height="45"/>
 							</OverlayTrigger>
 							<OverlayTrigger key={'bottom'} placement={'bottom'} overlay={ <Tooltip id='tooltip-uic-2'>{this.state.tooltip2}</Tooltip> }>
 								<img class="tooltips-item obj-icon" id="uic-2" src="assets/images/outline_forward_to_inbox_black_48dp.png" type="button" alt="" width="45" height="45"/>
@@ -800,21 +933,17 @@ class PortInfo extends React.Component {
 					<br></br><br></br><br></br><br></br>
 					
 					<div class="swf-flex-single">
-						<div class="pft-s">
+
 							<img class="pft-uc" id="port-pic-single" src="assets/images/emp_thumb.jpg" alt=""/>
-							<img class="pft-ub" src="assets/images/black.jpg" alt=""/>
-						</div>
+
 					</div>
 					
 					<div class="swf-flex-double">
-						<div class="pft-d">
 							<img class="pft-uc" id="port-pic-d1" src="assets/images/emp_thumb.jpg" alt=""/>
-							<img class="pft-ub" src="assets/images/black.jpg" alt=""/>
-						</div>
-						<div class="pft-d">
+
+
 							<img class="pft-uc" id="port-pic-d2" src="assets/images/emp_thumb.jpg" alt=""/>
-							<img class="pft-ub" src="assets/images/black.jpg" alt=""/>
-						</div>
+
 					</div>
 					
 					<div class="swf-flex">
@@ -827,9 +956,6 @@ class PortInfo extends React.Component {
 					<br></br><br></br><br></br><br></br>
 					
 					<div class="anf-flex">
-						<mdf >ไฟล์แนบ</mdf>
-						<img src="assets/images/sample_attach.png" alt="" width="281.25" height="125" />
-						<br></br>
 						<mef >ตำแหน่งงานที่เกี่ยวข้อง</mef>
 						<div class="ptag-flex">
 							<a class="pft-tag btn btn-cta-secondary btn-small round no-margin tag" id="port-tag1" target="_blank">tag1</a>
@@ -899,6 +1025,19 @@ class PortInfo extends React.Component {
 							</div>
 						</div>
 					</div>
+					
+					<div class="modal fade" id="staticBackdropB" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered">
+							<div class="modal-content minisize">
+								<h4 class="del-b">คุณต้องเข้าสู่ระบบก่อนกด Bookmark ?</h4>
+								<div class="centerverify">
+									<a type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" id="to-login" data-bs-dismiss="modal">เข้าสู่ระบบ</a>
+									<a id="cancel-port" type="button" id="to-regis" class="btn btn-cta-primary-yellowshort profile-button round" id="to-regis" data-bs-dismiss="modal">สมัครสมาชิก</a>
+								</div>
+							</div>
+						</div>
+					</div>			
+					
 				</div>
 			);
 	}
