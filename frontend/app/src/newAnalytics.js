@@ -12,6 +12,7 @@ import cookie from 'react-cookies'
 import $ from 'jquery';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
+
 class NewAnalytics extends React.Component {
 	constructor(props) {
 		super(props);
@@ -125,12 +126,12 @@ class NewAnalytics extends React.Component {
 		const avg = new Image();
 		const avgYou = new Image();
 		const dummy = new Image();
-		flag.src = 'assets/images/flag-ch.png'; 
-		flagRv.src = 'assets/images/flag-ch-rv.png'; 
-		you.src = 'assets/images/you-ch.png'; 
-		avg.src = 'assets/images/avg-ch.png'; 
+		flag.src = 'assets/images/flag-ch2.png'; 
+		flagRv.src = 'assets/images/flag-ch-rv2.png'; 
+		you.src = 'assets/images/you-ch2.png'; 
+		avg.src = 'assets/images/avg-ch2.png'; 
 		dummy.src = 'assets/images/dummy.png'; 
-		avgYou.src = 'assets/images/avg-you.png'; 
+		avgYou.src = 'assets/images/avg-you2.png'; 
 		
 		var ctx = $('#jobChart');
 		var ctxP = $('#jobChart2');
@@ -147,13 +148,76 @@ class NewAnalytics extends React.Component {
 		var rawScore = [];
 		var vLabels = [];
 		var vPoints = [];
+		var vLS = [];
 		var disGraphMax = 1;
+		
+		var meanIsScore = false;
+		
+		var tooltip_config = {
+			titleFont: { family: "'Nunito','Kanit'", },
+			bodyFont: { family: "'Nunito','Kanit'", },
+			footerFont: { family: "'Nunito','Kanit'", },
+			
+			filter: function (tooltipItem) {
+				console.log(tooltipItem);
+				//alert(88);
+				console.log(vPoints);
+				
+				if(vPoints[tooltipItem.dataIndex] != dummy && tooltipItem.raw > 0){
+					/*if(vPoints[tooltipItem.dataIndex] == avg){
+						if(meanIsScore) return true;
+						return false;
+					}*/
+					return true;
+				}
+				
+				return false;
+			},
+			
+			callbacks: {
+				title: function() {},
+				label: function(context) {
+					console.log(context);
+					//var label = context.dataset.label || '';
+					/*var label = context.chart.data.orders[context.parsed.x] || '';
+					
+					if (label) {
+						label += ': ';
+					}
+					if (context.parsed.y !== null) {
+						//label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed.y);
+						label += context.chart.data.percentages[context.parsed.x];
+					}
+				
+					var res = [label]
+					//res.push('  '+context.dataset.data[context.parsed.x]+' คน');
+					res.push('  '+context.dataset._vLS[context.parsed.x]+ ' คะแนน');*/
+					var res = [];
+					if(vPoints[context.parsed.x] == avg){
+						res.push('ค่าเฉลี่ย');
+						res.push(context.dataset._vLS[context.parsed.x]+' คะแนน');
+					}else if(vPoints[context.parsed.x] == flag || vPoints[context.parsed.x] == flagRv){
+						res.push('ค่าฐานนิยม');
+						res.push(context.dataset._vLS[context.parsed.x]+' คะแนน');
+					}else if(vPoints[context.parsed.x] == you || vPoints[context.parsed.x] == avgYou){
+						res.push('คะแนนของคุณ');
+						res.push(context.dataset._vLS[context.parsed.x]+' คะแนน'+' ('+refThis.state.rightJobPercentile+'%)');
+					}else{
+						res.push(context.dataset.data[context.parsed.x]+' คน');
+						res.push(context.dataset._vLS[context.parsed.x]+' คะแนน');
+					}
+					
+					return res;
+				}
+			}
+		};
 		
 		var lineChartConfig = {
 			type: 'line',
 			data: {
 				  labels: ['ไม่ได้','','','','','','','พอได้เล็กน้อย','','','','','','ดี','','','','','','ยอดเยี่ยม'],
 				  orders: ['#2', '#1', '#3','#2', '#1', '#3','#2', '#1', '#3','#2', '#2', '#1', '#3','#2', '#1', '#3','#2', '#1', '#3','#2'],
+				  _vLS: [],
 				  percentages: ['xx.xx%', 'xx.xx%', 'xx.xx%','xx.xx%', 'xx.xx%', 'xx.xx%','xx.xx%', 'xx.xx%', 'xx.xx%','xx.xx%','xx.xx%', 'xx.xx%', 'xx.xx%','xx.xx%', 'xx.xx%', 'xx.xx%','xx.xx%', 'xx.xx%', 'xx.xx%','xx.xx%'],
 				  datasets: [
 					{
@@ -162,8 +226,11 @@ class NewAnalytics extends React.Component {
 						above: currentColor,   // Area will be red above the origin
 						below: currentColor    // And blue below the origin
 					  },
-					  borderColor: currentColor,
-					  pointStyle: [dummy,dummy,dummy,dummy,dummy,dummy,dummy,dummy,avg,dummy,dummy,dummy,flag,dummy,dummy,you,dummy,dummy,dummy,dummy],
+					  borderColor: 'rgb(172, 129, 163)',
+					  pointStyle: ['circle','circle','circle','circle','circle','circle','circle','circle',avg,'circle','circle','circle',flag,'circle','circle',you,'circle','circle','circle','circle'],
+					  pointBorderColor: 'rgb(172, 129, 163)',
+					  pointBackgroundColor: 'rgb(172, 129, 163)',
+					  pointRadius: 5,
 					  //tension: 0.1,
 					  //bezierCurve: true,
 					  label: '# จำนวน',
@@ -180,7 +247,7 @@ class NewAnalytics extends React.Component {
 			}
 			,
 			options: {
-					  tension: 0.2,
+					  tension: 0,
 					  maintainAspectRatio: false,
 					  //responsive: true,
 					  /*legend: {
@@ -208,7 +275,7 @@ class NewAnalytics extends React.Component {
 									 callback: function(val, index) {
 										// Hide the label of every 2nd dataset
 										//return index % 2 === 0 ? this.getLabelForValue(val) : '';
-										return rawScore.includes(val) && val > 0 ? this.getLabelForValue(parseInt(val))+' คน' : '';
+										return val % 1 === 0 && rawScore.includes(val) && val > 0 ? val+' คน' : '';
 									  },
 								},
 								min: 0,
@@ -245,11 +312,11 @@ class NewAnalytics extends React.Component {
 						legend: {
 							display: false
 						},
-						tooltip: {
+						/*tooltip: {
 							 enabled: false
-						}
+						}*/
 
-						//tooltip: tooltip_config
+						tooltip: tooltip_config,
 					  }
 						
 					   
@@ -463,21 +530,21 @@ class NewAnalytics extends React.Component {
 				refThis.setState({ 
 					topMainJOv1Job: rawData.Main.yourBest3[0].Job_Name,
 					topMainJOv1Name: rawData.Main.yourBest3[0].SkillName,
-					topMainJOv1Score: rawData.Main.yourBest3[0].UserScore,
+					topMainJOv1Score: rawData.Main.yourBest3[0].UserScore.toFixed(1),
 					topMainJOv1Percentage: rawData.Main.yourBest3[0].percentile == 0 ? rawData.Main.yourBest3[0].p.toFixed(2) : rawData.Main.yourBest3[0].percentile.toFixed(2),
 					topMainJOv1Label: rawData.Main.yourBest3[0].percentile == 0 ? 'ต่ำกว่า' : 'สูงกว่า',
 					topMainJOv1Count: rawData.Main.yourBest3[0].total,
 					
 					topMainJOv2Job: rawData.Main.yourBest3[1].Job_Name,
 					topMainJOv2Name: rawData.Main.yourBest3[1].SkillName,
-					topMainJOv2Score: rawData.Main.yourBest3[1].UserScore,
+					topMainJOv2Score: rawData.Main.yourBest3[1].UserScore.toFixed(1),
 					topMainJOv2Percentage: rawData.Main.yourBest3[1].percentile == 0 ? rawData.Main.yourBest3[1].p.toFixed(2) : rawData.Main.yourBest3[1].percentile.toFixed(2),
 					topMainJOv2Label: rawData.Main.yourBest3[1].percentile == 0 ? 'ต่ำกว่า' : 'สูงกว่า',
 					topMainJOv2Count: rawData.Main.yourBest3[1].total,
 					
 					topMainJOv3Job: rawData.Main.yourBest3[2].Job_Name,
 					topMainJOv3Name: rawData.Main.yourBest3[2].SkillName,
-					topMainJOv3Score: rawData.Main.yourBest3[2].UserScore,
+					topMainJOv3Score: rawData.Main.yourBest3[2].UserScore.toFixed(1),
 					topMainJOv3Percentage: rawData.Main.yourBest3[2].percentile == 0 ? rawData.Main.yourBest3[2].p.toFixed(2) : rawData.Main.yourBest3[2].percentile.toFixed(2),
 					topMainJOv3Label: rawData.Main.yourBest3[2].percentile == 0 ? 'ต่ำกว่า' : 'สูงกว่า',
 					topMainJOv3Count: rawData.Main.yourBest3[2].total,
@@ -783,17 +850,19 @@ class NewAnalytics extends React.Component {
 			var md = null;
 			if(jobKeyVal[focusJob].Mode.length == 2){
 				$('.md-hid').show();
-				md = jobKeyVal[focusJob].Mode[0].toFixed(2)+','+ jobKeyVal[focusJob].Mode[1].toFixed(2)+'คะแนน';
+				md = jobKeyVal[focusJob].Mode[0].toFixed(2)+' และ '+ jobKeyVal[focusJob].Mode[1].toFixed(2)+' คะแนน';
 			}else if(jobKeyVal[focusJob].Mode.length == 1){
 				$('.md-hid').show();
 				md = jobKeyVal[focusJob].Mode[0].toFixed(2)+' คะแนน';
 			}else{
+				//alert('hide');
 				$('.md-hid').hide();
 			}
+			console.log( jobKeyVal[focusJob] );
 			refThis.setState({ 
 				rightJobName: THname,
 				rightJobSkillName: focusJob,
-				rightJobScore: jobKeyVal[focusJob].UserScore,
+				rightJobScore: jobKeyVal[focusJob].UserScore.toFixed(1),
 				rightJobPercentage: jobKeyVal[focusJob].percentage.toFixed(2),
 				rightJobCount: jobKeyVal[focusJob].total,
 				rightJobPercentile: jobKeyVal[focusJob].percentile == 0 ? jobKeyVal[focusJob].p.toFixed(2) : jobKeyVal[focusJob].percentile.toFixed(2),
@@ -803,30 +872,39 @@ class NewAnalytics extends React.Component {
 			});
 			
 			var ccr = null;
+			var ccd = null;
 			if(id == 's1') {
 				ccr = 'rgb(212,177,205)';
+				ccd = 'rgb(162,127,155)';
 				$('.jbox').addClass('obps');
 				$('.jbox').removeClass('obgs');
 				$('.jbox').removeClass('oby');
 			}else if(id == 's2') {
 				ccr = 'rgb(195,219,197)';
+				ccd = 'rgb(145,169,147)';
 				$('.jbox').removeClass('obps');
 				$('.jbox').addClass('obgs');
 				$('.jbox').removeClass('oby');
 			}else {
 				ccr = 'rgb(255,230,167)';
+				ccd = 'rgb(205,170,117)';
 				$('.jbox').removeClass('obps');
 				$('.jbox').removeClass('obgs');
 				$('.jbox').addClass('oby');
 			}
-			lineChartConfig.data.datasets[0].borderColor = ccr;
+			lineChartConfig.data.datasets[0].borderColor = ccd;
+			lineChartConfig.data.datasets[0].pointBorderColor = ccd;
+			lineChartConfig.data.datasets[0].pointBackgroundColor = ccd;
+			
 			lineChartConfig.data.datasets[0].fill.above = ccr;
 			lineChartConfig.data.datasets[0].fill.below = ccr;
+			//lineChartConfig.data.datasets[0].borderColor = ccd;
 			GenerateDistributionChartData(jobKeyVal[focusJob]);
 			lineChartConfig.data.labels = vLabels;
 			lineChartConfig.data.datasets[0].data = rawScore;
 			lineChartConfig.data.percentages = ['xx.xx%'];
 			lineChartConfig.data.datasets[0].pointStyle = vPoints;
+			lineChartConfig.data.datasets[0]._vLS = vLS;
 			lineChartConfig.options.scales.y.max = disGraphMax;
 			
 			ctx = document.getElementById("jobChart").getContext("2d");
@@ -838,10 +916,11 @@ class NewAnalytics extends React.Component {
 		}
 		
 		function SetupPopup(id){
-			var dataSet = null; var total = null; var ccr = null; var jKey = null; var sKey = null; var descTotal = null;
+			var dataSet = null; var total = null; var ccr = null; var ccd = null; var jKey = null; var sKey = null; var descTotal = null;
 
 			if(id == 'p1'){
 				ccr = 'rgb(212,177,205)';
+				ccd = 'rgb(162,127,155)';
 				$('.icc').css('background','rgb(212,177,205)');
 				total = rawData.Main.Overview.numberOfUser;
 				dataSet = rawData.Main.Overview.List[0];
@@ -849,6 +928,7 @@ class NewAnalytics extends React.Component {
 				descTotal = rawData.Main[jKey].numberOfUsers;
 			}else if(id == 'p2'){
 				ccr = 'rgb(212,177,205)';
+				ccd = 'rgb(162,127,155)';
 				$('.icc').css('background','rgb(212,177,205)');
 				total = rawData.Main.Overview.numberOfUser;
 				dataSet = rawData.Main.Overview.List[1];
@@ -856,6 +936,7 @@ class NewAnalytics extends React.Component {
 				descTotal = rawData.Main[jKey].numberOfUsers;
 			}else if(id == 'p3'){
 				ccr = 'rgb(212,177,205)';
+				ccd = 'rgb(162,127,155)';
 				$('.icc').css('background','rgb(212,177,205)');
 				total = rawData.Main.Overview.numberOfUser;
 				dataSet = rawData.Main.Overview.List[2];
@@ -863,6 +944,7 @@ class NewAnalytics extends React.Component {
 				descTotal = rawData.Main[jKey].numberOfUsers;
 			}else if(id == 'g1'){
 				ccr = 'rgb(195,219,197)';
+				ccd = 'rgb(145,169,127)';
 				$('.icc').css('background','rgb(195,219,197');
 				jKey = rawData.Main.yourBest3[0].Job_Name;
 				sKey = rawData.Main.yourBest3[0].SkillName;
@@ -877,6 +959,7 @@ class NewAnalytics extends React.Component {
 				});
 			}else if(id == 'g2'){
 				ccr = 'rgb(195,219,197)';
+				ccd = 'rgb(145,169,127)';
 				$('.icc').css('background','rgb(195,219,197');
 				jKey = rawData.Main.yourBest3[1].Job_Name;
 				sKey = rawData.Main.yourBest3[1].SkillName;
@@ -891,6 +974,7 @@ class NewAnalytics extends React.Component {
 				});
 			}else if(id == 'g3'){
 				ccr = 'rgb(195,219,197)';
+				ccd = 'rgb(145,169,127)';
 				$('.icc').css('background','rgb(195,219,197');
 				jKey = rawData.Main.yourBest3[2].Job_Name;
 				sKey = rawData.Main.yourBest3[2].SkillName;
@@ -905,6 +989,7 @@ class NewAnalytics extends React.Component {
 				});
 			}else if(id == 'c1'){
 				ccr = 'rgb(182,222,234)';
+				ccd = 'rgb(132,172,184)';
 				$('.icc').css('background','rgb(182,222,234)');
 				if(currentTab == 2) jKey = rawData.Main.InterestedJobs[0].THname;
 				else if(currentTab == 3) jKey = rawData.Main.InterestedJobs[1].THname;
@@ -914,6 +999,7 @@ class NewAnalytics extends React.Component {
 				descTotal = rawData.Main[jKey].numberOfUsers;
 			}else if(id == 'c2'){
 				ccr = 'rgb(182,222,234)';
+				ccd = 'rgb(132,172,184)';
 				$('.icc').css('background','rgb(182,222,234)');
 				if(currentTab == 2) jKey = rawData.Main.InterestedJobs[0].THname;
 				else if(currentTab == 3) jKey = rawData.Main.InterestedJobs[1].THname;
@@ -923,6 +1009,7 @@ class NewAnalytics extends React.Component {
 				descTotal = rawData.Main[jKey].numberOfUsers;
 			}else if(id == 'c3'){
 				ccr = 'rgb(182,222,234)';
+				ccd = 'rgb(132,172,184)';
 				$('.icc').css('background','rgb(182,222,234)');
 				if(currentTab == 2) jKey = rawData.Main.InterestedJobs[0].THname;
 				else if(currentTab == 3) jKey = rawData.Main.InterestedJobs[1].THname;
@@ -935,7 +1022,7 @@ class NewAnalytics extends React.Component {
 			var md = null;
 			if(dataSet.Mode.length == 2){
 				$('.mdp-hid').show();
-				md = dataSet.Mode[0].toFixed(2)+','+ dataSet.Mode[1].toFixed(2)+'คะแนน';
+				md = dataSet.Mode[0].toFixed(2)+' และ '+ dataSet.Mode[1].toFixed(2)+' คะแนน';
 			}else if(dataSet.Mode.length == 1){
 				$('.mdp-hid').show();
 				md = dataSet.Mode[0].toFixed(2)+' คะแนน';
@@ -966,8 +1053,11 @@ class NewAnalytics extends React.Component {
 			}else{
 				$('.youp-hid').hide();
 			}
+			lineChartConfig.data.datasets[0].borderColor = ccd;
+			lineChartConfig.data.datasets[0].pointBorderColor = ccd;
+			lineChartConfig.data.datasets[0].pointBackgroundColor = ccd;
 			
-			lineChartConfig.data.datasets[0].borderColor = ccr;
+			//lineChartConfig.data.datasets[0].borderColor = ccr;
 			lineChartConfig.data.datasets[0].fill.above = ccr;
 			lineChartConfig.data.datasets[0].fill.below = ccr;
 			GenerateDistributionChartData(dataSet);
@@ -975,6 +1065,7 @@ class NewAnalytics extends React.Component {
 			lineChartConfig.data.datasets[0].data = rawScore;
 			lineChartConfig.data.percentages = ['xx.xx%'];
 			lineChartConfig.data.datasets[0].pointStyle = vPoints;
+			lineChartConfig.data.datasets[0]._vLS = vLS;
 			lineChartConfig.options.scales.y.max = disGraphMax;
 			
 			ctxP = document.getElementById("jobChart2").getContext("2d");
@@ -988,6 +1079,7 @@ class NewAnalytics extends React.Component {
 		
 		function GenerateDistributionChartData(entry){
 				disGraphMax = 0;
+				vLS = [];
 				
 				/* for testing */
 				/*var scores = [5.5,7.5,7.7];
@@ -1005,7 +1097,7 @@ class NewAnalytics extends React.Component {
 				var mean = 8.4;
 				var mode1 = -1;
 				var mode2 = -1;
-				var youScr = 2.6;
+				var youScr = null;
 				
 				var z1Count=0;
 				var z2Count=0;
@@ -1015,11 +1107,13 @@ class NewAnalytics extends React.Component {
 				console.log('match bar clicked: '+entry.SkillName);
 				
 				mean = Number(entry.Mean.toFixed(2));
-				youScr = entry.UserScore;
-				var meanPos=0; var addMean = true;
+				if(entry.UserScore != null)
+					youScr = entry.UserScore.toFixed(1);
+				var meanPos=0; var addMean = true; meanIsScore = false;
 				for (let i = 0; i < entry.AllScore.length; i++) {
 					if(entry.AllScore[i] == mean){
 						addMean = false;
+						meanIsScore = true;
 						break;
 					}		
 				}
@@ -1078,6 +1172,7 @@ class NewAnalytics extends React.Component {
 				//alert(disGraphMax);
 				
 				for (let i = 0; i < scores.length; i++) {
+					vLS.push(scores[i]);
 					if(scores[i] == 2.5){
 						vLabels.push(['พอได้','เล็กน้อย']);
 					}else if(scores[i] == 5){
@@ -1090,9 +1185,11 @@ class NewAnalytics extends React.Component {
 						if(scores[i] == youScr || scores[i] == mean || scores[i] == mode1 || scores[i] == mode2){ // show important score value
 							if(scores[i] == youScr){
 								var pct = entry.percentile == 0 ? entry.p.toFixed(2) : entry.percentile.toFixed(2);
-								vLabels.push([scores[i]+' คะแนน','('+pct+'%)']);
+								//vLabels.push([scores[i]+' คะแนน','('+pct+'%)']);
+								vLabels.push('');
 							}else{
-								vLabels.push(scores[i]+' คะแนน');
+								//vLabels.push(scores[i]+' คะแนน');
+								vLabels.push('');
 							}
 						}else{
 							vLabels.push('');
@@ -1100,7 +1197,7 @@ class NewAnalytics extends React.Component {
 					}
 					
 					if(scores[i] >= 10){ // fix pic bug at max
-						vPoints.push(dummy);
+						vPoints.push('circle');
 					}else{
 						if(scores[i] == youScr){
 							console.log('set you! at: '+i);
@@ -1122,7 +1219,7 @@ class NewAnalytics extends React.Component {
 							vPoints.push(flag);
 						}else{
 							console.log('set dummy! at: '+i);
-							vPoints.push(dummy);
+							vPoints.push('circle');
 						}
 					}
 				}
@@ -1132,6 +1229,7 @@ class NewAnalytics extends React.Component {
 					count.unshift(0);
 					vLabels.unshift(['พอได้','เล็กน้อย']);
 					vPoints.unshift(dummy);
+					vLS.unshift(-1);
 				}
 				
 				if(!scores.includes(10)){
@@ -1139,6 +1237,7 @@ class NewAnalytics extends React.Component {
 					count.push(0);
 					vLabels.push('ยอดเยี่ยม');
 					vPoints.push(dummy);
+					vLS.push(-1);
 				}
 				
 				var goodIndex=0;
@@ -1159,6 +1258,7 @@ class NewAnalytics extends React.Component {
 						count.splice(goodIndex+1, 0, dumGood);
 						vLabels.splice(goodIndex+1, 0, 'พอใช้');
 						vPoints.splice(goodIndex+1, 0, dummy);
+						vLS.splice(goodIndex+1, 0, -1);
 					}else{
 						scores.splice(goodIndex, 0, 'SP1');
 						var dumGood = 0;
@@ -1167,6 +1267,7 @@ class NewAnalytics extends React.Component {
 						count.splice(goodIndex, 0, dumGood);
 						vLabels.splice(goodIndex, 0, 'พอใช้');
 						vPoints.splice(goodIndex, 0, dummy);
+						vLS.splice(goodIndex, 0, -1);
 					}
 				}
 				
@@ -1189,6 +1290,7 @@ class NewAnalytics extends React.Component {
 						count.splice(betterIndex, 0, dumGood);
 						vLabels.splice(betterIndex, 0, 'ดี');
 						vPoints.splice(betterIndex, 0, dummy);
+						vLS.splice(betterIndex, 0, -1);
 					}else{
 						scores.splice(betterIndex, 0, 'SP2');
 						var dumGood = 0;
@@ -1197,6 +1299,7 @@ class NewAnalytics extends React.Component {
 						count.splice(betterIndex, 0, dumGood);
 						vLabels.splice(betterIndex, 0, 'ดี');
 						vPoints.splice(betterIndex, 0, dummy);
+						vLS.splice(betterIndex, 0, -1);
 					}
 				}
 				
@@ -1214,7 +1317,7 @@ class NewAnalytics extends React.Component {
 			
 			var skillList = [];
 			rawData.Main[THname].List.forEach((entry) => {
-				if(rawData.Main.mySkills.includes(entry.SkillName)){
+				if(rawData.Main.mySkills.includes(entry.SkillName) && entry.UserScore != null){
 					skillList.push(entry.SkillName);
 					jobKeyVal[entry.SkillName] = entry;
 				}

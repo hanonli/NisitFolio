@@ -68,6 +68,7 @@ class Home extends React.Component {
 					  // alert('set cookie as '+text);
 					cookie.save('login-user', text, { path: '/' })
 					userId = text;
+					UpdateAnalyticsCache();
 				  }
 				});
 			 })
@@ -119,8 +120,6 @@ class Home extends React.Component {
 			.then(response => response.json())
 			.then((datas) => {
 				SaveToken();
-				UpdateAnalyticsCache();
-				
 				//console.log(datas);
 				console.log(datas.Firstname);
 				console.log(datas.Lastname);

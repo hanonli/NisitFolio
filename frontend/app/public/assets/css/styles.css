@@ -1662,13 +1662,13 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 .sp-tc1{
 	position: absolute;
 	top:0px;
-	right: 145px;
+	left: 700px;
 }
 
 .sp-tc2{
 	position: absolute;
 	top:0px;
-	right: 20px;
+	left: 800px;
 }
 
 .sp-tc-g{
