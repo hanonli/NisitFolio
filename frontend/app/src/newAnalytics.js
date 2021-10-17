@@ -1749,7 +1749,7 @@ class NewAnalytics extends React.Component {
 									<hrf>Top 3 เทรนด์ทักษะเสริมทั้งหมด</hrf>
 								</div>
 								<div class="add-none">
-									<kf>ขออถัย แต่ข้อมูลทักษะเสริมในระบบไม่เพียงพอที่จะแสดงผลนี้</kf>
+									<kf>ขออภัย แต่ข้อมูลทักษะเสริมในระบบไม่เพียงพอที่จะแสดงผลนี้</kf>
 								</div>
 							</div>
 						</div>
