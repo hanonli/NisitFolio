@@ -55,15 +55,18 @@ class MyResumePort extends React.Component {
                 <div class="">
                     <div className="img-overlay">
                         <div class="ghostbutton" onClick={this.handleRoute}></div>
-                            <div className="img-mywork-edit">
-                                <img className="img-mywork-edit" onClick={this.handleClicktoEdit} src="assets/images/whiteedit.png" type="button" />
-                            </div>
-                        <h3 className="myworkname">
-                            {port_name}
-                        </h3>
-                        <h4 className="myworkdate">
-                            {date}
-                        </h4>
+                        <div className="img-mywork-edit">
+                            <img className="img-mywork-edit" onClick={this.handleClicktoEdit} src="assets/images/whiteedit.png" type="button" />
+                        </div>
+                        <div class="myworkalllabel">
+                            <h3 className="myworkname">
+                                {port_name}
+                            </h3>
+                            <h4 className="myworkdate">
+                                {date}
+                            </h4>
+                        </div>
+                        
                     </div>
                         <div className="mywork-col">
                             <img className="img-mywork-1" src={image} />
