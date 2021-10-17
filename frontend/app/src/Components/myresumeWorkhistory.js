@@ -122,7 +122,7 @@ class MyresumeWork extends React.Component{
         let content = [];
         let result;
         if(data.length !== 0){
-            topicElement.push(<div class="educationtopic"><h2 class="resumetopic">ประวัติการการทำงาน</h2></div>);
+            topicElement.push(<div class="educationtopic"><h2 class="resumetopic">ประวัติการทำงาน</h2></div>);
             topicElement.push(<div class="resumesectionline" style={linestyle}></div>)
             sortdata = data.sort(workSorter("Work_End_Year", "Work_End_Month"));
             for (var i = 0; i < sortdata.length; i++) {
@@ -134,7 +134,7 @@ class MyresumeWork extends React.Component{
         }
         else{
             if(owner){
-                topicElement.push(<div class="educationtopic"><h2 class="resumetopic">ประวัติการการทำงาน</h2></div>);
+                topicElement.push(<div class="educationtopic"><h2 class="resumetopic">ประวัติการทำงาน</h2></div>);
                 topicElement.push(<div class="resumesectionline" style={linestyle}></div>)
                 workCon =(
                 <div class="work-dummyshow">
