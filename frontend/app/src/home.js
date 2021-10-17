@@ -312,7 +312,7 @@ class Home extends React.Component {
 						<header class="header">
 							<div class="container">     
 								<div class="row align-items-end">
-									<div class="col-md-7">
+									<div class="col-md-8">
 										<img class="profile-image img-fluid float-start rounded-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="อัพโหลดรูปโปรไฟล์" type='button' id="avatar" src="assets/images/profile_uk.png" width="150" height="150" alt="profile image" />
 										<input type="file" class="sr-only" id="input" accept="image/*" name="image" hidden />
 										<div class="profile-content">
@@ -322,7 +322,7 @@ class Home extends React.Component {
 										<h2 class="desc-s" id="fetch-desc"> </h2> 
 										</div>
 									</div>
-									<div class="col-md-5">
+									<div class="col-md-4">
 										 <div class="lg-view float-end">
 											<Link to="/editprofile">
 												<a class="btn btn-cta-primary round profile-button grey margin-right-m" target="_blank">แก้ไขโปรไฟล์</a>
