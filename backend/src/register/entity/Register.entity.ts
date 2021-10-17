@@ -360,6 +360,9 @@ export class Resume {
   ProfilePic: string;
 
   @Column()
+  ProfilePic_URL: string;
+
+  @Column()
   First: string;
 
   @Column()

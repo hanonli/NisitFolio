@@ -211,6 +211,7 @@ export class RegisterService {
       resume2.Email = createDto.Email;
       resume2.First = createDto.Firstname;
       resume2.Last = createDto.Lastname;
+      resume2.ProfilePic_URL = createDto.ProfilePic;
       resume2.interestedJob = new InterestedJob();
       resume2.interestedJob._id = Parentid;
       resume2.interestedJob.Job_Score = interestedJob.Job_Score;
