@@ -15,7 +15,7 @@ import $ from 'jquery';
 import cookie from 'react-cookies';
 import LoadingS from './Components/loadingS';
 
-var certdata = [], workdata = [], Color_Resume, firstchoosecolor = false,list_of_aca=[],list_of_high=[],sideskilldata=[];
+var certdata = [], workdata = [], list_of_aca=[],list_of_high=[],sideskilldata=[];
 
 class Editresume extends React.Component {
 
@@ -24,7 +24,9 @@ class Editresume extends React.Component {
 
 		this.state = {
 			data: [],
-			render: true
+			render: true,
+			Color_Resume: '',
+			firstchoosecolor: false
 		}
 	}
 
@@ -77,13 +79,16 @@ class Editresume extends React.Component {
 				})
 				console.log('this.state.data :' + this.state.data);
 				/*Zone to use datas*/
-
 				console.log(this.state.data.Degree);
+				//Color_Resume = this.state.data.Color_ResumeId ? this.state.data.Color_ResumeId : "";
+				if (this.state.data.Color_ResumeId === undefined) {
+					this.setState({firstchoosecolor: true});
+				}		
+				else{
+					this.setState({Color_Resume: this.state.data.Color_ResumeId});
+				}		
 				this.state.data.Degree.forEach((element, index) => {
-					Color_Resume = this.state.data.Color_ResumeId ? this.state.data.Color_ResumeId : "";
-					if (!("Color_ResumeId" in this.state.data)) {
-						firstchoosecolor = true;
-					}
+
 					if (element == 'มัธยมศึกษาตอนปลาย' || element == 'ปวช.') {
 						list_of_high.push({
 							id: this.state.data.EducationHistory_id[index],
@@ -273,7 +278,7 @@ class Editresume extends React.Component {
 					<form class="needs-validation" novalidate>
 						<div>
 							<div class="tab-content" id="registab1-content">
-								<Myresumedittemplate Color_Resume={Color_Resume} firstchoosecolor={firstchoosecolor} />
+								<Myresumedittemplate Color_Resume={this.state.Color_Resume} firstchoosecolor={this.state.firstchoosecolor} />
 							</div>
 							<div class="tab-content" id="registab2-content">
 								<Chooseresume1 list_of_aca={list_of_aca} list_of_high={list_of_high}/>
