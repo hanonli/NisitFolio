@@ -23,7 +23,7 @@ export class RegisterController {
   async UpdateRegister(@Body() CreateDto: PatchRegisDto  ,@Request() req) {
     return this.registerService.UpdateRegis(CreateDto,req.user.userId);
   }
-  //------------------------------------test
+
   @Post("/addsoftskill")
   async Addsoftskill(@Body() CreateDto: PatchRegisDto ,@Request() req) {
     return this.registerService.Newaddskill(CreateDto,req.user.userId);
@@ -44,8 +44,6 @@ export class RegisterController {
   async AddinterestedJob(@Body() CreateDto: PatchRegisDto ,@Request() req,@RealIP() ip: string) {
     return this.registerService.NewinterestedJob(CreateDto,req.user.userId,ip);
   }
-  
-  //--------------------------------------
 
   @UseGuards(JwtAuthGuard)
   @Delete()
