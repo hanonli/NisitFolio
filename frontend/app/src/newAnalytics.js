@@ -104,6 +104,7 @@ class NewAnalytics extends React.Component {
 			rightBox3AddCount: null,
 			
 			popJobTotal: null,
+			popJobSkillTotal: null,
 			popJobName: null,
 			popJobSkillName: null,
 			popJobScore: null,
@@ -1046,6 +1047,7 @@ class NewAnalytics extends React.Component {
 			//alert(dataSet.p);
 			refThis.setState({ 
 				popJobTotal: descTotal,
+				popJobSkillTotal: dataSet.total,
 				popJobName: jKey,
 				popJobSkillName: dataSet.SkillName,
 				//rightJobPercentage: dataSet.percentage.toFixed(2),
@@ -1935,7 +1937,7 @@ class NewAnalytics extends React.Component {
 						<div class="">
 							<div class="analytic-arrow-cls back" id="main-lv2-back"></div>
 							<hhf class="analytic-md-header2">กราฟแสดงการกระจายตัวของคะแนนทักษะ<br/></hhf>
-							<naf class="analytic-spc-s analytic-md-sub-header">จากคนทั้งหมด {this.state.popJobTotal} คน ที่สนใจตำแหน่งงานเดียวกัน</naf>
+							<naf class="analytic-spc-s analytic-md-sub-header">จากคนทั้งหมด {this.state.popJobTotal} คน ที่สนใจตำแหน่งงานเดียวกัน มีคนมีความถนัดในทักษะนี้ {this.state.popJobSkillTotal} คน</naf>
 							<div class="ap-flex">
 								<div class="apv-flex">
 									<div class="analytic-right-chart-label2">
