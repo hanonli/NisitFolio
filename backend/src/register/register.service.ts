@@ -7,6 +7,7 @@ import { XMLHttpRequest } from 'xmlhttprequest-ts';
 import { HttpService } from '@nestjs/axios';
 import { AxiosResponse } from 'axios';
 import { Observable } from 'rxjs';
+import pro64 from "./pic"
 
 import { Account, Userinfo, AdditionalSkill, Certificate, EducationHistory, InterestedJob, WorkHistory, PortfolioPicture, Resume, UserJobSkill } from './entity/Register.entity'
 import { CreateRegisDto } from './dto/create-register.dto';
@@ -200,6 +201,8 @@ export class RegisterService {
         userJobSkill.Job_SkillName = createDto.Job_SkillName[_i][_j];
         await this.userJobSkillRepository.save(userJobSkill);
       }
+      if (createDto.ProfilePicBase64 == null)
+        createDto.ProfilePicBase64 = pro64;
       const resume2 = new Resume();
       resume2._id = resumeid;
       resume2.UserId = accountid;

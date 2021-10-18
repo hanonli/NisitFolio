@@ -54,7 +54,7 @@ class Editresume2 extends React.Component {
                                             type="checkbox"\
                                             name="vehicle2"\
                                             value="{ele.WorkHistory_id}"\
-                                            defaultchecked="{isCheck_work[ele.WorkHistory_id]}"\
+                                            {ischeck}\
                                             hidden\
                                         />\
                                         <label class="t4-content" id="list-work-22" for="{yyyxxcxele.WorkHistory_id}">\
@@ -81,7 +81,7 @@ class Editresume2 extends React.Component {
                 grid_work2 = grid_work2.replace("{ele.WorkHistory_id}", ele.WorkHistory_id);
                 grid_work2 = grid_work2.replace("{yyyele.WorkHistory_id}", "yyy" + ele.WorkHistory_id);
                 grid_work2 = grid_work2.replace("{ele.WorkHistory_id}", ele.WorkHistory_id);
-                grid_work2 = grid_work2.replace("{isCheck_work[ele.WorkHistory_id]}", ele.isCheckWork);
+                grid_work2 = grid_work2.replace("{ischeck}", ele.isCheckWork ? "checked" : "");
                 grid_work2 = grid_work2.replace("{yyyxxcxele.WorkHistory_id}", "yyy" + ele.WorkHistory_id);
                 grid_work2 = grid_work2.replace("{ele.Work_JobName}", ele.Work_JobName);
                 if (ele.Company == "none" || ele.Company == "") {
