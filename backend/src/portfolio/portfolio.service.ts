@@ -305,8 +305,13 @@ export class PortService {
         const tmp=Number(y[0])*10000+Datess[y[1]]*1000000+Number(y[2])*100000000+Number(t[0])*100+Number(t[1]);
         //return "f"
 
-        arr_sort.push(tmp);
-        arr_dic[tmp]=_i;
+        if(arr_dic[tmp]==null){
+          arr_sort.push(tmp);
+          arr_dic[tmp]=_i;
+        }else{
+          arr_sort.push(tmp+1/10);
+          arr_dic[tmp+1/10]=_i;
+        }
       }
     }else if(sort=="ascendingOrder"||sort=="descendingOrder"){
       for (var _i = 0; _i < arr_user_port.length; _i++) {
