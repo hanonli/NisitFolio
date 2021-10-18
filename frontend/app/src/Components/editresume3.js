@@ -46,7 +46,7 @@ class Editresume3 extends React.Component {
             var tmp1 = [...mycert2];
             tmp1.sort(compareValues('CertYear', 'desc'));
             tmp1.forEach(ele => {
-                isCheck_certi[ele.Certificate_id] = false;
+                //isCheck_certi[ele.Certificate_id] = false;
                 let grid_certi2 = ` <div id={ele.Certificate_id}>\
                                     <input\
                                         class="input-choose-certi1"\
@@ -54,7 +54,7 @@ class Editresume3 extends React.Component {
                                         type="checkbox"\
                                         name="vehicle1"\
                                         value="{ele.Certificate_idvalue}"\
-                                        defaultChecked="{isCheck_certi}"\
+                                        {ischeck}\
                                         hidden\
                                     />\
                                     <label id="list-certi33" class="card_certi" for="{forxxx}">\
@@ -70,7 +70,8 @@ class Editresume3 extends React.Component {
                                     <div class="content-certi1" id="{contentYear}"></div>`;
                 grid_certi2 = grid_certi2.replace("{xxx}", `xxx` + ele.Certificate_id);
                 grid_certi2 = grid_certi2.replace("{ele.Certificate_idvalue}", ele.Certificate_id);
-                grid_certi2 = grid_certi2.replace("{isCheck_certi}", isCheck_certi[ele.Certificate_id]);
+                //grid_certi2 = grid_certi2.replace("{isCheck_certi}", ele.isCheckCert);
+                grid_certi2 = grid_certi2.replace("{ischeck}", ele.isCheckCert ? "checked" : "");
                 grid_certi2 = grid_certi2.replace("{forxxx}", `xxx` + ele.Certificate_id);
                 grid_certi2 = grid_certi2.replace("{ele.CertName}", ele.CertName);
                 grid_certi2 = grid_certi2.replace("{ele.CertYear}", ele.CertYear);
