@@ -24,22 +24,27 @@ export class RegisterController {
     return this.registerService.UpdateRegis(CreateDto,req.user.userId);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Post("/addsoftskill")
   async Addsoftskill(@Body() CreateDto: PatchRegisDto ,@Request() req) {
     return this.registerService.Newaddskill(CreateDto,req.user.userId);
   }
+  @UseGuards(JwtAuthGuard)
   @Post("/addcertificate")
   async Addcertificate(@Body() CreateDto: PatchRegisDto ,@Request() req) {
     return this.registerService.Newcertificate(CreateDto,req.user.userId);
   }
+  @UseGuards(JwtAuthGuard)
   @Post("/addeducationHistory")
   async AddeducationHistory(@Body() CreateDto: PatchRegisDto ,@Request() req) {
     return this.registerService.NeweducationHistory(CreateDto,req.user.userId);
   }
+  @UseGuards(JwtAuthGuard)
   @Post("/addworkHistory")
   async AddworkHistory(@Body() CreateDto: PatchRegisDto ,@Request() req) {
     return this.registerService.NewworkHistory(CreateDto,req.user.userId);
   }
+  @UseGuards(JwtAuthGuard)
   @Post("/addinterestedJob")
   async AddinterestedJob(@Body() CreateDto: PatchRegisDto ,@Request() req,@RealIP() ip: string) {
     return this.registerService.NewinterestedJob(CreateDto,req.user.userId,ip);
