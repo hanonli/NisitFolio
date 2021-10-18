@@ -9,6 +9,7 @@ import basePdf2 from "./pdf-template/template-orange";
 import basePdf3 from "./pdf-template/template-yellow";
 import basePdf4 from "./pdf-template/template-navy";
 import basePdf5 from "./pdf-template/template-blue";
+import img from "./bar/js/score1";
 import img2 from "./bar/js/score3";
 import img3 from "./bar/js/score4";
 import img4 from "./bar/js/score5";
@@ -32,15 +33,12 @@ class PDF extends React.Component {
 	
 	componentDidMount() {
 		window.addEventListener('load', this.handleLoad);
-		console.log("YEAHXXX!");
 		var token = cookie.load('login-token')
-		console.log(token);
 
 		let params = new URLSearchParams(document.location.search.substring(1));
-		console.log(params);
 		let template = params.get("template");
+		let resume = params.get("resume");
 		let basePdf =  basePdf1;
-		console.log(template);
 		if (template == "red"){
 			basePdf = basePdf1;
 		}
@@ -70,116 +68,333 @@ class PDF extends React.Component {
 		})
 			.then(response => response.json())
 			.then((datas) => {
-				console.log(datas[0]);
-				console.log(datas[0].Owner);
-				console.log(datas[0].AboutMe);
-				console.log(datas[0].ProfilePic);
-				console.log(datas[0].Email);
+				var fill1 = "";
+				if (datas[resume].First)
+					fill1 =  datas[resume].First;
+
+				var fill2 = "";
+				if (datas[resume].Last)
+					fill2 =  datas[resume].Last;
+
+				var fill3 = "";
+				if (datas[resume].interestedJob[0].Job_JobName)
+					fill3 = datas[resume].interestedJob[0].Job_JobName;
+
+				var fill4 = "";
+				if (datas[resume].Location)
+					fill4 = datas[resume].Location;
+
+				var fill5 = "";
+				if (datas[resume].AboutMe)
+					fill5 = datas[resume].AboutMe;
+
+				var fill6 = "";
+				if (datas[resume].Email)
+					fill6 = datas[resume].Email;
+
+
+				var fill7 = "";
+				var fill8 = "";
+				var fill9 = "";
+				var fill10 = "";
+				var fill11 = "";
+				if (datas[resume].workHistorys[0])
+				{
+					fill7 = datas[resume].workHistorys[0].Work_JobName ? datas[resume].workHistorys[0].Work_JobName : "";
+					fill8 = datas[resume].workHistorys[0].Work_JobType ? datas[resume].workHistorys[0].Work_JobType : "";
+					fill9 = datas[resume].workHistorys[0].Work_Company ? datas[resume].workHistorys[0].Work_Company : "";
+					if (datas[resume].workHistorys[0].Work_Start_Year && datas[resume].workHistorys[0].Work_End_Year)
+						fill10 = datas[resume].workHistorys[0].Work_Start_Year	+ "-" + datas[resume].workHistorys[0].Work_End_Year + "  |";
+					fill11 = datas[resume].workHistorys[0].Work_Infomation ? datas[resume].workHistorys[0].Work_Infomation : "";
+				}
+
+				var fill12 = "";
+				var fill13 = "";
+				var fill14 = "";
+				var fill15 = "";
+				var fill16 = "";
+				if (datas[resume].workHistorys[1])
+				{
+					fill12 = datas[resume].workHistorys[1].Work_JobName ? datas[resume].workHistorys[1].Work_JobName : "";
+					fill13 = datas[resume].workHistorys[1].Work_JobType ? datas[resume].workHistorys[1].Work_JobType : "";
+					fill14 = datas[resume].workHistorys[1].Work_Company ? datas[resume].workHistorys[1].Work_Company : "";
+					if (datas[resume].workHistorys[1].Work_Start_Year && datas[resume].workHistorys[1].Work_End_Year)
+						fill15 = datas[resume].workHistorys[1].Work_Start_Year	+ "-" + datas[resume].workHistorys[1].Work_End_Year + "  |";
+					fill16 = datas[resume].workHistorys[1].Work_Infomation ? datas[resume].workHistorys[1].Work_Infomation : "";
+				}
+
+				var fill17 = "";
+				var fill18 = "";
+				var fill19 = "";
+				var fill20 = "";
+				var fill21 = "";
+				if (datas[resume].workHistorys[2])
+				{
+					fill17 = datas[resume].workHistorys[2].Work_JobName ? datas[resume].workHistorys[2].Work_JobName : "";
+					fill18 = datas[resume].workHistorys[2].Work_JobType ? datas[resume].workHistorys[2].Work_JobType : "";
+					fill19 = datas[resume].workHistorys[2].Work_Company ? datas[resume].workHistorys[2].Work_Company : "";
+					if (datas[resume].workHistorys[2].Work_Start_Year && datas[resume].workHistorys[2].Work_End_Year)
+						fill20 = datas[resume].workHistorys[2].Work_Start_Year	+ "-" + datas[resume].workHistorys[2].Work_End_Year + "  |";
+					fill21 = datas[resume].workHistorys[1].Work_Infomation ? datas[resume].workHistorys[1].Work_Infomation : "";
+				}
+
+				var fill22 = "";
+				var fill25 = img;
+				var fill28 = "";
+				let score1 = 0;
+				if (datas[resume].interestedJob[0])
+				{
+					fill22 = datas[resume].interestedJob[0].Job_SkillName[0] ? datas[resume].interestedJob[0].Job_SkillName[0] : "";
+					score1 = datas[resume].interestedJob[0].Job_Score[0] ? datas[resume].interestedJob[0].Job_Score[0] : 0; 
+					if (score1 >= 2.5 && score1 < 3.5)
+						fill25 = img2;
+					else if (score1 >= 3.5 && score1 < 4.5)
+						fill25 = img3;
+					else if (score1 >= 4.5 && score1 < 5.5)
+						fill25 = img4;
+					else if (score1 >= 5.5 && score1 < 6.5)
+						fill25 = img5;
+					else if (score1 >= 6.5 && score1 < 7.5)
+						fill25 = img6;
+					else if (score1 >= 7.5 && score1 < 8.5)
+						fill25 = img7;
+					else if (score1 >= 8.5 && score1 < 9.5)
+						fill25 = img8;
+					else if (score1 >= 9.5)
+						fill25 = img9;
+					
+					if (score1 >= 2.5 && score1 < 5)
+						fill28 = "พอได้เล็กน้อย";
+				    else if (score1 >= 5 && score1 < 7.5)
+						fill28 = "พื้นฐาน";
+					else if (score1 >= 7.5 && score1 < 10)
+						fill28 = "ดี";
+					else if (score1 == 10)
+						fill28 = "ดีเยี่ยม";
+
+				}
+
+				var fill23 = "";
+				var fill26 = img;
+				var fill29 = "";
+				let score2 = 0;
+				if (datas[resume].interestedJob[0])
+				{
+					fill23 = datas[resume].interestedJob[0].Job_SkillName[1] ? datas[resume].interestedJob[0].Job_SkillName[1] : "";
+					score2 = datas[resume].interestedJob[0].Job_Score[1] ? datas[resume].interestedJob[0].Job_Score[1] : 0; 
+					if (score2 >= 2.5 && score2 < 3.5)
+						fill26 = img2;
+					else if (score2 >= 3.5 && score2 < 4.5)
+						fill26 = img3;
+					else if (score2 >= 4.5 && score2 < 5.5)
+						fill26 = img4;
+					else if (score2 >= 5.5 && score2 < 6.5)
+						fill26 = img5;
+					else if (score2 >= 6.5 && score2 < 7.5)
+						fill26 = img6;
+					else if (score2 >= 7.5 && score2 < 8.5)
+						fill26 = img7;
+					else if (score2 >= 8.5 && score2 < 9.5)
+						fill26 = img8;
+					else if (score2 >= 9.5)
+						fill26 = img9;
+					
+					if (score2 >= 2.5 && score2 < 5)
+						fill29 = "พอได้เล็กน้อย";
+				    else if (score2 >= 5 && score2 < 7.5)
+						fill29 = "พื้นฐาน";
+					else if (score2 >= 7.5 && score2 < 10)
+						fill29 = "ดี";
+					else if (score2 == 10)
+						fill29 = "ดีเยี่ยม";
+
+				}
+
+				var fill24 = "";
+				var fill27 = img;
+				var fill30 = "";
+				let score3 = 0;
+				if (datas[resume].interestedJob[0])
+				{
+					fill24 = datas[resume].interestedJob[0].Job_SkillName[2] ? datas[resume].interestedJob[0].Job_SkillName[2] : "";
+					score3 = datas[resume].interestedJob[0].Job_Score[2] ? datas[resume].interestedJob[0].Job_Score[2] : 0; 
+					if (score3 >= 2.5 && score3 < 3.5)
+						fill27 = img2;
+					else if (score3 >= 3.5 && score3 < 4.5)
+						fill27 = img3;
+					else if (score3 >= 4.5 && score3 < 5.5)
+						fill27 = img4;
+					else if (score3 >= 5.5 && score3 < 6.5)
+						fill27 = img5;
+					else if (score3 >= 6.5 && score3 < 7.5)
+						fill27 = img6;
+					else if (score3 >= 7.5 && score3 < 8.5)
+						fill27 = img7;
+					else if (score3 >= 8.5 && score3 < 9.5)
+						fill27 = img8;
+					else if (score3 >= 9.5)
+						fill27 = img9;
+					
+					if (score3 >= 2.5 && score3 < 5)
+						fill30 = "พอได้เล็กน้อย";
+				    else if (score3 >= 5 && score3 < 7.5)
+						fill30 = "พื้นฐาน";
+					else if (score3 >= 7.5 && score3 < 10)
+						fill30 = "ดี";
+					else if (score3 == 10)
+						fill30 = "ดีเยี่ยม";
+
+				}
+	
+				var fill31 = "";
+				let position1 = 196.52;
+				if (datas[resume].additionalSkills[0]){
+					fill31 = datas[resume].additionalSkills[0].AdditionalSkill ? datas[resume].additionalSkills[0].AdditionalSkill : "";
+					if (fill31.length > 15)
+						position1 = 195.02;
+					else if (fill31.length > 30)
+						position1 = 193.52;
+				}
+
+				var fill32 = "";
+				let position2 = 196.52;
+				if (datas[resume].additionalSkills[1]){
+					fill32 = datas[resume].additionalSkills[1].AdditionalSkill ? datas[resume].additionalSkills[1].AdditionalSkill : "";
+					if (fill32.length > 15)
+						position2 = 195.02;
+					else if (fill32.length > 30)
+						position2 = 193.52;
+				}
+
+				var fill33 = "";
+				let position3 = 196.52;
+				if (datas[resume].additionalSkills[2]){
+					fill33 = datas[resume].additionalSkills[2].AdditionalSkill ? datas[resume].additionalSkills[2].AdditionalSkill : "";
+					if (fill33.length > 15)
+						position3 = 195.02;
+					else if (fill33.length > 30)
+						position3 = 193.52;
+				}
+
+				var fill34 = '';
+				var fill35 = '';
+				var fill36 = '';
+				var fill37 = '';
+				var fill38 = '';
+				var fill39 = '';
+				let grade1 = 0;
+				if (datas[resume].educationHistorys[0]){
+					fill34 = datas[resume].educationHistorys[0].Degree ? datas[resume].educationHistorys[0].Degree : "";
+					if (datas[resume].educationHistorys[0].Education_End_Year != 0)
+						fill35 = datas[resume].educationHistorys[0].Education_End_Year.toString() + "  |";
+					fill36 = datas[resume].educationHistorys[0].Facalty ? datas[resume].educationHistorys[0].Facalty : "";
+					fill37 = datas[resume].educationHistorys[0].Academy ? datas[resume].educationHistorys[0].Academy : "";
+					grade1 = datas[resume].educationHistorys[0].Grade ? datas[resume].educationHistorys[0].Grade : 0;
+					if (grade1 != 0){
+						fill38 = "เกรดเฉลี่ย";
+						fill39 = (datas[resume].educationHistorys[0].Grade.toFixed(2)).toString();
+					}
+			
+				}
+
+				var fill40 = '';
+				var fill41 = '';
+				var fill42 = '';
+				var fill43 = '';
+				var fill44 = '';
+				var fill45 = '';
+				let grade2 = 0;
+				if (datas[resume].educationHistorys[1]){
+					fill40 = datas[resume].educationHistorys[1].Degree ? datas[resume].educationHistorys[1].Degree : "";
+					if (datas[resume].educationHistorys[1].Education_End_Year != 0)
+						fill41 = datas[resume].educationHistorys[1].Education_End_Year.toString() + "  |";
+					fill42 = datas[resume].educationHistorys[1].Facalty ? datas[resume].educationHistorys[1].Facalty : "";
+					fill43 = datas[resume].educationHistorys[1].Academy ? datas[resume].educationHistorys[1].Academy : "";
+					grade2 = datas[resume].educationHistorys[1].Grade ? datas[resume].educationHistorys[1].Grade : 0;
+					if (grade2 != 0){
+						fill44 = "เกรดเฉลี่ย";
+						fill45 = (datas[resume].educationHistorys[0].Grade.toFixed(2)).toString();
+					}
+			
+				}
+				var fill46 = '';
+				var fill47 = '';
+				var fill48 = '';
+				var fill49 = '';
+				var fill50 = '';
+				var fill51 = '';
+				let grade3 = 0;
+				if (datas[resume].educationHistorys[2]){
+					fill46 = datas[resume].educationHistorys[2].Degree ? datas[resume].educationHistorys[2].Degree : "";
+					if (datas[resume].educationHistorys[2].Education_End_Year != 0)
+						fill47 = datas[resume].educationHistorys[2].Education_End_Year.toString() + "  |";
+					fill48 = datas[resume].educationHistorys[2].Facalty ? datas[resume].educationHistorys[2].Facalty : "";
+					fill49 = datas[resume].educationHistorys[2].Academy ? datas[resume].educationHistorys[2].Academy : "";
+					grade3 = datas[resume].educationHistorys[2].Grade ? datas[resume].educationHistorys[2].Grade : 0;
+					if (grade3 != 0){
+						fill50 = "เกรดเฉลี่ย";
+						fill51 = (datas[resume].educationHistorys[0].Grade.toFixed(2)).toString();
+					}
+			
+				}
+
+			    var fill52 = '';
+				if (datas[resume].certificates[0])
+					fill52 = datas[resume].certificates[0].CertName ? datas[resume].certificates[0].CertName : "";
+
+				var fill53 = '';
+				if (datas[resume].certificates[1])
+					fill53 = datas[resume].certificates[1].CertName ? datas[resume].certificates[1].CertName : "";
+
+				var fill54 = '';
+				if (datas[resume].certificates[2])
+					fill54 = datas[resume].certificates[2].CertName ? datas[resume].certificates[2].CertName : "";
+
+				var fill55 = '';
+				if (datas[resume].certificates[3])
+					fill55 = datas[resume].certificates[3].CertName ? datas[resume].certificates[3].CertName : "";
+
+				var fill56 = '';
+				if (datas[resume].certificates[4])
+					fill56 = datas[resume].certificates[4].CertName ? datas[resume].certificates[4].CertName : "";
+
+				var fill57 = '';
+				if (datas[resume].certificates[5])
+					fill57 = datas[resume].certificates[5].CertName ? datas[resume].certificates[5].CertName : "";
+
+			
+
+				var fill58 = '';
+				if (datas[resume].certificates[0])
+					fill58 = datas[resume].certificates[0].CertYear.toString();
+	
+				var fill59 = '';
+				if (datas[resume].certificates[1])
+					fill59 = datas[resume].certificates[1].CertYear.toString();
 				
+				var fill60 = '';
+				if (datas[resume].certificates[2])
+					fill60 = datas[resume].certificates[2].CertYear.toString();
+				
+				var fill61 = '';
+				if (datas[resume].certificates[3])
+					fill61 = datas[resume].certificates[3].CertYear.toString();
+
+				var fill62 = '';
+				if (datas[resume].certificates[4])
+					fill62 = datas[resume].certificates[4].CertYear.toString();
+
+				var fill63 = '';
+				if (datas[resume].certificates[5])
+					fill63 = datas[resume].certificates[5].CertYear.toString();
+				
+				for (let i = 1; i < 64; i++) {
+					console.log(`${`{fill${i}}`}`);
+				}
+
 				this.setState({ render: true });
                 const font = { tahomo };
 				
-				let position1 = 196.52;
-				if (datas[0].additionalSkills[0].AdditionalSkill.length > 15){
-					position1 = 195.02;
-				}
-				else if (datas[0].additionalSkills[0].AdditionalSkill.length > 30){
-					position1 = 193.52;
-				}
-
-				let position2 = 196.52;
-				if (datas[0].additionalSkills[1].AdditionalSkill.length > 15){
-					position2 = 195.02;
-				}
-				else if (datas[0].additionalSkills[1].AdditionalSkill.length > 30){
-					position2 = 193.52;
-				}
-
-				let position3 = 196.52;
-				if (datas[0].additionalSkills[2].AdditionalSkill.length > 15){
-					position3 = 195.02;
-				}
-				else if (datas[0].additionalSkills[2].AdditionalSkill.length > 30){
-					position3 = 193.52;
-				}
-
-				let score1 = "";
-				if (datas[0].interestedJob[0].Job_Score[0] >= 2.5 && datas[0].interestedJob[0].Job_Score[0] < 3.5){
-					score1 = img2;
-				}
-				else if (datas[0].interestedJob[0].Job_Score[0] >= 3.5 && datas[0].interestedJob[0].Job_Score[0] < 4.5){
-					score1 = img3;
-				}
-				else if (datas[0].interestedJob[0].Job_Score[0] >= 4.5 && datas[0].interestedJob[0].Job_Score[0] < 5.5){
-					score1 = img4;
-				}
-				else if (datas[0].interestedJob[0].Job_Score[0] >= 5.5 && datas[0].interestedJob[0].Job_Score[0] < 6.5){
-					score1 = img5;
-				}
-				else if (datas[0].interestedJob[0].Job_Score[0] >= 6.5 && datas[0].interestedJob[0].Job_Score[0] < 7.5){
-					score1 = img6;
-				}
-				else if (datas[0].interestedJob[0].Job_Score[0] >= 7.5 && datas[0].interestedJob[0].Job_Score[0] < 8.5){
-					score1 = img7;
-				}
-				else if (datas[0].interestedJob[0].Job_Score[0] >= 8.5 && datas[0].interestedJob[0].Job_Score[0] < 9.5){
-					score1 = img8;
-				}
-				else if (datas[0].interestedJob[0].Job_Score[0] >= 9.5){
-					score1 = img9;
-				}
-
-				let score2 = "";
-				if (datas[0].interestedJob[0].Job_Score[1] >= 2.5 && datas[0].interestedJob[0].Job_Score[1] < 3.5){
-					score2 = img2;
-				}
-				else if (datas[0].interestedJob[0].Job_Score[1] >= 3.5 && datas[0].interestedJob[0].Job_Score[1] < 4.5){
-					score2 = img3;
-				}
-				else if (datas[0].interestedJob[0].Job_Score[1] >= 4.5 && datas[0].interestedJob[0].Job_Score[1] < 5.5){
-					score2 = img4;
-				}
-				else if (datas[0].interestedJob[0].Job_Score[1] >= 5.5 && datas[0].interestedJob[0].Job_Score[1] < 6.5){
-					score2 = img5;
-				}
-				else if (datas[0].interestedJob[0].Job_Score[1] >= 6.5 && datas[0].interestedJob[0].Job_Score[1] < 7.5){
-					score2 = img6;
-				}
-				else if (datas[0].interestedJob[0].Job_Score[1] >= 7.5 && datas[0].interestedJob[0].Job_Score[1] < 8.5){
-					score2 = img7;
-				}
-				else if (datas[0].interestedJob[0].Job_Score[1] >= 8.5 && datas[0].interestedJob[0].Job_Score[1] < 9.5){
-					score2 = img8;
-				}
-				else if (datas[0].interestedJob[0].Job_Score[1] >= 9.5){
-					score2 = img9;
-				}				
-
-				let score3 = "";
-				if (datas[0].interestedJob[0].Job_Score[2] >= 2.5 && datas[0].interestedJob[0].Job_Score[2] < 3.5){
-					score3 = img2;
-				}
-				else if (datas[0].interestedJob[0].Job_Score[2] >= 3.5 && datas[0].interestedJob[0].Job_Score[2] < 4.5){
-					score3 = img3;
-				}
-				else if (datas[0].interestedJob[0].Job_Score[2] >= 4.5 && datas[0].interestedJob[0].Job_Score[2] < 5.5){
-					score3 = img4;
-				}
-				else if (datas[0].interestedJob[0].Job_Score[2] >= 5.5 && datas[0].interestedJob[0].Job_Score[2] < 6.5){
-					score3 = img5;
-				}
-				else if (datas[0].interestedJob[0].Job_Score[2] >= 6.5 && datas[0].interestedJob[0].Job_Score[2] < 7.5){
-					score3 = img6;
-				}
-				else if (datas[0].interestedJob[0].Job_Score[2] >= 7.5 && datas[0].interestedJob[0].Job_Score[2] < 8.5){
-					score3 = img7;
-				}
-				else if (datas[0].interestedJob[0].Job_Score[2] >= 8.5 && datas[0].interestedJob[0].Job_Score[2] < 9.5){
-					score3 = img8;
-				}
-				else if (datas[0].interestedJob[0].Job_Score[2] >= 9.5){
-					score3 = img9;
-				}
 
                 (async () => {
                 const template = {
@@ -1012,108 +1227,75 @@ class PDF extends React.Component {
 						}
 					]
 				};
-				let par1 = "พอได้เล็กน้อย";
-				let par2 = "พอได้เล็กน้อย";
-				let par3 = "พอได้เล็กน้อย";
-				if (datas[0].interestedJob[0].Job_Score[0] >= 5){
-					par1 = "พื้นฐาน";	
-				}
-				else if (datas[0].interestedJob[0].Job_Score[0] >= 7.5){
-					par1 = "ดี";	
-				}
-				else if (datas[0].interestedJob[0].Job_Score[0] == 10){
-					par1 = "ยอดเยี่ยม";	
-				}
-
-				if (datas[0].interestedJob[0].Job_Score[1] >= 5){
-					par2 = "พื้นฐาน";
-				}
-				else if (datas[0].interestedJob[0].Job_Score[1] >= 7.5){
-					par2 = "ดี";	
-				}
-				else if (datas[0].interestedJob[0].Job_Score[1] == 10){
-					par2 = "ยอดเยี่ยม";	
-				}
-
-				if (datas[0].interestedJob[0].Job_Score[2] >= 5){
-					par3 = "พื้นฐาน";
-				}
-				else if (datas[0].interestedJob[0].Job_Score[2] >= 7.5){
-					par3 = "ดี";	
-				}
-				else if (datas[0].interestedJob[0].Job_Score[2] == 10){
-					par3 = "ยอดเยี่ยม";	
-				}
-				
-				const myArr = datas[0].Owner.split(" ");
 
 				const inputs = [{
-				"ชื่อ":myArr[0],
-				"นามสกุล":myArr[1],
-				"tag":datas[0].interestedJob[0].Job_JobName,
-				"Location":datas[0].Location,
-				"AboutMe":datas[0].Aboutme,
-				"Email":datas[0].Email,
-				"ชื่องาน 1":datas[0].workHistorys[0].Work_JobName,
-				"ประเภทงาน 1":datas[0].workHistorys[0].Work_JobType,
-				"ชื่อบริษัท 1":datas[0].workHistorys[0].Work_Company,
-				"ปีเริ่ม - ปีจบ 1":datas[0].workHistorys[0].Work_Start_Year	+ "-" + datas[0].workHistorys[0].Work_End_Year + "  |",
-				"ข้อมูลงาน 1":datas[0].workHistorys[0].Work_Infomation,
-				"ชื่องาน 2":datas[0].workHistorys[1].Work_JobName,
-				"ประเภทงาน 2":datas[0].workHistorys[1].Work_JobType,
-				"ชื่อบริษัท 2":datas[0].workHistorys[1].Work_Company,
-				"ปีเริ่ม - ปีจบ 2":datas[0].workHistorys[1].Work_Start_Year	+ "-" + datas[0].workHistorys[1].Work_End_Year + "  |",
-				"ข้อมูลงาน 2":datas[0].workHistorys[1].Work_Infomation,
-				"ชื่องาน 3":datas[0].workHistorys[2].Work_JobName,
-				"ประเภทงาน 3":datas[0].workHistorys[2].Work_JobType,
-				"ชื่อบริษัท 3":datas[0].workHistorys[2].Work_Company,
-				"ปีเริ่ม - ปีจบ 3":datas[0].workHistorys[2].Work_Start_Year	+ "-" + datas[0].workHistorys[2].Work_End_Year + "  |",
-				"ข้อมูลงาน 3":datas[0].workHistorys[2].Work_Infomation,
-				"ทักษะ 1":datas[0].interestedJob[0].Job_SkillName[0],
-				"ทักษะ 2":datas[0].interestedJob[0].Job_SkillName[1],
-				"ทักษะ 3":datas[0].interestedJob[0].Job_SkillName[2],
-				"คะแนน 1":score1,
-				"คะแนน 2":score2,
-				"คะแนน 3":score3,
-				"เกณฑ์ 1":par1,
-				"เกณฑ์ 2":par2,
-				"เกณฑ์ 3":par3,
-				"เพิ่มเติม 1":datas[0].additionalSkills[0].AdditionalSkill,
-				"เพิ่มเติม 2":datas[0].additionalSkills[1].AdditionalSkill,
-				"เพิ่มเติม 3":datas[0].additionalSkills[2].AdditionalSkill,
-				"ระดับ 1":datas[0].educationHistorys[0].Degree,
-				"ปีจบ 1":datas[0].educationHistorys[0].Education_End_Year.toString() + "  |",
-				"คณะ 1":datas[0].educationHistorys[0].Facalty,
-				"สถานศึกษา 1 ":datas[0].educationHistorys[0].Academy,
-				"เกรดเฉลี่ย 1":"เกรดเฉลี่ย",
-				"เกรด 1":(datas[0].educationHistorys[0].Grade.toFixed(2)).toString(),
-				"ระดับ 2":datas[0].educationHistorys[1].Degree,
-				"ปีจบ 2":datas[0].educationHistorys[1].Education_End_Year.toString()+ "  |",
-				"คณะ 2":datas[0].educationHistorys[1].Facalty,
-				"สถานศึกษา 2":datas[0].educationHistorys[1].Academy,
-				"เกรดเฉลี่ย 2":"เกรดเฉลี่ย",
-				"เกรด 2":datas[0].educationHistorys[1].Grade.toFixed(2).toString(),
-				"ระดับ 3":datas[0].educationHistorys[1].Degree,
-				"ปีจบ 3":datas[0].educationHistorys[1].Education_End_Year.toString()+ "  |",
-				"คณะ 3":datas[0].educationHistorys[1].Facalty,
-				"สถานศึกษา 3":datas[0].educationHistorys[1].Academy,
-				"เกรดเฉลี่ย 3":"เกรดเฉลี่ย",
-				"เกรด 3":datas[0].educationHistorys[1].Grade.toFixed(2).toString(),
-				"ชื่อเกียร์ติบัตร 1 ":datas[0].certificates[0].CertName,
-				"ชื่อเกียร์ติบัตร 2":datas[0].certificates[1].CertName,
-				"ชื่อเกียร์ติบัตร 3":datas[0].certificates[2].CertName,
-				"ชื่อเกียร์ติบัตร 4":datas[0].certificates[3].CertName,
-				"ชื่อเกียร์ติบัตร 5":datas[0].certificates[3].CertName,
-				"ชื่อเกียร์ติบัตร 6":datas[0].certificates[3].CertName,
-				"ปีเกียร์ติบัตร 1 ":datas[0].certificates[0].CertYear.toString(),
-				"ปีเกียร์ติบัตร 2":datas[0].certificates[1].CertYear.toString(),
-				"ปีเกียร์ติบัตร 3":datas[0].certificates[2].CertYear.toString(),
-				"ปีเกียร์ติบัตร 4":datas[0].certificates[3].CertYear.toString(),
-				"ปีเกียร์ติบัตร 5":datas[0].certificates[3].CertYear.toString(),
-				"ปีเกียร์ติบัตร 6":datas[0].certificates[3].CertYear.toString(),
-				"รูปภาพ":datas[0].ProfilePic}];
+				"ชื่อ":fill1,
+				"นามสกุล":fill2,
+				"tag":fill3,
+				"Location":fill4,
+				"AboutMe":fill5,
+				"Email":fill6,
+				"ชื่องาน 1":fill7,
+				"ประเภทงาน 1":fill8,
+				"ชื่อบริษัท 1":fill9,
+				"ปีเริ่ม - ปีจบ 1":fill10,
+				"ข้อมูลงาน 1":fill11,
+				"ชื่องาน 2":fill12,
+				"ประเภทงาน 2":fill13,
+				"ชื่อบริษัท 2":fill14,
+				"ปีเริ่ม - ปีจบ 2":fill15,
+				"ข้อมูลงาน 2":fill16,
+				"ชื่องาน 3":fill17,
+				"ประเภทงาน 3":fill18,
+				"ชื่อบริษัท 3":fill19,
+				"ปีเริ่ม - ปีจบ 3":fill20,
+				"ข้อมูลงาน 3":fill21,
+				"ทักษะ 1":fill22,
+				"ทักษะ 2":fill23,
+				"ทักษะ 3":fill24,
+				"คะแนน 1":fill25,
+				"คะแนน 2":fill26,
+				"คะแนน 3":fill27,
+				"เกณฑ์ 1":fill28,
+				"เกณฑ์ 2":fill29,
+				"เกณฑ์ 3":fill30,
+				"เพิ่มเติม 1":fill31,
+				"เพิ่มเติม 2":fill32,
+				"เพิ่มเติม 3":fill33,
+				"ระดับ 1":fill34,
+				"ปีจบ 1":fill35,
+				"คณะ 1":fill36,
+				"สถานศึกษา 1 ":fill37,
+				"เกรดเฉลี่ย 1":fill38,
+				"เกรด 1":fill39,
+				"ระดับ 2":fill40,
+				"ปีจบ 2":fill41,
+				"คณะ 2":fill42,
+				"สถานศึกษา 2":fill43,
+				"เกรดเฉลี่ย 2":fill44,
+				"เกรด 2":fill45,
+				"ระดับ 3":fill46,
+				"ปีจบ 3":fill47,
+				"คณะ 3":fill48,
+				"สถานศึกษา 3":fill49,
+				"เกรดเฉลี่ย 3":fill50,
+				"เกรด 3":fill51,
+				"ชื่อเกียร์ติบัตร 1 ":fill52,
+				"ชื่อเกียร์ติบัตร 2":fill53,
+				"ชื่อเกียร์ติบัตร 3":fill54,
+				"ชื่อเกียร์ติบัตร 4":fill55,
+				"ชื่อเกียร์ติบัตร 5":fill56,
+				"ชื่อเกียร์ติบัตร 6":fill57,
+				"ปีเกียร์ติบัตร 1 ":fill58,
+				"ปีเกียร์ติบัตร 2":fill59,
+				"ปีเกียร์ติบัตร 3":fill60,
+				"ปีเกียร์ติบัตร 4":fill61,
+				"ปีเกียร์ติบัตร 5":fill62,
+				"ปีเกียร์ติบัตร 6":fill63,
+				"รูปภาพ":datas[resume].ProfilePic}];
 
 				//const inputs = [{"ชื่อ":"ชื่อ","tag":"tag","AboutMe":"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.","Email":"User@test.com","ประเภทงาน 1":"[ประเภทงาน]","ชื่อบริษัท 1":"[ชื่อบริษัท]","ปีเริ่ม - ปีจบ 1":"[ปีเริ่ม - ปีจบ]","ข้อมูลงาน 1":"Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.","ทักษะ 1":"ทักษะ 1","คะแนน 1":"คะแนน 1","เกณฑ์ 1":"เกณฑ์ 1","เพิ่มเติม 1":"เพิ่มเติม 1","เพิ่มเติม 2":"เพิ่มเติม 2","เพิ่มเติม 3":"เพิ่มเติม 3","ระดับ 1":"ระดับ 1","ปีจบ 1":"ปีจบ 1","คณะ 1":"คณะ 1","สถานศึกษา 1 ":"สถานศึกษา 1 ","เกรด 1":"เกรด 1","ชื่อเกียร์ติบัตร 1 ":"ชื่อเกียร์ติบัตร 1 ","ชื่อเกียร์ติบัตร 2":"ชื่อเกียร์ติบัตร 2","ชื่อเกียร์ติบัตร 3":"ชื่อเกียร์ติบัตร 3","ชื่อเกียร์ติบัตร 4":"ชื่อเกียร์ติบัตร 4","ปีเกียร์ติบัตร 1 ":"ปีเกียร์ติบัตร 1 ","ปีเกียร์ติบัตร 2":"ปีเกียร์ติบัตร 2","ปีเกียร์ติบัตร 3":"ปีเกียร์ติบัตร 3","ปีเกียร์ติบัตร 4":"ปีเกียร์ติบัตร 4","รูปภาพ":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBw8PDg0NDRANDRAPDw8NDhEQEBANEBEQFREWFhURFhMYHSggGBonJxUTITEjJSkrMS4uFx8zODMsNygtLjcBCgoKBQUFDgUFDisZExkrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIAMgAyAMBIgACEQEDEQH/xAAbAAEAAgMBAQAAAAAAAAAAAAAAAQYEBQcCA//EADYQAAICAAIFCAoCAwEAAAAAAAABAgMEEQUGITHREhZBUVNhcaITIiMyQlKBkbHBYnIzgqEV/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/AO4gAAAAAAAAAAAAAPLZj3aRph79tUfGaAyga3/3ML29X3MinH0z9yyuXhKIGUDymegAAAAAAAAAAAAAAAAAAAAAACD533xrjKc2oxis230ID1OSSbbSS2tvYkVrSutkIZww69I93LeyC8Os0mndOzxMnCOcKk9kdzl3y4GnAzMbpXEXP2lk2vlT5MfsjDAAAADOwWl8RS1yLJZfLJ8uP2ZaNFa1V2ZQvXopPYpb4PgUkAdZjJNJppno5/oDT8sO1XZnOlvdvcO9d3cX2q2M4qUWpRks01uaA9ggkAAAAAAAAAAAAAAAACGUXWzSztsdEH7Ot+tl8U+CLPrFjvQYec0/Wl6kP7Pp/JzgAAAAAAAAAAABZNUdLOE1hrH6k37Nv4ZdXgythNpprY1tT6mB1pEmv0JjfT4euzpy5M/7LYzYAAAAAAAAAAAAAAAhkkMCm69YjOdNXQoux+LeS/BVzc63Tzxli+WMF/zP9mmAAAAAAAAAAAAAALZqLiP89L/jYvw/0W5FC1Mnli8vmrmvtky/AAAAAAAAAAAAAAAhkkMDn2t0csZY+uMH5cv0aYs+vOHyspt6JRdb8U81+SsAAAAAAAAAAAAAAG91Mjni8/lrm/wi+oqOouH/AM9v9a1+X+i3ICQAAAAAAAAAAAAAAAarWTAenw84pZyj7SHiuj8nOTrTRQ9a9EOmx3QXs7Hm/wCM+leDA0IAAAAAAAAAABLPYtvUCxao6Jdk1iJr1IP1M/in1+CAs+gsF6DD11v3suVP+z2vgbFBEgAAAAAAAAAAAAAAAAD44nDxthKuaUoyWTTPsAOc6c0JPDSclnOpv1Z9XdLqZqjp2PxdFcWr5VxTWTUsnmvDpKBpd4VzzwvpEm9qayh/rntAwAAAAAAA2GiLMLGeeKjZPJ7EsnD6rewMjQOgp4hqc84VJ7ZdMu6PEv1FMYRjCCUYxWSS3JGNgNIYe1JUzg8l7q9Vr/UzQJAAAAAAAAAAAAAAAAIbDZXtPaxxpzqpynZub3xh49b7gNrpHSNWHjyrZKPUt8n4IqOk9abbM40+xj175v69Bo8RfOyTnZJzk97f4PmBM5uTcpNyb3tvN/cgAAAAAAAAAAm081mmtzWxm70brNfVkrH6aHVL314S4mkAHStGaWpxCzrl63TB7JL6GwTOT12SjJSg3GS2prY0XDQWsynyasS1GW6M90Zdz6mBaQQmSAAAAAAAAAIbBX9adM+gh6Kt+1mt/wAkevxAxdZtYOTysPQ/W3WTXw/xXeU8AAAAAAAAAAAAAAAAAAAALPqzrA4uNF7zjurm/h/i31FzizkpcdU9NctLDWv1kvZyfxRXwvvQFqBCJAAAAAAMTSOMjRVO2e6K2LrfQjmmLxErbJ2zecpPN8Df66aQ5dkcPF+rXtn3zfR9P2VsAAAAAAAAAAAAAAAAAAAAAAHquxxlGcXlKLUovqa6TyAOlaF0isRTGzYpe7NdUlvNic/1S0h6K9Vt5Quyg+pS+F/ov4EgAAfDGXquudkt0IuT+iPsaDXPE8jDchb7JqP+q2v9AUe+1znKctrnJyfizwAAAAAAAAAAAAAAAAAAAAAAAAAATyaa2NPNeJ07RGL9NRVb0yiuV/ZbGcxZctRsTnXbU/gkprwlv/AFpAAEMpmvVudtNfywlL6t5foubKBrjPPFyXVXBf8AMwNIAAAAAAAAAAAAAAAAAAAAAAAAAABvtS7uTinH565L6rbxNCbPVqWWMw/fJr7xYHR0AgANJpPVqrEWyulO2LkorKPJy2LLpQAGLzNp7W7ycBzNp7W7ycCQBHM2ntbvJwHM2ntbvJwJAEczae1u8nAczae1u8nAkARzNp7W7ycBzNp7W7ycCQBHM2ntbvJwHM2ntbvJwJAEczae1u8nAczae1u8nAkARzNp7W7ycBzNp7W7ycCQBHM2ntbvJwHM2ntbvJwJAEczae1u8nAczae1u8nAkARzNp7W7ycBzNp7W7ycCQBHM2ntbvJwPvgtVqqra7Y2WtwlyknyMn47AAN8iQAP/9k=","นามสกุล":"นามสกุล","Location":"Example Location","ทักษะ 2":"ทักษะ 2","คะแนน 2":"คะแนน 2","เกณฑ์ 2":"เกณฑ์ 2","ทักษะ 3":"ทักษะ 3","คะแนน  3":"คะแนน 3","เกณฑ์ 3":"เกณฑ์ 3","ชื่อเกียร์ติบัตร 5":"ชื่อเกียร์ติบัตร 5","ชื่อเกียร์ติบัตร 6":"ชื่อเกียร์ติบัตร 6","ปีเกียร์ติบัตร 5":"ปีเกียร์ติบัตร 5","ปีเกียร์ติบัตร 6":"ปีเกียร์ติบัตร 6","ระดับ 2":"ระดับ 2","ปีจบ 2":"ปีจบ 2","คณะ 2":"คณะ 2","สถานศึกษา 2":"สถานศึกษา 2","เกรด 2":"เกรด 2","ระดับ 3":"ระดับ 3","ปีจบ 3":"ปีจบ 3","คณะ 3":"คณะ 3","สถานศึกษา 3":"สถานศึกษา 3 ","เกรดเฉลี่ย 1":"เกรดเฉลี่ย ","เกรดเฉลี่ย 2":"เกรดเฉลี่ย ","เกรดเฉลี่ย 3":"เกรดเฉลี่ย ","ชื่องาน 1 ":"[ชื่องาน]","ประเภทงาน 2":"[ประเภทงาน]","ชื่อบริษัท 2":"[ชื่อบริษัท]","ปีเริ่ม - ปีจบ 2":"[ปีเริ่ม - ปีจบ]","ข้อมูลงาน 2":"Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.","ชื่องาน 2":"[ชื่องาน]","ประเภทงาน 3":"[ประเภทงาน]","ชื่อบริษัท 3":"[ชื่อบริษัท]","ปีเริ่ม - ปีจบ 3":"[ปีเริ่ม - ปีจบ]","ข้อมูลงาน 3":"Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.","ชื่องาน 3":"[ชื่องาน]"}];
+				//const inputs = [{"ชื่อ":"ชื่อ","tag":"tag","AboutMe":"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.","Email":"User@test.com","ประเภทงาน 1":"[ประเภทงาน]","ชื่อบริษัท 1":"[ชื่อบริษัท]","ปีเริ่ม - ปีจบ 1":"[ปีเริ่ม - ปีจบ]","ข้อมูลงาน 1":"Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.","ทักษะ 1":"ทักษะ 1","คะแนน 1":"คะแนน 1","เกณฑ์ 1":"เกณฑ์ 1","เพิ่มเติม 1":"เพิ่มเติม 1","เพิ่มเติม 2":"เพิ่มเติม 2","เพิ่มเติม 3":"เพิ่มเติม 3","ระดับ 1":"ระดับ 1","ปีจบ 1":"ปีจบ 1","คณะ 1":"คณะ 1","สถานศึกษา 1 ":"สถานศึกษา 1 ","เกรด 1":"เกรด 1","ชื่อเกียร์ติบัตร 1 ":"ชื่อเกียร์ติบัตร 1 ","ชื่อเกียร์ติบัตร 2":"ชื่อเกียร์ติบัตร 2","ชื่อเกียร์ติบัตร 3":"ชื่อเกียร์ติบัตร 3","ชื่อเกียร์ติบัตร 4":"ชื่อเกียร์ติบัตร 4","ปีเกียร์ติบัตร 1 ":"ปีเกียร์ติบัตร 1 ","ปีเกียร์ติบัตร 2":"ปีเกียร์ติบัตร 2","ปีเกียร์ติบัตร 3":"ปีเกียร์ติบัตร 3","ปีเกียร์ติบัตร 4":"ปีเกียร์ติบัตร 4","รูปภาพ":"data:image/jpeg;base64,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","นามสกุล":"นามสกุล","Location":"Example Location","ทักษะ 2":"ทักษะ 2","คะแนน 2":"คะแนน 2","เกณฑ์ 2":"เกณฑ์ 2","ทักษะ 3":"ทักษะ 3","คะแนน  3":"คะแนน 3","เกณฑ์ 3":"เกณฑ์ 3","ชื่อเกียร์ติบัตร 5":"ชื่อเกียร์ติบัตร 5","ชื่อเกียร์ติบัตร 6":"ชื่อเกียร์ติบัตร 6","ปีเกียร์ติบัตร 5":"ปีเกียร์ติบัตร 5","ปีเกียร์ติบัตร 6":"ปีเกียร์ติบัตร 6","ระดับ 2":"ระดับ 2","ปีจบ 2":"ปีจบ 2","คณะ 2":"คณะ 2","สถานศึกษา 2":"สถานศึกษา 2","เกรด 1 copy":"เกรด 1","ระดับ 3":"ระดับ 3","ปีจบ 3":"ปีจบ 3","คณะ 3":"คณะ 3","สถานศึกษา 3":"สถานศึกษา 3 ","เกรด 1 copy copy":"เกรด 1","เกรดเฉลี่ย 1":"เกรดเฉลี่ย ","เกรดเฉลี่ย 2":"เกรดเฉลี่ย ","เกรดเฉลี่ย 3":"เกรดเฉลี่ย ","ชื่องาน 1 ":"[ชื่องาน]","ประเภทงาน 1 copy":"[ประเภทงาน]","ชื่อบริษัท 1 copy":"[ชื่อบริษัท]","ปีเริ่ม - ปีจบ 1 copy":"[ปีเริ่ม - ปีจบ]","ข้อมูลงาน 1 copy":"Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.","ชื่องาน 1  copy":"[ชื่องาน]","ประเภทงาน 1 copy copy":"[ประเภทงาน]","ชื่อบริษัท 1 copy copy":"[ชื่อบริษัท]","ปีเริ่ม - ปีจบ 1 copy copy":"[ปีเริ่ม - ปีจบ]","ข้อมูลงาน 1 copy copy":"Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.","ชื่องาน 1  copy copy":"[ชื่องาน]"}];
   
 				const pdf = await labelmake({ template, inputs, font });
                 const blob = new Blob([pdf.buffer], { type: 'application/pdf' });
