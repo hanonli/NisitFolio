@@ -634,15 +634,15 @@ class NewAnalytics extends React.Component {
 				refThis.setState({ 
 				topAddOvTotal: rawData.Additional.Overview.numberOfUsers,
 				
-				topAddOv1Name: iList[0].Type,
+				topAddOv1Name: iList[0].AdditionalSkill,
 				topAddOv1Percentage: iList[0].percentage.toFixed(2),
 				topAddOv1Count: iList[0].total,
 				
-				topAddOv2Name: iList[1].Type,
+				topAddOv2Name: iList[1].AdditionalSkill,
 				topAddOv2Percentage: iList[1].percentage.toFixed(2),
 				topAddOv2Count: iList[1].total,
 				
-				topAddOv3Name: iList[2].Type,
+				topAddOv3Name: iList[2].AdditionalSkill,
 				topAddOv3Percentage: iList[2].percentage.toFixed(2),
 				topAddOv3Count: iList[2].total
 			});

@@ -1283,6 +1283,7 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 }
 
 .obp{
+	cursor: pointer;
 	transition: all 0.3s ease;
 	background: rgb(212,177,205);
 }
@@ -1296,6 +1297,7 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 }
 
 .obc{
+	cursor: pointer;
 	transition: all 0.3s ease;
 	background: rgb(182,222,234);
 }
