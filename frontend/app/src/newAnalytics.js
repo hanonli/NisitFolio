@@ -151,6 +151,7 @@ class NewAnalytics extends React.Component {
 		var vPoints = [];
 		var vLS = [];
 		var disGraphMax = 1;
+		var isPopup = false;
 		
 		var meanIsScore = false;
 		
@@ -202,7 +203,10 @@ class NewAnalytics extends React.Component {
 						res.push(context.dataset._vLS[context.parsed.x]+' คะแนน');
 					}else if(vPoints[context.parsed.x] == you || vPoints[context.parsed.x] == avgYou){
 						res.push('คะแนนของคุณ');
-						res.push(context.dataset._vLS[context.parsed.x]+' คะแนน'+' ('+refThis.state.rightJobPercentile+'%)');
+						if(!isPopup)
+							res.push(context.dataset._vLS[context.parsed.x]+' คะแนน'+' ('+refThis.state.rightJobPercentile+'%)');
+						else
+							res.push(context.dataset._vLS[context.parsed.x]+' คะแนน'+' ('+refThis.state.popJobPercentile+'%)');
 					}else{
 						res.push(context.dataset.data[context.parsed.x]+' คน');
 						res.push(context.dataset._vLS[context.parsed.x]+' คะแนน');
@@ -929,6 +933,7 @@ class NewAnalytics extends React.Component {
 		}
 		
 		function SetupPopup(id){
+			isPopup = true;
 			var dataSet = null; var total = null; var ccr = null; var ccd = null; var jKey = null; var sKey = null; var descTotal = null;
 
 			if(id == 'p1'){
@@ -1326,6 +1331,7 @@ class NewAnalytics extends React.Component {
 		}
 		
 		function SetupJob(id){
+			isPopup = false;
 			$('#dropdownMenuButton1').hide();
 			THname = rawData.Main.InterestedJobs[id-1].THname;
 			
