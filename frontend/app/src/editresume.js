@@ -95,7 +95,7 @@ class Editresume extends React.Component {
 				//console.log(this.state.data.Degree);
 				//Color_Resume = this.state.data.Color_ResumeId ? this.state.data.Color_ResumeId : "";
 				if (this.state.data.Color_ResumeId === undefined) {
-					console.log("gsegwsg:", this.state.data.Color_ResumeId);
+					console.log("Color_ResumeId:", this.state.data.Color_ResumeId);
 					this.setState({ firstchoosecolor: true });
 				}
 				else {
@@ -132,15 +132,17 @@ class Editresume extends React.Component {
 						console.log(list_of_aca);
 					}
 				});
+				console.log("Certificate_ResumeId:", this.state.data.hasOwnProperty('Certificate_ResumeId'));
 				this.state.data.Certificate_id.forEach((ele, index) => {
 					certdata.push({
 						Certificate_id: ele,
 						CertName: this.state.data.CertName[index],
 						CertPic: this.state.data.CertPic[index],
 						CertYear: this.state.data.CertYear[index],
-						//isCheckCert: ele in this.state.data.Certificate_ResumeId[index] ? true : false
+						isCheckCert: this.state.data.hasOwnProperty('Certificate_ResumeId') ? (this.state.data.Certificate_ResumeId.includes(ele) ? true : false) : false
 					})
 				});
+				console.log("WorkHistory_ResumeId:", this.state.data.hasOwnProperty('WorkHistory_ResumeId'));
 				this.state.data.WorkHistory_id.forEach((ele, index) => {
 					workdata.push({
 						WorkHistory_id: ele,
@@ -154,7 +156,7 @@ class Editresume extends React.Component {
 						SalaryType: this.state.data.SalaryType[index],
 						Salary: this.state.data.Salary[index],
 						Infomation: this.state.data.Infomation[index],
-						isCheckWork: ele in this.state.data.WorkHistory_ResumeId[index] ? true : false
+						isCheckWork: this.state.data.hasOwnProperty('WorkHistory_ResumeId') ? (this.state.data.WorkHistory_ResumeId.includes(ele) ? true : false) : false
 					})
 				});
 				this.state.data.AdditionalSkill_id.forEach((ele, index) => {

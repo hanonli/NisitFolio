@@ -260,15 +260,10 @@ class DataHeader extends React.Component {
 					})
 				});
 				this.state.data.WorkHistory_id.forEach((ele, index) => {
-					let regist4_cb = false, wey = this.state.data.Work_End_Year[index], wem = this.state.data.Work_End_Month[index];
+					let regist4_cb = false;
 					if (this.state.data.Work_End_Year[index] === 9999 && this.state.data.Work_End_Month[index] === 99) {
 						regist4_cb = true;
 					}
-					/*else if (this.state.data.Work_End_Year[index] === 0 && this.state.data.Work_End_Month[index] === 0) {
-						//regist4_cb = true;
-						wey = "";
-						wem = "";
-					}*/
 					workdata.push({
 						WorkHistory_id: ele,
 						Work_JobName: this.state.data.Work_JobName[index],
