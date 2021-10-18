@@ -69,7 +69,7 @@ class DataHeader extends React.Component {
 				$('#tab-7').addClass('tab-list-active')
 			}
 			else {
-				alert("Don't selected");
+				//alert("Don't selected");
 				$('#Edittab1-content').show();
 			}
 			console.log("Yahaha!");

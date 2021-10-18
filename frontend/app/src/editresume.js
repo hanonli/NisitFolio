@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Navbarlogo from './Components/navbarlogo';
+import Navbarlogo from './Components/navbar';
 import InformationHeader from './Components/informationHeader';
 import reportWebVitals from './reportWebVitals';
 import { Link } from "react-router-dom";
@@ -16,6 +16,7 @@ import cookie from 'react-cookies';
 import LoadingS from './Components/loadingS';
 
 var certdata = [], workdata = [], list_of_aca = [], list_of_high = [], sideskilldata = [];
+var select_color_template = "#FFCE55";
 
 class Editresume extends React.Component {
 
@@ -26,13 +27,25 @@ class Editresume extends React.Component {
 			data: [],
 			render: true,
 			Color_Resume: '',
-			firstchoosecolor: false
+			firstchoosecolor: false,
+			resumeId: ''
 		}
 	}
 
 	handleSubmitEdit = e => {
+		alert(select_color_template);
+		var FormEdit = {
+			"SoftSkillID":[],
+			"CertID":[],
+			"EducationID":[],
+			"WorkID":[],
+			"PortID":[],
+			"Color": select_color_template
+		}
+		console.log(FormEdit);
 		alert('Confirm Edit Resume');
-		window.location = ("myresume");
+		//Editresume(FormEdit);
+		//window.location = ("myresume");
 	};
 
 	componentDidMount() {
@@ -79,7 +92,7 @@ class Editresume extends React.Component {
 				})
 				console.log('this.state.data :' + this.state.data);
 				/*Zone to use datas*/
-				console.log(this.state.data.Degree);
+				//console.log(this.state.data.Degree);
 				//Color_Resume = this.state.data.Color_ResumeId ? this.state.data.Color_ResumeId : "";
 				if (this.state.data.Color_ResumeId === undefined) {
 					console.log("gsegwsg:", this.state.data.Color_ResumeId);
@@ -152,6 +165,15 @@ class Editresume extends React.Component {
 					})
 				});
 				console.log(sideskilldata);
+				this.state.data.Job_JobName.forEach((ele,index) => {
+					if(ele == cookie.load('Job_EditName')){
+						return this.setState({resumeId : this.state.data.Resume_id});
+						//alert(this.state.resumeId);
+					}
+					/*else{
+						alert(index);
+					}*/
+				});
 			});
 		$(function () {
 			$('.nameedit').text('"' + cookie.load('Job_EditName') + '"');
@@ -188,7 +210,7 @@ class Editresume extends React.Component {
 				$('#tab-6').addClass('tab-list-active')
 			}
 			else {
-				alert("Don't selected");
+				//alert("Don't selected");
 				$('#registab1-content').show();
 			}
 			console.log("Yahaha!");
@@ -235,6 +257,31 @@ class Editresume extends React.Component {
 				$('#registab6-content').show();
 			});
 		});
+	function EditResume(pack){
+		fetch("http://localhost:2000/myresume/"+this.state.resumeId,
+			{ method: "PATCH",
+			headers: {
+			"Content-Type": "application/json",
+			"Accept": "application/json"
+			},
+				body: JSON.stringify(pack)}
+		)
+		.then(function (response) {
+			//window.location.pathname = '/emailverify'
+			//alert(response.message);
+			if (!response.ok) {
+				throw Error(response.statusText);
+			}
+			else{
+				console.log("ok");
+				window.location.href = "http://localhost:3000/myresume/";
+			}
+			return response;
+		}).catch(function(error) {
+			console.log(error);
+		});
+		}
+
 		$('#cancelChoose').on('click', function () {
 			window.history.go(-1);
 		});
@@ -301,7 +348,7 @@ class Editresume extends React.Component {
 						</div>
 						<div class="col block-right2">
 							<button class="btn btn-cta-primary-blackwide round profile-button" target="_blank" id="cancelChoose">ยกเลิก</button>
-							<button class="btn btn-cta-primary-yellowwide round profile-button marginLEx1" target="_blank" type="submit" id="confirmChoose" onChange={this.handleSubmitEdit}>ยืนยัน</button>
+							<button class="btn btn-cta-primary-yellowwide round profile-button marginLEx1" id="confirmChoose" onClick={this.handleSubmitEdit}>ยืนยัน</button>
 						</div>
 					</form>
 				</div>

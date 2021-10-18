@@ -31,7 +31,7 @@ class Chooseresume1 extends React.Component {
 			});
 			return list_of_high;
 		}
-		console.log('i am resumetab1'+data);
+		console.log('i am resumetab2'+data);
 		
 		function show_all_high() {
 		
@@ -159,7 +159,7 @@ class Chooseresume1 extends React.Component {
 		if(list_of_high!=[]){
 			show_all_high();
 		}*/
-	},2000);
+	},4000);
 	}
 	handleLoad() {
 		console.log("YEAH!");
