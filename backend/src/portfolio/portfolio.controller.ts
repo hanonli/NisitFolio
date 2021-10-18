@@ -12,6 +12,15 @@ export class PortController {
     private readonly portService: PortService,
   ) {}
 
+  //--------------TEST
+  @Get("/testget3/sort")
+  async GetResume3sdf() {
+    const x="616c3f53ae098d7698f30138"
+    return this.portService.sortport(x,"ascendingOrder");
+
+  }
+  //-----------------
+
   @Get(':portfolioId')
   async getPort(@Param('portfolioId') portfolioId: string){
     return this.portService.getPort(portfolioId);
