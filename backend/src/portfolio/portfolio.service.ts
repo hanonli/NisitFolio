@@ -345,9 +345,9 @@ export class PortService {
 
     for (var _i = 0; _i < arr_user_port.length; _i++) {
       const key= arr_dic[arr_sort[_i]]
-      resut.push(arr_user_port[key].Port_Name)
+      resut.push(arr_user_port[key])
     }
-    return [resut,arr_dic]
+    //return [resut,arr_dic]
     return resut;
 
   }
