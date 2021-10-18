@@ -39,7 +39,7 @@ class Chooseresume5 extends React.Component {
         var ssl = [...myssdt2];
 		console.log('SSL : ',ssl);
 		myssdt2.forEach(ele => {
-			alert(ele.sideskillName);
+			//alert(ele.sideskillName);
 			isCheck_sideskill[ele.sideskill_id] = false;
 			var ddt7_un =` <div id={ele.sideskill_id}>\
 			<input\

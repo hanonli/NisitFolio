@@ -358,6 +358,7 @@ $('#continue2').click(function () {
       Email: $('#re03').val(),
       Password: $('#pass05').val(),
       ProfilePic: last_avatar,
+      ProfilePicBase64: last_avatar,
       Firstname: $('#re01').val(),
       Lastname: $('#re02').val(),
       Birthday: BDDate,
@@ -689,7 +690,7 @@ pa2.addEventListener('keyup', checkPass, false);
 /*Tab2*/
 var min_abme_count = -1;
 var el;
-
+/*
 function countCharactersAbme() {                                    
   var textEntered, countRemaining, counter;          
   textEntered = document.getElementById('aboutme2').value;  
@@ -714,7 +715,7 @@ $('.aboutmee').on('change', 'input', function(){
   //console.log('L : ' + abme_count);
   
 });
-
+*/
 function GetProvince(){
 	fetch("https://thaiaddressapi-thaikub.herokuapp.com/v1/thailand/provinces",
 		{ method: "GET", })

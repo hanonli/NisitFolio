@@ -1,4 +1,4 @@
-	
+
 "use strict";
 	console.log("HELLO LV3!");
 	//alert('Homeaaa!');
@@ -10,6 +10,8 @@
       var $modal = $('#modal');
       var cropper;
 		
+	  var PicBase64=null;
+
 		avatar.addEventListener('click', function () {
 			input.click();
 			// console.log("Click on profile!");
@@ -63,7 +65,8 @@
             height: 150,
           });
           initialAvatarURL = avatar.src;
-          avatar.src = canvas.toDataURL();
+		  PicBase64 = canvas.toDataURL();
+          avatar.src = PicBase64;
 		  console.log(avatar.src);
           $alert.removeClass('alert-success alert-warning');
           canvas.toBlob(function (blob) {
