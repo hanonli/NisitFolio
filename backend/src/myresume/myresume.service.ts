@@ -465,7 +465,6 @@ export class MyResumeService {
     //return [userid,UserId]this.resumeModel.find({UserId : userId});
     
     const resumeColor=(await this.resumeModel.findOne({UserId:UserId}));
-    return resumeColor
     result.Color_ResumeId=resumeColor;
     
     
