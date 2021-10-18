@@ -12,14 +12,6 @@ export class PortController {
     private readonly portService: PortService,
   ) {}
 
-  //--------------TEST
-  @Get("/testget3/sort")
-  async GetResume3sdf() {
-    const x="616c3f53ae098d7698f30138"
-    return this.portService.sortport(x,"ascendingOrder");
-
-  }
-  //-----------------
 
   @Get(':portfolioId')
   async getPort(@Param('portfolioId') portfolioId: string){
@@ -77,7 +69,6 @@ export class PortController {
     }
   @UseGuards(JwtAuthGuard)
   @Get('/sort/:sort')
-  //async getThisUserBookmarks(@Param('id') userId: string,@Param('sort') sort: string): Promise<any[]> {
   async sortportUser(@Request() req,@Param('sort') sort: string){
       return this.portService.sortport(req.user.userId, sort);
     }

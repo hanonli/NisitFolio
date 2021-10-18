@@ -5,7 +5,7 @@ import { RegisterService } from './register.service';
 import { CreateRegisDto } from './dto/create-register.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { PatchRegisDto } from './dto/patch-register.dto';
-import {PatchRegisDto2} from './dto/patch-register_2.dto';
+
 import { RealIP } from 'nestjs-real-ip';
 
 
@@ -24,11 +24,27 @@ export class RegisterController {
     return this.registerService.UpdateRegis(CreateDto,req.user.userId);
   }
   //------------------------------------test
-  @Patch("/testupdate/:y")
-  async Fullupdate2(@Body() CreateDto: PatchRegisDto2 ,@Param('y') y: string) {
-    const x="61694b9e65b7f193870b5bc2";
-    return this.registerService.Fullupdate(CreateDto,x);
+  @Post("/addsoftskill")
+  async Addsoftskill(@Body() CreateDto: PatchRegisDto ,@Request() req) {
+    return this.registerService.Newaddskill(CreateDto,req.user.userId);
   }
+  @Post("/addcertificate")
+  async Addcertificate(@Body() CreateDto: PatchRegisDto ,@Request() req) {
+    return this.registerService.Newcertificate(CreateDto,req.user.userId);
+  }
+  @Post("/addeducationHistory")
+  async AddeducationHistory(@Body() CreateDto: PatchRegisDto ,@Request() req) {
+    return this.registerService.NeweducationHistory(CreateDto,req.user.userId);
+  }
+  @Post("/addworkHistory")
+  async AddworkHistory(@Body() CreateDto: PatchRegisDto ,@Request() req) {
+    return this.registerService.NewworkHistory(CreateDto,req.user.userId);
+  }
+  @Post("/addinterestedJob")
+  async AddinterestedJob(@Body() CreateDto: PatchRegisDto ,@Request() req,@RealIP() ip: string) {
+    return this.registerService.NewinterestedJob(CreateDto,req.user.userId,ip);
+  }
+  
   //--------------------------------------
 
   @UseGuards(JwtAuthGuard)

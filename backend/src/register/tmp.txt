@@ -441,4 +441,13 @@ async GetInfo(UserId:string) {
     }
     //---------
 
-    
+      async getPortbyUserbyPrvicy(userId:string ){
+    const port=await this.portModel.find({UserId : userId});
+    const result=[]
+    for (var _i = 0; _i < port.length; _i++) {
+      if(port[_i].Port_Privacy=="Public"){
+        result.push(port[_i])
+      }
+    }
+    return result;
+  }
