@@ -299,28 +299,47 @@ export class PortService {
     if(sort=="createTime"){
       for (var _i = 0; _i < arr_user_port.length; _i++) {
         const user_port=arr_user_port[_i].create_time
-        if (user_port==null){
-          continue;
-        }
+
         const y=user_port.split(' ');
         const t=y[3].split(':');
         const tmp=Number(y[0])*10000+Datess[y[1]]*1000000+Number(y[2])*100000000+Number(t[0])*100+Number(t[1]);
+        //return "f"
 
-        arr_sort.push(tmp);
-        arr_dic[tmp]=_i;
+        if(arr_dic[tmp]==null){
+          arr_sort.push(tmp);
+          arr_dic[tmp]=_i;
+        }else{
+          arr_sort.push(tmp+1/10);
+          arr_dic[tmp+1/10]=_i;
+        }
       }
     }else if(sort=="ascendingOrder"||sort=="descendingOrder"){
       for (var _i = 0; _i < arr_user_port.length; _i++) {
         const user_port=arr_user_port[_i].Port_Date
-        if (user_port==null){
-          continue;
-        }
         const y=user_port.split('/').map(Number);
-        const tmp=y[0]+y[1]*100+y[2]*10000;
-        arr_sort.push(tmp);
-        arr_dic[tmp]=_i;
+        const dum=new String(y[2])
+        const tmp2=Number(dum[0]+dum[2]+dum[3])
+        y[2]=Number(tmp2)
+        //return y[2]
+        //return [tmp2,dum,y[2]]
+        //const tmp=y[0]+y[1]*100+y[2]*10000;
+
+        const user_port2=arr_user_port[_i].create_time
+
+        const y2=user_port2.split(' ');
+        const t2=y2[3].split(':');
+        const tmp=y[0]+y[1]*100+y[2]*10000+Number(y2[0])/10000+Datess[y2[1]]/100+Number(t2[0])/1000000+Number(t2[1])/100000000+1/1000000000;
+
+        if(arr_dic[tmp]==null){
+          arr_sort.push(tmp);
+          arr_dic[tmp]=_i;
+        }else{
+          arr_sort.push(tmp+1/1000000000);
+          arr_dic[tmp+1/1000000000]=_i;
+        }
       }
     }
+    
 
 
     arr_sort.sort();
@@ -328,10 +347,12 @@ export class PortService {
       arr_sort.reverse()
     }
 
+
     for (var _i = 0; _i < arr_user_port.length; _i++) {
       const key= arr_dic[arr_sort[_i]]
       resut.push(arr_user_port[key])
     }
+    //return [resut,arr_dic]
     return resut;
 
   }

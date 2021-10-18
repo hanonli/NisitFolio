@@ -17,11 +17,11 @@ class MyResumeEditTemplate extends React.Component {
         super(props);
         this.handleLoad = this.handleLoad.bind(this);
         this.state = {
-            //value_color: "#FFCE55",
-            selectedOption: this.props.firstchoosecolor? "#FFCE55":this.props.Color_Resume,
-            sample_template: myTemplate[this.props.firstchoosecolor? "#FFCE55":this.props.Color_Resume],
+            //value_color: this.props.firstchoosecolor ? "#FFCE55" : this.props.Color_Resume,
+            selectedOption: this.props.firstchoosecolor ? "#FFCE55" : this.props.Color_Resume,
+            sample_template: myTemplate[this.props.firstchoosecolor ? "#FFCE55" : this.props.Color_Resume],
         };
-        select_color_template = this.props.firstchoosecolor? "#FFCE55":this.props.Color_Resume; //
+        select_color_template = this.props.firstchoosecolor ? "#FFCE55" : this.props.Color_Resume; //
     }
 
     handleChange = e => {
@@ -32,7 +32,7 @@ class MyResumeEditTemplate extends React.Component {
         });
         select_color_template = e.target.value; //ใช้ตัวแปรนี้แทน
         console.log("choose color:", select_color_template);
-        //alert(`choose color: ${select_color_template}`);
+        //console.log("choose color2:", this.state.value_color);
     };
 
     componentWillUnmount() {
@@ -65,7 +65,7 @@ class MyResumeEditTemplate extends React.Component {
                                     <input
                                         id="edit-template-color-FFCE55"
                                         value="#FFCE55"
-                                        onClick={this.handleChange}
+                                        onChange={this.handleChange}
                                         checked={this.state.selectedOption === "#FFCE55"}
                                         name="platform"
                                         type="radio"
@@ -80,7 +80,7 @@ class MyResumeEditTemplate extends React.Component {
                                     <input
                                         id="edit-template-color-FE9666"
                                         value="#FE9666"
-                                        onClick={this.handleChange}
+                                        onChange={this.handleChange}
                                         checked={this.state.selectedOption === "#FE9666"}
                                         name="platform"
                                         type="radio"
@@ -95,7 +95,7 @@ class MyResumeEditTemplate extends React.Component {
                                     <input
                                         id="edit-template-color-FF7370"
                                         value="#FF7370"
-                                        onClick={this.handleChange}
+                                        onChange={this.handleChange}
                                         checked={this.state.selectedOption === "#FF7370"}
                                         name="platform"
                                         type="radio"
@@ -110,7 +110,7 @@ class MyResumeEditTemplate extends React.Component {
                                     <input
                                         id="edit-template-color-32A3C7"
                                         value="#32A3C7"
-                                        onClick={this.handleChange}
+                                        onChange={this.handleChange}
                                         checked={this.state.selectedOption === "#32A3C7"}
                                         name="platform"
                                         type="radio"
@@ -126,7 +126,7 @@ class MyResumeEditTemplate extends React.Component {
                                         id="edit-template-color-01B8AA"
                                         value="#01B8AA"
                                         name="platform"
-                                        onClick={this.handleChange}
+                                        onChange={this.handleChange}
                                         checked={this.state.selectedOption === "#01B8AA"}
                                         type="radio"
                                     />

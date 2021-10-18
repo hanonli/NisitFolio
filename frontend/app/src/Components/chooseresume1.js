@@ -31,7 +31,7 @@ class Chooseresume1 extends React.Component {
 			});
 			return list_of_high;
 		}
-		console.log('i am resumetab1'+data);
+		console.log('i am resumetab2'+data);
 		
 		function show_all_high() {
 		
@@ -98,7 +98,7 @@ class Chooseresume1 extends React.Component {
 		script.src = "assets/js/chooseresume.js";
 		document.body.appendChild(script);
 		*/		
-		function show_all_aca() {
+		/*function show_all_aca() {
 			list_of_aca.forEach(ele => {
 				var grid_aca1 = '<div class="t3-content1 row">\
 									<div class="col-3">\
@@ -151,15 +151,15 @@ class Chooseresume1 extends React.Component {
 				$(".list-of-aca").append(grid_aca1 + grid_aca2);
 				console.log(`list_of_aca:`, list_of_aca);
 			});
-		}
-		/*if(this.state.list_of_aca!=[]){
+		}*/
+		/*if(list_of_aca!=[]){
 			console.log('My ACA NOT EMPTY!');
 			show_all_aca();
 		}/*
 		if(list_of_high!=[]){
 			show_all_high();
 		}*/
-	},2000);
+	},4000);
 	}
 	handleLoad() {
 		console.log("YEAH!");

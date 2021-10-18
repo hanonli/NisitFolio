@@ -104,6 +104,7 @@ class NewAnalytics extends React.Component {
 			rightBox3AddCount: null,
 			
 			popJobTotal: null,
+			popJobSkillTotal: null,
 			popJobName: null,
 			popJobSkillName: null,
 			popJobScore: null,
@@ -150,6 +151,7 @@ class NewAnalytics extends React.Component {
 		var vPoints = [];
 		var vLS = [];
 		var disGraphMax = 1;
+		var isPopup = false;
 		
 		var meanIsScore = false;
 		
@@ -201,7 +203,10 @@ class NewAnalytics extends React.Component {
 						res.push(context.dataset._vLS[context.parsed.x]+' คะแนน');
 					}else if(vPoints[context.parsed.x] == you || vPoints[context.parsed.x] == avgYou){
 						res.push('คะแนนของคุณ');
-						res.push(context.dataset._vLS[context.parsed.x]+' คะแนน'+' ('+refThis.state.rightJobPercentile+'%)');
+						if(!isPopup)
+							res.push(context.dataset._vLS[context.parsed.x]+' คะแนน'+' ('+refThis.state.rightJobPercentile+'%)');
+						else
+							res.push(context.dataset._vLS[context.parsed.x]+' คะแนน'+' ('+refThis.state.popJobPercentile+'%)');
 					}else{
 						res.push(context.dataset.data[context.parsed.x]+' คน');
 						res.push(context.dataset._vLS[context.parsed.x]+' คะแนน');
@@ -634,15 +639,15 @@ class NewAnalytics extends React.Component {
 				refThis.setState({ 
 				topAddOvTotal: rawData.Additional.Overview.numberOfUsers,
 				
-				topAddOv1Name: iList[0].Type,
+				topAddOv1Name: iList[0].AdditionalSkill,
 				topAddOv1Percentage: iList[0].percentage.toFixed(2),
 				topAddOv1Count: iList[0].total,
 				
-				topAddOv2Name: iList[1].Type,
+				topAddOv2Name: iList[1].AdditionalSkill,
 				topAddOv2Percentage: iList[1].percentage.toFixed(2),
 				topAddOv2Count: iList[1].total,
 				
-				topAddOv3Name: iList[2].Type,
+				topAddOv3Name: iList[2].AdditionalSkill,
 				topAddOv3Percentage: iList[2].percentage.toFixed(2),
 				topAddOv3Count: iList[2].total
 			});
@@ -928,6 +933,7 @@ class NewAnalytics extends React.Component {
 		}
 		
 		function SetupPopup(id){
+			isPopup = true;
 			var dataSet = null; var total = null; var ccr = null; var ccd = null; var jKey = null; var sKey = null; var descTotal = null;
 
 			if(id == 'p1'){
@@ -1046,6 +1052,7 @@ class NewAnalytics extends React.Component {
 			//alert(dataSet.p);
 			refThis.setState({ 
 				popJobTotal: descTotal,
+				popJobSkillTotal: dataSet.total,
 				popJobName: jKey,
 				popJobSkillName: dataSet.SkillName,
 				//rightJobPercentage: dataSet.percentage.toFixed(2),
@@ -1324,6 +1331,7 @@ class NewAnalytics extends React.Component {
 		}
 		
 		function SetupJob(id){
+			isPopup = false;
 			$('#dropdownMenuButton1').hide();
 			THname = rawData.Main.InterestedJobs[id-1].THname;
 			
@@ -1935,7 +1943,7 @@ class NewAnalytics extends React.Component {
 						<div class="">
 							<div class="analytic-arrow-cls back" id="main-lv2-back"></div>
 							<hhf class="analytic-md-header2">กราฟแสดงการกระจายตัวของคะแนนทักษะ<br/></hhf>
-							<naf class="analytic-spc-s analytic-md-sub-header">จากคนทั้งหมด {this.state.popJobTotal} คน ที่สนใจตำแหน่งงานเดียวกัน</naf>
+							<naf class="analytic-spc-s analytic-md-sub-header">จากคนทั้งหมด {this.state.popJobTotal} คน ที่สนใจตำแหน่งงานเดียวกัน มีคนมีความถนัดในทักษะนี้ {this.state.popJobSkillTotal} คน</naf>
 							<div class="ap-flex">
 								<div class="apv-flex">
 									<div class="analytic-right-chart-label2">

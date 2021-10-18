@@ -39,7 +39,7 @@ class Chooseresume5 extends React.Component {
         var ssl = [...myssdt2];
 		console.log('SSL : ',ssl);
 		myssdt2.forEach(ele => {
-			alert(ele.sideskillName);
+			//alert(ele.sideskillName);
 			isCheck_sideskill[ele.sideskill_id] = false;
 			var ddt7_un =` <div id={ele.sideskill_id}>\
 			<input\
@@ -51,8 +51,10 @@ class Chooseresume5 extends React.Component {
 				hidden\
 			/>\
 			<label class="dropbtn-box margin-bottom1" for="{forxxx}" id="list-ssl-22">\
-				<div class="textT7B">{ele.sideskillName}</div>\
-				<div class="icon-checkboxct6"><img height="35" src="assets/images/check_black.png" ></img></div>\
+				<div >
+					<div class="textT7B">{ele.sideskillName}</div>\
+					<div class="icon-checkboxct6"><img height="35" src="assets/images/check_black.png" oncontextmenu="return false;" ondragstart="return false;"></img></div>\
+				</div>\
 			</label>\
 		</div >`;
 			ddt7_un = ddt7_un.replace("{ele.sideskill_id}", ele.sideskill_id);

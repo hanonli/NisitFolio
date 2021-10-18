@@ -29,6 +29,7 @@ import { Portfolio } from '../portfolio/entity/portfolio.entity';
 import {PatchRegisDto2} from './dto/patch-register_2.dto';
 import { object, string } from 'joi';
 import { Allow } from 'class-validator';
+import { type } from 'os';
 
 @Injectable()
 export class RegisterService {
@@ -1030,6 +1031,26 @@ export class RegisterService {
 
   async Fullupdate(patchDto: PatchRegisDto2,UserId: string){
     /*
+    
+    */
+   /*
+   const qwe={}
+   return typeof qwe;
+   *//*
+    const sad={}
+    sad["616958be554b0a4b94598c54"]={}
+    sad["616958be554b0a4b94598c54"]["WH_work"]=[10]
+    if(typeof sad["616958be554b0a4b94598c54"]["WH_work"]==typeof []){
+      const x=sad["616958be554b0a4b94598c54"]["WH_work"];
+      x.push(6)
+      sad["616958be554b0a4b94598c54"]["WH_work"]=x;
+      return sad["616958be554b0a4b94598c54"]["WH_work"]
+    }else{
+      return "F"
+    }
+    sad["616958be554b0a4b94598c54"]["WH_COM"]=15
+    return [x,y,sad]
+    /*
     const counter=[0];
     counter[0]=counter[0]+1
     return counter
@@ -1187,9 +1208,26 @@ export class RegisterService {
           if(all_resume[additionalskill.ResumeId[_i]]==null){
             all_resume[additionalskill.ResumeId[_i]]={}
           }
-          all_resume[additionalskill.ResumeId[_i]]["id"]=ID
-          all_resume[additionalskill.ResumeId[_i]]["AdditionalSkill"]=patchDto.SoftSkill[_z]
-          all_resume[additionalskill.ResumeId[_i]]["Type"]=patchDto.SoftSkillType[_z];
+          //return [all_resume,additionalskill.ResumeId[_i]]
+          if(typeof all_resume[additionalskill.ResumeId[_i]]["id_addslill"]==typeof []){
+            return ["F",all_resume,additionalskill.ResumeId[_i]]
+            return [all_resume,additionalskill.ResumeId[_i]]
+            const id_addslill_arr=all_resume[additionalskill.ResumeId[_i]]["id_addslill"]
+            const AdditionalSkill_addslill_arr=all_resume[additionalskill.ResumeId[_i]]["AdditionalSkill"]
+            const Type_addslill_arr=all_resume[additionalskill.ResumeId[_i]]["Type"]
+            id_addslill_arr.push(ID)
+            AdditionalSkill_addslill_arr.push(patchDto.SoftSkill[_z])
+            Type_addslill_arr.push(patchDto.SoftSkillType[_z])
+            all_resume[additionalskill.ResumeId[_i]]["id_addslill"]=id_addslill_arr
+            all_resume[additionalskill.ResumeId[_i]]["AdditionalSkill"]=AdditionalSkill_addslill_arr
+            all_resume[additionalskill.ResumeId[_i]]["Type"]=Type_addslill_arr
+
+          }else{
+            all_resume[additionalskill.ResumeId[_i]]["id_addslill"]=[ID]
+            all_resume[additionalskill.ResumeId[_i]]["AdditionalSkill"]=[patchDto.SoftSkill[_z]]
+            all_resume[additionalskill.ResumeId[_i]]["Type"]=[patchDto.SoftSkillType[_z]];
+            //return ["t",all_resume,additionalskill.ResumeId[_i]]
+          }
 
         }
         await this.AdditionalSkillRepository.save(additionalskill);
@@ -1197,6 +1235,8 @@ export class RegisterService {
       old_addskill_arr_id.splice(old_addskill_arr_id.indexOf(dto_addskill_arr[_z]),1);
       }
     }
+    return ["t",all_resume]
+    //บัคข้างล่าง
 
     if(old_addskill_arr_id.length!=0){
       for (var _x = 0; _x< old_addskill_arr_id.length; _x++) {
@@ -1205,23 +1245,30 @@ export class RegisterService {
         for (var _i = 0; _i < additionalskill.ResumeId.length; _i++) {
           if(dele_resume[additionalskill.ResumeId[_i]]==null){
             dele_resume[additionalskill.ResumeId[_i]]={}
+          }if(typeof all_resume[additionalskill.ResumeId[_i]]==typeof []){
+            const dele_addskill_id = dele_resume[additionalskill.ResumeId[_i]]["id"];
+            dele_addskill_id.push(ID)
+            dele_resume[additionalskill.ResumeId[_i]]["id"]=dele_addskill_id
+          }else{
+            dele_resume[additionalskill.ResumeId[_i]]["id"]=[ID]
           }
-          dele_resume[additionalskill.ResumeId[_i]]["id"]=ID
         }
+        //await this.AdditionalSkillRepository.save(additionalskill);
       }
     }
-    return dele_resume
-  return "sus";
+    //return dele_resume
+  return [all_resume,dele_resume];
   //------------------------CA
   const dto_CC_arr= patchDto.CC_OBJID;
     const old_CC_arr = await this.CertificateRepository.find({ where: { UserId: UserId } });
     const old_CC_arr_id = [];
+    const old_CC_arr_id_save = [];
     for (var _i = 0; _i < old_CC_arr.length; _i++) {
       old_CC_arr_id.push(old_CC_arr[_i].id);
+      old_CC_arr_id_save.push((old_CC_arr[_i].id).toString());
     }
     for (var _z = 0; _z < dto_CC_arr.length; _z++) {
       if(old_CC_arr_id.indexOf(dto_CC_arr[_z])==-1){
-        for (var _i = 0; _i < patchDto.CertName.length; _i++) {
           const certificate = new Certificate();
           certificate.UserId = UserId;
           certificate.CertName = patchDto.CertName[_i]
@@ -1231,10 +1278,9 @@ export class RegisterService {
           certificate.last_modified = [isoTime];
           certificate.ResumeId = new Array();
           await this.CertificateRepository.save(certificate);
-        }
       }else{
         const ID= new ObjectID(  dto_CC_arr[_z])
-      const certificate=old_CC_arr[_z];
+      const certificate=old_CC_arr[old_CC_arr_id_save.indexOf(dto_CC_arr[_z])];
 
         if (patchDto.CertName || patchDto.CertYear || patchDto.CertPic) {
           certificate.last_modified.push(isoTime);

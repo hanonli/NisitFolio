@@ -31,7 +31,7 @@ export class MyResumeController {
 }
 @Get("/testget2/foredit")
   async GetResume3sdf() {
-    const x="61694b9e65b7f193870b5bc2"
+    const x="616c55e1b26cfd777cb41a2b"
     return this.resumeService.GetResume3(x);
 
   }

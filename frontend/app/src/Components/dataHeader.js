@@ -33,43 +33,43 @@ class DataHeader extends React.Component {
 			//alert('Selected tab is ' + cookie.load('Edit_tabselect'));
 			var Tab_select = cookie.load('Edit_tabselect');
 			$('.tab-content').hide();
-			if(Tab_select==1){
+			if (Tab_select == 1) {
 				$('#Edittab1-content').show();
 				$('#basic-date-picker1').attr('placeholder', 'วัน/เดือน/ปี');
 				$('.reset-pass').hide();
 			}
-			else if(Tab_select==2){
+			else if (Tab_select == 2) {
 				$('#Edittab2-content').show();
 				$('.tab-list-item').removeClass('tab-list-active');
 				$('#tab-2').addClass('tab-list-active')
 			}
-			else if(Tab_select==3){
+			else if (Tab_select == 3) {
 				$('#Edittab3-content').show();
 				$('.tab-list-item').removeClass('tab-list-active');
 				$('#tab-3').addClass('tab-list-active')
 			}
-			else if(Tab_select==4){
+			else if (Tab_select == 4) {
 				$('#Edittab4-content').show();
 				$('.tab-list-item').removeClass('tab-list-active');
 				$('#tab-4').addClass('tab-list-active')
 			}
-			else if(Tab_select==5){
+			else if (Tab_select == 5) {
 				$('#Edittab5-content').show();
 				$('.tab-list-item').removeClass('tab-list-active');
 				$('#tab-5').addClass('tab-list-active')
 			}
-			else if(Tab_select==6){
+			else if (Tab_select == 6) {
 				$('#Edittab6-content').show();
 				$('.tab-list-item').removeClass('tab-list-active');
 				$('#tab-6').addClass('tab-list-active')
 			}
-			else if(Tab_select==7){
+			else if (Tab_select == 7) {
 				$('#Edittab7-content').show();
 				$('.tab-list-item').removeClass('tab-list-active');
 				$('#tab-7').addClass('tab-list-active')
 			}
-			else{
-				alert("Don't selected");
+			else {
+				//alert("Don't selected");
 				$('#Edittab1-content').show();
 			}
 			console.log("Yahaha!");
@@ -126,24 +126,6 @@ class DataHeader extends React.Component {
 			});
 
 		});
-		var min_abme_count = -1;
-		var el;
-
-		function countCharactersAbme() {
-			var textEntered, countRemaining, counter;
-			textEntered = document.getElementById('aboutme2').value;
-			counter = (280 - (textEntered.length));
-			countRemaining = document.getElementById('charactersRemaining');
-			//console.log('Char left : ' + counter);
-			countRemaining.textContent = counter;
-			if (counter <= min_abme_count) {
-				console.log('Warning!');
-				$('.aboutmee').addClass('is-invalid');
-			}
-			else {
-				$('.aboutmee').removeClass('is-invalid');
-			}
-		}
 		function GetProvince() {
 			fetch("https://thaiaddressapi-thaikub.herokuapp.com/v1/thailand/provinces",
 				{ method: "GET", })
@@ -195,16 +177,6 @@ class DataHeader extends React.Component {
 				});
 
 		}
-
-		el = document.getElementById('aboutme2');
-		el.addEventListener('keyup', countCharactersAbme, false);
-
-		$('.aboutmee').on('change', 'input', function () {
-			var abme = $('.aboutmee').val();
-			var abme_count = abme.length;
-			//console.log('L : ' + abme_count);
-
-		});
 
 		function get_high_id(list_of_high, x) {
 			//var x = 1;
@@ -288,15 +260,10 @@ class DataHeader extends React.Component {
 					})
 				});
 				this.state.data.WorkHistory_id.forEach((ele, index) => {
-					let regist4_cb = false, wey = this.state.data.Work_End_Year[index], wem = this.state.data.Work_End_Month[index];
+					let regist4_cb = false;
 					if (this.state.data.Work_End_Year[index] === 9999 && this.state.data.Work_End_Month[index] === 99) {
 						regist4_cb = true;
 					}
-					/*else if (this.state.data.Work_End_Year[index] === 0 && this.state.data.Work_End_Month[index] === 0) {
-						//regist4_cb = true;
-						wey = "";
-						wem = "";
-					}*/
 					workdata.push({
 						WorkHistory_id: ele,
 						Work_JobName: this.state.data.Work_JobName[index],
@@ -324,16 +291,16 @@ class DataHeader extends React.Component {
 						Job_SkillName1: this.state.data.Job_SkillName[index][0] ? this.state.data.Job_SkillName[index][0] : "none",
 						Job_SkillName2: this.state.data.Job_SkillName[index][1] ? this.state.data.Job_SkillName[index][1] : "none",
 						Job_SkillName3: this.state.data.Job_SkillName[index][2] ? this.state.data.Job_SkillName[index][2] : "none",
-						Job_Objective1: this.state.data.Job_Objective[index][0] ? this.state.data.Job_Objective[index][0] : "",
-						Job_Objective2: this.state.data.Job_Objective[index][1] ? this.state.data.Job_Objective[index][1] : "",
-						Job_Objective3: this.state.data.Job_Objective[index][2] ? this.state.data.Job_Objective[index][2] : "",
+						Job_Objective1: this.state.data.Job_Objective[index][0] !== "none" ? this.state.data.Job_Objective[index][0] : "",
+						Job_Objective2: this.state.data.Job_Objective[index][1] !== "none" ? this.state.data.Job_Objective[index][1] : "",
+						Job_Objective3: this.state.data.Job_Objective[index][2] !== "none" ? this.state.data.Job_Objective[index][2] : "",
 						Job_Pos: index + 1,
 						token: token,
 						isFetch: true
 					})
 				});
 			});
-			console.log('This is job data : '+ jobdata);
+		console.log('This is job data : ' + jobdata);
 	}
 
 	componentWillUnmount() {

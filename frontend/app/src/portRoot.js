@@ -229,6 +229,7 @@ class PortRoot extends React.Component {
 									refThis.setState({ redirect: "/editport" });
 								});
 								
+								$(".pft-lock-icon").off('click');
 								$('.pft-lock-icon').on('click', function(e){
 									//alert('Clicked! id: '+pftId[focusId]);
 									e.stopPropagation();
@@ -250,7 +251,10 @@ class PortRoot extends React.Component {
 										//alert('Change to Public');
 									}
 									pftVipData[focusId].Port_Privacy = p2c;
-									console.log(pftVipData[focusId]);
+									//console.log(pftVipData[focusId]);
+									//alert(pftVipData[focusId].Port_Privacy);
+									console.log(pftVipData[focusId].Port_Privacy);
+									//return;
 									fetch("http://localhost:2000/portfolio/"+pftId[focusId],{
 									method: "PATCH",
 									headers: {

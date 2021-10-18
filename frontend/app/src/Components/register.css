@@ -52,6 +52,18 @@
   position: relative;
 }
 
+.Editresume-box-content5 {
+  height: 27.7vw;
+  width: 75.9vw;
+  margin-left:12.5%;
+  /*margin-bottom: 0.5vw;*/
+  margin-top: 1.5vw;
+  /*padding: 1%;*/
+  overflow-y: scroll;
+  position: relative;
+  padding-top: 1vw;
+}
+
 .Editresume-box-content6 {
   height: 27.7vw;
   width: 60vw;
@@ -414,27 +426,41 @@ datalist {
 }
 
 .sharingSize {
-  height: 25vh;
+  height: 13vw;
   width: 130vw;
   border-radius: 1vw;
   padding-top: 0.7vw;
 }
 
 .sharingSize2 {
-  height: 40vh;
-  width: 130vw;
+  position: fixed;
+  height: 32vw;
+  width: 60vw;
   border-radius: 1vw;
-  padding-top: 0.7vw;
+  margin:5vw;
+  padding-top:7vw;
+  padding-left:2.5vw;
+  top: 5%;
+  left: 15%;
+  background-color: "#fffff";
 }
 
 .SharingFontHead {
   margin-left: 1vw;
   margin-top: 0.6vw;
   margin-bottom: -0.2vw;
-  font-size:32px;
+  font-size:48px;
   color:#000;
   font-weight: 800;
   display:inline-block;
+}
+
+.SharingFonSubtHead{
+  font-size:32px;
+  font-weight: 300;
+  color:#000;
+  display:inline-block;
+  margin-left: 1vw;
 }
 
 .modal-content {
@@ -443,6 +469,11 @@ datalist {
 
 .mg-l1 {
   margin-left: 0.6vw;
+}
+
+
+.mg-t1 {
+  margin-top: 30px;
 }
 
 #basic-date-picker1{
@@ -633,4 +664,62 @@ datalist {
   height: 0.1px;
   background-color: #c4c4c4;
   margin: -2vh auto 0;
+}
+
+.button-export1 {
+  position: absolute;
+  margin-left: 25vw;
+  margin-bottom: 2.5vw;
+  margin-top: 3vw;
+}
+
+.header-export1 {
+  position: absolute;
+  margin-left: -0.5vw;
+  margin-top: -5vw;
+}
+
+.pft-box555{
+	cursor: pointer;
+	height: 286.875px;
+	width: 25vw;
+	/*pointer-events: none;*/
+	position: relative;
+}
+
+.pft-container555{
+	cursor: pointer;
+	position: relative;
+	text-align: center;
+	line-height: 0;
+	/*overflow: hidden;*/
+  display: inline;
+}
+
+.port-box1 {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.pft-isus{
+	z-index: -1;
+	position: absolute;
+	cursor: pointer;
+	height: 100%;
+	width: auto;
+	left: 50%;
+	transform: translate(-50%);
+}
+
+.pft-namesus{
+	position: absolute;
+	bottom: 24px;
+	left: 16px;
+	color: white;
+	width: 97%;
+	font-weight: 500;
+	text-align: left;
+	font-size: 24px;
+  overflow: visible;
 }

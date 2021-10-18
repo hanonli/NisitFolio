@@ -46,7 +46,7 @@ class Editresume2 extends React.Component {
             var tmp2 = [...mywork2];
             tmp2.sort(compareValues('Work_Start_Year', 'desc'));
             tmp2.forEach(ele => {
-                isCheck_work[ele.WorkHistory_id] = false;
+                //isCheck_work[ele.WorkHistory_id] = false;
                 let grid_work2 = `<div id="{ele.WorkHistory_id}">\
                                         <input\
                                             class="input-choose-work1"\
@@ -54,7 +54,7 @@ class Editresume2 extends React.Component {
                                             type="checkbox"\
                                             name="vehicle2"\
                                             value="{ele.WorkHistory_id}"\
-                                            defaultchecked="{isCheck_work[ele.WorkHistory_id]}"\
+                                            {ischeck}\
                                             hidden\
                                         />\
                                         <label class="t4-content" id="list-work-22" for="{yyyxxcxele.WorkHistory_id}">\
@@ -71,7 +71,7 @@ class Editresume2 extends React.Component {
                                                 <div class="col-3 font-salary font-boldt3">{ele.Salary_type}</div>\
                                                 <div class="col font-titlet4_2">{salary_work} บาท</div>\
                                             </div>\
-                                            <img class="icon-checkbox1112" height="110" src="assets/images/check_black.png"></img>\
+                                            <img class="icon-checkbox1112" height="110" src="assets/images/check_black.png" oncontextmenu="return false;" ondragstart="return false;"></img>\
                                         </label>\
                                     </div>`;
                 let headyearworkkk1 = `<div id="{show-year25}">\
@@ -81,7 +81,7 @@ class Editresume2 extends React.Component {
                 grid_work2 = grid_work2.replace("{ele.WorkHistory_id}", ele.WorkHistory_id);
                 grid_work2 = grid_work2.replace("{yyyele.WorkHistory_id}", "yyy" + ele.WorkHistory_id);
                 grid_work2 = grid_work2.replace("{ele.WorkHistory_id}", ele.WorkHistory_id);
-                grid_work2 = grid_work2.replace("{isCheck_work[ele.WorkHistory_id]}", isCheck_work[ele.WorkHistory_id]);
+                grid_work2 = grid_work2.replace("{ischeck}", ele.isCheckWork ? "checked" : "");
                 grid_work2 = grid_work2.replace("{yyyxxcxele.WorkHistory_id}", "yyy" + ele.WorkHistory_id);
                 grid_work2 = grid_work2.replace("{ele.Work_JobName}", ele.Work_JobName);
                 if (ele.Company == "none" || ele.Company == "") {
@@ -100,7 +100,7 @@ class Editresume2 extends React.Component {
                 if (ele.Work_End_Month === 99 && ele.Work_End_Year === 9999) {
                     grid_work2 = grid_work2.replace("สิ้นสุด {month_endwork}/{year_endwork}", "ยังอยู่ในงาน");
                 }
-                else if ((ele.Work_End_Month === 0 && ele.Work_End_Year === 0)||(ele.Work_End_Month === null && ele.Work_End_Year === null)) {
+                else if ((ele.Work_End_Month === 0 && ele.Work_End_Year === 0) || (ele.Work_End_Month === null && ele.Work_End_Year === null)) {
                     grid_work2 = grid_work2.replace("สิ้นสุด {month_endwork}/{year_endwork}", "");
                 }
                 else if (ele.Work_End_Month === 0 && ele.Work_End_Year != 0) {

@@ -464,9 +464,8 @@ export class MyResumeService {
     const account=await this.accountRepository.findOne({where:{_id:userid}});
     //return [userid,UserId]this.resumeModel.find({UserId : userId});
     
-    const resumeColor=(await this.resumeModel.findOne({UserId:UserId})).Color;
-    //return resumeColor
-    result.Color_ResumeId=resumeColor;
+    const resumeColor=(await this.resumeModel.findOne({UserId:UserId}));
+    result.Color_ResumeId=resumeColor.Color;
     
     
 
@@ -645,6 +644,14 @@ export class MyResumeService {
     result.Job_JobName=Job_JobName_arr;
     result.Job_SkillName=Job_SkillName_arr;
     result.InterestedJob_id=InterestedJob_id_arr;
+
+    const kuy6=[];
+    const resu=await this.resumePictureRepository.find({where:{UserId:UserId}});
+    for (var _i = 0; _i < resu.length; _i++) {
+      kuy6.push(resu[_i]._id.toString());
+    }
+    result.Resume_id=kuy6
+
     
     
     return result;
