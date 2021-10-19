@@ -17,7 +17,7 @@ export class MyResumeController {
       return this.resumeService.GetResume3(req.user.userId);
   
     }
-         //--------test
+  //--------test
   @Get("/testget/x")
   async Gettest() {
     const x="61694b9e65b7f193870b5bc2"
@@ -35,6 +35,11 @@ export class MyResumeController {
     return this.resumeService.GetResume3(x);
 
   }
+  @Get('/userunbase64/:userid')
+  async getResumeUnbase64(@Param('userid') UserId: string){
+    return this.resumeService.getResumeUnbase64(UserId);
+  }
+
   //---------
 
 

@@ -303,6 +303,12 @@ export class Portfolio {
 
   @ManyToOne(type => Resume, resume => resume.portfolios)
   resumes: Resume[];
+
+  @Column()
+  ResumeId: string[];
+
+
+
 }
 
 //--------------------PortfolioPicture--------------------------//
@@ -390,6 +396,10 @@ export class Resume {
 
   @Column()
   modified_by:string[];
+
+  @Column()
+  ProfilePic_URL: string;
+
 
 
 }

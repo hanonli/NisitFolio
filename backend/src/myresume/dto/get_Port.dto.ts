@@ -51,4 +51,6 @@ export class GetResume {
 
   City:string;
 
+  ProfilePic_URL:string;
+
 }
