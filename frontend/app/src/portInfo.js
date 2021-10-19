@@ -270,7 +270,7 @@ class PortInfo extends React.Component {
 			console.log(portfolioData);
 				refThis.setState({ render: true });
 				
-				//$('#avatar').attr('src',portfolioData.ProfilePic);
+				$('#avatar').attr('src',portfolioData.ProfilePic);
 				
 				$("#to-regis").click(function() {
 					refThis.setState({ redirect: "/register" });
@@ -308,7 +308,7 @@ class PortInfo extends React.Component {
 					
 					console.log(userData);
 					//alert(44);
-					$('#avatar').attr('src',userData.ProfilePic);
+					//$('#avatar').attr('src',userData.ProfilePic);
 					/*if(portfolioData.Port_Privacy == 'Public'){
 						$('#uic-2').attr('src','assets/images/outline_public_black_24dp.png');
 						$('#uic-2').attr('title','เปลี่ยนความเป็นส่วนตัว');
@@ -757,14 +757,14 @@ class PortInfo extends React.Component {
 				GetUserBookmarkData();
 				
 				//quick fix
-				GetUserProfilePic();
+				//GetUserProfilePic();
 			}).catch((error) => {
 				console.log('Token Error!');
 				console.log(error);
 				//this.setState({ redirect: "/landing" });
 			});
 			
-		function GetUserProfilePic(){
+		/*function GetUserProfilePic(){
 			fetch("http://localhost:2000/search/top?q="+portfolioData.Owner.split(' ')[0]+"&userId="+userId,{
 				method: "GET",
 				headers: {
@@ -790,7 +790,7 @@ class PortInfo extends React.Component {
 				}).catch((error) => {
 					  console.log(error);
 					});
-		}
+		}*/
 		
 		function GetUserBookmarkData(){
 			fetch("http://localhost:2000/bookmark/"+userId+"&&time",{
