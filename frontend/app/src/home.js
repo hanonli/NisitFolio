@@ -234,27 +234,13 @@ class Home extends React.Component {
 				
 				
 				$('#mrs').on('click', function(){
-					fetch("http://localhost:2000/myresume/",{
-						method: "GET",
-						headers: {
-							'Authorization': 'Bearer '+token,
-							"Access-Control-Allow-Origin": "*",
-							"Access-Control-Allow-Methods": "*",
-							"Access-Control-Allow-Credentials": true,
-							"Content-Type": "application/json"
-						},
-					})
-					.then(function(response) {
-						return response.text().then(function(text) {
-						  if(text == '[]'){ 
-							//alert('isEmpty!')
-							refThis.setState({ redirect: "/Choosenothing" });
-						  }else{
-							//alert('Go!');
-							refThis.setState({ redirect: "/myresume" });
-						  }
-						});
-					 });
+					if(datas.Job_JobName.length < 1){
+						//alert('isEmpty!')
+						refThis.setState({ redirect: "/Choosenothing" });
+					}else{
+						//alert('Go!');
+						refThis.setState({ redirect: "/myresume" });
+					}
 				});
 				
 			}).catch((error) => {
