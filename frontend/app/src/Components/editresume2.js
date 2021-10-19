@@ -150,17 +150,17 @@ class Editresume2 extends React.Component {
                 $(`#contentYear-workresume_` + String(ele.Work_Start_Year)).append(grid_work2);
             });
         }, 9000);
-        $(document).on("click", ".input-choose-work1", function () {
+        /*$(document).on("click", ".input-choose-work1", function () {
             choose_work = $('.input-choose-work1:input[type=checkbox]:checked').map(function (_, el) {
                 return $(el).val();
             }).get();
             console.log("susss:", choose_work);
-        });
+        });*/
         $(".input-choose-work1:input:checkbox").click(function () {
             var bol = $(".input-choose-work1:input:checkbox:checked").length >= 3;
             $(".input-choose-work1:input:checkbox").not(":checked").attr("disabled", bol);
         });
-        $(document).on("change", ".input-choose-work1", function () {
+        /*$(document).on("change", ".input-choose-work1", function () {
             if (choose_work.length === 3) {
                 $("#you-choose-list-resume-work11").text("คุณเลือกครบ 3 รายการแล้ว");
                 $("#you-choose-list-resume-work11").addClass("you-choose-list-resume-red");
@@ -173,7 +173,7 @@ class Editresume2 extends React.Component {
                 $("#you-choose-list-resume-work11").text(`คุณเลือกไปแล้ว ${choose_work.length} รายการ`);
                 $("#you-choose-list-resume-work11").removeClass("you-choose-list-resume-red");
             }
-        });
+        });*/
     }
 
     componentWillReceiveProps(props) {

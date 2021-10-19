@@ -128,7 +128,7 @@ $(document).on('change', "#image-upload112", function () {
         $("#icon-upload-112").remove();
         $("#text-upload-112").remove();
         $("#text-upload-116").remove();
-        $(".for_upload112").append('<img id="preview_before_upload" height="145" oncontextmenu="return false;" ondragstart="return false;"></img>');
+        $(".for_upload112").append('<img id="preview_before_upload" oncontextmenu="return false;" ondragstart="return false;"></img>');
         $("#to_upload112").removeClass("error_select_certi");
     }
 });
@@ -159,7 +159,7 @@ $(document).on("click", "#edit-certi", function () {
     document.getElementById("nm_certi").value = for_edit["name_certi"];
     document.getElementById("yearpicker_111").selectedIndex = for_edit["year_certi_select"];
     picOfCerti = for_edit["path_file_certi"];
-    $(".for_upload112").append(`<img src="` + picOfCerti + `" id="preview_before_upload" height="145" oncontextmenu="return false;" ondragstart="return false;"></img>`);
+    $(".for_upload112").append(`<img src="` + picOfCerti + `" id="preview_before_upload" oncontextmenu="return false;" ondragstart="return false;"></img>`);
 
 });
 

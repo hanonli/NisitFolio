@@ -28,19 +28,22 @@ class Editresume extends React.Component {
 			render: true,
 			Color_Resume: '',
 			firstchoosecolor: false,
-			resumeId: ''
+			resumeId: '',
 		}
+	}
+	callbackFunction = (childData) => {
+		this.setState({ Color_Resume: childData })
 	}
 
 	handleSubmitEdit = e => {
-		alert(select_color_template);
+		alert(this.state.Color_Resume);
 		var FormEdit = {
-			"SoftSkillID":[],
-			"CertID":[],
-			"EducationID":[],
-			"WorkID":[],
-			"PortID":[],
-			"Color": select_color_template
+			"SoftSkillID": [],
+			"CertID": certdata,
+			"EducationID": [],
+			"WorkID": workdata,
+			"PortID": [],
+			"Color": this.state.Color_Resume
 		}
 		console.log(FormEdit);
 		alert('Confirm Edit Resume');
@@ -167,9 +170,9 @@ class Editresume extends React.Component {
 					})
 				});
 				console.log(sideskilldata);
-				this.state.data.Job_JobName.forEach((ele,index) => {
-					if(ele == cookie.load('Job_EditName')){
-						return this.setState({resumeId : this.state.data.Resume_id});
+				this.state.data.Job_JobName.forEach((ele, index) => {
+					if (ele == cookie.load('Job_EditName')) {
+						return this.setState({ resumeId: this.state.data.Resume_id });
 						//alert(this.state.resumeId);
 					}
 					/*else{
@@ -259,29 +262,76 @@ class Editresume extends React.Component {
 				$('#registab6-content').show();
 			});
 		});
-	function EditResume(pack){
-		fetch("http://localhost:2000/myresume/"+this.state.resumeId,
-			{ method: "PATCH",
-			headers: {
-			"Content-Type": "application/json",
-			"Accept": "application/json"
-			},
-				body: JSON.stringify(pack)}
-		)
-		.then(function (response) {
-			//window.location.pathname = '/emailverify'
-			//alert(response.message);
-			if (!response.ok) {
-				throw Error(response.statusText);
-			}
-			else{
-				console.log("ok");
-				window.location.href = "http://localhost:3000/myresume/";
-			}
-			return response;
-		}).catch(function(error) {
-			console.log(error);
+
+		$(document).on("click", ".input-choose-certi1", function () {
+			certdata = $('.input-choose-certi1:input[type=checkbox]:checked').map(function (_, el) {
+				return $(el).val();
+			}).get();
+			console.log("susss222:", certdata);
 		});
+
+		$(document).on("change", ".input-choose-certi1", function () {
+			if (certdata.length === 6) {
+				$("#you-choose-list-resume-certi1").text("คุณเลือกครบ 6 รายการแล้ว");
+				$("#you-choose-list-resume-certi1").addClass("you-choose-list-resume-red");
+			}
+			else if (certdata.length === 0) {
+				$("#you-choose-list-resume-certi1").text("");
+				$("#you-choose-list-resume-certi1").removeClass("you-choose-list-resume-red");
+			}
+			else {
+				$("#you-choose-list-resume-certi1").text(`คุณเลือกไปแล้ว ${certdata.length} รายการ`);
+				$("#you-choose-list-resume-certi1").removeClass("you-choose-list-resume-red");
+			}
+		});
+
+		$(document).on("click", ".input-choose-work1", function () {
+			workdata = $('.input-choose-work1:input[type=checkbox]:checked').map(function (_, el) {
+				return $(el).val();
+			}).get();
+			console.log("susss:", workdata);
+		});
+
+		$(document).on("change", ".input-choose-work1", function () {
+			if (workdata.length === 3) {
+				$("#you-choose-list-resume-work11").text("คุณเลือกครบ 3 รายการแล้ว");
+				$("#you-choose-list-resume-work11").addClass("you-choose-list-resume-red");
+			}
+			else if (workdata.length === 0) {
+				$("#you-choose-list-resume-work11").text("");
+				$("#you-choose-list-resume-work11").removeClass("you-choose-list-resume-red");
+			}
+			else {
+				$("#you-choose-list-resume-work11").text(`คุณเลือกไปแล้ว ${workdata.length} รายการ`);
+				$("#you-choose-list-resume-work11").removeClass("you-choose-list-resume-red");
+			}
+		});
+
+		function EditResume(pack) {
+			fetch("http://localhost:2000/myresume/" + this.state.resumeId,
+				{
+					method: "PATCH",
+					headers: {
+						"Content-Type": "application/json",
+						"Accept": "application/json"
+					},
+					body: JSON.stringify(pack)
+				}
+			)
+				.then(function (response) {
+					//window.location.pathname = '/emailverify'
+					//alert(response.message);
+					if (!response.ok) {
+						throw Error(response.statusText);
+					}
+					else {
+						console.log("ok");
+						window.location.href = "http://localhost:3000/myresume/";
+					}
+					return response;
+				}).catch(function (error) {
+					console.log(error);
+				});
 		}
 
 		$('#cancelChoose').on('click', function () {
@@ -330,7 +380,7 @@ class Editresume extends React.Component {
 					<form class="needs-validation" novalidate>
 						<div>
 							<div class="tab-content" id="registab1-content">
-								<Myresumedittemplate Color_Resume={this.state.Color_Resume} firstchoosecolor={this.state.firstchoosecolor} />
+								<Myresumedittemplate Color_Resume={this.state.Color_Resume} firstchoosecolor={this.state.firstchoosecolor} parentCallback={this.callbackFunction} />
 							</div>
 							<div class="tab-content" id="registab2-content">
 								<Chooseresume1 list_of_aca={list_of_aca} list_of_high={list_of_high} />

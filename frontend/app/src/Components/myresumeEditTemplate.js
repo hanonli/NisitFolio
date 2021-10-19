@@ -21,7 +21,7 @@ class MyResumeEditTemplate extends React.Component {
             selectedOption: this.props.firstchoosecolor ? "#FFCE55" : this.props.Color_Resume,
             sample_template: myTemplate[this.props.firstchoosecolor ? "#FFCE55" : this.props.Color_Resume],
         };
-        select_color_template = this.props.firstchoosecolor ? "#FFCE55" : this.props.Color_Resume; //
+        select_color_template = this.props.firstchoosecolor ? "#FFCE55" : this.props.Color_Resume;
     }
 
     handleChange = e => {
@@ -32,6 +32,7 @@ class MyResumeEditTemplate extends React.Component {
         });
         select_color_template = e.target.value; //ใช้ตัวแปรนี้แทน
         console.log("choose color:", select_color_template);
+        this.props.parentCallback(select_color_template);
         //console.log("choose color2:", this.state.value_color);
     };
 
@@ -40,13 +41,13 @@ class MyResumeEditTemplate extends React.Component {
     }
 
     handleLoad() {
-        console.log("YEAH!");
+        console.log("YEAH!!!!");
     }
 
-    componentWillReceiveProps(props) {
+    /*componentWillReceiveProps(props) {
         console.log("Color_Resume:", props.Color_Resume);
         console.log("firstchoosecolor:", props.firstchoosecolor);
-    }
+    }*/
 
     render() {
         return (

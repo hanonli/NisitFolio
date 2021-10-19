@@ -91,19 +91,19 @@ class Editresume3 extends React.Component {
             });
         }, 9000);
 
-        $(document).on("click", ".input-choose-certi1", function () {
+        /*$(document).on("click", ".input-choose-certi1", function () {
             choose_certi = $('.input-choose-certi1:input[type=checkbox]:checked').map(function (_, el) {
                 return $(el).val();
             }).get();
             console.log("susss:", choose_certi);
-        });
+        });*/
 
         $(document).on("click", ".input-choose-certi1:input:checkbox", function () {
             var bol = $(".input-choose-certi1:input:checkbox:checked").length >= 6;
             $(".input-choose-certi1:input:checkbox").not(":checked").attr("disabled", bol);
         });
 
-        $(document).on("change", ".input-choose-certi1", function () {
+        /*$(document).on("change", ".input-choose-certi1", function () {
             if (choose_certi.length === 6) {
                 $("#you-choose-list-resume-certi1").text("คุณเลือกครบ 6 รายการแล้ว");
                 $("#you-choose-list-resume-certi1").addClass("you-choose-list-resume-red");
@@ -116,7 +116,7 @@ class Editresume3 extends React.Component {
                 $("#you-choose-list-resume-certi1").text(`คุณเลือกไปแล้ว ${choose_certi.length} รายการ`);
                 $("#you-choose-list-resume-certi1").removeClass("you-choose-list-resume-red");
             }
-        });
+        });*/
     }
     componentWillReceiveProps(props) {
         console.log("Gsgsfw");
