@@ -15,6 +15,7 @@ import { CreatePortDto } from './dto/get_port2.dto';
 import { count } from 'console';
 import {Public_resume} from './entity/Color_priv_resume.entity'
 import { Public_resume2, Public_resumeDocument } from './entity/Color_priv_resume.schema';
+import { object } from 'joi';
 
 
 @Injectable()
@@ -656,4 +657,10 @@ export class MyResumeService {
     
     return result;
   }
+  async getResumeUnbase64(userId:string ){
+    return this.resumePictureRepository.find({select: ["_id","UserId","Owner","First","Last","Location","ProfilePic_URL","AboutMe","Email","Privacy","interestedJob","additionalSkills","certificates","educationHistorys","workHistorys","portfolios","create_time","last_modified","modified_by"],where:{UserId : userId}});
+    
+  }
+  
+
 }

@@ -302,6 +302,8 @@ export class RegisterService {
       }
       if (patchDto.ProfilePicBase64 != null)
         resume[_i].ProfilePic =  patchDto.ProfilePicBase64;
+      if (patchDto.ProfilePic != null)
+        resume[_i].ProfilePic_URL =  patchDto.ProfilePic;
       if (patchDto.Country || patchDto.Province || patchDto.City)
         resume[_i].Location = patchDto.Country + " " + patchDto.Province + " " + patchDto.City;
       if (patchDto.Firstname){
