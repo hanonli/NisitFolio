@@ -52,7 +52,6 @@ class Editresume2 extends React.Component {
                                             class="input-choose-work1"\
                                             id="{yyyele.WorkHistory_id}"\
                                             type="checkbox"\
-                                            name="vehicle2"\
                                             value="{ele.WorkHistory_id}"\
                                             {ischeck}\
                                             hidden\

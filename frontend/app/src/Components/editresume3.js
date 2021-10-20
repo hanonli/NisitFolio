@@ -52,7 +52,6 @@ class Editresume3 extends React.Component {
                                         class="input-choose-certi1"\
                                         id="{xxx}"\
                                         type="checkbox"\
-                                        name="vehicle1"\
                                         value="{ele.Certificate_idvalue}"\
                                         {ischeck}\
                                         hidden\
