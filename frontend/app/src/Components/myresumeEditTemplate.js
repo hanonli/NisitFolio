@@ -68,7 +68,6 @@ class MyResumeEditTemplate extends React.Component {
                                         value="#FFCE55"
                                         onChange={this.handleChange}
                                         checked={this.state.selectedOption === "#FFCE55"}
-                                        name="platform"
                                         type="radio"
                                     />
                                     <label id="color-edit-template1" class="edit-template-color-FFCE55" for="edit-template-color-FFCE55">
@@ -83,7 +82,6 @@ class MyResumeEditTemplate extends React.Component {
                                         value="#FE9666"
                                         onChange={this.handleChange}
                                         checked={this.state.selectedOption === "#FE9666"}
-                                        name="platform"
                                         type="radio"
                                     />
                                     <label id="color-edit-template1" class="edit-template-color-FE9666" for="edit-template-color-FE9666">
@@ -98,7 +96,6 @@ class MyResumeEditTemplate extends React.Component {
                                         value="#FF7370"
                                         onChange={this.handleChange}
                                         checked={this.state.selectedOption === "#FF7370"}
-                                        name="platform"
                                         type="radio"
                                     />
                                     <label id="color-edit-template1" class="edit-template-color-FF7370" for="edit-template-color-FF7370">
@@ -113,7 +110,6 @@ class MyResumeEditTemplate extends React.Component {
                                         value="#32A3C7"
                                         onChange={this.handleChange}
                                         checked={this.state.selectedOption === "#32A3C7"}
-                                        name="platform"
                                         type="radio"
                                     />
                                     <label id="color-edit-template1" class="edit-template-color-32A3C7" for="edit-template-color-32A3C7">
@@ -126,7 +122,6 @@ class MyResumeEditTemplate extends React.Component {
                                     <input
                                         id="edit-template-color-01B8AA"
                                         value="#01B8AA"
-                                        name="platform"
                                         onChange={this.handleChange}
                                         checked={this.state.selectedOption === "#01B8AA"}
                                         type="radio"
