@@ -5,7 +5,7 @@ import { data } from 'jquery';
 import { Link } from "react-router-dom";
 import cookie from 'react-cookies';
 
-class MyresumePortfolio extends React.Component {
+class MyresumePortfolioO extends React.Component {
     constructor(props){
         super(props)
         var user = cookie.load('login-user');
@@ -21,8 +21,8 @@ class MyresumePortfolio extends React.Component {
         else{
             whosee = "other";
         }
-        this.state = {cookieid : user, ownerid : state.userID, index : state.index, data1 : [], data2 : [], data3 : [], seeby : whosee};
-        this.GetUserPortData()
+        this.state = {cookieid : user, ownerid : state.userID, index : state.index, data : [], seeby : whosee};
+        this.GetUserPortData();
     }
 
     handleRoute = () => {
@@ -32,13 +32,30 @@ class MyresumePortfolio extends React.Component {
     GetUserPortData(){
         var id = this.state.ownerid;
         var seeby = this.state.seeby;
-        fetch("http://localhost:2000/myresume/portfolio/"+ id + "/" + seeby).then(response => response.json())
-        .then(data => {
-            console.log(data)
-            this.setState({data1: data[0]});
-            this.setState({data2: data[1]});
-            this.setState({data3: data[2]});
-        });
+        var buck = this.props.data;
+        console.log(buck);
+        var filtered = [];
+        if(seeby === "owner"){
+            for(var i = 0; i<buck.length; i++){
+                filtered.push(buck[i]);
+            }
+        }
+        else{
+            for(var i = 0; i<buck.length; i++){
+                if(buck[i].Port_Privacy === "Public"){
+                    filtered.push(buck[i]);
+                }
+                else if((buck[i].Port_Privacy === "Members") && (seeby === "other")){
+                    filtered.push(buck[i]);
+                }
+                else if((buck[i].Port_Privacy === "Members") && (seeby === "owner")){
+                    filtered.push(buck[i]);
+                }
+            }
+            
+        }
+        console.log(filtered)
+        this.setState({data: filtered});
         
     }
     render() {
@@ -46,28 +63,7 @@ class MyresumePortfolio extends React.Component {
             backgroundColor:  this.props.state.color ? this.props.state.color : "#FFCE55"
         };
         const color = this.props.state.color;
-		console.log(this.state.data1);
-        var index = this.props.state.index;
-        const monthdict = {
-            1: "มกราคม",
-            2: "กุมภาพันธ์",
-            3: "มีนาคม",
-            4: "เมษายน",
-            5: "พฤษภาคม",
-            6: "มิถุนายน",
-            7: "กรกฎาคม",
-            8: "สิงหาคม",
-            9: "กันยายน",
-            10: "ตุลาคม",
-            11: "พฤศจิกายน",
-            12: "ธันวาคม",
-            99: "ยังอยู่ในงาน"
-        };
-
-        let mydata = [];
-        mydata.push(this.state.data1);
-        mydata.push(this.state.data2);
-        mydata.push(this.state.data3);
+		console.log(this.state.data);
 
         var seeby = this.state.seeby;
         var buck = this.props.data;
@@ -94,16 +90,25 @@ class MyresumePortfolio extends React.Component {
         }
         console.log(filtered);
 
-        var portfolios;
+        var index = this.props.state.index;
+        const monthdict = {
+            1: "มกราคม",
+            2: "กุมภาพันธ์",
+            3: "มีนาคม",
+            4: "เมษายน",
+            5: "พฤษภาคม",
+            6: "มิถุนายน",
+            7: "กรกฎาคม",
+            8: "สิงหาคม",
+            9: "กันยายน",
+            10: "ตุลาคม",
+            11: "พฤศจิกายน",
+            12: "ธันวาคม",
+            99: "ยังอยู่ในงาน"
+        };
 
-        if(mydata[index].length === 0){
-            portfolios = filtered;
-        }
-        else{
-            portfolios = mydata[index];
-        }
-
-        //const portfolios = mydata[index];//this.props.data? this.props.data: [];
+        
+        const portfolios = filtered;//this.props.data? this.props.data: [];
         const owner_status = this.props.state.is_owner;
         console.log(owner_status);
         console.log(this.state);
@@ -181,4 +186,4 @@ class MyresumePortfolio extends React.Component {
         }
     }
 }
-export default MyresumePortfolio;
+export default MyresumePortfolioO;

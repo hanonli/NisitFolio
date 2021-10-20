@@ -6,7 +6,7 @@ import MultipleRows from './myresume3slidemywork';
 import MyResumeportfoliolayoutP from './Myresume_choiceforportfolio';
 
 import MyresumePortfolio from './myresumeportfolio';
-
+import MyresumePortfolioO from './myresumeportfolio_o';
 class MyResume3 extends React.Component {
     constructor(props) {
         super(props);
@@ -98,6 +98,7 @@ class MyResume3 extends React.Component {
                     <br /><br />
                     <div className="myresume-mywork-1">
                     <MyresumePortfolio data={portfoliodata} state={this.props.state}></MyresumePortfolio>
+                    {/*<MyresumePortfolioO data={portfoliodata} state={this.props.state}></MyresumePortfolioO>*/}
                         <br /><br />
                         </div>
                 </div></>

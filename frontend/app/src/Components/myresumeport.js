@@ -77,12 +77,14 @@ class MyResumePort extends React.Component {
             return (
                 <div class="myworkobj" onClick={this.handleRoute}>
                     <div className="img-overlay">
-                        <h3 className="myworkname">
-                            {port_name}
-                        </h3>
-                        <h4 className="myworkdate">
-                            {date}
-                        </h4>
+                        <div class="myworkalllabel">
+                            <h3 className="myworkname">
+                                {port_name}
+                            </h3>
+                            <h4 className="myworkdate">
+                                {date}
+                            </h4>
+                        </div>
                     </div>
                     <div className="row">
                         <div className="mywork-col">
