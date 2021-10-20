@@ -2,6 +2,7 @@ import React from 'react';
 import DatePickerBD from './datepickerBD.js';
 import $ from 'jquery';
 import Cropper from 'react-cropper';
+import cookie from 'react-cookies';
 
 class Edittab5 extends React.Component {
     constructor(props) {
@@ -10,6 +11,8 @@ class Edittab5 extends React.Component {
     }
     componentDidMount() {
         window.addEventListener('load', this.handleLoad);
+        //alert("อย่าเพิ่ง add edit delete");
+        var token5 = cookie.load('login-token');
         var list_of_year_certi = {}; //check year
         var year_before_certi;
         var picOfCerti = '', file_picOfCerti = '';
@@ -158,7 +161,7 @@ class Edittab5 extends React.Component {
             $("#text-upload-116").remove();
             document.querySelector('#submit-certi').innerText = 'ยืนยัน';
             for_edit = list_of_certi.find(function (post, index_del) {
-                if (post.Certificate_id == id_list_certi_edit)
+                if (post.Certificate_id === id_list_certi_edit)
                     return true;
             });
             //console.log(`for_edit:`, for_edit);
@@ -198,14 +201,14 @@ class Edittab5 extends React.Component {
 
         $(document).on('click', "#summit-to-delete-certi", function () {
             var removeIndex = list_of_certi.findIndex(function (post, index_del) {
-                if (post.Certificate_id == id_list_certi_del)
+                if (post.Certificate_id === id_list_certi_del)
                     return true;
             });
             if (list_of_certi[removeIndex].isFetch === true) {
                 /*fetch("http://localhost:2000/register/certificate/" + list_of_certi[removeIndex].Certificate_id, {
                     method: "DELETE",
                     headers: {
-                        'Authorization': 'Bearer ' + list_of_certi[removeIndex].token,
+                        'Authorization': 'Bearer ' + token5,
                         "Access-Control-Allow-Origin": "*",
                         "Access-Control-Allow-Methods": "*",
                         "Access-Control-Allow-Credentials": true,
@@ -286,41 +289,84 @@ class Edittab5 extends React.Component {
                 $("#to_upload112").addClass("error_select_certi");
             }
             else {
+                let sendCerti2back = {
+                    "CertName": name_certi,
+                    "CertYear": parseInt(year_certi),
+                    "CertPic": picOfCerti
+                };
                 if (choose_function == 1) {
                     console.log("edit!!!!!!");
                     console.log(`list_of_certi:`, list_of_certi);
-                    for_edit["CertName"] = name_certi;
-                    for_edit["CertYear"] = parseInt(year_certi);
-                    for_edit["CertPic"] = picOfCerti;
-                    for_edit["file_pic"] = file_picOfCerti;
-                    //for_edit["CertYear_select"] = $("#yearpicker_111").prop('selectedIndex');
-                    var list_edit11 = document.getElementById(id_list_certi_edit);
+                    fetch("http://localhost:2000/register/certificate/" + id_list_certi_edit, {
+                        method: "PATCH",
+                        headers: {
+                            'Authorization': 'Bearer ' + token5,
+                            "Accept": "application/json",
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(sendCerti2back)
+                    })
+                        .then((raws) => {
+                            for_edit["CertName"] = name_certi;
+                            for_edit["CertYear"] = parseInt(year_certi);
+                            for_edit["CertPic"] = picOfCerti;
+                            for_edit["file_pic"] = file_picOfCerti;
+                            //for_edit["CertYear_select"] = $("#yearpicker_111").prop('selectedIndex');
+                            //var list_edit11 = document.getElementById(id_list_certi_edit);
+                            $("#nm_certi").val("");
+                            $("#yearpicker_111").prop('selectedIndex', 0);
+                            $("#exampleModal11112").modal("hide");
+                            $(".box-box-box-edit-certi").empty();
+                            console.log(`list_of_certi:`, list_of_certi);
+                            show_certi();
+                            $("#preview_before_upload").remove();
+                            $("#icon-upload-112").remove();
+                            $("#text-upload-112").remove();
+                            $("#text-upload-116").remove();
+                            picOfCerti = '';
+                            file_picOfCerti = '';
+                        }).catch((error) => {
+                            console.log(error);
+                        });
                 }
                 else if (choose_function == 2) {
                     //console.log("add!!!!!!")
                     var id_of_certi = create_UUID();
-                    list_of_certi.push({
-                        Certificate_id: id_of_certi,
-                        CertName: name_certi,
-                        CertYear: parseInt(year_certi),
-                        //CertYear_select: $("#yearpicker_111").prop('selectedIndex'),
-                        CertPic: picOfCerti,
-                        file_pic: file_picOfCerti,
-                        isFetch: false
-                    });
+                    fetch("http://localhost:2000/register/addcertificate", {
+                        method: "POST",
+                        headers: {
+                            'Authorization': 'Bearer ' + token5,
+                            "Accept": "application/json",
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(sendCerti2back)
+                    })
+                        .then((raws) => {
+                            list_of_certi.push({
+                                Certificate_id: id_of_certi,
+                                CertName: name_certi,
+                                CertYear: parseInt(year_certi),
+                                //CertYear_select: $("#yearpicker_111").prop('selectedIndex'),
+                                CertPic: picOfCerti,
+                                file_pic: file_picOfCerti,
+                                isFetch: false
+                            });
+                            $("#nm_certi").val("");
+                            $("#yearpicker_111").prop('selectedIndex', 0);
+                            $("#exampleModal11112").modal("hide");
+                            $(".box-box-box-edit-certi").empty();
+                            console.log(`list_of_certi:`, list_of_certi);
+                            show_certi();
+                            $("#preview_before_upload").remove();
+                            $("#icon-upload-112").remove();
+                            $("#text-upload-112").remove();
+                            $("#text-upload-116").remove();
+                            picOfCerti = '';
+                            file_picOfCerti = '';
+                        }).catch((error) => {
+                            console.log(error);
+                        });
                 }
-                $("#nm_certi").val("");
-                $("#yearpicker_111").prop('selectedIndex', 0);
-                $("#exampleModal11112").modal("hide");
-                $(".box-box-box-edit-certi").empty();
-                console.log(`list_of_certi:`, list_of_certi);
-                show_certi();
-                $("#preview_before_upload").remove();
-                $("#icon-upload-112").remove();
-                $("#text-upload-112").remove();
-                $("#text-upload-116").remove();
-                picOfCerti = '';
-                file_picOfCerti = '';
             }
         });
 

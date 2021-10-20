@@ -1,6 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
-import "./registab4.css"
+import "./registab4.css";
+import cookie from 'react-cookies';
 
 class Edittab4 extends React.Component {
     constructor(props) {
@@ -10,6 +11,8 @@ class Edittab4 extends React.Component {
 
     componentDidMount() {
         window.addEventListener('load', this.handleLoad);
+        alert("อย่าเพิ่ง add edit delete");
+        var token4 = cookie.load('login-token');
         var backup_year_endwork = 0, backup_month_endwork = 0, backup_salary = "";
         var list_of_work = []; //list of work
         var list_of_year_work = {}; //check year
@@ -23,7 +26,7 @@ class Edittab4 extends React.Component {
             const mywork2 = this.props.mywork_data ? this.props.mywork_data : [];
             list_of_work = [...mywork2];
             show_work();
-        },9000);
+        }, 9000);
         /*---- generate code ID ----*/
         function create_UUID() {
             var dt = new Date().getTime();
@@ -113,7 +116,7 @@ class Edittab4 extends React.Component {
                     grid_work2 = grid_work2.replace("สิ้นสุด {month_endwork}/{year_endwork}", `ยังอยู่ในงาน`);
                 }
                 else {
-                    if ((Number.isNaN(ele["Work_End_Month"]) === true && Number.isNaN(ele["Work_End_Year"]) === true) || (ele["Work_End_Month"] === 0 && ele["Work_End_Year"] === 0)||(ele.Work_End_Month === null && ele.Work_End_Year === null)) {
+                    if ((Number.isNaN(ele["Work_End_Month"]) === true && Number.isNaN(ele["Work_End_Year"]) === true) || (ele["Work_End_Month"] === 0 && ele["Work_End_Year"] === 0) || (ele.Work_End_Month === null && ele.Work_End_Year === null)) {
                         grid_work2 = "";
                     }
                     else if ((Number.isNaN(ele["Work_End_Month"]) === true && Number.isNaN(ele["Work_End_Year"]) === false) || (ele["Work_End_Month"] === 0 && ele["Work_End_Year"] !== 0)) {
@@ -150,8 +153,8 @@ class Edittab4 extends React.Component {
                 }
                 else {
                     grid_work3 = grid_work3.replace("{salary_work} บาท", "");
-                }  */ 
-                
+                }  */
+
                 if ((ele.SalaryType === "ไม่ระบุ" || ele.SalaryType === "") && (ele.Salary === 0 || ele.Salary === null)) {
                     grid_work3 = grid_work3.replace("{salary_work} บาท", "");
                 }
@@ -165,7 +168,7 @@ class Edittab4 extends React.Component {
                     else {
                         grid_work3 = grid_work3.replace("{salary_work}", "-");
                     }
-                }                
+                }
                 grid_work3 = grid_work3.replace("{inform_work}", ele["Infomation"]);
                 if (year_before_work != ele["Work_Start_Year"]) {
                     list_of_year_work[ele["Work_Start_Year"]] = 1;
@@ -199,7 +202,7 @@ class Edittab4 extends React.Component {
             $('#registab4Modal').modal('toggle');
             document.querySelector('#submit-work').innerText = 'ตกลง';
             for_edit = list_of_work.find(function (post, index_del) {
-                if (post.WorkHistory_id == id_list_work_edit)
+                if (post.WorkHistory_id === id_list_work_edit)
                     return true;
             });
             //document.getElementById("jobtype_work").value = for_edit.type_work;
@@ -262,11 +265,11 @@ class Edittab4 extends React.Component {
 
         $(document).on("click", "#sub_del_work", function () {
             var removeIndex = list_of_work.findIndex(function (post, index_del) {
-                if (post.WorkHistory_id == id_list_work_del)
+                if (post.WorkHistory_id === id_list_work_del)
                     return true;
             });
             if (list_of_work[removeIndex].isFetch === true) {
-                /*fetch("http://localhost:2000/register/workHistory/" + list_of_work[removeIndex].WorkHistory_id, {
+                fetch("http://localhost:2000/register/workHistory/" + list_of_work[removeIndex].WorkHistory_id, {
                     method: "DELETE",
                     headers: {
                         'Authorization': 'Bearer ' + list_of_work[removeIndex].token,
@@ -278,17 +281,17 @@ class Edittab4 extends React.Component {
                 })
                     .then(response => response.json())
                     .then((raws) => {
-                console.log(raws);*/
-                list_of_year_work[list_of_work[removeIndex]["Work_Start_Year"]] -= 1;
-                if (list_of_year_work[list_of_work[removeIndex]["Work_Start_Year"]] == 0) {
-                    $(`#yearOf_` + String(list_of_work[removeIndex]["Work_Start_Year"])).remove();
-                }
-                list_of_work.splice(removeIndex, 1);
-                $(`#` + id_list_work_del).remove();
-                $('#Modal_remove_work').modal('hide');
-                /*}).catch((error) => {
-                    console.log(error);
-                });*/
+                        console.log(raws);
+                        list_of_year_work[list_of_work[removeIndex]["Work_Start_Year"]] -= 1;
+                        if (list_of_year_work[list_of_work[removeIndex]["Work_Start_Year"]] == 0) {
+                            $(`#yearOf_` + String(list_of_work[removeIndex]["Work_Start_Year"])).remove();
+                        }
+                        list_of_work.splice(removeIndex, 1);
+                        $(`#` + id_list_work_del).remove();
+                        $('#Modal_remove_work').modal('hide');
+                    }).catch((error) => {
+                        console.log(error);
+                    });
             }
             else {
                 list_of_year_work[list_of_work[removeIndex]["Work_Start_Year"]] -= 1;
@@ -465,60 +468,123 @@ class Edittab4 extends React.Component {
                 $("#month_endwork").addClass("is-invalid");
             }
             else {
+                let sendWork2back = {
+                    "Work_JobName": pos_work,
+                    "Work_JobType": type_work,
+                    "Company": company_work,
+                    "Work_Start_Month": parseInt(month_startwork),
+                    "Work_Start_Year": parseInt(year_startwork),
+                    "Work_End_Month": regist4_cb ? 99 : (year_endwork === "" ? 0 : parseInt(month_endwork)),
+                    "Work_End_Year": regist4_cb ? 9999 : (year_endwork === "" ? 0 : parseInt(year_endwork)),
+                    "SalaryType": type_salary_work,
+                    "Salary": parseInt(salary_work),
+                    "Infomation": inform_work
+                }
                 if (choose_function == 1) {
-                    for_edit["Work_JobType"] = type_work;
-                    //for_edit["Work_JobType_select"] = document.getElementById("jobtype_work").selectedIndex;
-                    for_edit["Work_JobName"] = pos_work;
-                    for_edit["Company"] = company_work;
-                    for_edit["SalaryType"] = type_salary_work;
-                    //for_edit["SalaryType_select"] = document.getElementById("salarytype_work").selectedIndex;
-                    for_edit["Salary"] = parseInt(salary_work);
-                    for_edit["Work_Start_Year"] = parseInt(year_startwork);
-                    //for_edit["Work_Start_Year_select"] = document.getElementById("year_startwork").selectedIndex;
-                    for_edit["Work_Start_Month"] = parseInt(month_startwork);
-                    //for_edit["Work_Start_Month_select"] = document.getElementById("month_startwork").selectedIndex;
-                    for_edit["Work_End_Year"] = parseInt(year_endwork);
-                    //for_edit["Work_End_Year_select"] = document.getElementById("year_endwork").selectedIndex;
-                    for_edit["Work_End_Month"] = parseInt(month_endwork);
-                    //for_edit["Work_End_Month_select"] = document.getElementById("month_endwork").selectedIndex;
-                    for_edit["regist4_cb"] = regist4_cb;
-                    for_edit["Infomation"] = inform_work;
-                    for_edit["backup_year_endwork"] = backup_year_endwork;
-                    for_edit["backup_month_endwork"] = backup_month_endwork;
-                    //for_edit["backup_salary"] = backup_salary;
+                    fetch("http://localhost:2000/register/workHistory/" + id_list_work_edit, {
+                        method: "PATCH",
+                        headers: {
+                            'Authorization': 'Bearer ' + token4,
+                            "Accept": "application/json",
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(sendWork2back)
+                    })
+                        .then((raws) => {
+                            console.log(raws);
+                            for_edit["Work_JobType"] = type_work;
+                            //for_edit["Work_JobType_select"] = document.getElementById("jobtype_work").selectedIndex;
+                            for_edit["Work_JobName"] = pos_work;
+                            for_edit["Company"] = company_work;
+                            for_edit["SalaryType"] = type_salary_work;
+                            //for_edit["SalaryType_select"] = document.getElementById("salarytype_work").selectedIndex;
+                            for_edit["Salary"] = parseInt(salary_work);
+                            for_edit["Work_Start_Year"] = parseInt(year_startwork);
+                            //for_edit["Work_Start_Year_select"] = document.getElementById("year_startwork").selectedIndex;
+                            for_edit["Work_Start_Month"] = parseInt(month_startwork);
+                            //for_edit["Work_Start_Month_select"] = document.getElementById("month_startwork").selectedIndex;
+                            for_edit["Work_End_Year"] = parseInt(year_endwork);
+                            //for_edit["Work_End_Year_select"] = document.getElementById("year_endwork").selectedIndex;
+                            for_edit["Work_End_Month"] = parseInt(month_endwork);
+                            //for_edit["Work_End_Month_select"] = document.getElementById("month_endwork").selectedIndex;
+                            for_edit["regist4_cb"] = regist4_cb;
+                            for_edit["Infomation"] = inform_work;
+                            for_edit["backup_year_endwork"] = backup_year_endwork;
+                            for_edit["backup_month_endwork"] = backup_month_endwork;
+                            //for_edit["backup_salary"] = backup_salary;        
+                            $("#registab4Modal").modal("hide"); //success!!!!!
+                            $(".box-box-box-work1-edit").empty();
+                            show_work();
+                        }).catch((error) => {
+                            console.log(error);
+                        });
                 }
                 else if (choose_function == 2) {
                     //console.log(`add!!!!!`);
-                    list_of_work.push({
-                        WorkHistory_id: create_UUID(),
-                        Work_JobType: type_work,
-                        //Work_JobType_select: document.getElementById("jobtype_work").selectedIndex,
-                        Work_JobName: pos_work,
-                        Company: company_work,
-                        SalaryType: type_salary_work,
-                        //SalaryType_select: document.getElementById("salarytype_work").selectedIndex,
-                        Salary: parseInt(salary_work),
-                        Work_Start_Year: parseInt(year_startwork),
-                        //Work_Start_Year_select: document.getElementById("year_startwork").selectedIndex,
-                        Work_Start_Month: parseInt(month_startwork),
-                        //Work_Start_Month_select: document.getElementById("month_startwork").selectedIndex,
-                        Work_End_Year: parseInt(year_endwork),
-                        //Work_End_Year_select: document.getElementById("year_endwork").selectedIndex,
-                        Work_End_Month: parseInt(month_endwork),
-                        //Work_End_Month_select: document.getElementById("month_endwork").selectedIndex,
-                        regist4_cb: regist4_cb,
-                        Infomation: inform_work,
-                        backup_year_endwork: backup_year_endwork,
-                        backup_month_endwork: backup_month_endwork,
-                        isFetch: false
-                    });
+                    //postAddWork(sendWork2back);
+                    fetch("http://localhost:2000/register/addworkHistory", {
+                        method: "POST",
+                        headers: {
+                            'Authorization': 'Bearer ' + token4,
+                            "Accept": "application/json",
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(sendWork2back)
+                    })
+                        .then((raws) => {
+                            console.log(raws);
+                            list_of_work.push({
+                                WorkHistory_id: create_UUID(),
+                                Work_JobType: type_work,
+                                //Work_JobType_select: document.getElementById("jobtype_work").selectedIndex,
+                                Work_JobName: pos_work,
+                                Company: company_work,
+                                SalaryType: type_salary_work,
+                                //SalaryType_select: document.getElementById("salarytype_work").selectedIndex,
+                                Salary: parseInt(salary_work),
+                                Work_Start_Year: parseInt(year_startwork),
+                                //Work_Start_Year_select: document.getElementById("year_startwork").selectedIndex,
+                                Work_Start_Month: parseInt(month_startwork),
+                                //Work_Start_Month_select: document.getElementById("month_startwork").selectedIndex,
+                                Work_End_Year: parseInt(year_endwork),
+                                //Work_End_Year_select: document.getElementById("year_endwork").selectedIndex,
+                                Work_End_Month: parseInt(month_endwork),
+                                //Work_End_Month_select: document.getElementById("month_endwork").selectedIndex,
+                                regist4_cb: regist4_cb,
+                                Infomation: inform_work,
+                                backup_year_endwork: backup_year_endwork,
+                                backup_month_endwork: backup_month_endwork,
+                                isFetch: false
+                            });
+                            $("#registab4Modal").modal("hide"); //success!!!!!
+                            $(".box-box-box-work1-edit").empty();
+                            show_work();
+                        }).catch((error) => {
+                            console.log(error);
+                        });
+
                 }
                 console.log(`list_of_work:`, list_of_work);
-                $("#registab4Modal").modal("hide"); //success!!!!!
-                $(".box-box-box-work1-edit").empty();
-                show_work();
+
             }
         });
+
+        /*function postAddWork(data) {
+            fetch("http://localhost:2000/register/addworkHistory", {
+                method: "POST",
+                headers: {
+                    'Authorization': 'Bearer ' + token4,
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+                .then((raws) => {
+                    console.log(raws);
+                }).catch((error) => {
+                    console.log(error);
+                });
+        }*/
 
         //hide modal
         $(document).on('click', "#hide-modal-work", function () {
