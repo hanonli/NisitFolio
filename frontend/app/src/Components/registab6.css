@@ -130,7 +130,7 @@
 
 .each-skill-job {
     display: flex;
-    gap: 22px;
+    gap: 15px;
     /*justify-content: space-between;*/
     align-items: center;
     /*justify-content: center;*/
@@ -143,7 +143,7 @@
     font-family: 'Kanit';
     border: 2px solid #FFC045;
     border-radius: 8px;
-    width: 142px;
+    width: 138px;
     height: 31px;
     text-align: center;
     padding-left: 4px;
@@ -157,7 +157,7 @@
     font-family: 'Kanit';
     border: 2px solid #79CE23;
     border-radius: 8px;
-    width: 142px;
+    width: 138px;
     height: 31px;
     text-align: center;
     padding-left: 4px;
@@ -171,7 +171,7 @@
     font-family: 'Kanit';
     border: 2px solid #C98A11;
     border-radius: 8px;
-    width: 142px;
+    width: 138px;
     height: 31px;
     text-align: center;
     padding-left: 4px;

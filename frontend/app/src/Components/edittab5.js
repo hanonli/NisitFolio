@@ -113,7 +113,7 @@ class Edittab5 extends React.Component {
                     headOfyear1234 = headOfyear1234.replace("{show-year}", `yearOf_` + String(ele["CertYear"]));
                     headOfyear1234 = headOfyear1234.replace("{head-year}", String(ele["CertYear"]));
                     headOfyear1234 = headOfyear1234.replace("{contentYear}", `contentYear_` + String(ele["CertYear"]));
-                    $(".box-box-box").append(headOfyear1234);
+                    $(".box-box-box-edit-certi").append(headOfyear1234);
                 }
                 else {
                     list_of_year_certi[ele["CertYear"]] += 1;
@@ -312,7 +312,7 @@ class Edittab5 extends React.Component {
                 $("#nm_certi").val("");
                 $("#yearpicker_111").prop('selectedIndex', 0);
                 $("#exampleModal11112").modal("hide");
-                $(".box-box-box").empty();
+                $(".box-box-box-edit-certi").empty();
                 console.log(`list_of_certi:`, list_of_certi);
                 show_certi();
                 $("#preview_before_upload").remove();
@@ -371,7 +371,7 @@ class Edittab5 extends React.Component {
                         </div>
                     </div>
 
-                    <div class="box-box-box"></div>
+                    <div class="box-box-box-edit-certi"></div>
 
                     <div class="modal fade" id="exampleModal_remove_certi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">

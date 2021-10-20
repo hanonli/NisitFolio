@@ -138,7 +138,7 @@ class Edittab6 extends React.Component {
                     $('.limit-job-pos-3').text('*ท่านเพิ่มตำแหน่งงานที่สนใจครบจำนวนแล้ว');
                 }
 
-                $(".list-of-job").append(grid_Job1 + grid_Job_skill1 + grid_Job_skill2 + grid_Job_skill3 + grid_Job2);
+                $(".list-of-job-edit").append(grid_Job1 + grid_Job_skill1 + grid_Job_skill2 + grid_Job_skill3 + grid_Job2);
             });
             console.log(`list_of_job:`, list_of_job);
         }
@@ -616,7 +616,7 @@ class Edittab6 extends React.Component {
                 $("#obj-job-03").val('');
                 $("#pos-del-obj-button3").hide();
                 $('#exampleModalJob').modal('hide');
-                $(".list-of-job").empty();
+                $(".list-of-job-edit").empty();
                 show_all_job()
                 $(".step-marks").remove();
                 $(".step-labels").remove();
@@ -666,7 +666,7 @@ class Edittab6 extends React.Component {
                 list_of_job.splice(removeIndex, 1);
                 //console.log(`delete job id:`, removeIndex);
                 $('#exampleModal_remove_job').modal('hide');
-                $(".list-of-job").empty();
+                $(".list-of-job-edit").empty();
                 //console.log(list_of_job);
                 get_job_id(list_of_job, 1);
                 show_all_job()
@@ -688,7 +688,7 @@ class Edittab6 extends React.Component {
                 list_of_job.splice(removeIndex, 1);
                 //console.log(`delete job id:`, removeIndex);
                 $('#exampleModal_remove_job').modal('hide');
-                $(".list-of-job").empty();
+                $(".list-of-job-edit").empty();
                 //console.log(list_of_job);
                 get_job_id(list_of_job, 1);
                 show_all_job()
@@ -841,7 +841,7 @@ class Edittab6 extends React.Component {
             <div className="Registab6">
                 <div class="regis-box-content1">
                     <h1 id="text-add-name-my-job11">เพิ่มตำแหน่งงานที่สนใจ</h1>
-                    <div class="list-of-job" id="in-list-of-job"></div>
+                    <div class="list-of-job-edit" id="in-list-of-job"></div>
 
                     <div class="frame_add_job_interest">
                         <div className="button_add_job_interest">

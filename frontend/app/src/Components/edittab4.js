@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+import "./registab4.css"
 
 class Edittab4 extends React.Component {
     constructor(props) {
@@ -92,7 +93,7 @@ class Edittab4 extends React.Component {
                 let headOfyear1234 = `<div id="{show-year}" >\
                                 <h1 id="textOfyear_work">{head-year}</h1>\
                               </div>\
-                              <div class="content-work1111" id="{contentYear}"></div>`;
+                              <div class="content-work1111-edit" id="{contentYear}"></div>`;
                 grid_work1 = grid_work1.replace("{no_work}", ele["WorkHistory_id"]);
                 grid_work1 = grid_work1.replace("{pos_work}", ele["Work_JobName"]);
                 if (ele["Company"] != "") {
@@ -172,7 +173,7 @@ class Edittab4 extends React.Component {
                     headOfyear1234 = headOfyear1234.replace("{show-year}", `yearOf_` + String(ele["Work_Start_Year"]));
                     headOfyear1234 = headOfyear1234.replace("{head-year}", String(ele["Work_Start_Year"]));
                     headOfyear1234 = headOfyear1234.replace("{contentYear}", `contentYear-work_` + String(ele["Work_Start_Year"]));
-                    $(".box-box-box-work1").append(headOfyear1234);
+                    $(".box-box-box-work1-edit").append(headOfyear1234);
                 }
                 else {
                     list_of_year_work[ele["Work_Start_Year"]] += 1;
@@ -514,7 +515,7 @@ class Edittab4 extends React.Component {
                 }
                 console.log(`list_of_work:`, list_of_work);
                 $("#registab4Modal").modal("hide"); //success!!!!!
-                $(".box-box-box-work1").empty();
+                $(".box-box-box-work1-edit").empty();
                 show_work();
             }
         });
@@ -574,8 +575,8 @@ class Edittab4 extends React.Component {
                         </div>
                     </div>
 
-                    <div class="box-box-box-work1">
-                        <div class="content-work1111"></div>
+                    <div class="box-box-box-work1-edit">
+                        <div class="content-work1111-edit"></div>
                     </div>
 
                     <div class="modal fade" id="registab4Modal" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
