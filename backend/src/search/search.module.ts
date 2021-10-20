@@ -5,7 +5,7 @@ import { SearchService } from './search.service';
 
 import { AccountSchema, BookmarkSchema, PortfolioSchema, UserInfoSchema } from 'src/bookmarks/bookmarks.schema';
 import { JobTitleSchema, UserJobSkillSchema } from 'src/analytics/analytics.schema';
-import { InterestedJobSchema } from './search.schema' ;
+import { InterestedJobSchema, ResumeSchema } from './search.schema' ;
 
 @Module({
   imports: [
@@ -17,6 +17,7 @@ import { InterestedJobSchema } from './search.schema' ;
       { name: 'Bookmark', schema: BookmarkSchema } ,
       { name: 'Portfolio', schema: PortfolioSchema } ,
       { name: 'Account', schema: AccountSchema } ,
+      { name: 'Resume', schema: ResumeSchema }
     ]),
   ],
   controllers: [ SearchController ],

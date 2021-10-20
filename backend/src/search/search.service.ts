@@ -5,7 +5,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose' ;
 
 import { ObjectId } from 'mongodb' ;
-import { TotalBookmark, UserInfo, JobTitle, UserJobSkill } from './search.schema';
+import { TotalBookmark, UserInfo, JobTitle, UserJobSkill, Resume } from './search.schema';
 import { InterestedJob } from 'src/register/entity/Register.entity';
 import { Account, Bookmark, Portfolio } from 'src/bookmarks/bookmarks.schema';
 
@@ -26,6 +26,8 @@ export class SearchService {
     private PortfolioModel: Model<Portfolio> ,
     @InjectModel('Account')
     private AccountModel: Model<Account>,
+    @InjectModel('Resume')
+    private ResumeModel: Model<Resume>,
     ) {}
 
   // async findJobName(q: string, userId: string): Promise<any[]> {
@@ -143,14 +145,17 @@ export class SearchService {
     }
     const BookmarkUserList = await this.BookmarkModel.find({userId: userId, type: "profile"}).distinct("thatUserId") ;
     const BookmarkPortList = await this.BookmarkModel.find({userId: userId, type: "work"}) ;
-    let BookmarkWorkList = []
+    let BookmarkWorkList = [] ;
+    console.log("After find Bookmarks in database") ;
     for (var item of BookmarkPortList) {
       BookmarkWorkList.push(item.details.Port_Name) ;
     }
-    console.log(BookmarkUserList) ;
-    console.log(BookmarkWorkList) ;
+    console.log("After appended item form Port into list") ;
+    // console.log(BookmarkUserList) ;
+    // console.log(BookmarkWorkList) ;
     let result = [] ;
 
+    
     // --------------------------------------------- Find Profile ------------------------------------
     let privacy = ["Public"] ;
     let Jobs = [] ;
@@ -161,31 +166,65 @@ export class SearchService {
     if (is_mem) {
       privacy.push("Members") ;
     }
-    const findUserId = await this.UserInfoModel.find({$or: [{Firstname: regex}, {Lastname: regex}, {tags: {"$in": Jobs}}], Privacy: {"$in": privacy}}) ;
-    const findPort = await this.PortfolioModel.find({$or: [{Port_Name: regex}, {Port_Info: regex}, {Port_Tag: {"$in": Jobs}}], Port_Privacy: {"$in": privacy}}) ;
-    // const findPort = [] ;
+    console.log("After check type of the User") ;
+    let is_Bookmarking ;
+
+    // ==== Check privacy ====
+    let dict_id = {} ;
+    console.log(privacy) ;
+    const check_privacy = await this.ResumeModel.aggregate([
+      { $match: { $or: [{First: regex}, {Last: regex}, {Owner: regex}], Privacy: { "$in": privacy } }} ,
+      { $group: {
+        _id: { UserId: "$UserId", Privacy: "$privacy" },
+        total: { $sum: 1 }
+      }},
+      { $sort: { total: -1 } }
+    ]).exec() ;
+    console.log("After find privacy in each item in Resume") ;
+    console.log("Privacy list:",check_privacy) ;
+    for (var obj of check_privacy) {
+      // console.log(obj._id.UserId) ;
+      dict_id[obj._id.UserId] = obj.total ;
+    }
+    console.log("After appended item into List") ;
+    // console.log("This dict items:", dict_id) ;
+    // console.log(dict_id[1]) ;
+
+    // if (check_privacy.length != 0) {
+    const findUserId = await this.UserInfoModel.find({$or: [{Firstname: regex}, {Lastname: regex}, {tags: {"$in": Jobs, "$nin": ["none"]}}]}) ;
+    console.log("After find UserId") ;
+    console.log("number of Users:", findUserId.length) ;
     const sorted_profile = findUserId.sort((a,b) => (
       a.totalBookmark == b.totalBookmark ? (a.AvgScore == b.AvgScore ?
-      (a.last_modified[a.last_modified.length-1] < b.last_modified[b.last_modified.length-1] ? 1 : -1)
-      : (a.AvgScore < b.AvgScore ? 1 : -1)) : 
-      (a.totalBookmark < b.totalBookmark ? 1 : -1)
+        (a.last_modified[a.last_modified.length-1] < b.last_modified[b.last_modified.length-1] ? 1 : -1)
+        : (a.AvgScore < b.AvgScore ? 1 : -1)) : 
+        (a.totalBookmark < b.totalBookmark ? 1 : -1)
     ));
+    console.log("After sorted profiles") ; 
+    for (var obj1 of sorted_profile) {
+      // const _check_ = await this.ResumeModel.find({ UserId: obj1.UserId, Privacy: { "$in": privacy } }).exec() ;
+      // if (_check_.length != 0) {
+      if (dict_id[obj1.UserId] != undefined) {
+        if (BookmarkUserList.includes(obj1.UserId)) 
+          is_Bookmarking = true ;
+        else 
+          is_Bookmarking = false ;
+        if (obj1.tags.length > 0 /* &&  obj1.tags.length == _check_.length */) 
+          result.push({"name": obj1.Firstname + " " + obj1.Lastname, "type": "profile", "thatUserId": obj1.UserId, "pic": obj1.ProfilePic, "about": obj1.AboutMe, "tags": obj1.tags, "bookmark": is_Bookmarking}) ;
+      }
+      // }
+    }
+    console.log("After append profiles into Result") ;
+    // }
+
+    const findPort = await this.PortfolioModel.find({$or: [{Port_Name: regex}, {Port_Info: regex}, {Port_Tag: {"$in": Jobs}}], Port_Privacy: {"$in": privacy}}).sort({ "UserId": 1 }) ;
+    console.log("After find port") ;
     const sorted_work = findPort.sort((a,b) => (
       a.totalBookmark == b.totalBookmark ? 
       (a.last_modified[a.last_modified.length-1] < b.last_modified[b.last_modified.length-1] ? 1 : -1) 
       : (a.totalBookmark < b.totalBookmark ? 1 : -1)
     )) ;
-    console.log(sorted_profile) ;
-    console.log(sorted_work) ;
-    let is_Bookmarking ;
-    for (var obj1 of sorted_profile) {
-      if (BookmarkUserList.includes(obj1.UserId)) 
-        is_Bookmarking = true ;
-      else 
-        is_Bookmarking = false ;
-      if (obj1.tags.length > 0) 
-        result.push({"name": obj1.Firstname + " " + obj1.Lastname, "type": "profile", "thatUserId": obj1.UserId, "pic": obj1.ProfilePic, "about": obj1.AboutMe, "tags": obj1.tags, "bookmark": is_Bookmarking}) ;
-    } 
+    console.log("After sorted work") ;
     for (var obj2 of sorted_work) {
       if (BookmarkWorkList.includes(obj2.Port_Name))
         is_Bookmarking = true ;
@@ -193,26 +232,13 @@ export class SearchService {
         is_Bookmarking = false ;
       result.push({"name": obj2.Port_Name, "Port_id": obj2._id.toString(),"type": "work", "thatUserId": obj2.UserId, "pic": obj2.portfolioPictures, "about": obj2.Port_Info, "owner": obj2.Owner, "bookmark": is_Bookmarking}) ;
     }
-    console.log("result:", result) ;
+    console.log("After appended ports into Result") ;
+    // console.log("result:", result) ;
     // result["Profile"] = sorted_profile ;
     // result["Work"] = sorted_work ;
     return result ;
   }
 }
-
-function sorting_array(array: any[]): any[] {
-  let sorted_array = array.sort((a,b) => (a.totalBookmark < b.totalBookmark ? 1 : a.totalBookmark == b.totalBookmark ? (a.AvgScore < b.AvgScore ? 1 : -1) : -1 )) ;
-  let result = [] ;
-  for (var obj of sorted_array) {
-    if (obj.type == "profile") 
-      result.push({"name": obj.name, "type": obj.type, "thatUserId": obj.thatUserId, 
-        "pic": obj.pic, "about": obj.about, "tags": obj.tags , "bookmark": obj.bookmark }) ;
-    else 
-      result.push({"name": obj.name, "type": obj.type, "thatUserId": obj.thatUserId, 
-        "pic": obj.pic, "about": obj.about, "owner": obj.owner, "bookmark": obj.bookmark}) ;
-  }
-  return result ;
-} 
 
 function escapeRegex(text: string): any {
   return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&') ;
