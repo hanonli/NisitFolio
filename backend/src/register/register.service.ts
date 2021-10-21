@@ -27,7 +27,7 @@ import { UserInfoDocument } from './entity/register.schema';
 import { GetRegisDto } from './dto/get-register.dto';
 import { Bookmark } from './entity/bookmark.entity';
 import { Portfolio } from '../portfolio/entity/portfolio.entity';
-import { object, string } from 'joi';
+import { number, object, string } from 'joi';
 import { Allow } from 'class-validator';
 import { type } from 'os';
 
@@ -854,6 +854,22 @@ export class RegisterService {
   }
 
   async GetInfo(UserId:string) {
+    /*
+    
+    for (var _i = 0; _i < 1; _i++) {
+      var educationHistory_End_Year=5;
+      
+        while(educationHistory_End_Year!=5.01){
+          educationHistory_End_Year=educationHistory_End_Year+0.01
+        }
+        if(educationHistory_End_Year==5.01){
+        return "s"
+        }
+    }
+    educationHistory_End_Year=educationHistory_End_Year+0.01
+    return educationHistory_End_Year+0.01
+    //*/
+
       const result = new GetRegisDto;  
       const userid = new ObjectID(UserId);
       const account=await this.accountRepository.findOne({where:{_id:userid}});
@@ -896,9 +912,18 @@ export class RegisterService {
       const Certificate_Dictionary = {};
   
       for (var _i = 0; _i < Certificate.length; _i++) {
-        const z=Certificate[_i].CertYear;
-        Certificate_sortlist.push(z);
-        Certificate_Dictionary[z]=_i;
+
+        var Certificate_EndYear=Certificate[_i].CertYear;
+        if(Certificate_Dictionary[Certificate_EndYear]==null){
+          Certificate_sortlist.push(Certificate_EndYear);
+          Certificate_Dictionary[Certificate_EndYear]=_i;
+        }else{
+          while(Certificate_Dictionary[Certificate_EndYear]==null){
+            Certificate_EndYear=Certificate_EndYear+0.01
+          }
+          Certificate_sortlist.push(Certificate_EndYear);
+          Certificate_Dictionary[Certificate_EndYear]=_i;
+        }
       }
       Certificate_sortlist.sort();
       Certificate_sortlist.reverse();
@@ -929,9 +954,17 @@ export class RegisterService {
       const educationHistory_Dictionary={};
   
       for (var _i = 0; _i < educationHistory.length; _i++) {
-        const educationHistory_End_Year=educationHistory[_i].Education_End_Year;
-        educationHistory_sortlist.push(educationHistory_End_Year);
-        educationHistory_Dictionary[educationHistory_End_Year]=_i;
+        var educationHistory_End_Year=Number(educationHistory[_i].Education_End_Year);
+        if(educationHistory_Dictionary[educationHistory_End_Year]==null){
+          educationHistory_sortlist.push(educationHistory_End_Year);
+          educationHistory_Dictionary[educationHistory_End_Year]=_i;
+        }else{
+          while(educationHistory_Dictionary[educationHistory_End_Year]==null){
+            educationHistory_End_Year=educationHistory_End_Year+0.01
+          }
+          educationHistory_sortlist.push(educationHistory_End_Year);
+            educationHistory_Dictionary[educationHistory_End_Year]=_i;
+        }
       }
       educationHistory_sortlist.sort();
       educationHistory_sortlist.reverse();
@@ -972,9 +1005,18 @@ export class RegisterService {
       const workHistory_Dictionary={};
   
       for (var _i = 0; _i < workHistory.length; _i++) {
-        const workHistory_End=workHistory[_i].Work_End_Year+(workHistory[_i].Work_End_Month/12);
-        workHistory_sortlist.push(workHistory_End);
-        workHistory_Dictionary[workHistory_End]=_i;
+        var workHistory_End=workHistory[_i].Work_End_Year+(workHistory[_i].Work_End_Month/100);
+        if(workHistory_Dictionary[workHistory_End]==null){
+          workHistory_sortlist.push(workHistory_End);
+          workHistory_Dictionary[workHistory_End]=_i;
+        }else{
+          while(workHistory_Dictionary[workHistory_End]==null){
+            workHistory_End=workHistory_End+0.0001
+          }
+          workHistory_sortlist.push(workHistory_End);
+          workHistory_Dictionary[workHistory_End]=_i;
+        }
+        
       }
       workHistory_sortlist.sort();
       workHistory_sortlist.reverse();

@@ -141,6 +141,13 @@ export class RegisterController {
   async GetInfo(@Request() req) {
     return this.registerService.GetInfo(req.user.userId);
   }
+  //-----------test
+  @Get("getinfotest")
+  async GetInfotest() {
+    const x="616ea5ef72c9862d2cf471a5"
+    return this.registerService.GetInfo(x);
+  }
+  //----------
   //*/
 
 
