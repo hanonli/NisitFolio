@@ -6,10 +6,10 @@ class Registab6 extends React.Component {
 
 	componentDidMount() {
 		window.addEventListener('load', this.handleLoad);
-		const script = document.createElement("script");
+		/*const script = document.createElement("script");
 		console.log("kuayPraYut");
 		script.src = "assets/js/registab6_popup.js";
-		document.body.appendChild(script);
+		document.body.appendChild(script);*/
 	}
 
 	render() {

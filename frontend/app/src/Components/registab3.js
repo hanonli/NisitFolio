@@ -7,10 +7,10 @@ import './registab3.css'
 class Registab3 extends React.Component {
 
     componentDidMount() {
-		window.addEventListener('load', this.handleLoad);
+		/*window.addEventListener('load', this.handleLoad);
 		const script = document.createElement("script");
 		script.src = "assets/js/registab3_script.js";
-		document.body.appendChild(script);
+		document.body.appendChild(script);*/
 	}
 
 	componentWillUnmount() { 

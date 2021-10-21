@@ -275,7 +275,7 @@ class Registab7 extends React.Component {
 					</div>
 					<div class="dropdowntap7 fixed-wrapper">
 					</div>
-					<h1 id="dangerzonet7" class='normalformzonet3'>ท่านสามารถเพิ่มทักษะเสริมที่ถนัดได้สูงสุด 3 อัน</h1>
+					<h1 id="dangerzonet7">ท่านสามารถเพิ่มทักษะเสริมที่ถนัดได้สูงสุด 3 อัน</h1>
 					<div class="modal fade" id="Modaltab71" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog modal-dialog-centered">
 							<div class="modal-content minisize">

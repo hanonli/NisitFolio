@@ -18,7 +18,7 @@ import Register from './register';
 import Emailverify from './emailverify';
 import Successregis from './successregis';
 import Failregis from './failregis';
-import PDF from './pdf';
+import PDF from './pdfUrlToBase64';
 import AnonymousLogin from './anonymousLogin';
 
 const Routes = () => {
