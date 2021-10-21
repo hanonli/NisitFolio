@@ -1088,7 +1088,7 @@ export class RegisterService {
       additionalskill.ResumeId =  new Array() ;
       additionalskill.Type = createDto.SoftSkillType; 
    
-      await this.AdditionalSkillRepository.save(additionalskill);
+      return await this.AdditionalSkillRepository.save(additionalskill);
   }
 
   async Newcertificate(createDto: PatchRegisDto,UserId: string){
@@ -1103,7 +1103,7 @@ export class RegisterService {
       certificate.create_time = isoTime;
       certificate.last_modified = [isoTime];
       certificate.ResumeId = new Array();
-      await this.CertificateRepository.save(certificate);
+      return await this.CertificateRepository.save(certificate);
   }
   async NeweducationHistory(createDto: PatchRegisDto,UserId: string){
     const time = new Date();
@@ -1120,7 +1120,7 @@ export class RegisterService {
       educationHistory.create_time = isoTime;
       educationHistory.last_modified = [isoTime];
       educationHistory.ResumeId = new Array();
-      await this.EducationHistoryRepository.save(educationHistory);
+      return await this.EducationHistoryRepository.save(educationHistory);
   }
   async NewworkHistory(createDto: PatchRegisDto,UserId: string){
     const time = new Date();
@@ -1141,7 +1141,7 @@ export class RegisterService {
       workHistory.create_time = isoTime;
       workHistory.last_modified = [isoTime];
       workHistory.ResumeId = new Array();
-      await this.WorkHistoryRepository.save(workHistory);
+      return await this.WorkHistoryRepository.save(workHistory);
   }
 
   async NewinterestedJob(createDto: PatchRegisDto,UserId: string,ip:string){
