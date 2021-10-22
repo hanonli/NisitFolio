@@ -90,7 +90,7 @@
 .port-box1 .icon-checkboxct5{
     visibility: hidden;
     position: absolute;
-    left: 38%;
+    left: 42%;
     top: 30%; 
 }
 
@@ -109,11 +109,20 @@
 
 /*---------------- resume tab6 ----------------*/
 
+.dropdowntap7 .textT7B{
+    position: relative;
+}
+
+.dropdowntap7 .height-addskill-5555{
+    height: 5vh;
+    cursor: pointer;
+}
+
 .dropdowntap7 .icon-checkboxct6{
     visibility: hidden;
     position: absolute;
-    left: 45%;
-    top: 5%;
+    left: 95%;
+    top: -14%;
 }
 
 .dropdowntap7 {
@@ -125,7 +134,7 @@
     opacity: 0.7; 
 }
 
-.dropdowntap7 input[type=checkbox]:checked + label#list-ssl-22 > .icon-checkboxct6{
+.dropdowntap7 input[type=checkbox]:checked + label#list-ssl-22 > .textT7B > .icon-checkboxct6{
     visibility: visible;
 }
 
