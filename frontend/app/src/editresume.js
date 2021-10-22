@@ -14,6 +14,7 @@ import Chooseresume5 from "./Components/chooseresume5";
 import $ from 'jquery';
 import cookie from 'react-cookies';
 import LoadingS from './Components/loadingS';
+import async from 'react-select/async';
 
 var certdata = [], workdata = [], list_of_aca = [], list_of_high = [], sideskilldata = [];
 var select_color_template = "#FFCE55";
@@ -35,6 +36,7 @@ class Editresume extends React.Component {
 		this.setState({ Color_Resume: childData })
 	}
 
+	/*Zone to Submit EditResume */
 	handleSubmitEdit = e => {
 		alert(this.state.Color_Resume);
 		var FormEdit = {
@@ -52,6 +54,7 @@ class Editresume extends React.Component {
 	};
 
 	componentDidMount() {
+		var editresumeState = this;
 		var list_of_high = [], list_of_aca = [];
 
 		function get_high_id(list_of_high, x) {
@@ -73,114 +76,156 @@ class Editresume extends React.Component {
 			});
 			return list_of_aca;
 		}
-
-		var token = cookie.load('login-token')
-		console.log('Your Token is: ' + token);
-		fetch("http://localhost:2000/myresume/myresume/foredit", {
-			method: "GET",
-			headers: {
-				'Authorization': 'Bearer ' + token,
-				"Access-Control-Allow-Origin": "*",
-				"Access-Control-Allow-Methods": "*",
-				"Access-Control-Allow-Credentials": true,
-				"Content-Type": "application/json"
-			},
-		})
-			.then(response => response.json())
-			.then((datas) => {
-				console.log('You Fetch Success!');
-				console.log(datas);
-				this.setState({
-					data: datas,
-				})
-				console.log('this.state.data :' + this.state.data);
-				/*Zone to use datas*/
-				//console.log(this.state.data.Degree);
-				//Color_Resume = this.state.data.Color_ResumeId ? this.state.data.Color_ResumeId : "";
-				if (this.state.data.Color_ResumeId === undefined) {
-					console.log("Color_ResumeId:", this.state.data.Color_ResumeId);
-					this.setState({ firstchoosecolor: true });
+		function EditResume(pack) {
+			fetch("http://localhost:2000/myresume/" + editresumeState.state.resumeId,
+				{
+					method: "PATCH",
+					headers: {
+						"Content-Type": "application/json",
+						"Accept": "application/json"
+					},
+					body: JSON.stringify(pack)
 				}
-				else {
-					this.setState({ Color_Resume: this.state.data.Color_ResumeId });
-				}
-				this.state.data.Degree.forEach((element, index) => {
-
-					if (element == 'มัธยมศึกษาตอนปลาย' || element == 'ปวช.') {
-						list_of_high.push({
-							id: this.state.data.EducationHistory_id[index],
-							high_pos: 0,
-							high_name: this.state.data.Academy[index],
-							high_faculty: 'none',
-							high_degree: this.state.data.Degree[index],
-							high_grade: this.state.data.Grade[index],
-							high_field: this.state.data.Field_of_study[index],
-							high_year: this.state.data.Education_End_Year[index],
-						});
-						get_high_id(list_of_high, 1);
-						console.log(list_of_high);
+			)
+				.then(function (response) {
+					//window.location.pathname = '/emailverify'
+					//alert(response.message);
+					if (!response.ok) {
+						throw Error(response.statusText);
 					}
 					else {
-						list_of_aca.push({
-							id: this.state.data.EducationHistory_id[index],
-							aca_pos: 0,
-							aca_name: this.state.data.Academy[index],
-							aca_faculty: this.state.data.Facalty[index],
-							aca_degree: this.state.data.Degree[index],
-							aca_grade: this.state.data.Grade[index],
-							aca_field: this.state.data.Field_of_study[index],
-							aca_year: this.state.data.Education_End_Year[index],
-						});
-						get_aca_id(list_of_aca, 1);
-						console.log(list_of_aca);
+						console.log("ok");
+						window.location.href = "http://localhost:3000/myresume/";
 					}
+					return response;
+				}).catch(function (error) {
+					console.log(error);
 				});
-				console.log("Certificate_ResumeId:", this.state.data.hasOwnProperty('Certificate_ResumeId'));
-				this.state.data.Certificate_id.forEach((ele, index) => {
-					certdata.push({
-						Certificate_id: ele,
-						CertName: this.state.data.CertName[index],
-						CertPic: this.state.data.CertPic[index],
-						CertYear: this.state.data.CertYear[index],
-						isCheckCert: this.state.data.hasOwnProperty('Certificate_ResumeId') ? (this.state.data.Certificate_ResumeId.includes(ele) ? true : false) : false
+		}
+
+		/* Zone to get resume datas */
+		function GetResumeData() {
+			return new Promise((resolve,reject)=>{
+			var token = cookie.load('login-token')
+			console.log('Your Token is: ' + token);
+			fetch("http://localhost:2000/myresume/myresume/foredit", {
+				method: "GET",
+				headers: {
+					'Authorization': 'Bearer ' + token,
+					"Access-Control-Allow-Origin": "*",
+					"Access-Control-Allow-Methods": "*",
+					"Access-Control-Allow-Credentials": true,
+					"Content-Type": "application/json"
+				},
+			})
+				.then(response => response.json())
+				.then((datas) => {
+					console.log('You Fetch Success!');
+					console.log(datas);
+					editresumeState.setState({
+						data: datas,
 					})
-				});
-				console.log("WorkHistory_ResumeId:", this.state.data.hasOwnProperty('WorkHistory_ResumeId'));
-				this.state.data.WorkHistory_id.forEach((ele, index) => {
-					workdata.push({
-						WorkHistory_id: ele,
-						Work_JobName: this.state.data.Work_JobName[index],
-						Work_JobType: this.state.data.Work_JobType[index],
-						Company: this.state.data.Company[index],
-						Work_Start_Month: this.state.data.Work_Start_Month[index],
-						Work_End_Month: this.state.data.Work_End_Month[index],
-						Work_Start_Year: this.state.data.Work_Start_Year[index],
-						Work_End_Year: this.state.data.Work_End_Year[index],
-						SalaryType: this.state.data.SalaryType[index],
-						Salary: this.state.data.Salary[index],
-						Infomation: this.state.data.Infomation[index],
-						isCheckWork: this.state.data.hasOwnProperty('WorkHistory_ResumeId') ? (this.state.data.WorkHistory_ResumeId.includes(ele) ? true : false) : false
-					})
-				});
-				this.state.data.AdditionalSkill_id.forEach((ele, index) => {
-					sideskilldata.push({
-						sideskill_id: ele,
-						sideskillName: this.state.data.SoftSkill[index],
-						sideskillResume: this.state.data.AdditionalSkill_ResumeId[index]
-					})
-				});
-				console.log(sideskilldata);
-				this.state.data.Job_JobName.forEach((ele, index) => {
-					if (ele == cookie.load('Job_EditName')) {
-						return this.setState({ resumeId: this.state.data.Resume_id });
-						//alert(this.state.resumeId);
+					console.log('editresumeState.state.data :' + editresumeState.state.data);
+					/*Zone to use datas*/
+					//console.log(editresumeState.state.data.Degree);
+					//Color_Resume = editresumeState.state.data.Color_ResumeId ? editresumeState.state.data.Color_ResumeId : "";
+					if (editresumeState.state.data.Color_ResumeId === undefined) {
+						console.log("Color_ResumeId:", editresumeState.state.data.Color_ResumeId);
+						editresumeState.setState({ firstchoosecolor: true });
 					}
-					/*else{
-						alert(index);
-					}*/
+					else {
+						editresumeState.setState({ Color_Resume: editresumeState.state.data.Color_ResumeId });
+					}
+					editresumeState.state.data.Job_JobName.forEach((ele, index) => {
+						if (ele == cookie.load('Job_EditName')) {
+							console.log('This Resume is : '+editresumeState.state.data.Resume_id[index]);
+							return editresumeState.setState({ resumeId: editresumeState.state.data.Resume_id[index] });
+							//alert(editresumeState.state.resumeId);
+						}
+						/*else{
+							alert(index);
+						}*/
+					});
+					editresumeState.state.data.Degree.forEach((element, index) => {
+	
+						if (element == 'มัธยมศึกษาตอนปลาย' || element == 'ปวช.') {
+							list_of_high.push({
+								id: editresumeState.state.data.EducationHistory_id[index],
+								high_pos: 0,
+								high_name: editresumeState.state.data.Academy[index],
+								high_faculty: 'none',
+								high_degree: editresumeState.state.data.Degree[index],
+								high_grade: editresumeState.state.data.Grade[index],
+								high_field: editresumeState.state.data.Field_of_study[index],
+								high_year: editresumeState.state.data.Education_End_Year[index],
+							});
+							get_high_id(list_of_high, 1);
+							console.log(list_of_high);
+						}
+						else {
+							list_of_aca.push({
+								id: editresumeState.state.data.EducationHistory_id[index],
+								aca_pos: 0,
+								aca_name: editresumeState.state.data.Academy[index],
+								aca_faculty: editresumeState.state.data.Facalty[index],
+								aca_degree: editresumeState.state.data.Degree[index],
+								aca_grade: editresumeState.state.data.Grade[index],
+								aca_field: editresumeState.state.data.Field_of_study[index],
+								aca_year: editresumeState.state.data.Education_End_Year[index],
+							});
+							get_aca_id(list_of_aca, 1);
+							console.log(list_of_aca);
+						}
+					});
+					console.log("Certificate_ResumeId:", editresumeState.state.data.hasOwnProperty('Certificate_ResumeId'));
+					editresumeState.state.data.Certificate_id.forEach((ele, index) => {
+						certdata.push({
+							Certificate_id: ele,
+							CertName: editresumeState.state.data.CertName[index],
+							CertPic: editresumeState.state.data.CertPic[index],
+							CertYear: editresumeState.state.data.CertYear[index],
+							isCheckCert: editresumeState.state.data.hasOwnProperty('Certificate_ResumeId') ? (editresumeState.state.data.Certificate_ResumeId.includes(ele) ? true : false) : false
+						})
+					});
+					console.log("WorkHistory_ResumeId:", editresumeState.state.data.hasOwnProperty('WorkHistory_ResumeId'));
+					editresumeState.state.data.WorkHistory_id.forEach((ele, index) => {
+						workdata.push({
+							WorkHistory_id: ele,
+							Work_JobName: editresumeState.state.data.Work_JobName[index],
+							Work_JobType: editresumeState.state.data.Work_JobType[index],
+							Company: editresumeState.state.data.Company[index],
+							Work_Start_Month: editresumeState.state.data.Work_Start_Month[index],
+							Work_End_Month: editresumeState.state.data.Work_End_Month[index],
+							Work_Start_Year: editresumeState.state.data.Work_Start_Year[index],
+							Work_End_Year: editresumeState.state.data.Work_End_Year[index],
+							SalaryType: editresumeState.state.data.SalaryType[index],
+							Salary: editresumeState.state.data.Salary[index],
+							Infomation: editresumeState.state.data.Infomation[index],
+							isCheckWork: editresumeState.state.data.hasOwnProperty('WorkHistory_ResumeId') ? (editresumeState.state.data.WorkHistory_ResumeId.includes(ele) ? true : false) : false
+						})
+					});
+					editresumeState.state.data.AdditionalSkill_id.forEach((ele, index) => {
+						sideskilldata.push({
+							sideskill_id: ele,
+							sideskillName: editresumeState.state.data.SoftSkill[index],
+							sideskillResume: editresumeState.state.data.AdditionalSkill_ResumeId[index]
+						})
+					});
+					console.log(sideskilldata);
 				});
+				resolve();
 			});
-		$(function () {
+		}
+
+		/* Zone to put check func */
+		function CheckbeforeEdit(){
+			console.log('Time to edit!!!');
+			resolve();
+		}
+
+		/* Zone to show html */
+		$(async function () {
+			await GetResumeData();
 			$('.nameedit').text('"' + cookie.load('Job_EditName') + '"');
 			console.log('Edit Job is ' + cookie.load('Job_EditName'));
 			//alert('Selected tab is '+ cookie.load('Edit_tabselect'));
@@ -261,8 +306,10 @@ class Editresume extends React.Component {
 				$('#tab-6').addClass('tab-list-active')
 				$('#registab6-content').show();
 			});
+			await CheckbeforeEdit();
 		});
 
+		/* Zone to choose func */
 		$(document).on("click", ".input-choose-certi1", function () {
 			certdata = $('.input-choose-certi1:input[type=checkbox]:checked').map(function (_, el) {
 				return $(el).val();
@@ -307,33 +354,7 @@ class Editresume extends React.Component {
 			}
 		});
 
-		function EditResume(pack) {
-			fetch("http://localhost:2000/myresume/" + this.state.resumeId,
-				{
-					method: "PATCH",
-					headers: {
-						"Content-Type": "application/json",
-						"Accept": "application/json"
-					},
-					body: JSON.stringify(pack)
-				}
-			)
-				.then(function (response) {
-					//window.location.pathname = '/emailverify'
-					//alert(response.message);
-					if (!response.ok) {
-						throw Error(response.statusText);
-					}
-					else {
-						console.log("ok");
-						window.location.href = "http://localhost:3000/myresume/";
-					}
-					return response;
-				}).catch(function (error) {
-					console.log(error);
-				});
-		}
-
+		/* Zone Button on this page */
 		$('#cancelChoose').on('click', function () {
 			window.history.go(-1);
 		});
