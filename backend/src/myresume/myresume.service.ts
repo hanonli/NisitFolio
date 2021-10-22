@@ -213,7 +213,6 @@ export class MyResumeService {
     thisy.First=thisx.First
     thisy.Last=thisx.Last
     thisy.Location = thisx.Location
-    thisy.ProfilePic_URL = thisx.ProfilePic_URL
 
     const userid=thisx.UserId;
 
@@ -496,9 +495,18 @@ export class MyResumeService {
     const Certificate_Dictionary = {};
 
     for (var _i = 0; _i < Certificate.length; _i++) {
-      const z=Certificate[_i].CertYear;
-      Certificate_sortlist.push(z);
-      Certificate_Dictionary[z]=_i;
+
+      var Certificate_EndYear=Certificate[_i].CertYear;
+      if(Certificate_Dictionary[Certificate_EndYear]==null){
+        Certificate_sortlist.push(Certificate_EndYear);
+        Certificate_Dictionary[Certificate_EndYear]=_i;
+      }else{
+        while(Certificate_Dictionary[Certificate_EndYear]!=null){
+          Certificate_EndYear=Certificate_EndYear+0.01
+        }
+        Certificate_sortlist.push(Certificate_EndYear);
+        Certificate_Dictionary[Certificate_EndYear]=_i;
+      }
     }
     Certificate_sortlist.sort();
     Certificate_sortlist.reverse();
@@ -532,9 +540,17 @@ export class MyResumeService {
     const kuy3 = [];
 
     for (var _i = 0; _i < educationHistory.length; _i++) {
-      const educationHistory_End_Year=educationHistory[_i].Education_End_Year;
-      educationHistory_sortlist.push(educationHistory_End_Year);
-      educationHistory_Dictionary[educationHistory_End_Year]=_i;
+      var educationHistory_End_Year=Number(educationHistory[_i].Education_End_Year);
+      if(educationHistory_Dictionary[educationHistory_End_Year]==null){
+        educationHistory_sortlist.push(educationHistory_End_Year);
+        educationHistory_Dictionary[educationHistory_End_Year]=_i;
+      }else{
+        while(educationHistory_Dictionary[educationHistory_End_Year]!=null){
+          educationHistory_End_Year=educationHistory_End_Year+0.01
+        }
+        educationHistory_sortlist.push(educationHistory_End_Year);
+          educationHistory_Dictionary[educationHistory_End_Year]=_i;
+      }
     }
     educationHistory_sortlist.sort();
     educationHistory_sortlist.reverse();
@@ -582,9 +598,18 @@ export class MyResumeService {
     const workHistory_Dictionary={};
 
     for (var _i = 0; _i < workHistory.length; _i++) {
-      const workHistory_End=workHistory[_i].Work_End_Year+(workHistory[_i].Work_End_Month/12);
-      workHistory_sortlist.push(workHistory_End);
-      workHistory_Dictionary[workHistory_End]=_i;
+      var workHistory_End=workHistory[_i].Work_End_Year+(workHistory[_i].Work_End_Month/100);
+      if(workHistory_Dictionary[workHistory_End]==null){
+        workHistory_sortlist.push(workHistory_End);
+        workHistory_Dictionary[workHistory_End]=_i;
+      }else{
+        while(workHistory_Dictionary[workHistory_End]!=null){
+          workHistory_End=workHistory_End+0.0001
+        }
+        workHistory_sortlist.push(workHistory_End);
+        workHistory_Dictionary[workHistory_End]=_i;
+      }
+      
     }
     workHistory_sortlist.sort();
     workHistory_sortlist.reverse();
@@ -658,7 +683,7 @@ export class MyResumeService {
     return result;
   }
   async getResumeUnbase64(userId:string ){
-    return this.resumePictureRepository.find({select: ["_id","UserId","Owner","First","Last","Location","ProfilePic_URL","AboutMe","Email","Privacy","interestedJob","additionalSkills","certificates","educationHistorys","workHistorys","portfolios","create_time","last_modified","modified_by"],where:{UserId : userId}});
+    return this.resumePictureRepository.find({select: ["_id","UserId","Owner","First","Last","Location","ProfilePic","AboutMe","Email","Privacy","interestedJob","additionalSkills","certificates","educationHistorys","workHistorys","portfolios","create_time","last_modified","modified_by"],where:{UserId : userId}});
     
   }
   

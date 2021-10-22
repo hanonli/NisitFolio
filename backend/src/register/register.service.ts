@@ -207,7 +207,6 @@ export class RegisterService {
       resume2._id = resumeid;
       resume2.UserId = accountid;
       resume2.Privacy = "Private";
-      resume2.ProfilePic =  createDto.ProfilePicBase64;
       resume2.Owner =  createDto.Firstname + " " + createDto.Lastname;
       resume2.Location = createDto.Country + " " + createDto.Province + " "+ createDto.City;
       resume2.Color = "#ffce55";
@@ -215,7 +214,7 @@ export class RegisterService {
       resume2.Email = createDto.Email;
       resume2.First = createDto.Firstname;
       resume2.Last = createDto.Lastname;
-      resume2.ProfilePic_URL = createDto.ProfilePic;
+      resume2.ProfilePic = createDto.ProfilePic;
       resume2.interestedJob = new InterestedJob();
       resume2.interestedJob._id = Parentid;
       resume2.interestedJob.Job_Score = interestedJob.Job_Score;
@@ -300,10 +299,8 @@ export class RegisterService {
         resume[_i].last_modified.push(isoTime);
         resume[_i].modified_by.push("automatic system");
       }
-      if (patchDto.ProfilePicBase64 != null)
-        resume[_i].ProfilePic =  patchDto.ProfilePicBase64;
       if (patchDto.ProfilePic != null)
-        resume[_i].ProfilePic_URL =  patchDto.ProfilePic;
+        resume[_i].ProfilePic =  patchDto.ProfilePic;
       if (patchDto.Country || patchDto.Province || patchDto.City)
         resume[_i].Location = patchDto.Country + " " + patchDto.Province + " " + patchDto.City;
       if (patchDto.Firstname){
@@ -903,7 +900,7 @@ export class RegisterService {
           Certificate_sortlist.push(Certificate_EndYear);
           Certificate_Dictionary[Certificate_EndYear]=_i;
         }else{
-          while(Certificate_Dictionary[Certificate_EndYear]==null){
+          while(Certificate_Dictionary[Certificate_EndYear]!=null){
             Certificate_EndYear=Certificate_EndYear+0.01
           }
           Certificate_sortlist.push(Certificate_EndYear);
@@ -1185,7 +1182,6 @@ export class RegisterService {
       resume2._id = resumeid;
       resume2.UserId = UserId;
       resume2.Privacy = "Private";
-      resume2.ProfilePic =  createDto.ProfilePicBase64;
       resume2.Owner =  userinfo.Firstname + " " + userinfo.Lastname;
       resume2.Location = userinfo.Country + " " + userinfo.Province + " "+ userinfo.City;
       resume2.Color = "#ffce55";
@@ -1193,7 +1189,7 @@ export class RegisterService {
       resume2.Email = Email
       resume2.First = userinfo.Firstname;
       resume2.Last = userinfo.Lastname;
-      resume2.ProfilePic_URL = userinfo.ProfilePic;
+      resume2.ProfilePic = userinfo.ProfilePic;
       resume2.interestedJob = new InterestedJob();
       resume2.interestedJob._id = Parentid;
       resume2.interestedJob.Job_Score = interestedJob.Job_Score;
