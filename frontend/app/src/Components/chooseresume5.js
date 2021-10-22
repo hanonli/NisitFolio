@@ -51,9 +51,8 @@ class Chooseresume5 extends React.Component {
 				hidden\
 			/>\
 			<label class="dropbtn-box margin-bottom1" for="{forxxx}" id="list-ssl-22">\
-				<div >
-					<div class="textT7B">{ele.sideskillName}</div>\
-					<div class="icon-checkboxct6"><img height="35" src="assets/images/check_black.png" oncontextmenu="return false;" ondragstart="return false;"></img></div>\
+				<div class="textT7B">{ele.sideskillName}
+				<div class="icon-checkboxct6"><img height="35" src="assets/images/check_black.png" ></img></div>\
 				</div>\
 			</label>\
 		</div >`;
@@ -101,7 +100,7 @@ class Chooseresume5 extends React.Component {
 			<div className="Registab7">
                 <h2 class="headerChooseResume">คุณสามารถเลือกทักษะเสริมที่สอดคล้องกับตำแหน่งงานที่สนใจได้สูงสุด 3 รายการ</h2>
 				<div class="Editresume-box-content6" id="yyy">
-					<div class=" myresume-choose-ssl1 dropdowntap7 fixed-wrapper">
+					<div class="dropdowntap7 fixed-wrapper">
 					</div>
 				</div>
 				<h5 id="dangerzonect6" class='normalformzonet3'></h5>

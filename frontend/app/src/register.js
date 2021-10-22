@@ -491,6 +491,7 @@ class Register extends React.Component {
 			}
 			//console.log(FormRegis2);
 			console.log(JSON.stringify(FormRegis2));
+			alert(last_certname);
 			PostRegis(FormRegis2);
 			}
 			else{
@@ -765,7 +766,8 @@ class Register extends React.Component {
 				}
 				else{
 					console.log("ok");
-					window.location.href = "http://localhost:3000/emailverify";
+					//window.location.href = "http://localhost:3000/emailverify";
+					console.log(pack);
 				}
 				return response;
 			}).catch(function(error) {
@@ -1914,6 +1916,7 @@ class Register extends React.Component {
 			var picOfCerti = '', file_picOfCerti = '';
 
 			$(document).on('change', "#image-upload112", function () {
+				$('.for_upload112').empty();
 				var path_img = document.getElementById("image-upload112");
 				if(path_img.files.length == 0) return;
 				if (path_img.files[0].type == "image/jpeg" || path_img.files[0].type == "image/jpg" || path_img.files[0].type == "image/png") {
