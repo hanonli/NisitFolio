@@ -322,17 +322,18 @@ class Edittab5 extends React.Component {
                 $("#to_upload112").addClass("error_select_certi");
             }
             else {
-                if (!(file_picOfCerti in check_pic)) {
+                if (file_picOfCerti != '') {
                     await UploadToS3(file_picOfCerti);
                     //alert(uploadurl);
                     check_pic.push(file_picOfCerti);
                 }
-                var sendCerti2back = {
-                    "CertName": name_certi,
-                    "CertYear": parseInt(year_certi),
-                    "CertPic": uploadurl
-                };
+
                 if (choose_function == 1) {
+                    var sendCerti2back = {
+                        "CertName": name_certi,
+                        "CertYear": parseInt(year_certi),
+                        "CertPic": file_picOfCerti != '' ? uploadurl : for_edit["CertPic"]
+                    };
                     console.log("edit!!!!!!");
                     console.log(`list_of_certi:`, list_of_certi);
                     fetch("http://localhost:2000/register/certificate/" + id_list_certi_edit, {
@@ -344,11 +345,12 @@ class Edittab5 extends React.Component {
                         },
                         body: JSON.stringify(sendCerti2back)
                     })
+                        .then(response => response.json())
                         .then((raws) => {
                             for_edit["CertName"] = name_certi;
                             for_edit["CertYear"] = parseInt(year_certi);
                             for_edit["CertPic"] = picOfCerti;
-                            for_edit["file_pic"] = file_picOfCerti;
+                            for_edit["file_pic"] = file_picOfCerti != '' ? uploadurl : for_edit["CertPic"];
                             //for_edit["CertYear_select"] = $("#yearpicker_111").prop('selectedIndex');
                             //var list_edit11 = document.getElementById(id_list_certi_edit);
                             $("#nm_certi").val("");
@@ -368,6 +370,11 @@ class Edittab5 extends React.Component {
                         });
                 }
                 else if (choose_function == 2) {
+                    var sendCerti2back = {
+                        "CertName": name_certi,
+                        "CertYear": parseInt(year_certi),
+                        "CertPic": uploadurl
+                    };
                     //console.log("add!!!!!!")
                     var id_of_certi = create_UUID();
                     fetch("http://localhost:2000/register/addcertificate", {
@@ -379,9 +386,11 @@ class Edittab5 extends React.Component {
                         },
                         body: JSON.stringify(sendCerti2back)
                     })
+                        .then(response => response.json())
                         .then((raws) => {
+                            console.log(raws);
                             list_of_certi.push({
-                                Certificate_id: id_of_certi,
+                                Certificate_id: raws.id,
                                 CertName: name_certi,
                                 CertYear: parseInt(year_certi),
                                 //CertYear_select: $("#yearpicker_111").prop('selectedIndex'),

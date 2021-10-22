@@ -1,5 +1,20 @@
 /*---------------- resume tab2 ----------------*/
-.myresume-choose-certi11 .card_certi{
+.myresume-choose-certi11 .content-certi1-resume {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 5px;
+}
+
+.myresume-choose-certi11 .card_certi-resume{
+    border: 1px solid black;
+    height: 200px;
+    width: 28vw;
+    border-radius: 25px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    position: relative;
+    left: 4px;
+    justify-content: center;
     cursor: pointer;
 }
 
@@ -113,3 +128,4 @@
 .myresume-choose-ssl1 input[type=checkbox]:checked + label#list-ssl-22 > .icon-checkboxct6{
     visibility: visible;
 }
+

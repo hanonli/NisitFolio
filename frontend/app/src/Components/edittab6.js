@@ -663,6 +663,7 @@ class Edittab6 extends React.Component {
                         },
                         body: JSON.stringify(sendinterestJob2back)
                     })
+                        .then(response => response.json())
                         .then((raws) => {
                             console.log(raws);
                             for_edit["Job_JobName"] = name_job;
@@ -711,7 +712,7 @@ class Edittab6 extends React.Component {
                         .then((raws) => {
                             console.log(raws)
                             push2list = {
-                                InterestedJob_id: create_UUID(),
+                                InterestedJob_id: raws.id,
                                 Job_Pos: 0,
                                 Job_JobName: name_job,
                                 //Job_JobName_select: $("#nm_job").prop('selectedIndex'),
