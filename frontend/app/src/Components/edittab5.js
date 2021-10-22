@@ -3,6 +3,22 @@ import DatePickerBD from './datepickerBD.js';
 import $ from 'jquery';
 import Cropper from 'react-cropper';
 import cookie from 'react-cookies';
+import { uploadFile } from 'react-s3';
+import { v4 as uuidv4 } from 'uuid';
+
+const S3_BUCKET = 'nisitfolio';
+const REGION = 'ap-southeast-1';
+const ACCESS_KEY = 'AKIAWGHRNY32XLWEVA62';
+const SECRET_ACCESS_KEY = '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';
+const DIR_NAME = 'images';
+
+const config = {
+    bucketName: S3_BUCKET,
+    region: REGION,
+    accessKeyId: ACCESS_KEY,
+    secretAccessKey: SECRET_ACCESS_KEY,
+    dirName: DIR_NAME,
+}
 
 class Edittab5 extends React.Component {
     constructor(props) {
@@ -20,6 +36,23 @@ class Edittab5 extends React.Component {
         var choose_function = -1; //default
         var for_edit;
         var id_list_certi_edit;
+        var check_pic = [];
+        var uploadurl;
+        function UploadToS3(_img) {
+            return new Promise((resolve, reject) => {
+
+                uploadFile(_img, config)
+                    .then(data => {
+                        uploadurl = data.location;
+                        //alert(current_i+' push! (from file)');
+                        resolve();
+
+                    })
+                    .catch(err => console.error(err))
+
+
+            });
+        }
         setTimeout(() => {
             console.log("edittab5!!!!:", this.props.mycerti_data);
             const mycert2 = this.props.mycerti_data ? this.props.mycerti_data : [];
@@ -130,7 +163,7 @@ class Edittab5 extends React.Component {
             var path_img = document.getElementById("image-upload112");
             if (path_img.files[0].type == "image/jpeg" || path_img.files[0].type == "image/jpg" || path_img.files[0].type == "image/png") {
                 console.log("path_img.files", path_img.files);
-                file_picOfCerti = path_img.files;
+                file_picOfCerti = new File([path_img.files[0]], 'newuser_ct_' + uuidv4(), { type: path_img.files[0].type });;
                 var reader = new FileReader();
                 reader.onload = function (e) {
                     //$("#preview_before_upload").remove();
@@ -205,7 +238,7 @@ class Edittab5 extends React.Component {
                     return true;
             });
             if (list_of_certi[removeIndex].isFetch === true) {
-                /*fetch("http://localhost:2000/register/certificate/" + list_of_certi[removeIndex].Certificate_id, {
+                fetch("http://localhost:2000/register/certificate/" + list_of_certi[removeIndex].Certificate_id, {
                     method: "DELETE",
                     headers: {
                         'Authorization': 'Bearer ' + token5,
@@ -217,25 +250,25 @@ class Edittab5 extends React.Component {
                 })
                     .then(response => response.json())
                     .then((raws) => {
-                        console.log(raws);*/
-                list_of_year_certi[list_of_certi[removeIndex]["CertYear"]] -= 1;
-                if (list_of_year_certi[list_of_certi[removeIndex]["CertYear"]] == 0) {
-                    $(`#yearOf_` + String(list_of_certi[removeIndex]["CertYear"])).remove();
-                }
-                list_of_certi.splice(removeIndex, 1);
-                $(`#` + id_list_certi_del).remove();
-                //console.log(`delete _certi id:`, removeIndex);
-                //console.log(`list_of_certi:`, list_of_certi);
-                $("#preview_before_upload").remove();
-                $("#icon-upload-112").remove();
-                $("#text-upload-112").remove();
-                $("#text-upload-116").remove();
-                $("#exampleModal_remove_certi").modal("hide");
-                console.log(`list_of_year_certi:`, list_of_year_certi);
-                console.log(`list_of_certi:`, list_of_certi);
-                /*}).catch((error) => {
-                    console.log(error);
-                });*/
+                        console.log(raws);
+                        list_of_year_certi[list_of_certi[removeIndex]["CertYear"]] -= 1;
+                        if (list_of_year_certi[list_of_certi[removeIndex]["CertYear"]] == 0) {
+                            $(`#yearOf_` + String(list_of_certi[removeIndex]["CertYear"])).remove();
+                        }
+                        list_of_certi.splice(removeIndex, 1);
+                        $(`#` + id_list_certi_del).remove();
+                        //console.log(`delete _certi id:`, removeIndex);
+                        //console.log(`list_of_certi:`, list_of_certi);
+                        $("#preview_before_upload").remove();
+                        $("#icon-upload-112").remove();
+                        $("#text-upload-112").remove();
+                        $("#text-upload-116").remove();
+                        $("#exampleModal_remove_certi").modal("hide");
+                        console.log(`list_of_year_certi:`, list_of_year_certi);
+                        console.log(`list_of_certi:`, list_of_certi);
+                    }).catch((error) => {
+                        console.log(error);
+                    });
             }
             else {
                 list_of_year_certi[list_of_certi[removeIndex]["CertYear"]] -= 1;
@@ -269,10 +302,10 @@ class Edittab5 extends React.Component {
         });
 
         var name_certi, year_certi;
-        $(document).on('click', "#submit-certi", function () {
+        $(document).on('click', "#submit-certi", async function () {
             name_certi = document.getElementById("nm_certi").value;
             year_certi = document.getElementById("yearpicker_111").value;
-            //file_pic_certi = document.getElementById("image-upload112");
+
             if (document.getElementById("nm_certi").value == "" && year_certi == "" && picOfCerti == '') {
                 $("#nm_certi").addClass("is-invalid");
                 $("#yearpicker_111").addClass("is-invalid");
@@ -289,10 +322,15 @@ class Edittab5 extends React.Component {
                 $("#to_upload112").addClass("error_select_certi");
             }
             else {
-                let sendCerti2back = {
+                if (!(file_picOfCerti in check_pic)) {
+                    await UploadToS3(file_picOfCerti);
+                    //alert(uploadurl);
+                    check_pic.push(file_picOfCerti);
+                }
+                var sendCerti2back = {
                     "CertName": name_certi,
                     "CertYear": parseInt(year_certi),
-                    "CertPic": picOfCerti
+                    "CertPic": uploadurl
                 };
                 if (choose_function == 1) {
                     console.log("edit!!!!!!");
