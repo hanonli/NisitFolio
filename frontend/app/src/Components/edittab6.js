@@ -598,7 +598,9 @@ class Edittab6 extends React.Component {
                     skill_job_3 = "none";
                     score_slider13 = "2.5";
                 }
-                last_jobskill.push([skill_job_1, skill_job_2, skill_job_3]);
+                last_jobskill.push(skill_job_1);
+                last_jobskill.push(skill_job_2);
+                last_jobskill.push(skill_job_3);
                 if (skill_job_1 != "none") {
                     last_jobscore.push(parseFloat(score_slider11));
                 }
