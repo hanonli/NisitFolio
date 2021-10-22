@@ -30,6 +30,7 @@ class Chooseresume5 extends React.Component {
 
 	  componentDidMount(){
 		window.addEventListener('load', this.handleLoad);
+		/*
 		var choose_sideskill = [];
 		var isCheck_sideskill = {};
 		var aaa = this;
@@ -92,6 +93,7 @@ class Chooseresume5 extends React.Component {
                 $("#dangerzonect6").removeClass("red_markOnly");
             }
         });
+		*/
 	}
 	
 	render (){

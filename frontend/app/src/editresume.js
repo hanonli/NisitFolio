@@ -219,8 +219,10 @@ class Editresume extends React.Component {
 
 		/* Zone to put check func */
 		function CheckbeforeEdit(){
+			return new Promise((resolve,reject)=>{
 			console.log('Time to edit!!!');
 			resolve();
+			});
 		}
 
 		/* Zone to show html */
