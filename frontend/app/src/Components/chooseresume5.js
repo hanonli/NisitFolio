@@ -100,7 +100,7 @@ class Chooseresume5 extends React.Component {
 			<div className="Registab7">
                 <h2 class="headerChooseResume">คุณสามารถเลือกทักษะเสริมที่สอดคล้องกับตำแหน่งงานที่สนใจได้สูงสุด 3 รายการ</h2>
 				<div class="Editresume-box-content6" id="yyy">
-					<div class="dropdowntap7 fixed-wrapper">
+					<div class="myresume-choose-ssl1 dropdowntap7 fixed-wrapper">
 					</div>
 				</div>
 				<h5 id="dangerzonect6" class='normalformzonet3'></h5>
