@@ -56,7 +56,7 @@ class Editresume3 extends React.Component {
                                         {ischeck}\
                                         hidden\
                                     />\
-                                    <label id="list-certi33" class="card_certi" for="{forxxx}">\
+                                    <label id="list-certi33" class="card_certi-resume" for="{forxxx}">\
                                         <h1 id="name-of-certi">{ele.CertName}</h1>\
                                         <h1 id="year-of-certi">{ele.CertYear}</h1>\
                                         <div class="pos-pic-of-certi">\
@@ -66,7 +66,7 @@ class Editresume3 extends React.Component {
                                     </label>\
                                 </div >`;
                 let headOfyear1234 = `  <div id="year-choose-tem-{show-year-resume-certi}"><h1 id="textOfyear_certi">{ele.CertYear}</h1></div>\
-                                    <div class="content-certi1" id="{contentYear}"></div>`;
+                                    <div class="content-certi1-resume" id="{contentYear}"></div>`;
                 grid_certi2 = grid_certi2.replace("{xxx}", `xxx` + ele.Certificate_id);
                 grid_certi2 = grid_certi2.replace("{ele.Certificate_idvalue}", ele.Certificate_id);
                 //grid_certi2 = grid_certi2.replace("{isCheck_certi}", ele.isCheckCert);

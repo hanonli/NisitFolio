@@ -207,7 +207,6 @@ export class RegisterService {
       resume2._id = resumeid;
       resume2.UserId = accountid;
       resume2.Privacy = "Private";
-      resume2.ProfilePic =  createDto.ProfilePicBase64;
       resume2.Owner =  createDto.Firstname + " " + createDto.Lastname;
       resume2.Location = createDto.Country + " " + createDto.Province + " "+ createDto.City;
       resume2.Color = "#ffce55";
@@ -215,7 +214,7 @@ export class RegisterService {
       resume2.Email = createDto.Email;
       resume2.First = createDto.Firstname;
       resume2.Last = createDto.Lastname;
-      resume2.ProfilePic_URL = createDto.ProfilePic;
+      resume2.ProfilePic = createDto.ProfilePic;
       resume2.interestedJob = new InterestedJob();
       resume2.interestedJob._id = Parentid;
       resume2.interestedJob.Job_Score = interestedJob.Job_Score;
@@ -300,10 +299,8 @@ export class RegisterService {
         resume[_i].last_modified.push(isoTime);
         resume[_i].modified_by.push("automatic system");
       }
-      if (patchDto.ProfilePicBase64 != null)
-        resume[_i].ProfilePic =  patchDto.ProfilePicBase64;
       if (patchDto.ProfilePic != null)
-        resume[_i].ProfilePic_URL =  patchDto.ProfilePic;
+        resume[_i].ProfilePic =  patchDto.ProfilePic;
       if (patchDto.Country || patchDto.Province || patchDto.City)
         resume[_i].Location = patchDto.Country + " " + patchDto.Province + " " + patchDto.City;
       if (patchDto.Firstname){
@@ -854,21 +851,6 @@ export class RegisterService {
   }
 
   async GetInfo(UserId:string) {
-    /*
-    
-    for (var _i = 0; _i < 1; _i++) {
-      var educationHistory_End_Year=5;
-      
-        while(educationHistory_End_Year!=5.01){
-          educationHistory_End_Year=educationHistory_End_Year+0.01
-        }
-        if(educationHistory_End_Year==5.01){
-        return "s"
-        }
-    }
-    educationHistory_End_Year=educationHistory_End_Year+0.01
-    return educationHistory_End_Year+0.01
-    //*/
 
       const result = new GetRegisDto;  
       const userid = new ObjectID(UserId);
@@ -918,7 +900,7 @@ export class RegisterService {
           Certificate_sortlist.push(Certificate_EndYear);
           Certificate_Dictionary[Certificate_EndYear]=_i;
         }else{
-          while(Certificate_Dictionary[Certificate_EndYear]==null){
+          while(Certificate_Dictionary[Certificate_EndYear]!=null){
             Certificate_EndYear=Certificate_EndYear+0.01
           }
           Certificate_sortlist.push(Certificate_EndYear);
@@ -959,7 +941,7 @@ export class RegisterService {
           educationHistory_sortlist.push(educationHistory_End_Year);
           educationHistory_Dictionary[educationHistory_End_Year]=_i;
         }else{
-          while(educationHistory_Dictionary[educationHistory_End_Year]==null){
+          while(educationHistory_Dictionary[educationHistory_End_Year]!=null){
             educationHistory_End_Year=educationHistory_End_Year+0.01
           }
           educationHistory_sortlist.push(educationHistory_End_Year);
@@ -1010,7 +992,7 @@ export class RegisterService {
           workHistory_sortlist.push(workHistory_End);
           workHistory_Dictionary[workHistory_End]=_i;
         }else{
-          while(workHistory_Dictionary[workHistory_End]==null){
+          while(workHistory_Dictionary[workHistory_End]!=null){
             workHistory_End=workHistory_End+0.0001
           }
           workHistory_sortlist.push(workHistory_End);
@@ -1200,7 +1182,6 @@ export class RegisterService {
       resume2._id = resumeid;
       resume2.UserId = UserId;
       resume2.Privacy = "Private";
-      resume2.ProfilePic =  createDto.ProfilePicBase64;
       resume2.Owner =  userinfo.Firstname + " " + userinfo.Lastname;
       resume2.Location = userinfo.Country + " " + userinfo.Province + " "+ userinfo.City;
       resume2.Color = "#ffce55";
@@ -1208,7 +1189,7 @@ export class RegisterService {
       resume2.Email = Email
       resume2.First = userinfo.Firstname;
       resume2.Last = userinfo.Lastname;
-      resume2.ProfilePic_URL = userinfo.ProfilePic;
+      resume2.ProfilePic = userinfo.ProfilePic;
       resume2.interestedJob = new InterestedJob();
       resume2.interestedJob._id = Parentid;
       resume2.interestedJob.Job_Score = interestedJob.Job_Score;
@@ -1227,4 +1208,5 @@ export class RegisterService {
     userinfo.countSkill = count_skill;
     return (this.userinfoRepository.save(userinfo));
   }
+
 }

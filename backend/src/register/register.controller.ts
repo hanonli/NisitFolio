@@ -144,7 +144,7 @@ export class RegisterController {
   //-----------test
   @Get("getinfotest")
   async GetInfotest() {
-    const x="616ea5ef72c9862d2cf471a5"
+    const x="616fc68975e61b0d58de2ac9"
     return this.registerService.GetInfo(x);
   }
   //----------

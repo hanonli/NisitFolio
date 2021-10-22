@@ -598,7 +598,9 @@ class Edittab6 extends React.Component {
                     skill_job_3 = "none";
                     score_slider13 = "2.5";
                 }
-                last_jobskill.push([skill_job_1, skill_job_2, skill_job_3]);
+                last_jobskill.push(skill_job_1);
+                last_jobskill.push(skill_job_2);
+                last_jobskill.push(skill_job_3);
                 if (skill_job_1 != "none") {
                     last_jobscore.push(parseFloat(score_slider11));
                 }
@@ -663,6 +665,7 @@ class Edittab6 extends React.Component {
                         },
                         body: JSON.stringify(sendinterestJob2back)
                     })
+                        .then(response => response.json())
                         .then((raws) => {
                             console.log(raws);
                             for_edit["Job_JobName"] = name_job;
@@ -711,7 +714,7 @@ class Edittab6 extends React.Component {
                         .then((raws) => {
                             console.log(raws)
                             push2list = {
-                                InterestedJob_id: create_UUID(),
+                                InterestedJob_id: raws.id,
                                 Job_Pos: 0,
                                 Job_JobName: name_job,
                                 //Job_JobName_select: $("#nm_job").prop('selectedIndex'),
@@ -777,7 +780,7 @@ class Edittab6 extends React.Component {
             });
             console.log("removeIndex:", removeIndex);
             if (list_of_job[removeIndex].isFetch === true) {
-                /*fetch("http://localhost:2000/register/interestedJob/" + list_of_job[removeIndex].InterestedJob_id, {
+                fetch("http://localhost:2000/register/interestedJob/" + list_of_job[removeIndex].InterestedJob_id, {
                     method: "DELETE",
                     headers: {
                         'Authorization': 'Bearer ' + token6,
@@ -789,27 +792,27 @@ class Edittab6 extends React.Component {
                 })
                     .then(response => response.json())
                     .then((raws) => {
-                        console.log(raws);*/
-                list_of_job.splice(removeIndex, 1);
-                //console.log(`delete job id:`, removeIndex);
-                $('#exampleModal_remove_job').modal('hide');
-                $(".list-of-job-edit").empty();
-                //console.log(list_of_job);
-                get_job_id(list_of_job, 1);
-                show_all_job()
-                $(".step-marks").remove();
-                $(".step-labels").remove();
-                $("#input_mySlider1").remove();
-                $("#input_mySlider2").remove();
-                $("#input_mySlider3").remove();
-                if (list_of_job.length < 3) {
-                    $(".frame_add_job_interest").show();
-                    $(".limit-job-pos-3").removeClass("limit-job-pos-3-red");
-                    $('.limit-job-pos-3').text('ท่านสามารถเพิ่มตำแหน่งงานที่สนใจได้สูงสุด 3 อัน');
-                }
-                /*}).catch((error) => {
-                    console.log(error);
-                });*/
+                        console.log(raws);
+                        list_of_job.splice(removeIndex, 1);
+                        //console.log(`delete job id:`, removeIndex);
+                        $('#exampleModal_remove_job').modal('hide');
+                        $(".list-of-job-edit").empty();
+                        //console.log(list_of_job);
+                        get_job_id(list_of_job, 1);
+                        show_all_job()
+                        $(".step-marks").remove();
+                        $(".step-labels").remove();
+                        $("#input_mySlider1").remove();
+                        $("#input_mySlider2").remove();
+                        $("#input_mySlider3").remove();
+                        if (list_of_job.length < 3) {
+                            $(".frame_add_job_interest").show();
+                            $(".limit-job-pos-3").removeClass("limit-job-pos-3-red");
+                            $('.limit-job-pos-3').text('ท่านสามารถเพิ่มตำแหน่งงานที่สนใจได้สูงสุด 3 อัน');
+                        }
+                    }).catch((error) => {
+                        console.log(error);
+                    });
             }
             else {
                 list_of_job.splice(removeIndex, 1);

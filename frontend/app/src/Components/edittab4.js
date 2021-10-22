@@ -490,6 +490,7 @@ class Edittab4 extends React.Component {
                         },
                         body: JSON.stringify(sendWork2back)
                     })
+                        .then(response => response.json())
                         .then((raws) => {
                             console.log(raws);
                             for_edit["Work_JobType"] = type_work;
@@ -534,7 +535,7 @@ class Edittab4 extends React.Component {
                         .then((raws) => {
                             console.log(raws);
                             list_of_work.push({
-                                WorkHistory_id: create_UUID(),
+                                WorkHistory_id: raws.id,
                                 Work_JobType: type_work,
                                 //Work_JobType_select: document.getElementById("jobtype_work").selectedIndex,
                                 Work_JobName: pos_work,
