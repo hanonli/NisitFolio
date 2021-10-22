@@ -1208,5 +1208,121 @@ export class RegisterService {
     userinfo.countSkill = count_skill;
     return (this.userinfoRepository.save(userinfo));
   }
+  //-------------------------test
+  async GetInfo5(UserId:string) {
+
+    const result = new GetRegisDto;  
+    
+  
+    
+    const Job_Objective_arr=[];
+    const Job_Score_arr=[];
+    const Job_JobName_arr=[];
+    const Job_SkillName_arr=[];
+    const  InterestedJob_id_arr=[];
+    const IJ=await this.InterestedJobRepository.find({select: ["Job_SkillName"],where:{UserId : UserId}});
+    return IJ
+    //{select: [Job_SkillName],where:{UserId : userId}}
+    for (var _i = 0; _i < IJ.length; _i++) {
+      //Job_Objective_arr.push(IJ[_i].Job_Objective);
+      //Job_Score_arr.push(IJ[_i].Job_Score);
+      //Job_JobName_arr.push(IJ[_i].Job_JobName);
+      Job_SkillName_arr.push(IJ[_i].Job_SkillName);
+      //InterestedJob_id_arr.push(IJ[_i]._id.toString());
+
+    }
+
+    //result.Job_Objective=Job_Objective_arr;
+    //result.Job_Score=Job_Score_arr;
+    //result.Job_JobName=Job_JobName_arr;
+    result.Job_SkillName=Job_SkillName_arr;
+    //result.InterestedJob_id=InterestedJob_id_arr;
+    
+    return result;
+}
+async NewinterestedJobtest(createDto: PatchRegisDto,UserId: string,ip:string){
+  const time = new Date();
+  const isoTime = time.toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: 'numeric', hour: "2-digit", minute: "2-digit" });
+
+  const userinfo=await this.userinfoRepository.findOne({UserId:UserId})
+  const Email=(await this.accountRepository.findOne({_id:new ObjectID(UserId)})).Email
+  const Old_InterestedJob=await this.InterestedJobRepository.find({UserId:UserId})
+  
+
+
+  const tag_arr = [];
+  let sum_score = 0;
+  let count_skill = userinfo.countSkill;
+
+  for (var _i = 0; _i < Old_InterestedJob.length; _i++) {
+    for (var _x = 0; _x < Old_InterestedJob[_i].Job_Score.length; _x++) {
+    sum_score=sum_score+Old_InterestedJob[_i].Job_Score[_x];
+    }
+  }
+
+
+
+
+    const resume = new Resume();
+    //const resumeid = ((await this.resumeRepository.save(resume))._id);
+    //await this.resumeRepository.remove(resume);
+    const interestedJob = new InterestedJob();
+    interestedJob.UserId = UserId;
+    interestedJob.Job_JobName = createDto.Job_JobName;
+    interestedJob.Job_Objective = createDto.Job_Objective;
+    interestedJob.Job_Score = createDto.Job_Score;
+    interestedJob.Job_SkillName = createDto.Job_SkillName;
+    interestedJob.create_time = isoTime;
+    interestedJob.last_modified = [isoTime];
+    interestedJob.ResumeId = new Array();
+    //interestedJob.ResumeId.push(resumeid.toString());
+    //return interestedJob
+
+    //const Parentid = (await this.InterestedJobRepository.save(interestedJob))._id;
+    //const Parentid_string = Parentid.toString();
+
+    tag_arr.push(createDto.Job_JobName);
+    for (var _j = 0; _j < createDto.Job_Score.length; _j++) {
+      const userJobSkill = new UserJobSkill();
+      //userJobSkill.ParentId = Parentid_string;
+      userJobSkill.UserId = UserId;
+      userJobSkill.Job_JobName = createDto.Job_JobName;
+      userJobSkill.Job_Score = createDto.Job_Score[_j];
+      sum_score = sum_score + createDto.Job_Score[_j];
+      count_skill = count_skill + 1;
+      userJobSkill.Job_SkillName = createDto.Job_SkillName[_j];
+      //await this.userJobSkillRepository.save(userJobSkill);
+    }
+    const resume2 = new Resume();
+    //resume2._id = resumeid;
+    resume2.UserId = UserId;
+    resume2.Privacy = "Private";
+    resume2.Owner =  userinfo.Firstname + " " + userinfo.Lastname;
+    resume2.Location = userinfo.Country + " " + userinfo.Province + " "+ userinfo.City;
+    resume2.Color = "#ffce55";
+    resume2.AboutMe = userinfo.AboutMe;
+    resume2.Email = Email
+    resume2.First = userinfo.Firstname;
+    resume2.Last = userinfo.Lastname;
+    resume2.ProfilePic = userinfo.ProfilePic;
+    resume2.interestedJob = new InterestedJob();
+    //resume2.interestedJob._id = Parentid;
+    resume2.interestedJob.Job_Score = interestedJob.Job_Score;
+    resume2.interestedJob.Job_JobName = interestedJob.Job_JobName;
+    resume2.interestedJob.Job_Objective = interestedJob.Job_Objective;
+    resume2.interestedJob.Job_SkillName = interestedJob.Job_SkillName;
+    resume2.create_time =  isoTime;
+    resume2.last_modified =  [isoTime] ;
+    resume2.modified_by = [ip];
+    await this.resumeRepository.save(resume2);
+  let avg_score = sum_score / count_skill;
+
+  userinfo.AvgScore = avg_score;
+  userinfo.totalBookmark = 0;
+  userinfo.tags = tag_arr;
+  userinfo.countSkill = count_skill;
+  //return (this.userinfoRepository.save(userinfo));
+  return interestedJob
+}
 
 }
