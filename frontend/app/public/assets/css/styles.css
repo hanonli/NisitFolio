@@ -3271,7 +3271,7 @@ a.btn-cta-primary-white:hover, .btn-cta-primary-white:hover {
 	display: flex;
     justify-content: center;
     align-items: center;
-    gap: 120px;
+    gap: 60px;
     /* margin-right: 12px; */
     padding: 5px 20px 5px 25px;
     position: relative;
