@@ -1,0 +1,216 @@
+[
+    {
+        "modified_by": [
+            "::1",
+            "automatic system"
+        ],
+        "last_modified": [
+            "19 ตุลาคม 2564 18:24",
+            "19 ตุลาคม 2564 18:26"
+        ],
+        "portfolios": [
+            {
+                "UserId": "616eab04022d6b44040ffecf",
+                "Port_Name": "Thank You Post - Gardenia",
+                "Port_Info": "ทำโพสต์ขอบคุณผู้เข้าร่วมงานและ speaker ทุกท่าน",
+                "ResumeId": [
+                    "616eab04022d6b44040ffecf",
+                    "616eab09022d6b44040ffed8"
+                ],
+                "Owner": "นัดวุด น๊านานานายานา",
+                "totalBookmark": 0,
+                "Port_Tag": [
+                    "นักออกแบบกราฟิก",
+                    "นักสังคมสงเคราะห์"
+                ],
+                "Port_Privacy": "Private",
+                "Port_Date": "26/09/2021",
+                "portfolioPictures": [
+                    {
+                        "_id": "616ead08022d6b44040fffaf",
+                        "Pic": [
+                            "https://nisitfolio.s3.amazonaws.com/images/616eab04022d6b44040ffecf_db4048bd-abad-4e3b-83a2-fd1ffde12548",
+                            "https://nisitfolio.s3.amazonaws.com/images/616eab04022d6b44040ffecf_e01e2b11-9d49-4064-8ccc-559c4f50abe7",
+                            "https://nisitfolio.s3.amazonaws.com/images/616eab04022d6b44040ffecf_b647d334-1682-493f-9d52-9ddd94e2c613",
+                            "https://nisitfolio.s3.amazonaws.com/images/616eab04022d6b44040ffecf_037ca970-9a77-4fc8-ab28-db8ccf6e64c5"
+                        ],
+                        "Description": []
+                    }
+                ],
+                "create_time": "19 ตุลาคม 2564 18:33",
+                "last_modified": [
+                    "19 ตุลาคม 2564 18:33"
+                ],
+                "modified_by": [
+                    "::1"
+                ],
+                "__v": 2,
+                "_id": "616ead07022d6b44040fffae"
+            },
+            {
+                "UserId": "616eab04022d6b44040ffecf",
+                "Port_Name": "KU Startup League 2020",
+                "Port_Info": "ทำธุรกิจ Startup กับโครงการ KU Startup League 2020 สร้าง ShareSquare เว็บแอพที่ช่วยหาตี้หาร Subscription รายเดือนแบบที่ไม่ต้องรู้จักกัน เสนอ True Corp. ชิงทุน ร่วมกับนายสิรภพ ชยเจตน์ ",
+                "ResumeId": [
+                    "616eab04022d6b44040ffecf",
+                    "616eab09022d6b44040ffed8"
+                ],
+                "Owner": "นัดวุด น๊านานานายานา",
+                "totalBookmark": 0,
+                "Port_Tag": [
+                    "ผู้เชี่ยวชาญด้านการตลาดออนไลน์",
+                    "นักพัฒนาธุรกิจ"
+                ],
+                "Port_Privacy": "Members",
+                "Port_Date": "19/10/2021",
+                "portfolioPictures": [
+                    {
+                        "Pic": [
+                            "https://nisitfolio.s3.amazonaws.com/images/616eab04022d6b44040ffecf_a0d3e11c-a274-445e-be3d-190cdefb22e2",
+                            "https://nisitfolio.s3.amazonaws.com/images/616eab04022d6b44040ffecf_0c44b89b-349d-44d6-a1f6-3205d519faf1",
+                            "https://nisitfolio.s3.amazonaws.com/images/616eab04022d6b44040ffecf_c5e6b8c1-1feb-4481-bee4-56c515aae9d6"
+                        ],
+                        "Description": []
+                    }
+                ],
+                "create_time": "19 ตุลาคม 2564 18:35",
+                "last_modified": [
+                    "19 ตุลาคม 2564 18:35"
+                ],
+                "modified_by": [
+                    "::1"
+                ],
+                "__v": 1,
+                "_id": "616ead98022d6b44040fffb1"
+            },
+            {
+                "UserId": "616eab04022d6b44040ffecf",
+                "Port_Name": "เปิดโลกกิจกรรม 2020",
+                "Port_Info": "ทำโปสเตอร์โปรโมทงาน KU Startup First Meet 2020 ",
+                "ResumeId": [
+                    "616eab04022d6b44040ffecf",
+                    "616eab09022d6b44040ffed8"
+                ],
+                "Owner": "นัดวุด น๊านานานายานา",
+                "totalBookmark": 0,
+                "Port_Tag": [
+                    "นักออกแบบกราฟิก",
+                    "เจ้าหน้าที่ฝ่ายประชาสัมพันธ์",
+                    "นักวางแผนอีเว้นท์และการประชุม"
+                ],
+                "Port_Privacy": "Public",
+                "Port_Date": "18/12/2020",
+                "portfolioPictures": [
+                    {
+                        "_id": "616eadd2022d6b44040fffb5",
+                        "Pic": [
+                            "https://nisitfolio.s3.amazonaws.com/images/616eab04022d6b44040ffecf_cec22bdd-9ce1-44ba-9b98-9c8b651cea99"
+                        ],
+                        "Description": []
+                    }
+                ],
+                "create_time": "19 ตุลาคม 2564 18:36",
+                "last_modified": [
+                    "19 ตุลาคม 2564 18:36"
+                ],
+                "modified_by": [
+                    "::1"
+                ],
+                "__v": 2,
+                "_id": "616eadd2022d6b44040fffb4"
+            }
+        ],
+        "workHistorys": [],
+        "educationHistorys": [],
+        "certificates": [],
+        "additionalSkills": [],
+        "interestedJob": [
+            {
+                "_id": "616eab09022d6b44040ffed9",
+                "Job_Score": [
+                    9.399999618530273,
+                    6.900000095367432,
+                    0
+                ],
+                "Job_JobName": "ครู",
+                "Job_Objective": [
+                    "นักเรียนตั้งใจเรียน",
+                    "none",
+                    "none"
+                ],
+                "Job_SkillName": [
+                    "การจัดลำดับความสำคัญ",
+                    "การสังเกต",
+                    "none"
+                ]
+            }
+        ],
+        "_id": "616eab09022d6b44040ffed8",
+        "UserId": "616eab04022d6b44040ffecf",
+        "Privacy": "Private",
+		"ProfilePic": "https://nisitfolio.s3.amazonaws.com/images/61508ce5f3a324659c4de1c2_pf_093384ba-27c9-4f3d-865f-1091673c21e7",
+        "Owner": "นัดวุด น๊านานานายานา",
+        "Location": "ประเทศไทย จันทบุรี ",
+        "Color": "#ffce55",
+        "AboutMe": "im done",
+        "Email": "somruethai.o@ku.th",
+        "First": "นัดวุด",
+        "Last": "น๊านานานายานา",
+        "ProfilePic_URL": "http://localhost:3000/assets/images/profile_uk.png",
+        "create_time": "19 ตุลาคม 2564 18:24",
+        "__v": 1
+    },
+    {
+        "modified_by": [
+            "::1",
+            "automatic system",
+            "::ffff:127.0.0.1",
+            "::ffff:127.0.0.1"
+        ],
+        "last_modified": [
+            "19 ตุลาคม 2564 18:24",
+            "19 ตุลาคม 2564 18:26",
+            "October 19, 2021, 07:20 PM",
+            "October 19, 2021, 07:20 PM"
+        ],
+        "portfolios": [],
+        "workHistorys": [],
+        "educationHistorys": [],
+        "certificates": [],
+        "additionalSkills": [],
+        "interestedJob": [
+            {
+                "_id": "616eab0c022d6b44040ffede",
+                "Job_Score": [
+                    6.099999904632568,
+                    7.599999904632568,
+                    4.900000095367432
+                ],
+                "Job_JobName": "ที่ปรึกษาด้านอาชีพ",
+                "Job_Objective": [
+                    "ให้ความรู้ได้อย่างถูกต้องและมีประโยชน์",
+                    "ผู้ใช้บริการพอใจกับคำปรึกษา",
+                    "none"
+                ],
+                "Job_SkillName": [
+                    "ความรู้ด้านการเงิน",
+                    "มีความรู้ด้านอาชีพหลากหลาย",
+                    "การสัมภาษณ์"
+                ]
+            }
+        ],
+        "_id": "616eab0b022d6b44040ffedd",
+        "UserId": "616eab04022d6b44040ffecf",
+        "Privacy": "Public",
+        "ProfilePic": "https://nisitfolio.s3.amazonaws.com/images/61508ce5f3a324659c4de1c2_pf_093384ba-27c9-4f3d-865f-1091673c21e7",
+		"Owner": "นัดวุด น๊านานานายานา",
+        "Location": "ประเทศไทย จันทบุรี ",
+        "AboutMe": "im done",
+        "Email": "somruethai.o@ku.th",
+        "First": "นัดวุด",
+        "Last": "น๊านานานายานา",
+        "ProfilePic_URL": "http://localhost:3000/assets/images/profile_uk.png",
+        "create_time": "19 ตุลาคม 2564 18:24",
+        "__v": 3
+    }
+]

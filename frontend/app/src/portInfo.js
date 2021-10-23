@@ -43,7 +43,6 @@ class PortInfo extends React.Component {
 							</div>\
 							<div class="hover-box">\
 								<img class="pft-overlay" src="assets/images/black.jpg" alt=""/>\
-								<img class="pft-lock-icon {hidden1}" src="{privacy}" alt=""/>\
 								<img class="pft-del-icon {hidden2}" src="assets/images/white_bin.png" data-bs-toggle="modal" data-bs-target="#staticBackdrop" alt=""/>\
 								<img class="{var-ic}" id="{var-id}" src="{var-ic-img}" alt=""/>\
 								<div class="pft-name">{name}</div>\
@@ -402,12 +401,23 @@ class PortInfo extends React.Component {
 				
 				//refThis.setState({ render: true });
 				var index=0;
-				if(userPortData.length < 2){
-					$('.pft-flex').append('<af>(ยังไม่มีผลงานอื่นของเจ้าของผลงานนี้)</af>');
-					$('.pft-flex').css('justify-content','center');
-				}else{
+				var showCount=0;
 					userPortData.forEach((data) => {
-						if(data._id == portId) { index += 1; pftId.push(data._id); pftVipData.push({}); pftPrivacy.push(portfolioData.Port_Privacy); return; } // ignore viewing port
+						if(data._id == portId) {  // ignore viewing port
+							index += 1; 
+							pftId.push(data._id); 
+							pftVipData.push({}); 
+							pftPrivacy.push(portfolioData.Port_Privacy); 
+							return; 
+						} 
+						if( (data.Port_Privacy == 'Private') || (data.Port_Privacy == 'Members' && !isUser) ) {  // ignore viewing port
+							index += 1; 
+							pftId.push(data._id); 
+							pftVipData.push({}); 
+							pftPrivacy.push(data.Port_Privacy); 
+							return; 
+						} 
+						showCount += 1;
 						//console.log(data);
 						
 						// for PATCH
@@ -532,6 +542,15 @@ class PortInfo extends React.Component {
 						index += 1;
 					});
 				
+					if(showCount < 1){ // nothing to show
+						$('.pft-flex').append('<af>(ยังไม่มีผลงานอื่นของเจ้าของผลงานนี้)</af>');
+						$('.pft-flex').css('justify-content','center');
+					}
+					
+					/*$('#go-to-mail').on('click', function(e){
+						window.open('mailto:email@example.com?subject=Subject&body=Body%20goes%20here');
+					});*/
+				
 					
 					$('.pft-edit-icon').on('click', function(e){
 						e.stopPropagation();
@@ -540,6 +559,8 @@ class PortInfo extends React.Component {
 							refThis.setState({ redirect: "/editport" });
 						});
 						
+						/*
+						$(".pft-lock-icon").off('click');
 						$('.pft-lock-icon').on('click', function(e){
 							//alert('Clicked! id: '+pftId[focusId]);
 							e.stopPropagation();
@@ -583,8 +604,7 @@ class PortInfo extends React.Component {
 								console.log('add Error!');
 								//this.setState({ redirect: "/landing" });
 							});
-						});
-				}
+						});*/
 					
 					$('.lb-container').on('mouseover', function(){
 						  focusId = Number($(this).attr('id'));
@@ -918,9 +938,9 @@ class PortInfo extends React.Component {
 					</div>
 					
 					<div class="pfmn-flex">
-						<img class="tooltips-item obj-icon" src="assets/images/clock.png" type="button" alt="" width="25" height="25"/>
+						<img class="tooltips-item obj-icon" src="assets/images/clock.png" alt="" width="25" height="25"/>
 						<akf id="port-date">21/02/2xxx</akf>
-						<img class="tooltips-item obj-icon" src="assets/images/idv.png" type="button" alt="" width="25" height="25"/>
+						<img class="tooltips-item obj-icon" src="assets/images/idv.png" alt="" width="25" height="25"/>
 						<akf id="port-owner">ชื่อ นามสกุล</akf>
 					</div>
 					
@@ -1019,7 +1039,7 @@ class PortInfo extends React.Component {
 										</div>
 									</div>
 									<af>หรือ</af>
-									<a id="delete-port" type="button" class="btn btn-cta-primary-yellow profile-button round" data-bs-dismiss="modal">ไปยังระบบอีเมลของคุณเพื่อติดต่อโดยตรง</a>
+									<a id="go-to-mail" type="button" class="btn btn-cta-primary-yellow profile-button round"  href="mailto:webmaster@example.com" >ไปยังระบบอีเมลของคุณเพื่อติดต่อโดยตรง</a>
 								</div>
 								
 							</div>

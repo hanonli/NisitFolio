@@ -431,7 +431,7 @@ class NewAnalytics extends React.Component {
 				EnablePopup();
 				NormalMode();
 				SetupOverview();
-				$('.tab-list-item-p').removeClass('tab-list-active');
+				$('.tab-list-item-pp').removeClass('tab-list-active');
 				$('#tabT-1').addClass('tab-list-active');
 				$('.ana-head').removeClass('ana-head-anim');
 			});
@@ -441,7 +441,7 @@ class NewAnalytics extends React.Component {
 				EnablePopup();
 				LargeMode();
 				SetupJob(1);
-				$('.tab-list-item-p').removeClass('tab-list-active');
+				$('.tab-list-item-pp').removeClass('tab-list-active');
 				$('#tabT-2').addClass('tab-list-active');
 				$('.ana-head').addClass('ana-head-anim');
 			});
@@ -451,7 +451,7 @@ class NewAnalytics extends React.Component {
 				EnablePopup();
 				LargeMode();
 				SetupJob(2);
-				$('.tab-list-item-p').removeClass('tab-list-active');
+				$('.tab-list-item-pp').removeClass('tab-list-active');
 				$('#tabT-3').addClass('tab-list-active');
 				$('.ana-head').addClass('ana-head-anim');
 			});
@@ -461,7 +461,7 @@ class NewAnalytics extends React.Component {
 				EnablePopup();
 				LargeMode();
 				SetupJob(3);
-				$('.tab-list-item-p').removeClass('tab-list-active');
+				$('.tab-list-item-pp').removeClass('tab-list-active');
 				$('#tabT-4').addClass('tab-list-active');
 				$('.ana-head').addClass('ana-head-anim');
 			});
@@ -471,7 +471,7 @@ class NewAnalytics extends React.Component {
 				DisablePopup();
 				LargeModeAdd();
 				SetupAdd();
-				$('.tab-list-item-p').removeClass('tab-list-active');
+				$('.tab-list-item-pp').removeClass('tab-list-active');
 				$('#tabT-5').addClass('tab-list-active');
 				$('.ana-head').addClass('ana-head-anim');
 			});
@@ -1519,28 +1519,28 @@ class NewAnalytics extends React.Component {
 				</header>
 				
 				<div class="sbm-flex tabs-list-sbm anl-tabs">
-					<div class="smb-1a" id="tab-1">
-						<li class="tab-list-item-p tab-list-active" id="tabT-1" type="button">ภาพรวม</li> 
+					<div class="smb-1aa" id="tab-1">
+						<li class="tab-list-item-pp tab-list-active" id="tabT-1" type="button">ภาพรวม</li> 
 					</div>
-					<div class="smb-1a" id="tab-2">
-						<li class="tab-list-item-p" id="tabT-2" type="button">งานที่ 1</li>
+					<div class="smb-1aa" id="tab-2">
+						<li class="tab-list-item-pp" id="tabT-2" type="button">งานที่ 1</li>
 					</div>
-					<div class="smb-1a" id="tab-3">
-						<li class="tab-list-item-p" id="tabT-3" type="button">งานที่ 2</li>
+					<div class="smb-1aa" id="tab-3">
+						<li class="tab-list-item-pp" id="tabT-3" type="button">งานที่ 2</li>
 					</div>
-					<div class="smb-1a" id="tab-4">
-						<li class="tab-list-item-p" id="tabT-4" type="button">งานที่ 3</li>
+					<div class="smb-1aa" id="tab-4">
+						<li class="tab-list-item-pp" id="tabT-4" type="button">งานที่ 3</li>
 					</div>
-					<div class="smb-1a" id="tab-5">
-						<li class="tab-list-item-p" id="tabT-5" type="button">ทักษะเสริม</li>
+					<div class="smb-1aa" id="tab-5">
+						<li class="tab-list-item-pp" id="tabT-5" type="button">ทักษะเสริม</li>
 					</div>
 					
-					<div class="smb-1a" id="tab-s1"></div>
-					<div class="smb-1a" id="tab-s2"></div>
-					<div class="smb-1a" id="tab-s3"></div>
+					<div class="smb-1aa" id="tab-s1"></div>
+					<div class="smb-1aa" id="tab-s2"></div>
+					<div class="smb-1aa" id="tab-s3"></div>
 					
 					<div class="smb-2a" id="tab-2">
-						<a class="btn bcp-white round-ss profile-button edit-job" id="new-port" target="_blank">แก้ไขข้อมูล</a>
+						<a class="btn bcp-white round-ss profile-button edit-job" id="new-port" target="_blank">แก้ไขโปรไฟล์</a>
 					</div>
 				</div>
 				
@@ -1565,8 +1565,8 @@ class NewAnalytics extends React.Component {
 									<div class="asb-container">
 										<div class="asb-left">
 											<hbf>#1</hbf>
-											<atf>{this.state.leftBox1Job}</atf>
-											<naf>{this.state.leftBox1Name}</naf>
+											<atf>{this.state.leftBox1Name}</atf>
+											<naf>{this.state.leftBox1Job}</naf>
 										</div>
 										<div class="asb-right">
 											<muf>คิดเป็นร้อยละ</muf>
@@ -1579,8 +1579,8 @@ class NewAnalytics extends React.Component {
 									<div class="asb-container">
 										<div class="asb-left">
 											<hbf>#2</hbf>
-											<atf>{this.state.leftBox2Job}</atf>
-											<naf>{this.state.leftBox2Name}</naf>
+											<atf>{this.state.leftBox2Name}</atf>
+											<naf>{this.state.leftBox2Job}</naf>
 										</div>
 										<div class="asb-right">
 											<muf>คิดเป็นร้อยละ</muf>
@@ -1593,8 +1593,8 @@ class NewAnalytics extends React.Component {
 									<div class="asb-container">
 										<div class="asb-left">
 											<hbf>#3</hbf>
-											<atf>{this.state.leftBox3Job}</atf>
-											<naf>{this.state.leftBox3Name}</naf>
+											<atf>{this.state.leftBox3Name}</atf>
+											<naf>{this.state.leftBox3Job}</naf>
 										</div>
 										<div class="asb-right">
 											<muf>คิดเป็นร้อยละ</muf>
@@ -1637,8 +1637,8 @@ class NewAnalytics extends React.Component {
 											<div class="asb-upper">
 												<hbf class="asb-a">#1</hbf>
 												<div class="asb-b">
-													<atf>{this.state.topMainJOv1Job}</atf>
-													<naf>{this.state.topMainJOv1Name}</naf>
+													<atf>{this.state.topMainJOv1Name}</atf>
+													<muf>{this.state.topMainJOv1Job}</muf>
 												</div>
 											</div>
 											<div class="asb-lower">
@@ -1656,8 +1656,8 @@ class NewAnalytics extends React.Component {
 											<div class="asb-upper">
 												<hbf class="asb-a">#2</hbf>
 												<div class="asb-b">
-													<atf>{this.state.topMainJOv2Job}</atf>
-													<naf>{this.state.topMainJOv2Name}</naf>
+													<atf>{this.state.topMainJOv2Name}</atf>
+													<muf>{this.state.topMainJOv2Job}</muf>
 												</div>
 											</div>
 											<div class="asb-lower">
@@ -1675,8 +1675,8 @@ class NewAnalytics extends React.Component {
 											<div class="asb-upper">
 												<hbf class="asb-a">#3</hbf>
 												<div class="asb-b">
-													<atf>{this.state.topMainJOv3Job}</atf>
-													<naf>{this.state.topMainJOv3Name}</naf>
+													<atf>{this.state.topMainJOv3Name}</atf>
+													<muf>{this.state.topMainJOv3Job}</muf>
 												</div>
 											</div>
 											<div class="asb-lower">
@@ -1714,7 +1714,7 @@ class NewAnalytics extends React.Component {
 										<div class="asb-container2">
 											<div class="asb-la">
 												<hdf>#1</hdf>
-												<naf>{this.state.topAddOv1Name}</naf>
+												<atf>{this.state.topAddOv1Name}</atf>
 											</div>
 											<muf class="asb-lb">คิดเป็นร้อยละ</muf>
 											<div class="asb-lc">
@@ -1727,7 +1727,7 @@ class NewAnalytics extends React.Component {
 										<div class="asb-container2">
 											<div class="asb-la">
 												<hdf>#2</hdf>
-												<naf>{this.state.topAddOv2Name}</naf>
+												<atf>{this.state.topAddOv2Name}</atf>
 											</div>
 											<muf class="asb-lb">คิดเป็นร้อยละ</muf>
 											<div class="asb-lc">
@@ -1740,7 +1740,7 @@ class NewAnalytics extends React.Component {
 										<div class="asb-container2">
 											<div class="asb-la">
 												<hdf>#3</hdf>
-												<naf>{this.state.topAddOv3Name}</naf>
+												<atf>{this.state.topAddOv3Name}</atf>
 											</div>
 											<muf class="asb-lb">คิดเป็นร้อยละ</muf>
 											<div class="asb-lc">
@@ -1778,8 +1778,8 @@ class NewAnalytics extends React.Component {
 									<div class="obs-box jbox obps">
 										<div class="asb-container2">
 											<div class="asb-pa">
-												<hdf>{this.state.rightJobName}</hdf>
-												<naf>{this.state.rightJobSkillName}</naf>
+												<atf>{this.state.rightJobSkillName}</atf>
+												<naf>{this.state.rightJobName}</naf>
 											</div>
 											<muf class="asb-pb">{this.state.rightJobScore} คะแนน</muf>
 										</div>
@@ -1789,7 +1789,7 @@ class NewAnalytics extends React.Component {
 											<amf>ในตำแหน่งงานเดียวกัน</amf>
 											<amf>ทักษะนี้มีความนิยมคิดเป็น</amf>
 											<hhf>{this.state.rightJobPercentage}%</hhf>
-											<amf class="asb-pb">({this.state.rightJobCount} คน)</amf>
+											<muf class="asb-pb">({this.state.rightJobCount} คน)</muf>
 										</div>
 									</div>
 									<div class="obs-box jbox obps">
@@ -1846,8 +1846,8 @@ class NewAnalytics extends React.Component {
 									<div class="ana-sub-box-o mySkl1 obo">
 										<div class="asb-container">
 											<div class="asb-add">
-												<atf>{this.state.rightBox1AddType}</atf>
-												<naf>{this.state.rightBox1AddName}</naf>
+												<atf>{this.state.rightBox1AddName}</atf>
+												<naf>{this.state.rightBox1AddType}</naf>
 												<naf></naf><naf></naf>
 											</div>
 											<div class="asb-right">
@@ -1861,8 +1861,8 @@ class NewAnalytics extends React.Component {
 									<div class="ana-sub-box-o mySkl2 obo">
 										<div class="asb-container">
 											<div class="asb-add">
-												<atf>{this.state.rightBox2AddType}</atf>
-												<naf>{this.state.rightBox2AddName}</naf>
+												<atf>{this.state.rightBox2AddName}</atf>
+												<naf>{this.state.rightBox2AddType}</naf>
 											</div>
 											<div class="asb-right">
 												<amf>ในตำแหน่งงานเดียวกัน</amf>
@@ -1875,8 +1875,8 @@ class NewAnalytics extends React.Component {
 									<div class="ana-sub-box-o mySkl3 obo">
 										<div class="asb-container">
 											<div class="asb-add">
-												<atf>{this.state.rightBox3AddType}</atf>
-												<naf>{this.state.rightBox3AddName}</naf>
+												<atf>{this.state.rightBox3AddName}</atf>
+												<naf>{this.state.rightBox3AddType}</naf>
 											</div>
 											<div class="asb-right">
 												<amf>ในตำแหน่งงานเดียวกัน</amf>
@@ -1954,8 +1954,8 @@ class NewAnalytics extends React.Component {
 												</div>
 											</div>
 											<div class="ibb">
-												<mzf id="arc-label">{this.state.popJobName}</mzf>
-												<muf class="" id="arc-label">{this.state.popJobSkillName}</muf>
+												<mzf id="arc-label">{this.state.popJobSkillName}</mzf>
+												<muf class="" id="arc-label">{this.state.popJobName}</muf>
 											</div>
 										</div>
 									</div>
