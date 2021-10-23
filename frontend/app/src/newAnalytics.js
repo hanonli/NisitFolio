@@ -1559,7 +1559,7 @@ class NewAnalytics extends React.Component {
 								   <li><a class="dropdown-item" id="sort-total">งานที่ 2</a></li>
 								</ul>
 							</div>
-							<br></br>
+							<div class="yahaha-br" />
 							<div class="ana-sub-box-container">
 								<div class="ana-sub-box-p obp" id="p1" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
 									<div class="asb-container">
@@ -1772,7 +1772,8 @@ class NewAnalytics extends React.Component {
 									</ul>
 								</div>
 								<akf>จากทั้งหมด {this.state.rightJobTotal} คน</akf>
-								<br></br>
+								
+								<div class="yahaha-br" />
 								
 								<div class="obj-container">
 									<div class="obs-box jbox obps">
@@ -1802,7 +1803,7 @@ class NewAnalytics extends React.Component {
 									</div>
 								</div>
 								
-								<br></br>
+								<div class="yahaha-br" />
 								<div class="sp-text">
 									<muf class="sp-tc1">ค่าเฉลี่ย</muf>
 									<muf class="sp-tc2">คือ {this.state.rightJobMean} คะแนน</muf>
@@ -1834,7 +1835,7 @@ class NewAnalytics extends React.Component {
 									<hhf>วิเคราะห์ทักษะเสริม</hhf>
 								</div>
 								<akf>จากทั้งหมด {this.state.topAddTotal} คน</akf>
-								<br></br><br></br><br></br>
+								<div class="yahaha-br" />
 								<div class="dg-zone">
 								<azf></azf>
 									<button class="btn btn-cta-primary round grey dropdown-toggle tab-dropdown-pad-flex" type="button" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">งานที่ 1</button>
@@ -1842,6 +1843,7 @@ class NewAnalytics extends React.Component {
 										
 									</ul>
 								</div>
+								<div class="yahaha-br-t2" />
 								<div class="ana-sub-box-container2">
 									<div class="ana-sub-box-o mySkl1 obo">
 										<div class="asb-container">

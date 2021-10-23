@@ -133,8 +133,9 @@ class Home extends React.Component {
 				$('#fetch-desc').text(datas.AboutMe);
 				$('#avatar').attr("src", datas.ProfilePic);
 				datas.Job_JobName.forEach((entry) => {
-					console.log('HHHH');
-					$('#tags-container').append('<a class="btn btn-cta-secondary btn-small round margin-right-s tag-button" target="_blank">'+entry+'</a>');
+					//console.log('HHHH');
+					if(entry != null)
+						$('#tags-container').append('<a class="btn btn-cta-secondary btn-small round margin-right-s tag-button" target="_blank">'+entry+'</a>');
 				});
 				
 				

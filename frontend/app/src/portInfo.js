@@ -346,7 +346,12 @@ class PortInfo extends React.Component {
 				$('#port-owner').text(portfolioData.Owner);
 				$('#port-desc').text(portfolioData.Port_Info);
 				
-				var imgCount = portfolioData.portfolioPictures[0].Pic.length;
+				var imgCount = 0;
+				if(portfolioData.portfolioPictures != null){
+					if(portfolioData.portfolioPictures[0].Pic != null)
+						imgCount = portfolioData.portfolioPictures[0].Pic.length;
+				}
+				//var imgCount = portfolioData.portfolioPictures[0].Pic.length;
 				if(imgCount == 0){
 					$('.swf-flex-single').hide();
 					$('.swf-flex-double').hide();
@@ -702,6 +707,7 @@ class PortInfo extends React.Component {
 					  });*/
 					  
 					  item.addEventListener("wheel", (evt) => {
+						    if( item.scrollWidth < 1920 ) return;
 						    var maxScrollLeft = item.scrollWidth - item.clientWidth;
 							//console.log('max: '+maxScrollLeft);
 							//console.log('current: '+item.scrollLeft);

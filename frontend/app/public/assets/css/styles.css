@@ -3370,6 +3370,14 @@ a.btn-cta-primary-white:hover, .btn-cta-primary-white:hover {
 
 }
 
+.tab-list-item-pp:hover {
+  background-color: white;
+  border: solid grey;
+  border-width: 0px 0px 7px 0px;
+  color:#000000;
+
+}
+
 .tab-list-item:hover {
   background-color: white;
   border: solid grey;
@@ -3404,6 +3412,14 @@ a.btn-cta-primary-white:hover, .btn-cta-primary-white:hover {
   height: 0.1px;
   background-color: #c4c4c4;
   /*margin: -2vh auto 0;*/
+}
+
+.yahaha-br{
+	height: 5%;
+}
+
+.yahaha-br-t2{
+	height: 3.5%;
 }
 
 .cropper-crop-box, .cropper-view-box {

@@ -24,7 +24,7 @@ import AnonymousLogin from './anonymousLogin';
 const Routes = () => {
   return (
     <Switch> {/* The Switch decides which component to show based on the current URL.*/}
-      <Route exact path='/' component={Landing}></Route> /* First page that user see */
+      <Route exact path='/' component={Home}></Route> /* First page that user see */
       <Route exact path='/home' component={Home}></Route>
       <Route exact path='/myresume/:id?' component={MyResume}></Route>
       <Route exact path='/choosenothing' component={Choosenothing}></Route>

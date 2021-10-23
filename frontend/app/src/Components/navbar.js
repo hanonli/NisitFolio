@@ -185,6 +185,15 @@ class Navbar extends React.Component {
 								</button>
 								<div>
 								  <ul class="navbar-nav lg-view  ms-auto">
+								    <li class="nav-item tooltips-item shadow-box" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Home">
+									  <Link to="/home">
+										  <a class="nav-link" aria-current="page">
+											<span class="lg-view">
+												<img src="assets/images/home_navigation_bar2.png" alt="" width="70" height="30"/>
+											</span>
+										  </a>
+									  </Link>
+									</li>
 									<li class="nav-item tooltips-item shadow-box" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Bookmark">
 									  <Link to="/bookmark">
 										  <a class="nav-link" aria-current="page">
@@ -241,6 +250,15 @@ class Navbar extends React.Component {
 				  </div>
 				  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 					  <ul class="navbar-nav sm-view ms-auto">
+					    <li class="nav-item shadow-box">
+						  <Link to="/home">
+							  <a class="nav-link" aria-current="page">
+								<span class="sm-view">
+									หน้าหลัก
+								</span>
+							  </a>
+						  </Link>
+						</li>
 						<li class="nav-item shadow-box">
 						  <Link to="/bookmark">
 							  <a class="nav-link" aria-current="page">
