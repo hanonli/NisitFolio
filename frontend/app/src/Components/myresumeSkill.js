@@ -12,7 +12,13 @@ class MyResumeScoreSkill extends React.Component{
         const graystyle = {
             backgroundColor: "#C4C4C4"
         };
-        const score = this.props.score? Math.round(this.props.score): 0;
+        let score = this.props.score? this.props.score: 0;
+        if((score>4) && (score<5)){
+            score = 4;
+        }
+        else{
+            score = Math.round(score);
+        }
         //console.log("remain-score:" + score%1);
         //console.log("score:" + score);
         const scoreContent =[];
@@ -33,16 +39,16 @@ class MyResumeScoreSkill extends React.Component{
             }
         }
         let levellabel;
-        if(score==10){
+        if(score>=9.5){
             levellabel = "ยอดเยี่ยม";
         }
-        else if(score>7.5){
+        else if(score>=7.5){
             levellabel = "ดี";
         }
-        else if(score>5){
+        else if(score>=5){
             levellabel = "พื้นฐาน";
         }
-        else if(score>2.5){
+        else if(score>=2.5){
             levellabel = "พอได้เล็กน้อย";
         }
         else{
@@ -186,6 +192,9 @@ class MyResumeSkill extends React.Component {
                         }
                         
                     }
+                    /*jobskillcontent.push(
+                        <MyResumeScoreSkill skillname={"ห่าจิต"} score={4.5} colour={color}></MyResumeScoreSkill>
+                    );*/
                     jobskillcheck = true;
                 }
             }
