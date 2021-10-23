@@ -403,6 +403,7 @@ class PortInfo extends React.Component {
 				//$('#avatar').attr('src',userData.ProfilePic);
 				//$('#avatar').attr('src',userProfilePic);
 				$('#port-user-email').text(portfolioData.Email);
+				$('#go-to-mail').attr('href','mailto:'+portfolioData.Email);
 				
 				//refThis.setState({ render: true });
 				var index=0;
