@@ -141,22 +141,6 @@ export class RegisterController {
   async GetInfo(@Request() req) {
     return this.registerService.GetInfo(req.user.userId);
   }
-  //-----------test
-  @Get("getinfotest")
-  async GetInfotest() {
-    //const x="616fc68975e61b0d58de2ac9"
-    const x="6172511ab77ba244f4c3ad10"
-    return this.registerService.GetInfo(x);
-  }
-  @Post("testIJC/:x")
-  async testIJC(@Body() CreateDto: CreateRegisDto,@Param('x') x: string) {
-    return this.registerService.createRegis(CreateDto,"xtest");
-  }
-  @Post("testIJP/:x")
-  async testIJP(@Body() CreateDto: PatchRegisDto,@Param('x') x: string) {
-    return this.registerService.NewinterestedJob(CreateDto,"6172511ab77ba244f4c3ad10","xtest");
-  }
-  //----------
   //*/
 
 

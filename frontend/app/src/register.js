@@ -769,10 +769,12 @@ class Register extends React.Component {
 				//window.location.pathname = '/emailverify'
 				//console.log(response.message);
 				if (!response.ok) {
+					regis.setState({ render: false });
 					throw Error(response.statusText);
 				}
 				else{
 					console.log("ok");
+					regis.setState({ render: true });
 					window.location.href = "http://localhost:3000/emailverify";
 					//console.log(response);
 				}

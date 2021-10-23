@@ -347,10 +347,11 @@ class Edittab5 extends React.Component {
                     })
                         .then(response => response.json())
                         .then((raws) => {
+                            console.log(raws);
                             for_edit["CertName"] = name_certi;
                             for_edit["CertYear"] = parseInt(year_certi);
-                            for_edit["CertPic"] = picOfCerti;
-                            for_edit["file_pic"] = file_picOfCerti != '' ? uploadurl : for_edit["CertPic"];
+                            for_edit["CertPic"] = file_picOfCerti != '' ? uploadurl : for_edit["CertPic"];
+                            //for_edit["file_pic"] = file_picOfCerti != '' ? uploadurl : for_edit["file_pic"];
                             //for_edit["CertYear_select"] = $("#yearpicker_111").prop('selectedIndex');
                             //var list_edit11 = document.getElementById(id_list_certi_edit);
                             $("#nm_certi").val("");
@@ -394,8 +395,9 @@ class Edittab5 extends React.Component {
                                 CertName: name_certi,
                                 CertYear: parseInt(year_certi),
                                 //CertYear_select: $("#yearpicker_111").prop('selectedIndex'),
-                                CertPic: picOfCerti,
-                                file_pic: file_picOfCerti,
+                                //CertPic: picOfCerti,
+                                //file_pic: file_picOfCerti,
+                                CertPic: uploadurl,
                                 isFetch: false
                             });
                             $("#nm_certi").val("");
