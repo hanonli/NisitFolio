@@ -306,6 +306,10 @@ class DataHeader extends React.Component {
 	componentWillUnmount() {
 		window.removeEventListener('load', this.handleLoad)
 		cookie.save('Edit_tabselect', '');
+		/*var deldata = this;
+		deldata.setState({
+			data: [],
+		})*/
 	}
 
 	render() {

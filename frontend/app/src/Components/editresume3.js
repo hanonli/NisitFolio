@@ -65,7 +65,7 @@ class Editresume3 extends React.Component {
                                         <div class="icon-checkbox1111"><img height="110" src="assets/images/check_black.png" oncontextmenu="return false;" ondragstart="return false;" ></img></div>\
                                     </label>\
                                 </div >`;
-                let headOfyear1234 = `  <div id="year-choose-tem-{show-year-resume-certi}"><h1 id="textOfyear_certi">{ele.CertYear}</h1></div>\
+                let headOfyear1234 = `  <div id="{show-year-resume-certi}"><h1 id="textOfyear_certi">{ele.CertYear}</h1></div>\
                                     <div class="content-certi1-resume" id="{contentYear}"></div>`;
                 grid_certi2 = grid_certi2.replace("{xxx}", `xxx` + ele.Certificate_id);
                 grid_certi2 = grid_certi2.replace("{ele.Certificate_idvalue}", ele.Certificate_id);
@@ -73,14 +73,14 @@ class Editresume3 extends React.Component {
                 grid_certi2 = grid_certi2.replace("{ischeck}", ele.isCheckCert ? "checked" : "");
                 grid_certi2 = grid_certi2.replace("{forxxx}", `xxx` + ele.Certificate_id);
                 grid_certi2 = grid_certi2.replace("{ele.CertName}", ele.CertName);
-                grid_certi2 = grid_certi2.replace("{ele.CertYear}", ele.CertYear);
+                grid_certi2 = grid_certi2.replace("{ele.CertYear}", String(ele.CertYear));
                 grid_certi2 = grid_certi2.replace("{ele.CertPic}", ele.CertPic);
                 if (year_before_certi != ele.CertYear) {
                     list_of_year_certi[ele.CertYear] = 1;
                     year_before_certi = ele.CertYear;
-                    headOfyear1234 = headOfyear1234.replace("{ele.CertYear}", ele.CertYear);
-                    headOfyear1234 = headOfyear1234.replace("{contentYear}", ele.CertYear);
-                    headOfyear1234 = headOfyear1234.replace("{show-year-resume-certi}", ele.CertYear);
+                    headOfyear1234 = headOfyear1234.replace("{ele.CertYear}", String(ele.CertYear));
+                    headOfyear1234 = headOfyear1234.replace("{contentYear}", `year-choose-tem-` + String(ele.CertYear));
+                    headOfyear1234 = headOfyear1234.replace("{show-year-resume-certi}", String(ele.CertYear));
                     $(".myresume-choose-certi11").append(headOfyear1234);
                 }
                 else {

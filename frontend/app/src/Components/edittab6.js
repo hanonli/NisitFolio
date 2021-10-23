@@ -711,6 +711,7 @@ class Edittab6 extends React.Component {
                         },
                         body: JSON.stringify(sendinterestJob2back)
                     })
+                        .then(response => response.json())
                         .then((raws) => {
                             console.log(raws)
                             push2list = {

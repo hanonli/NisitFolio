@@ -237,9 +237,13 @@
 }
 
 #preview_before_upload {
-    margin-top: 1.8vh;
+    /*margin-top: 1.8vh;
     max-width: auto;
-    height: 16vh;
+    height: 16vh;*/
+    margin: auto;
+    height: auto;
+    max-height: 80%;
+    max-width: 80%;
 }
 
 #input_upload input.hidden {

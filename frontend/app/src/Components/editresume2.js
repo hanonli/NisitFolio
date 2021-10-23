@@ -155,7 +155,7 @@ class Editresume2 extends React.Component {
             }).get();
             console.log("susss:", choose_work);
         });*/
-        $(".input-choose-work1:input:checkbox").click(function () {
+        $(document).on("click", ".input-choose-work1:input:checkbox", function () {
             var bol = $(".input-choose-work1:input:checkbox:checked").length >= 3;
             $(".input-choose-work1:input:checkbox").not(":checked").attr("disabled", bol);
         });

@@ -374,7 +374,16 @@
 
 .for_upload112 img{
     /*position: absolute;*/
-    margin-top: 42px;
+    /*margin-top: 42px;*/
+}
+
+.for_upload112{
+  /*position: absolute;*/
+  /*margin-top: 42px;*/
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
 }
 
 .text_up {

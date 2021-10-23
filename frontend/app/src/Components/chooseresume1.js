@@ -7,7 +7,7 @@ class Chooseresume1 extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.handleLoad = this.handleLoad.bind(this);
+		//this.handleLoad = this.handleLoad.bind(this);
 		this.state = {
 			data: [],
 			render: true,
@@ -16,13 +16,13 @@ class Chooseresume1 extends React.Component {
 	}
 
     componentDidMount() {
-		setTimeout(() => {
+		/*setTimeout(() => {
 		const list_of_aca = this.props.list_of_aca ? this.props.list_of_aca : [];
 		var locc = [...list_of_aca];
 		//console.log(`list_of_aca:`, this.state.list_of_aca);
 		console.log(`list_of_aca:`, list_of_aca);
 		console.log(`locc:`, locc);
-		/*function get_high_id(list_of_high, x) {
+		function get_high_id(list_of_high, x) {
 			//var x = 1;
 			list_of_high.forEach(ele => {
 				ele["high_pos"] = x;
@@ -158,15 +158,68 @@ class Chooseresume1 extends React.Component {
 		}/*
 		if(list_of_high!=[]){
 			show_all_high();
-		}*/
+		}
 	},4000);
 	}
+
+	function show_all_aca(list_of_aca) {
+			list_of_aca.forEach(ele => {
+				var grid_aca1 = '<div class="t3-content1 row">\
+									<div class="col-3">\
+										<div class="font-titlet3_1 font-boldt3">{degree_aca}</div>\
+										<div class="font-titlet3_1 font-khotboldt3">{year_aca}</div>\
+									</div>\
+									<div class="col-9">\
+										<div class="font-titlet3_1">{field_aca}</div>\
+										<div class="font-titlet3_1">{faculty_aca}</div>\
+										<div class="font-titlet3_1">{name_aca}</div>\
+										<div class="font-titlet3_1">เกรด {grade_aca}</div>\
+									</div>';
+		
+				var grid_aca2 = `
+									<div class="layer_icon1" id={no-list-aca} type='button'>\
+									</div>\
+								</div>`;
+				grid_aca2 = grid_aca2.replace("{no-list-aca}", ele["id"]);
+				grid_aca1 = grid_aca1.replace("{no_aca}", ele["aca_pos"]);
+				//grid_aca1 = grid_aca1.replace("{name_aca}", ele["aca_name"]);
+				grid_aca1 = grid_aca1.replace("{degree_aca}", ele["aca_degree"]);
+				//grid_aca1 = grid_aca1.replace("{field_aca}", ele["aca_field"]);
+				//grid_aca1 = grid_aca1.replace("{faculty_aca}", ele["aca_faculty"]);
+				//grid_aca1 = grid_aca1.replace("{year_aca}", ele["aca_year"]);
+				grid_aca1 = grid_aca1.replace("{name_aca}", ele["aca_name"]);
+				grid_aca1 = grid_aca1.replace("{faculty_aca}", ele["aca_faculty"]);
+				if(ele["aca_grade"]=="0.00"){
+				grid_aca1 = grid_aca1.replace("{grade_aca}", '-');
+				}
+				else{
+				grid_aca1 = grid_aca1.replace("{grade_aca}", ele["aca_grade"]);
+				}
+				if(ele["aca_field"]=="none"){
+				grid_aca1 = grid_aca1.replace("{field_aca}", '-');
+				}
+				else{
+				grid_aca1 = grid_aca1.replace("{field_aca}", ele["aca_field"]);
+				}
+				if(ele["aca_year"]=="0"){
+				grid_aca1 = grid_aca1.replace("{year_aca}", '-');
+				}
+				else if(ele["aca_year"]=="9999"){
+				grid_aca1 = grid_aca1.replace("{year_aca}", 'กำลังศึกษา');
+				}
+				else{
+				grid_aca1 = grid_aca1.replace("{year_aca}", ele["aca_year"]);
+				}
+				$(".list-of-aca").append(grid_aca1 + grid_aca2);
+				console.log(`list_of_aca:`, list_of_aca);
+			});
+		}
 	handleLoad() {
 		console.log("YEAH!");
 	}
 
 	componentWillUnmount() { 
-	   window.removeEventListener('load', this.handleLoad)  
+	   window.removeEventListener('load', this.handleLoad) */ 
 	}
 
 	render(){

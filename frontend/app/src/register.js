@@ -291,12 +291,17 @@ class Register extends React.Component {
 				await UploadToS3(file_profilepic);
 				last_avatar = uploadurl;
 			}
-			list_of_certi.forEach(async (entryy) => {
-				await UploadToS3(entryy.file_pic);
-				last_certpic.push(uploadurl);
-				last_certname.push(entryy.name_certi);
-				last_certyear.push(entryy.year_certi);
-				});
+			/* Await Loop before send */
+			await Promise.all(list_of_certi.map(async entryy => {
+				//list_of_certi.forEach(async (entryy) => {
+					await UploadToS3(entryy.file_pic);
+					console.log('###upload url: '+entryy.file_pic);
+					last_certpic.push(uploadurl);
+					last_certname.push(entryy.name_certi);
+					last_certyear.push(entryy.year_certi);
+				}));
+			console.log('continue after upload');
+
 			if(last_province==null){
 				last_province='';
 				}
@@ -449,11 +454,11 @@ class Register extends React.Component {
 			});
 			//alert(saveEmail);
 			//window.location.pathname = '/emailverify'
+			console.log(last_certpic);
 			var FormRegis2 = {
 				Email: last_email,
 				Password: last_pass,
 				ProfilePic: last_avatar,
-				ProfilePicBase64: last_avatar,
 				Firstname: last_first,
 				Lastname: last_last,
 				Birthday: BDDate,
@@ -491,6 +496,7 @@ class Register extends React.Component {
 			}
 			//console.log(FormRegis2);
 			console.log(JSON.stringify(FormRegis2));
+			console.log(FormRegis2);
 			PostRegis(FormRegis2);
 			}
 			else{
@@ -749,6 +755,8 @@ class Register extends React.Component {
 	
 		function PostRegis(pack){
 			console.log(pack);
+			//console.log(pack);
+			//console.log(JSON.stringify(pack));
 			fetch("http://localhost:2000/register",
 				{ method: "POST",
 				headers: {
@@ -759,15 +767,18 @@ class Register extends React.Component {
 			)
 			.then(function (response) {
 				//window.location.pathname = '/emailverify'
-				//alert(response.message);
+				//console.log(response.message);
 				if (!response.ok) {
+					regis.setState({ render: false });
 					throw Error(response.statusText);
 				}
 				else{
 					console.log("ok");
+					regis.setState({ render: true });
 					window.location.href = "http://localhost:3000/emailverify";
+					//console.log(response);
 				}
-				return response;
+				//return response;
 			}).catch(function(error) {
 				console.log(error);
 			});
@@ -1914,6 +1925,7 @@ class Register extends React.Component {
 			var picOfCerti = '', file_picOfCerti = '';
 
 			$(document).on('change', "#image-upload112", function () {
+				$('.for_upload112').empty();
 				var path_img = document.getElementById("image-upload112");
 				if(path_img.files.length == 0) return;
 				if (path_img.files[0].type == "image/jpeg" || path_img.files[0].type == "image/jpg" || path_img.files[0].type == "image/png") {
