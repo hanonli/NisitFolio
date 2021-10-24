@@ -34,7 +34,6 @@ class PortRoot extends React.Component {
 							</div>\
 							<div class="hover-box">\
 								<img class="pft-overlay" src="assets/images/black.jpg" alt=""/>\
-								<img class="pft-lock-icon" src="{privacy}" alt=""/>\
 								<img class="pft-del-icon" src="assets/images/white_bin.png" data-bs-toggle="modal" data-bs-target="#staticBackdrop" alt=""/>\
 								<img class="pft-edit-icon" src="assets/images/white_edit2.png" alt=""/>\
 								<div class="pft-name">{name}</div>\
@@ -229,7 +228,7 @@ class PortRoot extends React.Component {
 									refThis.setState({ redirect: "/editport" });
 								});
 								
-								$(".pft-lock-icon").off('click');
+								/*$(".pft-lock-icon").off('click');
 								$('.pft-lock-icon').on('click', function(e){
 									//alert('Clicked! id: '+pftId[focusId]);
 									e.stopPropagation();
@@ -278,7 +277,7 @@ class PortRoot extends React.Component {
 									});
 									
 									
-								});
+								});*/
 								
 							AddEventToDynamicComponents();
 					});

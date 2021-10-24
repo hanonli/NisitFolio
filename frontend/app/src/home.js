@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+//import './index.css';
 import $ from 'jquery';
 import Navbar from './Components/navbar';
 import ProfileHeader from './Components/profileHeader';
@@ -133,8 +133,9 @@ class Home extends React.Component {
 				$('#fetch-desc').text(datas.AboutMe);
 				$('#avatar').attr("src", datas.ProfilePic);
 				datas.Job_JobName.forEach((entry) => {
-					console.log('HHHH');
-					$('#tags-container').append('<a class="btn btn-cta-secondary btn-small round margin-right-s tag-button" target="_blank">'+entry+'</a>');
+					//console.log('HHHH');
+					if(entry != null)
+						$('#tags-container').append('<a class="btn btn-cta-secondary btn-small round margin-right-s tag-button" target="_blank">'+entry+'</a>');
 				});
 				
 				
@@ -330,7 +331,7 @@ class Home extends React.Component {
 							
 							<div class="container">
 								<div class="alert" role="alert"></div>
-								<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+								<div class="modal fade" data-bs-backdrop="static" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
 								  <div class="modal-dialog" role="document">
 									<div class="modal-content">
 									  <div class="modal-header">

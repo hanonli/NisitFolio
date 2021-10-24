@@ -101,6 +101,7 @@ class Portfolio extends React.Component {
 		//var pendingUploads = [];
 		var picsUrl = [];
 		var newPort = {};
+		var uploadWithoutPic = false;
 		
 		 var isFull;
 		setInterval(function() { console.log(isFull); }, 1000);
@@ -111,7 +112,7 @@ class Portfolio extends React.Component {
 		function Fetcher() {
 			//console.log('f1: '+f1+'f2: '+f2+'f3: '+f3);
 			console.log('waiting to fetch...');
-			if(fetchStep != 0 && fetchStep == refThis.state.list.length){ 
+			if( (fetchStep != 0 && fetchStep == refThis.state.list.length) || uploadWithoutPic){ 
 				//alert('OK!');
 				clearInterval(fetcher);
 				//alert('Complete!');
@@ -154,6 +155,7 @@ class Portfolio extends React.Component {
 			}
 
 			var pCount = refThis.state.list.length;
+			if(pCount == 0) uploadWithoutPic = true;
 			/*if(pCount > 0) pics.push($('#upload-id-1').attr('src'));
 			if(pCount > 1) pics.push($('#upload-id-2').attr('src'));
 			if(pCount > 2) pics.push($('#upload-id-3').attr('src'));
@@ -643,7 +645,9 @@ class Portfolio extends React.Component {
 			  $('.pu-date-picker').css("display", "block");
 			  $('.p3-input').css("z-index", 0);
 			  if(portMode != 'new'){
-				$('#cancel-trigger').text('ลบ');
+				$('#cancel-trigger').removeClass('btn-cta-primary');
+				$('#cancel-trigger').addClass('btn-cta-primary-red');
+				$('#cancel-trigger').text('ลบผลงาน');
 				$('#cancel-trigger').attr('data-bs-target','#staticBackdrop2');
 			  }
 		  });
@@ -654,6 +658,8 @@ class Portfolio extends React.Component {
 			  $('.static-footer-arrow').show();
 			  $('.p5-label').show();
 			  $('.port-bg').css('background-color', 'white');
+			  $('#cancel-trigger').removeClass('btn-cta-primary-red');
+			  $('#cancel-trigger').addClass('btn-cta-primary');
 			  $('#cancel-trigger').text('ยกเลิก');
 			  $('#cancel-trigger').attr('data-bs-target','#staticBackdrop');
 			  

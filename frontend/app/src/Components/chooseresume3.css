@@ -73,11 +73,11 @@
 }
 
 .you-choose-list-resume{
-    position: fixed;
-    left: 20vw;
-    top: 90%;
     font-size: 16px;
     font-weight: 300;
+    position: absolute;
+    left: 20vw;
+    top: 90%;
     color: #939393;
 }
 
@@ -85,12 +85,62 @@
     color: red;
 }
 
+/*---------------- resume tab2 ----------------*/
+
+.list-of-high {
+    position: relative;
+}
+
+.list-of-high .icon-checkboxct2{
+    visibility: hidden;
+    position: absolute;
+    left: 45%;
+    top: 25%;
+}
+
+.list-of-high {
+    cursor: pointer;
+}
+
+.list-of-high input[type=checkbox]:checked + label#list-high-22{
+    background: #E1E1E1;
+    opacity: 0.7; 
+}
+
+.list-of-high input[type=checkbox]:checked + label#list-high-22 > .icon-checkboxct2{
+    visibility: visible;
+}
+
+.list-of-aca {
+    position: relative;
+}
+
+.list-of-aca .icon-checkboxct1{
+    visibility: hidden;
+    position: absolute;
+    left: 45%;
+    top: 25%;
+}
+
+.list-of-aca {
+    cursor: pointer;
+}
+
+.list-of-aca input[type=checkbox]:checked + label#list-aca-22{
+    background: #E1E1E1;
+    opacity: 0.7; 
+}
+
+.list-of-aca input[type=checkbox]:checked + label#list-aca-22 > .icon-checkboxct1{
+    visibility: visible;
+}
+
 /*---------------- resume tab5 ----------------*/
 
 .port-box1 .icon-checkboxct5{
     visibility: hidden;
     position: absolute;
-    left: 38%;
+    left: 42%;
     top: 30%; 
 }
 
@@ -109,11 +159,20 @@
 
 /*---------------- resume tab6 ----------------*/
 
+.dropdowntap7 .textT7B{
+    position: relative;
+}
+
+.dropdowntap7 .height-addskill-5555{
+    height: 5vh;
+    cursor: pointer;
+}
+
 .dropdowntap7 .icon-checkboxct6{
     visibility: hidden;
     position: absolute;
-    left: 45%;
-    top: 5%;
+    left: 95%;
+    top: -5%;
 }
 
 .dropdowntap7 {
@@ -125,7 +184,7 @@
     opacity: 0.7; 
 }
 
-.dropdowntap7 input[type=checkbox]:checked + label#list-ssl-22 > .icon-checkboxct6{
+.dropdowntap7 input[type=checkbox]:checked + label#list-ssl-22 > .textT7B > .icon-checkboxct6{
     visibility: visible;
 }
 

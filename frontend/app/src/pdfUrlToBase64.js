@@ -107,16 +107,16 @@ class PDF extends React.Component {
 				var b64Pic = "";
 				console.log(datas);
 				// Option: 1 - Convert to base64 using canvas
-				await convertImgToBase64(datas[resume].ProfilePic_URL, function(base64Img){
+				/*await convertImgToBase64(datas[resume].ProfilePic, function(base64Img){
 					console.log(base64Img);
 					b64Pic = base64Img;
-				});
+				});*/
 				
 				// Option: 2 - Convert to base64 using XMLHttpRequest 
-				/*await toDataURL(datas[resume].ProfilePic, function(dataUrl) {
+				await toDataURL(datas[resume].ProfilePic, function(dataUrl) {
 				  console.log(dataUrl)
 				  b64Pic = dataUrl;
-				});*/
+				});
 				
 				console.log('Finished converting image, proceed...');
 			
