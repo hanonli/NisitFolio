@@ -55,6 +55,8 @@ class Editresume extends React.Component {
 		var editresumeState = this;
 		var choose_aca = [], choose_high = [], choose_sideskill = [];
 		var tmp1 = [], tmp2 = [], list_of_year_certi = {}, year_before_certi, year_before_work = -1, list_of_year_work = {}, certdata = [], workdata = [];
+		var token = cookie.load('login-token')
+		console.log('Your Token is: ' + token);
 		function get_high_id(list_of_high, x) {
 			//var x = 1;
 			list_of_high.forEach(ele => {
@@ -79,9 +81,16 @@ class Editresume extends React.Component {
 			//alert(this.state.Color_Resume);
 			//editresumeState.setState({port_choose: cookie.load('choose_Port')});
 			var last_port = cookie.load('choose_Port');
-			console.log('last_port : ',last_port);
+			var last_cert = [],last_work=[];
+			//console.log('last_port : ',last_port);
 			choose_aca.forEach(ele => {
 				choose_high.push(ele);
+			});
+			workdata.forEach(ele => {
+				last_work.push(ele.id);
+			});
+			certdata.forEach(ele => {
+				last_cert.push(ele.id);
 			});
 			var FormEdit = {
 				"SoftSkillID": choose_sideskill,
@@ -93,7 +102,8 @@ class Editresume extends React.Component {
 			}
 			console.log(FormEdit);
 			alert('Confirm Edit Resume');
-			//EditResume(FormEdit);
+			editresumeState.setState ({render: false});
+			EditResume(FormEdit);
 			//window.location = ("myresume");
 			//window.location.href = "http://localhost:3000/myresume";
 		}
@@ -103,8 +113,11 @@ class Editresume extends React.Component {
 				{
 					method: "PATCH",
 					headers: {
-						"Content-Type": "application/json",
-						"Accept": "application/json"
+						'Authorization': 'Bearer ' + token,
+						"Access-Control-Allow-Origin": "*",
+						"Access-Control-Allow-Methods": "*",
+						"Access-Control-Allow-Credentials": true,
+						"Content-Type": "application/json"
 					},
 					body: JSON.stringify(pack)
 				}
@@ -128,8 +141,6 @@ class Editresume extends React.Component {
 		/* Zone to get resume datas */
 		function GetResumeData() {
 			return new Promise((resolve, reject) => {
-				var token = cookie.load('login-token')
-				console.log('Your Token is: ' + token);
 				fetch("http://localhost:2000/myresume/myresume/foredit", {
 					method: "GET",
 					headers: {
@@ -147,7 +158,7 @@ class Editresume extends React.Component {
 						editresumeState.setState({
 							data: datas,
 						})
-						console.log('editresumeState.state.data :' + editresumeState.state.data);
+						//console.log('editresumeState.state.data :' + editresumeState.state.data);
 						/*Zone to use datas*/
 						//console.log(editresumeState.state.data.Degree);
 						//Color_Resume = editresumeState.state.data.Color_ResumeId ? editresumeState.state.data.Color_ResumeId : "";
@@ -183,7 +194,7 @@ class Editresume extends React.Component {
 								isCheckHigh: editresumeState.state.data.EducationHistory_ResumeId[index].includes(editresumeState.state.resumeId) ? 'checked' : "defaultChecked"
 							});
 							get_high_id(list_of_high, 1);
-							console.log(list_of_high);
+							//console.log(list_of_high);
 						}
 						else {
 							list_of_aca.push({
@@ -198,10 +209,10 @@ class Editresume extends React.Component {
 								isCheckAca: editresumeState.state.data.EducationHistory_ResumeId[index].includes(editresumeState.state.resumeId) ? 'checked' : "defaultChecked"
 							});
 							get_aca_id(list_of_aca, 1);
-							console.log(list_of_aca);
+							//console.log(list_of_aca);
 						}
 					});
-					console.log("Certificate_ResumeId:", editresumeState.state.data.hasOwnProperty('Certificate_ResumeId'));
+					//console.log("Certificate_ResumeId:", editresumeState.state.data.hasOwnProperty('Certificate_ResumeId'));
 					editresumeState.state.data.Certificate_id.forEach((ele, index) => {
 						certdata.push({
 							Certificate_id: ele,
@@ -211,7 +222,7 @@ class Editresume extends React.Component {
 							isCheckCert: editresumeState.state.data.Certificate_ResumeId[index].includes(editresumeState.state.resumeId) ? true : false
 						})
 					});
-					console.log("WorkHistory_ResumeId:", editresumeState.state.data.hasOwnProperty('WorkHistory_ResumeId'));
+					//console.log("WorkHistory_ResumeId:", editresumeState.state.data.hasOwnProperty('WorkHistory_ResumeId'));
 					editresumeState.state.data.WorkHistory_id.forEach((ele, index) => {
 						workdata.push({
 							WorkHistory_id: ele,
@@ -236,18 +247,9 @@ class Editresume extends React.Component {
 							isCheckSS: editresumeState.state.data.AdditionalSkill_ResumeId[index].includes(editresumeState.state.resumeId) ? 'checked' : "defaultChecked"
 						})
 					});
-					console.log(sideskilldata);
+					//console.log(sideskilldata);
 					resolve();
 				});
-			});
-		}
-
-		/* Zone to put check func */
-		function CheckbeforeEdit() {
-			return new Promise((resolve, reject) => {
-				console.log('Time to edit!!!');
-
-				resolve();
 			});
 		}
 
@@ -332,7 +334,7 @@ class Editresume extends React.Component {
 				//alert("Don't selected");
 				$('#registab1-content').show();
 			}
-			console.log("Yahaha!");
+			//console.log("Yahaha!");
 			$('#tab-1').on('click', function () {
 				$('.tab-content').hide();
 				$('.tab-list-item').removeClass('tab-list-active');
@@ -428,7 +430,7 @@ class Editresume extends React.Component {
 					grid_high1 = grid_high1.replace("{year_high}", ele["high_year"]);
 				}
 				$(".list-of-high").append(grid_high1);
-				console.log(`list_of_high:`, list_of_high);
+				//console.log(`list_of_high:`, list_of_high);
 			});
 			list_of_aca.forEach(ele => {
 				var grid_aca1 = '<input\
@@ -487,20 +489,7 @@ class Editresume extends React.Component {
 				$(".list-of-aca").append(grid_aca1);
 				//console.log(`list_of_aca:`, list_of_aca);
 			});
-			var count_edu = $(".myresume-choose-aca1:input:checkbox:checked").length + $(".myresume-choose-high1:input:checkbox:checked").length;
-			if (count_edu == 6) {
-				$("#dangerzonect1").text("คุณเลือกครบ 6 รายการแล้ว");
-				$("#dangerzonect1").addClass("you-choose-list-resume-red");
-				var bol = (count_edu >= 3);
-				$(".myresume-choose-aca1:input:checkbox").not(":checked").attr("disabled", bol);
-				$(".myresume-choose-high1:input:checkbox").not(":checked").attr("disabled", bol);
-			}
-			else {
-				$("#dangerzonect1").text(`คุณเลือกไปแล้ว ${count_edu} รายการ`);
-				$("#dangerzonect1").removeClass("you-choose-list-resume-red");
-			}
-			//alert(count_edu);
-			console.log('Sideskill_data : ', sideskilldata);
+			//console.log('Sideskill_data : ', sideskilldata);
 			sideskilldata.forEach(ele => {
 				//alert(ele.sideskillName);
 				//isCheck_sideskill[ele.sideskill_id] = false;
@@ -529,8 +518,8 @@ class Editresume extends React.Component {
 			});
 			var count_ssk = $(".myresume-choose-ssl1:input:checkbox:checked").length;
 			//alert(count_ssk);
-			console.log($(".myresume-choose-ssl1:input:checkbox:checked").length);
-			console.log(choose_sideskill);
+			//console.log($(".myresume-choose-ssl1:input:checkbox:checked").length);
+			//console.log(choose_sideskill);
 			if ($(".myresume-choose-ssl1:input:checkbox:checked").length == 3) {
 				$("#dangerzonect6").text("คุณเลือกครบ 3 รายการแล้ว");
 				$("#dangerzonect6").addClass("you-choose-list-resume-red");
@@ -541,8 +530,22 @@ class Editresume extends React.Component {
 				$("#dangerzonect6").text(`คุณเลือกไปแล้ว ${$(".myresume-choose-ssl1:input:checkbox:checked").length} รายการ`);
 				$("#dangerzonect6").removeClass("you-choose-list-resume-red");
 			}
-			//console.log("isCheck_sideskill :", isCheck_sideskill);
-			//await CheckbeforeEdit();
+			//console.log($(".myresume-choose-aca1:input:checkbox:checked").length );
+			//console.log($(".myresume-choose-high1:input:checkbox:checked"));
+			var count_edu = $(".myresume-choose-aca1:input:checkbox:checked").length + $(".myresume-choose-high1:input:checkbox:checked").length;
+			if (count_edu == 6) {
+				$("#dangerzonect1").text("คุณเลือกครบ 3 รายการแล้ว");
+				$("#dangerzonect1").addClass("you-choose-list-resume-red");
+				var bol = (count_edu >= 3);
+				$(".myresume-choose-aca1:input:checkbox").not(":checked").attr("disabled", bol);
+				$(".myresume-choose-high1:input:checkbox").not(":checked").attr("disabled", bol);
+			}
+			else {
+				$("#dangerzonect1").text(`คุณเลือกไปแล้ว ${count_edu} รายการ`);
+				$("#dangerzonect1").removeClass("you-choose-list-resume-red");
+			}
+			//alert(count_edu);
+			
 			/*--------------------------------------- WORK HISTORY ----------------------------------------*/
 			tmp2 = [...workdata];
 			tmp2.sort(compareValues('Work_Start_Year', 'desc'));
@@ -716,6 +719,23 @@ class Editresume extends React.Component {
 				$("#you-choose-list-resume-certi1").text(`คุณเลือกไปแล้ว ${certdata.length} รายการ`);
 				$("#you-choose-list-resume-certi1").removeClass("you-choose-list-resume-red");
 			}
+
+			/*-------------------------------ZoneUpdate Choose&Check_before_edit-------------------------------*/
+			workdata = $('.input-choose-work1:input[type=checkbox]:checked').map(function (_, el) {
+				return $(el).val();
+			}).get();
+			certdata = $('.input-choose-certi1:input[type=checkbox]:checked').map(function (_, el) {
+				return $(el).val();
+			}).get();
+			choose_high = $('.myresume-choose-high1:input[type=checkbox]:checked').map(function (_, el) {
+				return $(el).val();
+			}).get();
+			choose_aca = $('.myresume-choose-aca1:input[type=checkbox]:checked').map(function (_, el) {
+				return $(el).val();
+			}).get();
+			choose_sideskill = $('.myresume-choose-ssl1:input[type=checkbox]:checked').map(function (_, el) {
+				return $(el).val();
+			}).get();
 		});
 
 		/* Zone to choose func */
@@ -747,8 +767,8 @@ class Editresume extends React.Component {
 		$(document).on("change", ".myresume-choose-high1", function () {
 			var choose_edu_now = choose_aca.length + choose_high.length;
 			//alert(choose_aca.length +' + '+ choose_high.length + ' = ' +choose_edu_now);
-			if (choose_edu_now == 6) {
-				$("#dangerzonect1").text("คุณเลือกครบ 6 รายการแล้ว");
+			if (choose_edu_now == 3) {
+				$("#dangerzonect1").text("คุณเลือกครบ 3 รายการแล้ว");
 				$("#dangerzonect1").addClass("you-choose-list-resume-red");
 			}
 			else if (choose_edu_now == 0) {
@@ -764,8 +784,8 @@ class Editresume extends React.Component {
 		$(document).on("change", ".myresume-choose-aca1", function () {
 			var choose_edu_now = choose_aca.length + choose_high.length;
 			//alert(choose_aca.length +' + '+ choose_high.length + ' = ' +choose_edu_now);
-			if (choose_edu_now == 6) {
-				$("#dangerzonect1").text("คุณเลือกครบ 6 รายการแล้ว");
+			if (choose_edu_now == 3) {
+				$("#dangerzonect1").text("คุณเลือกครบ 3 รายการแล้ว");
 				$("#dangerzonect1").addClass("you-choose-list-resume-red");
 			}
 			else if (choose_edu_now == 0) {
@@ -782,7 +802,7 @@ class Editresume extends React.Component {
 			workdata = $('.input-choose-work1:input[type=checkbox]:checked').map(function (_, el) {
 				return $(el).val();
 			}).get();
-			console.log("susss:", workdata);
+			console.log("choose_work :", workdata);
 		});
 
 		$(document).on("click", ".input-choose-work1:input:checkbox", function () {
@@ -809,7 +829,7 @@ class Editresume extends React.Component {
 			certdata = $('.input-choose-certi1:input[type=checkbox]:checked').map(function (_, el) {
 				return $(el).val();
 			}).get();
-			console.log("susss222:", certdata);
+			console.log("choose_cert :", certdata);
 		});
 
 		$(document).on("click", ".input-choose-certi1:input:checkbox", function () {
@@ -836,7 +856,7 @@ class Editresume extends React.Component {
 			choose_sideskill = $('.myresume-choose-ssl1:input[type=checkbox]:checked').map(function (_, el) {
 				return $(el).val();
 			}).get();
-			console.log("choosesideskill :", choose_sideskill);
+			console.log("choose_sideskill :", choose_sideskill);
 		});
 
 		$(document).on("click", ".myresume-choose-ssl1:input:checkbox", function () {
