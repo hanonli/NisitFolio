@@ -97,6 +97,7 @@ class Chooseresume5 extends React.Component {
 				return $(el).val();
 			}).get();
 			console.log("choosePort :", choose_Port);
+			cookie.save('choose_Port',choose_Port);
 		});
 
 		$(document).on("change", ".myresume-choose-port1", function () {
@@ -114,7 +115,7 @@ class Chooseresume5 extends React.Component {
 			<div className="Registab7">
 				<h2 class="headerChooseResume">คุณสามารถเลือกผลงานที่สอดคล้องกับตำแหน่งงานที่สนใจได้ไม่จำกัด</h2>
 				<div class="Editresume-box-content5" id="yyy">
-					<div class="port-box1" onChange={this.handleClick.bind(this)}></div>
+					<div class="port-box1"></div>
 				</div>
 				<h1 id="dangerzonect5" class='normalformzonet3'></h1>
 			</div>

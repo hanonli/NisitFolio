@@ -38,12 +38,6 @@ class Editresume extends React.Component {
 		this.setState({ Color_Resume: childData })
 	}
 
-	handleClick = value => {
-		this.setState({
-			port_choose: value,
-		});
-	}
-
 	componentDidMount() {
 		var editresumeState = this;
 		var list_of_high = [], list_of_aca = [];
@@ -71,18 +65,19 @@ class Editresume extends React.Component {
 		/*Zone to Submit EditResume */
 		function SubmitEdit () {
 			//alert(this.state.Color_Resume);
+			//editresumeState.setState({port_choose: cookie.load('choose_Port')});
+			var last_port = cookie.load('choose_Port');
+			console.log('last_port : ',last_port);
 			choose_aca.forEach(ele => {
 				choose_high.push(ele);
 			});
-			console.log(this.state.port_choose);
-			alert(this.state.port_choose);
 			var FormEdit = {
 				"SoftSkillID": choose_sideskill,
 				"CertID": certdata,
 				"EducationID": choose_high,
 				"WorkID": workdata,
-				"PortID": [],
-				"Color": this.state.Color_Resume
+				"PortID": last_port,
+				"Color": editresumeState.state.Color_Resume
 			}
 			console.log(FormEdit);
 			alert('Confirm Edit Resume');
@@ -173,7 +168,7 @@ class Editresume extends React.Component {
 								high_grade: editresumeState.state.data.Grade[index],
 								high_field: editresumeState.state.data.Field_of_study[index],
 								high_year: editresumeState.state.data.Education_End_Year[index],
-								isCheckHigh: editresumeState.state.data.EducationHistory_ResumeId.includes(editresumeState.state.resumeId) ? 'checked' : "defaultChecked"
+								isCheckHigh: editresumeState.state.data.EducationHistory_ResumeId[index].includes(editresumeState.state.resumeId) ? 'checked' : "defaultChecked"
 							});
 							get_high_id(list_of_high, 1);
 							console.log(list_of_high);
@@ -188,7 +183,7 @@ class Editresume extends React.Component {
 								aca_grade: editresumeState.state.data.Grade[index],
 								aca_field: editresumeState.state.data.Field_of_study[index],
 								aca_year: editresumeState.state.data.Education_End_Year[index],
-								isCheckAca: editresumeState.state.data.EducationHistory_ResumeId.includes(editresumeState.state.resumeId) ? 'checked' : "defaultChecked"
+								isCheckAca: editresumeState.state.data.EducationHistory_ResumeId[index].includes(editresumeState.state.resumeId) ? 'checked' : "defaultChecked"
 							});
 							get_aca_id(list_of_aca, 1);
 							console.log(list_of_aca);
@@ -226,7 +221,7 @@ class Editresume extends React.Component {
 							sideskill_id: ele,
 							sideskillName: editresumeState.state.data.SoftSkill[index],
 							sideskillResume: editresumeState.state.data.AdditionalSkill_ResumeId[index],
-							isCheckSS: editresumeState.state.data.AdditionalSkill_ResumeId.includes(editresumeState.state.resumeId) ? 'checked' : "defaultChecked"
+							isCheckSS: editresumeState.state.data.AdditionalSkill_ResumeId[index].includes(editresumeState.state.resumeId) ? 'checked' : "defaultChecked"
 						})
 					});
 					console.log(sideskilldata);
@@ -249,7 +244,23 @@ class Editresume extends React.Component {
 			console.log('Start Fetch!!');
 			await GetResumeData();
 			editresumeState.setState ({render: true});
-			$('.nameedit').text('"' + cookie.load('Job_EditName') + '"');
+
+			/* Zone Button on this page */
+			$('#cancelChoose').on('click', function () {
+				alert("YES SIR!!");
+				editresumeState.props.history.push('/myresume');
+			});
+			$('#goToeditProfile').on('click', function () {
+				alert("YES SIR!!");
+				cookie.save('Edit_tabselect', '1');
+				window.location = ("editprofile");
+			});
+			$('#submiteditt').on('click', function () {
+				alert("YES SIR!!");
+				SubmitEdit();
+			});
+			console.log('Start Page!!');
+			$('.nameedit').text(cookie.load('Job_EditName'));
 			console.log('Edit Job is ' + cookie.load('Job_EditName'));
 			//alert('Selected tab is '+ cookie.load('Edit_tabselect'));
 			var Tab_select = cookie.load('Edit_tabselect');
@@ -335,7 +346,7 @@ class Editresume extends React.Component {
 									id="{xyy}"\
 									type="checkbox"\
 									value="{ele.high_idvalue}"\
-									{isCheckHigh}"\
+									{isCheckHigh}\
 									hidden\
 								/>\
 								<label class="" for="{forxyy}" id="list-high-22">\
@@ -388,7 +399,7 @@ class Editresume extends React.Component {
 					id="{xxy}"\
 					type="checkbox"\
 					value="{ele.aca_idvalue}"\
-					{isCheck_Aca}\
+					{isCheckAca}\
 					hidden\
 				/>\
 				<label class="" for="{forxxy}" id="list-aca-22">\
@@ -596,18 +607,6 @@ class Editresume extends React.Component {
 				$("#dangerzonect6").removeClass("red_markOnly");
 			}
 		});
-
-		/* Zone Button on this page */
-		$('#cancelChoose').on('click', function () {
-			window.history.go(-1);
-		});
-		$('#goToeditProfile').on('click', function () {
-			cookie.save('Edit_tabselect', '1');
-			window.location = ("editprofile");
-		});
-		$('#submiteditt').on('click', function () {
-			SubmitEdit();
-		});
 	}
 
 	componentWillUnmount() {
@@ -629,7 +628,7 @@ class Editresume extends React.Component {
 										<h1 class="name inline">เลือกข้อมูลผู้ใช้ที่จะแสดง</h1>
 										<h1 class="symboledit inline">.</h1>
 										<h1 class="nameedit inline"></h1>
-										<p class="btn-cta-primary-whitewide inline absoluteforedit" id="goToeditProfile">แก้ไขข้อมูล</p>
+										<p class="btn bcp-white round-ss profile-button edit-job inline absoluteforedit" id="goToeditProfile">แก้ไขโปรไฟล์</p>
 									</div>
 								</div>
 							</div>
@@ -668,7 +667,7 @@ class Editresume extends React.Component {
 						</div>
 						<div class="col block-right2">
 							<button class="btn btn-cta-primary-blackwide round profile-button" target="_blank" id="cancelChoose">ยกเลิก</button>
-							<button class="btn btn-cta-primary-yellowwide round profile-button marginLEx1" id="submiteditt" onClick={this.handleClick} >ยืนยัน</button>
+							<button class="btn btn-cta-primary-yellowwide round profile-button marginLEx1" id="submiteditt" >ยืนยัน</button>
 						</div>
 					</form>
 				</div>
