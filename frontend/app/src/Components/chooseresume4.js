@@ -9,7 +9,7 @@ import { GetDominantColorFromImage } from './GetDominantColorFromImage'
 import './chooseresume3.css';
 
 /*Wait for Port*/
-
+var choose_Port = [];
 class Chooseresume5 extends React.Component {
 
 	constructor(props) {
@@ -18,9 +18,16 @@ class Chooseresume5 extends React.Component {
 			data_port: [],
 		}
 	}
+
+	handleClick(e){
+		const inputText = choose_Port;
+		this.props.onChange(inputText);
+	}
+
 	componentDidMount() {
 		var port_data = [];
 		var token = cookie.load('login-token')
+		var ResumeId_Now = cookie.load('ResumeIdForEdit')
 		//console.log('Your Token is: ' + token);
 		fetch("http://localhost:2000/portfolio", {
 			method: "GET",
@@ -38,31 +45,30 @@ class Chooseresume5 extends React.Component {
 				this.setState({
 					data_port: datas,
 				})
+				//console.log('All Port Fetch: ',this.state.data_port)
 				this.state.data_port.forEach(ele => {
 					port_data.push({
 						Port_Name: ele.Port_Name,
 						Port_PicPreview: ele.portfolioPictures[0].Pic[0],
 						Port_Resumeid: ele.ResumeId,
-						Port_id: ele._id
+						Port_id: ele._id,
+						isCheckPort: ele.ResumeId.includes(ResumeId_Now) ? 'checked' : "defaultChecked"
 					})
 				})
 			}).catch(function (error) {
 				console.log(error);
 			});
-		var choose_Port = [];
-		var isCheck_Port = {};
-		console.log('All Port', port_data);
+		//console.log('All Port ', port_data);
 		setTimeout(() => {
 			port_data.forEach(ele => {
 				//alert('Sawaddeekrub Port!!!');
-				isCheck_Port[ele.Port_id] = false;
 				var t5_port = ` <div id={ele.Port_id}>\
 				<input\
 					class="myresume-choose-port1"\
 					id="{xxx}"\
 					type="checkbox"\
 					value="{ele.Port_idvalue}"\
-					defaultChecked="{isCheck_Port[ele.Port_id]}"\
+					{isCheckPort}\
 					hidden\
 				/>\
 				<label class="pft-container555" for="{forxxx}" id="list-port-22">\
@@ -78,14 +84,14 @@ class Chooseresume5 extends React.Component {
 				t5_port = t5_port.replace("{ele.img}", ele.Port_PicPreview);
 				t5_port = t5_port.replace("{xxx}", `xxx` + ele.Port_id);
 				t5_port = t5_port.replace("{ele.Port_idvalue}", ele.Port_id);
-				t5_port = t5_port.replace("{isCheck_Port[ele.Port_id]}", isCheck_Port[ele.Port_id]);
+				t5_port = t5_port.replace("{isCheckPort}", ele.isCheckPort);
 				t5_port = t5_port.replace("{forxxx}", `xxx` + ele.Port_id);
 				t5_port = t5_port.replace("{ele.PortName}", ele.Port_Name);
 				//alert('Sawaddeekrub Port',t5_port);
 				$(".port-box1").append(t5_port);
 			});
 		}, 3000);
-		console.log("isCheck_Port :", isCheck_Port);
+		//console.log("isCheck_Port :", isCheck_Port);
 		$(document).on("click", ".myresume-choose-port1", function () {
 			choose_Port = $('.myresume-choose-port1:input[type=checkbox]:checked').map(function (_, el) {
 				return $(el).val();
@@ -108,7 +114,7 @@ class Chooseresume5 extends React.Component {
 			<div className="Registab7">
 				<h2 class="headerChooseResume">คุณสามารถเลือกผลงานที่สอดคล้องกับตำแหน่งงานที่สนใจได้ไม่จำกัด</h2>
 				<div class="Editresume-box-content5" id="yyy">
-					<div class="port-box1"></div>
+					<div class="port-box1" onChange={this.handleClick.bind(this)}></div>
 				</div>
 				<h1 id="dangerzonect5" class='normalformzonet3'></h1>
 			</div>

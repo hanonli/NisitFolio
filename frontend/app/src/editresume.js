@@ -18,6 +18,7 @@ import async from 'react-select/async';
 
 var certdata = [], workdata = [], list_of_aca = [], list_of_high = [], sideskilldata = [];
 var select_color_template = "#FFCE55";
+var choose_aca=[],choose_high=[],choose_sideskill = [];
 
 class Editresume extends React.Component {
 
@@ -26,37 +27,28 @@ class Editresume extends React.Component {
 
 		this.state = {
 			data: [],
-			render: true,
+			render: false,
 			Color_Resume: '',
 			firstchoosecolor: false,
 			resumeId: '',
+			port_choose: []
 		}
 	}
 	callbackFunction = (childData) => {
 		this.setState({ Color_Resume: childData })
 	}
 
-	/*Zone to Submit EditResume */
-	handleSubmitEdit = e => {
-		alert(this.state.Color_Resume);
-		var FormEdit = {
-			"SoftSkillID": [],
-			"CertID": certdata,
-			"EducationID": [],
-			"WorkID": workdata,
-			"PortID": [],
-			"Color": this.state.Color_Resume
-		}
-		console.log(FormEdit);
-		alert('Confirm Edit Resume');
-		//Editresume(FormEdit);
-		//window.location = ("myresume");
-	};
+	handleClick = value => {
+		this.setState({
+			port_choose: value,
+		});
+	}
 
 	componentDidMount() {
 		var editresumeState = this;
 		var list_of_high = [], list_of_aca = [];
-
+		var isCheck_sideskill = {};
+		
 		function get_high_id(list_of_high, x) {
 			//var x = 1;
 			list_of_high.forEach(ele => {
@@ -76,6 +68,28 @@ class Editresume extends React.Component {
 			});
 			return list_of_aca;
 		}
+		/*Zone to Submit EditResume */
+		function SubmitEdit () {
+			//alert(this.state.Color_Resume);
+			choose_aca.forEach(ele => {
+				choose_high.push(ele);
+			});
+			console.log(this.state.port_choose);
+			alert(this.state.port_choose);
+			var FormEdit = {
+				"SoftSkillID": choose_sideskill,
+				"CertID": certdata,
+				"EducationID": choose_high,
+				"WorkID": workdata,
+				"PortID": [],
+				"Color": this.state.Color_Resume
+			}
+			console.log(FormEdit);
+			alert('Confirm Edit Resume');
+			//Editresume(FormEdit);
+			//window.location = ("myresume");
+		}
+
 		function EditResume(pack) {
 			fetch("http://localhost:2000/myresume/" + editresumeState.state.resumeId,
 				{
@@ -139,6 +153,7 @@ class Editresume extends React.Component {
 					editresumeState.state.data.Job_JobName.forEach((ele, index) => {
 						if (ele == cookie.load('Job_EditName')) {
 							console.log('This Resume is : '+editresumeState.state.data.Resume_id[index]);
+							cookie.save('ResumeIdForEdit',editresumeState.state.data.Resume_id[index])
 							return editresumeState.setState({ resumeId: editresumeState.state.data.Resume_id[index] });
 							//alert(editresumeState.state.resumeId);
 						}
@@ -158,6 +173,7 @@ class Editresume extends React.Component {
 								high_grade: editresumeState.state.data.Grade[index],
 								high_field: editresumeState.state.data.Field_of_study[index],
 								high_year: editresumeState.state.data.Education_End_Year[index],
+								isCheckHigh: editresumeState.state.data.EducationHistory_ResumeId.includes(editresumeState.state.resumeId) ? 'checked' : "defaultChecked"
 							});
 							get_high_id(list_of_high, 1);
 							console.log(list_of_high);
@@ -172,6 +188,7 @@ class Editresume extends React.Component {
 								aca_grade: editresumeState.state.data.Grade[index],
 								aca_field: editresumeState.state.data.Field_of_study[index],
 								aca_year: editresumeState.state.data.Education_End_Year[index],
+								isCheckAca: editresumeState.state.data.EducationHistory_ResumeId.includes(editresumeState.state.resumeId) ? 'checked' : "defaultChecked"
 							});
 							get_aca_id(list_of_aca, 1);
 							console.log(list_of_aca);
@@ -208,12 +225,13 @@ class Editresume extends React.Component {
 						sideskilldata.push({
 							sideskill_id: ele,
 							sideskillName: editresumeState.state.data.SoftSkill[index],
-							sideskillResume: editresumeState.state.data.AdditionalSkill_ResumeId[index]
+							sideskillResume: editresumeState.state.data.AdditionalSkill_ResumeId[index],
+							isCheckSS: editresumeState.state.data.AdditionalSkill_ResumeId.includes(editresumeState.state.resumeId) ? 'checked' : "defaultChecked"
 						})
 					});
 					console.log(sideskilldata);
+					resolve();
 				});
-				resolve();
 			});
 		}
 
@@ -221,13 +239,16 @@ class Editresume extends React.Component {
 		function CheckbeforeEdit(){
 			return new Promise((resolve,reject)=>{
 			console.log('Time to edit!!!');
+			
 			resolve();
 			});
 		}
 
 		/* Zone to show html */
 		$(async function () {
+			console.log('Start Fetch!!');
 			await GetResumeData();
+			editresumeState.setState ({render: true});
 			$('.nameedit').text('"' + cookie.load('Job_EditName') + '"');
 			console.log('Edit Job is ' + cookie.load('Job_EditName'));
 			//alert('Selected tab is '+ cookie.load('Edit_tabselect'));
@@ -308,10 +329,203 @@ class Editresume extends React.Component {
 				$('#tab-6').addClass('tab-list-active')
 				$('#registab6-content').show();
 			});
-			await CheckbeforeEdit();
+			list_of_high.forEach(ele => {
+				var grid_high1 = '<input\
+									class="myresume-choose-high1"\
+									id="{xyy}"\
+									type="checkbox"\
+									value="{ele.high_idvalue}"\
+									{isCheckHigh}"\
+									hidden\
+								/>\
+								<label class="" for="{forxyy}" id="list-high-22">\
+									<div class="t3-content1 row">\
+										<div class="col-4">\
+											<div class="font-titlet3_2 font-boldt3">{degree_high}</div>\
+											<div class="font-titlet3_2 font-khotboldt3">{year_high}</div>\
+										</div>\
+										<div class="col-8">\
+											<div class="font-titlet3_2">{field_high}</div>\
+											<div class="font-titlet3_2">{name_high}</div>\
+											<div class="font-titlet3_2">เกรด {grade_high}</div>\
+										</div>\
+									</div>\
+									<div class="icon-checkboxct2"><img height="50" src="assets/images/check_black.png" ></img></div>\
+								</label>';
+				grid_high1 = grid_high1.replace("{ele.high_id}", ele.id);
+				grid_high1 = grid_high1.replace("{xyy}", `xyy` + ele.id);
+				grid_high1 = grid_high1.replace("{ele.high_idvalue}", ele.id);
+				grid_high1 = grid_high1.replace("{isCheckHigh}", ele.isCheckHigh);
+				grid_high1 = grid_high1.replace("{forxyy}", `xyy` + ele.id);
+				grid_high1 = grid_high1.replace("{no_high}", ele["high_pos"]);
+				grid_high1 = grid_high1.replace("{degree_high}", ele["high_degree"]);
+				grid_high1 = grid_high1.replace("{name_high}", ele["high_name"]);
+				if(ele["high_grade"]=="0.00" || ele["high_grade"]=="0"){
+				grid_high1 = grid_high1.replace("{grade_high}", '-');
+				}
+				else{
+				grid_high1 = grid_high1.replace("{grade_high}", ele["high_grade"]);
+				}
+				if(ele["high_field"]=="none"){
+				grid_high1 = grid_high1.replace("{field_high}", '-');
+				}
+				grid_high1 = grid_high1.replace("{field_high}", ele["high_field"]);
+				if(ele["high_year"]=="0"){
+				grid_high1 = grid_high1.replace("{year_high}", '-');
+				}
+				else if(ele["high_year"]=="9999"){
+				grid_high1 = grid_high1.replace("{year_high}", 'กำลังศึกษา');
+				}
+				else{
+				grid_high1 = grid_high1.replace("{year_high}", ele["high_year"]);
+				}
+				$(".list-of-high").append(grid_high1);
+				console.log(`list_of_high:`, list_of_high);
+			});
+			list_of_aca.forEach(ele => {
+				var grid_aca1 = '<input\
+					class="myresume-choose-aca1"\
+					id="{xxy}"\
+					type="checkbox"\
+					value="{ele.aca_idvalue}"\
+					{isCheck_Aca}\
+					hidden\
+				/>\
+				<label class="" for="{forxxy}" id="list-aca-22">\
+					<div class="t3-content1 row">\
+						<div class="col-3">\
+							<div class="font-titlet3_1 font-boldt3">{degree_aca}</div>\
+							<div class="font-titlet3_1 font-khotboldt3">{year_aca}</div>\
+						</div>\
+						<div class="col-9">\
+							<div class="font-titlet3_1">{field_aca}</div>\
+							<div class="font-titlet3_1">{faculty_aca}</div>\
+							<div class="font-titlet3_1">{name_aca}</div>\
+							<div class="font-titlet3_1">เกรด {grade_aca}</div>\
+						</div>\
+					</div>\
+					<div class="icon-checkboxct1"><img height="50" src="assets/images/check_black.png" ></img></div>\
+				</label>';
+				grid_aca1 = grid_aca1.replace("{ele.aca_id}", ele.id);
+				grid_aca1 = grid_aca1.replace("{xxy}", `xxy` + ele.id);
+				grid_aca1 = grid_aca1.replace("{ele.aca_idvalue}", ele.id);
+				grid_aca1 = grid_aca1.replace("{isCheckAca}", ele.isCheckAca);
+				grid_aca1 = grid_aca1.replace("{forxxy}", `xxy` + ele.id);
+				grid_aca1 = grid_aca1.replace("{no_aca}", ele["aca_pos"]);
+				grid_aca1 = grid_aca1.replace("{degree_aca}", ele["aca_degree"]);
+				grid_aca1 = grid_aca1.replace("{name_aca}", ele["aca_name"]);
+				grid_aca1 = grid_aca1.replace("{faculty_aca}", ele["aca_faculty"]);
+				if(ele["aca_grade"]=="0.00" || ele["aca_grade"]=="0"){
+				grid_aca1 = grid_aca1.replace("{grade_aca}", '-');
+				}
+				else{
+				grid_aca1 = grid_aca1.replace("{grade_aca}", ele["aca_grade"]);
+				}
+				if(ele["aca_field"]=="none"){
+				grid_aca1 = grid_aca1.replace("{field_aca}", '-');
+				}
+				else{
+				grid_aca1 = grid_aca1.replace("{field_aca}", ele["aca_field"]);
+				}
+				if(ele["aca_year"]==0){
+				grid_aca1 = grid_aca1.replace("{year_aca}", '-');
+				}
+				else if(ele["aca_year"]==9999){
+				grid_aca1 = grid_aca1.replace("{year_aca}", 'กำลังศึกษา');
+				}
+				else{
+				grid_aca1 = grid_aca1.replace("{year_aca}", ele["aca_year"]);
+				}
+				$(".list-of-aca").append(grid_aca1);
+				//console.log(`list_of_aca:`, list_of_aca);
+			});
+			console.log('Sideskill_data : ',sideskilldata);
+			sideskilldata.forEach(ele => {
+				//alert(ele.sideskillName);
+				//isCheck_sideskill[ele.sideskill_id] = false;
+				var ddt7_un =` <div id={ele.sideskill_id}>\
+				<input\
+					class="myresume-choose-ssl1"\
+					id="{xxx}"\
+					type="checkbox"\
+					value="{ele.sideskill_idvalue}"\
+					{isCheckSS}\
+					hidden\
+				/>\
+				<label class="dropbtn-box margin-bottom1" for="{forxxx}" id="list-ssl-22">\
+					<div class="textT7B">{ele.sideskillName}
+					<div class="icon-checkboxct6"><img height="35" src="assets/images/check_black.png" ></img></div>\
+					</div>\
+				</label>\
+			</div >`;
+				ddt7_un = ddt7_un.replace("{ele.sideskill_id}", ele.sideskill_id);
+				ddt7_un = ddt7_un.replace("{xxx}", `xxx` + ele.sideskill_id);
+				ddt7_un = ddt7_un.replace("{ele.sideskill_idvalue}", ele.sideskill_id);
+				ddt7_un = ddt7_un.replace("{isCheckSS}", ele.isCheckSS);
+				ddt7_un = ddt7_un.replace("{forxxx}", `xxx` + ele.sideskill_id);
+				ddt7_un = ddt7_un.replace("{ele.sideskillName}", ele.sideskillName);
+				$(".dropdowntap7").append(ddt7_un);
+			});
+			//console.log("isCheck_sideskill :", isCheck_sideskill);
+			//await CheckbeforeEdit();
 		});
 
 		/* Zone to choose func */
+		$(document).on("click", ".myresume-choose-high1", function () {
+			choose_high = $('.myresume-choose-high1:input[type=checkbox]:checked').map(function (_, el) {
+				return $(el).val();
+			}).get();
+			console.log("choosehigh :", choose_high);
+		});
+
+		$(document).on("click", ".myresume-choose-high1:input:checkbox", function () {
+			var bol = $(".myresume-choose-high1:input:checkbox:checked").length >= 6;
+			$(".myresume-choose-high1:input:checkbox").not(":checked").attr("disabled", bol);
+		});
+
+		$(document).on("click", ".myresume-choose-aca1", function () {
+			choose_aca = $('.myresume-choose-aca1:input[type=checkbox]:checked').map(function (_, el) {
+				return $(el).val();
+			}).get();
+			console.log("chooseaca :", choose_aca);
+		});
+
+		$(document).on("click", ".myresume-choose-aca1:input:checkbox", function () {
+			var bol = $(".myresume-choose-aca1:input:checkbox:checked").length >= 6;
+			$(".myresume-choose-aca1:input:checkbox").not(":checked").attr("disabled", bol);
+		});
+		$(document).on("change", ".myresume-choose-high1", function () {
+			var choose_edu_now=choose_aca.length+choose_high.length;
+			if (choose_edu_now === 6) {
+				$("#dangerzonect1").text("คุณเลือกครบ 6 รายการแล้ว");
+				$("#dangerzonect1").addClass("red_markOnly");
+			}
+			else if (choose_edu_now === 0) {
+				$("#dangerzonect1").text("");
+				$("#dangerzonect1").removeClass("red_markOnly");
+			}
+			else {
+				$("#dangerzonect1").text(`คุณเลือกไปแล้ว ${choose_edu_now} รายการ`);
+				$("#dangerzonect1").removeClass("red_markOnly");
+			}
+		});
+
+		$(document).on("change", ".myresume-choose-aca1", function () {
+			var choose_edu_now=choose_aca.length+choose_high.length;
+			if (choose_edu_now === 6) {
+				$("#dangerzonect1").text("คุณเลือกครบ 6 รายการแล้ว");
+				$("#dangerzonect1").addClass("red_markOnly");
+			}
+			else if (choose_edu_now === 0) {
+				$("#dangerzonect1").text("");
+				$("#dangerzonect1").removeClass("red_markOnly");
+			}
+			else {
+				$("#dangerzonect1").text(`คุณเลือกไปแล้ว ${choose_edu_now} รายการ`);
+				$("#dangerzonect1").removeClass("red_markOnly");
+			}
+		});
+
 		$(document).on("click", ".input-choose-certi1", function () {
 			certdata = $('.input-choose-certi1:input[type=checkbox]:checked').map(function (_, el) {
 				return $(el).val();
@@ -356,6 +570,33 @@ class Editresume extends React.Component {
 			}
 		});
 
+		$(document).on("click", ".myresume-choose-ssl1", function () {
+			choose_sideskill = $('.myresume-choose-ssl1:input[type=checkbox]:checked').map(function (_, el) {
+				return $(el).val();
+			}).get();
+			console.log("choosesideskill :", choose_sideskill);
+		});
+
+		$(document).on("click", ".myresume-choose-ssl1:input:checkbox", function () {
+			var bol = $(".myresume-choose-ssl1:input:checkbox:checked").length >= 3;
+			$(".myresume-choose-ssl1:input:checkbox").not(":checked").attr("disabled", bol);
+		});
+
+		$(document).on("change", ".myresume-choose-ssl1", function () {
+			if (choose_sideskill.length === 3) {
+				$("#dangerzonect6").text("คุณเลือกครบ 3 รายการแล้ว");
+				$("#dangerzonect6").addClass("red_markOnly");
+			}
+			else if (choose_sideskill.length === 0) {
+				$("#dangerzonect6").text("");
+				$("#dangerzonect6").removeClass("red_markOnly");
+			}
+			else {
+				$("#dangerzonect6").text(`คุณเลือกไปแล้ว ${choose_sideskill.length} รายการ`);
+				$("#dangerzonect6").removeClass("red_markOnly");
+			}
+		});
+
 		/* Zone Button on this page */
 		$('#cancelChoose').on('click', function () {
 			window.history.go(-1);
@@ -363,12 +604,16 @@ class Editresume extends React.Component {
 		$('#goToeditProfile').on('click', function () {
 			cookie.save('Edit_tabselect', '1');
 			window.location = ("editprofile");
-		})
+		});
+		$('#submiteditt').on('click', function () {
+			SubmitEdit();
+		});
 	}
 
 	componentWillUnmount() {
 		window.removeEventListener('load', this.handleLoad)
 		cookie.save('Edit_tabselect', '');
+		$(document).unbind();
 	}
 
 	render() {
@@ -418,12 +663,12 @@ class Editresume extends React.Component {
 								<Chooseresume4 />
 							</div>
 							<div class="tab-content" id="registab6-content">
-								<Chooseresume5 sideskill_data={sideskilldata} />
+								<Chooseresume5 />
 							</div>
 						</div>
 						<div class="col block-right2">
 							<button class="btn btn-cta-primary-blackwide round profile-button" target="_blank" id="cancelChoose">ยกเลิก</button>
-							<button class="btn btn-cta-primary-yellowwide round profile-button marginLEx1" id="confirmChoose" onClick={this.handleSubmitEdit}>ยืนยัน</button>
+							<button class="btn btn-cta-primary-yellowwide round profile-button marginLEx1" id="submiteditt" onClick={this.handleClick} >ยืนยัน</button>
 						</div>
 					</form>
 				</div>

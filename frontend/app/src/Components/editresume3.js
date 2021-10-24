@@ -41,7 +41,7 @@ class Editresume3 extends React.Component {
                 );
             };
         }
-        setTimeout(() => {
+        //setTimeout(() => {
             const mycert2 = this.props.mycerti_data ? this.props.mycerti_data : [];
             var tmp1 = [...mycert2];
             tmp1.sort(compareValues('CertYear', 'desc'));
@@ -88,7 +88,7 @@ class Editresume3 extends React.Component {
                 }
                 $("#year-choose-tem-" + String(ele.CertYear)).append(grid_certi2);
             });
-        }, 9000);
+        //}, 9000);
 
         /*$(document).on("click", ".input-choose-certi1", function () {
             choose_certi = $('.input-choose-certi1:input[type=checkbox]:checked').map(function (_, el) {

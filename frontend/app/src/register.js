@@ -408,10 +408,11 @@ class Register extends React.Component {
 				last_aca.push(entry.aca_name);
 				//last_grade.push(parseFloat(entry.aca_grade));
 				last_eduyear.push(entry.aca_year);
-				var total_grade_aca = new Float32Array(1);
-				total_grade_aca[0] = entry.aca_grade;
+				//var total_grade_aca = new Float32Array(1);
+				//total_grade_aca[0] = entry.aca_grade;
 				//console.log(total_grade_aca[0]);
-				last_grade.push(total_grade_aca[0]);
+				//last_grade.push(total_grade_aca[0]);
+				last_grade.push(parseFloat(entry.aca_grade).toFixed(2));
 				});
 				list_of_high.forEach((entry) => {
 				//console.log(entry);
@@ -421,9 +422,10 @@ class Register extends React.Component {
 				last_aca.push(entry.high_name);
 				//last_grade.push(entry.high_grade);
 				last_eduyear.push(entry.high_year);
-				var total_grade_high = new Float32Array(1);
-				total_grade_high[0] = entry.high_grade;
-				last_grade.push(total_grade_high[0]);
+				//var total_grade_high = new Float32Array(1);
+				//total_grade_high[0] = entry.high_grade;
+				//last_grade.push(total_grade_high[0]);
+				last_grade.push(parseFloat(entry.high_grade).toFixed(2));
 				});
 				//console.log('grade = ' + last_grade);
 				//console.log(last_eduyear);
@@ -2878,9 +2880,7 @@ class Register extends React.Component {
 
 	componentWillUnmount() { 
 		window.removeEventListener('load', this.handleLoad)  
-		$("#mySlider1").remove();
-		$("#mySlider2").remove();
-		$("#mySlider3").remove();
+		$(document).unbind();
 	 }
 	 
 	 handleLoad() {
