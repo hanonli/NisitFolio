@@ -4,7 +4,7 @@ import './index.css';
 import Navbar from './Components/navbar';
 //import DataHeader from './Components/dataHeader';
 import reportWebVitals from './reportWebVitals';
-import Tabs from "./Components/Tabs"; 
+import Tabs from "./Components/Tabs";
 import { Link } from "react-router-dom";
 import $ from 'jquery';
 import cookie from 'react-cookies';
@@ -33,6 +33,7 @@ class Editprofile extends React.Component {
 
 	componentDidMount() {
 		window.addEventListener('load', this.handleLoad);
+		certdata = []; workdata = []; jobdata = [];
 		//const script = document.createElement("script");
 		//script.src = "assets/js/#.js";
 		//document.body.appendChild(script);
@@ -40,7 +41,7 @@ class Editprofile extends React.Component {
 		$(async function () {
 			//alert('Selected tab is ' + cookie.load('Edit_tabselect'));
 			await GetDatas();
-			Datasetstate.setState ({render: true});
+			Datasetstate.setState({ render: true });
 			var Tab_select = cookie.load('Edit_tabselect');
 			$('.tab-content').hide();
 			if (Tab_select == 1) {
@@ -207,121 +208,122 @@ class Editprofile extends React.Component {
 			});
 			return list_of_aca;
 		}
-		function GetDatas () {
+		function GetDatas() {
 			return new Promise((resolve, reject) => {
-			var token = cookie.load('login-token')
-			console.log('Your Token is: ' + token);
-			fetch("http://localhost:2000/register/getinfo", {
-				method: "GET",
-				headers: {
-					'Authorization': 'Bearer ' + token,
-					"Access-Control-Allow-Origin": "*",
-					"Access-Control-Allow-Methods": "*",
-					"Access-Control-Allow-Credentials": true,
-					"Content-Type": "application/json"
-				},
-			})
-				.then(response => response.json())
-				.then((datas) => {
-					console.log('You Fetch Success!');
-					Datasetstate.setState({
-						data: datas,
-					})
-					console.log('Datasetstate.state.data :' + Datasetstate.state.data);
-					/*Zone to use datas*/
-					/*console.log(Datasetstate.state.data.Degree);
-					Datasetstate.state.data.Degree.forEach(element => {
-						if (element == 'มัธยมศึกษาตอนปลาย' || element == 'ปวช.') {
-							list_of_high.push({
-								id: Datasetstate.state.data.EducationHistory_id,
-								high_pos: 0,
-								high_name: Datasetstate.state.data.Academy,
-								high_faculty: 'none',
-								high_degree: Datasetstate.state.data.Degree,
-								high_grade: Datasetstate.state.data.Grade,
-								high_field: Datasetstate.state.data.Field_of_study,
-								high_year: Datasetstate.state.data.Education_End_Year,
-							});
-							get_high_id(list_of_high, 1);
-							console.log(list_of_high);
-						}
-						else {
-							list_of_aca.push({
-								id: Datasetstate.state.data.EducationHistory_id,
-								aca_pos: 0,
-								aca_name: Datasetstate.state.data.Academy,
-								aca_faculty: Datasetstate.state.data.Facalty,
-								aca_degree: Datasetstate.state.data.Degree,
-								aca_grade: Datasetstate.state.data.Grade,
-								aca_field: Datasetstate.state.data.Field_of_study,
-								aca_year: Datasetstate.state.data.Education_End_Year,
-							});
-							get_aca_id(list_of_aca, 1);
-							console.log(list_of_aca);
-						}
-					});*/
-					Datasetstate.state.data.Certificate_id.forEach((ele, index) => {
-						certdata.push({
-							Certificate_id: ele,
-							CertName: Datasetstate.state.data.CertName[index],
-							CertPic: Datasetstate.state.data.CertPic[index],
-							CertYear: Datasetstate.state.data.CertYear[index],
-							isFetch: true,
-							token: token
+				var token = cookie.load('login-token')
+				console.log('Your Token is: ' + token);
+				fetch("http://localhost:2000/register/getinfo", {
+					method: "GET",
+					headers: {
+						'Authorization': 'Bearer ' + token,
+						"Access-Control-Allow-Origin": "*",
+						"Access-Control-Allow-Methods": "*",
+						"Access-Control-Allow-Credentials": true,
+						"Content-Type": "application/json"
+					},
+				})
+					.then(response => response.json())
+					.then((datas) => {
+						console.log('You Fetch Success!');
+						Datasetstate.setState({
+							data: datas,
 						})
+						console.log('Datasetstate.state.data :' + Datasetstate.state.data);
+						/*Zone to use datas*/
+						/*console.log(Datasetstate.state.data.Degree);
+						Datasetstate.state.data.Degree.forEach(element => {
+							if (element == 'มัธยมศึกษาตอนปลาย' || element == 'ปวช.') {
+								list_of_high.push({
+									id: Datasetstate.state.data.EducationHistory_id,
+									high_pos: 0,
+									high_name: Datasetstate.state.data.Academy,
+									high_faculty: 'none',
+									high_degree: Datasetstate.state.data.Degree,
+									high_grade: Datasetstate.state.data.Grade,
+									high_field: Datasetstate.state.data.Field_of_study,
+									high_year: Datasetstate.state.data.Education_End_Year,
+								});
+								get_high_id(list_of_high, 1);
+								console.log(list_of_high);
+							}
+							else {
+								list_of_aca.push({
+									id: Datasetstate.state.data.EducationHistory_id,
+									aca_pos: 0,
+									aca_name: Datasetstate.state.data.Academy,
+									aca_faculty: Datasetstate.state.data.Facalty,
+									aca_degree: Datasetstate.state.data.Degree,
+									aca_grade: Datasetstate.state.data.Grade,
+									aca_field: Datasetstate.state.data.Field_of_study,
+									aca_year: Datasetstate.state.data.Education_End_Year,
+								});
+								get_aca_id(list_of_aca, 1);
+								console.log(list_of_aca);
+							}
+						});*/
+						Datasetstate.state.data.Certificate_id.forEach((ele, index) => {
+							certdata.push({
+								Certificate_id: ele,
+								CertName: Datasetstate.state.data.CertName[index],
+								CertPic: Datasetstate.state.data.CertPic[index],
+								CertYear: Datasetstate.state.data.CertYear[index],
+								isFetch: true,
+								token: token
+							})
+						});
+						Datasetstate.state.data.WorkHistory_id.forEach((ele, index) => {
+							let regist4_cb = false;
+							if (Datasetstate.state.data.Work_End_Year[index] === 9999 && Datasetstate.state.data.Work_End_Month[index] === 99) {
+								regist4_cb = true;
+							}
+							workdata.push({
+								WorkHistory_id: ele,
+								Work_JobName: Datasetstate.state.data.Work_JobName[index],
+								Work_JobType: Datasetstate.state.data.Work_JobType[index],
+								Company: Datasetstate.state.data.Company[index],
+								Work_Start_Month: Datasetstate.state.data.Work_Start_Month[index],
+								Work_End_Month: Datasetstate.state.data.Work_End_Month[index],
+								Work_Start_Year: Datasetstate.state.data.Work_Start_Year[index],
+								Work_End_Year: Datasetstate.state.data.Work_End_Year[index],
+								SalaryType: Datasetstate.state.data.SalaryType[index],
+								Salary: Datasetstate.state.data.Salary[index],
+								Infomation: Datasetstate.state.data.Infomation[index],
+								regist4_cb: regist4_cb,
+								token: token,
+								isFetch: true
+							})
+						});
+						Datasetstate.state.data.InterestedJob_id.forEach((ele, index) => {
+							jobdata.push({
+								InterestedJob_id: ele,
+								Job_JobName: Datasetstate.state.data.Job_JobName[index],
+								Job_Score1: Datasetstate.state.data.Job_Score[index][0] ? parseFloat(Datasetstate.state.data.Job_Score[index][0]) : parseFloat(2.5),
+								Job_Score2: Datasetstate.state.data.Job_Score[index][1] ? parseFloat(Datasetstate.state.data.Job_Score[index][1]) : parseFloat(2.5),
+								Job_Score3: Datasetstate.state.data.Job_Score[index][2] ? parseFloat(Datasetstate.state.data.Job_Score[index][2]) : parseFloat(2.5),
+								Job_SkillName1: Datasetstate.state.data.Job_SkillName[index][0] ? Datasetstate.state.data.Job_SkillName[index][0] : "none",
+								Job_SkillName2: Datasetstate.state.data.Job_SkillName[index][1] ? Datasetstate.state.data.Job_SkillName[index][1] : "none",
+								Job_SkillName3: Datasetstate.state.data.Job_SkillName[index][2] ? Datasetstate.state.data.Job_SkillName[index][2] : "none",
+								Job_Objective1: Datasetstate.state.data.Job_Objective[index][0] !== "none" ? Datasetstate.state.data.Job_Objective[index][0] : "",
+								Job_Objective2: Datasetstate.state.data.Job_Objective[index][1] !== "none" ? Datasetstate.state.data.Job_Objective[index][1] : "",
+								Job_Objective3: Datasetstate.state.data.Job_Objective[index][2] !== "none" ? Datasetstate.state.data.Job_Objective[index][2] : "",
+								Job_Pos: index + 1,
+								token: token,
+								isFetch: true
+							})
+						});
 					});
-					Datasetstate.state.data.WorkHistory_id.forEach((ele, index) => {
-						let regist4_cb = false;
-						if (Datasetstate.state.data.Work_End_Year[index] === 9999 && Datasetstate.state.data.Work_End_Month[index] === 99) {
-							regist4_cb = true;
-						}
-						workdata.push({
-							WorkHistory_id: ele,
-							Work_JobName: Datasetstate.state.data.Work_JobName[index],
-							Work_JobType: Datasetstate.state.data.Work_JobType[index],
-							Company: Datasetstate.state.data.Company[index],
-							Work_Start_Month: Datasetstate.state.data.Work_Start_Month[index],
-							Work_End_Month: Datasetstate.state.data.Work_End_Month[index],
-							Work_Start_Year: Datasetstate.state.data.Work_Start_Year[index],
-							Work_End_Year: Datasetstate.state.data.Work_End_Year[index],
-							SalaryType: Datasetstate.state.data.SalaryType[index],
-							Salary: Datasetstate.state.data.Salary[index],
-							Infomation: Datasetstate.state.data.Infomation[index],
-							regist4_cb: regist4_cb,
-							token: token,
-							isFetch: true
-						})
-					});
-					Datasetstate.state.data.InterestedJob_id.forEach((ele, index) => {
-						jobdata.push({
-							InterestedJob_id: ele,
-							Job_JobName: Datasetstate.state.data.Job_JobName[index],
-							Job_Score1: Datasetstate.state.data.Job_Score[index][0] ? parseFloat(Datasetstate.state.data.Job_Score[index][0]) : parseFloat(2.5),
-							Job_Score2: Datasetstate.state.data.Job_Score[index][1] ? parseFloat(Datasetstate.state.data.Job_Score[index][1]) : parseFloat(2.5),
-							Job_Score3: Datasetstate.state.data.Job_Score[index][2] ? parseFloat(Datasetstate.state.data.Job_Score[index][2]) : parseFloat(2.5),
-							Job_SkillName1: Datasetstate.state.data.Job_SkillName[index][0] ? Datasetstate.state.data.Job_SkillName[index][0] : "none",
-							Job_SkillName2: Datasetstate.state.data.Job_SkillName[index][1] ? Datasetstate.state.data.Job_SkillName[index][1] : "none",
-							Job_SkillName3: Datasetstate.state.data.Job_SkillName[index][2] ? Datasetstate.state.data.Job_SkillName[index][2] : "none",
-							Job_Objective1: Datasetstate.state.data.Job_Objective[index][0] !== "none" ? Datasetstate.state.data.Job_Objective[index][0] : "",
-							Job_Objective2: Datasetstate.state.data.Job_Objective[index][1] !== "none" ? Datasetstate.state.data.Job_Objective[index][1] : "",
-							Job_Objective3: Datasetstate.state.data.Job_Objective[index][2] !== "none" ? Datasetstate.state.data.Job_Objective[index][2] : "",
-							Job_Pos: index + 1,
-							token: token,
-							isFetch: true
-						})
-					});
-				});
-			console.log('Datasetstate is job data : ' + jobdata);
-			//alert('Success!!');
-			resolve();
+				console.log('Datasetstate is job data : ' + jobdata);
+				//alert('Success!!');
+				resolve();
 			}
-			)}
+			)
+		}
 
-		$('#cancelChoose').on('click',function(){
+		$('#cancelChoose').on('click', function () {
 			window.history.go(-1);
 		});
-		$('#confirmEdit').on('click',function(){
-        	window.location = ("home");
+		$('#confirmEdit').on('click', function () {
+			window.location = ("home");
 		})
 	}
 
@@ -331,7 +333,7 @@ class Editprofile extends React.Component {
 		$(document).unbind();
 	}
 
-	render (){
+	render() {
 		if (this.state.render == true) {
 			return (
 				<div className="Editprofile">
@@ -384,12 +386,12 @@ class Editprofile extends React.Component {
 					</div>
 					<div class="col block-right2">
 						<button class="btn btn-cta-primary-blackwide round profile-button" target="_blank" type="button" id="cancelChoose">ยกเลิก</button>
-						<button class="btn btn-cta-primary-yellowwide round profile-button marginLEx1"  type="button" id="confirmEdit">ยืนยัน</button>
+						<button class="btn btn-cta-primary-yellowwide round profile-button marginLEx1" type="button" id="confirmEdit">ยืนยัน</button>
 					</div>
 				</div>
 			);
 		}
-		else{
+		else {
 			return (
 				<LoadingS />
 			)

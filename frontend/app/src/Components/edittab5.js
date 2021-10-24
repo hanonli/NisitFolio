@@ -24,10 +24,15 @@ class Edittab5 extends React.Component {
     constructor(props) {
         super(props);
         this.handleLoad = this.handleLoad.bind(this);
+        this.state = ({
+            statusUpload5: "",
+            imgStatus5: ""
+        });
     }
     componentDidMount() {
         window.addEventListener('load', this.handleLoad);
         //alert("อย่าเพิ่ง add edit delete");
+        var certiedit = this;
         var token5 = cookie.load('login-token');
         var list_of_year_certi = {}; //check year
         var year_before_certi;
@@ -61,7 +66,7 @@ class Edittab5 extends React.Component {
             $("#text-upload-112").remove();
             $("#text-upload-116").remove();
             show_certi();
-        }, 9000);
+        }, 3000);
 
         $(document).ready(function () {
             var startYear = 1900;
@@ -303,9 +308,10 @@ class Edittab5 extends React.Component {
 
         var name_certi, year_certi;
         $(document).on('click', "#submit-certi", async function () {
+            certiedit.setState({ statusUpload5: "Saving...", imgStatus5: "assets/images/outline_cached_black_24dp.png" });
+            $("#for-error-dgd5").removeClass("status-saving5555-red");
             name_certi = document.getElementById("nm_certi").value;
             year_certi = document.getElementById("yearpicker_111").value;
-
             if (document.getElementById("nm_certi").value == "" && year_certi == "" && picOfCerti == '') {
                 $("#nm_certi").addClass("is-invalid");
                 $("#yearpicker_111").addClass("is-invalid");
@@ -359,6 +365,7 @@ class Edittab5 extends React.Component {
                             $("#exampleModal11112").modal("hide");
                             $(".box-box-box-edit-certi").empty();
                             console.log(`list_of_certi:`, list_of_certi);
+                            certiedit.setState({ statusUpload5: "", imgStatus5: "" });
                             show_certi();
                             $("#preview_before_upload").remove();
                             $("#icon-upload-112").remove();
@@ -368,6 +375,8 @@ class Edittab5 extends React.Component {
                             file_picOfCerti = '';
                         }).catch((error) => {
                             console.log(error);
+                            $("#for-error-dgd5").addClass("status-saving5555-red");
+                            certiedit.setState({ statusUpload5: "Save Failed", imgStatus5: "assets/images/baseline_error_black_24dp.png" });
                         });
                 }
                 else if (choose_function == 2) {
@@ -405,6 +414,7 @@ class Edittab5 extends React.Component {
                             $("#exampleModal11112").modal("hide");
                             $(".box-box-box-edit-certi").empty();
                             console.log(`list_of_certi:`, list_of_certi);
+                            certiedit.setState({ statusUpload5: "", imgStatus5: "" });
                             show_certi();
                             $("#preview_before_upload").remove();
                             $("#icon-upload-112").remove();
@@ -413,6 +423,8 @@ class Edittab5 extends React.Component {
                             picOfCerti = '';
                             file_picOfCerti = '';
                         }).catch((error) => {
+                            certiedit.setState({ statusUpload5: "Save Failed", imgStatus5: "assets/images/baseline_error_black_24dp.png" });
+                            $("#for-error-dgd5").addClass("status-saving5555-red");
                             console.log(error);
                         });
                 }
@@ -431,6 +443,8 @@ class Edittab5 extends React.Component {
             $("#text-upload-112").remove();
             $("#text-upload-116").remove();
             $("#to_upload112").removeClass("error_select_certi");
+            certiedit.setState({ statusUpload5: "", imgStatus5: "" });
+            $("#for-error-dgd5").removeClass("status-saving5555-red");
             picOfCerti = '';
             file_picOfCerti = '';
         });
@@ -492,7 +506,10 @@ class Edittab5 extends React.Component {
                                         <select class="form-select dropbtn_year margin-bottom1 fff" id="yearpicker_111" required>
                                             <option selected disabled value="">ปี*</option>
                                         </select>
+                                        <img class="inline status-img-saving-3r3r5" src={this.state.imgStatus5} weight="36" height="36"></img>
+                                        <h5 class="inline status-saving555445" id="for-error-dgd5">{this.state.statusUpload5}</h5>
                                     </div>
+
                                 </div>
                                 <div class="row" id="input_upload">
                                     <input id="image-upload112" accept="image/png, image/jpeg, image/jpg" class="hidden" type="file"></input>

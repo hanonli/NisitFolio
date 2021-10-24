@@ -7,11 +7,16 @@ class Edittab4 extends React.Component {
     constructor(props) {
         super(props);
         this.handleLoad = this.handleLoad.bind(this);
+        this.state = ({
+            statusUpload4: "",
+            imgStatus4: ""
+        });
     }
 
     componentDidMount() {
         window.addEventListener('load', this.handleLoad);
-        alert("อย่าเพิ่ง add edit delete");
+        var workedit = this;
+        //alert("อย่าเพิ่ง add edit delete");
         var token4 = cookie.load('login-token');
         var backup_year_endwork = 0, backup_month_endwork = 0, backup_salary = "";
         var list_of_work = []; //list of work
@@ -23,20 +28,11 @@ class Edittab4 extends React.Component {
         var id_list_work_del;
         setTimeout(() => {
             console.log("edittab4!!!!:", this.props.mywork_data);
-            const mywork2 = this.props.mywork_data ? this.props.mywork_data : [];
+            var mywork2 = this.props.mywork_data ? this.props.mywork_data : [];
             list_of_work = [...mywork2];
             show_work();
-        }, 9000);
-        /*---- generate code ID ----*/
-        function create_UUID() {
-            var dt = new Date().getTime();
-            var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-                var r = (dt + Math.random() * 16) % 16 | 0;
-                dt = Math.floor(dt / 16);
-                return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
-            });
-            return uuid;
-        }
+        }, 3000);
+
         /*------order list------*/
         function compareValues(key, order = 'asc') {
             return function innerSort(a, b) {
@@ -143,17 +139,6 @@ class Edittab4 extends React.Component {
                     }
                 }
                 grid_work3 = grid_work3.replace("{type_salary}", ele["SalaryType"]);
-                /*if (ele.SalaryType !== "ไม่ระบุ" || ele.SalaryType !== "") {
-                    if (Number.isNaN(ele.Salary) == false) {
-                        grid_work3 = grid_work3.replace("{salary_work}", ele["Salary"]);
-                    }
-                    else {
-                        grid_work3 = grid_work3.replace("{salary_work}", "-");
-                    }
-                }
-                else {
-                    grid_work3 = grid_work3.replace("{salary_work} บาท", "");
-                }  */
 
                 if ((ele.SalaryType === "ไม่ระบุ" || ele.SalaryType === "") && (ele.Salary === 0 || ele.Salary === null)) {
                     grid_work3 = grid_work3.replace("{salary_work} บาท", "");
@@ -385,6 +370,8 @@ class Edittab4 extends React.Component {
 
         //submit data to list 
         $(document).on('click', "#submit-work", function () {
+            workedit.setState({ statusUpload4: "Saving...", imgStatus4: "assets/images/outline_cached_black_24dp.png" });
+            $("#for-error-dgd").removeClass("status-saving5555-red");
             var type_work = document.getElementById("jobtype_work").value;
             var pos_work = document.getElementById("jobname_work").value;
             var company_work = document.getElementById("company_work").value;
@@ -515,9 +502,12 @@ class Edittab4 extends React.Component {
                             //for_edit["backup_salary"] = backup_salary;        
                             $("#registab4Modal").modal("hide"); //success!!!!!
                             $(".box-box-box-work1-edit").empty();
+                            workedit.setState({ statusUpload4: "", imgStatus4: "" });
                             show_work();
                         }).catch((error) => {
                             console.log(error);
+                            workedit.setState({ statusUpload4: "Save Failed", imgStatus4: "assets/images/baseline_error_black_24dp.png" });
+                            $("#for-error-dgd").addClass("status-saving5555-red");
                         });
                 }
                 else if (choose_function == 2) {
@@ -559,11 +549,13 @@ class Edittab4 extends React.Component {
                             });
                             $("#registab4Modal").modal("hide"); //success!!!!!
                             $(".box-box-box-work1-edit").empty();
+                            workedit.setState({ statusUpload4: "", imgStatus4: "" });
                             show_work();
                         }).catch((error) => {
                             console.log(error);
+                            workedit.setState({ statusUpload4: "Save Failed", imgStatus4: "assets/images/baseline_error_black_24dp.png" });
+                            $("#for-error-dgd").addClass("status-saving5555-red");
                         });
-
                 }
                 console.log(`list_of_work:`, list_of_work);
 
@@ -617,6 +609,8 @@ class Edittab4 extends React.Component {
             document.getElementById("inform_work").value = "";
             //backup_year_endwork = 0, backup_month_endwork = 0;
             //backup_salary = "";
+            workedit.setState({ statusUpload4: "", imgStatus4: "" });
+            $("#for-error-dgd").removeClass("status-saving5555-red");
         });
     }
 
@@ -651,7 +645,9 @@ class Edittab4 extends React.Component {
                         <div class="modal-dialog modal-dialog-centered modal-xl">
                             <div class="modal-content modalworkhis" >
                                 <div class='modal-body layoutforwork111'>
-                                    <h1 class='modal-titleT4only' id='regisModallabelt4_1'>เพิ่มประวัติการทำงาน</h1>
+                                    <h1 class='modal-titleT4only inline' id='regisModallabelt4_1'>เพิ่มประวัติการทำงาน</h1>
+                                    <img class="status-img-saving-3r3r" src={this.state.imgStatus4} height="36"></img>
+                                    <h5 class="inline status-saving5555" id="for-error-dgd">{this.state.statusUpload4}</h5>
                                     <div className='addWorkHistory'>
                                         <div className="Registab4_addWorkHistory">
 

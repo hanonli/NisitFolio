@@ -8,10 +8,15 @@ class Edittab6 extends React.Component {
     constructor(props) {
         super(props);
         this.handleLoad = this.handleLoad.bind(this);
+        this.state = ({
+            statusUpload6: "",
+            imgStatus6: ""
+        });
     }
 
     componentDidMount() {
         window.addEventListener('load', this.handleLoad);
+        var jobedit = this;
         //alert("อย่าเพิ่ง add edit delete");
         var token6 = cookie.load('login-token');
         var choose_function = -1; //default
@@ -29,7 +34,7 @@ class Edittab6 extends React.Component {
             $("#input_mySlider3").remove();
             show_all_job();
 
-        }, 9000);
+        }, 3000);
 
         $(document).on('click', '.tabs_pop li', function () {
             $('.tabs_pop li').removeClass('current2');
@@ -50,16 +55,6 @@ class Edittab6 extends React.Component {
                 x++;
             });
             return list_of_job;
-        }
-
-        function create_UUID() {
-            var dt = new Date().getTime();
-            var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-                var r = (dt + Math.random() * 16) % 16 | 0;
-                dt = Math.floor(dt / 16);
-                return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
-            });
-            return uuid;
         }
 
         function show_all_job() {
@@ -533,10 +528,12 @@ class Edittab6 extends React.Component {
                     $("#each_skill3").val(for_edit["Job_SkillName3"]);
                     document.getElementById("input_mySlider3").disabled = false;
                 }
-            }, 300);
+            }, 600);
         });
 
         document.getElementById("submit-job11").addEventListener("click", function () {
+            jobedit.setState({ statusUpload6: "Saving...", imgStatus6: "assets/images/outline_cached_black_24dp.png" });
+            $("#for-error-dgd6").removeClass("status-saving5555-red");
             var name_job = document.getElementById("nm_job").value;
             var skill_job_1 = document.getElementById("each_skill1").value;
             var skill_job_2 = document.getElementById("each_skill2").value;
@@ -697,8 +694,11 @@ class Edittab6 extends React.Component {
                             $("#input_mySlider1").remove();
                             $("#input_mySlider2").remove();
                             $("#input_mySlider3").remove();
+                            jobedit.setState({ statusUpload6: "", imgStatus6: "" });
                         }).catch((error) => {
                             console.log(error);
+                            jobedit.setState({ statusUpload6: "Save Failed", imgStatus6: "assets/images/baseline_error_black_24dp.png" });
+                            $("#for-error-dgd6").addClass("status-saving5555-red");
                         });
                 }
                 else if (choose_function == 2) { //add job in list
@@ -750,8 +750,11 @@ class Edittab6 extends React.Component {
                             $("#input_mySlider1").remove();
                             $("#input_mySlider2").remove();
                             $("#input_mySlider3").remove();
+                            jobedit.setState({ statusUpload6: "", imgStatus6: "" });
                         }).catch((error) => {
                             console.log(error);
+                            jobedit.setState({ statusUpload6: "Save Failed", imgStatus6: "assets/images/baseline_error_black_24dp.png" });
+                            $("#for-error-dgd6").addClass("status-saving5555-red");
                         });
                 }
                 /*if (list_of_job.length < 3) {
@@ -857,7 +860,8 @@ class Edittab6 extends React.Component {
             removeOptionsJob(document.getElementById("each_skill1"));
             removeOptionsJob(document.getElementById("each_skill2"));
             removeOptionsJob(document.getElementById("each_skill3"));
-
+            jobedit.setState({ statusUpload6: "", imgStatus6: "" });
+            $("#for-error-dgd6").removeClass("status-saving5555-red");
             if (tabId == "tab02") {
                 $('.tabs_pop li').removeClass('current2');
                 $('.tab-pane_pop').removeClass('current2');
@@ -1001,7 +1005,9 @@ class Edittab6 extends React.Component {
                             <div class="modal-content popup_JOB" >
                                 <div class="row head_modal_job">
                                     <div class="col-md-5">
-                                        <h1 id="topic_pop">เพิ่มตำแหน่งงานที่สนใจ</h1>
+                                        <h1 class="inline" id="topic_pop">เพิ่มตำแหน่งงานที่สนใจ</h1>
+                                        <img class="status-img-saving-3r3r6" src={this.state.imgStatus6} height="36"></img>
+                                        <h5 class="inline status-saving6666" id="for-error-dgd6">{this.state.statusUpload6}</h5>
                                     </div>
                                     <div class="col-md-5 select-job4">
                                         <select id="nm_job" class="form-select dropbtn-job4 margin-bottom-job4 fff" required>
