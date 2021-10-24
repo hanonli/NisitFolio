@@ -961,6 +961,7 @@ class Edittab6 extends React.Component {
 
     componentWillUnmount() {
         window.removeEventListener('load', this.handleLoad);
+        $(document).unbind();
     }
 
     handleLoad() {

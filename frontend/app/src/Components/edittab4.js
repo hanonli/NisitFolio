@@ -103,7 +103,7 @@ class Edittab4 extends React.Component {
                     grid_work1 = grid_work1.replace("{company_work}", ele["Company"]);
                 }
                 else {
-                    grid_work1 = grid_work1.replace("{company_work}", "-");
+                    grid_work1 = grid_work1.replace("{company_work}", "");
                 }
                 if (ele["Work_Start_Month"] < 10) {
                     grid_work1 = grid_work1.replace("{month_startwork}", `0` + ele["Work_Start_Month"]);
@@ -623,6 +623,7 @@ class Edittab4 extends React.Component {
     componentWillUnmount() {
         window.removeEventListener('load', this.handleLoad);
         //$(window).unbind('scroll');
+        $(document).unbind();
     }
 
     handleLoad() {

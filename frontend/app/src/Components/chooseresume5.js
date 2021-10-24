@@ -11,25 +11,11 @@ class Chooseresume5 extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {
-			sideskillName: "",
-			checkstatust7: false,
-			countsideskill: 0,
-		};
 	}
-
-	onInputChange = value => {
-		this.setState({
-			sideskillName: value,
-			checkstatust7: true,
-		});
-		//console.log("I am Parent component. I got", value, "from my child.");
-		//console.log("I am",this.state.checkstatust7);
-		//console.log('Now!!' +this.state.countsideskill);
-	};
 
 	componentDidMount() {
 		window.addEventListener('load', this.handleLoad);
+		/*
 		var choose_sideskill = [];
 		var isCheck_sideskill = {};
 		var aaa = this;
@@ -91,7 +77,7 @@ class Chooseresume5 extends React.Component {
 				$("#dangerzonect6").text(`คุณเลือกไปแล้ว ${choose_sideskill.length} รายการ`);
 				$("#dangerzonect6").removeClass("red_markOnly");
 			}
-		});
+		});*/
 	}
 
 	render() {
