@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './Components/landingPage1.css';
 import './Components/landingPage4.css'
 import SignInLand from './Components/signIn_land';
-import Navbar from './Components/navbar';
+import Navbar from './Components/navbarLogin';
 
 class AnonymousLogin extends React.Component {
     render() {

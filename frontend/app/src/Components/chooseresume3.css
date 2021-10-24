@@ -73,11 +73,11 @@
 }
 
 .you-choose-list-resume{
-    position: fixed;
-    left: 20vw;
-    top: 90%;
     font-size: 16px;
     font-weight: 300;
+    position: absolute;
+    left: 20vw;
+    top: 90%;
     color: #939393;
 }
 

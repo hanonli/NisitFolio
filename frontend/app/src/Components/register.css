@@ -600,7 +600,6 @@ datalist {
     position: absolute;
     left: 20vw;
     top: 90%;
-    color: #939393;
 }
 
 #dangerzonect5 {
@@ -609,7 +608,6 @@ datalist {
   position: absolute;
   left: 20vw;
   top: 90%;
-  color: #939393;
 }
 
 #dangerzonect6 {
@@ -618,9 +616,11 @@ datalist {
   position: absolute;
   left: 20vw;
   top: 90%;
-  color: #939393;
 }
 
+.dangerzoneEditresumeColor {
+  color : #939393;
+}
 .Registab3 .choosetab3_formbox {
   background-color: white;
   border: 1px solid black;

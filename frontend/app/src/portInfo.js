@@ -1042,7 +1042,9 @@ class PortInfo extends React.Component {
 									<div class="e-wrapper">
 										<div class="email-box">
 											<af id="port-user-email">ยังไม่สามารถระบุอีเมลของเจ้าของผลงานได้</af>
-											<img class="tooltips-item obj-icon cb-icon" id="clipboard" src="assets/images/outline_content_copy_black_48dp.png" type="button" alt="" width="25" height="25"/>
+											<OverlayTrigger key={'bottom'} placement={'bottom'} overlay={ <Tooltip>คัดลอก</Tooltip> }>
+												<img class="tooltips-item obj-icon cb-icon" id="clipboard" src="assets/images/outline_content_copy_black_48dp.png" type="button" alt="" width="25" height="25"/>
+											</OverlayTrigger>
 										</div>
 									</div>
 									<af>หรือ</af>
