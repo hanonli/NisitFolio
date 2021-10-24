@@ -48,7 +48,7 @@ class Chooseresume1 extends React.Component {
 							</div>
 						</div>
 					</div>
-					<h5 id="dangerzonect1"></h5>
+					<h5 class="dangerzoneEditresumeColor" id="dangerzonect1"></h5>
 				</div>
 		);
 	}

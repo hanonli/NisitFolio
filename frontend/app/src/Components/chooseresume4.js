@@ -19,11 +19,6 @@ class Chooseresume5 extends React.Component {
 		}
 	}
 
-	handleClick(e){
-		const inputText = choose_Port;
-		this.props.onChange(inputText);
-	}
-
 	componentDidMount() {
 		var port_data = [];
 		var token = cookie.load('login-token')
@@ -90,6 +85,9 @@ class Chooseresume5 extends React.Component {
 				//alert('Sawaddeekrub Port',t5_port);
 				$(".port-box1").append(t5_port);
 			});
+			var count_pp = $(".myresume-choose-port1:input:checkbox:checked").length;
+			//alert(count_pp);
+			$("#dangerzonect5").text(`คุณเลือกไปแล้ว ${count_pp} รายการ`);
 		}, 3000);
 		//console.log("isCheck_Port :", isCheck_Port);
 		$(document).on("click", ".myresume-choose-port1", function () {
@@ -117,7 +115,7 @@ class Chooseresume5 extends React.Component {
 				<div class="Editresume-box-content5" id="yyy">
 					<div class="port-box1"></div>
 				</div>
-				<h1 id="dangerzonect5" class='normalformzonet3'></h1>
+				<h1 id="dangerzonect5" class="dangerzoneEditresumeColor"></h1>
 			</div>
 		);
 	}

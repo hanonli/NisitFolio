@@ -447,6 +447,7 @@ class Edittab5 extends React.Component {
     componentWillUnmount() {
         window.removeEventListener('load', this.handleLoad);
         //$(window).unbind('scroll');
+        $(document).unbind();
     }
 
     handleLoad() {
