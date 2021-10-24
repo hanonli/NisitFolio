@@ -1502,7 +1502,7 @@ class NewAnalytics extends React.Component {
 		
 		return (
 			<div className="Analytics">
-				<link rel="stylesheet" href="assets/css/bookmark.css" />
+				<link rel="stylesheet" href="assets/css/hiddenBody.css" />
 				<Navbar />
 				
 				<br></br>

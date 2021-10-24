@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+//import './index.css';
 import Navbar from './Components/navbar';
 import BookmarkTabs from './Components/bookmarkTabs';
 import BookmarkHeader from './Components/bookmarkHeader';
