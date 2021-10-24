@@ -5,7 +5,6 @@ import Navbarlogo from './Components/navbar';
 import InformationHeader from './Components/informationHeader';
 import reportWebVitals from './reportWebVitals';
 import { Link } from "react-router-dom";
-import Myresumedittemplate from "./Components/myresumeEditTemplate";
 import Chooseresume1 from "./Components/chooseresume1";
 import Editresume2 from "./Components/editresume2";
 import Editresume3 from "./Components/editresume3";
@@ -16,9 +15,16 @@ import cookie from 'react-cookies';
 import LoadingS from './Components/loadingS';
 import async from 'react-select/async';
 
-var certdata = [], workdata = [], list_of_aca = [], list_of_high = [], sideskilldata = [];
+var list_of_aca = [], list_of_high = [], sideskilldata = [];
 var select_color_template = "#FFCE55";
-var choose_aca=[],choose_high=[],choose_sideskill = [];
+var choose_aca = [], choose_high = [], choose_sideskill = [];
+var myTemplate = {
+	"#ff7370": "assets/images/previewRR.png",
+	"#fe9666": "assets/images/previewRO.png",
+	"#ffce55": "assets/images/previewRY.png",
+	"#01b8aa": "assets/images/previewRG.png",
+	"#32a3c7": "assets/images/previewRB.png",
+}
 
 class Editresume extends React.Component {
 
@@ -31,11 +37,10 @@ class Editresume extends React.Component {
 			Color_Resume: '',
 			firstchoosecolor: false,
 			resumeId: '',
-			port_choose: []
+			port_choose: [],
+			selectedOption: "",
+			sample_template: "",
 		}
-	}
-	callbackFunction = (childData) => {
-		this.setState({ Color_Resume: childData })
 	}
 
 	handleClick = value => {
@@ -44,11 +49,21 @@ class Editresume extends React.Component {
 		});
 	}
 
+	handleChange = e => {
+		this.setState({
+			selectedOption: e.target.value,
+			sample_template: myTemplate[e.target.value]
+		});
+		select_color_template = e.target.value; //ใช้ตัวแปรนี้แทน
+		console.log("choose color:", select_color_template);
+		//console.log("choose color2:", this.state.value_color);
+	};
+
 	componentDidMount() {
 		var editresumeState = this;
 		var list_of_high = [], list_of_aca = [];
 		var isCheck_sideskill = {};
-		
+		var tmp1 = [], tmp2 = [], list_of_year_certi = {}, year_before_certi, year_before_work = -1, list_of_year_work = {}, certdata = [], workdata = [];
 		function get_high_id(list_of_high, x) {
 			//var x = 1;
 			list_of_high.forEach(ele => {
@@ -69,7 +84,7 @@ class Editresume extends React.Component {
 			return list_of_aca;
 		}
 		/*Zone to Submit EditResume */
-		function SubmitEdit () {
+		function SubmitEdit() {
 			//alert(this.state.Color_Resume);
 			choose_aca.forEach(ele => {
 				choose_high.push(ele);
@@ -86,8 +101,9 @@ class Editresume extends React.Component {
 			}
 			console.log(FormEdit);
 			alert('Confirm Edit Resume');
-			//Editresume(FormEdit);
+			//EditResume(FormEdit);
 			//window.location = ("myresume");
+			window.location.href = "http://localhost:3000/myresume";
 		}
 
 		function EditResume(pack) {
@@ -109,7 +125,7 @@ class Editresume extends React.Component {
 					}
 					else {
 						console.log("ok");
-						window.location.href = "http://localhost:3000/myresume/";
+						window.location.href = "http://localhost:3000/myresume";
 					}
 					return response;
 				}).catch(function (error) {
@@ -119,136 +135,158 @@ class Editresume extends React.Component {
 
 		/* Zone to get resume datas */
 		function GetResumeData() {
-			return new Promise((resolve,reject)=>{
-			var token = cookie.load('login-token')
-			console.log('Your Token is: ' + token);
-			fetch("http://localhost:2000/myresume/myresume/foredit", {
-				method: "GET",
-				headers: {
-					'Authorization': 'Bearer ' + token,
-					"Access-Control-Allow-Origin": "*",
-					"Access-Control-Allow-Methods": "*",
-					"Access-Control-Allow-Credentials": true,
-					"Content-Type": "application/json"
-				},
-			})
-				.then(response => response.json())
-				.then((datas) => {
-					console.log('You Fetch Success!');
-					console.log(datas);
-					editresumeState.setState({
-						data: datas,
-					})
-					console.log('editresumeState.state.data :' + editresumeState.state.data);
-					/*Zone to use datas*/
-					//console.log(editresumeState.state.data.Degree);
-					//Color_Resume = editresumeState.state.data.Color_ResumeId ? editresumeState.state.data.Color_ResumeId : "";
-					if (editresumeState.state.data.Color_ResumeId === undefined) {
-						console.log("Color_ResumeId:", editresumeState.state.data.Color_ResumeId);
-						editresumeState.setState({ firstchoosecolor: true });
-					}
-					else {
-						editresumeState.setState({ Color_Resume: editresumeState.state.data.Color_ResumeId });
-					}
-					editresumeState.state.data.Job_JobName.forEach((ele, index) => {
-						if (ele == cookie.load('Job_EditName')) {
-							console.log('This Resume is : '+editresumeState.state.data.Resume_id[index]);
-							cookie.save('ResumeIdForEdit',editresumeState.state.data.Resume_id[index])
-							return editresumeState.setState({ resumeId: editresumeState.state.data.Resume_id[index] });
-							//alert(editresumeState.state.resumeId);
+			return new Promise((resolve, reject) => {
+				var token = cookie.load('login-token')
+				console.log('Your Token is: ' + token);
+				fetch("http://localhost:2000/myresume/myresume/foredit", {
+					method: "GET",
+					headers: {
+						'Authorization': 'Bearer ' + token,
+						"Access-Control-Allow-Origin": "*",
+						"Access-Control-Allow-Methods": "*",
+						"Access-Control-Allow-Credentials": true,
+						"Content-Type": "application/json"
+					},
+				})
+					.then(response => response.json())
+					.then((datas) => {
+						console.log('You Fetch Success!');
+						console.log(datas);
+						editresumeState.setState({
+							data: datas,
+						})
+						console.log('editresumeState.state.data :' + editresumeState.state.data);
+						/*Zone to use datas*/
+						//console.log(editresumeState.state.data.Degree);
+						//Color_Resume = editresumeState.state.data.Color_ResumeId ? editresumeState.state.data.Color_ResumeId : "";
+						if (editresumeState.state.data.Color_ResumeId !== undefined) {
+							editresumeState.setState({ selectedOption: editresumeState.state.data.Color_ResumeId, sample_template: myTemplate[editresumeState.state.data.Color_ResumeId] });
 						}
-						/*else{
-							alert(index);
+						/*else {
+							editresumeState.setState({ selectedOption: "#ffce55", sample_template: myTemplate["#ffce55"] });
 						}*/
+						editresumeState.state.data.Job_JobName.forEach((ele, index) => {
+							if (ele == cookie.load('Job_EditName')) {
+								console.log('This Resume is : ' + editresumeState.state.data.Resume_id[index]);
+								cookie.save('ResumeIdForEdit', editresumeState.state.data.Resume_id[index])
+								return editresumeState.setState({ resumeId: editresumeState.state.data.Resume_id[index] });
+								//alert(editresumeState.state.resumeId);
+							}
+							/*else{
+								alert(index);
+							}*/
+						});
+						editresumeState.state.data.Degree.forEach((element, index) => {
+
+							if (element == 'มัธยมศึกษาตอนปลาย' || element == 'ปวช.') {
+								list_of_high.push({
+									id: editresumeState.state.data.EducationHistory_id[index],
+									high_pos: 0,
+									high_name: editresumeState.state.data.Academy[index],
+									high_faculty: 'none',
+									high_degree: editresumeState.state.data.Degree[index],
+									high_grade: editresumeState.state.data.Grade[index],
+									high_field: editresumeState.state.data.Field_of_study[index],
+									high_year: editresumeState.state.data.Education_End_Year[index],
+									isCheckHigh: editresumeState.state.data.EducationHistory_ResumeId.includes(editresumeState.state.resumeId) ? 'checked' : "defaultChecked"
+								});
+								get_high_id(list_of_high, 1);
+								console.log(list_of_high);
+							}
+							else {
+								list_of_aca.push({
+									id: editresumeState.state.data.EducationHistory_id[index],
+									aca_pos: 0,
+									aca_name: editresumeState.state.data.Academy[index],
+									aca_faculty: editresumeState.state.data.Facalty[index],
+									aca_degree: editresumeState.state.data.Degree[index],
+									aca_grade: editresumeState.state.data.Grade[index],
+									aca_field: editresumeState.state.data.Field_of_study[index],
+									aca_year: editresumeState.state.data.Education_End_Year[index],
+									isCheckAca: editresumeState.state.data.EducationHistory_ResumeId.includes(editresumeState.state.resumeId) ? 'checked' : "defaultChecked"
+								});
+								get_aca_id(list_of_aca, 1);
+								console.log(list_of_aca);
+							}
+						});
+						console.log("Certificate_ResumeId:", editresumeState.state.data.hasOwnProperty('Certificate_ResumeId'));
+						editresumeState.state.data.Certificate_id.forEach((ele, index) => {
+							certdata.push({
+								Certificate_id: ele,
+								CertName: editresumeState.state.data.CertName[index],
+								CertPic: editresumeState.state.data.CertPic[index],
+								CertYear: editresumeState.state.data.CertYear[index],
+								isCheckCert: editresumeState.state.data.Certificate_ResumeId.includes(editresumeState.state.resumeId) ? true : false
+							})
+						});
+						console.log("WorkHistory_ResumeId:", editresumeState.state.data.hasOwnProperty('WorkHistory_ResumeId'));
+						editresumeState.state.data.WorkHistory_id.forEach((ele, index) => {
+							workdata.push({
+								WorkHistory_id: ele,
+								Work_JobName: editresumeState.state.data.Work_JobName[index],
+								Work_JobType: editresumeState.state.data.Work_JobType[index],
+								Company: editresumeState.state.data.Company[index],
+								Work_Start_Month: editresumeState.state.data.Work_Start_Month[index],
+								Work_End_Month: editresumeState.state.data.Work_End_Month[index],
+								Work_Start_Year: editresumeState.state.data.Work_Start_Year[index],
+								Work_End_Year: editresumeState.state.data.Work_End_Year[index],
+								SalaryType: editresumeState.state.data.SalaryType[index],
+								Salary: editresumeState.state.data.Salary[index],
+								Infomation: editresumeState.state.data.Infomation[index],
+								isCheckWork: editresumeState.state.data.WorkHistory_ResumeId.includes(editresumeState.state.resumeId) ? true : false
+							})
+						});
+						editresumeState.state.data.AdditionalSkill_id.forEach((ele, index) => {
+							sideskilldata.push({
+								sideskill_id: ele,
+								sideskillName: editresumeState.state.data.SoftSkill[index],
+								sideskillResume: editresumeState.state.data.AdditionalSkill_ResumeId[index],
+								isCheckSS: editresumeState.state.data.AdditionalSkill_ResumeId.includes(editresumeState.state.resumeId) ? 'checked' : "defaultChecked"
+							})
+						});
+						console.log(sideskilldata);
+						resolve();
 					});
-					editresumeState.state.data.Degree.forEach((element, index) => {
-	
-						if (element == 'มัธยมศึกษาตอนปลาย' || element == 'ปวช.') {
-							list_of_high.push({
-								id: editresumeState.state.data.EducationHistory_id[index],
-								high_pos: 0,
-								high_name: editresumeState.state.data.Academy[index],
-								high_faculty: 'none',
-								high_degree: editresumeState.state.data.Degree[index],
-								high_grade: editresumeState.state.data.Grade[index],
-								high_field: editresumeState.state.data.Field_of_study[index],
-								high_year: editresumeState.state.data.Education_End_Year[index],
-								isCheckHigh: editresumeState.state.data.EducationHistory_ResumeId.includes(editresumeState.state.resumeId) ? 'checked' : "defaultChecked"
-							});
-							get_high_id(list_of_high, 1);
-							console.log(list_of_high);
-						}
-						else {
-							list_of_aca.push({
-								id: editresumeState.state.data.EducationHistory_id[index],
-								aca_pos: 0,
-								aca_name: editresumeState.state.data.Academy[index],
-								aca_faculty: editresumeState.state.data.Facalty[index],
-								aca_degree: editresumeState.state.data.Degree[index],
-								aca_grade: editresumeState.state.data.Grade[index],
-								aca_field: editresumeState.state.data.Field_of_study[index],
-								aca_year: editresumeState.state.data.Education_End_Year[index],
-								isCheckAca: editresumeState.state.data.EducationHistory_ResumeId.includes(editresumeState.state.resumeId) ? 'checked' : "defaultChecked"
-							});
-							get_aca_id(list_of_aca, 1);
-							console.log(list_of_aca);
-						}
-					});
-					console.log("Certificate_ResumeId:", editresumeState.state.data.hasOwnProperty('Certificate_ResumeId'));
-					editresumeState.state.data.Certificate_id.forEach((ele, index) => {
-						certdata.push({
-							Certificate_id: ele,
-							CertName: editresumeState.state.data.CertName[index],
-							CertPic: editresumeState.state.data.CertPic[index],
-							CertYear: editresumeState.state.data.CertYear[index],
-							isCheckCert: editresumeState.state.data.hasOwnProperty('Certificate_ResumeId') ? (editresumeState.state.data.Certificate_ResumeId.includes(ele) ? true : false) : false
-						})
-					});
-					console.log("WorkHistory_ResumeId:", editresumeState.state.data.hasOwnProperty('WorkHistory_ResumeId'));
-					editresumeState.state.data.WorkHistory_id.forEach((ele, index) => {
-						workdata.push({
-							WorkHistory_id: ele,
-							Work_JobName: editresumeState.state.data.Work_JobName[index],
-							Work_JobType: editresumeState.state.data.Work_JobType[index],
-							Company: editresumeState.state.data.Company[index],
-							Work_Start_Month: editresumeState.state.data.Work_Start_Month[index],
-							Work_End_Month: editresumeState.state.data.Work_End_Month[index],
-							Work_Start_Year: editresumeState.state.data.Work_Start_Year[index],
-							Work_End_Year: editresumeState.state.data.Work_End_Year[index],
-							SalaryType: editresumeState.state.data.SalaryType[index],
-							Salary: editresumeState.state.data.Salary[index],
-							Infomation: editresumeState.state.data.Infomation[index],
-							isCheckWork: editresumeState.state.data.hasOwnProperty('WorkHistory_ResumeId') ? (editresumeState.state.data.WorkHistory_ResumeId.includes(ele) ? true : false) : false
-						})
-					});
-					editresumeState.state.data.AdditionalSkill_id.forEach((ele, index) => {
-						sideskilldata.push({
-							sideskill_id: ele,
-							sideskillName: editresumeState.state.data.SoftSkill[index],
-							sideskillResume: editresumeState.state.data.AdditionalSkill_ResumeId[index],
-							isCheckSS: editresumeState.state.data.AdditionalSkill_ResumeId.includes(editresumeState.state.resumeId) ? 'checked' : "defaultChecked"
-						})
-					});
-					console.log(sideskilldata);
-					resolve();
-				});
 			});
 		}
 
 		/* Zone to put check func */
-		function CheckbeforeEdit(){
-			return new Promise((resolve,reject)=>{
-			console.log('Time to edit!!!');
-			
-			resolve();
+		function CheckbeforeEdit() {
+			return new Promise((resolve, reject) => {
+				console.log('Time to edit!!!');
+
+				resolve();
 			});
+		}
+
+		function compareValues(key, order = 'asc') {
+			return function innerSort(a, b) {
+				if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+					// property doesn't exist on either object
+					return 0;
+				}
+				var varA = (typeof a[key] === 'string')
+					? a[key].toUpperCase() : a[key];
+				var varB = (typeof b[key] === 'string')
+					? b[key].toUpperCase() : b[key];
+
+				let comparison = 0;
+				if (varA > varB) {
+					comparison = 1;
+				} else if (varA < varB) {
+					comparison = -1;
+				}
+				return (
+					(order === 'desc') ? (comparison * -1) : comparison
+				);
+			};
 		}
 
 		/* Zone to show html */
 		$(async function () {
 			console.log('Start Fetch!!');
 			await GetResumeData();
-			editresumeState.setState ({render: true});
+			editresumeState.setState({ render: true });
 			$('.nameedit').text('"' + cookie.load('Job_EditName') + '"');
 			console.log('Edit Job is ' + cookie.load('Job_EditName'));
 			//alert('Selected tab is '+ cookie.load('Edit_tabselect'));
@@ -329,6 +367,8 @@ class Editresume extends React.Component {
 				$('#tab-6').addClass('tab-list-active')
 				$('#registab6-content').show();
 			});
+
+
 			list_of_high.forEach(ele => {
 				var grid_high1 = '<input\
 									class="myresume-choose-high1"\
@@ -360,24 +400,24 @@ class Editresume extends React.Component {
 				grid_high1 = grid_high1.replace("{no_high}", ele["high_pos"]);
 				grid_high1 = grid_high1.replace("{degree_high}", ele["high_degree"]);
 				grid_high1 = grid_high1.replace("{name_high}", ele["high_name"]);
-				if(ele["high_grade"]=="0.00" || ele["high_grade"]=="0"){
-				grid_high1 = grid_high1.replace("{grade_high}", '-');
+				if (ele["high_grade"] == "0.00" || ele["high_grade"] == "0") {
+					grid_high1 = grid_high1.replace("{grade_high}", '-');
 				}
-				else{
-				grid_high1 = grid_high1.replace("{grade_high}", ele["high_grade"]);
+				else {
+					grid_high1 = grid_high1.replace("{grade_high}", ele["high_grade"]);
 				}
-				if(ele["high_field"]=="none"){
-				grid_high1 = grid_high1.replace("{field_high}", '-');
+				if (ele["high_field"] == "none") {
+					grid_high1 = grid_high1.replace("{field_high}", '-');
 				}
 				grid_high1 = grid_high1.replace("{field_high}", ele["high_field"]);
-				if(ele["high_year"]=="0"){
-				grid_high1 = grid_high1.replace("{year_high}", '-');
+				if (ele["high_year"] == "0") {
+					grid_high1 = grid_high1.replace("{year_high}", '-');
 				}
-				else if(ele["high_year"]=="9999"){
-				grid_high1 = grid_high1.replace("{year_high}", 'กำลังศึกษา');
+				else if (ele["high_year"] == "9999") {
+					grid_high1 = grid_high1.replace("{year_high}", 'กำลังศึกษา');
 				}
-				else{
-				grid_high1 = grid_high1.replace("{year_high}", ele["high_year"]);
+				else {
+					grid_high1 = grid_high1.replace("{year_high}", ele["high_year"]);
 				}
 				$(".list-of-high").append(grid_high1);
 				console.log(`list_of_high:`, list_of_high);
@@ -415,35 +455,35 @@ class Editresume extends React.Component {
 				grid_aca1 = grid_aca1.replace("{degree_aca}", ele["aca_degree"]);
 				grid_aca1 = grid_aca1.replace("{name_aca}", ele["aca_name"]);
 				grid_aca1 = grid_aca1.replace("{faculty_aca}", ele["aca_faculty"]);
-				if(ele["aca_grade"]=="0.00" || ele["aca_grade"]=="0"){
-				grid_aca1 = grid_aca1.replace("{grade_aca}", '-');
+				if (ele["aca_grade"] == "0.00" || ele["aca_grade"] == "0") {
+					grid_aca1 = grid_aca1.replace("{grade_aca}", '-');
 				}
-				else{
-				grid_aca1 = grid_aca1.replace("{grade_aca}", ele["aca_grade"]);
+				else {
+					grid_aca1 = grid_aca1.replace("{grade_aca}", ele["aca_grade"]);
 				}
-				if(ele["aca_field"]=="none"){
-				grid_aca1 = grid_aca1.replace("{field_aca}", '-');
+				if (ele["aca_field"] == "none") {
+					grid_aca1 = grid_aca1.replace("{field_aca}", '-');
 				}
-				else{
-				grid_aca1 = grid_aca1.replace("{field_aca}", ele["aca_field"]);
+				else {
+					grid_aca1 = grid_aca1.replace("{field_aca}", ele["aca_field"]);
 				}
-				if(ele["aca_year"]==0){
-				grid_aca1 = grid_aca1.replace("{year_aca}", '-');
+				if (ele["aca_year"] == 0) {
+					grid_aca1 = grid_aca1.replace("{year_aca}", '-');
 				}
-				else if(ele["aca_year"]==9999){
-				grid_aca1 = grid_aca1.replace("{year_aca}", 'กำลังศึกษา');
+				else if (ele["aca_year"] == 9999) {
+					grid_aca1 = grid_aca1.replace("{year_aca}", 'กำลังศึกษา');
 				}
-				else{
-				grid_aca1 = grid_aca1.replace("{year_aca}", ele["aca_year"]);
+				else {
+					grid_aca1 = grid_aca1.replace("{year_aca}", ele["aca_year"]);
 				}
 				$(".list-of-aca").append(grid_aca1);
 				//console.log(`list_of_aca:`, list_of_aca);
 			});
-			console.log('Sideskill_data : ',sideskilldata);
+			console.log('Sideskill_data : ', sideskilldata);
 			sideskilldata.forEach(ele => {
 				//alert(ele.sideskillName);
 				//isCheck_sideskill[ele.sideskill_id] = false;
-				var ddt7_un =` <div id={ele.sideskill_id}>\
+				var ddt7_un = ` <div id={ele.sideskill_id}>\
 				<input\
 					class="myresume-choose-ssl1"\
 					id="{xxx}"\
@@ -468,6 +508,158 @@ class Editresume extends React.Component {
 			});
 			//console.log("isCheck_sideskill :", isCheck_sideskill);
 			//await CheckbeforeEdit();
+			/*--------------------------------------- WORK HISTORY ----------------------------------------*/
+			tmp2 = [...workdata];
+			tmp2.sort(compareValues('Work_Start_Year', 'desc'));
+			tmp2.forEach(ele => {
+				let grid_work2 = `<div id="{ele.WorkHistory_id}">\
+                                        <input\
+                                            class="input-choose-work1"\
+                                            id="{yyyele.WorkHistory_id}"\
+                                            type="checkbox"\
+                                            value="{ele.WorkHistory_id}"\
+                                            {ischeck}\
+                                            hidden\
+                                        />\
+                                        <label class="t4-content" id="list-work-22" for="{yyyxxcxele.WorkHistory_id}">\
+                                            <h5 class="col font-titlet4 font-boldt31">{ele.Work_JobName}</h5>\
+                                            <div class="row">\
+                                                <div class="col font-titlet4_1">\
+                                                    <div class="font-titlet4_1 font-boldt3">{company_work}</div>\
+                                                    <div class="font-titlet4_1">เริ่มต้น {ele.Work_Start_Month}/{ele.Work_Start_Year}</div>\
+                                                    <div class="font-titlet4_1">สิ้นสุด {month_endwork}/{year_endwork}</div>\
+                                                </div>\
+                                                <div class="col-2 newline-text123">{ele.Infomation}</div>\
+                                            </div>\
+                                            <div class="row">\
+                                                <div class="col-3 font-salary font-boldt3">{ele.Salary_type}</div>\
+                                                <div class="col font-titlet4_2">{salary_work} บาท</div>\
+                                            </div>\
+                                            <img class="icon-checkbox1112" height="110" src="assets/images/check_black.png" oncontextmenu="return false;" ondragstart="return false;"></img>\
+                                        </label>\
+                                    </div>`;
+				let headyearworkkk1 = `<div id="{show-year25}">\
+                                            <h1 id="textOfyear_certi">{ele.Work_Start_Year}</h1>\
+                                       </div>\
+                                       <div class="content-work1111" id="{contentYear}">`;
+				grid_work2 = grid_work2.replace("{ele.WorkHistory_id}", ele.WorkHistory_id);
+				grid_work2 = grid_work2.replace("{yyyele.WorkHistory_id}", "yyy" + ele.WorkHistory_id);
+				grid_work2 = grid_work2.replace("{ele.WorkHistory_id}", ele.WorkHistory_id);
+				grid_work2 = grid_work2.replace("{ischeck}", ele.isCheckWork ? "checked" : "");
+				grid_work2 = grid_work2.replace("{yyyxxcxele.WorkHistory_id}", "yyy" + ele.WorkHistory_id);
+				grid_work2 = grid_work2.replace("{ele.Work_JobName}", ele.Work_JobName);
+				if (ele.Company == "none" || ele.Company == "") {
+					grid_work2 = grid_work2.replace("{company_work}", "");
+				}
+				else {
+					grid_work2 = grid_work2.replace("{company_work}", ele.Company);
+				}
+				if (ele.Work_Start_Month < 10) {
+					grid_work2 = grid_work2.replace("{ele.Work_Start_Month}", `0` + ele.Work_Start_Month);
+				}
+				else {
+					grid_work2 = grid_work2.replace("{ele.Work_Start_Month}", ele.Work_Start_Month);
+				}
+				grid_work2 = grid_work2.replace("{ele.Work_Start_Year}", ele.Work_Start_Year);
+				if (ele.Work_End_Month === 99 && ele.Work_End_Year === 9999) {
+					grid_work2 = grid_work2.replace("สิ้นสุด {month_endwork}/{year_endwork}", "ยังอยู่ในงาน");
+				}
+				else if ((ele.Work_End_Month === 0 && ele.Work_End_Year === 0) || (ele.Work_End_Month === null && ele.Work_End_Year === null)) {
+					grid_work2 = grid_work2.replace("สิ้นสุด {month_endwork}/{year_endwork}", "");
+				}
+				else if (ele.Work_End_Month === 0 && ele.Work_End_Year != 0) {
+					grid_work2 = grid_work2.replace("{month_endwork}", "-");
+					grid_work2 = grid_work2.replace("{year_endwork}", ele.Work_End_Year);
+				}
+				else if (ele.Work_End_Month != 0 && ele.Work_End_Year === 0) {
+					if (ele.Work_End_Month <= 9) {
+						grid_work2 = grid_work2.replace("{month_endwork}", "0" + ele.Work_End_Month);
+					}
+					else {
+						grid_work2 = grid_work2.replace("{month_endwork}", ele.Work_End_Month);
+					}
+					grid_work2 = grid_work2.replace("{year_endwork}", "-");
+				}
+				else {
+					if (ele.Work_End_Month <= 9) {
+						grid_work2 = grid_work2.replace("{month_endwork}", "0" + ele.Work_End_Month);
+					}
+					else {
+						grid_work2 = grid_work2.replace("{month_endwork}", ele.Work_End_Month);
+					}
+					grid_work2 = grid_work2.replace("{year_endwork}", ele.Work_End_Year);
+				}
+				grid_work2 = grid_work2.replace("{ele.Salary_type}", ele.SalaryType);
+				if ((ele.SalaryType === "ไม่ระบุ" || ele.SalaryType === "") && (ele.Salary === 0 || ele.Salary === null)) {
+					grid_work2 = grid_work2.replace("{salary_work} บาท", "");
+				}
+				else if (ele.SalaryType != "ไม่ระบุ" && ele.Salary === 0 && (ele.Salary === 0 || ele.Salary === null)) {
+					grid_work2 = grid_work2.replace("{salary_work}", "-");
+				}
+				else {
+					grid_work2 = grid_work2.replace("{salary_work}", ele.Salary);
+				}
+				grid_work2 = grid_work2.replace("{ele.Infomation}", ele.Infomation);
+				if (year_before_work != ele.Work_Start_Year) {
+					list_of_year_work[ele.Work_Start_Year] = 1;
+					year_before_work = ele.Work_Start_Year;
+					headyearworkkk1 = headyearworkkk1.replace("{show-year25}", `fhshsmhm_` + String(ele.Work_Start_Year));
+					headyearworkkk1 = headyearworkkk1.replace("{ele.Work_Start_Year}", String(ele.Work_Start_Year));
+					headyearworkkk1 = headyearworkkk1.replace("{contentYear}", `contentYear-workresume_` + String(ele.Work_Start_Year));
+					$(".myresume-choose-work11").append(headyearworkkk1);
+				}
+				else {
+					list_of_year_work[ele.Work_Start_Year] += 1;
+				}
+				$(`#contentYear-workresume_` + String(ele.Work_Start_Year)).append(grid_work2);
+			});
+
+			/*--------------------------------------- CERTI ----------------------------------------*/
+			tmp1 = [...certdata];
+			tmp1.sort(compareValues('CertYear', 'desc'));
+			tmp1.forEach(ele => {
+				//isCheck_certi[ele.Certificate_id] = false;
+				let grid_certi2 = ` <div id={ele.Certificate_id}>\
+                                    <input\
+                                        class="input-choose-certi1"\
+                                        id="{xxx}"\
+                                        type="checkbox"\
+                                        value="{ele.Certificate_idvalue}"\
+                                        {ischeck}\
+                                        hidden\
+                                    />\
+                                    <label id="list-certi33" class="card_certi-resume" for="{forxxx}">\
+                                        <h1 id="name-of-certi">{ele.CertName}</h1>\
+                                        <h1 id="year-of-certi">{ele.CertYear}</h1>\
+                                        <div class="pos-pic-of-certi">\
+                                            <img height="142" src="{ele.CertPic}" id="border_certi" oncontextmenu="return false;" ondragstart="return false;" ></img>\
+                                        </div>\
+                                        <div class="icon-checkbox1111"><img height="110" src="assets/images/check_black.png" oncontextmenu="return false;" ondragstart="return false;" ></img></div>\
+                                    </label>\
+                                </div >`;
+				let headOfyear1234 = `  <div id="{show-year-resume-certi}"><h1 id="textOfyear_certi">{ele.CertYear}</h1></div>\
+                                    <div class="content-certi1-resume" id="{contentYear}"></div>`;
+				grid_certi2 = grid_certi2.replace("{xxx}", `xxx` + ele.Certificate_id);
+				grid_certi2 = grid_certi2.replace("{ele.Certificate_idvalue}", ele.Certificate_id);
+				//grid_certi2 = grid_certi2.replace("{isCheck_certi}", ele.isCheckCert);
+				grid_certi2 = grid_certi2.replace("{ischeck}", ele.isCheckCert ? "checked" : "");
+				grid_certi2 = grid_certi2.replace("{forxxx}", `xxx` + ele.Certificate_id);
+				grid_certi2 = grid_certi2.replace("{ele.CertName}", ele.CertName);
+				grid_certi2 = grid_certi2.replace("{ele.CertYear}", String(ele.CertYear));
+				grid_certi2 = grid_certi2.replace("{ele.CertPic}", ele.CertPic);
+				if (year_before_certi != ele.CertYear) {
+					list_of_year_certi[ele.CertYear] = 1;
+					year_before_certi = ele.CertYear;
+					headOfyear1234 = headOfyear1234.replace("{ele.CertYear}", String(ele.CertYear));
+					headOfyear1234 = headOfyear1234.replace("{contentYear}", `year-choose-tem-` + String(ele.CertYear));
+					headOfyear1234 = headOfyear1234.replace("{show-year-resume-certi}", String(ele.CertYear));
+					$(".myresume-choose-certi11").append(headOfyear1234);
+				}
+				else {
+					list_of_year_certi[ele.CertYear] += 1;
+				}
+				$("#year-choose-tem-" + String(ele.CertYear)).append(grid_certi2);
+			});
 		});
 
 		/* Zone to choose func */
@@ -495,7 +687,7 @@ class Editresume extends React.Component {
 			$(".myresume-choose-aca1:input:checkbox").not(":checked").attr("disabled", bol);
 		});
 		$(document).on("change", ".myresume-choose-high1", function () {
-			var choose_edu_now=choose_aca.length+choose_high.length;
+			var choose_edu_now = choose_aca.length + choose_high.length;
 			if (choose_edu_now === 6) {
 				$("#dangerzonect1").text("คุณเลือกครบ 6 รายการแล้ว");
 				$("#dangerzonect1").addClass("red_markOnly");
@@ -511,7 +703,7 @@ class Editresume extends React.Component {
 		});
 
 		$(document).on("change", ".myresume-choose-aca1", function () {
-			var choose_edu_now=choose_aca.length+choose_high.length;
+			var choose_edu_now = choose_aca.length + choose_high.length;
 			if (choose_edu_now === 6) {
 				$("#dangerzonect1").text("คุณเลือกครบ 6 รายการแล้ว");
 				$("#dangerzonect1").addClass("red_markOnly");
@@ -526,33 +718,16 @@ class Editresume extends React.Component {
 			}
 		});
 
-		$(document).on("click", ".input-choose-certi1", function () {
-			certdata = $('.input-choose-certi1:input[type=checkbox]:checked').map(function (_, el) {
-				return $(el).val();
-			}).get();
-			console.log("susss222:", certdata);
-		});
-
-		$(document).on("change", ".input-choose-certi1", function () {
-			if (certdata.length === 6) {
-				$("#you-choose-list-resume-certi1").text("คุณเลือกครบ 6 รายการแล้ว");
-				$("#you-choose-list-resume-certi1").addClass("you-choose-list-resume-red");
-			}
-			else if (certdata.length === 0) {
-				$("#you-choose-list-resume-certi1").text("");
-				$("#you-choose-list-resume-certi1").removeClass("you-choose-list-resume-red");
-			}
-			else {
-				$("#you-choose-list-resume-certi1").text(`คุณเลือกไปแล้ว ${certdata.length} รายการ`);
-				$("#you-choose-list-resume-certi1").removeClass("you-choose-list-resume-red");
-			}
-		});
-
 		$(document).on("click", ".input-choose-work1", function () {
 			workdata = $('.input-choose-work1:input[type=checkbox]:checked').map(function (_, el) {
 				return $(el).val();
 			}).get();
 			console.log("susss:", workdata);
+		});
+
+		$(document).on("click", ".input-choose-work1:input:checkbox", function () {
+			var bol = $(".input-choose-work1:input:checkbox:checked").length >= 3;
+			$(".input-choose-work1:input:checkbox").not(":checked").attr("disabled", bol);
 		});
 
 		$(document).on("change", ".input-choose-work1", function () {
@@ -567,6 +742,33 @@ class Editresume extends React.Component {
 			else {
 				$("#you-choose-list-resume-work11").text(`คุณเลือกไปแล้ว ${workdata.length} รายการ`);
 				$("#you-choose-list-resume-work11").removeClass("you-choose-list-resume-red");
+			}
+		});
+
+		$(document).on("click", ".input-choose-certi1", function () {
+			certdata = $('.input-choose-certi1:input[type=checkbox]:checked').map(function (_, el) {
+				return $(el).val();
+			}).get();
+			console.log("susss222:", certdata);
+		});
+
+		$(document).on("click", ".input-choose-certi1:input:checkbox", function () {
+			var bol = $(".input-choose-certi1:input:checkbox:checked").length >= 6;
+			$(".input-choose-certi1:input:checkbox").not(":checked").attr("disabled", bol);
+		});
+
+		$(document).on("change", ".input-choose-certi1", function () {
+			if (certdata.length === 6) {
+				$("#you-choose-list-resume-certi1").text("คุณเลือกครบ 6 รายการแล้ว");
+				$("#you-choose-list-resume-certi1").addClass("you-choose-list-resume-red");
+			}
+			else if (certdata.length === 0) {
+				$("#you-choose-list-resume-certi1").text("");
+				$("#you-choose-list-resume-certi1").removeClass("you-choose-list-resume-red");
+			}
+			else {
+				$("#you-choose-list-resume-certi1").text(`คุณเลือกไปแล้ว ${certdata.length} รายการ`);
+				$("#you-choose-list-resume-certi1").removeClass("you-choose-list-resume-red");
 			}
 		});
 
@@ -648,16 +850,101 @@ class Editresume extends React.Component {
 					<form class="needs-validation" novalidate>
 						<div>
 							<div class="tab-content" id="registab1-content">
-								<Myresumedittemplate Color_Resume={this.state.Color_Resume} firstchoosecolor={this.state.firstchoosecolor} parentCallback={this.callbackFunction} />
+								<div class="myresumeEditTemplate">
+									<div class="Editresume-box-content6">
+										<div class="layout-edit-template">
+											<div class="sample-color-edit-template">
+												<img src={this.state.sample_template} width="245px" oncontextmenu="return false;" ondragstart="return false;"></img>
+											</div>
+											<div class="choose-color-edit-template11">
+												<h1 id="text-edit-color-template11">เลือกสีที่เข้ากันและบ่งบอกถึงตัวคุณ</h1>
+												<h5 id="describe-template11-edit">สีของเทมเพลตจะใช้กับทุกตำแหน่งงาน</h5>
+												<div class="grid-edit-template">
+
+													<div>
+														<input
+															id="edit-template-color-FFCE55"
+															value="#ffce55"
+															onChange={this.handleChange}
+															checked={this.state.selectedOption === "#ffce55"}
+															type="radio"
+														/>
+														<label id="color-edit-template1" class="edit-template-color-FFCE55" for="edit-template-color-FFCE55">
+															<div class="circle-color-template-FFCE55-edit"></div>
+															<div class="text-template33">เหลือง (ค่าเริ่มต้น)</div>
+														</label>
+													</div>
+
+													<div>
+														<input
+															id="edit-template-color-FE9666"
+															value="#fe9666"
+															onChange={this.handleChange}
+															checked={this.state.selectedOption === "#fe9666"}
+															type="radio"
+														/>
+														<label id="color-edit-template1" class="edit-template-color-FE9666" for="edit-template-color-FE9666">
+															<div class="circle-color-template-FE9666-edit"></div>
+															<div class="text-template22">ส้ม</div>
+														</label>
+													</div>
+
+													<div>
+														<input
+															id="edit-template-color-FF7370"
+															value="#ff7370"
+															onChange={this.handleChange}
+															checked={this.state.selectedOption === "#ff7370"}
+															type="radio"
+														/>
+														<label id="color-edit-template1" class="edit-template-color-FF7370" for="edit-template-color-FF7370">
+															<div class="circle-color-template-FF7370-edit"></div>
+															<div class="text-template11">ชมพู</div>
+														</label>
+													</div>
+
+													<div>
+														<input
+															id="edit-template-color-32A3C7"
+															value="#32a3c7"
+															onChange={this.handleChange}
+															checked={this.state.selectedOption === "#32a3c7"}
+															type="radio"
+														/>
+														<label id="color-edit-template1" class="edit-template-color-32A3C7" for="edit-template-color-32A3C7">
+															<div class="circle-color-template-32A3C7-edit"></div>
+															<div class="text-template55">ฟ้า</div>
+														</label>
+													</div>
+
+													<div>
+														<input
+															id="edit-template-color-01B8AA"
+															value="#01b8aa"
+															onChange={this.handleChange}
+															checked={this.state.selectedOption === "#01b8aa"}
+															type="radio"
+														/>
+														<label id="color-edit-template1" class="edit-template-color-01B8AA" for="edit-template-color-01B8AA">
+															<div class="circle-color-template-01B8AA-edit"></div>
+															<div class="text-template44">เขียว</div>
+														</label>
+													</div>
+
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 							<div class="tab-content" id="registab2-content">
 								<Chooseresume1 list_of_aca={list_of_aca} list_of_high={list_of_high} />
 							</div>
 							<div class="tab-content" id="registab3-content">
-								<Editresume2 mywork_data={workdata} />
+								<Editresume2 />
 							</div>
 							<div class="tab-content" id="registab4-content">
-								<Editresume3 mycerti_data={certdata} />
+								<Editresume3 />
 							</div>
 							<div class="tab-content" id="registab5-content">
 								<Chooseresume4 />
