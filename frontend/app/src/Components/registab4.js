@@ -7,9 +7,9 @@ class Registab4 extends React.Component {
 
     componentDidMount() {
         window.addEventListener('load', this.handleLoad);
-        const script = document.createElement("script");
+        /*const script = document.createElement("script");
         script.src = "assets/js/registab4.js";
-        document.body.appendChild(script);
+        document.body.appendChild(script);*/
     }
 
     render() {

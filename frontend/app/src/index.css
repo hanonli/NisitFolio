@@ -13,6 +13,7 @@ code {
     monospace;
 }
 
+/*
 ::-webkit-scrollbar {
   width: 0.5vw;
   height: 0.5vw;
@@ -32,4 +33,14 @@ code {
 ::-webkit-scrollbar-track {
   background: transparent;
   background-color: transparent;
+}*/
+
+html {
+  scrollbar-color: #7f7f7f white; /* thumb and track color */
+  scrollbar-width: thin;
+}
+
+body {
+  scrollbar-color: #7f7f7f white; /* thumb and track color */
+  scrollbar-width: thin;
 }

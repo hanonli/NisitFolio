@@ -12,24 +12,22 @@ import Search from './search';
 import Editprofile from './editprofile';
 import Editresume from './editresume';
 import Choosenothing from './Components/myresumeNothing';
-import Chooseresume from './chooseresume';
 import Myresumetp from './Components/myresumeTemplate';
 import Register from './register';
 import Emailverify from './emailverify';
 import Successregis from './successregis';
 import Failregis from './failregis';
-import PDF from './pdf';
+import PDF from './pdfUrlToBase64';
 import AnonymousLogin from './anonymousLogin';
 
 const Routes = () => {
   return (
     <Switch> {/* The Switch decides which component to show based on the current URL.*/}
-      <Route exact path='/' component={Landing}></Route> /* First page that user see */
+      <Route exact path='/' component={Home}></Route> /* First page that user see */
       <Route exact path='/home' component={Home}></Route>
       <Route exact path='/myresume/:id?' component={MyResume}></Route>
       <Route exact path='/choosenothing' component={Choosenothing}></Route>
       <Route exact path='/myresumetp' component={Myresumetp}></Route>
-      <Route exact path='/chooseresume' component={Chooseresume}></Route>
       <Route exact path='/editresume' component={Editresume}></Route>
       <Route exact path='/portfolio' component={PortfolioRoot}></Route>
       <Route exact path='/editport' component={Portfolio}></Route>

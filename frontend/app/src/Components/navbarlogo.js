@@ -2,6 +2,13 @@ import React from 'react';
 import { Link } from "react-router-dom";
 
 class Navbarlogo extends React.Component {
+	componentWillUnmount() { 
+		window.removeEventListener('load', this.handleLoad)  
+	 }
+	 
+	 handleLoad() {
+		 console.log("YEAH!");
+	 }
 	render (){
 		return (
 			<div className="Navbarlogo">

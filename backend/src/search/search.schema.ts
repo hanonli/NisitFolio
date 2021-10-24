@@ -1,6 +1,8 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import * as mongoose from 'mongoose' ;
 import { ObjectId } from "mongodb";
+import { any } from "joi";
+import { Any } from "typeorm";
 
 // ------------------------------------- User Info --------------------------------------
 
@@ -73,4 +75,37 @@ export const InterestedJobSchema = new mongoose.Schema({
 export interface InterestedJob extends Document {
   userId: string ;
   last_modified: string[] ;
+}
+
+// ------------------------------------ Resume ------------------------------
+
+export const ResumeSchema = new mongoose.Schema({
+  UserId: String,
+  Owner: String,
+  First: String,
+  Last: String,
+  Location: String,
+  ProfilePic: String,
+  Aboutme: String,
+  Email: String,
+  Privacy: String,
+  Color: String,
+  interestedJob: Array,
+  additionalSkills: Array,
+  certificates: Array,
+  educationHistorys: Array,
+  workHistorys: Array,
+  portfolios: Array,
+  create_time: String,
+  last_modified: Array,
+  modified_by: Array,
+}, { collection: 'Resume' })
+
+
+
+export interface Resume extends Document {
+  UserId: string ;
+  Privacy: string ;
+  First: string ;
+  Last: string ;
 }

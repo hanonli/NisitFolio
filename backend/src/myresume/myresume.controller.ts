@@ -17,32 +17,6 @@ export class MyResumeController {
       return this.resumeService.GetResume3(req.user.userId);
   
     }
-  //--------test
-  @Get("/testget/x")
-  async Gettest() {
-    const x="61694b9e65b7f193870b5bc2"
-    return this.resumeService.getResumebyUser(x);
-
-  }
-  @Post("/test/:x")
-  async x(@Body() CreateDto: CreateResumeDto,@Param('x') x: string) {
-    CreateDto.UserId = "61694b9e65b7f193870b5bc2";
-  return this.resumeService.createResume(CreateDto,x);
-}
-@Get("/testget2/foredit")
-  async GetResume3sdf() {
-    const x="616c55e1b26cfd777cb41a2b"
-    return this.resumeService.GetResume3(x);
-
-  }
-  @Get('/userunbase64/:userid')
-  async getResumeUnbase64(@Param('userid') UserId: string){
-    return this.resumeService.getResumeUnbase64(UserId);
-  }
-
-  //---------
-
-
 
   @Get(':resumeId')
   async getResume(@Param('resumeId') resumeId: string){

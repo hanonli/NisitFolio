@@ -471,7 +471,7 @@
 }
 .myworkalllabel{
     width: 100%;
-    height: auto;
+    /*height: auto;*/
     bottom: 2%;
     padding: 0.75vw;
     position: absolute;

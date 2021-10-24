@@ -1,8 +1,3 @@
-
-$(document).ready(function(){
-  console.log('script for registab3 loaded')
-});
-
 var startYear3 = 1970;
 var endYear3 = new Date().getFullYear();
 for (i = endYear3; i > startYear3; i--) {
@@ -11,16 +6,6 @@ for (i = endYear3; i > startYear3; i--) {
   $('#year_startwork').append($('<option />').val(i).html(i));
   $('#year_endwork').append($('<option />').val(i).html(i));
 }
-
-/*$('handleHigherSubmit').on('click',function() {
-  $("#registab3Modal1").modal("hide");
-
-});
-
-$('handleSecondaryubmit').on('click',function() {
-  $("#registab3Modal2").modal("hide");
-});
-*/
 var list_of_aca = [];
 
 function get_aca_id(list_of_aca, x) {

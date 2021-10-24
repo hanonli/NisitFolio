@@ -106,6 +106,12 @@
     gap: 0.1vw;
 }
 
+.content-work1111-edit{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 0.1vw;
+}
+
 .t4-content {
     background-color: white;
     border: 1px solid black;

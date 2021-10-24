@@ -2,6 +2,7 @@ import React from 'react';
 import DatePickerBD from './datepickerBD.js';
 import $ from 'jquery';
 import Cropper from 'react-cropper';
+import cookie from 'react-cookies';
 
 class Edittab6 extends React.Component {
     constructor(props) {
@@ -11,6 +12,8 @@ class Edittab6 extends React.Component {
 
     componentDidMount() {
         window.addEventListener('load', this.handleLoad);
+        //alert("อย่าเพิ่ง add edit delete");
+        var token6 = cookie.load('login-token');
         var choose_function = -1; //default
         var id_list_job;
         var tabId;
@@ -138,7 +141,7 @@ class Edittab6 extends React.Component {
                     $('.limit-job-pos-3').text('*ท่านเพิ่มตำแหน่งงานที่สนใจครบจำนวนแล้ว');
                 }
 
-                $(".list-of-job").append(grid_Job1 + grid_Job_skill1 + grid_Job_skill2 + grid_Job_skill3 + grid_Job2);
+                $(".list-of-job-edit").append(grid_Job1 + grid_Job_skill1 + grid_Job_skill2 + grid_Job_skill3 + grid_Job2);
             });
             console.log(`list_of_job:`, list_of_job);
         }
@@ -568,61 +571,189 @@ class Edittab6 extends React.Component {
                     //skill_job_3 = 'none';
                     score_slider13 = "2.5";
                 }
+                let last_jobskill = [], last_jobscore = [], last_jobobj = [];
+                if (skill_job_1 == "none" && skill_job_2 == "none" && skill_job_3 != "none") {
+                    skill_job_1 = skill_job_3;
+                    score_slider11 = score_slider13;
+                    skill_job_3 = "none";
+                    score_slider13 = "2.5";
+                }
+                else if (skill_job_1 == "none" && skill_job_2 != "none" && skill_job_3 == "none") {
+                    skill_job_1 = skill_job_2;
+                    score_slider11 = score_slider12;
+                    skill_job_2 = "none";
+                    score_slider12 = "2.5";
+                }
+                else if (skill_job_1 == "none" && skill_job_2 != "none" && skill_job_3 != "none") {
+                    skill_job_1 = skill_job_2;
+                    score_slider11 = score_slider12;
+                    skill_job_2 = skill_job_3;
+                    score_slider12 = score_slider13;
+                    skill_job_3 = "none";
+                    score_slider13 = "2.5";
+                }
+                else if (skill_job_1 != "none" && skill_job_2 == "none" && skill_job_3 != "none") {
+                    skill_job_2 = skill_job_3;
+                    score_slider12 = score_slider13;
+                    skill_job_3 = "none";
+                    score_slider13 = "2.5";
+                }
+                last_jobskill.push(skill_job_1);
+                last_jobskill.push(skill_job_2);
+                last_jobskill.push(skill_job_3);
+                if (skill_job_1 != "none") {
+                    last_jobscore.push(parseFloat(score_slider11));
+                }
+                else {
+                    last_jobscore.push(0);
+                }
+                if (skill_job_2 != "none") {
+                    last_jobscore.push(parseFloat(score_slider12));
+                }
+                else {
+                    last_jobscore.push(0);
+                }
+                if (skill_job_3 != "none") {
+                    last_jobscore.push(parseFloat(score_slider13));
+                }
+                else {
+                    last_jobscore.push(0);
+                }
+                if (obj_job_1 == "" && obj_job_2 == "" && obj_job_3 != "") {
+                    obj_job_1 = obj_job_3;
+                    obj_job_3 = "";
+                }
+                else if (obj_job_1 == "" && obj_job_2 != "" && obj_job_3 == "") {
+                    obj_job_1 = obj_job_2;
+                    obj_job_2 = "";
+                }
+                else if (obj_job_1 == "" && obj_job_2 != "" && obj_job_3 != "") {
+                    obj_job_1 = obj_job_2;
+                    obj_job_2 = obj_job_3;
+                    obj_job_3 = "";
+                }
+                else if (obj_job_1 != "" && obj_job_2 == "" && obj_job_3 != "") {
+                    obj_job_2 = obj_job_3;
+                    obj_job_3 = "";
+                }
+                if (obj_job_1 == "") {
+                    obj_job_1 = "none";
+                }
+                if (obj_job_2 == "") {
+                    obj_job_2 = "none";
+                }
+                if (obj_job_3 == "") {
+                    obj_job_3 = "none";
+                }
+                last_jobobj.push(obj_job_1);
+                last_jobobj.push(obj_job_2);
+                last_jobobj.push(obj_job_3);
+                let sendinterestJob2back = {
+                    "Job_JobName": name_job,
+                    "Job_SkillName": last_jobskill,
+                    "Job_Score": last_jobscore,
+                    "Job_Objective": last_jobobj
+                };
                 if (choose_function == 1) { //edit job after add
                     console.log("edit!!!!!!");
-                    for_edit["Job_JobName"] = name_job;
-                    for_edit["Job_JobName_select"] = $("#nm_job").prop('selectedIndex');
-                    for_edit["Job_SkillName1"] = skill_job_1;
-                    //for_edit["Job_SkillName1_select"] = document.getElementById("each_skill1").selectedIndex;
-                    for_edit["Job_Score1"] = parseFloat(score_slider11).toFixed(1);
-                    for_edit["Job_SkillName2"] = skill_job_2;
-                    //for_edit["Job_SkillName2_select"] = document.getElementById("each_skill2").selectedIndex;
-                    for_edit["Job_Score2"] = parseFloat(score_slider12).toFixed(1);
-                    for_edit["Job_SkillName3"] = skill_job_3;
-                    //for_edit["Job_SkillName3_select"] = document.getElementById("each_skill3").selectedIndex;
-                    for_edit["Job_Score3"] = parseFloat(score_slider13).toFixed(1);
-                    for_edit["Job_Objective1"] = obj_job_1;
-                    for_edit["Job_Objective2"] = obj_job_2;
-                    for_edit["Job_Objective3"] = obj_job_3;
+                    fetch("http://localhost:2000/register/interestedJob/" + id_list_job_edit, {
+                        method: "PATCH",
+                        headers: {
+                            'Authorization': 'Bearer ' + token6,
+                            "Accept": "application/json",
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(sendinterestJob2back)
+                    })
+                        .then(response => response.json())
+                        .then((raws) => {
+                            console.log(raws);
+                            for_edit["Job_JobName"] = name_job;
+                            //for_edit["Job_JobName_select"] = $("#nm_job").prop('selectedIndex');
+                            for_edit["Job_SkillName1"] = skill_job_1;
+                            //for_edit["Job_SkillName1_select"] = document.getElementById("each_skill1").selectedIndex;
+                            for_edit["Job_Score1"] = parseFloat(score_slider11).toFixed(1);
+                            for_edit["Job_SkillName2"] = skill_job_2;
+                            //for_edit["Job_SkillName2_select"] = document.getElementById("each_skill2").selectedIndex;
+                            for_edit["Job_Score2"] = parseFloat(score_slider12).toFixed(1);
+                            for_edit["Job_SkillName3"] = skill_job_3;
+                            //for_edit["Job_SkillName3_select"] = document.getElementById("each_skill3").selectedIndex;
+                            for_edit["Job_Score3"] = parseFloat(score_slider13).toFixed(1);
+                            for_edit["Job_Objective1"] = obj_job_1;
+                            for_edit["Job_Objective2"] = obj_job_2;
+                            for_edit["Job_Objective3"] = obj_job_3;
+                            $('#nm_job').prop('selectedIndex', 0);
+                            $("#obj-job-01").val('');
+                            $("#pos-del-obj-button1").hide();
+                            $("#obj-job-02").val('');
+                            $("#pos-del-obj-button2").hide();
+                            $("#obj-job-03").val('');
+                            $("#pos-del-obj-button3").hide();
+                            $('#exampleModalJob').modal('hide');
+                            $(".list-of-job-edit").empty();
+                            show_all_job()
+                            $(".step-marks").remove();
+                            $(".step-labels").remove();
+                            $("#input_mySlider1").remove();
+                            $("#input_mySlider2").remove();
+                            $("#input_mySlider3").remove();
+                        }).catch((error) => {
+                            console.log(error);
+                        });
                 }
                 else if (choose_function == 2) { //add job in list
-                    push2list = {
-                        InterestedJob_id: create_UUID(),
-                        Job_Pos: 0,
-                        Job_JobName: name_job,
-                        Job_JobName_select: $("#nm_job").prop('selectedIndex'),
-                        Job_SkillName1: skill_job_1,
-                        //Job_SkillName1_select: document.getElementById("each_skill1").selectedIndex,
-                        Job_Score1: parseFloat(score_slider11).toFixed(1),
-                        Job_SkillName2: skill_job_2,
-                        //Job_SkillName2_select: document.getElementById("each_skill2").selectedIndex,
-                        Job_Score2: parseFloat(score_slider12).toFixed(1),
-                        Job_SkillName3: skill_job_3,
-                        //Job_SkillName3_select: document.getElementById("each_skill3").selectedIndex,
-                        Job_Score3: parseFloat(score_slider13).toFixed(1),
-                        Job_Objective1: obj_job_1,
-                        Job_Objective2: obj_job_2,
-                        Job_Objective3: obj_job_3
-                    }
-                    list_of_job.push(push2list);
-                    get_job_id(list_of_job, 1);
-                    console.log(list_of_job);
+                    fetch("http://localhost:2000/register/addinterestedJob", {
+                        method: "POST",
+                        headers: {
+                            'Authorization': 'Bearer ' + token6,
+                            "Accept": "application/json",
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(sendinterestJob2back)
+                    })
+                        .then(response => response.json())
+                        .then((raws) => {
+                            console.log(raws)
+                            push2list = {
+                                InterestedJob_id: raws.id,
+                                Job_Pos: 0,
+                                Job_JobName: name_job,
+                                //Job_JobName_select: $("#nm_job").prop('selectedIndex'),
+                                Job_SkillName1: skill_job_1,
+                                //Job_SkillName1_select: document.getElementById("each_skill1").selectedIndex,
+                                Job_Score1: parseFloat(score_slider11).toFixed(1),
+                                Job_SkillName2: skill_job_2,
+                                //Job_SkillName2_select: document.getElementById("each_skill2").selectedIndex,
+                                Job_Score2: parseFloat(score_slider12).toFixed(1),
+                                Job_SkillName3: skill_job_3,
+                                //Job_SkillName3_select: document.getElementById("each_skill3").selectedIndex,
+                                Job_Score3: parseFloat(score_slider13).toFixed(1),
+                                Job_Objective1: obj_job_1,
+                                Job_Objective2: obj_job_2,
+                                Job_Objective3: obj_job_3
+                            }
+                            list_of_job.push(push2list);
+                            get_job_id(list_of_job, 1);
+                            console.log(list_of_job);
+                            $('#nm_job').prop('selectedIndex', 0);
+                            $("#obj-job-01").val('');
+                            $("#pos-del-obj-button1").hide();
+                            $("#obj-job-02").val('');
+                            $("#pos-del-obj-button2").hide();
+                            $("#obj-job-03").val('');
+                            $("#pos-del-obj-button3").hide();
+                            $('#exampleModalJob').modal('hide');
+                            $(".list-of-job-edit").empty();
+                            show_all_job()
+                            $(".step-marks").remove();
+                            $(".step-labels").remove();
+                            $("#input_mySlider1").remove();
+                            $("#input_mySlider2").remove();
+                            $("#input_mySlider3").remove();
+                        }).catch((error) => {
+                            console.log(error);
+                        });
                 }
-                $('#nm_job').prop('selectedIndex', 0);
-                $("#obj-job-01").val('');
-                $("#pos-del-obj-button1").hide();
-                $("#obj-job-02").val('');
-                $("#pos-del-obj-button2").hide();
-                $("#obj-job-03").val('');
-                $("#pos-del-obj-button3").hide();
-                $('#exampleModalJob').modal('hide');
-                $(".list-of-job").empty();
-                show_all_job()
-                $(".step-marks").remove();
-                $(".step-labels").remove();
-                $("#input_mySlider1").remove();
-                $("#input_mySlider2").remove();
-                $("#input_mySlider3").remove();
                 /*if (list_of_job.length < 3) {
                     $(".limit-job-pos-3").removeClass("limit-job-pos-3-red");
                     $('.limit-job-pos-3').text('ท่านสามารถเพิ่มตำแหน่งงานที่สนใจได้สูงสุด 3 อัน');
@@ -650,10 +781,10 @@ class Edittab6 extends React.Component {
             });
             console.log("removeIndex:", removeIndex);
             if (list_of_job[removeIndex].isFetch === true) {
-                /*fetch("http://localhost:2000/register/interestedJob/" + list_of_job[removeIndex].InterestedJob_id, {
+                fetch("http://localhost:2000/register/interestedJob/" + list_of_job[removeIndex].InterestedJob_id, {
                     method: "DELETE",
                     headers: {
-                        'Authorization': 'Bearer ' + list_of_job[removeIndex].token,
+                        'Authorization': 'Bearer ' + token6,
                         "Access-Control-Allow-Origin": "*",
                         "Access-Control-Allow-Methods": "*",
                         "Access-Control-Allow-Credentials": true,
@@ -662,33 +793,33 @@ class Edittab6 extends React.Component {
                 })
                     .then(response => response.json())
                     .then((raws) => {
-                        console.log(raws);*/
-                list_of_job.splice(removeIndex, 1);
-                //console.log(`delete job id:`, removeIndex);
-                $('#exampleModal_remove_job').modal('hide');
-                $(".list-of-job").empty();
-                //console.log(list_of_job);
-                get_job_id(list_of_job, 1);
-                show_all_job()
-                $(".step-marks").remove();
-                $(".step-labels").remove();
-                $("#input_mySlider1").remove();
-                $("#input_mySlider2").remove();
-                $("#input_mySlider3").remove();
-                if (list_of_job.length < 3) {
-                    $(".frame_add_job_interest").show();
-                    $(".limit-job-pos-3").removeClass("limit-job-pos-3-red");
-                    $('.limit-job-pos-3').text('ท่านสามารถเพิ่มตำแหน่งงานที่สนใจได้สูงสุด 3 อัน');
-                }
-                /*}).catch((error) => {
-                    console.log(error);
-                });*/
+                        console.log(raws);
+                        list_of_job.splice(removeIndex, 1);
+                        //console.log(`delete job id:`, removeIndex);
+                        $('#exampleModal_remove_job').modal('hide');
+                        $(".list-of-job-edit").empty();
+                        //console.log(list_of_job);
+                        get_job_id(list_of_job, 1);
+                        show_all_job()
+                        $(".step-marks").remove();
+                        $(".step-labels").remove();
+                        $("#input_mySlider1").remove();
+                        $("#input_mySlider2").remove();
+                        $("#input_mySlider3").remove();
+                        if (list_of_job.length < 3) {
+                            $(".frame_add_job_interest").show();
+                            $(".limit-job-pos-3").removeClass("limit-job-pos-3-red");
+                            $('.limit-job-pos-3').text('ท่านสามารถเพิ่มตำแหน่งงานที่สนใจได้สูงสุด 3 อัน');
+                        }
+                    }).catch((error) => {
+                        console.log(error);
+                    });
             }
             else {
                 list_of_job.splice(removeIndex, 1);
                 //console.log(`delete job id:`, removeIndex);
                 $('#exampleModal_remove_job').modal('hide');
-                $(".list-of-job").empty();
+                $(".list-of-job-edit").empty();
                 //console.log(list_of_job);
                 get_job_id(list_of_job, 1);
                 show_all_job()
@@ -830,6 +961,7 @@ class Edittab6 extends React.Component {
 
     componentWillUnmount() {
         window.removeEventListener('load', this.handleLoad);
+        $(document).unbind();
     }
 
     handleLoad() {
@@ -841,7 +973,7 @@ class Edittab6 extends React.Component {
             <div className="Registab6">
                 <div class="regis-box-content1">
                     <h1 id="text-add-name-my-job11">เพิ่มตำแหน่งงานที่สนใจ</h1>
-                    <div class="list-of-job" id="in-list-of-job"></div>
+                    <div class="list-of-job-edit" id="in-list-of-job"></div>
 
                     <div class="frame_add_job_interest">
                         <div className="button_add_job_interest">

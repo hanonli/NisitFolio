@@ -358,7 +358,6 @@ $('#continue2').click(function () {
       Email: $('#re03').val(),
       Password: $('#pass05').val(),
       ProfilePic: last_avatar,
-      ProfilePicBase64: last_avatar,
       Firstname: $('#re01').val(),
       Lastname: $('#re02').val(),
       Birthday: BDDate,
@@ -410,30 +409,6 @@ $('#continue2').click(function () {
   }
 },1000);
 });
-
-/*var startYear = 1950;
-var endYear = new Date().getFullYear();
-for (i = endYear; i > startYear; i--) {
-    //$('#bdyear').append($('<option />').val(i).html(i));
-    //$('#year_startjob').append($('<option />').val(i).html(i));
-    //$('#year_endjob').append($('<option />').val(i).html(i));
-    //$('#year_higher').append($('<option />').val(i).html(i));
-    //$('#year_secondary').append($('<option />').val(i).html(i));
-}
-
-var MaxM = 13;
-var startM = 1;
-for (j = startM; j < MaxM; j++) {
-    $('#bdmonth').append($('<option />').val(j).html(j));
-}
-
-var MaxD = 32;
-var MaxD2 = 30;
-var startD = 1;
-for (k = startD; k < MaxD; k++) {
-    $('#bdday').append($('<option />').val(k).html(k));
-}
-*/
 
 "use strict";
 	console.log("HELLO LV3!");
@@ -507,35 +482,6 @@ for (k = startD; k < MaxD; k++) {
 
             formData.append('avatar1', blob, 'avatar1.jpg');
 			console.log("HELLO LV5!");
-            /*$.ajax('https://jsonplaceholder.typicode.com/posts', {
-              method: 'POST',
-              data: formData,
-              processData: false,
-              contentType: false,
-
-              xhr: function () {
-                var xhr = new XMLHttpRequest();
-
-                xhr.upload.onprogress = function (e) {
-                  
-                };
-
-                return xhr;
-              },
-
-              success: function () {
-                $alert.show().addClass('alert-success').text('Upload success');
-              },
-
-              error: function () {
-                avatar.src = initialAvatarURL;
-                $alert.show().addClass('alert-warning').text('Upload error');
-              },
-
-              complete: function () {
-                
-              },
-            });*/
           });
         }
       });
