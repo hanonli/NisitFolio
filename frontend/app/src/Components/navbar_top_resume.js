@@ -2,6 +2,7 @@ import $, { data, get } from 'jquery';
 import cookie from 'react-cookies';
 import React from 'react';
 import MyResumeNothing from './myresumeNothing.js'
+import MyResumeNothingforUser from './myresumeNothingforuser.js'
 import MyResumeContent from './myresumeContent.js';
 import Resume_sideNavbar from './navbar_resume.js';
 import SharingPopup from './sharingpopup';
@@ -84,7 +85,7 @@ class Resume_topNavbar extends React.Component {
 				"Content-Type": "application/json"
 			},
 		})
-		.then(response => response.json())
+		.then(response => {console.log(JSON.stringify(response.status)); return response.json() ;} )
 		.then((datas) => {	
 			// var index = e;
 			// console.log('real resumeID:' + JSON.stringify(datas[0].ResumeId[0]))
@@ -155,7 +156,9 @@ class Resume_topNavbar extends React.Component {
 
 	}
 
+
 	changePrivacy = (message) => {
+		console.log('begin change prvacy')
 		var resumeid = this.state.resumeID
 		var token = cookie.load('login-token')
 		fetch("http://localhost:2000/myresume/" + resumeid, {
@@ -170,6 +173,8 @@ class Resume_topNavbar extends React.Component {
 			body: JSON.stringify(message)
 		})
 		.then(response =>{ console.log( 'PATCH Privacy status: '+response.status) ; return response.json();})
+
+		console.log('end change privay')
 		// .then(data => {console.log('data after PATCH'+JSON.stringify(data))} )
 	}
 
@@ -177,21 +182,28 @@ class Resume_topNavbar extends React.Component {
 		// var userid = this.state.userID
 		// var index = this.state.index
 		// console.log('handlePrivacy called')
+		// document.getElementById('icon-myresume-private').src =  'assets/images/outline_grid_view_black_48dp2.png' ;
+
 		if (this.state.privacy == 'Private') {
 			var message = { "Resume_Privacy" : "Members"}
 			this.changePrivacy(message)
+			console.log('change loading to Members')
 			this.setState({
 				privacy: 'Members'
 			})
 		} else if (this.state.privacy == 'Member' || this.state.privacy == 'Members') {
 			var message = { "Resume_Privacy" : "Public"}
+			
 			this.changePrivacy(message)
+			console.log('change loading to Public')
 			this.setState({
 				privacy: 'Public'
 			})
 		} else if (this.state.privacy == 'Public') {
 			var message = { "Resume_Privacy" : "Private"}
+			
 			this.changePrivacy(message)
+			console.log('change loading to Private')
 			this.setState({
 				privacy: 'Private'
 			})
@@ -202,6 +214,17 @@ class Resume_topNavbar extends React.Component {
 	handleEdit = () =>{
 		cookie.save('Edit_tabselect',1);
 		window.location = 'editresume'
+	}
+
+	handleBookmark = () =>{
+		var pic_src = document.getElementById("icon-myresume-bookmark").src
+		console.log('pic: '+pic_src);
+		if ( pic_src == "http://localhost:3000/assets/images/bookmark_1.png") {
+            document.getElementById("icon-myresume-bookmark").src = "http://localhost:3000/assets/images/bookmark_2.png";
+        }
+        else {
+            document.getElementById("icon-myresume-bookmark").src = "http://localhost:3000/assets/images/bookmark_1.png";
+        }
 	}
 
 	portfoliotab1 = () => {
@@ -285,14 +308,13 @@ class Resume_topNavbar extends React.Component {
 	}
 
 	handleSection1 = () => {
-		if (this.state.is_owner) {
-			// console.log('you are owner1')
+		
 			if (this.state.privacy == 'Private') {
 				return (
 					<div className='resume_topnav' >
-						<div className='topnav_section1' >
+						<div className='topnav_section1' type='button' onClick={ this.state.is_owner ? this.handlePrivacy : null } >
 
-							<img type='button' onClick={this.handlePrivacy} id='icon-myresume-private' src="assets/images/outline_lock_black_24dp.png" />
+							<img  id='icon-myresume-private' src="assets/images/outline_lock_black_24dp.png" />
 
 						</div>
 
@@ -302,7 +324,7 @@ class Resume_topNavbar extends React.Component {
 			else if (this.state.privacy == 'Members' ) {
 				return (
 					<div className='resume_topnav' >
-						<div className='topnav_section1' type='button' onClick={this.handlePrivacy}>
+						<div className='topnav_section1' type='button' onClick={ this.state.is_owner ? this.handlePrivacy : null}>
 
 							<img  id='icon-myresume-member' src="assets/images/outline_people_black_24dp.png" />
 
@@ -314,7 +336,7 @@ class Resume_topNavbar extends React.Component {
 			else if (this.state.privacy == 'Public') {
 				return (
 					<div className='resume_topnav' >
-						<div className='topnav_section1' type='button' onClick={this.handlePrivacy}>
+						<div className='topnav_section1' type='button' onClick={ this.state.is_owner ? this.handlePrivacy : null}>
 
 							<img  id='icon-myresume-public' src="assets/images/outline_public_black_24dp.png" />
 
@@ -326,26 +348,23 @@ class Resume_topNavbar extends React.Component {
 			else{
 				return (
 					<div className='resume_topnav' >
-						<div className='topnav_section1'  type='button' onClick={this.handlePrivacy}>
-							
-							<img id='icon-myresume-private' src="assets/images/o"/> 
-							
+						<div className='topnav_section1' type='button'>
+
+							<img  id='icon-myresume-public' src="assets/images/outline_grid_view_black_48dp 2.png" />
+
 						</div>
-						
+
 					</div>
 					)
 			}
 			
-
-		}
-
 	}
 
 	handleSection2 = () => {
+		var login_token = cookie.load('login-token') != "undefined" ? cookie.load('login-token') : ''
 		if (this.state.is_owner) {
 				// console.log('you are owner2')
 			return (
-				
 				<div className='resume_selectoption' >
 					<div className='resume_selectoption_block'>
 						<div type='button' onClick={this.handleEdit} >
@@ -367,32 +386,71 @@ class Resume_topNavbar extends React.Component {
 				</div>
 
 			)
-		} 
-	}
+		}
+		else if( login_token != '' ){
+			return (
+				<div className='resume_selectoption' >
+					<div className='resume_selectoption_block'>
+						<div type='button' onClick={this.handleBookmark} >
+							<img  id='icon-myresume-bookmark' src="assets/images/bookmark_1.png"/>
+						</div>
+									
+					</div>
+					
+					<span className='resume_verticalline2'> </span>
 
-	resumeNothing() {
-		var index = this.state.index
-		cookie.save('Edit_tabselect', 6);
-		return (
-			<>
-				<MyResumeNothing />
-			</>
-		)
+					<div className='resume_selectoption_block'>
+						<div type='button'>
+							<img   id='icon-myresume-share' 	src="assets/images/outline_ios_share_black_48dp.png"data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharingResume" alt="" />
+						</div>
+					</div>
+								
+				</div>
+			)
+		}
 	}
 
 	content() {
+		var user_token = cookie.load('login-token') != 'undefined' ? cookie.load('login-token') : 'none'
+		console.log('user-token in content: ' + JSON.stringify(user_token))
 		if (this.state.fetch == true) {
+			if(this.state.is_owner || this.state.privacy == 'Public' || (this.state.privacy == 'Members' && user_token != 'none') ){
+				return (
+					<>
+						<div class="tab-content" id="myresume1-content">
+							<MyResumeContent state={this.state} />
+						</div>
+					</>
+				)
+			}
+			else if(this.state.privacy == 'Members'){
+				return (
+					<>
+						<MyResumeNothingforUser/>
+					</>
+				)
+			}
+			else if(this.state.privacy == 'Private'){
+				return (
+					<>
+						<MyResumeNothingforUser/>
+					</>
+				)
+			}
+
+		}
+		else if(this.state.is_owner) {
+			cookie.save('Edit_tabselect', 6);
 			return (
 				<>
-					<div class="tab-content" id="myresume1-content">
-						<MyResumeContent state={this.state} />
-					</div>
+					<MyResumeNothing />
 				</>
 			)
-		} else {
+		}
+		else{
 			return (
 				<>
-					{this.resumeNothing()}
+					<MyResumeNothingforUser/>
 				</>
 			)
 		}
@@ -410,9 +468,7 @@ class Resume_topNavbar extends React.Component {
 			return(
 				<div>
 					<SharingPopup/>
-					
 					<div className="Resume_topNavbar" id='topNav'>
-						
 						<div  className='myresumetoppath'> 
 								{this.handleSection1()}
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -446,25 +502,14 @@ class Resume_topNavbar extends React.Component {
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								{this.handleSection2()}
 						</div>
-
-						
 					</div>
-
-
 					{this.injectScript()}
 					{this.content()}
-
-
 				</div>
-
-			
-
-		)
+			)
+		}
 
 
-
-
-	}
 
 
 
@@ -478,28 +523,27 @@ class Resume_topNavbar extends React.Component {
 
 		// var ssid = this.props.userid
 
-		var ssid = cookie.load('search-userid')
-		// console.log('sessionid: '+ ssid)
-		// console.log('sessionid: '+ JSON.stringify(ssid))
+		var ssid = cookie.load('search-userid') != 'undefined' ? cookie.load('search-userid') : 'none'
+		console.log('sessionid search-userid: '+ ssid)
+		console.log('sessionid from search-userid: '+ JSON.stringify(ssid))
 
-		// var sPageURL = window.location.search.substring(1)
-		// var isURLBlank = (sPageURL == '')
-		// console.log(sPageURL)
-		// console.log(isURLBlank)
+		var sPageURL = window.location.search.substring(1)
+		var isURLBlank = (sPageURL == '')
+		console.log(sPageURL)
+		console.log(isURLBlank)
 		// console.log( 'not undefined: '+ (ssid != 'undefined'))
 		// console.log( 'not blank: '+ (ssid != ''))
 		// console.log(( undefined))
 		// console.log(( null))
-		if (ssid != 'undefined' && ssid != '') {
-			// console.log('case1')
+		if ( ssid != 'none') {
+			console.log('case1')
 			// console.log('ssid incase1: '+ ssid)
-
 			this.setState({
 				userID: ssid,
 				is_owner: false,
 			})
 		} else {
-			// console.log('case2')
+			console.log('case2')
 
 			var token = cookie.load('login-token')
 			// console.log('token: ' + token)	
@@ -575,8 +619,6 @@ class Resume_topNavbar extends React.Component {
 
 
 	render (){
-
-		
 		// this.getResumeID(this.state.index);
 		if (this.state.userID != '' && this.state.resumeID == '') {
 			// console.log('call getResumeID');
