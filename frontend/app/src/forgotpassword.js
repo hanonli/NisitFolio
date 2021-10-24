@@ -7,6 +7,7 @@ import { set } from "date-fns";
 import Forgotpasswordm from "./Components/forgotpasswd";
 import Forgotpasswordw from "./Components/waitverpass";
 import Forgotpasswordr from "./Components/resetpasswd";
+import Forgotpasswordc from "./Components/resetpasscomp";
 
 class Forgotpassword extends React.Component{
     render() {
@@ -29,13 +30,18 @@ class Forgotpassword extends React.Component{
                 <Forgotpasswordw></Forgotpasswordw>
             );
         }
+        else if(token==="completed"){
+            res = (
+                <Forgotpasswordc></Forgotpasswordc>
+            );
+        }
         else{
             res = (
                 <Forgotpasswordr token={token}></Forgotpasswordr>
             );
         }
         return(
-            <div>
+            <div class="forgotpassword">
                 <Navbar/>
                 <img src="/assets/images/ldwithgradient.png" width="100%" height="100%"></img>
                 {res}
