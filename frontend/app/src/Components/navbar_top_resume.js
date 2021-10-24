@@ -3,6 +3,7 @@ import cookie from 'react-cookies';
 import React from 'react';
 import MyResumeNothing from './myresumeNothing.js'
 import MyResumeNothingforUser from './myresumeNothingforuser.js'
+import MyResumeLimitforUser from './myresumeLimitforuser.js'
 import MyResumeContent from './myresumeContent.js';
 import Resume_sideNavbar from './navbar_resume.js';
 import SharingPopup from './sharingpopup';
@@ -387,7 +388,8 @@ class Resume_topNavbar extends React.Component {
 
 			)
 		}
-		else if( login_token != '' ){
+		else if( login_token != 'none' ){
+			// console.log('login-tokenfdfdf :' + login_token)
 			return (
 				<div className='resume_selectoption' >
 					<div className='resume_selectoption_block'>
@@ -408,11 +410,33 @@ class Resume_topNavbar extends React.Component {
 				</div>
 			)
 		}
+		else{
+			return (
+				<div className='resume_selectoption' >
+					<div className='resume_selectoption_block'>
+						<div type='button' onClick={this.handleBookmark} >
+							<img  id='icon-myresume-bookmark' src="assets/images/bookmark_1.png"/>
+						</div>
+									
+					</div>
+					
+					<span className='resume_verticalline2'> </span>
+
+					<div className='resume_selectoption_block'>
+						<div type='button'>
+							<img   id='icon-myresume-share' 	src="assets/images/outline_ios_share_black_48dp.png"data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharingResume" alt="" />
+						</div>
+					</div>
+								
+				</div>
+			)
+
+		}
 	}
 
 	content() {
 		var user_token = cookie.load('login-token') != 'undefined' ? cookie.load('login-token') : 'none'
-		console.log('user-token in content: ' + JSON.stringify(user_token))
+		// console.log('user-token in content: ' + JSON.stringify(user_token))
 		if (this.state.fetch == true) {
 			if(this.state.is_owner || this.state.privacy == 'Public' || (this.state.privacy == 'Members' && user_token != 'none') ){
 				return (
@@ -426,14 +450,14 @@ class Resume_topNavbar extends React.Component {
 			else if(this.state.privacy == 'Members'){
 				return (
 					<>
-						<MyResumeNothingforUser/>
+						<MyResumeLimitforUser/>
 					</>
 				)
 			}
 			else if(this.state.privacy == 'Private'){
 				return (
 					<>
-						<MyResumeNothingforUser/>
+						<MyResumeLimitforUser/>
 					</>
 				)
 			}
@@ -524,13 +548,13 @@ class Resume_topNavbar extends React.Component {
 		// var ssid = this.props.userid
 
 		var ssid = cookie.load('search-userid') != 'undefined' ? cookie.load('search-userid') : 'none'
-		console.log('sessionid search-userid: '+ ssid)
-		console.log('sessionid from search-userid: '+ JSON.stringify(ssid))
+		// console.log('sessionid search-userid: '+ ssid)
+		// console.log('sessionid from search-userid: '+ JSON.stringify(ssid))
 
 		var sPageURL = window.location.search.substring(1)
 		var isURLBlank = (sPageURL == '')
-		console.log(sPageURL)
-		console.log(isURLBlank)
+		// console.log(sPageURL)
+		// console.log(isURLBlank)
 		// console.log( 'not undefined: '+ (ssid != 'undefined'))
 		// console.log( 'not blank: '+ (ssid != ''))
 		// console.log(( undefined))
@@ -631,7 +655,7 @@ class Resume_topNavbar extends React.Component {
 		// }
 
 
-		console.log('in render() state : ' + JSON.stringify(this.state))
+		// console.log('in render() state : ' + JSON.stringify(this.state))	
 		// console.log('in render() skil : ' + JSON.stringify(this.state.additionalSkills))
 		// console.log('render this.state.loading: '+this.state.loading)
 		// console.log('render this.state.ready: '+this.state.ready)
