@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+//import './index.css';
 import $ from 'jquery';
 import Navbar from './Components/navbar';
 import ProfileHeader from './Components/profileHeader';
