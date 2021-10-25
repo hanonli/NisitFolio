@@ -19,6 +19,8 @@ import Successregis from './successregis';
 import Failregis from './failregis';
 import PDF from './pdfUrlToBase64';
 import AnonymousLogin from './anonymousLogin';
+import Forgotpassword from './forgotpassword';
+
 
 const Routes = () => {
   return (
@@ -44,6 +46,7 @@ const Routes = () => {
       <Route path='/unsuccessregis' component={Failregis}></Route>
       <Route path='/makepdf' component={PDF}></Route>
       <Route path='/anonymouslogin' component={AnonymousLogin}></Route>
+      <Route exact path='/forgotpassword/:token?' component={Forgotpassword}></Route>
     </Switch>
   );
 }

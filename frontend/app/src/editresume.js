@@ -16,7 +16,7 @@ import LoadingS from './Components/loadingS';
 import async from 'react-select/async';
 
 var list_of_aca = [], list_of_high = [], sideskilldata = [];
-var select_color_template = "#FFCE55";
+var select_color_template = "#ffce55";
 var myTemplate = {
 	"#ff7370": "assets/images/previewRR.png",
 	"#fe9666": "assets/images/previewRO.png",
@@ -81,16 +81,10 @@ class Editresume extends React.Component {
 			//alert(this.state.Color_Resume);
 			//editresumeState.setState({port_choose: cookie.load('choose_Port')});
 			var last_port = cookie.load('choose_Port');
-			var last_cert = [],last_work=[];
 			//console.log('last_port : ',last_port);
+			console.log(select_color_template);
 			choose_aca.forEach(ele => {
 				choose_high.push(ele);
-			});
-			workdata.forEach(ele => {
-				last_work.push(ele.id);
-			});
-			certdata.forEach(ele => {
-				last_cert.push(ele.id);
 			});
 			var FormEdit = {
 				"SoftSkillID": choose_sideskill,
@@ -98,7 +92,7 @@ class Editresume extends React.Component {
 				"EducationID": choose_high,
 				"WorkID": workdata,
 				"PortID": last_port,
-				"Color": editresumeState.state.Color_Resume
+				"Color": select_color_template
 			}
 			console.log(FormEdit);
 			alert('Confirm Edit Resume');
@@ -130,7 +124,9 @@ class Editresume extends React.Component {
 					}
 					else {
 						console.log("ok");
-						window.location.href = "http://localhost:3000/myresume";
+						editresumeState.props.history.push('/myresume');
+						//editresumeState.setState({ render: true });
+						//window.location.href = "http://localhost:3000/myresume";
 					}
 					return response;
 				}).catch(function (error) {
@@ -165,9 +161,9 @@ class Editresume extends React.Component {
 						if (editresumeState.state.data.Color_ResumeId !== undefined) {
 							editresumeState.setState({ selectedOption: editresumeState.state.data.Color_ResumeId, sample_template: myTemplate[editresumeState.state.data.Color_ResumeId] });
 						}
-						/*else {
+						else {
 							editresumeState.setState({ selectedOption: "#ffce55", sample_template: myTemplate["#ffce55"] });
-						}*/
+						}
 						editresumeState.state.data.Job_JobName.forEach((ele, index) => {
 							if (ele == cookie.load('Job_EditName')) {
 								console.log('This Resume is : ' + editresumeState.state.data.Resume_id[index]);
@@ -280,7 +276,7 @@ class Editresume extends React.Component {
 		$(async function () {
 			console.log('Start Fetch!!');
 			await GetResumeData();
-			editresumeState.setState ({render: true});
+			editresumeState.setState({ render: true });
 
 			/* Zone Button on this page */
 			$('#cancelChoose').on('click', function () {
@@ -290,7 +286,8 @@ class Editresume extends React.Component {
 			$('#goToeditProfile').on('click', function () {
 				//alert("YES SIR!!");
 				cookie.save('Edit_tabselect', '1');
-				window.location = ("editprofile");
+				//window.location = ("editprofile");
+				editresumeState.props.history.push('/editprofile');
 			});
 			$('#submiteditt').on('click', function () {
 				//alert("YES SIR!!");
@@ -651,17 +648,17 @@ class Editresume extends React.Component {
 				}
 				$(`#contentYear-workresume_` + String(ele.Work_Start_Year)).append(grid_work2);
 			});
-				if (workdata.length === 3) {
-					$("#you-choose-list-resume-work11").text("คุณเลือกครบ 3 รายการแล้ว");
-					$("#you-choose-list-resume-work11").addClass("you-choose-list-resume-red");
-					var bol = $(".input-choose-work11:input:checkbox:checked").length >= 3;
-					$(".input-choose-work1:input:checkbox").not(":checked").attr("disabled", bol);
-				}
-				else {
-					$("#you-choose-list-resume-work11").text(`คุณเลือกไปแล้ว ${workdata.length} รายการ`);
-					$("#you-choose-list-resume-work11").removeClass("you-choose-list-resume-red");
-				}
-			
+			if (workdata.length === 3) {
+				$("#you-choose-list-resume-work11").text("คุณเลือกครบ 3 รายการแล้ว");
+				$("#you-choose-list-resume-work11").addClass("you-choose-list-resume-red");
+				var bol = $(".input-choose-work11:input:checkbox:checked").length >= 3;
+				$(".input-choose-work1:input:checkbox").not(":checked").attr("disabled", bol);
+			}
+			else {
+				$("#you-choose-list-resume-work11").text(`คุณเลือกไปแล้ว ${workdata.length} รายการ`);
+				$("#you-choose-list-resume-work11").removeClass("you-choose-list-resume-red");
+			}
+
 
 			/*--------------------------------------- CERTI ----------------------------------------*/
 			tmp1 = [...certdata];

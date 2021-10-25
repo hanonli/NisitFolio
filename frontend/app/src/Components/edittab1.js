@@ -4,85 +4,7 @@ import $ from 'jquery';
 import Cropper from 'react-cropper';
 
 class Registab1 extends React.Component {
-    componentDidMount(){
-        $('#basic-date-picker1').attr('placeholder','วัน/เดือน/ปี');
-        $('#change-pass').on('click',function(){
-            $('.reset-pass').show();
-            $('#change-pass').hide();
-        });
-      var avatar1 = document.getElementById('avatar1');
-      var image = document.getElementById('image');
-      var input = document.getElementById('input');
-      var $alert = $('.alert');
-      var $modal = $('#modal');
-      var cropper;
-		
-		avatar1.addEventListener('click', function () {
-			input.click();
-			// console.log("Click on profile!");
-		});
 
-      input.addEventListener('change', function (e) {
-        var files = e.target.files;
-        var done = function (url) {
-          input.value = '';
-          image.src = url;
-          $alert.hide();
-          $modal.modal('show');
-        };
-        var reader;
-        var file;
-        var url;
-
-        if (files && files.length > 0) {
-          file = files[0];
-
-          if (URL) {
-            done(URL.createObjectURL(file));
-          } else if (FileReader) {
-            reader = new FileReader();
-            reader.onload = function () {
-              done(reader.result);
-            };
-            reader.readAsDataURL(file);
-          }
-        }
-      });
-
-      $modal.on('shown.bs.modal', function () {
-        cropper = new Cropper(image, {
-          aspectRatio: 1,
-          viewMode: 1,
-        });
-      }).on('hidden.bs.modal', function () {
-        cropper.destroy();
-        cropper = null;
-      });
-
-      document.getElementById('crop').addEventListener('click', function () {
-        var initialAvatarURL;
-        var canvas;
-
-        $modal.modal('hide');
-        if (cropper) {
-          canvas = cropper.getCroppedCanvas({
-            width: 150,
-            height: 150,
-          });
-          initialAvatarURL = avatar1.src;
-          avatar1.src = canvas.toDataURL();
-          console.log(avatar1.src);
-          $alert.removeClass('alert-success alert-warning');
-          canvas.toBlob(function (blob) {
-            var formData = new FormData();
-
-            formData.append('avatar1', blob, 'avatar1.jpg');
-			console.log("HELLO LV5!");
-          });
-        }
-      });
-
-    }
 	render (){
 		return (
 			<div className="Registab1 regis-box-content1">
@@ -108,8 +30,8 @@ class Registab1 extends React.Component {
 										<label class="form-f-sex">อีเมล<label class="red_markEp1">*</label></label>
 									</div>
 									<div class="col-10">
-                                        <h4 type="text" class="form-control margin-bottom1 dis_input2" >อีเมล</h4>
-									</div>
+									  <h4 type="text" class="form-control margin-bottom1 dis_input2" >อีเมล</h4>
+								</div>
 								</div>
                                 <div class='reset-pass'>
                                     <div class="row">

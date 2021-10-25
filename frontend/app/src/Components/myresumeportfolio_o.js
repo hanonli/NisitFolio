@@ -115,12 +115,16 @@ class MyresumePortfolioO extends React.Component {
         
         console.log(portfolios);
         let clean_data = [];
+        let y = [];
+        let m = [];
+        let d = [];
         let day;
         let udate;
         for(var i=0; i<portfolios.length; i++){
             if(portfolios[i].Port_Date !== null){
                 day = portfolios[i].Port_Date.split("/");
-                udate = day[0] + " "+ monthdict[parseInt(day[1])] + " " + day[2];
+                udate = day[0] + " " + monthdict[parseInt(day[1])] + " " + day[2];
+                d[i] = parseInt(day[0]); m[i] = parseInt(day[1]); y[i] = parseInt(day[2]);
             }
             else{
                 day = portfolios[i].create_time.split(" ");
@@ -136,6 +140,71 @@ class MyresumePortfolioO extends React.Component {
                 owner: owner_status
             });
         }
+
+        let k = 0;
+        let datasort;
+        let year_s;
+        let month_s;
+        let day_s;
+
+        for (var i = 0; i < portfolios.length; i++) {
+            year_s = y[i];
+            month_s = m[i];
+            day_s = d[i];
+            k = i - 1;
+            datasort = clean_data[i];
+            while (k >= 0 && d[k] < day_s) {
+                y[k + 1] = y[k];
+                m[k + 1] = m[k];
+                d[k + 1] = d[k];
+                clean_data[k + 1] = clean_data[k];
+                k = k - 1;
+            }
+            y[k + 1] = year_s;
+            m[k + 1] = month_s;
+            d[k + 1] = day_s;
+            clean_data[k + 1] = datasort;
+        }
+
+        for (var i = 0; i < portfolios.length; i++) {
+            year_s = y[i];
+            month_s = m[i];
+            day_s = d[i];
+            k = i - 1;
+            datasort = clean_data[i];
+            while (k >= 0 && m[k] < month_s) {
+                y[k + 1] = y[k];
+                m[k + 1] = m[k];
+                d[k + 1] = d[k];
+                clean_data[k + 1] = clean_data[k];
+                k = k - 1;
+            }
+            y[k + 1] = year_s;
+            m[k + 1] = month_s;
+            d[k + 1] = day_s;
+            clean_data[k + 1] = datasort;
+        }
+
+        for (var i = 0; i < portfolios.length; i++) {
+            year_s = y[i];
+            month_s = m[i];
+            day_s = d[i];
+            k = i - 1;
+            datasort = clean_data[i];
+            while (k >= 0 && y[k] < year_s) {
+                y[k + 1] = y[k];
+                m[k + 1] = m[k];
+                d[k + 1] = d[k];
+                clean_data[k + 1] = clean_data[k];
+                k = k - 1;
+            }
+            y[k + 1] = year_s;
+            m[k + 1] = month_s;
+            d[k + 1] = day_s;
+            clean_data[k + 1] = datasort;
+        }
+
+
         console.log(clean_data);
         
         let portcontent = [];

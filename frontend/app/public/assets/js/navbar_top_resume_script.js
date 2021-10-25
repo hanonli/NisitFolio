@@ -193,6 +193,17 @@
 
     
     });
+
+    //icon-bookamrk
+    $('#icon-myresume-bookmark' ).attr({
+        'width': '30px',
+        'height' : '35px',
+    
+    });
+    $('#icon-myresume-bookmark' ).css({
+        'margin-left': '3px',
+    
+    });
     
     // $('#icon-myresume-share' ).click(function(){
     //     window.location = 'editprofile'
