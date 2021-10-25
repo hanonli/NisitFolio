@@ -26,12 +26,10 @@ class Edittab4 extends React.Component {
         var for_edit;
         var id_list_work_edit;
         var id_list_work_del;
-        setTimeout(() => {
-            console.log("edittab4!!!!:", this.props.mywork_data);
-            var mywork2 = this.props.mywork_data ? this.props.mywork_data : [];
-            list_of_work = [...mywork2];
-            show_work();
-        }, 3000);
+        console.log("edittab4!!!!:", this.props.mywork_data);
+        var mywork2 = this.props.mywork_data ? this.props.mywork_data : [];
+        list_of_work = [...mywork2];
+        show_work();
 
         /*------order list------*/
         function compareValues(key, order = 'asc') {

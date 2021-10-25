@@ -23,18 +23,15 @@ class Edittab6 extends React.Component {
         var id_list_job;
         var tabId;
         var list_of_job = []; //list of job
-        setTimeout(() => {
-            console.log("edittab6!!!!:", this.props.myjob_data);
-            const myjob2 = this.props.myjob_data ? this.props.myjob_data : [];
-            list_of_job = [...myjob2];
-            $(".step-marks").remove();
-            $(".step-labels").remove();
-            $("#input_mySlider1").remove();
-            $("#input_mySlider2").remove();
-            $("#input_mySlider3").remove();
-            show_all_job();
-
-        }, 3000);
+        console.log("edittab6!!!!:", this.props.myjob_data);
+        const myjob2 = this.props.myjob_data ? this.props.myjob_data : [];
+        list_of_job = [...myjob2];
+        $(".step-marks").remove();
+        $(".step-labels").remove();
+        $("#input_mySlider1").remove();
+        $("#input_mySlider2").remove();
+        $("#input_mySlider3").remove();
+        show_all_job();
 
         $(document).on('click', '.tabs_pop li', function () {
             $('.tabs_pop li').removeClass('current2');
