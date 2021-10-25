@@ -81,14 +81,6 @@ export class MyResumeController {
   
     //*/
 
-    /*
-  @Get("/foredit/:y")
-    async FuckingGetPort(@Param('y') y: string) {
-      const x="6153533d8f3c7c47fc36053a"
-      return this.resumeService.FuckingGetPort(x);
-  }
-  */
-
   /*@Post("makeresume")
     async makeResume(@Body() CreateDto: CreateResumeDto ){
       return this.resumeService.makeResume(CreateDto);
