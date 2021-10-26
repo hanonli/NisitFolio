@@ -332,16 +332,17 @@ export class MyResumeService {
 
         resume.certificates = cert_arr;
       }
+
       //------------------ED
       if (CreateDto.EducationID != null){
         var education_arr = [];
 
         const old_ED = resume.educationHistorys;
+        //return old_ED
         const old_ED_id_arr=[]
         for (var _i = 0; _i < old_ED.length; _i++) {
-          old_ED_id_arr.push(old_ED_id_arr[_i].id.toString())
+          old_ED_id_arr.push(old_ED[_i].id.toString())
         }
-
         for (var _i = 0; _i < CreateDto.EducationID.length; _i++) {
           const educationid = new ObjectID(CreateDto.EducationID[_i]);
           const educationhistory = await this.EducationHistoryRepository.findOne({where:{ _id: educationid }});
@@ -377,6 +378,7 @@ export class MyResumeService {
         resume.educationHistorys = education_arr;
       }
 
+      
       //-----------WH
       if (CreateDto.WorkID != null){
         var work_arr = [];
@@ -508,9 +510,9 @@ export class MyResumeService {
 
       resume.Privacy = CreateDto.Resume_Privacy;
       resume.Color = CreateDto.Color;
-      const CColor = await this.resumePictureRepository.find({where:{UserId:CreateDto.UserId}});
+      const CColor = await this.resumePictureRepository.find({where:{UserId:userId}});
       for (var _i = 0; _i < CColor.length; _i++) {
-      CColor[_i].Color=CreateDto.Color
+        CColor[_i].Color=CreateDto.Color
       await this.resumePictureRepository.save(CColor[_i])
     }
     //*/
@@ -827,6 +829,21 @@ export class MyResumeService {
   async getResumeUnbase64(userId:string ){
     return this.resumePictureRepository.find({select: ["_id","UserId","Owner","First","Last","Location","ProfilePic","AboutMe","Email","Privacy","interestedJob","additionalSkills","certificates","educationHistorys","workHistorys","portfolios","create_time","last_modified","modified_by"],where:{UserId : userId}});
     
+  }
+//-----------test
+  async test(userId:string ){
+    const x=await this.resumePictureRepository.find({UserId:"xxxxxxxx"});
+    if (x){
+      return "x"
+    }else{
+      return "n"
+    }
+    //const CColor = await this.resumePictureRepository.find({where:{UserId:CreateDto.UserId}});
+    for (var _i = 0; _i < x.length; _i++) {
+      x[_i].Color="xtest"
+      await this.resumePictureRepository.save(x[_i])
+    }
+    return "s"
   }
   
 }

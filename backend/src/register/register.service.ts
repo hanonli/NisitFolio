@@ -1184,7 +1184,12 @@ export class RegisterService {
       resume2.Privacy = "Private";
       resume2.Owner =  userinfo.Firstname + " " + userinfo.Lastname;
       resume2.Location = userinfo.Country + " " + userinfo.Province + " "+ userinfo.City;
-      resume2.Color = "#ffce55";
+      const tmp=await this.resumeRepository.findOne({UserId:UserId})
+      if(tmp){
+        resume2.Color = tmp.Color;
+      }else{
+        resume2.Color = "#ffce55";
+      }
       resume2.AboutMe = userinfo.AboutMe;
       resume2.Email = Email
       resume2.First = userinfo.Firstname;
