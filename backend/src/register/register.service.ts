@@ -833,6 +833,7 @@ export class RegisterService {
     const isoTime = time.toLocaleDateString('th-TH',{ year:'numeric',month: 'long',day:'numeric',hour:"2-digit",minute:"2-digit"});
     const ID = new ObjectID(id);
     const interestedJob = await this.InterestedJobRepository.findOne({ where: { _id: ID } });
+    //return interestedJob
 
     const ParentId = await this.userJobSkillRepository.find({ where: { ParentId: id } });
     const User=await this.userinfoRepository.findOne({ where: { UserId: UserId } });
@@ -851,32 +852,38 @@ export class RegisterService {
       //interestedJob.ResumeId[_i] ---> link resume
       const resume =  await this.resumeModel.findOne({_id: interestedJob.ResumeId[_i] });
       //resume.portfolios
+      
       for (var _j = 0; _j < resume.portfolios.length; _j++) {
-        const tmp_port=await this.portfolioRepository.findOne({_id:new ObjectID(resume.portfolios[_j]._id)})
+        const tmp_port=await this.portfolioRepository.findOne({where:{_id:new ObjectID(resume.portfolios[_j]._id.toString())}})
         tmp_port.ResumeId.splice(tmp_port.ResumeId.indexOf(id),1)
         await this.portfolioRepository.save(tmp_port)
       }
-      //resume.workHistorys
+      
       for (var _j = 0; _j < resume.workHistorys.length; _j++) {
-        const tmp_WH=await this.WorkHistoryRepository.findOne({id:new ObjectID(resume.workHistorys[_j].id)})
+        //return resume.workHistorys[_j].id
+        const kuy=new ObjectID(resume.workHistorys[_j].id.toString())
+        const tmp_WH=await this.WorkHistoryRepository.findOne({where:{_id:kuy}})
+        //return [tmp_WH,"f",new ObjectID("6177b4413eb2d83e7c970ba4"),"f",kuy]
         tmp_WH.ResumeId.splice(tmp_WH.ResumeId.indexOf(id),1)
         await this.WorkHistoryRepository.save(tmp_WH)
       }
+      
       //resume.educationHistorys
       for (var _j = 0; _j < resume.educationHistorys.length; _j++) {
-        const tmp_ED=await this.EducationHistoryRepository.findOne({id:new ObjectID(resume.educationHistorys[_j].id)})
+        const tmp_ED=await this.EducationHistoryRepository.findOne({where:{_id:new ObjectID(resume.educationHistorys[_j].id.toString())}})
         tmp_ED.ResumeId.splice(tmp_ED.ResumeId.indexOf(id),1)
         await this.EducationHistoryRepository.save(tmp_ED)
       }
+      
       //resume.certificates
       for (var _j = 0; _j < resume.certificates.length; _j++) {
-        const tmp_C=await this.CertificateRepository.findOne({id:new ObjectID(resume.certificates[_j].id)})
+        const tmp_C=await this.CertificateRepository.findOne({where:{_id:new ObjectID(resume.certificates[_j].id.toString())}})
         tmp_C.ResumeId.splice(tmp_C.ResumeId.indexOf(id),1)
         await this.CertificateRepository.save(tmp_C)
       }
       //resume.additionalSkills\
       for (var _j = 0; _j < resume.additionalSkills.length; _j++) {
-        const tmp_ADD=await this.AdditionalSkillRepository.findOne({id:new ObjectID(resume.additionalSkills[_j].id)})
+        const tmp_ADD=await this.AdditionalSkillRepository.findOne({where:{_id:new ObjectID(resume.additionalSkills[_j].id.toString())}})
         tmp_ADD.ResumeId.splice(tmp_ADD.ResumeId.indexOf(id),1)
         await this.AdditionalSkillRepository.save(tmp_ADD)
       }

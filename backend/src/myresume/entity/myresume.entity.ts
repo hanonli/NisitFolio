@@ -170,7 +170,7 @@ export class EducationHistory {
   Academy: string;
   
   @Column()
-  Grade: Float32Array;
+  Grade: string;
    
   @Column()
   Education_End_Year: number;   

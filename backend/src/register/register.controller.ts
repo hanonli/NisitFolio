@@ -144,7 +144,7 @@ export class RegisterController {
   //*/-----------------test
   @Delete("interestedJob/test/:id")
   async DeleteInterestedJob2(@Request() req,@Param('id') id: string) {
-    return this.registerService.DeleteInterestedJob("61738f2efd31c94ab4270b69","61738f35fd31c94ab4270b7b");
+    return this.registerService.DeleteInterestedJob("6177b43e3eb2d83e7c970b99","6177b4423eb2d83e7c970ba6");
   }
 
 
