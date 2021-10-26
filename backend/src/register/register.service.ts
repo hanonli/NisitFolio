@@ -828,11 +828,13 @@ export class RegisterService {
 
   }
 
+  //-----------------------------KUYYYYYYYYYYYYYYYYYYYYYYYY
   async DeleteInterestedJob(UserId:string,id:string){
     const time =  new Date();
     const isoTime = time.toLocaleDateString('th-TH',{ year:'numeric',month: 'long',day:'numeric',hour:"2-digit",minute:"2-digit"});
     const ID = new ObjectID(id);
     const interestedJob = await this.InterestedJobRepository.findOne({ where: { _id: ID } });
+    //return interestedJob
     //return interestedJob
 
     const ParentId = await this.userJobSkillRepository.find({ where: { ParentId: id } });
@@ -854,11 +856,12 @@ export class RegisterService {
       //resume.portfolios
       
       for (var _j = 0; _j < resume.portfolios.length; _j++) {
-        const tmp_port=await this.portfolioRepository.findOne({where:{_id:new ObjectID(resume.portfolios[_j]._id.toString())}})
+        //return resume.portfolios[_j]
+        const tmp_port=await this.portfolioRepository.findOne({where:{id:resume.portfolios[_j]._id}})
         tmp_port.ResumeId.splice(tmp_port.ResumeId.indexOf(id),1)
+        
         await this.portfolioRepository.save(tmp_port)
       }
-      
       for (var _j = 0; _j < resume.workHistorys.length; _j++) {
         //return resume.workHistorys[_j].id
         const kuy=new ObjectID(resume.workHistorys[_j].id.toString())
@@ -874,7 +877,6 @@ export class RegisterService {
         tmp_ED.ResumeId.splice(tmp_ED.ResumeId.indexOf(id),1)
         await this.EducationHistoryRepository.save(tmp_ED)
       }
-      
       //resume.certificates
       for (var _j = 0; _j < resume.certificates.length; _j++) {
         const tmp_C=await this.CertificateRepository.findOne({where:{_id:new ObjectID(resume.certificates[_j].id.toString())}})
