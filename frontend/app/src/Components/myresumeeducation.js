@@ -93,7 +93,7 @@ class EducationContent extends React.Component {
                 );*/
 
         }
-        if(data.Grade != 0){
+        if(parseFloat(data.Grade) !== 0){
             content.push(
             <div class="educationcontentLine4">
                 <p class="grade-label inline2">เกรด</p>
@@ -102,7 +102,7 @@ class EducationContent extends React.Component {
                         {" "}
                     </div>
                 </div>
-                <h4 class="grade inline2">{data.Grade.toFixed(2)}</h4>
+                <h4 class="grade inline2">{parseFloat(data.Grade).toFixed(2)}</h4>
             </div>
         );
         }
