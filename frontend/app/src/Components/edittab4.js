@@ -265,13 +265,16 @@ class Edittab4 extends React.Component {
                 .then(response => response.json())
                 .then((raws) => {
                     console.log(raws);
-                    list_of_year_work[list_of_work[removeIndex]["Work_Start_Year"]] -= 1;
-                    if (list_of_year_work[list_of_work[removeIndex]["Work_Start_Year"]] == 0) {
-                        $(`#yearOf_` + String(list_of_work[removeIndex]["Work_Start_Year"])).remove();
+                    if (!("message" in raws)) {
+                        list_of_year_work[list_of_work[removeIndex]["Work_Start_Year"]] -= 1;
+                        if (list_of_year_work[list_of_work[removeIndex]["Work_Start_Year"]] == 0) {
+                            $(`#yearOf_` + String(list_of_work[removeIndex]["Work_Start_Year"])).remove();
+                        }
+                        list_of_work.splice(removeIndex, 1);
+                        $(`#` + id_list_work_del).remove();
+                        $('#Modal_remove_work').modal('hide');
                     }
-                    list_of_work.splice(removeIndex, 1);
-                    $(`#` + id_list_work_del).remove();
-                    $('#Modal_remove_work').modal('hide');
+
                 }).catch((error) => {
                     console.log(error);
                 });
@@ -358,7 +361,6 @@ class Edittab4 extends React.Component {
 
         //submit data to list 
         $(document).on('click', "#submit-work", function () {
-            workedit.setState({ statusUpload4: "Saving...", imgStatus4: "assets/images/outline_cached_black_24dp.png" });
             $("#for-error-dgd").removeClass("status-saving5555-red");
             var type_work = document.getElementById("jobtype_work").value;
             var pos_work = document.getElementById("jobname_work").value;
@@ -443,6 +445,7 @@ class Edittab4 extends React.Component {
                 $("#month_endwork").addClass("is-invalid");
             }
             else {
+                workedit.setState({ statusUpload4: "Saving...", imgStatus4: "assets/images/outline_cached_black_24dp.png" });
                 let sendWork2back = {
                     "Work_JobName": pos_work,
                     "Work_JobType": type_work,
@@ -468,30 +471,37 @@ class Edittab4 extends React.Component {
                         .then(response => response.json())
                         .then((raws) => {
                             console.log(raws);
-                            for_edit["Work_JobType"] = type_work;
-                            //for_edit["Work_JobType_select"] = document.getElementById("jobtype_work").selectedIndex;
-                            for_edit["Work_JobName"] = pos_work;
-                            for_edit["Company"] = company_work;
-                            for_edit["SalaryType"] = type_salary_work;
-                            //for_edit["SalaryType_select"] = document.getElementById("salarytype_work").selectedIndex;
-                            for_edit["Salary"] = parseInt(salary_work);
-                            for_edit["Work_Start_Year"] = parseInt(year_startwork);
-                            //for_edit["Work_Start_Year_select"] = document.getElementById("year_startwork").selectedIndex;
-                            for_edit["Work_Start_Month"] = parseInt(month_startwork);
-                            //for_edit["Work_Start_Month_select"] = document.getElementById("month_startwork").selectedIndex;
-                            for_edit["Work_End_Year"] = parseInt(year_endwork);
-                            //for_edit["Work_End_Year_select"] = document.getElementById("year_endwork").selectedIndex;
-                            for_edit["Work_End_Month"] = parseInt(month_endwork);
-                            //for_edit["Work_End_Month_select"] = document.getElementById("month_endwork").selectedIndex;
-                            for_edit["reeggiist4_cb"] = reeggiist4_cb;
-                            for_edit["Infomation"] = inform_work;
-                            for_edit["backup_year_endwork"] = backup_year_endwork;
-                            for_edit["backup_month_endwork"] = backup_month_endwork;
-                            //for_edit["backup_salary"] = backup_salary;        
-                            $("#registab4Modal").modal("hide"); //success!!!!!
-                            $(".box-box-box-work1-edit").empty();
-                            workedit.setState({ statusUpload4: "", imgStatus4: "" });
-                            show_work();
+                            if ("message" in raws) {
+                                workedit.setState({ statusUpload4: "Save Failed", imgStatus4: "assets/images/baseline_error_black_24dp.png" });
+                                $("#for-error-dgd").addClass("status-saving5555-red");
+                            }
+                            else {
+                                for_edit["Work_JobType"] = type_work;
+                                //for_edit["Work_JobType_select"] = document.getElementById("jobtype_work").selectedIndex;
+                                for_edit["Work_JobName"] = pos_work;
+                                for_edit["Company"] = company_work;
+                                for_edit["SalaryType"] = type_salary_work;
+                                //for_edit["SalaryType_select"] = document.getElementById("salarytype_work").selectedIndex;
+                                for_edit["Salary"] = parseInt(salary_work);
+                                for_edit["Work_Start_Year"] = parseInt(year_startwork);
+                                //for_edit["Work_Start_Year_select"] = document.getElementById("year_startwork").selectedIndex;
+                                for_edit["Work_Start_Month"] = parseInt(month_startwork);
+                                //for_edit["Work_Start_Month_select"] = document.getElementById("month_startwork").selectedIndex;
+                                for_edit["Work_End_Year"] = parseInt(year_endwork);
+                                //for_edit["Work_End_Year_select"] = document.getElementById("year_endwork").selectedIndex;
+                                for_edit["Work_End_Month"] = parseInt(month_endwork);
+                                //for_edit["Work_End_Month_select"] = document.getElementById("month_endwork").selectedIndex;
+                                for_edit["reeggiist4_cb"] = reeggiist4_cb;
+                                for_edit["Infomation"] = inform_work;
+                                for_edit["backup_year_endwork"] = backup_year_endwork;
+                                for_edit["backup_month_endwork"] = backup_month_endwork;
+                                //for_edit["backup_salary"] = backup_salary;        
+                                $("#registab4Modal").modal("hide"); //success!!!!!
+                                $(".box-box-box-work1-edit").empty();
+                                workedit.setState({ statusUpload4: "", imgStatus4: "" });
+                                show_work();
+                            }
+
                         }).catch((error) => {
                             console.log(error);
                             workedit.setState({ statusUpload4: "Save Failed", imgStatus4: "assets/images/baseline_error_black_24dp.png" });
@@ -512,33 +522,40 @@ class Edittab4 extends React.Component {
                     })
                         .then((raws) => {
                             console.log(raws);
-                            list_of_work.push({
-                                WorkHistory_id: raws.id,
-                                Work_JobType: type_work,
-                                //Work_JobType_select: document.getElementById("jobtype_work").selectedIndex,
-                                Work_JobName: pos_work,
-                                Company: company_work,
-                                SalaryType: type_salary_work,
-                                //SalaryType_select: document.getElementById("salarytype_work").selectedIndex,
-                                Salary: parseInt(salary_work),
-                                Work_Start_Year: parseInt(year_startwork),
-                                //Work_Start_Year_select: document.getElementById("year_startwork").selectedIndex,
-                                Work_Start_Month: parseInt(month_startwork),
-                                //Work_Start_Month_select: document.getElementById("month_startwork").selectedIndex,
-                                Work_End_Year: parseInt(year_endwork),
-                                //Work_End_Year_select: document.getElementById("year_endwork").selectedIndex,
-                                Work_End_Month: parseInt(month_endwork),
-                                //Work_End_Month_select: document.getElementById("month_endwork").selectedIndex,
-                                reeggiist4_cb: reeggiist4_cb,
-                                Infomation: inform_work,
-                                backup_year_endwork: backup_year_endwork,
-                                backup_month_endwork: backup_month_endwork,
-                                isFetch: false
-                            });
-                            $("#registab4Modal").modal("hide"); //success!!!!!
-                            $(".box-box-box-work1-edit").empty();
-                            workedit.setState({ statusUpload4: "", imgStatus4: "" });
-                            show_work();
+                            if ("message" in raws) {
+                                workedit.setState({ statusUpload4: "Save Failed", imgStatus4: "assets/images/baseline_error_black_24dp.png" });
+                                $("#for-error-dgd").addClass("status-saving5555-red");
+                            }
+                            else {
+                                list_of_work.push({
+                                    WorkHistory_id: raws.id,
+                                    Work_JobType: type_work,
+                                    //Work_JobType_select: document.getElementById("jobtype_work").selectedIndex,
+                                    Work_JobName: pos_work,
+                                    Company: company_work,
+                                    SalaryType: type_salary_work,
+                                    //SalaryType_select: document.getElementById("salarytype_work").selectedIndex,
+                                    Salary: parseInt(salary_work),
+                                    Work_Start_Year: parseInt(year_startwork),
+                                    //Work_Start_Year_select: document.getElementById("year_startwork").selectedIndex,
+                                    Work_Start_Month: parseInt(month_startwork),
+                                    //Work_Start_Month_select: document.getElementById("month_startwork").selectedIndex,
+                                    Work_End_Year: parseInt(year_endwork),
+                                    //Work_End_Year_select: document.getElementById("year_endwork").selectedIndex,
+                                    Work_End_Month: parseInt(month_endwork),
+                                    //Work_End_Month_select: document.getElementById("month_endwork").selectedIndex,
+                                    reeggiist4_cb: reeggiist4_cb,
+                                    Infomation: inform_work,
+                                    backup_year_endwork: backup_year_endwork,
+                                    backup_month_endwork: backup_month_endwork,
+                                    isFetch: false
+                                });
+                                $("#registab4Modal").modal("hide"); //success!!!!!
+                                $(".box-box-box-work1-edit").empty();
+                                workedit.setState({ statusUpload4: "", imgStatus4: "" });
+                                show_work();
+                            }
+
                         }).catch((error) => {
                             console.log(error);
                             workedit.setState({ statusUpload4: "Save Failed", imgStatus4: "assets/images/baseline_error_black_24dp.png" });

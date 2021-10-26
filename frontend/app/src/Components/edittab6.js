@@ -532,7 +532,6 @@ class Edittab6 extends React.Component {
         });
 
         document.getElementById("submit-job11").addEventListener("click", function () {
-            jobedit.setState({ statusUpload6: "Saving...", imgStatus6: "assets/images/outline_cached_black_24dp.png" });
             $("#for-error-dgd6").removeClass("status-saving5555-red");
             var name_job = document.getElementById("nm_job").value;
             var skill_job_1 = document.getElementById("each_skill1").value;
@@ -552,10 +551,11 @@ class Edittab6 extends React.Component {
                 //$("#each_skill2").addClass("is-invalid");
                 //can't submit
             }
-            else if (list_of_job.findIndex(e => e.name_job === document.getElementById("nm_job").value) != -1 && choose_function == 2) {
+            else if (list_of_job.findIndex(e => e.Job_JobName === document.getElementById("nm_job").value) != -1) {
                 $("#nm_job").addClass("is-invalid");
             }
             else {
+                jobedit.setState({ statusUpload6: "Saving...", imgStatus6: "assets/images/outline_cached_black_24dp.png" });
                 if (skill_job_1 == 'none') {
                     //skill_job_1 = 'none';
                     score_slider11 = 2.5;
@@ -666,39 +666,46 @@ class Edittab6 extends React.Component {
                         .then(response => response.json())
                         .then((raws) => {
                             console.log(raws);
-                            for_edit["Job_JobName"] = name_job;
-                            //for_edit["Job_JobName_select"] = $("#nm_job").prop('selectedIndex');
-                            for_edit["Job_SkillName1"] = skill_job_1;
-                            //for_edit["Job_SkillName1_select"] = document.getElementById("each_skill1").selectedIndex;
-                            for_edit["Job_Score1"] = parseFloat(score_slider11).toFixed(1);
-                            for_edit["Job_Score1"] = Number.parseFloat(for_edit["Job_Score1"]);
-                            for_edit["Job_SkillName2"] = skill_job_2;
-                            //for_edit["Job_SkillName2_select"] = document.getElementById("each_skill2").selectedIndex;
-                            for_edit["Job_Score2"] = parseFloat(score_slider12).toFixed(1);
-                            for_edit["Job_Score2"] = Number.parseFloat(for_edit["Job_Score2"]);
-                            for_edit["Job_SkillName3"] = skill_job_3;
-                            //for_edit["Job_SkillName3_select"] = document.getElementById("each_skill3").selectedIndex;
-                            for_edit["Job_Score3"] = parseFloat(score_slider13).toFixed(1);
-                            for_edit["Job_Score3"] = Number.parseFloat(for_edit["Job_Score3"]);
-                            for_edit["Job_Objective1"] = obj_job_1;
-                            for_edit["Job_Objective2"] = obj_job_2;
-                            for_edit["Job_Objective3"] = obj_job_3;
-                            $('#nm_job').prop('selectedIndex', 0);
-                            $("#obj-job-01").val('');
-                            $("#pos-del-obj-button1").hide();
-                            $("#obj-job-02").val('');
-                            $("#pos-del-obj-button2").hide();
-                            $("#obj-job-03").val('');
-                            $("#pos-del-obj-button3").hide();
-                            $('#exampleModalJob').modal('hide');
-                            $(".list-of-job-edit").empty();
-                            show_all_job()
-                            $(".step-marks").remove();
-                            $(".step-labels").remove();
-                            $("#input_mySlider1").remove();
-                            $("#input_mySlider2").remove();
-                            $("#input_mySlider3").remove();
-                            jobedit.setState({ statusUpload6: "", imgStatus6: "" });
+                            if ("message" in raws) {
+                                jobedit.setState({ statusUpload6: "Save Failed", imgStatus6: "assets/images/baseline_error_black_24dp.png" });
+                                $("#for-error-dgd6").addClass("status-saving5555-red");
+                            }
+                            else {
+                                for_edit["Job_JobName"] = name_job;
+                                //for_edit["Job_JobName_select"] = $("#nm_job").prop('selectedIndex');
+                                for_edit["Job_SkillName1"] = skill_job_1;
+                                //for_edit["Job_SkillName1_select"] = document.getElementById("each_skill1").selectedIndex;
+                                for_edit["Job_Score1"] = parseFloat(score_slider11).toFixed(1);
+                                for_edit["Job_Score1"] = Number.parseFloat(for_edit["Job_Score1"]);
+                                for_edit["Job_SkillName2"] = skill_job_2;
+                                //for_edit["Job_SkillName2_select"] = document.getElementById("each_skill2").selectedIndex;
+                                for_edit["Job_Score2"] = parseFloat(score_slider12).toFixed(1);
+                                for_edit["Job_Score2"] = Number.parseFloat(for_edit["Job_Score2"]);
+                                for_edit["Job_SkillName3"] = skill_job_3;
+                                //for_edit["Job_SkillName3_select"] = document.getElementById("each_skill3").selectedIndex;
+                                for_edit["Job_Score3"] = parseFloat(score_slider13).toFixed(1);
+                                for_edit["Job_Score3"] = Number.parseFloat(for_edit["Job_Score3"]);
+                                for_edit["Job_Objective1"] = obj_job_1;
+                                for_edit["Job_Objective2"] = obj_job_2;
+                                for_edit["Job_Objective3"] = obj_job_3;
+                                $('#nm_job').prop('selectedIndex', 0);
+                                $("#obj-job-01").val('');
+                                $("#pos-del-obj-button1").hide();
+                                $("#obj-job-02").val('');
+                                $("#pos-del-obj-button2").hide();
+                                $("#obj-job-03").val('');
+                                $("#pos-del-obj-button3").hide();
+                                $('#exampleModalJob').modal('hide');
+                                $(".list-of-job-edit").empty();
+                                show_all_job()
+                                $(".step-marks").remove();
+                                $(".step-labels").remove();
+                                $("#input_mySlider1").remove();
+                                $("#input_mySlider2").remove();
+                                $("#input_mySlider3").remove();
+                                jobedit.setState({ statusUpload6: "", imgStatus6: "" });
+                            }
+
                         }).catch((error) => {
                             console.log(error);
                             jobedit.setState({ statusUpload6: "Save Failed", imgStatus6: "assets/images/baseline_error_black_24dp.png" });
@@ -718,44 +725,51 @@ class Edittab6 extends React.Component {
                         .then(response => response.json())
                         .then((raws) => {
                             console.log(raws)
-                            var sc11 = parseFloat(score_slider11).toFixed(1), sc12 = parseFloat(score_slider12).toFixed(1), sc13 = parseFloat(score_slider13).toFixed(1);
-                            push2list = {
-                                InterestedJob_id: raws.id,
-                                Job_Pos: 0,
-                                Job_JobName: name_job,
-                                //Job_JobName_select: $("#nm_job").prop('selectedIndex'),
-                                Job_SkillName1: skill_job_1,
-                                //Job_SkillName1_select: document.getElementById("each_skill1").selectedIndex,
-                                Job_Score1: Number.parseFloat(sc11),
-                                Job_SkillName2: skill_job_2,
-                                //Job_SkillName2_select: document.getElementById("each_skill2").selectedIndex,
-                                Job_Score2: parseFloat(sc12),
-                                Job_SkillName3: skill_job_3,
-                                //Job_SkillName3_select: document.getElementById("each_skill3").selectedIndex,
-                                Job_Score3: parseFloat(sc13),
-                                Job_Objective1: obj_job_1,
-                                Job_Objective2: obj_job_2,
-                                Job_Objective3: obj_job_3
+                            if ("message" in raws) {
+                                jobedit.setState({ statusUpload6: "Save Failed", imgStatus6: "assets/images/baseline_error_black_24dp.png" });
+                                $("#for-error-dgd6").addClass("status-saving5555-red");
                             }
-                            list_of_job.push(push2list);
-                            get_job_id(list_of_job, 1);
-                            console.log(list_of_job);
-                            $('#nm_job').prop('selectedIndex', 0);
-                            $("#obj-job-01").val('');
-                            $("#pos-del-obj-button1").hide();
-                            $("#obj-job-02").val('');
-                            $("#pos-del-obj-button2").hide();
-                            $("#obj-job-03").val('');
-                            $("#pos-del-obj-button3").hide();
-                            $('#exampleModalJob').modal('hide');
-                            $(".list-of-job-edit").empty();
-                            show_all_job()
-                            $(".step-marks").remove();
-                            $(".step-labels").remove();
-                            $("#input_mySlider1").remove();
-                            $("#input_mySlider2").remove();
-                            $("#input_mySlider3").remove();
-                            jobedit.setState({ statusUpload6: "", imgStatus6: "" });
+                            else {
+                                var sc11 = parseFloat(score_slider11).toFixed(1), sc12 = parseFloat(score_slider12).toFixed(1), sc13 = parseFloat(score_slider13).toFixed(1);
+                                push2list = {
+                                    InterestedJob_id: raws.id,
+                                    Job_Pos: 0,
+                                    Job_JobName: name_job,
+                                    //Job_JobName_select: $("#nm_job").prop('selectedIndex'),
+                                    Job_SkillName1: skill_job_1,
+                                    //Job_SkillName1_select: document.getElementById("each_skill1").selectedIndex,
+                                    Job_Score1: Number.parseFloat(sc11),
+                                    Job_SkillName2: skill_job_2,
+                                    //Job_SkillName2_select: document.getElementById("each_skill2").selectedIndex,
+                                    Job_Score2: parseFloat(sc12),
+                                    Job_SkillName3: skill_job_3,
+                                    //Job_SkillName3_select: document.getElementById("each_skill3").selectedIndex,
+                                    Job_Score3: parseFloat(sc13),
+                                    Job_Objective1: obj_job_1,
+                                    Job_Objective2: obj_job_2,
+                                    Job_Objective3: obj_job_3
+                                }
+                                list_of_job.push(push2list);
+                                get_job_id(list_of_job, 1);
+                                console.log(list_of_job);
+                                $('#nm_job').prop('selectedIndex', 0);
+                                $("#obj-job-01").val('');
+                                $("#pos-del-obj-button1").hide();
+                                $("#obj-job-02").val('');
+                                $("#pos-del-obj-button2").hide();
+                                $("#obj-job-03").val('');
+                                $("#pos-del-obj-button3").hide();
+                                $('#exampleModalJob').modal('hide');
+                                $(".list-of-job-edit").empty();
+                                show_all_job()
+                                $(".step-marks").remove();
+                                $(".step-labels").remove();
+                                $("#input_mySlider1").remove();
+                                $("#input_mySlider2").remove();
+                                $("#input_mySlider3").remove();
+                                jobedit.setState({ statusUpload6: "", imgStatus6: "" });
+                            }
+
                         }).catch((error) => {
                             console.log(error);
                             jobedit.setState({ statusUpload6: "Save Failed", imgStatus6: "assets/images/baseline_error_black_24dp.png" });
@@ -782,7 +796,7 @@ class Edittab6 extends React.Component {
             $('#exampleModal_remove_job').modal('toggle');
         });
 
-        $(document).on('click', "#summit-to-delete", function () {
+        $(document).on('click', "#summit-to-delete-job", function () {
             var removeIndex = list_of_job.findIndex(function (post, index_del) {
                 if (post.InterestedJob_id === id_list_job_del)
                     return true;
@@ -801,23 +815,26 @@ class Edittab6 extends React.Component {
                 .then(response => response.json())
                 .then((raws) => {
                     console.log(raws);
-                    list_of_job.splice(removeIndex, 1);
-                    //console.log(`delete job id:`, removeIndex);
-                    $('#exampleModal_remove_job').modal('hide');
-                    $(".list-of-job-edit").empty();
-                    //console.log(list_of_job);
-                    get_job_id(list_of_job, 1);
-                    show_all_job()
-                    $(".step-marks").remove();
-                    $(".step-labels").remove();
-                    $("#input_mySlider1").remove();
-                    $("#input_mySlider2").remove();
-                    $("#input_mySlider3").remove();
-                    if (list_of_job.length < 3) {
-                        $(".frame_add_job_interest").show();
-                        $(".limit-job-pos-3").removeClass("limit-job-pos-3-red");
-                        $('.limit-job-pos-3').text('ท่านสามารถเพิ่มตำแหน่งงานที่สนใจได้สูงสุด 3 อัน');
+                    if (!("message" in raws)) {
+                        list_of_job.splice(removeIndex, 1);
+                        //console.log(`delete job id:`, removeIndex);
+                        $('#exampleModal_remove_job').modal('hide');
+                        $(".list-of-job-edit").empty();
+                        //console.log(list_of_job);
+                        get_job_id(list_of_job, 1);
+                        show_all_job()
+                        $(".step-marks").remove();
+                        $(".step-labels").remove();
+                        $("#input_mySlider1").remove();
+                        $("#input_mySlider2").remove();
+                        $("#input_mySlider3").remove();
+                        if (list_of_job.length < 3) {
+                            $(".frame_add_job_interest").show();
+                            $(".limit-job-pos-3").removeClass("limit-job-pos-3-red");
+                            $('.limit-job-pos-3').text('ท่านสามารถเพิ่มตำแหน่งงานที่สนใจได้สูงสุด 3 อัน');
+                        }
                     }
+
                 }).catch((error) => {
                     console.log(error);
                 });
@@ -977,7 +994,7 @@ class Edittab6 extends React.Component {
                                 <h4 class="del-b">คุณต้องการลบเป้าหมายในการทำงานนี้ ?</h4>
                                 <div class="centerverify">
                                     <a id="hide-modal-delete" type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" >ยกเลิก</a>
-                                    <a id="summit-to-delete" type="button" class="btn btn-cta-primary-yellowshort profile-button round" >ลบ</a>
+                                    <a id="summit-to-delete-job" type="button" class="btn btn-cta-primary-yellowshort profile-button round" >ลบ</a>
                                 </div>
                             </div>
                         </div>

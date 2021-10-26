@@ -240,19 +240,20 @@ class Edittab5 extends React.Component {
                 if (post.Certificate_id === id_list_certi_del)
                     return true;
             });
-                fetch("http://localhost:2000/register/certificate/" + list_of_certi[removeIndex].Certificate_id, {
-                    method: "DELETE",
-                    headers: {
-                        'Authorization': 'Bearer ' + token5,
-                        "Access-Control-Allow-Origin": "*",
-                        "Access-Control-Allow-Methods": "*",
-                        "Access-Control-Allow-Credentials": true,
-                        "Content-Type": "application/json"
-                    },
-                })
-                    .then(response => response.json())
-                    .then((raws) => {
-                        console.log(raws);
+            fetch("http://localhost:2000/register/certificate/" + list_of_certi[removeIndex].Certificate_id, {
+                method: "DELETE",
+                headers: {
+                    'Authorization': 'Bearer ' + token5,
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Methods": "*",
+                    "Access-Control-Allow-Credentials": true,
+                    "Content-Type": "application/json"
+                },
+            })
+                .then(response => response.json())
+                .then((raws) => {
+                    console.log(raws);
+                    if (!("message" in raws)) {
                         list_of_year_certi[list_of_certi[removeIndex]["CertYear"]] -= 1;
                         if (list_of_year_certi[list_of_certi[removeIndex]["CertYear"]] == 0) {
                             $(`#yearOf_` + String(list_of_certi[removeIndex]["CertYear"])).remove();
@@ -268,9 +269,11 @@ class Edittab5 extends React.Component {
                         $("#exampleModal_remove_certi").modal("hide");
                         console.log(`list_of_year_certi:`, list_of_year_certi);
                         console.log(`list_of_certi:`, list_of_certi);
-                    }).catch((error) => {
-                        console.log(error);
-                    });
+                    }
+
+                }).catch((error) => {
+                    console.log(error);
+                });
         });
 
         $(document).on("change", "#nm_certi", function () {
@@ -307,6 +310,7 @@ class Edittab5 extends React.Component {
                 $("#to_upload112").addClass("error_select_certi");
             }
             else {
+                certiedit.setState({ statusUpload5: "Saving...", imgStatus5: "assets/images/outline_cached_black_24dp.png" });
                 if (file_picOfCerti != '') {
                     await UploadToS3(file_picOfCerti);
                     //alert(uploadurl);
@@ -333,25 +337,32 @@ class Edittab5 extends React.Component {
                         .then(response => response.json())
                         .then((raws) => {
                             console.log(raws);
-                            for_edit["CertName"] = name_certi;
-                            for_edit["CertYear"] = parseInt(year_certi);
-                            for_edit["CertPic"] = file_picOfCerti != '' ? uploadurl : for_edit["CertPic"];
-                            //for_edit["file_pic"] = file_picOfCerti != '' ? uploadurl : for_edit["file_pic"];
-                            //for_edit["CertYear_select"] = $("#yearpicker_111").prop('selectedIndex');
-                            //var list_edit11 = document.getElementById(id_list_certi_edit);
-                            $("#nm_certi").val("");
-                            $("#yearpicker_111").prop('selectedIndex', 0);
-                            $("#exampleModal11112").modal("hide");
-                            $(".box-box-box-edit-certi").empty();
-                            console.log(`list_of_certi:`, list_of_certi);
-                            certiedit.setState({ statusUpload5: "", imgStatus5: "" });
-                            show_certi();
-                            $("#preview_before_upload").remove();
-                            $("#icon-upload-112").remove();
-                            $("#text-upload-112").remove();
-                            $("#text-upload-116").remove();
-                            picOfCerti = '';
-                            file_picOfCerti = '';
+                            if ("message" in raws) {
+                                $("#for-error-dgd5").addClass("status-saving5555-red");
+                                certiedit.setState({ statusUpload5: "Save Failed", imgStatus5: "assets/images/baseline_error_black_24dp.png" });
+                            }
+                            else {
+                                for_edit["CertName"] = name_certi;
+                                for_edit["CertYear"] = parseInt(year_certi);
+                                for_edit["CertPic"] = file_picOfCerti != '' ? uploadurl : for_edit["CertPic"];
+                                //for_edit["file_pic"] = file_picOfCerti != '' ? uploadurl : for_edit["file_pic"];
+                                //for_edit["CertYear_select"] = $("#yearpicker_111").prop('selectedIndex');
+                                //var list_edit11 = document.getElementById(id_list_certi_edit);
+                                $("#nm_certi").val("");
+                                $("#yearpicker_111").prop('selectedIndex', 0);
+                                $("#exampleModal11112").modal("hide");
+                                $(".box-box-box-edit-certi").empty();
+                                console.log(`list_of_certi:`, list_of_certi);
+                                certiedit.setState({ statusUpload5: "", imgStatus5: "" });
+                                show_certi();
+                                $("#preview_before_upload").remove();
+                                $("#icon-upload-112").remove();
+                                $("#text-upload-112").remove();
+                                $("#text-upload-116").remove();
+                                picOfCerti = '';
+                                file_picOfCerti = '';
+                            }
+
                         }).catch((error) => {
                             console.log(error);
                             $("#for-error-dgd5").addClass("status-saving5555-red");
@@ -378,29 +389,36 @@ class Edittab5 extends React.Component {
                         .then(response => response.json())
                         .then((raws) => {
                             console.log(raws);
-                            list_of_certi.push({
-                                Certificate_id: raws.id,
-                                CertName: name_certi,
-                                CertYear: parseInt(year_certi),
-                                //CertYear_select: $("#yearpicker_111").prop('selectedIndex'),
-                                //CertPic: picOfCerti,
-                                //file_pic: file_picOfCerti,
-                                CertPic: uploadurl,
-                                isFetch: false
-                            });
-                            $("#nm_certi").val("");
-                            $("#yearpicker_111").prop('selectedIndex', 0);
-                            $("#exampleModal11112").modal("hide");
-                            $(".box-box-box-edit-certi").empty();
-                            console.log(`list_of_certi:`, list_of_certi);
-                            certiedit.setState({ statusUpload5: "", imgStatus5: "" });
-                            show_certi();
-                            $("#preview_before_upload").remove();
-                            $("#icon-upload-112").remove();
-                            $("#text-upload-112").remove();
-                            $("#text-upload-116").remove();
-                            picOfCerti = '';
-                            file_picOfCerti = '';
+                            if ("message" in raws) {
+                                certiedit.setState({ statusUpload5: "Save Failed", imgStatus5: "assets/images/baseline_error_black_24dp.png" });
+                                $("#for-error-dgd5").addClass("status-saving5555-red");
+                            }
+                            else {
+                                list_of_certi.push({
+                                    Certificate_id: raws.id,
+                                    CertName: name_certi,
+                                    CertYear: parseInt(year_certi),
+                                    //CertYear_select: $("#yearpicker_111").prop('selectedIndex'),
+                                    //CertPic: picOfCerti,
+                                    //file_pic: file_picOfCerti,
+                                    CertPic: uploadurl,
+                                    isFetch: false
+                                });
+                                $("#nm_certi").val("");
+                                $("#yearpicker_111").prop('selectedIndex', 0);
+                                $("#exampleModal11112").modal("hide");
+                                $(".box-box-box-edit-certi").empty();
+                                console.log(`list_of_certi:`, list_of_certi);
+                                certiedit.setState({ statusUpload5: "", imgStatus5: "" });
+                                show_certi();
+                                $("#preview_before_upload").remove();
+                                $("#icon-upload-112").remove();
+                                $("#text-upload-112").remove();
+                                $("#text-upload-116").remove();
+                                picOfCerti = '';
+                                file_picOfCerti = '';
+                            }
+
                         }).catch((error) => {
                             certiedit.setState({ statusUpload5: "Save Failed", imgStatus5: "assets/images/baseline_error_black_24dp.png" });
                             $("#for-error-dgd5").addClass("status-saving5555-red");

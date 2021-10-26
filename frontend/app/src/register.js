@@ -388,7 +388,7 @@ class Register extends React.Component {
 					}
 					else {
 						last_jobscore.push(0);
-					}			
+					}
 					if (entry.obj1 == "" && entry.obj2 == "" && entry.obj3 != "") {
 						entry.obj1 = entry.obj3;
 						entry.obj3 = "";
@@ -1080,7 +1080,7 @@ class Register extends React.Component {
 					get_aca_id(list_of_aca, 1);
 					console.log(list_of_aca);
 				}
-				console.log("testfloat11:",Number.parseFloat(grade_aca1).toFixed(2));
+				console.log("testfloat11:", Number.parseFloat(grade_aca1).toFixed(2));
 				$('#aca_degree').prop('selectedIndex', 0);
 				$("#year_secondary").prop('selectedIndex', 0);
 				$('#aca_name').val('');
@@ -2673,7 +2673,7 @@ class Register extends React.Component {
 				//$("#each_skill2").addClass("is-invalid");
 				//can't submit
 			}
-			else if (list_of_job.findIndex(e => e.name_job === document.getElementById("nm_job").value) != -1 && choose_function == 2) {
+			else if (list_of_job.findIndex(e => e.name_job === document.getElementById("nm_job").value) != -1) {
 				$("#nm_job").addClass("is-invalid");
 			}
 			else {

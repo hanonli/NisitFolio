@@ -53,6 +53,7 @@ class Editresume extends React.Component {
 
 	componentDidMount() {
 		var editresumeState = this;
+		select_color_template = "#ffce55";
 		var choose_aca = [], choose_high = [], choose_sideskill = [], choose_certi = [], choose_work = [];
 		var tmp1 = [], tmp2 = [], list_of_year_certi = {}, year_before_certi, year_before_work = -1, list_of_year_work = {}, certdata = [], workdata = [];
 		var token = cookie.load('login-token')
