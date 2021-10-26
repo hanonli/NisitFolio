@@ -53,7 +53,7 @@ class Editresume extends React.Component {
 
 	componentDidMount() {
 		var editresumeState = this;
-		var choose_aca = [], choose_high = [], choose_sideskill = [];
+		var choose_aca = [], choose_high = [], choose_sideskill = [], choose_certi = [], choose_work = [];
 		var tmp1 = [], tmp2 = [], list_of_year_certi = {}, year_before_certi, year_before_work = -1, list_of_year_work = {}, certdata = [], workdata = [];
 		var token = cookie.load('login-token')
 		console.log('Your Token is: ' + token);
@@ -88,15 +88,15 @@ class Editresume extends React.Component {
 			});
 			var FormEdit = {
 				"SoftSkillID": choose_sideskill,
-				"CertID": certdata,
+				"CertID": choose_certi,
 				"EducationID": choose_high,
-				"WorkID": workdata,
+				"WorkID": choose_work,
 				"PortID": last_port,
 				"Color": select_color_template
 			}
 			console.log(FormEdit);
 			alert('Confirm Edit Resume');
-			editresumeState.setState ({render: false});
+			editresumeState.setState({ render: false });
 			EditResume(FormEdit);
 			//window.location = ("myresume");
 			//window.location.href = "http://localhost:3000/myresume";
@@ -175,77 +175,77 @@ class Editresume extends React.Component {
 								alert(index);
 							}*/
 						});
-					editresumeState.state.data.Degree.forEach((element, index) => {
-	
-						if (element == 'มัธยมศึกษาตอนปลาย' || element == 'ปวช.') {
-							list_of_high.push({
-								id: editresumeState.state.data.EducationHistory_id[index],
-								high_pos: 0,
-								high_name: editresumeState.state.data.Academy[index],
-								high_faculty: 'none',
-								high_degree: editresumeState.state.data.Degree[index],
-								high_grade: editresumeState.state.data.Grade[index],
-								high_field: editresumeState.state.data.Field_of_study[index],
-								high_year: editresumeState.state.data.Education_End_Year[index],
-								isCheckHigh: editresumeState.state.data.EducationHistory_ResumeId[index].includes(editresumeState.state.resumeId) ? 'checked' : "defaultChecked"
-							});
-							get_high_id(list_of_high, 1);
-							//console.log(list_of_high);
-						}
-						else {
-							list_of_aca.push({
-								id: editresumeState.state.data.EducationHistory_id[index],
-								aca_pos: 0,
-								aca_name: editresumeState.state.data.Academy[index],
-								aca_faculty: editresumeState.state.data.Facalty[index],
-								aca_degree: editresumeState.state.data.Degree[index],
-								aca_grade: editresumeState.state.data.Grade[index],
-								aca_field: editresumeState.state.data.Field_of_study[index],
-								aca_year: editresumeState.state.data.Education_End_Year[index],
-								isCheckAca: editresumeState.state.data.EducationHistory_ResumeId[index].includes(editresumeState.state.resumeId) ? 'checked' : "defaultChecked"
-							});
-							get_aca_id(list_of_aca, 1);
-							//console.log(list_of_aca);
-						}
+						editresumeState.state.data.Degree.forEach((element, index) => {
+
+							if (element == 'มัธยมศึกษาตอนปลาย' || element == 'ปวช.') {
+								list_of_high.push({
+									id: editresumeState.state.data.EducationHistory_id[index],
+									high_pos: 0,
+									high_name: editresumeState.state.data.Academy[index],
+									high_faculty: 'none',
+									high_degree: editresumeState.state.data.Degree[index],
+									high_grade: editresumeState.state.data.Grade[index],
+									high_field: editresumeState.state.data.Field_of_study[index],
+									high_year: editresumeState.state.data.Education_End_Year[index],
+									isCheckHigh: editresumeState.state.data.EducationHistory_ResumeId[index].includes(editresumeState.state.resumeId) ? 'checked' : "defaultChecked"
+								});
+								get_high_id(list_of_high, 1);
+								//console.log(list_of_high);
+							}
+							else {
+								list_of_aca.push({
+									id: editresumeState.state.data.EducationHistory_id[index],
+									aca_pos: 0,
+									aca_name: editresumeState.state.data.Academy[index],
+									aca_faculty: editresumeState.state.data.Facalty[index],
+									aca_degree: editresumeState.state.data.Degree[index],
+									aca_grade: editresumeState.state.data.Grade[index],
+									aca_field: editresumeState.state.data.Field_of_study[index],
+									aca_year: editresumeState.state.data.Education_End_Year[index],
+									isCheckAca: editresumeState.state.data.EducationHistory_ResumeId[index].includes(editresumeState.state.resumeId) ? 'checked' : "defaultChecked"
+								});
+								get_aca_id(list_of_aca, 1);
+								//console.log(list_of_aca);
+							}
+						});
+						//console.log("Certificate_ResumeId:", editresumeState.state.data.hasOwnProperty('Certificate_ResumeId'));
+						editresumeState.state.data.Certificate_id.forEach((ele, index) => {
+							certdata.push({
+								Certificate_id: ele,
+								CertName: editresumeState.state.data.CertName[index],
+								CertPic: editresumeState.state.data.CertPic[index],
+								CertYear: editresumeState.state.data.CertYear[index],
+								isCheckCert: editresumeState.state.data.Certificate_ResumeId[index].includes(editresumeState.state.resumeId) ? 'checked' : ""
+							})
+						});
+						//console.log("WorkHistory_ResumeId:", editresumeState.state.data.hasOwnProperty('WorkHistory_ResumeId'));
+						editresumeState.state.data.WorkHistory_id.forEach((ele, index) => {
+							workdata.push({
+								WorkHistory_id: ele,
+								Work_JobName: editresumeState.state.data.Work_JobName[index],
+								Work_JobType: editresumeState.state.data.Work_JobType[index],
+								Company: editresumeState.state.data.Company[index],
+								Work_Start_Month: editresumeState.state.data.Work_Start_Month[index],
+								Work_End_Month: editresumeState.state.data.Work_End_Month[index],
+								Work_Start_Year: editresumeState.state.data.Work_Start_Year[index],
+								Work_End_Year: editresumeState.state.data.Work_End_Year[index],
+								SalaryType: editresumeState.state.data.SalaryType[index],
+								Salary: editresumeState.state.data.Salary[index],
+								Infomation: editresumeState.state.data.Infomation[index],
+								isCheckWork: editresumeState.state.data.WorkHistory_ResumeId[index].includes(editresumeState.state.resumeId) ? 'checked' : ""
+							})
+						});
+						editresumeState.state.data.AdditionalSkill_id.forEach((ele, index) => {
+							sideskilldata.push({
+								sideskill_id: ele,
+								sideskillName: editresumeState.state.data.SoftSkill[index],
+								sideskillResume: editresumeState.state.data.AdditionalSkill_ResumeId[index],
+								isCheckSS: editresumeState.state.data.AdditionalSkill_ResumeId[index].includes(editresumeState.state.resumeId) ? 'checked' : "defaultChecked"
+							})
+						});
+						//console.log(sideskilldata);
+						resolve();
 					});
-					//console.log("Certificate_ResumeId:", editresumeState.state.data.hasOwnProperty('Certificate_ResumeId'));
-					editresumeState.state.data.Certificate_id.forEach((ele, index) => {
-						certdata.push({
-							Certificate_id: ele,
-							CertName: editresumeState.state.data.CertName[index],
-							CertPic: editresumeState.state.data.CertPic[index],
-							CertYear: editresumeState.state.data.CertYear[index],
-							isCheckCert: editresumeState.state.data.Certificate_ResumeId[index].includes(editresumeState.state.resumeId) ? true : false
-						})
-					});
-					//console.log("WorkHistory_ResumeId:", editresumeState.state.data.hasOwnProperty('WorkHistory_ResumeId'));
-					editresumeState.state.data.WorkHistory_id.forEach((ele, index) => {
-						workdata.push({
-							WorkHistory_id: ele,
-							Work_JobName: editresumeState.state.data.Work_JobName[index],
-							Work_JobType: editresumeState.state.data.Work_JobType[index],
-							Company: editresumeState.state.data.Company[index],
-							Work_Start_Month: editresumeState.state.data.Work_Start_Month[index],
-							Work_End_Month: editresumeState.state.data.Work_End_Month[index],
-							Work_Start_Year: editresumeState.state.data.Work_Start_Year[index],
-							Work_End_Year: editresumeState.state.data.Work_End_Year[index],
-							SalaryType: editresumeState.state.data.SalaryType[index],
-							Salary: editresumeState.state.data.Salary[index],
-							Infomation: editresumeState.state.data.Infomation[index],
-							isCheckWork: editresumeState.state.data.WorkHistory_ResumeId[index].includes(editresumeState.state.resumeId) ? true : false
-						})
-					});
-					editresumeState.state.data.AdditionalSkill_id.forEach((ele, index) => {
-						sideskilldata.push({
-							sideskill_id: ele,
-							sideskillName: editresumeState.state.data.SoftSkill[index],
-							sideskillResume: editresumeState.state.data.AdditionalSkill_ResumeId[index],
-							isCheckSS: editresumeState.state.data.AdditionalSkill_ResumeId[index].includes(editresumeState.state.resumeId) ? 'checked' : "defaultChecked"
-						})
-					});
-					//console.log(sideskilldata);
-					resolve();
-				});
 			});
 		}
 
@@ -542,7 +542,7 @@ class Editresume extends React.Component {
 				$("#dangerzonect1").removeClass("you-choose-list-resume-red");
 			}
 			//alert(count_edu);
-			
+
 			/*--------------------------------------- WORK HISTORY ----------------------------------------*/
 			tmp2 = [...workdata];
 			tmp2.sort(compareValues('Work_Start_Year', 'desc'));
@@ -580,7 +580,7 @@ class Editresume extends React.Component {
 				grid_work2 = grid_work2.replace("{ele.WorkHistory_id}", ele.WorkHistory_id);
 				grid_work2 = grid_work2.replace("{yyyele.WorkHistory_id}", "yyy" + ele.WorkHistory_id);
 				grid_work2 = grid_work2.replace("{ele.WorkHistory_id}", ele.WorkHistory_id);
-				grid_work2 = grid_work2.replace("{ischeck}", ele.isCheckWork ? "checked" : "");
+				grid_work2 = grid_work2.replace("{ischeck}", ele.isCheckWork);
 				grid_work2 = grid_work2.replace("{yyyxxcxele.WorkHistory_id}", "yyy" + ele.WorkHistory_id);
 				grid_work2 = grid_work2.replace("{ele.Work_JobName}", ele.Work_JobName);
 				if (ele.Company == "none" || ele.Company == "") {
@@ -648,14 +648,14 @@ class Editresume extends React.Component {
 				}
 				$(`#contentYear-workresume_` + String(ele.Work_Start_Year)).append(grid_work2);
 			});
-			if (workdata.length === 3) {
+			if ($(".input-choose-work1:input[type=checkbox]:checked").length == 3) {
 				$("#you-choose-list-resume-work11").text("คุณเลือกครบ 3 รายการแล้ว");
 				$("#you-choose-list-resume-work11").addClass("you-choose-list-resume-red");
-				var bol = $(".input-choose-work11:input:checkbox:checked").length >= 3;
+				var bol = $(".input-choose-work1:input[type=checkbox]:checked").length >= 3;
 				$(".input-choose-work1:input:checkbox").not(":checked").attr("disabled", bol);
 			}
 			else {
-				$("#you-choose-list-resume-work11").text(`คุณเลือกไปแล้ว ${workdata.length} รายการ`);
+				$("#you-choose-list-resume-work11").text(`คุณเลือกไปแล้ว ${$(".input-choose-work1:input[type=checkbox]:checked").length} รายการ`);
 				$("#you-choose-list-resume-work11").removeClass("you-choose-list-resume-red");
 			}
 
@@ -688,7 +688,7 @@ class Editresume extends React.Component {
 				grid_certi2 = grid_certi2.replace("{xxx}", `xxx` + ele.Certificate_id);
 				grid_certi2 = grid_certi2.replace("{ele.Certificate_idvalue}", ele.Certificate_id);
 				//grid_certi2 = grid_certi2.replace("{isCheck_certi}", ele.isCheckCert);
-				grid_certi2 = grid_certi2.replace("{ischeck}", ele.isCheckCert ? "checked" : "");
+				grid_certi2 = grid_certi2.replace("{ischeck}", ele.isCheckCert);
 				grid_certi2 = grid_certi2.replace("{forxxx}", `xxx` + ele.Certificate_id);
 				grid_certi2 = grid_certi2.replace("{ele.CertName}", ele.CertName);
 				grid_certi2 = grid_certi2.replace("{ele.CertYear}", String(ele.CertYear));
@@ -706,22 +706,22 @@ class Editresume extends React.Component {
 				}
 				$("#year-choose-tem-" + String(ele.CertYear)).append(grid_certi2);
 			});
-			if (certdata.length === 6) {
+			if ($(".input-choose-certi1:input[type=checkbox]:checked").length == 6) {
 				$("#you-choose-list-resume-certi1").text("คุณเลือกครบ 6 รายการแล้ว");
 				$("#you-choose-list-resume-certi1").addClass("you-choose-list-resume-red");
-				var bol = $(".input-choose-certi1:input:checkbox:checked").length >= 6;
-				$(".input-choose-certi1:input:checkbox").not(":checked").attr("disabled", bol);
+				var bol = $(".input-choose-certi1:input[type=checkbox]:checked").length >= 6;
+				$(".input-choose-certi1:input[type=checkbox]:checkbox").not(":checked").attr("disabled", bol);
 			}
 			else {
-				$("#you-choose-list-resume-certi1").text(`คุณเลือกไปแล้ว ${certdata.length} รายการ`);
+				$("#you-choose-list-resume-certi1").text(`คุณเลือกไปแล้ว ${$(".input-choose-certi1:input[type=checkbox]:checked").length} รายการ`);
 				$("#you-choose-list-resume-certi1").removeClass("you-choose-list-resume-red");
 			}
 
 			/*-------------------------------ZoneUpdate Choose&Check_before_edit-------------------------------*/
-			workdata = $('.input-choose-work1:input[type=checkbox]:checked').map(function (_, el) {
+			choose_work = $('.input-choose-work1:input[type=checkbox]:checked').map(function (_, el) {
 				return $(el).val();
 			}).get();
-			certdata = $('.input-choose-certi1:input[type=checkbox]:checked').map(function (_, el) {
+			choose_certi = $('.input-choose-certi1:input[type=checkbox]:checked').map(function (_, el) {
 				return $(el).val();
 			}).get();
 			choose_high = $('.myresume-choose-high1:input[type=checkbox]:checked').map(function (_, el) {
@@ -733,6 +733,8 @@ class Editresume extends React.Component {
 			choose_sideskill = $('.myresume-choose-ssl1:input[type=checkbox]:checked').map(function (_, el) {
 				return $(el).val();
 			}).get();
+			//console.log("choose_work:", choose_work);
+			//console.log("choose_certi:", choose_certi);
 		});
 
 		/* Zone to choose func */
@@ -796,10 +798,10 @@ class Editresume extends React.Component {
 		});
 
 		$(document).on("click", ".input-choose-work1", function () {
-			workdata = $('.input-choose-work1:input[type=checkbox]:checked').map(function (_, el) {
+			choose_work = $('.input-choose-work1:input[type=checkbox]:checked').map(function (_, el) {
 				return $(el).val();
 			}).get();
-			console.log("choose_work :", workdata);
+			console.log("choose_work :", choose_work);
 		});
 
 		$(document).on("click", ".input-choose-work1:input:checkbox", function () {
@@ -808,25 +810,25 @@ class Editresume extends React.Component {
 		});
 
 		$(document).on("change", ".input-choose-work1", function () {
-			if (workdata.length === 3) {
+			if (choose_work.length === 3) {
 				$("#you-choose-list-resume-work11").text("คุณเลือกครบ 3 รายการแล้ว");
 				$("#you-choose-list-resume-work11").addClass("you-choose-list-resume-red");
 			}
-			else if (workdata.length === 0) {
+			else if (choose_work.length === 0) {
 				$("#you-choose-list-resume-work11").text("");
 				$("#you-choose-list-resume-work11").removeClass("you-choose-list-resume-red");
 			}
 			else {
-				$("#you-choose-list-resume-work11").text(`คุณเลือกไปแล้ว ${workdata.length} รายการ`);
+				$("#you-choose-list-resume-work11").text(`คุณเลือกไปแล้ว ${choose_work.length} รายการ`);
 				$("#you-choose-list-resume-work11").removeClass("you-choose-list-resume-red");
 			}
 		});
 
 		$(document).on("click", ".input-choose-certi1", function () {
-			certdata = $('.input-choose-certi1:input[type=checkbox]:checked').map(function (_, el) {
+			choose_certi = $('.input-choose-certi1:input[type=checkbox]:checked').map(function (_, el) {
 				return $(el).val();
 			}).get();
-			console.log("choose_cert :", certdata);
+			console.log("choose_cert :", choose_certi);
 		});
 
 		$(document).on("click", ".input-choose-certi1:input:checkbox", function () {
@@ -835,16 +837,16 @@ class Editresume extends React.Component {
 		});
 
 		$(document).on("change", ".input-choose-certi1", function () {
-			if (certdata.length === 6) {
+			if (choose_certi.length === 6) {
 				$("#you-choose-list-resume-certi1").text("คุณเลือกครบ 6 รายการแล้ว");
 				$("#you-choose-list-resume-certi1").addClass("you-choose-list-resume-red");
 			}
-			else if (certdata.length === 0) {
+			else if (choose_certi.length === 0) {
 				$("#you-choose-list-resume-certi1").text("");
 				$("#you-choose-list-resume-certi1").removeClass("you-choose-list-resume-red");
 			}
 			else {
-				$("#you-choose-list-resume-certi1").text(`คุณเลือกไปแล้ว ${certdata.length} รายการ`);
+				$("#you-choose-list-resume-certi1").text(`คุณเลือกไปแล้ว ${choose_certi.length} รายการ`);
 				$("#you-choose-list-resume-certi1").removeClass("you-choose-list-resume-red");
 			}
 		});
