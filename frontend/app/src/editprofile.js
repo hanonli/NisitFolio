@@ -314,10 +314,11 @@ class Editprofile extends React.Component {
 								isFetch: true
 							})
 						});
+						resolve();
 					});
 				console.log('Datasetstate is job data : ' + jobdata);
 				//alert('Success!!');
-				resolve();
+
 			}
 			)
 		}
