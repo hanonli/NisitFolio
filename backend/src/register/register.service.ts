@@ -833,6 +833,10 @@ export class RegisterService {
     const isoTime = time.toLocaleDateString('th-TH',{ year:'numeric',month: 'long',day:'numeric',hour:"2-digit",minute:"2-digit"});
     const ID = new ObjectID(id);
     const interestedJob = await this.InterestedJobRepository.findOne({ where: { _id: ID } });
+
+    const ParentId = await this.userJobSkillRepository.find({ where: { ParentId: id } });
+    const User=await this.userinfoRepository.findOne({ where: { UserId: UserId } });
+
     if (!interestedJob) {
       throw new BadRequestException('Invalid oject');
     }
@@ -844,8 +848,51 @@ export class RegisterService {
     }
     
     for (var _i = 0; _i < interestedJob.ResumeId.length; _i++) {
+      //interestedJob.ResumeId[_i] ---> link resume
+      const resume =  await this.resumeModel.findOne({_id: interestedJob.ResumeId[_i] });
+      //resume.portfolios
+      for (var _j = 0; _j < resume.portfolios.length; _j++) {
+        const tmp_port=await this.portfolioRepository.findOne({_id:new ObjectID(resume.portfolios[_j]._id)})
+        tmp_port.ResumeId.splice(tmp_port.ResumeId.indexOf(id),1)
+        await this.portfolioRepository.save(tmp_port)
+      }
+      //resume.workHistorys
+      for (var _j = 0; _j < resume.workHistorys.length; _j++) {
+        const tmp_WH=await this.WorkHistoryRepository.findOne({id:new ObjectID(resume.workHistorys[_j].id)})
+        tmp_WH.ResumeId.splice(tmp_WH.ResumeId.indexOf(id),1)
+        await this.WorkHistoryRepository.save(tmp_WH)
+      }
+      //resume.educationHistorys
+      for (var _j = 0; _j < resume.educationHistorys.length; _j++) {
+        const tmp_ED=await this.EducationHistoryRepository.findOne({id:new ObjectID(resume.educationHistorys[_j].id)})
+        tmp_ED.ResumeId.splice(tmp_ED.ResumeId.indexOf(id),1)
+        await this.EducationHistoryRepository.save(tmp_ED)
+      }
+      //resume.certificates
+      for (var _j = 0; _j < resume.certificates.length; _j++) {
+        const tmp_C=await this.CertificateRepository.findOne({id:new ObjectID(resume.certificates[_j].id)})
+        tmp_C.ResumeId.splice(tmp_C.ResumeId.indexOf(id),1)
+        await this.CertificateRepository.save(tmp_C)
+      }
+      //resume.additionalSkills\
+      for (var _j = 0; _j < resume.additionalSkills.length; _j++) {
+        const tmp_ADD=await this.AdditionalSkillRepository.findOne({id:new ObjectID(resume.additionalSkills[_j].id)})
+        tmp_ADD.ResumeId.splice(tmp_ADD.ResumeId.indexOf(id),1)
+        await this.AdditionalSkillRepository.save(tmp_ADD)
+      }
+
+
       await this.resumeModel.deleteOne({_id: interestedJob.ResumeId[_i] });
     }
+
+    for (var _i = 0; _i < ParentId.length; _i++) {
+      await this.userJobSkillRepository.remove(ParentId[_i]);
+    }
+    const tmp = User.tags
+    User.tags.splice(tmp.indexOf(interestedJob.Job_JobName),1)
+    await this.userinfoRepository.save(User);
+  
+
     return await this.InterestedJobRepository.remove(interestedJob);
 
   }
@@ -1136,7 +1183,7 @@ export class RegisterService {
     
 
 
-    const tag_arr = [];
+    const tag_arr = userinfo.tags;
     let sum_score = 0;
     let count_skill = userinfo.countSkill;
 

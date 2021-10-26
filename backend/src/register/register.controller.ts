@@ -141,7 +141,11 @@ export class RegisterController {
   async GetInfo(@Request() req) {
     return this.registerService.GetInfo(req.user.userId);
   }
-  //*/
+  //*/-----------------test
+  @Delete("interestedJob/test/:id")
+  async DeleteInterestedJob2(@Request() req,@Param('id') id: string) {
+    return this.registerService.DeleteInterestedJob("61738f2efd31c94ab4270b69","61738f35fd31c94ab4270b7b");
+  }
 
 
   /*@Get('/random')

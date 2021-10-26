@@ -76,6 +76,15 @@ export class MyResumeController {
   async getportguest(@Param('userid') userId: string){
     return this.resumeService.getportguest(userId);
   }
+
+  //-------------test
+
+  @Patch('/testP/:resumeId')
+  async testcocP(@Body() CreateDto: CreateResumeDto,@Param('resumeId') resumeId: string){
+    return this.resumeService.updateResume(CreateDto,resumeId,"61738f2efd31c94ab4270b69","xtest");
+  }
+
+   
   
     //*/
 
