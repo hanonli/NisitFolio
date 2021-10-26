@@ -345,7 +345,7 @@ class Register extends React.Component {
 					}
 					last_jobskill.push([entry.skill1, entry.skill2, entry.skill3]);
 					//last_jobscore.push([parseFloat(entry.score_skill1).toFixed(1),parseFloat(entry.score_skill2).toFixed(1),parseFloat(entry.score_skill3).toFixed(1)]);
-					var total_skill_score = new Float32Array(3);
+					/*var total_skill_score = new Float32Array(3);
 					if (entry.skill1 != "none") {
 						total_skill_score[0] = entry.score_skill1;
 					}
@@ -364,7 +364,31 @@ class Register extends React.Component {
 					else {
 						total_skill_score[2] = 0;
 					}
-					last_jobscore.push([total_skill_score[0], total_skill_score[1], total_skill_score[2]]);
+					last_jobscore.push([total_skill_score[0], total_skill_score[1], total_skill_score[2]]);*/
+					if (entry.skill1 != "none") {
+						entry.score_skill1 = parseFloat(entry.score_skill1).toFixed(1);
+						entry.score_skill1 = Number(entry.score_skill1);
+						last_jobscore.push(entry.score_skill1);
+					}
+					else {
+						last_jobscore.push(0);
+					}
+					if (entry.skill2 != "none") {
+						entry.score_skill2 = parseFloat(entry.score_skill2).toFixed(1);
+						entry.score_skill2 = Number(entry.score_skill2);
+						last_jobscore.push(entry.score_skill2);
+					}
+					else {
+						last_jobscore.push(0);
+					}
+					if (entry.skill3 != "none") {
+						entry.score_skill3 = parseFloat(entry.score_skill3).toFixed(1);
+						entry.score_skill3 = Number(entry.score_skill3);
+						last_jobscore.push(entry.score_skill3);
+					}
+					else {
+						last_jobscore.push(0);
+					}			
 					if (entry.obj1 == "" && entry.obj2 == "" && entry.obj3 != "") {
 						entry.obj1 = entry.obj3;
 						entry.obj3 = "";
@@ -413,7 +437,7 @@ class Register extends React.Component {
 					//total_grade_aca[0] = entry.aca_grade;
 					//console.log(total_grade_aca[0]);
 					//last_grade.push(total_grade_aca[0]);
-					last_grade.push(parseFloat(entry.aca_grade).toFixed(2));
+					last_grade.push(Number.parseFloat(entry.aca_grade));
 				});
 				list_of_high.forEach((entry) => {
 					//console.log(entry);
@@ -426,7 +450,7 @@ class Register extends React.Component {
 					//var total_grade_high = new Float32Array(1);
 					//total_grade_high[0] = entry.high_grade;
 					//last_grade.push(total_grade_high[0]);
-					last_grade.push(parseFloat(entry.high_grade).toFixed(2));
+					last_grade.push(Number.parseFloat(entry.high_grade));
 				});
 				//console.log('grade = ' + last_grade);
 				//console.log(last_eduyear);
@@ -1056,6 +1080,7 @@ class Register extends React.Component {
 					get_aca_id(list_of_aca, 1);
 					console.log(list_of_aca);
 				}
+				console.log("testfloat11:",Number.parseFloat(grade_aca1).toFixed(2));
 				$('#aca_degree').prop('selectedIndex', 0);
 				$("#year_secondary").prop('selectedIndex', 0);
 				$('#aca_name').val('');

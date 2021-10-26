@@ -276,7 +276,7 @@ class Editprofile extends React.Component {
 					last_fos.push(entry.aca_field);
 					last_aca.push(entry.aca_name);
 					last_eduyear.push(entry.aca_year);
-					last_grade.push(parseFloat(entry.aca_grade).toFixed(2));
+					last_grade.push(Number.parseFloat(entry.aca_grade).toFixed(2));
 				});
 				list_of_high.forEach((entry) => {
 					//console.log(entry);
@@ -285,7 +285,7 @@ class Editprofile extends React.Component {
 					last_fos.push(entry.high_field);
 					last_aca.push(entry.high_name);
 					last_eduyear.push(entry.high_year);
-					last_grade.push(parseFloat(entry.high_grade).toFixed(2));
+					last_grade.push(Number.parseFloat(entry.high_grade).toFixed(2));
 				});
 				//console.log('grade = ' + last_grade);
 				//console.log(last_eduyear);

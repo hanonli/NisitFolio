@@ -240,7 +240,6 @@ class Edittab5 extends React.Component {
                 if (post.Certificate_id === id_list_certi_del)
                     return true;
             });
-            if (list_of_certi[removeIndex].isFetch === true) {
                 fetch("http://localhost:2000/register/certificate/" + list_of_certi[removeIndex].Certificate_id, {
                     method: "DELETE",
                     headers: {
@@ -272,24 +271,6 @@ class Edittab5 extends React.Component {
                     }).catch((error) => {
                         console.log(error);
                     });
-            }
-            else {
-                list_of_year_certi[list_of_certi[removeIndex]["CertYear"]] -= 1;
-                if (list_of_year_certi[list_of_certi[removeIndex]["CertYear"]] == 0) {
-                    $(`#yearOf_` + String(list_of_certi[removeIndex]["CertYear"])).remove();
-                }
-                list_of_certi.splice(removeIndex, 1);
-                $(`#` + id_list_certi_del).remove();
-                //console.log(`delete _certi id:`, removeIndex);
-                //console.log(`list_of_certi:`, list_of_certi);
-                $("#preview_before_upload").remove();
-                $("#icon-upload-112").remove();
-                $("#text-upload-112").remove();
-                $("#text-upload-116").remove();
-                $("#exampleModal_remove_certi").modal("hide");
-                console.log(`list_of_year_certi:`, list_of_year_certi);
-                console.log(`list_of_certi:`, list_of_certi);
-            }
         });
 
         $(document).on("change", "#nm_certi", function () {

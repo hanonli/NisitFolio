@@ -185,14 +185,14 @@ class Edittab6 extends React.Component {
                     document.getElementById("input_mySlider1").value = "6.25";
                     document.getElementById("input_mySlider1").style.background = 'linear-gradient(to right, #f0a143 0%, #f0a143 ' + 50 + '%, #c4c4c4 ' + 50 + '%, #c4c4c4 100%)';
                     pre_click_slider1 = skill_job_1;
-                    score_slider1 = "6.25";
+                    score_slider1 = 6.25;
                 }
                 else if (skill_job_1 == 'none') {
                     document.getElementById("input_mySlider1").disabled = true;
                     document.getElementById("input_mySlider1").value = "2.5";
                     document.getElementById("input_mySlider1").style.background = 'linear-gradient(to right, #f0a143 0%, #f0a143 ' + 0 + '%, #c4c4c4 ' + 0 + '%, #c4c4c4 100%)';
                     pre_click_slider1 = -1;
-                    score_slider1 = "2.5";
+                    score_slider1 = 2.5;
                 }
             });
             $(document).on("click", "#reset-skill1", function () {
@@ -201,7 +201,7 @@ class Edittab6 extends React.Component {
                 document.getElementById("input_mySlider1").disabled = true;
                 document.getElementById("input_mySlider1").style.background = 'linear-gradient(to right, #f0a143 0%, #f0a143 ' + 0 + '%, #c4c4c4 ' + 0 + '%, #c4c4c4 100%)';
                 pre_click_slider1 = -1;
-                score_slider1 = "2.5";
+                score_slider1 = 2.5;
             });
             var slider1 = document.getElementById("input_mySlider1");
             slider1.style.background = 'linear-gradient(to right, #f0a143 0%, #f0a143 ' + (slider1.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 ' + (slider1.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 100%)';
@@ -209,6 +209,7 @@ class Edittab6 extends React.Component {
             slider1.oninput = function (event) {
                 //console.log('skill1:', slider1.value);
                 score_slider1 = parseFloat(slider1.value).toFixed(1);
+                score_slider1 = Number(score_slider1);
                 //score_slider1 = slider1.value;
                 slider1.style.background = 'linear-gradient(to right, #f0a143 0%, #f0a143 ' + (slider1.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 ' + (slider1.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 100%)';
             }
@@ -227,26 +228,26 @@ class Edittab6 extends React.Component {
                 var skill_job_2 = document.getElementById("each_skill2").value;
                 if (skill_job_2 != 'none' && skill_job_2 != pre_click_slider2) {
                     document.getElementById("input_mySlider2").disabled = false;
-                    document.getElementById("input_mySlider2").value = "6.25";
+                    document.getElementById("input_mySlider2").value = 6.25;
                     document.getElementById("input_mySlider2").style.background = 'linear-gradient(to right, #0fe17c 0%, #0fe17c ' + 50 + '%, #c4c4c4 ' + 50 + '%, #c4c4c4 100%)';
                     pre_click_slider2 = skill_job_2;
-                    score_slider2 = "6.25";
+                    score_slider2 = 6.25;
                 }
                 else if (skill_job_2 == 'none') {
                     document.getElementById("input_mySlider2").disabled = true;
-                    document.getElementById("input_mySlider2").value = "2.5";
+                    document.getElementById("input_mySlider2").value = 2.5;
                     document.getElementById("input_mySlider2").style.background = 'linear-gradient(to right, #0fe17c 0%, #0fe17c ' + 0 + '%, #c4c4c4 ' + 0 + '%, #c4c4c4 100%)';
                     pre_click_slider2 = -1;
-                    score_slider2 = "2.5";
+                    score_slider2 = 2.5;
                 }
             });
             $(document).on("click", "#reset-skill2", function () {
                 $("#each_skill2").prop('selectedIndex', 0);
                 document.getElementById("input_mySlider2").disabled = true;
-                document.getElementById("input_mySlider2").value = "2.5";
+                document.getElementById("input_mySlider2").value = 2.5;
                 document.getElementById("input_mySlider2").style.background = 'linear-gradient(to right, #0fe17c 0%, #0fe17c ' + 0 + '%, #c4c4c4 ' + 0 + '%, #c4c4c4 100%)';
                 pre_click_slider2 = -1;
-                score_slider2 = "2.5";
+                score_slider2 = 2.5;
             });
             var slider2 = document.getElementById("input_mySlider2");
             slider2.style.background = 'linear-gradient(to right, #0fe17c 0%, #0fe17c ' + (slider2.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 ' + (slider2.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 100%)';
@@ -254,6 +255,7 @@ class Edittab6 extends React.Component {
                 //console.log('skill2:', slider2.value);
                 //score_slider2 = slider2.value;
                 score_slider2 = parseFloat(slider2.value).toFixed(1);
+                score_slider2 = Number(score_slider2);
                 slider2.style.background = 'linear-gradient(to right, #0fe17c 0%, #0fe17c ' + (slider2.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 ' + (slider2.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 100%)';
             }
         }
@@ -298,6 +300,7 @@ class Edittab6 extends React.Component {
                 //console.log('skill3:', slider3.value);
                 //score_slider3 = slider3.value;
                 score_slider3 = parseFloat(slider3.value).toFixed(1);
+                score_slider3 = Number(score_slider3);
                 slider3.style.background = 'linear-gradient(to right, #c98a11 0%, #c98a11 ' + (slider3.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 ' + (slider3.value - 2.5) / 7.5 * 100 + '%, #c4c4c4 100%)';
             }
         }
@@ -555,28 +558,28 @@ class Edittab6 extends React.Component {
             else {
                 if (skill_job_1 == 'none') {
                     //skill_job_1 = 'none';
-                    score_slider11 = "2.5";
+                    score_slider11 = 2.5;
                 }
                 if (skill_job_2 == 'none') {
                     //skill_job_2 = 'none';
-                    score_slider12 = "2.5";
+                    score_slider12 = 2.5;
                 }
                 if (skill_job_3 == 'none') {
                     //skill_job_3 = 'none';
-                    score_slider13 = "2.5";
+                    score_slider13 = 2.5;
                 }
                 let last_jobskill = [], last_jobscore = [], last_jobobj = [];
                 if (skill_job_1 == "none" && skill_job_2 == "none" && skill_job_3 != "none") {
                     skill_job_1 = skill_job_3;
                     score_slider11 = score_slider13;
                     skill_job_3 = "none";
-                    score_slider13 = "2.5";
+                    score_slider13 = 2.5;
                 }
                 else if (skill_job_1 == "none" && skill_job_2 != "none" && skill_job_3 == "none") {
                     skill_job_1 = skill_job_2;
                     score_slider11 = score_slider12;
                     skill_job_2 = "none";
-                    score_slider12 = "2.5";
+                    score_slider12 = 2.5;
                 }
                 else if (skill_job_1 == "none" && skill_job_2 != "none" && skill_job_3 != "none") {
                     skill_job_1 = skill_job_2;
@@ -584,31 +587,31 @@ class Edittab6 extends React.Component {
                     skill_job_2 = skill_job_3;
                     score_slider12 = score_slider13;
                     skill_job_3 = "none";
-                    score_slider13 = "2.5";
+                    score_slider13 = 2.5;
                 }
                 else if (skill_job_1 != "none" && skill_job_2 == "none" && skill_job_3 != "none") {
                     skill_job_2 = skill_job_3;
                     score_slider12 = score_slider13;
                     skill_job_3 = "none";
-                    score_slider13 = "2.5";
+                    score_slider13 = 2.5;
                 }
                 last_jobskill.push(skill_job_1);
                 last_jobskill.push(skill_job_2);
                 last_jobskill.push(skill_job_3);
                 if (skill_job_1 != "none") {
-                    last_jobscore.push(parseFloat(score_slider11));
+                    last_jobscore.push(Number.parseFloat(score_slider11));
                 }
                 else {
                     last_jobscore.push(0);
                 }
                 if (skill_job_2 != "none") {
-                    last_jobscore.push(parseFloat(score_slider12));
+                    last_jobscore.push(Number.parseFloat(score_slider12));
                 }
                 else {
                     last_jobscore.push(0);
                 }
                 if (skill_job_3 != "none") {
-                    last_jobscore.push(parseFloat(score_slider13));
+                    last_jobscore.push(Number.parseFloat(score_slider13));
                 }
                 else {
                     last_jobscore.push(0);
@@ -648,6 +651,7 @@ class Edittab6 extends React.Component {
                     "Job_Score": last_jobscore,
                     "Job_Objective": last_jobobj
                 };
+                console.log("sendinterestJob2back:",sendinterestJob2back);
                 if (choose_function == 1) { //edit job after add
                     console.log("edit!!!!!!");
                     fetch("http://localhost:2000/register/interestedJob/" + id_list_job_edit, {
@@ -667,12 +671,15 @@ class Edittab6 extends React.Component {
                             for_edit["Job_SkillName1"] = skill_job_1;
                             //for_edit["Job_SkillName1_select"] = document.getElementById("each_skill1").selectedIndex;
                             for_edit["Job_Score1"] = parseFloat(score_slider11).toFixed(1);
+                            for_edit["Job_Score1"] = Number.parseFloat(for_edit["Job_Score1"]);
                             for_edit["Job_SkillName2"] = skill_job_2;
                             //for_edit["Job_SkillName2_select"] = document.getElementById("each_skill2").selectedIndex;
                             for_edit["Job_Score2"] = parseFloat(score_slider12).toFixed(1);
+                            for_edit["Job_Score2"] = Number.parseFloat(for_edit["Job_Score2"]);
                             for_edit["Job_SkillName3"] = skill_job_3;
                             //for_edit["Job_SkillName3_select"] = document.getElementById("each_skill3").selectedIndex;
                             for_edit["Job_Score3"] = parseFloat(score_slider13).toFixed(1);
+                            for_edit["Job_Score3"] = Number.parseFloat(for_edit["Job_Score3"]);
                             for_edit["Job_Objective1"] = obj_job_1;
                             for_edit["Job_Objective2"] = obj_job_2;
                             for_edit["Job_Objective3"] = obj_job_3;
@@ -711,6 +718,7 @@ class Edittab6 extends React.Component {
                         .then(response => response.json())
                         .then((raws) => {
                             console.log(raws)
+                            var sc11=parseFloat(score_slider11).toFixed(1),sc12=parseFloat(score_slider12).toFixed(1),sc13=parseFloat(score_slider13).toFixed(1);
                             push2list = {
                                 InterestedJob_id: raws.id,
                                 Job_Pos: 0,
@@ -718,13 +726,13 @@ class Edittab6 extends React.Component {
                                 //Job_JobName_select: $("#nm_job").prop('selectedIndex'),
                                 Job_SkillName1: skill_job_1,
                                 //Job_SkillName1_select: document.getElementById("each_skill1").selectedIndex,
-                                Job_Score1: parseFloat(score_slider11).toFixed(1),
+                                Job_Score1: Number.parseFloat(sc11),
                                 Job_SkillName2: skill_job_2,
                                 //Job_SkillName2_select: document.getElementById("each_skill2").selectedIndex,
-                                Job_Score2: parseFloat(score_slider12).toFixed(1),
+                                Job_Score2: parseFloat(sc12),
                                 Job_SkillName3: skill_job_3,
                                 //Job_SkillName3_select: document.getElementById("each_skill3").selectedIndex,
-                                Job_Score3: parseFloat(score_slider13).toFixed(1),
+                                Job_Score3: parseFloat(sc13),
                                 Job_Objective1: obj_job_1,
                                 Job_Objective2: obj_job_2,
                                 Job_Objective3: obj_job_3
@@ -780,7 +788,6 @@ class Edittab6 extends React.Component {
                     return true;
             });
             console.log("removeIndex:", removeIndex);
-            if (list_of_job[removeIndex].isFetch === true) {
                 fetch("http://localhost:2000/register/interestedJob/" + list_of_job[removeIndex].InterestedJob_id, {
                     method: "DELETE",
                     headers: {
@@ -813,28 +820,7 @@ class Edittab6 extends React.Component {
                         }
                     }).catch((error) => {
                         console.log(error);
-                    });
-            }
-            else {
-                list_of_job.splice(removeIndex, 1);
-                //console.log(`delete job id:`, removeIndex);
-                $('#exampleModal_remove_job').modal('hide');
-                $(".list-of-job-edit").empty();
-                //console.log(list_of_job);
-                get_job_id(list_of_job, 1);
-                show_all_job()
-                $(".step-marks").remove();
-                $(".step-labels").remove();
-                $("#input_mySlider1").remove();
-                $("#input_mySlider2").remove();
-                $("#input_mySlider3").remove();
-                if (list_of_job.length < 3) {
-                    $(".frame_add_job_interest").show();
-                    $(".limit-job-pos-3").removeClass("limit-job-pos-3-red");
-                    $('.limit-job-pos-3').text('ท่านสามารถเพิ่มตำแหน่งงานที่สนใจได้สูงสุด 3 อัน');
-                }
-            }
-
+                    });         
         });
 
         $(document).on('click', "#hide-modal-tab6", function () {
