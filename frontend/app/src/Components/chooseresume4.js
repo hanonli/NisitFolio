@@ -1,16 +1,13 @@
 import React from 'react';
 import './register.css';
-import Ddt7 from './dropdownt7';
 import $ from 'jquery';
-import Select, { NonceProvider } from 'react-select'
 import cookie from 'react-cookies'
-import Chooseresume from '../chooseresume';
 import { GetDominantColorFromImage } from './GetDominantColorFromImage'
 import './chooseresume3.css';
 
 /*Wait for Port*/
 var choose_Port = [];
-class Chooseresume5 extends React.Component {
+class Editresume4 extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -121,4 +118,4 @@ class Chooseresume5 extends React.Component {
 	}
 }
 
-export default Chooseresume5;
+export default Editresume4;

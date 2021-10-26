@@ -71,12 +71,12 @@ class Registab1 extends React.Component {
 											<option value="ไม่ระบุ">ไม่ระบุ</option>
 										</select>
 									</div>
-                                    <div class='col-2'></div>
-                                    <div class='col-3'>
-                                        <button class="btn btn-cta-primary-yellowwide round profile-button" href="#" target="_blank" type="submit" id="change-pass">เปลี่ยนรหัสผ่าน</button>
-                                    </div>
-                                </div>
-                                <div class='row'>
+                  <div class='col-2'></div>
+                  <div class='col-3'>
+                    <button class="btn btn-cta-primary-yellowwide round profile-button" href="#" target="_blank" type="submit" id="change-pass">เปลี่ยนรหัสผ่าน</button>
+                  </div>
+                </div>
+                <div class='row'>
 									<div class="col-md-2 chidright del-padrightbit">
 										<label class=" form-f-sex ">วันเกิด<label class="red_markEp1">*</label></label>
 									</div>
@@ -87,7 +87,7 @@ class Registab1 extends React.Component {
 					</div>
 						<div class="col-3">
 							<div class="container-fluid">
-								<img class="profile-image img-fluid rounded-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="อัพโหลดรูปโปรไฟล์" type='button' id="avatar1" src="assets/images/Circleuploadprofile.png" width="250" height="250"/>
+								<img class="profile-image img-fluid rounded-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="อัพโหลดรูปโปรไฟล์" type='button' id="avatar11" src="assets/images/profile_uk.png" width="250" height="250"/>
 								<input type="file" class="sr-only" id="input" accept="image/*" name="image" hidden />
 							</div>
 						</div>
@@ -95,7 +95,7 @@ class Registab1 extends React.Component {
 				</div>
 				<div class="container">
 						<div class="alert" role="alert"></div>
-						<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+						<div class="modal fade" data-bs-backdrop="static" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
 						  <div class="modal-dialog" role="document">
 							<div class="modal-content">
 							  <div class="modal-header">

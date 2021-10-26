@@ -3,16 +3,7 @@ import React, { useState } from 'react';
 import cookie from 'react-cookies';
 import $ from 'jquery';
 
-class Chooseresume1 extends React.Component {
-
-	constructor(props) {
-		super(props);
-		//this.handleLoad = this.handleLoad.bind(this);
-	}
-
-    componentDidMount() {
-		window.addEventListener('load', this.handleLoad);
-	}
+class Editresume1 extends React.Component {
 
 	render(){
         //this.getDatas();
@@ -54,5 +45,5 @@ class Chooseresume1 extends React.Component {
 	}
 }
 
-export default Chooseresume1;
+export default Editresume1;
 

@@ -1,13 +1,8 @@
 import React from 'react';
 import './register.css';
-import Ddt7 from './dropdownt7';
-import SelectSS7 from './dropsideskill';
-import $ from 'jquery';
-import Select, { NonceProvider } from 'react-select'
 import cookie from 'react-cookies'
-import Chooseresume from '../chooseresume';
 
-class Chooseresume5 extends React.Component {
+class Editresume5 extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -28,4 +23,4 @@ class Chooseresume5 extends React.Component {
 	}
 }
 
-export default Chooseresume5;
+export default Editresume5;

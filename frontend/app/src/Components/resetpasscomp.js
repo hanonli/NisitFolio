@@ -8,7 +8,7 @@ class Forgotpasswordc extends React.Component{
         return(
             <div class="formbox">
                 <h2>เปลี่ยนรหัสผ่าน</h2>
-                <p class="verifyan inline">เปลี่ยนรหัสผ่านเรียบร้อย</p> <p class="inline">สามารถเข้าสู่ระบบได้เลย</p>
+                <p class="verifyan inlineOnly">เปลี่ยนรหัสผ่านเรียบร้อย</p> <p class="inlineOnly">สามารถเข้าสู่ระบบได้เลย</p>
                 <button class="loginbut" onClick={this.handleRoute}>เข้าสู่ระบบ</button>
             </div>
         );

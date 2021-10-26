@@ -5,11 +5,11 @@ import Navbarlogo from './Components/navbarlogo';
 import InformationHeader from './Components/informationHeader';
 import reportWebVitals from './reportWebVitals';
 import { Link } from "react-router-dom";
-import Chooseresume1 from "./Components/chooseresume1";
+import Chooseresume1 from "./Components/editresume1";
 import Chooseresume2 from "./Components/chooseresume2";
 import Chooseresume3 from "./Components/chooseresume3";
-import Chooseresume4 from "./Components/chooseresume4";
-import Chooseresume5 from "./Components/chooseresume5";
+import Chooseresume4 from "./Components/editresume4";
+import Chooseresume5 from "./Components/editresume5";
 import $ from 'jquery';
 import cookie from 'react-cookies';
 import LoadingS from './Components/loadingS';
@@ -277,7 +277,7 @@ class Chooseresume extends React.Component {
 					<form class="needs-validation" novalidate>
 						<div>
 							<div class="tab-content" id="registab1-content">
-								<Chooseresume1 list_of_aca={this.state.list_of_aca}/>
+								<Chooseresume1 />
 							</div>
 							<div class="tab-content" id="registab2-content">
 								<Chooseresume2 mywork_data={workdata} />

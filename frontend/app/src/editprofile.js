@@ -16,6 +16,23 @@ import Edittab5 from "./Components/edittab5";
 import Edittab6 from "./Components/edittab6";
 import Edittab7 from "./Components/edittab7";
 import LoadingS from './Components/loadingS';
+import { uploadFile } from 'react-s3';
+import { v4 as uuidv4 } from 'uuid';
+import { Cropper } from 'react-cropper';
+
+const S3_BUCKET = 'nisitfolio';
+const REGION = 'ap-southeast-1';
+const ACCESS_KEY = 'AKIAWGHRNY32XLWEVA62';
+const SECRET_ACCESS_KEY = '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';
+const DIR_NAME = 'images';
+
+const config = {
+	bucketName: S3_BUCKET,
+	region: REGION,
+	accessKeyId: ACCESS_KEY,
+	secretAccessKey: SECRET_ACCESS_KEY,
+	dirName: DIR_NAME,
+}
 
 var certdata = [], workdata = [], jobdata = [];
 var list_of_high = [], list_of_aca = [];
@@ -28,16 +45,26 @@ class Editprofile extends React.Component {
 		this.state = {
 			data: [],
 			render: false,
+			statusRepass: false,
+			statusParent: false
 		}
 	}
 
 	componentDidMount() {
 		window.addEventListener('load', this.handleLoad);
+		/********************Zone Define variables & important functions ******************/
 		certdata = []; workdata = []; jobdata = [];
-		//const script = document.createElement("script");
-		//script.src = "assets/js/#.js";
-		//document.body.appendChild(script);
+		var token = cookie.load('login-token')
+		console.log('Your Token is: ' + token);
 		var Datasetstate = this;
+
+		/*window.onload = () => {
+			//const myInput1 = document.getElementById('pass05');
+			const myInput2 = document.getElementById('pass06');
+			//myInput1.onpaste = e => e.preventDefault();
+			myInput2.onpaste = e => e.preventDefault();
+		}*/
+
 		$(async function () {
 			//alert('Selected tab is ' + cookie.load('Edit_tabselect'));
 			await GetDatas();
@@ -140,6 +167,374 @@ class Editprofile extends React.Component {
 			});
 
 		});
+
+		/******************************** Rung Zone ***********************************/
+		/*Tab1*/
+		/*$('#confirmEdit').click(async function () {
+			$('#ssl1').removeClass('borderred');
+			$('#ssl2').removeClass('borderred');
+			$('#ssl3').removeClass('borderred');
+			var BDDate = $('#basic-date-picker1').val();
+			var last_province = $('#province').val();
+			var last_city = $('#townny').val();
+			var last_aboutme = $('#aboutme2').val();
+			var last_sideskill = [];
+			var last_typesideskill = [];
+			var ssss1 = cookie.load('sideskill1');
+			var tssss1 = cookie.load('typesideskill1');
+			var ssss2 = cookie.load('sideskill2');
+			var tssss2 = cookie.load('typesideskill2');
+			var ssss3 = cookie.load('sideskill3');
+			var tssss3 = cookie.load('typesideskill3');
+			console.log('type' + tssss1 + '+' + tssss2 + '+' + tssss3);
+			console.log('skill' + ssss1 + '+' + ssss2 + '+' + ssss3);
+			var checkTab7 = 0;
+			if (ssss1 == '') {
+				var last_sideskill = [];
+				var last_typesideskill = [];
+				checkTab7 = 1;
+			}
+			else if (ssss1 == ssss2 && ssss1 == ssss3) {
+				Datasetstate.setState({ render: false });
+				$('.tab-content').hide();
+				$('.tab-list-item').removeClass('tab-list-active');
+				$('#tab-7').addClass('tab-list-active')
+				$('#Edittab7-content').show();
+				$('#ssl1').addClass('borderred');
+				$('#ssl2').addClass('borderred');
+				$('#ssl3').addClass('borderred');
+				checkTab7 = 0;
+			}
+			else if (ssss1 == ssss2 && ssss1 != "" && ssss2 != "") {
+				Datasetstate.setState({ render: false });
+				$('.tab-content').hide();
+				$('.tab-list-item').removeClass('tab-list-active');
+				$('#tab-7').addClass('tab-list-active')
+				$('#Edittab7-content').show();
+				$('#ssl1').addClass('borderred');
+				$('#ssl2').addClass('borderred');
+				checkTab7 = 0;
+			}
+			else if (ssss1 == ssss3 && ssss1 != "" && ssss3 != "") {
+				Datasetstate.setState({ render: false });
+				$('.tab-content').hide();
+				$('.tab-list-item').removeClass('tab-list-active');
+				$('#tab-7').addClass('tab-list-active')
+				$('#Edittab7-content').show();
+				$('#ssl1').addClass('borderred');
+				$('#ssl3').addClass('borderred');
+				checkTab7 = 0;
+			}
+			else if (ssss3 == ssss2 && ssss3 != "" && ssss2 != "") {
+				Datasetstate.setState({ render: false });
+				$('.tab-content').hide();
+				$('.tab-list-item').removeClass('tab-list-active');
+				$('#tab-7').addClass('tab-list-active')
+				$('#Edittab7-content').show();
+				$('#ssl3').addClass('borderred');
+				$('#ssl2').addClass('borderred');
+				checkTab7 = 0;
+			}
+			else if (ssss2 == '') {
+				var last_sideskill = [ssss1];
+				var last_typesideskill = [tssss1];
+				checkTab7 = 1;
+			}
+			else if (ssss3 == '') {
+				var last_sideskill = [ssss1, ssss2];
+				var last_typesideskill = [tssss1, tssss2];
+				checkTab7 = 1;
+			}
+			else {
+				var last_sideskill = [ssss1, ssss2, ssss3];
+				var last_typesideskill = [tssss1, tssss2, tssss3];
+				checkTab7 = 1;
+			}
+			if (RequireCount_pass == 1 && checkTab7 == 1) {
+				var last_first = $('#re01').val();
+				var last_last = $('#re02').val();
+				var last_gender = $('#sexgen').val();
+				var last_pass = $('#pass05').val();
+				console.log('You Pass!');
+				Datasetstate.setState({ render: true });
+				//await UploadProfileToS3(file_profilepic);
+				console.log('continue after upload');
+				if (last_province == null) {
+					last_province = '';
+				}
+				if (last_city == null) {
+					last_city = '';
+				}
+				if (last_aboutme == null) {
+					last_aboutme = '';
+				}
+				var last_degree = [], last_faculty = [], last_fos = [], last_aca = [], last_grade = [], last_eduyear = [];
+				list_of_aca.forEach((entry) => {
+					//console.log(entry);
+					last_degree.push(entry.aca_degree);
+					last_faculty.push(entry.aca_faculty);
+					last_fos.push(entry.aca_field);
+					last_aca.push(entry.aca_name);
+					last_eduyear.push(entry.aca_year);
+					last_grade.push(parseFloat(entry.aca_grade).toFixed(2));
+				});
+				list_of_high.forEach((entry) => {
+					//console.log(entry);
+					last_degree.push(entry.high_degree);
+					last_faculty.push(entry.high_faculty);
+					last_fos.push(entry.high_field);
+					last_aca.push(entry.high_name);
+					last_eduyear.push(entry.high_year);
+					last_grade.push(parseFloat(entry.high_grade).toFixed(2));
+				});
+				//console.log('grade = ' + last_grade);
+				//console.log(last_eduyear);
+				var FormEdit2 = {
+					Password: last_pass,
+					Firstname: last_first,
+					Lastname: last_last,
+					Birthday: BDDate,
+					Gender: last_gender,
+					AboutMe: last_aboutme,
+					Country: "ประเทศไทย",
+					Province: last_province,
+					City: last_city,
+					SoftSkill: last_sideskill,
+					SoftSkillType: last_typesideskill,
+					Degree: last_degree,
+					Facalty: last_faculty,
+					Field_of_study: last_fos,
+					Academy: last_aca,
+					Grade: last_grade,
+					Education_End_Year: last_eduyear,
+				}
+				//console.log(FormEdit2);
+				console.log(JSON.stringify(FormEdit2));
+				console.log(FormEdit2);
+				//PatchEditParent(FormEdit2);
+			}
+			else {
+				console.log('You Wrong!');
+				Datasetstate.setState({ render: false });
+				$('.tab-content').hide();
+				$('.tab-list-item').removeClass('tab-list-active');
+				$('#tab-1').addClass('tab-list-active')
+				$('#Edittab1-content').show();
+			}
+		});
+
+		function UploadProfileToS3(file){
+			uploadFile(file, config)
+				.then(data => { 
+					UploadProfile(data.location);
+				})
+				.catch(err => console.error(err))
+		}
+
+		function UploadProfile(picUrl){
+			//alert(111);
+				var datapic = {
+					"ProfilePic":picUrl,
+					"ProfilePicBase64":picUrl,
+				}
+				
+				fetch("http://localhost:2000/Datasetstateter/",{
+				method: "PATCH",
+				headers: {
+					'Authorization': 'Bearer '+token,
+					"Access-Control-Allow-Origin": "*",
+					"Access-Control-Allow-Methods": "*",
+					"Access-Control-Allow-Credentials": true,
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify(datapic),
+			})
+				.then(response => response.json())
+				.then((datas) => {
+					//console.log(datas);
+					console.log('patch complete!');
+				}).catch((error) => {
+					console.log('Token Error!');
+					//this.setState({ redirect: "/landing" });
+				});
+		}
+
+		/*console.log("HELLO LV4!");
+		var avatar11 = document.getElementById('avatar11');
+		var image = document.getElementById('image');
+		var input = document.getElementById('input');
+		var $alert = $('.alert');
+		var $modal = $('#modal');
+		var cropper;
+		var file_profilepic;
+
+		avatar11.addEventListener('click', function () {
+			input.click();
+			// console.log("Click on profile!");
+		});
+
+		input.addEventListener('change', function (e) {
+			var files = e.target.files;
+			var done = function (url) {
+				input.value = '';
+				image.src = url;
+				$alert.hide();
+				$modal.modal('show');
+			};
+			var reader;
+			if (files && files.length > 0) {
+				file_profilepic = files[0];
+
+				if (URL) {
+					done(URL.createObjectURL(file_profilepic));
+				} else if (FileReader) {
+					reader = new FileReader();
+					reader.onload = function () {
+						done(reader.result);
+					};
+					reader.readAsDataURL(file_profilepic);
+				}
+			}
+		});
+
+		$modal.on('shown.bs.modal', function () {
+			cropper = new window.Cropper(image, {
+				aspectRatio: 1,
+				viewMode: 1,
+			});
+		}).on('hidden.bs.modal', function () {
+			cropper.destroy();
+			cropper = null;
+		});
+
+		document.getElementById('crop').addEventListener('click', function () {
+			var initialAvatarURL;
+			var canvas;
+
+			$modal.modal('hide');
+			if (cropper) {
+				canvas = cropper.getCroppedCanvas({
+					minWidth: 150,
+					minHeight: 150,
+					maxWidth: 2048,
+					maxHeight: 2048,
+				});
+				initialAvatarURL = avatar11.src;
+				avatar11.src = canvas.toDataURL();
+				//console.log(avatar11.src);
+				$alert.removeClass('alert-success alert-warning');
+				canvas.toBlob(function (blob) {
+					//var formData = new FormData();
+					//formData.append('avatar', blob, 'avatar.jpg');
+					//console.log("HELLO LV5!");
+					file_profilepic = new File([blob], 'user_pf_' + uuidv4(), { lastModified: new Date().getTime(), type: blob.type });
+					console.log(file_profilepic);
+					UploadProfileToS3(file_profilepic);
+				});
+			}
+		});
+*/
+		/*var ret1 = document.getElementById('re01');
+		ret1.addEventListener('keyup', function () {
+			var valt1 = $('#re01').val();
+			//console.log('Name : ' + valt1);
+			if (valt1 == '') {
+				$('#re01').removeClass('is-valid');
+				$('#re01').addClass('is-invalid');
+				//console.log(FormDatasetstate);
+			}
+			else {
+				$('#re01').removeClass('is-invalid');
+				$('#re01').addClass('is-valid');
+			}
+		});
+		var ret2 = document.getElementById('re02');
+		ret2.addEventListener('keyup', function () {
+			var valt1 = $('#re02').val();
+			//console.log('Surname : ' + valt1);
+			if (valt1 == '') {
+				$('#re02').removeClass('is-valid');
+				$('#re02').addClass('is-invalid');
+			}
+			else {
+				$('#re02').removeClass('is-invalid');
+				$('#re02').addClass('is-valid');
+			}
+		});
+		var ret3 = document.getElementById('re03');
+		var passw = 0;
+		var min_pass_count = 8;
+		var max_pass_count = 20;
+		var RequireCount_pass = 0;
+		function checkPass() {
+			var textEntered1, textEntered2, checknow, result1;
+			textEntered1 = document.getElementById('pass05').value;
+			textEntered2 = document.getElementById('pass06').value;
+			checknow = textEntered1.length;
+			if (textEntered2 == '') {
+				//console.log('Password Typing...');
+				//console.log('Length : ' + checknow);
+				if (checknow < min_pass_count) {
+					$('#pass05').removeClass('is-valid');
+					$('#pass05').addClass('is-invalid');
+				}
+				else if (checknow > max_pass_count) {
+					$('#pass05').removeClass('is-valid');
+					$('#pass05').addClass('is-invalid');
+				}
+				else {
+					$('#pass05').removeClass('is-invalid');
+					$('#pass05').addClass('is-valid');
+				}
+			}
+			else if (textEntered1 == textEntered2) {
+				console.log('Password TRUE');
+				if (checknow < min_pass_count) {
+					$('#pass05').removeClass('is-valid');
+					$('#pass05').addClass('is-invalid');
+					RequireCount_pass = 0;
+				}
+				else if (checknow > max_pass_count) {
+					$('#pass05').removeClass('is-valid');
+					$('#pass05').addClass('is-invalid');
+					$('#pass06').removeClass('is-valid');
+					$('#pass06').addClass('is-invalid');
+					RequireCount_pass = 0;
+				}
+				else {
+					$('#pass05').removeClass('is-invalid');
+					$('#pass05').addClass('is-valid');
+					$('#pass06').removeClass('is-invalid');
+					$('#pass06').addClass('is-valid');
+					RequireCount_pass = 1;
+				}
+			}
+			else {
+				console.log('Password FALSE');
+				/*$('#pass06').addClass('red_markEp2');*/
+				//console.log('Length false : ' + checknow);
+				/*if (checknow < min_pass_count) {
+					$('#pass05').removeClass('is-valid');
+					$('#pass05').addClass('is-invalid');
+				}
+				else if (checknow > max_pass_count) {
+					$('#pass05').removeClass('is-valid');
+					$('#pass05').addClass('is-invalid');
+				}
+				else {
+					$('#pass05').removeClass('is-invalid');
+					$('#pass05').addClass('is-valid');
+				}
+				$('#pass06').removeClass('is-valid');
+				$('#pass06').addClass('is-invalid');
+			}
+		}
+		var pa1 = document.getElementById('pass05');
+		var pa2 = document.getElementById('pass06');
+		pa1.addEventListener('keyup', checkPass, false);
+		pa2.addEventListener('keyup', checkPass, false);
+
+		/*Tab2*/
 		function GetProvince() {
 			fetch("https://thaiaddressapi-thaikub.herokuapp.com/v1/thailand/provinces",
 				{ method: "GET", })
@@ -167,7 +562,7 @@ class Editprofile extends React.Component {
 		}
 
 		$('#province').change(function () {
-			var selectedText1 = $(Datasetstate).find("option:selected").text();
+			var selectedText1 = $(this).find("option:selected").text();
 			console.log(selectedText1);
 			removeOptions(document.getElementById('townny'));
 			GetDistrict(selectedText1);
@@ -191,6 +586,47 @@ class Editprofile extends React.Component {
 				});
 
 		}
+		function PatchEditParent(pack) {
+			console.log(pack);
+			//console.log(pack);
+			//console.log(JSON.stringify(pack));
+			fetch("http://localhost:2000/register",
+				{
+					method: "PATCH",
+					headers: {
+						"Content-Type": "application/json",
+						"Accept": "application/json"
+					},
+					body: JSON.stringify(pack)
+				}
+			)
+				.then(function (response) {
+					//window.location.pathname = '/emailverify'
+					//console.log(response.message);
+					if (!response.ok) {
+						Datasetstate.setState({ render: false });
+						throw Error(response.statusText);
+					}
+					else {
+						console.log("ok");
+						Datasetstate.setState({ render: true });
+						//console.log(response);
+					}
+					//return response;
+				}).catch(function (error) {
+					console.log(error);
+				});
+		}
+
+		/*Tab3*/
+		var startYear3 = 1970;
+		var endYear3 = new Date().getFullYear();
+		for (var i = endYear3; i > startYear3; i--) {
+			$('#year_higher').append($('<option />').val(i).html(i));
+			$('#year_secondary').append($('<option />').val(i).html(i));
+			$('#year_startwork').append($('<option />').val(i).html(i));
+			$('#year_endwork').append($('<option />').val(i).html(i));
+		}
 
 		function get_high_id(list_of_high, x) {
 			//var x = 1;
@@ -211,6 +647,8 @@ class Editprofile extends React.Component {
 			});
 			return list_of_aca;
 		}
+
+		/**************************Zone GetDatas ***************************/
 		function GetDatas() {
 			return new Promise((resolve, reject) => {
 				var token = cookie.load('login-token')
@@ -275,9 +713,9 @@ class Editprofile extends React.Component {
 							})
 						});
 						Datasetstate.state.data.WorkHistory_id.forEach((ele, index) => {
-							let regist4_cb = false;
+							let Datasetstatet4_cb = false;
 							if (Datasetstate.state.data.Work_End_Year[index] === 9999 && Datasetstate.state.data.Work_End_Month[index] === 99) {
-								regist4_cb = true;
+								Datasetstatet4_cb = true;
 							}
 							workdata.push({
 								WorkHistory_id: ele,
@@ -291,7 +729,7 @@ class Editprofile extends React.Component {
 								SalaryType: Datasetstate.state.data.SalaryType[index],
 								Salary: Datasetstate.state.data.Salary[index],
 								Infomation: Datasetstate.state.data.Infomation[index],
-								regist4_cb: regist4_cb,
+								Datasetstatet4_cb: Datasetstatet4_cb,
 								token: token,
 								isFetch: true
 							})
@@ -315,16 +753,12 @@ class Editprofile extends React.Component {
 							})
 						});
 					});
-				console.log('Datasetstate is job data : ' + jobdata);
+				console.log('this is job data : ' + jobdata);
 				//alert('Success!!');
 				resolve();
 			}
 			)
 		}
-
-		$('#cancelChoose').on('click', function () {
-			window.history.go(-1);
-		});
 		$('#confirmEdit').on('click', function () {
 			window.location = ("home");
 		})
@@ -345,7 +779,7 @@ class Editprofile extends React.Component {
 						<div class="container">
 							<div class="row align-items-end">
 								<div class="col">
-									<div class="topData2-content">
+									<div class="topData2-content" id="SetstatusParentZone">
 										<h1 class="name">ข้อมูลผู้ใช้</h1>
 										<h1></h1>
 									</div>
@@ -387,9 +821,8 @@ class Editprofile extends React.Component {
 							<Edittab7 />
 						</div>
 					</div>
-					<div class="col block-right2">
-						<button class="btn btn-cta-primary-blackwide round profile-button" target="_blank" type="button" id="cancelChoose">ยกเลิก</button>
-						<button class="btn btn-cta-primary-yellowwide round profile-button marginLEx1" type="button" id="confirmEdit">ยืนยัน</button>
+					<div class="col block-right">
+							<button class="btn btn-cta-primary-yellowwide round profile-button" href="#" target="_blank" type="submit" id="confirmEdit">ยืนยัน</button>
 					</div>
 				</div>
 			);
