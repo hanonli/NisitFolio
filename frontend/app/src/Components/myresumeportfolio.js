@@ -126,8 +126,8 @@ class MyresumePortfolio extends React.Component {
                 udate = day[0] + " " + day[1] + " " + day[2];
             }
             clean_data.push({
-                link: ("portinfo/" + portfolios[i]._id),
-                port_id: portfolios[i]._id,
+                link: ("portinfo/" + portfolios[i].id),
+                port_id: portfolios[i].id,
                 port_name: portfolios[i].Port_Name,
                 image: portfolios[i].portfolioPictures[0].Pic[0]? portfolios[i].portfolioPictures[0].Pic[0]: "assets/images/ldwithgradient.png",
                 date: udate,
