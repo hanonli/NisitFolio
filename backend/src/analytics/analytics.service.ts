@@ -291,6 +291,7 @@ async findUserJobSkill(UserId: string): Promise<any> {
           // console.log(_name);
           // console.log(_sum);
           if (UserScore != null ) {
+            // console.log(_name) ;
             if (index != 1 || n_percentile == 1) {
               yourTop.push({"Job_Name": job,"SkillName": _name, "total": _sum, "UserScore": UserScore, "percentile": index/n_percentile*100}) ;
               temp.push({SkillName: _name, total: _sum, "AllScore": newAllScore, "UserScore": UserScore, "Count": count,"Mean": mean, "Mode": mode, percentage: n/numberOfUsers*100, "percentile": index/n_percentile*100}) ;
@@ -302,7 +303,7 @@ async findUserJobSkill(UserId: string): Promise<any> {
           }
           else {
             temp.push({SkillName: _name, total: _sum, "AllScore": newAllScore, "UserScore": UserScore, "Count": count,"Mean": mean, "Mode": mode, percentage: n/numberOfUsers*100, "percentile": null}) ;
-            yourTop.push({"Job_Name": job,"SkillName": _name, "total": _sum, "UserScore": UserScore, "percentile": null}) ;
+            // yourTop.push({"Job_Name": job,"SkillName": _name, "total": _sum, "UserScore": UserScore, "percentile": null}) ;
           }
           countTop ++ ;
         }
@@ -315,7 +316,18 @@ async findUserJobSkill(UserId: string): Promise<any> {
   }
   
   let sorted_Top = yourTop.sort((a,b) => (a.percentile == b.percentile ? (a.UserScore < b.UserScore ? 1 : -1) : (a.percentile < b.percentile ? 1 : -1 )));
-  array['yourBest3'] = [sorted_Top[0], sorted_Top[1], sorted_Top[3]] ;
+  if (sorted_Top.length > 2) {
+    array['yourBest3'] = [sorted_Top[0], sorted_Top[1], sorted_Top[2]] ;
+  }
+  else if (sorted_Top.length == 2) {
+    array['yourBest3'] = [sorted_Top[0], sorted_Top[1]] ;
+  }
+  else if (sorted_Top.length == 1) {
+    array['yourBest3'] = [sorted_Top[0]] ;
+  }
+  else {
+    array['yourBest3'] = [] ;
+  }
 
   // ----------------------------------------- Overview -------------------------------------------------
 
