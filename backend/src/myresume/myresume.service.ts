@@ -830,20 +830,5 @@ export class MyResumeService {
     return this.resumePictureRepository.find({select: ["_id","UserId","Owner","First","Last","Location","ProfilePic","AboutMe","Email","Privacy","interestedJob","additionalSkills","certificates","educationHistorys","workHistorys","portfolios","create_time","last_modified","modified_by"],where:{UserId : userId}});
     
   }
-//-----------test
-  async test(userId:string ){
-    const x=await this.resumePictureRepository.find({UserId:"xxxxxxxx"});
-    if (x){
-      return "x"
-    }else{
-      return "n"
-    }
-    //const CColor = await this.resumePictureRepository.find({where:{UserId:CreateDto.UserId}});
-    for (var _i = 0; _i < x.length; _i++) {
-      x[_i].Color="xtest"
-      await this.resumePictureRepository.save(x[_i])
-    }
-    return "s"
-  }
   
 }
