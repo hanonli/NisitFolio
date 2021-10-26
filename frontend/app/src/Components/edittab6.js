@@ -651,7 +651,7 @@ class Edittab6 extends React.Component {
                     "Job_Score": last_jobscore,
                     "Job_Objective": last_jobobj
                 };
-                console.log("sendinterestJob2back:",sendinterestJob2back);
+                console.log("sendinterestJob2back:", sendinterestJob2back);
                 if (choose_function == 1) { //edit job after add
                     console.log("edit!!!!!!");
                     fetch("http://localhost:2000/register/interestedJob/" + id_list_job_edit, {
@@ -718,7 +718,7 @@ class Edittab6 extends React.Component {
                         .then(response => response.json())
                         .then((raws) => {
                             console.log(raws)
-                            var sc11=parseFloat(score_slider11).toFixed(1),sc12=parseFloat(score_slider12).toFixed(1),sc13=parseFloat(score_slider13).toFixed(1);
+                            var sc11 = parseFloat(score_slider11).toFixed(1), sc12 = parseFloat(score_slider12).toFixed(1), sc13 = parseFloat(score_slider13).toFixed(1);
                             push2list = {
                                 InterestedJob_id: raws.id,
                                 Job_Pos: 0,
@@ -788,39 +788,39 @@ class Edittab6 extends React.Component {
                     return true;
             });
             console.log("removeIndex:", removeIndex);
-                fetch("http://localhost:2000/register/interestedJob/" + list_of_job[removeIndex].InterestedJob_id, {
-                    method: "DELETE",
-                    headers: {
-                        'Authorization': 'Bearer ' + token6,
-                        "Access-Control-Allow-Origin": "*",
-                        "Access-Control-Allow-Methods": "*",
-                        "Access-Control-Allow-Credentials": true,
-                        "Content-Type": "application/json"
-                    },
-                })
-                    .then(response => response.json())
-                    .then((raws) => {
-                        console.log(raws);
-                        list_of_job.splice(removeIndex, 1);
-                        //console.log(`delete job id:`, removeIndex);
-                        $('#exampleModal_remove_job').modal('hide');
-                        $(".list-of-job-edit").empty();
-                        //console.log(list_of_job);
-                        get_job_id(list_of_job, 1);
-                        show_all_job()
-                        $(".step-marks").remove();
-                        $(".step-labels").remove();
-                        $("#input_mySlider1").remove();
-                        $("#input_mySlider2").remove();
-                        $("#input_mySlider3").remove();
-                        if (list_of_job.length < 3) {
-                            $(".frame_add_job_interest").show();
-                            $(".limit-job-pos-3").removeClass("limit-job-pos-3-red");
-                            $('.limit-job-pos-3').text('ท่านสามารถเพิ่มตำแหน่งงานที่สนใจได้สูงสุด 3 อัน');
-                        }
-                    }).catch((error) => {
-                        console.log(error);
-                    });         
+            fetch("http://localhost:2000/register/interestedJob/" + id_list_job_del, {
+                method: "DELETE",
+                headers: {
+                    'Authorization': 'Bearer ' + token6,
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Methods": "*",
+                    "Access-Control-Allow-Credentials": true,
+                    "Content-Type": "application/json"
+                },
+            })
+                .then(response => response.json())
+                .then((raws) => {
+                    console.log(raws);
+                    list_of_job.splice(removeIndex, 1);
+                    //console.log(`delete job id:`, removeIndex);
+                    $('#exampleModal_remove_job').modal('hide');
+                    $(".list-of-job-edit").empty();
+                    //console.log(list_of_job);
+                    get_job_id(list_of_job, 1);
+                    show_all_job()
+                    $(".step-marks").remove();
+                    $(".step-labels").remove();
+                    $("#input_mySlider1").remove();
+                    $("#input_mySlider2").remove();
+                    $("#input_mySlider3").remove();
+                    if (list_of_job.length < 3) {
+                        $(".frame_add_job_interest").show();
+                        $(".limit-job-pos-3").removeClass("limit-job-pos-3-red");
+                        $('.limit-job-pos-3').text('ท่านสามารถเพิ่มตำแหน่งงานที่สนใจได้สูงสุด 3 อัน');
+                    }
+                }).catch((error) => {
+                    console.log(error);
+                });
         });
 
         $(document).on('click', "#hide-modal-tab6", function () {

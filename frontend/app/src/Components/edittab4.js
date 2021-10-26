@@ -106,7 +106,7 @@ class Edittab4 extends React.Component {
                     grid_work1 = grid_work1.replace("{month_startwork}", ele["Work_Start_Month"]);
                 }
                 grid_work1 = grid_work1.replace("{year_startwork}", ele["Work_Start_Year"]);
-                if (ele["regist4_cb"] == true) {
+                if (ele["reeggiist4_cb"] == true) {
                     grid_work2 = grid_work2.replace("สิ้นสุด {month_endwork}/{year_endwork}", `ยังอยู่ในงาน`);
                 }
                 else {
@@ -230,8 +230,8 @@ class Edittab4 extends React.Component {
 
             backup_year_endwork = for_edit["backup_year_endwork"];
             backup_month_endwork = for_edit["backup_month_endwork"];
-            $('#regist4_cb').prop('checked', for_edit.regist4_cb);
-            if (for_edit.regist4_cb == true) {
+            $('#regist4_cb').prop('checked', for_edit.reeggiist4_cb);
+            if (for_edit.reeggiist4_cb == true) {
                 $("#year_endwork").prop("disabled", true);
                 $("#month_endwork").prop("disabled", true);
                 $("#year_endwork").val('');
@@ -252,29 +252,29 @@ class Edittab4 extends React.Component {
                     return true;
             });
 
-                fetch("http://localhost:2000/register/workHistory/" + list_of_work[removeIndex].WorkHistory_id, {
-                    method: "DELETE",
-                    headers: {
-                        'Authorization': 'Bearer ' + list_of_work[removeIndex].token,
-                        "Access-Control-Allow-Origin": "*",
-                        "Access-Control-Allow-Methods": "*",
-                        "Access-Control-Allow-Credentials": true,
-                        "Content-Type": "application/json"
-                    },
-                })
-                    .then(response => response.json())
-                    .then((raws) => {
-                        console.log(raws);
-                        list_of_year_work[list_of_work[removeIndex]["Work_Start_Year"]] -= 1;
-                        if (list_of_year_work[list_of_work[removeIndex]["Work_Start_Year"]] == 0) {
-                            $(`#yearOf_` + String(list_of_work[removeIndex]["Work_Start_Year"])).remove();
-                        }
-                        list_of_work.splice(removeIndex, 1);
-                        $(`#` + id_list_work_del).remove();
-                        $('#Modal_remove_work').modal('hide');
-                    }).catch((error) => {
-                        console.log(error);
-                    });
+            fetch("http://localhost:2000/register/workHistory/" + list_of_work[removeIndex].WorkHistory_id, {
+                method: "DELETE",
+                headers: {
+                    'Authorization': 'Bearer ' + list_of_work[removeIndex].token,
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Methods": "*",
+                    "Access-Control-Allow-Credentials": true,
+                    "Content-Type": "application/json"
+                },
+            })
+                .then(response => response.json())
+                .then((raws) => {
+                    console.log(raws);
+                    list_of_year_work[list_of_work[removeIndex]["Work_Start_Year"]] -= 1;
+                    if (list_of_year_work[list_of_work[removeIndex]["Work_Start_Year"]] == 0) {
+                        $(`#yearOf_` + String(list_of_work[removeIndex]["Work_Start_Year"])).remove();
+                    }
+                    list_of_work.splice(removeIndex, 1);
+                    $(`#` + id_list_work_del).remove();
+                    $('#Modal_remove_work').modal('hide');
+                }).catch((error) => {
+                    console.log(error);
+                });
 
         });
 
@@ -369,7 +369,7 @@ class Edittab4 extends React.Component {
             var month_startwork = document.getElementById("month_startwork").value;
             var year_endwork = document.getElementById("year_endwork").value;
             var month_endwork = document.getElementById("month_endwork").value;
-            var regist4_cb = $('#regist4_cb').prop('checked');
+            var reeggiist4_cb = $('#regist4_cb').prop('checked');
             var inform_work = document.getElementById("inform_work").value;
             if (document.getElementById("jobtype_work").selectedIndex == 0 && document.getElementById("jobname_work").value == "" && document.getElementById("year_startwork").value == "" && document.getElementById("month_startwork").value == "") {
                 $("#jobtype_work").addClass("is-invalid");
@@ -449,8 +449,8 @@ class Edittab4 extends React.Component {
                     "Company": company_work,
                     "Work_Start_Month": parseInt(month_startwork),
                     "Work_Start_Year": parseInt(year_startwork),
-                    "Work_End_Month": regist4_cb ? 99 : (year_endwork === "" ? 0 : parseInt(month_endwork)),
-                    "Work_End_Year": regist4_cb ? 9999 : (year_endwork === "" ? 0 : parseInt(year_endwork)),
+                    "Work_End_Month": reeggiist4_cb ? 99 : (year_endwork === "" ? 0 : parseInt(month_endwork)),
+                    "Work_End_Year": reeggiist4_cb ? 9999 : (year_endwork === "" ? 0 : parseInt(year_endwork)),
                     "SalaryType": type_salary_work,
                     "Salary": parseInt(salary_work),
                     "Infomation": inform_work
@@ -483,7 +483,7 @@ class Edittab4 extends React.Component {
                             //for_edit["Work_End_Year_select"] = document.getElementById("year_endwork").selectedIndex;
                             for_edit["Work_End_Month"] = parseInt(month_endwork);
                             //for_edit["Work_End_Month_select"] = document.getElementById("month_endwork").selectedIndex;
-                            for_edit["regist4_cb"] = regist4_cb;
+                            for_edit["reeggiist4_cb"] = reeggiist4_cb;
                             for_edit["Infomation"] = inform_work;
                             for_edit["backup_year_endwork"] = backup_year_endwork;
                             for_edit["backup_month_endwork"] = backup_month_endwork;
@@ -529,7 +529,7 @@ class Edittab4 extends React.Component {
                                 //Work_End_Year_select: document.getElementById("year_endwork").selectedIndex,
                                 Work_End_Month: parseInt(month_endwork),
                                 //Work_End_Month_select: document.getElementById("month_endwork").selectedIndex,
-                                regist4_cb: regist4_cb,
+                                reeggiist4_cb: reeggiist4_cb,
                                 Infomation: inform_work,
                                 backup_year_endwork: backup_year_endwork,
                                 backup_month_endwork: backup_month_endwork,

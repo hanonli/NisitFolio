@@ -512,29 +512,29 @@ class Editprofile extends React.Component {
 			else {
 				console.log('Password FALSE');
 				/*$('#pass06').addClass('red_markEp2');*/
-				//console.log('Length false : ' + checknow);
-				/*if (checknow < min_pass_count) {
-					$('#pass05').removeClass('is-valid');
-					$('#pass05').addClass('is-invalid');
-				}
-				else if (checknow > max_pass_count) {
-					$('#pass05').removeClass('is-valid');
-					$('#pass05').addClass('is-invalid');
-				}
-				else {
-					$('#pass05').removeClass('is-invalid');
-					$('#pass05').addClass('is-valid');
-				}
-				$('#pass06').removeClass('is-valid');
-				$('#pass06').addClass('is-invalid');
-			}
+		//console.log('Length false : ' + checknow);
+		/*if (checknow < min_pass_count) {
+			$('#pass05').removeClass('is-valid');
+			$('#pass05').addClass('is-invalid');
 		}
-		var pa1 = document.getElementById('pass05');
-		var pa2 = document.getElementById('pass06');
-		pa1.addEventListener('keyup', checkPass, false);
-		pa2.addEventListener('keyup', checkPass, false);
+		else if (checknow > max_pass_count) {
+			$('#pass05').removeClass('is-valid');
+			$('#pass05').addClass('is-invalid');
+		}
+		else {
+			$('#pass05').removeClass('is-invalid');
+			$('#pass05').addClass('is-valid');
+		}
+		$('#pass06').removeClass('is-valid');
+		$('#pass06').addClass('is-invalid');
+	}
+}
+var pa1 = document.getElementById('pass05');
+var pa2 = document.getElementById('pass06');
+pa1.addEventListener('keyup', checkPass, false);
+pa2.addEventListener('keyup', checkPass, false);
 
-		/*Tab2*/
+/*Tab2*/
 		function GetProvince() {
 			fetch("https://thaiaddressapi-thaikub.herokuapp.com/v1/thailand/provinces",
 				{ method: "GET", })
@@ -713,9 +713,9 @@ class Editprofile extends React.Component {
 							})
 						});
 						Datasetstate.state.data.WorkHistory_id.forEach((ele, index) => {
-							let Datasetstatet4_cb = false;
+							let reeggiist4_cb = false;
 							if (Datasetstate.state.data.Work_End_Year[index] === 9999 && Datasetstate.state.data.Work_End_Month[index] === 99) {
-								Datasetstatet4_cb = true;
+								reeggiist4_cb = true;
 							}
 							workdata.push({
 								WorkHistory_id: ele,
@@ -729,7 +729,7 @@ class Editprofile extends React.Component {
 								SalaryType: Datasetstate.state.data.SalaryType[index],
 								Salary: Datasetstate.state.data.Salary[index],
 								Infomation: Datasetstate.state.data.Infomation[index],
-								Datasetstatet4_cb: Datasetstatet4_cb,
+								reeggiist4_cb: reeggiist4_cb,
 								token: token,
 								isFetch: true
 							})
@@ -823,7 +823,7 @@ class Editprofile extends React.Component {
 						</div>
 					</div>
 					<div class="col block-right">
-							<button class="btn btn-cta-primary-yellowwide round profile-button" href="#" target="_blank" type="submit" id="confirmEdit">ยืนยัน</button>
+						<button class="btn btn-cta-primary-yellowwide round profile-button" href="#" target="_blank" type="submit" id="confirmEdit">ยืนยัน</button>
 					</div>
 				</div>
 			);
