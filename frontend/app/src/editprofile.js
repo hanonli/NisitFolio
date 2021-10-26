@@ -752,10 +752,11 @@ class Editprofile extends React.Component {
 								isFetch: true
 							})
 						});
+						resolve();
 					});
 				console.log('this is job data : ' + jobdata);
 				//alert('Success!!');
-				resolve();
+
 			}
 			)
 		}

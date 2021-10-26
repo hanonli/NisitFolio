@@ -213,11 +213,21 @@
 }
 
 #center-signin78888888{
-    position: absolute;
+    /*position: absolute;
     left: 34.2vw;
-    bottom: 85vh;
-    z-index: 999;
-    display: inline-block;
+    bottom: 85.5vh;
+    display: flexbox;
+    justify-content: center;
     width: 5vw;
-    height: 4vh;
+    height: 4vh;*/
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.AnonymousLogin1{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;    
 }

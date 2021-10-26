@@ -58,15 +58,13 @@ class Edittab5 extends React.Component {
 
             });
         }
-        setTimeout(() => {
-            console.log("edittab5!!!!:", this.props.mycerti_data);
-            const mycert2 = this.props.mycerti_data ? this.props.mycerti_data : [];
-            list_of_certi = [...mycert2];
-            $("#icon-upload-112").remove();
-            $("#text-upload-112").remove();
-            $("#text-upload-116").remove();
-            show_certi();
-        }, 3000);
+        console.log("edittab5!!!!:", this.props.mycerti_data);
+        const mycert2 = this.props.mycerti_data ? this.props.mycerti_data : [];
+        list_of_certi = [...mycert2];
+        $("#icon-upload-112").remove();
+        $("#text-upload-112").remove();
+        $("#text-upload-116").remove();
+        show_certi();
 
         $(document).ready(function () {
             var startYear = 1900;

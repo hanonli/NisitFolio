@@ -8,24 +8,13 @@ import Navbar from './Components/navbarLogin';
 class AnonymousLogin extends React.Component {
     render() {
         return (
-            <div className="Landing">
+            <div className="AnonymousLogin1">
                 <Navbar />
-                <div class="landingPage4">
-                    <div class="container">
-                        <div class="d-flex justify-content-center">
-                            <div>
-                                <img class="bg-center-signin78888888" src="assets/images/ldwithgradient.png" />
-                                <div id="center-signin78888888">
-                                    <SignInLand />
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
+                <img width="100%" height="100%" src="assets/images/ldwithgradient.png" />
+                <div id="center-signin78888888">
+                    <SignInLand />
                 </div>
             </div>
-
         );
     }
 }
