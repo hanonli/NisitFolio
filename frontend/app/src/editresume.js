@@ -53,7 +53,7 @@ class Editresume extends React.Component {
 
 	componentDidMount() {
 		var editresumeState = this;
-		select_color_template = "#ffce55";
+		//select_color_template = "#ffce55";
 		var choose_aca = [], choose_high = [], choose_sideskill = [], choose_certi = [], choose_work = [];
 		var tmp1 = [], tmp2 = [], list_of_year_certi = {}, year_before_certi, year_before_work = -1, list_of_year_work = {}, certdata = [], workdata = [];
 		var token = cookie.load('login-token')
@@ -161,6 +161,7 @@ class Editresume extends React.Component {
 						//Color_Resume = editresumeState.state.data.Color_ResumeId ? editresumeState.state.data.Color_ResumeId : "";
 						if (editresumeState.state.data.Color_ResumeId !== undefined) {
 							editresumeState.setState({ selectedOption: editresumeState.state.data.Color_ResumeId, sample_template: myTemplate[editresumeState.state.data.Color_ResumeId] });
+							select_color_template = editresumeState.state.data.Color_ResumeId;
 						}
 						else {
 							editresumeState.setState({ selectedOption: "#ffce55", sample_template: myTemplate["#ffce55"] });
@@ -736,6 +737,7 @@ class Editresume extends React.Component {
 			}).get();
 			//console.log("choose_work:", choose_work);
 			//console.log("choose_certi:", choose_certi);
+			console.log("select_color_template:", select_color_template);
 		});
 
 		/* Zone to choose func */
