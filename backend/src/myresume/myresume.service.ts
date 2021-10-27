@@ -434,7 +434,7 @@ export class MyResumeService {
         const old_Port = resume.portfolios;
         const old_Port_id_arr=[]
         for (var _i = 0; _i < old_Port.length; _i++) {
-          old_Port_id_arr.push(old_Port[_i]._id.toString())
+          old_Port_id_arr.push(old_Port[_i]._id)
         }
 
         for (var _i = 0; _i < CreateDto.PortID.length; _i++) {
@@ -454,7 +454,7 @@ export class MyResumeService {
           }
 
           else{
-            old_Port_id_arr.splice(old_Port_id_arr.indexOf(portid.toString()),1);
+            old_Port_id_arr.splice(old_Port_id_arr.indexOf(portid),1);
           }
 
           port_arr.push(subportfolio);
@@ -511,11 +511,11 @@ export class MyResumeService {
       if(CreateDto.Resume_Privacy!=null){
         resume.Privacy = CreateDto.Resume_Privacy;
       }
-      resume.Color = CreateDto.Color;
-      const CColor = await this.resumePictureRepository.find({where:{UserId:userId}});
-      for (var _i = 0; _i < CColor.length; _i++) {
-        CColor[_i].Color=CreateDto.Color
-      await this.resumePictureRepository.save(CColor[_i])
+        resume.Color = CreateDto.Color;
+        const CColor = await this.resumePictureRepository.find({where:{UserId:userId}});
+        for (var _i = 0; _i < CColor.length; _i++) {
+          CColor[_i].Color=CreateDto.Color
+        await this.resumePictureRepository.save(CColor[_i])
     }
     //*/
       resume.last_modified.push(isoTime);
