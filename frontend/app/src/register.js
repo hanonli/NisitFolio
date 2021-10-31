@@ -344,51 +344,35 @@ class Register extends React.Component {
 						entry.skill3 = "none";
 						entry.score_skill3 = "2.5";
 					}
-					last_jobskill.push([entry.skill1, entry.skill2, entry.skill3]);
-					//last_jobscore.push([parseFloat(entry.score_skill1).toFixed(1),parseFloat(entry.score_skill2).toFixed(1),parseFloat(entry.score_skill3).toFixed(1)]);
-					/*var total_skill_score = new Float32Array(3);
-					if (entry.skill1 != "none") {
-						total_skill_score[0] = entry.score_skill1;
-					}
-					else {
-						total_skill_score[0] = 0;
-					}
-					if (entry.skill2 != "none") {
-						total_skill_score[1] = entry.score_skill2;
-					}
-					else {
-						total_skill_score[1] = 0;
-					}
-					if (entry.skill3 != "none") {
-						total_skill_score[2] = entry.score_skill3;
-					}
-					else {
-						total_skill_score[2] = 0;
-					}
-					last_jobscore.push([total_skill_score[0], total_skill_score[1], total_skill_score[2]]);*/
+					//last_jobskill.push([entry.skill1, entry.skill2, entry.skill3]);
+					var total_jobskill = [];
 					if (entry.skill1 != "none") {
 						entry.score_skill1 = Number(parseFloat(entry.score_skill1).toFixed(1));
 						total_skill_score.push(entry.score_skill1);
+						total_jobskill.push(entry.skill1);
 					}
-					else {
+					/*else {
 						total_skill_score.push(0);
-					}
+					}*/
 					if (entry.skill2 != "none") {
 						entry.score_skill2 = Number(parseFloat(entry.score_skill2).toFixed(1));
 						total_skill_score.push(entry.score_skill2);
+						total_jobskill.push(entry.skill2);
 					}
-					else {
+					/*else {
 						total_skill_score.push(0);
-					}
+					}*/
 
 					if (entry.skill3 != "none") {
 						entry.score_skill3 = Number(parseFloat(entry.score_skill3).toFixed(1));
 						total_skill_score.push(entry.score_skill3);
+						total_jobskill.push(entry.skill3);
 					}
-					else {
+					/*else {
 						total_skill_score.push(0);
-					}
+					}*/
 					last_jobscore.push(total_skill_score);
+					last_jobskill.push(total_jobskill);
 					if (entry.obj1 == "" && entry.obj2 == "" && entry.obj3 != "") {
 						entry.obj1 = entry.obj3;
 						entry.obj3 = "";
@@ -405,15 +389,6 @@ class Register extends React.Component {
 					else if (entry.obj1 != "" && entry.obj2 == "" && entry.obj3 != "") {
 						entry.obj2 = entry.obj3;
 						entry.obj3 = "";
-					}
-					if (entry.obj1 == "") {
-						entry.obj1 = "none";
-					}
-					if (entry.obj2 == "") {
-						entry.obj2 = "none";
-					}
-					if (entry.obj3 == "") {
-						entry.obj3 = "none";
 					}
 					last_jobobj.push([entry.obj1, entry.obj2, entry.obj3]);
 				});

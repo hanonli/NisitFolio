@@ -595,27 +595,27 @@ class Edittab6 extends React.Component {
                     skill_job_3 = "none";
                     score_slider13 = 2.5;
                 }
-                last_jobskill.push(skill_job_1);
-                last_jobskill.push(skill_job_2);
-                last_jobskill.push(skill_job_3);
                 if (skill_job_1 != "none") {
                     last_jobscore.push(Number(parseFloat(score_slider11)));
+                    last_jobskill.push(skill_job_1);
                 }
-                else {
+                /*else {
                     last_jobscore.push(0);
-                }
+                }*/
                 if (skill_job_2 != "none") {
                     last_jobscore.push(Number(parseFloat(score_slider12)));
+                    last_jobskill.push(skill_job_2);
                 }
-                else {
+                /*else {
                     last_jobscore.push(0);
-                }
+                }*/
                 if (skill_job_3 != "none") {
                     last_jobscore.push(Number(parseFloat(score_slider13)));
+                    last_jobskill.push(skill_job_3);
                 }
-                else {
+                /*else {
                     last_jobscore.push(0);
-                }
+                }*/
                 if (obj_job_1 == "" && obj_job_2 == "" && obj_job_3 != "") {
                     obj_job_1 = obj_job_3;
                     obj_job_3 = "";
@@ -632,15 +632,6 @@ class Edittab6 extends React.Component {
                 else if (obj_job_1 != "" && obj_job_2 == "" && obj_job_3 != "") {
                     obj_job_2 = obj_job_3;
                     obj_job_3 = "";
-                }
-                if (obj_job_1 == "") {
-                    obj_job_1 = "none";
-                }
-                if (obj_job_2 == "") {
-                    obj_job_2 = "none";
-                }
-                if (obj_job_3 == "") {
-                    obj_job_3 = "none";
                 }
                 last_jobobj.push(obj_job_1);
                 last_jobobj.push(obj_job_2);
