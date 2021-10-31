@@ -32,7 +32,7 @@ class MyresumeWorkGoals extends React.Component {
         const Without_Job_Goals = []
 
         for (let i = 0; i < Job_Objective.length; i++) {
-            if (Job_Objective[i] != "none") {
+            if (Job_Objective[i] != "none" && Job_Objective[i] != "") {
                 Count_Job += 1;
                 Job_Goals.push(
                     <>
@@ -73,15 +73,15 @@ class MyresumeWorkGoals extends React.Component {
             )
         }
         let result;
-        if((Count_Job == 0) && (!owner)){
+        if ((Count_Job == 0) && (!owner)) {
             result = (<div></div>);
         }
-        else{
+        else {
             result = (
-            <div class="workgolas" id="resume-goal">
-                <div>{Job_Goals_With_data}</div>
-                <div>{Without_Job_Goals}</div>
-            </div>);
+                <div class="workgolas" id="resume-goal">
+                    <div>{Job_Goals_With_data}</div>
+                    <div>{Without_Job_Goals}</div>
+                </div>);
         }
         return (
             <div>{result}</div>
