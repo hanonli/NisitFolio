@@ -551,7 +551,7 @@ class Edittab6 extends React.Component {
                 //$("#each_skill2").addClass("is-invalid");
                 //can't submit
             }
-            else if (list_of_job.findIndex(e => e.Job_JobName === document.getElementById("nm_job").value) != -1) {
+            else if (list_of_job.findIndex(e => e.Job_JobName === document.getElementById("nm_job").value) != -1 && choose_function == 2) {
                 $("#nm_job").addClass("is-invalid");
             }
             else {

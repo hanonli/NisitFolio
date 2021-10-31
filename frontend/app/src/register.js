@@ -316,6 +316,7 @@ class Register extends React.Component {
 				//console.log(list_of_job);
 				list_of_job.forEach((entry) => {
 					//console.log(entry);
+					var total_skill_score = [];
 					last_jobname.push(entry.name_job);
 					if (entry.skill1 == "none" && entry.skill2 == "none" && entry.skill3 != "none") {
 						entry.skill1 = entry.skill3;
@@ -368,27 +369,29 @@ class Register extends React.Component {
 					if (entry.skill1 != "none") {
 						entry.score_skill1 = parseFloat(entry.score_skill1).toFixed(1);
 						entry.score_skill1 = Number(entry.score_skill1);
-						last_jobscore.push(entry.score_skill1);
+						total_skill_score.push(entry.score_skill1);
 					}
 					else {
-						last_jobscore.push(0);
+						total_skill_score.push(0);
 					}
 					if (entry.skill2 != "none") {
 						entry.score_skill2 = parseFloat(entry.score_skill2).toFixed(1);
 						entry.score_skill2 = Number(entry.score_skill2);
-						last_jobscore.push(entry.score_skill2);
+						total_skill_score.push(entry.score_skill2);
 					}
 					else {
-						last_jobscore.push(0);
+						total_skill_score.push(0);
 					}
+
 					if (entry.skill3 != "none") {
 						entry.score_skill3 = parseFloat(entry.score_skill3).toFixed(1);
 						entry.score_skill3 = Number(entry.score_skill3);
-						last_jobscore.push(entry.score_skill3);
+						total_skill_score.push(entry.score_skill3);
 					}
 					else {
-						last_jobscore.push(0);
+						total_skill_score.push(0);
 					}
+					last_jobscore.push(total_skill_score);
 					if (entry.obj1 == "" && entry.obj2 == "" && entry.obj3 != "") {
 						entry.obj1 = entry.obj3;
 						entry.obj3 = "";
@@ -2673,7 +2676,7 @@ class Register extends React.Component {
 				//$("#each_skill2").addClass("is-invalid");
 				//can't submit
 			}
-			else if (list_of_job.findIndex(e => e.name_job === document.getElementById("nm_job").value) != -1) {
+			else if (list_of_job.findIndex(e => e.name_job === document.getElementById("nm_job").value) != -1 && choose_function == 2) {
 				$("#nm_job").addClass("is-invalid");
 			}
 			else {
@@ -2905,7 +2908,6 @@ class Register extends React.Component {
 				$("#pos-del-obj-button3").hide();
 			}
 		});
-
 	}
 
 	componentWillUnmount() {
