@@ -58,7 +58,7 @@ class Edittab5 extends React.Component {
 
             });
         }
-        console.log("edittab5!!!!:", this.props.mycerti_data);
+        //console.log("edittab5!!!!:", this.props.mycerti_data);
         const mycert2 = this.props.mycerti_data ? this.props.mycerti_data : [];
         list_of_certi = [...mycert2];
         $("#icon-upload-112").remove();
@@ -165,7 +165,7 @@ class Edittab5 extends React.Component {
         $(document).on('change', "#image-upload112", function () {
             var path_img = document.getElementById("image-upload112");
             if (path_img.files[0].type == "image/jpeg" || path_img.files[0].type == "image/jpg" || path_img.files[0].type == "image/png") {
-                console.log("path_img.files", path_img.files);
+                //console.log("path_img.files", path_img.files);
                 file_picOfCerti = new File([path_img.files[0]], 'newuser_ct_' + uuidv4(), { type: path_img.files[0].type });;
                 var reader = new FileReader();
                 reader.onload = function (e) {
@@ -252,7 +252,7 @@ class Edittab5 extends React.Component {
             })
                 .then(response => response.json())
                 .then((raws) => {
-                    console.log(raws);
+                    //console.log(raws);
                     if (!("message" in raws)) {
                         list_of_year_certi[list_of_certi[removeIndex]["CertYear"]] -= 1;
                         if (list_of_year_certi[list_of_certi[removeIndex]["CertYear"]] == 0) {
@@ -267,12 +267,12 @@ class Edittab5 extends React.Component {
                         $("#text-upload-112").remove();
                         $("#text-upload-116").remove();
                         $("#exampleModal_remove_certi").modal("hide");
-                        console.log(`list_of_year_certi:`, list_of_year_certi);
-                        console.log(`list_of_certi:`, list_of_certi);
+                        //console.log(`list_of_year_certi:`, list_of_year_certi);
+                        //console.log(`list_of_certi:`, list_of_certi);
                     }
 
                 }).catch((error) => {
-                    console.log(error);
+                    //console.log(error);
                 });
         });
 
@@ -323,8 +323,8 @@ class Edittab5 extends React.Component {
                         "CertYear": parseInt(year_certi),
                         "CertPic": file_picOfCerti != '' ? uploadurl : for_edit["CertPic"]
                     };
-                    console.log("edit!!!!!!");
-                    console.log(`list_of_certi:`, list_of_certi);
+                    //console.log("edit!!!!!!");
+                    //console.log(`list_of_certi:`, list_of_certi);
                     fetch("http://localhost:2000/register/certificate/" + id_list_certi_edit, {
                         method: "PATCH",
                         headers: {
@@ -336,7 +336,7 @@ class Edittab5 extends React.Component {
                     })
                         .then(response => response.json())
                         .then((raws) => {
-                            console.log(raws);
+                            //console.log(raws);
                             if ("message" in raws) {
                                 $("#for-error-dgd5").addClass("status-saving5555-red");
                                 certiedit.setState({ statusUpload5: "Save Failed", imgStatus5: "assets/images/baseline_error_black_24dp.png" });
@@ -352,7 +352,7 @@ class Edittab5 extends React.Component {
                                 $("#yearpicker_111").prop('selectedIndex', 0);
                                 $("#exampleModal11112").modal("hide");
                                 $(".box-box-box-edit-certi").empty();
-                                console.log(`list_of_certi:`, list_of_certi);
+                                //console.log(`list_of_certi:`, list_of_certi);
                                 certiedit.setState({ statusUpload5: "", imgStatus5: "" });
                                 show_certi();
                                 $("#preview_before_upload").remove();
@@ -364,7 +364,7 @@ class Edittab5 extends React.Component {
                             }
 
                         }).catch((error) => {
-                            console.log(error);
+                            //console.log(error);
                             $("#for-error-dgd5").addClass("status-saving5555-red");
                             certiedit.setState({ statusUpload5: "Save Failed", imgStatus5: "assets/images/baseline_error_black_24dp.png" });
                         });
@@ -388,7 +388,7 @@ class Edittab5 extends React.Component {
                     })
                         .then(response => response.json())
                         .then((raws) => {
-                            console.log(raws);
+                            //console.log(raws);
                             if ("message" in raws) {
                                 certiedit.setState({ statusUpload5: "Save Failed", imgStatus5: "assets/images/baseline_error_black_24dp.png" });
                                 $("#for-error-dgd5").addClass("status-saving5555-red");
@@ -408,7 +408,7 @@ class Edittab5 extends React.Component {
                                 $("#yearpicker_111").prop('selectedIndex', 0);
                                 $("#exampleModal11112").modal("hide");
                                 $(".box-box-box-edit-certi").empty();
-                                console.log(`list_of_certi:`, list_of_certi);
+                                //console.log(`list_of_certi:`, list_of_certi);
                                 certiedit.setState({ statusUpload5: "", imgStatus5: "" });
                                 show_certi();
                                 $("#preview_before_upload").remove();
@@ -422,7 +422,7 @@ class Edittab5 extends React.Component {
                         }).catch((error) => {
                             certiedit.setState({ statusUpload5: "Save Failed", imgStatus5: "assets/images/baseline_error_black_24dp.png" });
                             $("#for-error-dgd5").addClass("status-saving5555-red");
-                            console.log(error);
+                            //console.log(error);
                         });
                 }
             }
@@ -451,8 +451,8 @@ class Edittab5 extends React.Component {
     }
 
     componentWillReceiveProps(props) {
-        console.log("props edittab5");
-        console.log(props.mycerti_data);
+        //console.log("props edittab5");
+        //console.log(props.mycerti_data);
     }
 
     componentWillUnmount() {
@@ -462,7 +462,7 @@ class Edittab5 extends React.Component {
     }
 
     handleLoad() {
-        console.log("YEAH!");
+        //console.log("YEAH!");
     }
 
     render() {

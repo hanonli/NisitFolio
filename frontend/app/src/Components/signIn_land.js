@@ -40,7 +40,7 @@ class SignInLand extends React.Component {
                     this.setState({ invalid_password: "*คุณไม่มีสิทธิ์เข้าใช้งานระบบ" });
                 }
             }).catch((error) => {
-                console.log(error);
+                //console.log(error);
             });
     }
 

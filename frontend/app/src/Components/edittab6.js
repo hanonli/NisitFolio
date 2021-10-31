@@ -23,7 +23,7 @@ class Edittab6 extends React.Component {
         var id_list_job;
         var tabId;
         var list_of_job = []; //list of job
-        console.log("edittab6!!!!:", this.props.myjob_data);
+        //console.log("edittab6!!!!:", this.props.myjob_data);
         const myjob2 = this.props.myjob_data ? this.props.myjob_data : [];
         list_of_job = [...myjob2];
         $(".step-marks").remove();
@@ -135,7 +135,7 @@ class Edittab6 extends React.Component {
 
                 $(".list-of-job-edit").append(grid_Job1 + grid_Job_skill1 + grid_Job_skill2 + grid_Job_skill3 + grid_Job2);
             });
-            console.log(`list_of_job:`, list_of_job);
+            //console.log(`list_of_job:`, list_of_job);
         }
 
         // setup slider HTML, then call the following method with the values
@@ -329,7 +329,7 @@ class Edittab6 extends React.Component {
                         mapEngNameJob[job_now] = job_now_eng;
                     });
                 }).catch((error) => {
-                    console.log(error);
+                    //console.log(error);
                 });
         }
 
@@ -350,7 +350,7 @@ class Edittab6 extends React.Component {
                         $('#each_skill3').append($('<option />').val(skill_now).html(skill_now));
                     });
                 }).catch((error) => {
-                    console.log(error);
+                    //console.log(error);
                 });
         }
 
@@ -651,9 +651,9 @@ class Edittab6 extends React.Component {
                     "Job_Score": last_jobscore,
                     "Job_Objective": last_jobobj
                 };
-                console.log("sendinterestJob2back:", sendinterestJob2back);
+                //console.log("sendinterestJob2back:", sendinterestJob2back);
                 if (choose_function == 1) { //edit job after add
-                    console.log("edit!!!!!!");
+                    //console.log("edit!!!!!!");
                     fetch("http://localhost:2000/register/interestedJob/" + id_list_job_edit, {
                         method: "PATCH",
                         headers: {
@@ -665,7 +665,7 @@ class Edittab6 extends React.Component {
                     })
                         .then(response => response.json())
                         .then((raws) => {
-                            console.log(raws);
+                            //console.log(raws);
                             if ("message" in raws) {
                                 jobedit.setState({ statusUpload6: "Save Failed", imgStatus6: "assets/images/baseline_error_black_24dp.png" });
                                 $("#for-error-dgd6").addClass("status-saving5555-red");
@@ -707,7 +707,7 @@ class Edittab6 extends React.Component {
                             }
 
                         }).catch((error) => {
-                            console.log(error);
+                            //console.log(error);
                             jobedit.setState({ statusUpload6: "Save Failed", imgStatus6: "assets/images/baseline_error_black_24dp.png" });
                             $("#for-error-dgd6").addClass("status-saving5555-red");
                         });
@@ -724,7 +724,7 @@ class Edittab6 extends React.Component {
                     })
                         .then(response => response.json())
                         .then((raws) => {
-                            console.log(raws)
+                            //console.log(raws)
                             if ("message" in raws) {
                                 jobedit.setState({ statusUpload6: "Save Failed", imgStatus6: "assets/images/baseline_error_black_24dp.png" });
                                 $("#for-error-dgd6").addClass("status-saving5555-red");
@@ -751,7 +751,7 @@ class Edittab6 extends React.Component {
                                 }
                                 list_of_job.push(push2list);
                                 get_job_id(list_of_job, 1);
-                                console.log(list_of_job);
+                                //console.log(list_of_job);
                                 $('#nm_job').prop('selectedIndex', 0);
                                 $("#obj-job-01").val('');
                                 $("#pos-del-obj-button1").hide();
@@ -771,7 +771,7 @@ class Edittab6 extends React.Component {
                             }
 
                         }).catch((error) => {
-                            console.log(error);
+                            //console.log(error);
                             jobedit.setState({ statusUpload6: "Save Failed", imgStatus6: "assets/images/baseline_error_black_24dp.png" });
                             $("#for-error-dgd6").addClass("status-saving5555-red");
                         });
@@ -792,7 +792,7 @@ class Edittab6 extends React.Component {
 
         $(document).on("click", "#del-job", function () {
             id_list_job_del = $(this).parents().parents().attr('id');
-            console.log("id_list_job111:", id_list_job_del);
+            //console.log("id_list_job111:", id_list_job_del);
             $('#exampleModal_remove_job').modal('toggle');
         });
 
@@ -801,7 +801,7 @@ class Edittab6 extends React.Component {
                 if (post.InterestedJob_id === id_list_job_del)
                     return true;
             });
-            console.log("removeIndex:", removeIndex);
+            //console.log("removeIndex:", removeIndex);
             fetch("http://localhost:2000/register/interestedJob/" + id_list_job_del, {
                 method: "DELETE",
                 headers: {
@@ -814,7 +814,7 @@ class Edittab6 extends React.Component {
             })
                 .then(response => response.json())
                 .then((raws) => {
-                    console.log(raws);
+                    //console.log(raws);
                     if (!("message" in raws)) {
                         list_of_job.splice(removeIndex, 1);
                         //console.log(`delete job id:`, removeIndex);
@@ -836,7 +836,7 @@ class Edittab6 extends React.Component {
                     }
 
                 }).catch((error) => {
-                    console.log(error);
+                    //console.log(error);
                 });
         });
 
@@ -969,7 +969,7 @@ class Edittab6 extends React.Component {
     }
 
     handleLoad() {
-        console.log("YEAH!");
+        //console.log("YEAH!");
     }
 
     render() {

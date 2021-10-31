@@ -26,7 +26,7 @@ class Edittab4 extends React.Component {
         var for_edit;
         var id_list_work_edit;
         var id_list_work_del;
-        console.log("edittab4!!!!:", this.props.mywork_data);
+        //console.log("edittab4!!!!:", this.props.mywork_data);
         var mywork2 = this.props.mywork_data ? this.props.mywork_data : [];
         list_of_work = [...mywork2];
         show_work();
@@ -166,7 +166,7 @@ class Edittab4 extends React.Component {
                 }
                 $("#contentYear-work_" + String(ele["Work_Start_Year"])).append(grid_work1 + grid_work2 + grid_work3);
             });
-            console.log("list_of_work:", list_of_work);
+            //console.log("list_of_work:", list_of_work);
         }
 
         //open modal to add work
@@ -181,7 +181,7 @@ class Edittab4 extends React.Component {
         $(document).on("click", "#edit-work", function () {
             choose_function = 1;
             id_list_work_edit = $(this).parents().parents().parents().attr('id');
-            console.log("id_list_work111:", id_list_work_edit);
+            //console.log("id_list_work111:", id_list_work_edit);
             $('#registab4Modal').modal('toggle');
             document.querySelector('#submit-work').innerText = 'ตกลง';
             for_edit = list_of_work.find(function (post, index_del) {
@@ -264,7 +264,7 @@ class Edittab4 extends React.Component {
             })
                 .then(response => response.json())
                 .then((raws) => {
-                    console.log(raws);
+                    //console.log(raws);
                     if (!("message" in raws)) {
                         list_of_year_work[list_of_work[removeIndex]["Work_Start_Year"]] -= 1;
                         if (list_of_year_work[list_of_work[removeIndex]["Work_Start_Year"]] == 0) {
@@ -276,7 +276,7 @@ class Edittab4 extends React.Component {
                     }
 
                 }).catch((error) => {
-                    console.log(error);
+                    //console.log(error);
                 });
 
         });
@@ -470,7 +470,7 @@ class Edittab4 extends React.Component {
                     })
                         .then(response => response.json())
                         .then((raws) => {
-                            console.log(raws);
+                            //console.log(raws);
                             if ("message" in raws) {
                                 workedit.setState({ statusUpload4: "Save Failed", imgStatus4: "assets/images/baseline_error_black_24dp.png" });
                                 $("#for-error-dgd").addClass("status-saving5555-red");
@@ -503,7 +503,7 @@ class Edittab4 extends React.Component {
                             }
 
                         }).catch((error) => {
-                            console.log(error);
+                            //console.log(error);
                             workedit.setState({ statusUpload4: "Save Failed", imgStatus4: "assets/images/baseline_error_black_24dp.png" });
                             $("#for-error-dgd").addClass("status-saving5555-red");
                         });
@@ -521,7 +521,7 @@ class Edittab4 extends React.Component {
                         body: JSON.stringify(sendWork2back)
                     })
                         .then((raws) => {
-                            console.log(raws);
+                            //console.log(raws);
                             if ("message" in raws) {
                                 workedit.setState({ statusUpload4: "Save Failed", imgStatus4: "assets/images/baseline_error_black_24dp.png" });
                                 $("#for-error-dgd").addClass("status-saving5555-red");
@@ -557,13 +557,12 @@ class Edittab4 extends React.Component {
                             }
 
                         }).catch((error) => {
-                            console.log(error);
+                            //console.log(error);
                             workedit.setState({ statusUpload4: "Save Failed", imgStatus4: "assets/images/baseline_error_black_24dp.png" });
                             $("#for-error-dgd").addClass("status-saving5555-red");
                         });
                 }
-                console.log(`list_of_work:`, list_of_work);
-
+                //console.log(`list_of_work:`, list_of_work);
             }
         });
 
@@ -626,7 +625,7 @@ class Edittab4 extends React.Component {
     }
 
     handleLoad() {
-        console.log("YEAH!");
+        //console.log("YEAH!");
     }
 
     render() {
