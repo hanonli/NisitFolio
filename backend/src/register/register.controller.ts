@@ -143,8 +143,11 @@ export class RegisterController {
   }
   //*/-----------------test
   @Delete("interestedJob/test/:id")
-  async DeleteInterestedJob2(@Request() req,@Param('id') id: string) {
-    return this.registerService.DeleteInterestedJob("61794423aaceca27a822a448","6179569517ff1514ecd7fdcd");
+  async DeleteInterestedJob2(@Body() CreateDto: PatchRegisDto) {
+
+  //async DeleteInterestedJob2(@Request() req,@Param('id') id: string) {
+    return this.registerService.NewinterestedJob(CreateDto,"617e5749f7a03441e0fadd99","xtest");
+    return this.registerService.DeleteInterestedJob("61797211e40d554a302c3ac2","61797216e40d554a302c3ace");
   }
 
 

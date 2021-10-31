@@ -191,6 +191,9 @@ export class RegisterService {
 
       tag_arr.push(createDto.Job_JobName[_i]);
       for (var _j = 0; _j < createDto.Job_Score[_i].length; _j++) {
+        if(createDto.Job_SkillName[_i][_j]=="none"){
+          continue
+        }
         const userJobSkill = new UserJobSkill();
         userJobSkill.ParentId = Parentid_string;
         userJobSkill.UserId = accountid;
@@ -854,17 +857,26 @@ export class RegisterService {
       //interestedJob.ResumeId[_i] ---> link resume
       const resume =  await this.resumeModel.findOne({_id: interestedJob.ResumeId[_i] });
       //resume.portfolios
+      //return interestedJob.ResumeId
+      //const chack=[];
       
-      for (var _j = 0; _j < resume.portfolios.length; _j++) {
+      for (var _j = 0; _j < resume.portfolios.length; _j++) { //==2
+        //return [resume.portfolios[0].id,resume.portfolios[1].id]
+        //return resume.portfolios
+
         //return resume.portfolios[_j]
         const tmp_port=await this.portfolioRepository.findOne({where:{_id:new ObjectID(resume.portfolios[_j].id)}})
+
         //return [tmp_port.ResumeId,resume.id.toString()]
         tmp_port.ResumeId.splice(tmp_port.ResumeId.indexOf(resume.id.toString()),1)
+        //chack.push(tmp_port)
         //return tmp_port
         //return [tmp_port.ResumeId.indexOf(id),"x",tmp_port.ResumeId,"y",id]
 
         await this.portfolioRepository.save(tmp_port)
+
       }
+      //return["save",chack]
       for (var _j = 0; _j < resume.workHistorys.length; _j++) {
         //return resume.workHistorys[_j].id
         const kuy=new ObjectID(resume.workHistorys[_j].id.toString())
@@ -904,7 +916,7 @@ export class RegisterService {
     }
     const tmp = User.tags
     User.tags.splice(tmp.indexOf(interestedJob.Job_JobName),1)
-    User.countSkill=User.countSkill-3;
+    User.countSkill=User.countSkill-interestedJob.Job_SkillName.length;
     await this.userinfoRepository.save(User);
   
 
@@ -1189,6 +1201,7 @@ export class RegisterService {
   }
 
   async NewinterestedJob(createDto: PatchRegisDto,UserId: string,ip:string){
+    //return createDto
     const time = new Date();
     const isoTime = time.toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: 'numeric', hour: "2-digit", minute: "2-digit" });
 
@@ -1277,3 +1290,4 @@ export class RegisterService {
   }
 
 }
+    //userinfo.countSkill = createDto.Job_Score.length;
