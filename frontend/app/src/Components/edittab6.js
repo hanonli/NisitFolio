@@ -599,19 +599,19 @@ class Edittab6 extends React.Component {
                 last_jobskill.push(skill_job_2);
                 last_jobskill.push(skill_job_3);
                 if (skill_job_1 != "none") {
-                    last_jobscore.push(Number.parseFloat(score_slider11));
+                    last_jobscore.push(Number(parseFloat(score_slider11)));
                 }
                 else {
                     last_jobscore.push(0);
                 }
                 if (skill_job_2 != "none") {
-                    last_jobscore.push(Number.parseFloat(score_slider12));
+                    last_jobscore.push(Number(parseFloat(score_slider12)));
                 }
                 else {
                     last_jobscore.push(0);
                 }
                 if (skill_job_3 != "none") {
-                    last_jobscore.push(Number.parseFloat(score_slider13));
+                    last_jobscore.push(Number(parseFloat(score_slider13)));
                 }
                 else {
                     last_jobscore.push(0);
@@ -651,7 +651,7 @@ class Edittab6 extends React.Component {
                     "Job_Score": last_jobscore,
                     "Job_Objective": last_jobobj
                 };
-                //console.log("sendinterestJob2back:", sendinterestJob2back);
+                console.log("sendinterestJob2back:", sendinterestJob2back);
                 if (choose_function == 1) { //edit job after add
                     //console.log("edit!!!!!!");
                     fetch("http://localhost:2000/register/interestedJob/" + id_list_job_edit, {
