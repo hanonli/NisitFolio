@@ -367,16 +367,14 @@ class Register extends React.Component {
 					}
 					last_jobscore.push([total_skill_score[0], total_skill_score[1], total_skill_score[2]]);*/
 					if (entry.skill1 != "none") {
-						entry.score_skill1 = parseFloat(entry.score_skill1).toFixed(1);
-						entry.score_skill1 = Number(entry.score_skill1);
+						entry.score_skill1 = Number(parseFloat(entry.score_skill1).toFixed(1));
 						total_skill_score.push(entry.score_skill1);
 					}
 					else {
 						total_skill_score.push(0);
 					}
 					if (entry.skill2 != "none") {
-						entry.score_skill2 = parseFloat(entry.score_skill2).toFixed(1);
-						entry.score_skill2 = Number(entry.score_skill2);
+						entry.score_skill2 = Number(parseFloat(entry.score_skill2).toFixed(1));
 						total_skill_score.push(entry.score_skill2);
 					}
 					else {
@@ -384,8 +382,7 @@ class Register extends React.Component {
 					}
 
 					if (entry.skill3 != "none") {
-						entry.score_skill3 = parseFloat(entry.score_skill3).toFixed(1);
-						entry.score_skill3 = Number(entry.score_skill3);
+						entry.score_skill3 = Number(parseFloat(entry.score_skill3).toFixed(1));
 						total_skill_score.push(entry.score_skill3);
 					}
 					else {

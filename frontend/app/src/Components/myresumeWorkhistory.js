@@ -20,6 +20,7 @@ class MyresumeWorkelement extends React.Component {
             99: "ยังอยู่ในงาน"
         }
         const data = this.props.data;
+        console.log(data);
         let content = [];
         let endyear;
         if((data.Work_End_Year===9999) & (data.Work_End_Month===99)){
@@ -51,11 +52,12 @@ class MyresumeWorkelement extends React.Component {
                 </div>
             );
         }
-
-        if(data.Infomation !== "none"){
+        console.log("data.Infomation : " + data.Infomation);
+        console.log("data.Work_Infomation : " + data.Work_Infomation);
+        if((data.Infomation !== "none") || (data.Work_Information !== "none")){
             content.push(
                 <div class="educationcontentLine3">
-                    <p>{data.Infomation}</p>
+                    <p>{data.Infomation? data.Infomation: data.Work_Infomation}</p>
                 </div>
             );
         }
