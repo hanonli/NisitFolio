@@ -34,6 +34,7 @@ class Resume_topNavbar extends React.Component {
 
 		this.state = {
 			userID: '',
+			targetuserID: '',
 			resumeID: '',
 			jobname1: '',
 			jobname2: '',
@@ -57,7 +58,7 @@ class Resume_topNavbar extends React.Component {
 			fetch: true,
 		}
 
-		// GET Parameter(userID) FROM URL 
+		// GET Parameter(targetuserID) FROM URL 
 
 		// var resumeID = '6142398e3e8c5c1df01304cc'
 	}
@@ -69,7 +70,7 @@ class Resume_topNavbar extends React.Component {
 	}
 
 	getResumeID(e) {
-		var userid = this.state.userID;
+		var userid = this.state.targetuserID;
 		var index = e;
 		var owner = this.state.is_owner;
 		// console.log('in resumeid index1: ' + index);
@@ -86,7 +87,7 @@ class Resume_topNavbar extends React.Component {
 				"Content-Type": "application/json"
 			},
 		})
-		.then(response => {console.log(JSON.stringify(response.status)); return response.json() ;} )
+		.then(response => {return response.json() ;} )
 		.then((datas) => {	
 			// var index = e;
 			// console.log('real resumeID:' + JSON.stringify(datas[0].ResumeId[0]))
@@ -180,7 +181,7 @@ class Resume_topNavbar extends React.Component {
 	}
 
 	handlePrivacy = () => {
-		// var userid = this.state.userID
+		// var userid = this.state.targetuserID	
 		// var index = this.state.index
 		// console.log('handlePrivacy called')
 		// document.getElementById('icon-myresume-private').src =  'assets/images/outline_grid_view_black_48dp2.png' ;
@@ -219,15 +220,13 @@ class Resume_topNavbar extends React.Component {
 
 	handleBookmark = () =>{
 		var pic_src = document.getElementById("icon-myresume-bookmark").src
-		var token = cookie.load('login-token')
-		var ssid = cookie.load('search-userid') != 'undefined' ? cookie.load('search-userid') : 'none'
-		console.log('pic: '+pic_src);
+		// console.log('pic: '+pic_src);
 		if ( pic_src == "http://localhost:3000/assets/images/bookmark_1.png") {
 			fetch("http://localhost:2000/bookmark/saveBookmark/",{
 				method: "POST",
 				body: {
 					'userID' : this.state.userID,
-					'thatUserId' : ssid,
+					'thatUserId' : this.state.targetuserID,
 					'type' : 'profile',
 				}
 			})
@@ -238,8 +237,8 @@ class Resume_topNavbar extends React.Component {
 				method: "DELETE",
 				body: {
 					'userID' : this.state.userID,
+					'thatUserId' : this.state.targetuserID,
 					'type' : 'profile',
-					'thatUserId' : ssid,
 				}
 			})
             document.getElementById("icon-myresume-bookmark").src = "http://localhost:3000/assets/images/bookmark_1.png";
@@ -564,11 +563,10 @@ class Resume_topNavbar extends React.Component {
 		document.body.appendChild(script);
 
 		// var ssid = this.props.userid
-
+		var token = cookie.load('login-token')
 		var ssid = cookie.load('search-userid') != 'undefined' ? cookie.load('search-userid') : 'none'
-		console.log('sessionid search-userid: '+ ssid)
+		// console.log('sessionid search-userid: '+ ssid)
 		// console.log('sessionid from search-userid: '+ JSON.stringify(ssid))
-
 		var sPageURL = window.location.search.substring(1)
 		var isURLBlank = (sPageURL == '')
 		// console.log(sPageURL)
@@ -577,19 +575,7 @@ class Resume_topNavbar extends React.Component {
 		// console.log( 'not blank: '+ (ssid != ''))
 		// console.log(( undefined))
 		// console.log(( null))
-		if ( ssid != 'none') {
-			// console.log('case1')
-			// console.log('ssid incase1: '+ ssid)
-			this.setState({
-				userID: ssid,
-				is_owner: false,
-			})
-		} else {
-			// console.log('case2')
-
-			var token = cookie.load('login-token')
-			// console.log('token: ' + token)	
-			fetch("http://localhost:2000/profile/", {
+		fetch("http://localhost:2000/profile/", {
 				method: "GET",
 				headers: {
 					'Authorization': 'Bearer ' + token,
@@ -603,9 +589,37 @@ class Resume_topNavbar extends React.Component {
 				.then((datas) => {
 					this.setState({
 						userID: datas,
+					})
+				});
+
+		if ( ssid != 'none') {
+			// console.log('case1')
+			// console.log('ssid incase1: '+ ssid)
+			this.setState({
+				targetuserID: ssid,
+				is_owner: false,
+			})
+		} else {
+			// console.log('case2')
+			// console.log('token: ' + token)
+			var token = cookie.load('login-token')
+			fetch("http://localhost:2000/profile/", {
+				method: "GET",
+				headers: {
+					'Authorization': 'Bearer ' + token,
+					"Access-Control-Allow-Origin": "*",
+					"Access-Control-Allow-Methods": "*",
+					"Access-Control-Allow-Credentials": true,
+					"Content-Type": "application/json"
+				},
+			})
+				.then(response => response.text())
+				.then((datas) => {
+					this.setState({
+						targetuserID: datas,
 						is_owner: true,
 					})
-					// console.log('this.state.userID1 :'+this.state.userID)
+					// console.log('this.state.userID1 :'+this.state.targetuserID)
 				});
 
 		}
@@ -618,7 +632,7 @@ class Resume_topNavbar extends React.Component {
 
 	shouldComponentUpdate(nextProps, nextState) {
 		// alert( nextState == this.state )
-		if (this.state.userID == '') {
+		if (this.state.targetuserID == '') {
 			// console.log('update state')
 			return true
 		}
@@ -663,7 +677,7 @@ class Resume_topNavbar extends React.Component {
 
 	render (){
 		// this.getResumeID(this.state.index);
-		if (this.state.userID != '' && this.state.resumeID == '') {
+		if (this.state.targetuserID != '' && this.state.resumeID == '') {
 			// console.log('call getResumeID');
 			this.getResumeID(this.state.index);
 		}
@@ -674,7 +688,7 @@ class Resume_topNavbar extends React.Component {
 		// }
 
 
-		// console.log('in render() state : ' + JSON.stringify(this.state))	
+		console.log('in render() state : ' + JSON.stringify(this.state))	
 		// console.log('in render() skil : ' + JSON.stringify(this.state.additionalSkills))
 		// console.log('render this.state.loading: '+this.state.loading)
 		// console.log('render this.state.ready: '+this.state.ready)
