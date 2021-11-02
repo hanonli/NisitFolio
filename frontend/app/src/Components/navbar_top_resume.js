@@ -688,7 +688,7 @@ class Resume_topNavbar extends React.Component {
 		// }
 
 
-		console.log('in render() state : ' + JSON.stringify(this.state))	
+		// console.log('in render() state : ' + JSON.stringify(this.state))	
 		// console.log('in render() skil : ' + JSON.stringify(this.state.additionalSkills))
 		// console.log('render this.state.loading: '+this.state.loading)
 		// console.log('render this.state.ready: '+this.state.ready)
