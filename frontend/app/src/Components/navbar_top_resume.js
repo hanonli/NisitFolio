@@ -219,11 +219,29 @@ class Resume_topNavbar extends React.Component {
 
 	handleBookmark = () =>{
 		var pic_src = document.getElementById("icon-myresume-bookmark").src
+		var token = cookie.load('login-token')
+		var ssid = cookie.load('search-userid') != 'undefined' ? cookie.load('search-userid') : 'none'
 		console.log('pic: '+pic_src);
 		if ( pic_src == "http://localhost:3000/assets/images/bookmark_1.png") {
+			fetch("http://localhost:2000/bookmark/saveBookmark/",{
+				method: "POST",
+				body: {
+					'userID' : this.state.userID,
+					'thatUserId' : ssid,
+					'type' : 'profile',
+				}
+			})
             document.getElementById("icon-myresume-bookmark").src = "http://localhost:3000/assets/images/bookmark_2.png";
         }
         else {
+			fetch("http://localhost:2000/bookmark/saveBookmark/",{
+				method: "DELETE",
+				body: {
+					'userID' : this.state.userID,
+					'type' : 'profile',
+					'thatUserId' : ssid,
+				}
+			})
             document.getElementById("icon-myresume-bookmark").src = "http://localhost:3000/assets/images/bookmark_1.png";
         }
 	}
@@ -548,7 +566,7 @@ class Resume_topNavbar extends React.Component {
 		// var ssid = this.props.userid
 
 		var ssid = cookie.load('search-userid') != 'undefined' ? cookie.load('search-userid') : 'none'
-		// console.log('sessionid search-userid: '+ ssid)
+		console.log('sessionid search-userid: '+ ssid)
 		// console.log('sessionid from search-userid: '+ JSON.stringify(ssid))
 
 		var sPageURL = window.location.search.substring(1)
@@ -560,14 +578,14 @@ class Resume_topNavbar extends React.Component {
 		// console.log(( undefined))
 		// console.log(( null))
 		if ( ssid != 'none') {
-			console.log('case1')
+			// console.log('case1')
 			// console.log('ssid incase1: '+ ssid)
 			this.setState({
 				userID: ssid,
 				is_owner: false,
 			})
 		} else {
-			console.log('case2')
+			// console.log('case2')
 
 			var token = cookie.load('login-token')
 			// console.log('token: ' + token)	
@@ -605,7 +623,7 @@ class Resume_topNavbar extends React.Component {
 			return true
 		}
 		else if (this.state.privacy != nextState.privacy) {
-			console.log('update privacy')
+			// console.log('update privacy')
 			return true
 		}
 		else if (this.state.resumeID != nextState.resumeID) {
@@ -635,7 +653,8 @@ class Resume_topNavbar extends React.Component {
 			// console.log('update state fetch')
 			return true
 		} else {
-			console.log('not update')
+			// console.log('not update')
+			return false
 		}
 
 
