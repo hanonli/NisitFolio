@@ -10,7 +10,9 @@ class Edittab6 extends React.Component {
         this.handleLoad = this.handleLoad.bind(this);
         this.state = ({
             statusUpload6: "",
-            imgStatus6: ""
+            imgStatus6: "",
+            statusDelHeader: "Saved",
+            imgStatusHeader: "assets/images/outline_cloud_done_black_24dp.png"
         });
     }
 
@@ -556,6 +558,8 @@ class Edittab6 extends React.Component {
             }
             else {
                 jobedit.setState({ statusUpload6: "Saving...", imgStatus6: "assets/images/outline_cached_black_24dp.png" });
+                jobedit.setState({ statusDelHeader: "Saving...", imgStatusHeader: "assets/images/outline_cached_black_24dp.png" });
+                $(".status-present-headerrr116").removeClass("status-saving5555-red");
                 if (skill_job_1 == 'none') {
                     //skill_job_1 = 'none';
                     score_slider11 = 2.5;
@@ -660,6 +664,8 @@ class Edittab6 extends React.Component {
                             if ("message" in raws) {
                                 jobedit.setState({ statusUpload6: "Save Failed", imgStatus6: "assets/images/baseline_error_black_24dp.png" });
                                 $("#for-error-dgd6").addClass("status-saving5555-red");
+                                jobedit.setState({ statusDelHeader: "Save Failed", imgStatusHeader: "assets/images/baseline_error_black_24dp.png" });
+                                $(".status-present-headerrr116").addClass("status-saving5555-red");
                             }
                             else {
                                 for_edit["Job_JobName"] = name_job;
@@ -695,12 +701,16 @@ class Edittab6 extends React.Component {
                                 $("#input_mySlider2").remove();
                                 $("#input_mySlider3").remove();
                                 jobedit.setState({ statusUpload6: "", imgStatus6: "" });
+                                jobedit.setState({ statusDelHeader: "Saved", imgStatusHeader: "assets/images/outline_cloud_done_black_24dp.png" });
+                                $(".status-present-headerrr116").removeClass("status-saving5555-red");
                             }
 
                         }).catch((error) => {
                             //console.log(error);
                             jobedit.setState({ statusUpload6: "Save Failed", imgStatus6: "assets/images/baseline_error_black_24dp.png" });
                             $("#for-error-dgd6").addClass("status-saving5555-red");
+                            jobedit.setState({ statusDelHeader: "Save Failed", imgStatusHeader: "assets/images/baseline_error_black_24dp.png" });
+                            $(".status-present-headerrr116").addClass("status-saving5555-red");
                         });
                 }
                 else if (choose_function == 2) { //add job in list
@@ -719,6 +729,8 @@ class Edittab6 extends React.Component {
                             if ("message" in raws) {
                                 jobedit.setState({ statusUpload6: "Save Failed", imgStatus6: "assets/images/baseline_error_black_24dp.png" });
                                 $("#for-error-dgd6").addClass("status-saving5555-red");
+                                jobedit.setState({ statusDelHeader: "Save Failed", imgStatusHeader: "assets/images/baseline_error_black_24dp.png" });
+                                $(".status-present-headerrr116").addClass("status-saving5555-red");
                             }
                             else {
                                 var sc11 = parseFloat(score_slider11).toFixed(1), sc12 = parseFloat(score_slider12).toFixed(1), sc13 = parseFloat(score_slider13).toFixed(1);
@@ -759,12 +771,16 @@ class Edittab6 extends React.Component {
                                 $("#input_mySlider2").remove();
                                 $("#input_mySlider3").remove();
                                 jobedit.setState({ statusUpload6: "", imgStatus6: "" });
+                                jobedit.setState({ statusDelHeader: "Saved", imgStatusHeader: "assets/images/outline_cloud_done_black_24dp.png" });
+                                $(".status-present-headerrr116").removeClass("status-saving5555-red");
                             }
 
                         }).catch((error) => {
                             //console.log(error);
                             jobedit.setState({ statusUpload6: "Save Failed", imgStatus6: "assets/images/baseline_error_black_24dp.png" });
                             $("#for-error-dgd6").addClass("status-saving5555-red");
+                            jobedit.setState({ statusDelHeader: "Save Failed", imgStatusHeader: "assets/images/baseline_error_black_24dp.png" });
+                            $(".status-present-headerrr116").addClass("status-saving5555-red");
                         });
                 }
                 /*if (list_of_job.length < 3) {
@@ -793,6 +809,8 @@ class Edittab6 extends React.Component {
                     return true;
             });
             //console.log("removeIndex:", removeIndex);
+            jobedit.setState({ statusDelHeader: "Saving...", imgStatusHeader: "assets/images/outline_cached_black_24dp.png" });
+            $(".status-present-headerrr116").removeClass("status-saving5555-red");
             fetch("http://localhost:2000/register/interestedJob/" + id_list_job_del, {
                 method: "DELETE",
                 headers: {
@@ -809,11 +827,12 @@ class Edittab6 extends React.Component {
                     if (!("message" in raws)) {
                         list_of_job.splice(removeIndex, 1);
                         //console.log(`delete job id:`, removeIndex);
-                        $('#exampleModal_remove_job').modal('hide');
                         $(".list-of-job-edit").empty();
                         //console.log(list_of_job);
                         get_job_id(list_of_job, 1);
-                        show_all_job()
+                        show_all_job();
+                        jobedit.setState({ statusDelHeader: "Saved", imgStatusHeader: "assets/images/outline_cloud_done_black_24dp.png" });
+                        $(".status-present-headerrr116").removeClass("status-saving5555-red");
                         $(".step-marks").remove();
                         $(".step-labels").remove();
                         $("#input_mySlider1").remove();
@@ -825,10 +844,17 @@ class Edittab6 extends React.Component {
                             $('.limit-job-pos-3').text('ท่านสามารถเพิ่มตำแหน่งงานที่สนใจได้สูงสุด 3 อัน');
                         }
                     }
+                    else {
+                        jobedit.setState({ statusDelHeader: "Save Failed", imgStatusHeader: "assets/images/baseline_error_black_24dp.png" });
+                        $(".status-present-headerrr116").addClass("status-saving5555-red");
+                    }
 
                 }).catch((error) => {
+                    jobedit.setState({ statusDelHeader: "Save Failed", imgStatusHeader: "assets/images/baseline_error_black_24dp.png" });
+                    $(".status-present-headerrr116").addClass("status-saving5555-red");
                     //console.log(error);
                 });
+            $('#exampleModal_remove_job').modal('hide');
         });
 
         $(document).on('click', "#hide-modal-tab6", function () {
@@ -966,6 +992,8 @@ class Edittab6 extends React.Component {
     render() {
         return (
             <div className="Registab6">
+                <img class="status-img-headerrrr116" src={this.state.imgStatusHeader} onContextMenu={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()}></img>
+                <h1 class="status-present-headerrr116">{this.state.statusDelHeader}</h1>
                 <div class="regis-box-content1">
                     <h1 id="text-add-name-my-job11">เพิ่มตำแหน่งงานที่สนใจ</h1>
                     <div class="list-of-job-edit" id="in-list-of-job"></div>
@@ -997,7 +1025,7 @@ class Edittab6 extends React.Component {
                                 <div class="row head_modal_job">
                                     <div class="col-md-5">
                                         <h1 class="inline" id="topic_pop">เพิ่มตำแหน่งงานที่สนใจ</h1>
-                                        <img class="status-img-saving-3r3r6" src={this.state.imgStatus6} height="36"></img>
+                                        <img class="status-img-saving-3r3r6" src={this.state.imgStatus6} height="36" onContextMenu={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()}></img>
                                         <h5 class="inline status-saving6666" id="for-error-dgd6">{this.state.statusUpload6}</h5>
                                     </div>
                                     <div class="col-md-5 select-job4">

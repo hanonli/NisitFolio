@@ -26,7 +26,9 @@ class Edittab5 extends React.Component {
         this.handleLoad = this.handleLoad.bind(this);
         this.state = ({
             statusUpload5: "",
-            imgStatus5: ""
+            imgStatus5: "",
+            statusDelHeader: "Saved",
+            imgStatusHeader: "assets/images/outline_cloud_done_black_24dp.png"
         });
     }
     componentDidMount() {
@@ -240,6 +242,8 @@ class Edittab5 extends React.Component {
                 if (post.Certificate_id === id_list_certi_del)
                     return true;
             });
+            certiedit.setState({ statusDelHeader: "Saving...", imgStatusHeader: "assets/images/outline_cached_black_24dp.png" });
+            $(".status-present-headerrr115").removeClass("status-saving5555-red");
             fetch("http://localhost:2000/register/certificate/" + list_of_certi[removeIndex].Certificate_id, {
                 method: "DELETE",
                 headers: {
@@ -266,14 +270,22 @@ class Edittab5 extends React.Component {
                         $("#icon-upload-112").remove();
                         $("#text-upload-112").remove();
                         $("#text-upload-116").remove();
-                        $("#exampleModal_remove_certi").modal("hide");
+                        certiedit.setState({ statusDelHeader: "Saved", imgStatusHeader: "assets/images/outline_cloud_done_black_24dp.png" });
+                        $(".status-present-headerrr115").removeClass("status-saving5555-red");
                         //console.log(`list_of_year_certi:`, list_of_year_certi);
                         //console.log(`list_of_certi:`, list_of_certi);
                     }
+                    else {
+                        certiedit.setState({ statusDelHeader: "Save Failed", imgStatusHeader: "assets/images/baseline_error_black_24dp.png" });
+                        $(".status-present-headerrr115").addClass("status-saving5555-red");
+                    }
 
                 }).catch((error) => {
+                    certiedit.setState({ statusDelHeader: "Save Failed", imgStatusHeader: "assets/images/baseline_error_black_24dp.png" });
+                    $(".status-present-headerrr115").addClass("status-saving5555-red");
                     //console.log(error);
                 });
+            $("#exampleModal_remove_certi").modal("hide");
         });
 
         $(document).on("change", "#nm_certi", function () {
@@ -311,6 +323,8 @@ class Edittab5 extends React.Component {
             }
             else {
                 certiedit.setState({ statusUpload5: "Saving...", imgStatus5: "assets/images/outline_cached_black_24dp.png" });
+                certiedit.setState({ statusDelHeader: "Saving...", imgStatusHeader: "assets/images/outline_cached_black_24dp.png" });
+                $(".status-present-headerrr115").removeClass("status-saving5555-red");
                 if (file_picOfCerti != '') {
                     await UploadToS3(file_picOfCerti);
                     //alert(uploadurl);
@@ -340,6 +354,8 @@ class Edittab5 extends React.Component {
                             if ("message" in raws) {
                                 $("#for-error-dgd5").addClass("status-saving5555-red");
                                 certiedit.setState({ statusUpload5: "Save Failed", imgStatus5: "assets/images/baseline_error_black_24dp.png" });
+                                certiedit.setState({ statusDelHeader: "Save Failed", imgStatusHeader: "assets/images/baseline_error_black_24dp.png" });
+                                $(".status-present-headerrr115").addClass("status-saving5555-red");
                             }
                             else {
                                 for_edit["CertName"] = name_certi;
@@ -354,6 +370,8 @@ class Edittab5 extends React.Component {
                                 $(".box-box-box-edit-certi").empty();
                                 //console.log(`list_of_certi:`, list_of_certi);
                                 certiedit.setState({ statusUpload5: "", imgStatus5: "" });
+                                certiedit.setState({ statusDelHeader: "Saved", imgStatusHeader: "assets/images/outline_cloud_done_black_24dp.png" });
+                                $(".status-present-headerrr115").removeClass("status-saving5555-red");
                                 show_certi();
                                 $("#preview_before_upload").remove();
                                 $("#icon-upload-112").remove();
@@ -367,6 +385,8 @@ class Edittab5 extends React.Component {
                             //console.log(error);
                             $("#for-error-dgd5").addClass("status-saving5555-red");
                             certiedit.setState({ statusUpload5: "Save Failed", imgStatus5: "assets/images/baseline_error_black_24dp.png" });
+                            certiedit.setState({ statusDelHeader: "Save Failed", imgStatusHeader: "assets/images/baseline_error_black_24dp.png" });
+                            $(".status-present-headerrr115").addClass("status-saving5555-red");
                         });
                 }
                 else if (choose_function == 2) {
@@ -392,6 +412,8 @@ class Edittab5 extends React.Component {
                             if ("message" in raws) {
                                 certiedit.setState({ statusUpload5: "Save Failed", imgStatus5: "assets/images/baseline_error_black_24dp.png" });
                                 $("#for-error-dgd5").addClass("status-saving5555-red");
+                                certiedit.setState({ statusDelHeader: "Save Failed", imgStatusHeader: "assets/images/baseline_error_black_24dp.png" });
+                                $(".status-present-headerrr115").addClass("status-saving5555-red");
                             }
                             else {
                                 list_of_certi.push({
@@ -410,6 +432,8 @@ class Edittab5 extends React.Component {
                                 $(".box-box-box-edit-certi").empty();
                                 //console.log(`list_of_certi:`, list_of_certi);
                                 certiedit.setState({ statusUpload5: "", imgStatus5: "" });
+                                certiedit.setState({ statusDelHeader: "Saved", imgStatusHeader: "assets/images/outline_cloud_done_black_24dp.png" });
+                                $(".status-present-headerrr115").removeClass("status-saving5555-red");
                                 show_certi();
                                 $("#preview_before_upload").remove();
                                 $("#icon-upload-112").remove();
@@ -422,6 +446,8 @@ class Edittab5 extends React.Component {
                         }).catch((error) => {
                             certiedit.setState({ statusUpload5: "Save Failed", imgStatus5: "assets/images/baseline_error_black_24dp.png" });
                             $("#for-error-dgd5").addClass("status-saving5555-red");
+                            certiedit.setState({ statusDelHeader: "Save Failed", imgStatusHeader: "assets/images/baseline_error_black_24dp.png" });
+                            $(".status-present-headerrr115").addClass("status-saving5555-red");
                             //console.log(error);
                         });
                 }
@@ -468,6 +494,8 @@ class Edittab5 extends React.Component {
     render() {
         return (
             <div className="Registab5">
+                <img class="status-img-headerrrr115" src={this.state.imgStatusHeader} onContextMenu={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()}></img>
+                <h1 class="status-present-headerrr115">{this.state.statusDelHeader}</h1>
                 <div class="regis-box-content1">
                     <h1 id="text-add-name-my-certi11">เพิ่มใบรับรองของคุณ</h1>
                     <div class="frame_add_certi">
@@ -503,7 +531,7 @@ class Edittab5 extends React.Component {
                                         <select class="form-select dropbtn_year margin-bottom1 fff" id="yearpicker_111" required>
                                             <option selected disabled value="">ปี*</option>
                                         </select>
-                                        <img class="inline status-img-saving-3r3r5" src={this.state.imgStatus5} weight="36" height="36"></img>
+                                        <img class="inline status-img-saving-3r3r5" src={this.state.imgStatus5} weight="36" height="36" onContextMenu={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()}></img>
                                         <h5 class="inline status-saving555445" id="for-error-dgd5">{this.state.statusUpload5}</h5>
                                     </div>
 

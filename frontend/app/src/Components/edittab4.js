@@ -9,7 +9,9 @@ class Edittab4 extends React.Component {
         this.handleLoad = this.handleLoad.bind(this);
         this.state = ({
             statusUpload4: "",
-            imgStatus4: ""
+            imgStatus4: "",
+            statusDelHeader: "Saved",
+            imgStatusHeader: "assets/images/outline_cloud_done_black_24dp.png"
         });
     }
 
@@ -251,7 +253,8 @@ class Edittab4 extends React.Component {
                 if (post.WorkHistory_id === id_list_work_del)
                     return true;
             });
-
+            workedit.setState({ statusDelHeader: "Saving...", imgStatusHeader: "assets/images/outline_cached_black_24dp.png" });
+            $(".status-present-headerrr114").removeClass("status-saving5555-red");
             fetch("http://localhost:2000/register/workHistory/" + list_of_work[removeIndex].WorkHistory_id, {
                 method: "DELETE",
                 headers: {
@@ -272,13 +275,19 @@ class Edittab4 extends React.Component {
                         }
                         list_of_work.splice(removeIndex, 1);
                         $(`#` + id_list_work_del).remove();
-                        $('#Modal_remove_work').modal('hide');
+                        workedit.setState({ statusDelHeader: "Saved", imgStatusHeader: "assets/images/outline_cloud_done_black_24dp.png" });
+                        $(".status-present-headerrr114").removeClass("status-saving5555-red");
                     }
-
+                    else {
+                        workedit.setState({ statusDelHeader: "Save Failed", imgStatusHeader: "assets/images/baseline_error_black_24dp.png" });
+                        $(".status-present-headerrr114").addClass("status-saving5555-red");
+                    }
                 }).catch((error) => {
                     //console.log(error);
+                    workedit.setState({ statusDelHeader: "Save Failed", imgStatusHeader: "assets/images/baseline_error_black_24dp.png" });
+                    $(".status-present-headerrr114").addClass("status-saving5555-red");
                 });
-
+            $('#Modal_remove_work').modal('hide');
         });
 
         $(document).on("click", "#can_del_work", function () {
@@ -446,6 +455,8 @@ class Edittab4 extends React.Component {
             }
             else {
                 workedit.setState({ statusUpload4: "Saving...", imgStatus4: "assets/images/outline_cached_black_24dp.png" });
+                workedit.setState({ statusDelHeader: "Saving...", imgStatusHeader: "assets/images/outline_cached_black_24dp.png" });
+                $(".status-present-headerrr114").removeClass("status-saving5555-red");
                 let sendWork2back = {
                     "Work_JobName": pos_work,
                     "Work_JobType": type_work,
@@ -474,6 +485,8 @@ class Edittab4 extends React.Component {
                             if ("message" in raws) {
                                 workedit.setState({ statusUpload4: "Save Failed", imgStatus4: "assets/images/baseline_error_black_24dp.png" });
                                 $("#for-error-dgd").addClass("status-saving5555-red");
+                                workedit.setState({ statusDelHeader: "Save Failed", imgStatusHeader: "assets/images/baseline_error_black_24dp.png" });
+                                $(".status-present-headerrr114").addClass("status-saving5555-red");
                             }
                             else {
                                 for_edit["Work_JobType"] = type_work;
@@ -499,6 +512,8 @@ class Edittab4 extends React.Component {
                                 $("#registab4Modal").modal("hide"); //success!!!!!
                                 $(".box-box-box-work1-edit").empty();
                                 workedit.setState({ statusUpload4: "", imgStatus4: "" });
+                                workedit.setState({ statusDelHeader: "Saved", imgStatusHeader: "assets/images/outline_cloud_done_black_24dp.png" });
+                                $(".status-present-headerrr114").removeClass("status-saving5555-red");
                                 show_work();
                             }
 
@@ -506,6 +521,8 @@ class Edittab4 extends React.Component {
                             //console.log(error);
                             workedit.setState({ statusUpload4: "Save Failed", imgStatus4: "assets/images/baseline_error_black_24dp.png" });
                             $("#for-error-dgd").addClass("status-saving5555-red");
+                            workedit.setState({ statusDelHeader: "Save Failed", imgStatusHeader: "assets/images/baseline_error_black_24dp.png" });
+                            $(".status-present-headerrr114").addClass("status-saving5555-red");
                         });
                 }
                 else if (choose_function == 2) {
@@ -525,6 +542,8 @@ class Edittab4 extends React.Component {
                             if ("message" in raws) {
                                 workedit.setState({ statusUpload4: "Save Failed", imgStatus4: "assets/images/baseline_error_black_24dp.png" });
                                 $("#for-error-dgd").addClass("status-saving5555-red");
+                                workedit.setState({ statusDelHeader: "Save Failed", imgStatusHeader: "assets/images/baseline_error_black_24dp.png" });
+                                $(".status-present-headerrr114").addClass("status-saving5555-red");
                             }
                             else {
                                 list_of_work.push({
@@ -553,6 +572,8 @@ class Edittab4 extends React.Component {
                                 $("#registab4Modal").modal("hide"); //success!!!!!
                                 $(".box-box-box-work1-edit").empty();
                                 workedit.setState({ statusUpload4: "", imgStatus4: "" });
+                                workedit.setState({ statusDelHeader: "Saved", imgStatusHeader: "assets/images/outline_cloud_done_black_24dp.png" });
+                                $(".status-present-headerrr114").removeClass("status-saving5555-red");
                                 show_work();
                             }
 
@@ -560,6 +581,8 @@ class Edittab4 extends React.Component {
                             //console.log(error);
                             workedit.setState({ statusUpload4: "Save Failed", imgStatus4: "assets/images/baseline_error_black_24dp.png" });
                             $("#for-error-dgd").addClass("status-saving5555-red");
+                            workedit.setState({ statusDelHeader: "Save Failed", imgStatusHeader: "assets/images/baseline_error_black_24dp.png" });
+                            $(".status-present-headerrr114").addClass("status-saving5555-red");
                         });
                 }
                 //console.log(`list_of_work:`, list_of_work);
@@ -631,6 +654,8 @@ class Edittab4 extends React.Component {
     render() {
         return (
             <div className="Registab4">
+                <img class="status-img-headerrrr114" src={this.state.imgStatusHeader} onContextMenu={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()}></img>
+                <h1 class="status-present-headerrr114">{this.state.statusDelHeader}</h1>
                 <div class="regis-box-content1">
                     <h1 id="text-add-name-my-work11">เพิ่มประวัติการทำงาน</h1>
                     <div class="registab4_formbox">
@@ -650,7 +675,7 @@ class Edittab4 extends React.Component {
                             <div class="modal-content modalworkhis" >
                                 <div class='modal-body layoutforwork111'>
                                     <h1 class='modal-titleT4only inline' id='regisModallabelt4_1'>เพิ่มประวัติการทำงาน</h1>
-                                    <img class="status-img-saving-3r3r" src={this.state.imgStatus4} height="36"></img>
+                                    <img class="status-img-saving-3r3r" src={this.state.imgStatus4} height="36" onContextMenu={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()}></img>
                                     <h5 class="inline status-saving5555" id="for-error-dgd">{this.state.statusUpload4}</h5>
                                     <div className='addWorkHistory'>
                                         <div className="Registab4_addWorkHistory">
