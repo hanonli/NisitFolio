@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import $ from 'jquery';
 import cookie from 'react-cookies';
+import ApplicationURL from './Components/path';
 
 class Navbar extends React.Component {
 	constructor(props) {
@@ -22,7 +23,7 @@ class Navbar extends React.Component {
 		var x = cookie.load('login-token');
 		
 		//Is token still valid?
-		fetch("http://localhost:2000/profile/",{
+		fetch(ApplicationURL.backend+"profile/",{
 				method: "GET",
 				headers: {
 					'Authorization': 'Bearer '+x,
