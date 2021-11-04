@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import $ from 'jquery';
 import cookie from 'react-cookies';
-import ApplicationURL from './Components/path';
+import ApplicationURL from './path';
 
 class Navbar extends React.Component {
 	constructor(props) {
