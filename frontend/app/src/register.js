@@ -67,7 +67,7 @@ class Register extends React.Component {
 
 		function Checkemail() {
 			return new Promise((resolve, reject) => {
-				fetch(ApplicationURL.backend+"kuay/" + $('#re03').val(),
+				fetch(ApplicationURL.backend+"valid/" + $('#re03').val(),
 					{
 						method: "GET",
 						headers: {

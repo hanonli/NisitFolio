@@ -651,8 +651,8 @@ pa2.addEventListener('keyup', checkPass, false);
 		/**************************Zone GetDatas ***************************/
 		function GetDatas() {
 			return new Promise((resolve, reject) => {
-				var token = cookie.load('login-token')
-				console.log('Your Token is: ' + token);
+				//var token = cookie.load('login-token')
+				//console.log('Your Token is: ' + token);
 				fetch("http://localhost:2000/register/getinfo", {
 					method: "GET",
 					headers: {

@@ -8,6 +8,7 @@ import cookie from 'react-cookies';
 import $ from 'jquery';
 import {Redirect} from 'react-router-dom';
 import LoadingS from './Components/loadingS';
+import ApplicationURL from './Components/path';
 
 /* NOT AVALIABLE TO TEST RIGHT NOW BC DONT HAVE PATH TO LINK WITH*/
 class Successregis extends React.Component {
@@ -35,14 +36,14 @@ class Successregis extends React.Component {
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({ token: token })
 		};
-		fetch('http://localhost:2000/email-confirmation/confirm', requestOptions)
+		fetch(ApplicationURL.backend+'email-confirmation/confirm', requestOptions)
 			.then(function (response) {
 				/*if(token==null){
 					alert('You dont have token!!');
 				}*/
 				if (!response.ok) {
 					//alert('Fetch Fail!!');
-					window.location = "http://localhost:3000/unsuccessregis";
+					window.location.pathname = "/unsuccessregis";
 					/*return (
 						<Redirect  to="/unsuccessregis" />
 					)*/
@@ -73,7 +74,7 @@ class Successregis extends React.Component {
 				/*return (
 					<Redirect  to="/landing" />
 				)*/
-				window.location = "http://localhost:3000/landing"
+				window.location.pathname = "/landing"
 			}
 			//alert('This feature is now unavaliable! be patient');
 		});

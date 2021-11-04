@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import cookie from 'react-cookies';
 import $ from 'jquery';
 import {Redirect} from 'react-router-dom';
+import ApplicationURL from './Components/path';
 
 class Failregis extends React.Component {
 	constructor(props){
@@ -21,14 +22,14 @@ class Failregis extends React.Component {
 			  headers: { 'Content-Type': 'application/json' },
 			  body: JSON.stringify({ Email: EmailtoResend })
 			};
-			fetch('http://localhost:2000/resend-confirmation-link', EmailtoResends)
+			fetch(ApplicationURL.backend+'resend-confirmation-link', EmailtoResends)
 			  .then(function (response) {
 				if (!response.ok) {
-				console.log(EmailtoResend);
-				  alert('Resend fail');
+				  console.log(EmailtoResend);
+				  //alert('Resend fail');
 				}
 				else{
-				  alert('Resend success');
+				  //alert('Resend success');
 				}
 			  }).catch((error) => {
 				console.log('Token Error!');

@@ -31,9 +31,6 @@ class Registab2 extends React.Component {
 										</select>
 									</div>
 								</div>
-								<div class="col-md-12">
-									<h4 type="text" class="form-control margin-bottom1 dis_input2" >อีเมลสำรอง</h4>
-								</div>
 								<div class="row-3">
 									<div class="col-md-12">
 										<textarea maxlength="280" type="text" class="form-control aboutmee margin-bottom2" id="aboutme2" placeholder="อธิบายตัวตนของคุณ เพื่อให้คนอื่นรู้ว่าคุณเป็นคนยังไงและสนใจเรื่องอะไร" autocomplete="off"></textarea>
