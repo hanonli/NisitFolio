@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import Routes from './routes';
 import DateAdapter from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import { withRouter } from "react-router-dom";
 
 class App extends React.Component {
 	render (){
@@ -16,4 +17,4 @@ class App extends React.Component {
 	}
 }
 
-export default App;
+export default withRouter(App);

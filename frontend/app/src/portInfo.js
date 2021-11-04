@@ -9,7 +9,8 @@ import { Redirect } from "react-router-dom";
 import { withRouter } from "react-router";
 import $ from 'jquery';
 import { OverlayTrigger, Overlay, Tooltip, Button } from 'react-bootstrap';
-import { GetDominantColorFromImage } from './Components/GetDominantColorFromImage'
+import { GetDominantColorFromImage } from './Components/GetDominantColorFromImage';
+import ApplicationURL from './Components/path';
 
 class PortInfo extends React.Component {
 	constructor(props) {
@@ -96,7 +97,7 @@ class PortInfo extends React.Component {
 			addData['thatUserId'] = targetUser;
 			addData['port_id'] = pid;
 			
-			fetch("http://localhost:2000/bookmark/saveBookmark",{
+			fetch(ApplicationURL.backend+"bookmark/saveBookmark",{
 				method: "POST",
 				headers: {
 					"Access-Control-Allow-Origin": "*",
@@ -124,7 +125,7 @@ class PortInfo extends React.Component {
 			delData['thatUserId'] = targetUser;
 			delData['port_id'] = pid;
 			
-			fetch("http://localhost:2000/bookmark/saveBookmark",{
+			fetch(ApplicationURL.backend+"bookmark/saveBookmark",{
 				method: "DELETE",
 				headers: {
 					"Access-Control-Allow-Origin": "*",
@@ -284,7 +285,8 @@ class PortInfo extends React.Component {
 					$("#uic-1").click(function() {
 						cookie.save('port-entry', 'edit', { path: '/' })
 						cookie.save('port-focus', portId, { path: '/' })
-						refThis.setState({ redirect: "/editport" });
+						//refThis.setState({ redirect: "/editport" });
+						refThis.props.history.push('/editport');
 					});
 					//$('#uic-1').attr('title', 'แก้ไข')
 					refThis.setState({ tooltip1: 'แก้ไข' });
@@ -562,7 +564,8 @@ class PortInfo extends React.Component {
 						e.stopPropagation();
 							cookie.save('port-entry', 'edit', { path: '/' })
 							cookie.save('port-focus', pftId[focusId], { path: '/' })
-							refThis.setState({ redirect: "/editport" });
+							//refThis.setState({ redirect: "/editport" });
+							refThis.props.history.push('/editport');
 						});
 						
 						/*
@@ -589,7 +592,7 @@ class PortInfo extends React.Component {
 							}
 							pftVipData[focusId].Port_Privacy = p2c;
 							console.log(pftVipData[focusId]);
-							fetch("http://localhost:2000/portfolio/"+pftId[focusId],{
+							fetch(ApplicationURL.backend+"portfolio/"+pftId[focusId],{
 							method: "PATCH",
 							headers: {
 								'Authorization': 'Bearer '+token,
@@ -635,7 +638,7 @@ class PortInfo extends React.Component {
 						
 					$('#delete-port').on('click', function(){
 						  refThis.setState({ render: false });
-						  fetch("http://localhost:2000/portfolio/"+pftId[focusId],{
+						  fetch(ApplicationURL.backend+"portfolio/"+pftId[focusId],{
 							method: "DELETE",
 							headers: {
 								'Authorization': 'Bearer '+token,
@@ -665,7 +668,7 @@ class PortInfo extends React.Component {
 					  
 					  $('#delete-main-port').on('click', function(){
 						  refThis.setState({ render: false });
-						  fetch("http://localhost:2000/portfolio/"+portId,{
+						  fetch(ApplicationURL.backend+"portfolio/"+portId,{
 							method: "DELETE",
 							headers: {
 								'Authorization': 'Bearer '+token,
@@ -736,7 +739,7 @@ class PortInfo extends React.Component {
 					  });
 		}
 		
-		fetch("http://localhost:2000/profile/",{
+		fetch(ApplicationURL.backend+"profile/",{
 			method: "GET",
 			headers: {
 				'Authorization': 'Bearer '+token,
@@ -763,7 +766,7 @@ class PortInfo extends React.Component {
 				//this.setState({ redirect: "/landing" });
 		});
 		
-		fetch("http://localhost:2000/portfolio/"+portId,{
+		fetch(ApplicationURL.backend+"portfolio/"+portId,{
 			method: "GET",
 			headers: {
 				'Authorization': 'Bearer '+token,
@@ -792,7 +795,7 @@ class PortInfo extends React.Component {
 			});
 			
 		/*function GetUserProfilePic(){
-			fetch("http://localhost:2000/search/top?q="+portfolioData.Owner.split(' ')[0]+"&userId="+userId,{
+			fetch(ApplicationURL.backend+"search/top?q="+portfolioData.Owner.split(' ')[0]+"&userId="+userId,{
 				method: "GET",
 				headers: {
 					"Access-Control-Allow-Origin": "*",
@@ -820,7 +823,7 @@ class PortInfo extends React.Component {
 		}*/
 		
 		function GetUserBookmarkData(){
-			fetch("http://localhost:2000/bookmark/"+userId+"&&time",{
+			fetch(ApplicationURL.backend+"bookmark/"+userId+"&&time",{
 				method: "GET",
 				headers: {
 					"Access-Control-Allow-Origin": "*",
@@ -839,7 +842,7 @@ class PortInfo extends React.Component {
 		}
 		
 		function GetUserHeader(uid){
-			fetch("http://localhost:2000/portfolio/header/"+uid,{
+			fetch(ApplicationURL.backend+"portfolio/header/"+uid,{
 			method: "GET",
 			headers: {
 				'Authorization': 'Bearer '+token,
@@ -867,7 +870,7 @@ class PortInfo extends React.Component {
 		}
 		
 		function GetUserPortfolio(uid){
-			fetch("http://localhost:2000/portfolio/user/"+uid,{
+			fetch(ApplicationURL.backend+"portfolio/user/"+uid,{
 			method: "GET",
 			headers: {
 				'Authorization': 'Bearer '+token,

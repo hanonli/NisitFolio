@@ -2,6 +2,7 @@ import React from 'react'
 import './signIn_land.css'
 import { Link } from 'react-router-dom';
 import cookie from 'react-cookies'
+import ApplicationURL from './path';
 
 class SignInLand extends React.Component {
     constructor() {
@@ -20,7 +21,7 @@ class SignInLand extends React.Component {
     }
 
     async loginUser(credentials) {
-        fetch('http://localhost:2000/auth/login', {
+        fetch(ApplicationURL.backend+'auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -34,6 +35,7 @@ class SignInLand extends React.Component {
             .then((data) => {
                 if ('accessToken' in data) {
                     cookie.save('login-token', data["accessToken"], { path: '/' })
+					alert(data["accessToken"]);
                     window.location.href = "/home";
                 }
                 else if ('error' in data) {

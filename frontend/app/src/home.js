@@ -12,6 +12,7 @@ import { Redirect } from "react-router-dom";
 import cookie from 'react-cookies'
 import { uploadFile } from 'react-s3';
 import { v4 as uuidv4 } from 'uuid';
+import ApplicationURL from './Components/path';
 
 
 const S3_BUCKET ='nisitfolio';
@@ -48,7 +49,7 @@ class Home extends React.Component {
 		console.log(token);
 		
 		function SaveToken(){
-			fetch("http://localhost:2000/profile/",{
+			fetch(ApplicationURL.backend+"profile/",{
 				method: "GET",
 				headers: {
 					'Authorization': 'Bearer '+token,
@@ -79,7 +80,7 @@ class Home extends React.Component {
 		}
 		 
 		function UpdateAnalyticsCache(){
-			fetch("http://localhost:2000/analytics/cache/"+userId,{
+			fetch(ApplicationURL.backend+"analytics/cache/"+userId,{
 				method: "POST",
 				headers: {
 					"Access-Control-Allow-Origin": "*",
@@ -107,7 +108,7 @@ class Home extends React.Component {
 				.catch(err => console.error(err))
 		}
 		
-		fetch("http://localhost:2000/homepage/",{
+		fetch(ApplicationURL.backend+"homepage/",{
 			method: "GET",
 			headers: {
 				'Authorization': 'Bearer '+token,
@@ -254,7 +255,7 @@ class Home extends React.Component {
 						"ProfilePicBase64":picUrl,
 					}
 					
-					fetch("http://localhost:2000/register/",{
+					fetch(ApplicationURL.backend+"register/",{
 					method: "PATCH",
 					headers: {
 						'Authorization': 'Bearer '+token,

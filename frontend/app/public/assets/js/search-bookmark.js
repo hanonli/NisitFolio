@@ -733,7 +733,7 @@ function GetSearchBookmarkData(){
 	}
 	
 	var q = Cookies.get('search-entry');
-	var path = pageName == 'search' ? "http://localhost:2000/search/top?q="+q+"&userId="+userId : "http://localhost:2000/bookmark/"+userId+"&&"+sortType;
+	var path = pageName == 'search' ? "https://nisitfolio-backend.herokuapp.com/search/top?q="+q+"&userId="+userId : "https://nisitfolio-backend.herokuapp.com/bookmark/"+userId+"&&"+sortType;
 	
 	fetch(path,{
         method: "GET",
@@ -849,7 +849,7 @@ function DeleteBookmark(id){
 	delData['thatUserId'] = temp[0];
 	if(temp[1] != 'profile') delData['port_id'] = temp[2];
 	
-	fetch("http://localhost:2000/bookmark/saveBookmark",{
+	fetch("https://nisitfolio-backend.herokuapp.com/bookmark/saveBookmark",{
 		method: "DELETE",
 		headers: {
 			"Access-Control-Allow-Origin": "*",
@@ -883,7 +883,7 @@ function AddBookmark(id){
 	addData['thatUserId'] = temp[0];
 	if(temp[1] != 'profile') addData['port_id'] = temp[2];
 	
-	fetch("http://localhost:2000/bookmark/saveBookmark",{
+	fetch("https://nisitfolio-backend.herokuapp.com/bookmark/saveBookmark",{
 		method: "POST",
 		headers: {
 			"Access-Control-Allow-Origin": "*",

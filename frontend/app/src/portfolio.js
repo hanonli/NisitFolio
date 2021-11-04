@@ -24,6 +24,10 @@ import thLocale from 'date-fns/locale/th';
 import { uploadFile } from 'react-s3';
 import { v4 as uuidv4 } from 'uuid';
 import { isValidDate } from './Components/CheckValidDateFormat';
+import { GetDominantColorFromImage } from './Components/GetDominantColorFromImage';
+import { useHistory } from 'react-router-dom';
+import ApplicationURL from './Components/path';
+
 
 //import Cropper from "react-cropper";
 window.jQuery = $;
@@ -47,6 +51,10 @@ const config = {
 }
 
 class Portfolio extends React.Component {
+	static contextTypes = {
+		router: () => true, // replace with PropTypes.object if you use them
+	  }
+	
 	constructor(props) {
 		super(props);
 		this.handleLoad = this.handleLoad.bind(this);
@@ -82,7 +90,7 @@ class Portfolio extends React.Component {
 	 }
 	
 	componentDidMount() {
-		setInterval(function() { console.log(refThis.state.list); }, 1000);
+		//setInterval(function() { console.log(refThis.state.list); }, 1000);
 		
 		window.addEventListener('load', this.handleLoad);
 		console.log("YEAHXXX!");
@@ -104,14 +112,14 @@ class Portfolio extends React.Component {
 		var uploadWithoutPic = false;
 		
 		 var isFull;
-		setInterval(function() { console.log(isFull); }, 1000);
+		//setInterval(function() { console.log(isFull); }, 1000);
 		var fetchStep = 0;
 			
 		var fetcher = setInterval(Fetcher, 100);
 		
 		function Fetcher() {
 			//console.log('f1: '+f1+'f2: '+f2+'f3: '+f3);
-			console.log('waiting to fetch...');
+			//console.log('waiting to fetch...');
 			if( (fetchStep != 0 && fetchStep == refThis.state.list.length) || uploadWithoutPic){ 
 				//alert('OK!');
 				clearInterval(fetcher);
@@ -134,6 +142,16 @@ class Portfolio extends React.Component {
 				})
 				.catch(err => console.error(err))
 			});
+		}
+		
+		function GoBackWithRefresh(event) {
+			if ('referrer' in document) {
+				window.location = document.referrer;
+				/* OR */
+				//location.replace(document.referrer);
+			} else {
+				window.history.back();
+			}
 		}
 		
 		async function GetFetchableData(){
@@ -202,14 +220,15 @@ class Portfolio extends React.Component {
 			newPort.Port_Info = document.getElementById('w3review').value;
 			
 			console.log(newPort);
-			
+			//console.log(refThis.props.history);
+			//return;
 			//alert(777);
 			//console.log(newPort);
 			//return;
 			if(portMode == 'new'){
 				refThis.setState({ render:  false });
 				//console.log(picsUrl);
-				fetch("http://localhost:2000/portfolio",{
+				fetch(ApplicationURL.backend+"portfolio",{
 					method: "POST",
 					headers: {
 						'Authorization': 'Bearer '+token,
@@ -224,7 +243,8 @@ class Portfolio extends React.Component {
 					//console.log(datas);
 					console.log(response);
 					//GetSearchBookmarkData();
-					refThis.setState({ redirect: "/portfolio" });
+					//refThis.setState({ redirect: "/portfolio" });
+					GoBackWithRefresh();
 				})
 				.catch((error) => {
 					console.log('add Error!');
@@ -235,7 +255,7 @@ class Portfolio extends React.Component {
 				//alert('PATCH!');
 				//return;
 				refThis.setState({ render:  false });
-				fetch("http://localhost:2000/portfolio/"+editPortId,{
+				fetch(ApplicationURL.backend+"portfolio/"+editPortId,{
 					method: "PATCH",
 					headers: {
 						'Authorization': 'Bearer '+token,
@@ -254,7 +274,7 @@ class Portfolio extends React.Component {
 					patchBm.type = 'work';
 					patchBm.thatUserId = userId;
 					patchBm.port_id = editPortId;
-					fetch("http://localhost:2000/bookmark/edit",{
+					fetch(ApplicationURL.backend+"bookmark/edit",{
 						method: "POST",
 						headers: {
 							"Access-Control-Allow-Origin": "*",
@@ -267,7 +287,8 @@ class Portfolio extends React.Component {
 						.then(response =>  {
 							//console.log(datas);
 							console.log(response);
-							refThis.setState({ redirect: "/portfolio" });
+							//refThis.setState({ redirect: "/portfolio" });
+							GoBackWithRefresh();
 							//GetSearchBookmarkData();
 						})
 						.catch((error) => {
@@ -287,7 +308,7 @@ class Portfolio extends React.Component {
 		
 		function GetEditPortData(id){
 			portId = id;
-			fetch("http://localhost:2000/portfolio/"+id,{
+			fetch(ApplicationURL.backend+"portfolio/"+id,{
 			method: "GET",
 			headers: {
 				'Authorization': 'Bearer '+token,
@@ -486,7 +507,10 @@ class Portfolio extends React.Component {
 				  input.click();
 				});
 			
-				input.addEventListener('change', function (e) {
+				const timer = ms => new Promise(res => setTimeout(res, ms))
+			
+				input.addEventListener('change', async function (e) {
+					//alert(77);
 					var files = e.target.files;
 					var remSpace = 5 - refThis.state.list.length;
 					if(files){
@@ -494,8 +518,13 @@ class Portfolio extends React.Component {
 							if(i >= remSpace) break;
 							var uFile = new File([files[i]], userId+'_'+uuidv4(), {type: files[i].type});
 							AddImageToSortable(URL.createObjectURL(files[i]),uFile);
+							await timer(100);
 						}
 					}
+				});
+				
+				input.addEventListener('click', function (e) {
+					e.currentTarget.value = null
 				});
 				
 				/*input.addEventListener('change', function (e) {
@@ -602,12 +631,15 @@ class Portfolio extends React.Component {
 			$('.spi4').hide();
 			
 			$('#cancel-port').on('click', function(){
-			  refThis.setState({ redirect: "/portfolio" });
+				 // refThis.setState({ redirect: "/portfolio" 
+				//history.goBack();
+				//refThis.props.history.push('/analytics');
+				window.history.go(-1);
 			});
 			
 			$('#delete-port').on('click', function(){
 			  refThis.setState({ render: false });
-			  fetch("http://localhost:2000/portfolio/"+portId,{
+			  fetch(ApplicationURL.backend+"portfolio/"+portId,{
 				method: "DELETE",
 				headers: {
 					'Authorization': 'Bearer '+token,
@@ -620,7 +652,8 @@ class Portfolio extends React.Component {
 				.then(response =>  {
 					//console.log(datas);
 					console.log(response);
-					refThis.setState({ redirect: "/portfolio" });
+					//refThis.setState({ redirect: "/portfolio" });
+					window.history.go(-1);
 				})
 				.catch((error) => {
 					console.log('add Error!');
@@ -667,10 +700,9 @@ class Portfolio extends React.Component {
 		  });
 		
 			}
-			
 
-		
 		function AddImageToSortable(getImg,file){
+			//alert(99);
 			//$(".port-pic-uploadable").click(function() { return false; });
 			//$(".port-pic-uploadable").off(); 
 			$(".port-pic-uploadable").off('click'); // turn off big upload section when adding new image
@@ -681,6 +713,7 @@ class Portfolio extends React.Component {
 			//setTimeout(function() { $(".port-pic-uploadable").click(function() {  input.click(); }); }, 500);
 			var count = refThis.state.list.length;
 			var lid = count+1;
+			//alert('lid'+lid);
 			if(lid != 5 && jObj != ''){
 					//alert('remove: '+lid);
 					//console.log( $('.sortable-container-'+lid).children().last());
@@ -737,39 +770,76 @@ class Portfolio extends React.Component {
 					});
 					
 					
-					var nImg = document.getElementById('upload-oid-'+lid);
+				var nImg = document.getElementById('upload-oid-'+lid);
 				//alert('upload-id-'+lid);
-				nImg.src = getImg; 
-				// allow upload for last button
-				//$("#upload-id-"+lid).off('click');
-				//$( "#upload-id-"+count ).click(function() {input.click(); }); 
+				//nImg.src = getImg;
 				
-				//$( "#pic-id-"+count ).click( function() {Datt(this); } );
+				var b64Pic = getImg;
 				
-				count = refThis.state.list.length;
-				if(count < 5){
-					//$("#upload-id-"+count+1).off('click');
-					//$( "#upload-id-"+(count+1) ).click(function() {input.click(); });
-				}else{
-					//alert('isFull!');
-					isFull = true;
-					$(".tres").remove();
-				}
-					
-				//if(lid == 1){
-				  //temp.push({ id: lid+1, name: "Img"+lid+1 });
-				  //setTimeout(function() { 
-				  //jObj = $(uploadButton).appendTo( $('.dummy'));
-				  //alert('add to container: '+grid);
-				  jObj = $(uploadButton.replace('{tresId}','tres-'+grid)).prependTo( $('.sortable-container-'+grid).first());
-				  $( "#upload-next" ).click(function() {input.click(); }); 
-				  //$( "#tres" ).hover(function() { console.log('disable sort!'); refThis.setState({ allowSort: false }); }); 
-				  //}, 2000);
-					  //alert('add!');
-				   //}
-				   $('.delete-upload-icon').css('display','none');
+				function ModifyImg(){
+					setTimeout(function() { 
+							var _nImg = document.getElementById('upload-oid-'+lid);
+							var rgb = GetDominantColorFromImage(_nImg);
+							//alert(lid);
+							var cImg = document.getElementById('c-'+lid);
+							cImg.style = 'width:100%;height:100%;background: rgb('+rgb.r+','+rgb.g+','+rgb.b+');';
+						}, 100); 
 
-				   ResetHoverFunction();
+						count = refThis.state.list.length;
+						if(count < 5){
+							//$("#upload-id-"+count+1).off('click');
+							//$( "#upload-id-"+(count+1) ).click(function() {input.click(); });
+						}else{
+							//alert('isFull!');
+							isFull = true;
+							$(".tres").remove();
+						}
+							
+						  jObj = $(uploadButton.replace('{tresId}','tres-'+grid)).prependTo( $('.sortable-container-'+grid).first());
+						  $('#upload-next').off('click'); // fix event stacking bugs
+						  $( "#upload-next" ).click(function() {input.click(); }); 
+
+						   $('.delete-upload-icon').css('display','none');
+
+						   ResetHoverFunction();
+				}
+				
+				function toDataURL(url, callback) {
+					//alert('lid'+lid);
+					  var xhr = new XMLHttpRequest();
+					  
+					  xhr.onload = function() {
+						 // alert('liddd'+lid);
+						var reader = new FileReader();
+						reader.onloadend = function() {
+						  callback(reader.result);
+						}
+						reader.readAsDataURL(xhr.response);
+					  };
+					  xhr.onerror = function (e) {
+							console.log('Fail to request base64 from source');
+							console.log(e);
+							nImg.src = getImg;
+							ModifyImg();
+						};
+					  xhr.open('GET', url);
+					  xhr.responseType = 'blob';
+					  xhr.send();
+				}
+				
+				if(file == null){ // this pic is url, convert to base64
+					toDataURL(b64Pic, function(dataUrl) {
+						b64Pic = dataUrl;
+						//alert('lidd'+lid);
+						nImg.src = b64Pic;
+						ModifyImg();
+						
+					});
+				}else{
+					nImg.src = getImg;
+					ModifyImg();
+				}
+				
 		}
 		
 		/////////////////////////
@@ -814,9 +884,12 @@ class Portfolio extends React.Component {
 			//alert('Delete!');
 			console.log('Del');
 			var imgList = [];
+			var imgC = [];
 			// store images
 			for (let i = 0; i < refThis.state.list.length; i++) {
 				imgList.push(document.getElementById('upload-oid-'+(i+1)).src);
+				imgC.push(document.getElementById('c-'+(i+1)).style.getPropertyValue("background"));
+				//alert(imgC[i]);
 			}
 			if(Number(ref.id.slice(-1)) < 5 && !isFull){
 				//alert('cut case!');
@@ -856,6 +929,8 @@ class Portfolio extends React.Component {
 						for (let i = Did; i <= refThis.state.list.length; i++) {
 							//alert('start: '+Did+' end: '+refThis.state.list.length+' i: '+i);
 							document.getElementById('upload-oid-'+i).src = imgList[i];
+							document.getElementById('c-'+i).style.setProperty('background', imgC[i]);
+							//console.log( imgC[i]);
 						}
 					}, 10);
 					var idd = refThis.state.list.length+1;
@@ -885,6 +960,7 @@ class Portfolio extends React.Component {
 						for (let i = Did; i <= refThis.state.list.length; i++) {
 							//alert('start: '+Did+' end: '+refThis.state.list.length+' i: '+i);
 							document.getElementById('upload-oid-'+i).src = imgList[i];
+							document.getElementById('c-'+i).style.setProperty('background', imgC[i]);
 							/*alert(i);
 							console.log(temp[i-1].img);
 							console.log(temp[i].img);*/
@@ -929,15 +1005,18 @@ class Portfolio extends React.Component {
 			//alert('111');
 			var temp = refThis.state.list;
 			var imgList = [];
+			var imgC = [];
 			for (let i = 0; i < temp.length; i++) {
 				var bid = refThis.state.list[i].id;
 				imgList.push(document.getElementById('upload-oid-'+bid).src);
+				imgC.push(document.getElementById('c-'+bid).style.getPropertyValue("background"));
 			}
 			for (let i = 0; i < temp.length; i++) {
 			  temp[i].id = i+1;
 			  temp[i].name = 'Img'+(i+1);
 			  var bid = refThis.state.list[i].id;
 			  document.getElementById('upload-oid-'+bid).src = imgList[i];
+			  document.getElementById('c-'+bid).style.setProperty('background', imgC[i]);
 			}
 			refThis.setState({ list: temp }); 
 			/*setTimeout(function() { 

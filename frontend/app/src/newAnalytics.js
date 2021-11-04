@@ -11,6 +11,7 @@ import { Redirect } from "react-router-dom";
 import cookie from 'react-cookies'
 import $ from 'jquery';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import ApplicationURL from './Components/path';
 
 
 class NewAnalytics extends React.Component {
@@ -350,7 +351,9 @@ class NewAnalytics extends React.Component {
 		
 		var currentTab = 1;
 		
-		fetch("http://localhost:2000/analytics/cache/"+userID,{
+		console.log(userID);
+		console.log(ApplicationURL.backend+"analytics/cache/"+userID);
+		fetch(ApplicationURL.backend+"analytics/cache/"+userID,{
 		//fetch("http://localhost:3000/temp_cache",{
 			method: "GET",
 			headers: {
@@ -426,6 +429,10 @@ class NewAnalytics extends React.Component {
 			SetupTabs();
 			SetupOverview();
 			
+			$('.an-chart-container').on("contextmenu", function(e) {
+              return false;
+            });
+
 			$('#tab-1').on('click', function(){
 				currentTab = 1;
 				EnablePopup();
@@ -1795,8 +1802,8 @@ class NewAnalytics extends React.Component {
 									</div>
 									<div class="obs-box jbox obps">
 										<div class="asb-container2">
-											<br></br>
 											<amf>คุณมีคะแนนทักษะนี้{this.state.rightJobPLabel}คน</amf>
+											<div class="yahaha-br-t3" />
 											<hhf>{this.state.rightJobPercentile}%</hhf>
 											<amf class="asb-pb">ที่มีทักษะเดียวกัน</amf>
 										</div>
