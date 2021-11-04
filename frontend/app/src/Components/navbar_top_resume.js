@@ -185,8 +185,11 @@ class Resume_topNavbar extends React.Component {
 		// var index = this.state.index
 		// console.log('handlePrivacy called')
 		// document.getElementById('icon-myresume-private').src =  'assets/images/outline_grid_view_black_48dp2.png' ;
-
+		
 		if (this.state.privacy == 'Private') {
+			var pic_src = document.getElementById("icon-myresume-private").src
+            document.getElementById("icon-myresume-private").src = "http://localhost:3000/assets/images/outline_cached_black_24dp.png";
+
 			var message = { "Resume_Privacy" : "Members"}
 			this.changePrivacy(message)
 			console.log('change loading to Members')
@@ -194,16 +197,19 @@ class Resume_topNavbar extends React.Component {
 				privacy: 'Members'
 			})
 		} else if (this.state.privacy == 'Member' || this.state.privacy == 'Members') {
+			var pic_src = document.getElementById("icon-myresume-member").src
+            document.getElementById("icon-myresume-member").src = "http://localhost:3000/assets/images/outline_cached_black_24dp.png";
+
 			var message = { "Resume_Privacy" : "Public"}
-			
 			this.changePrivacy(message)
 			console.log('change loading to Public')
 			this.setState({
 				privacy: 'Public'
 			})
 		} else if (this.state.privacy == 'Public') {
+			var pic_src = document.getElementById("icon-myresume-public").src
+            document.getElementById("icon-myresume-public").src = "http://localhost:3000/assets/images/outline_cached_black_24dp.png";
 			var message = { "Resume_Privacy" : "Private"}
-			
 			this.changePrivacy(message)
 			console.log('change loading to Private')
 			this.setState({
