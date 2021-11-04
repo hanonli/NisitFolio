@@ -30,7 +30,7 @@ class Forgotpasswordr extends React.Component{
             return(2);//errorendhere
         }
         console.log("passall");
-        fetch("http://localhost:2000/forgot" ,{
+        fetch("https://nisitfolio-backend.herokuapp.com/forgot" ,{
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ 

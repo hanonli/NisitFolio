@@ -17,6 +17,7 @@ import cookie from 'react-cookies'
 import LoadingS from './Components/loadingS';
 import { uploadFile } from 'react-s3';
 import { v4 as uuidv4 } from 'uuid';
+import ApplicationURL from './Components/path';
 
 const S3_BUCKET = 'nisitfolio';
 const REGION = 'ap-southeast-1';
@@ -66,7 +67,7 @@ class Register extends React.Component {
 
 		function Checkemail() {
 			return new Promise((resolve, reject) => {
-				fetch("http://localhost:2000/kuay/" + $('#re03').val(),
+				fetch(ApplicationURL.backend+"valid/" + $('#re03').val(),
 					{
 						method: "GET",
 						headers: {
@@ -265,7 +266,7 @@ class Register extends React.Component {
 				checkTab7 = 1;
 			}
 			if ($('#re03').val() != "") {
-				console.log("http://localhost:2000/kuay/" + $('#re03').val())
+				console.log(ApplicationURL.backend+"kuay/" + $('#re03').val())
 				await Checkemail();
 			}
 			if ($('#re03').hasClass('is-valid')) {
@@ -761,7 +762,7 @@ class Register extends React.Component {
 			console.log(pack);
 			//console.log(pack);
 			//console.log(JSON.stringify(pack));
-			fetch("http://localhost:2000/register",
+			fetch(ApplicationURL.backend+"register",
 				{
 					method: "POST",
 					headers: {
@@ -2427,7 +2428,7 @@ class Register extends React.Component {
 		var mapEngNameJob = {};
 
 		function GetJob(text) {
-			fetch("http://localhost:2000/register/jobtitle",
+			fetch(ApplicationURL.backend+"register/jobtitle",
 				{ method: "GET", })
 				.then(response => response.json())
 				//.then(response => response.result)
@@ -2448,7 +2449,7 @@ class Register extends React.Component {
 		GetJob();
 		var jobname2findskill;
 		function GetSkill(jobname2findskill) {
-			fetch(`http://localhost:2000/register/` + jobname2findskill + `/skill`,
+			fetch(ApplicationURL.backend+`register/` + jobname2findskill + `/skill`,
 				{ method: "GET", })
 				.then(response => response.json())
 				//.then(response => response.result)

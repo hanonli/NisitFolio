@@ -7,7 +7,8 @@ import reportWebVitals from './reportWebVitals';
 import cookie from 'react-cookies';
 import { Redirect } from "react-router-dom";
 import $ from 'jquery';
-import { GetDominantColorFromImage } from './Components/GetDominantColorFromImage'
+import { GetDominantColorFromImage } from './Components/GetDominantColorFromImage';
+import ApplicationURL from './Components/path';
 
 class PortRoot extends React.Component {
 	constructor(props) {
@@ -68,13 +69,14 @@ class PortRoot extends React.Component {
 			
 			$('#empty-zone').on('click', function(){
 				  cookie.save('port-entry', 'new', { path: '/' })
-				  refThis.setState({ redirect: "/editport" });
+				 // refThis.setState({ redirect: "/editport" });
+				 window.location = ("/editport");
 			  });
 			  
 			$('#delete-port').on('click', function(){
 				  $(window).unbind('scroll');
 				  refThis.setState({ render: false });
-				  fetch("http://localhost:2000/portfolio/"+pftId[focusId],{
+				  fetch(ApplicationURL.backend+"portfolio/"+pftId[focusId],{
 					method: "DELETE",
 					headers: {
 						'Authorization': 'Bearer '+token,
@@ -103,7 +105,7 @@ class PortRoot extends React.Component {
 			  });
 		}
 		
-		fetch("http://localhost:2000/portfolio/sort/descendingOrder",{
+		fetch(ApplicationURL.backend+"portfolio/sort/descendingOrder",{
 			method: "GET",
 			headers: {
 				'Authorization': 'Bearer '+token,
@@ -122,7 +124,8 @@ class PortRoot extends React.Component {
 					
 					$('#empty-zone').on('click', function(){
 						  cookie.save('port-entry', 'new', { path: '/' })
-						  refThis.setState({ redirect: "/editport" });
+						  //refThis.setState({ redirect: "/editport" });
+						  window.location = ("/editport");
 					  });
 
 				}else{
@@ -218,14 +221,16 @@ class PortRoot extends React.Component {
 							
 							$('#new-port').on('click', function(){
 								  cookie.save('port-entry', 'new', { path: '/' })
-								  refThis.setState({ redirect: "/editport" });
+								  //refThis.setState({ redirect: "/editport" });
+								  window.location = ("/editport");
 							  });
 							
 							$('.pft-edit-icon').on('click', function(e){
 									e.stopPropagation();
 									cookie.save('port-entry', 'edit', { path: '/' })
 									cookie.save('port-focus', pftId[focusId], { path: '/' })
-									refThis.setState({ redirect: "/editport" });
+									//refThis.setState({ redirect: "/editport" });
+									window.location = ("/editport");
 								});
 								
 								/*$(".pft-lock-icon").off('click');
@@ -254,7 +259,7 @@ class PortRoot extends React.Component {
 									//alert(pftVipData[focusId].Port_Privacy);
 									console.log(pftVipData[focusId].Port_Privacy);
 									//return;
-									fetch("http://localhost:2000/portfolio/"+pftId[focusId],{
+									fetch(ApplicationURL.backend+"portfolio/"+pftId[focusId],{
 									method: "PATCH",
 									headers: {
 										'Authorization': 'Bearer '+token,
@@ -343,7 +348,7 @@ class PortRoot extends React.Component {
 					sortType = 'descendingOrder';
 				}
 				
-				fetch("http://localhost:2000/portfolio/sort/"+sortType,{
+				fetch(ApplicationURL.backend+"portfolio/sort/"+sortType,{
 					method: "GET",
 					headers: {
 						'Authorization': 'Bearer '+token,

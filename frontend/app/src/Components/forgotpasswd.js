@@ -20,7 +20,7 @@ class Forgotpasswordm extends React.Component{
     
 
     handleSubmit(event) {
-        fetch("http://localhost:2000/forgot/send" ,{
+        fetch("https://nisitfolio-backend.herokuapp.com/forgot/send" ,{
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email: this.state.value })

@@ -2,6 +2,7 @@ import React from 'react';
 import $ from 'jquery';
 import "./registab4.css";
 import cookie from 'react-cookies';
+import ApplicationURL from './path';
 
 class Edittab4 extends React.Component {
     constructor(props) {
@@ -255,7 +256,7 @@ class Edittab4 extends React.Component {
             });
             workedit.setState({ statusDelHeader: "Saving...", imgStatusHeader: "assets/images/outline_cached_black_24dp.png" });
             $(".status-present-headerrr114").removeClass("status-saving5555-red");
-            fetch("http://localhost:2000/register/workHistory/" + list_of_work[removeIndex].WorkHistory_id, {
+            fetch(ApplicationURL.backend+"register/workHistory/" + list_of_work[removeIndex].WorkHistory_id, {
                 method: "DELETE",
                 headers: {
                     'Authorization': 'Bearer ' + list_of_work[removeIndex].token,
@@ -470,7 +471,7 @@ class Edittab4 extends React.Component {
                     "Infomation": inform_work
                 }
                 if (choose_function == 1) {
-                    fetch("http://localhost:2000/register/workHistory/" + id_list_work_edit, {
+                    fetch(ApplicationURL.backend+"register/workHistory/" + id_list_work_edit, {
                         method: "PATCH",
                         headers: {
                             'Authorization': 'Bearer ' + token4,
@@ -528,7 +529,7 @@ class Edittab4 extends React.Component {
                 else if (choose_function == 2) {
                     //console.log(`add!!!!!`);
                     //postAddWork(sendWork2back);
-                    fetch("http://localhost:2000/register/addworkHistory", {
+                    fetch(ApplicationURL.backend+"register/addworkHistory", {
                         method: "POST",
                         headers: {
                             'Authorization': 'Bearer ' + token4,
@@ -588,23 +589,6 @@ class Edittab4 extends React.Component {
                 //console.log(`list_of_work:`, list_of_work);
             }
         });
-
-        /*function postAddWork(data) {
-            fetch("http://localhost:2000/register/addworkHistory", {
-                method: "POST",
-                headers: {
-                    'Authorization': 'Bearer ' + token4,
-                    "Accept": "application/json",
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(data)
-            })
-                .then((raws) => {
-                    console.log(raws);
-                }).catch((error) => {
-                    console.log(error);
-                });
-        }*/
 
         //hide modal
         $(document).on('click', "#hide-modal-work", function () {

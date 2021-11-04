@@ -32,7 +32,7 @@ class MyresumePortfolio extends React.Component {
     GetUserPortData(){
         var id = this.state.ownerid;
         var seeby = this.state.seeby;
-        fetch("http://localhost:2000/myresume/portfolio/"+ id + "/" + seeby).then(response => response.json())
+        fetch("https://nisitfolio-backend.herokuapp.com/myresume/portfolio/"+ id + "/" + seeby).then(response => response.json())
         .then(data => {
             console.log(data)
             this.setState({data1: data[0]});
