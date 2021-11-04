@@ -3,6 +3,7 @@ import DatePickerBD from './datepickerBD.js';
 import $ from 'jquery';
 import Cropper from 'react-cropper';
 import cookie from 'react-cookies';
+import ApplicationURL from './path';
 
 class Edittab6 extends React.Component {
     constructor(props) {
@@ -317,7 +318,7 @@ class Edittab6 extends React.Component {
         var mapEngNameJob = {};
 
         function GetJob(text) {
-            fetch("http://localhost:2000/register/jobtitle",
+            fetch(ApplicationURL.backend+"register/jobtitle",
                 { method: "GET", })
                 .then(response => response.json())
                 //.then(response => response.result)
@@ -338,7 +339,7 @@ class Edittab6 extends React.Component {
         GetJob();
 
         function GetSkill(jobname2findskill) {
-            fetch(`http://localhost:2000/register/` + jobname2findskill + `/skill`,
+            fetch(ApplicationURL.backend+`register/` + jobname2findskill + `/skill`,
                 { method: "GET", })
                 .then(response => response.json())
                 //.then(response => response.result)
@@ -649,7 +650,7 @@ class Edittab6 extends React.Component {
                 console.log("sendinterestJob2back:", sendinterestJob2back);
                 if (choose_function == 1) { //edit job after add
                     //console.log("edit!!!!!!");
-                    fetch("http://localhost:2000/register/interestedJob/" + id_list_job_edit, {
+                    fetch(ApplicationURL.backend+"register/interestedJob/" + id_list_job_edit, {
                         method: "PATCH",
                         headers: {
                             'Authorization': 'Bearer ' + token6,
@@ -714,7 +715,7 @@ class Edittab6 extends React.Component {
                         });
                 }
                 else if (choose_function == 2) { //add job in list
-                    fetch("http://localhost:2000/register/addinterestedJob", {
+                    fetch(ApplicationURL.backend+"register/addinterestedJob", {
                         method: "POST",
                         headers: {
                             'Authorization': 'Bearer ' + token6,
@@ -811,7 +812,7 @@ class Edittab6 extends React.Component {
             //console.log("removeIndex:", removeIndex);
             jobedit.setState({ statusDelHeader: "Saving...", imgStatusHeader: "assets/images/outline_cached_black_24dp.png" });
             $(".status-present-headerrr116").removeClass("status-saving5555-red");
-            fetch("http://localhost:2000/register/interestedJob/" + id_list_job_del, {
+            fetch(ApplicationURL.backend+"register/interestedJob/" + id_list_job_del, {
                 method: "DELETE",
                 headers: {
                     'Authorization': 'Bearer ' + token6,

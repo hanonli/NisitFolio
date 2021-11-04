@@ -13,7 +13,7 @@ import Chooseresume5 from "./Components/chooseresume5";
 import $ from 'jquery';
 import cookie from 'react-cookies';
 import LoadingS from './Components/loadingS';
-import async from 'react-select/async';
+import ApplicationURL from './Components/path';
 
 var list_of_aca = [], list_of_high = [], sideskilldata = [];
 var select_color_template = "#ffce55";
@@ -104,7 +104,7 @@ class Editresume extends React.Component {
 		}
 
 		function EditResume(pack) {
-			fetch("http://localhost:2000/myresume/" + editresumeState.state.resumeId,
+			fetch(ApplicationURL.backend+"myresume/" + editresumeState.state.resumeId,
 				{
 					method: "PATCH",
 					headers: {
@@ -138,7 +138,7 @@ class Editresume extends React.Component {
 		/* Zone to get resume datas */
 		function GetResumeData() {
 			return new Promise((resolve, reject) => {
-				fetch("http://localhost:2000/myresume/myresume/foredit", {
+				fetch(ApplicationURL.backend+"myresume/myresume/foredit", {
 					method: "GET",
 					headers: {
 						'Authorization': 'Bearer ' + token,

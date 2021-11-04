@@ -5,6 +5,7 @@ import Cropper from 'react-cropper';
 import cookie from 'react-cookies';
 import { uploadFile } from 'react-s3';
 import { v4 as uuidv4 } from 'uuid';
+import ApplicationURL from './path';
 
 const S3_BUCKET = 'nisitfolio';
 const REGION = 'ap-southeast-1';
@@ -244,7 +245,7 @@ class Edittab5 extends React.Component {
             });
             certiedit.setState({ statusDelHeader: "Saving...", imgStatusHeader: "assets/images/outline_cached_black_24dp.png" });
             $(".status-present-headerrr115").removeClass("status-saving5555-red");
-            fetch("http://localhost:2000/register/certificate/" + list_of_certi[removeIndex].Certificate_id, {
+            fetch(ApplicationURL.backend+"register/certificate/" + list_of_certi[removeIndex].Certificate_id, {
                 method: "DELETE",
                 headers: {
                     'Authorization': 'Bearer ' + token5,
@@ -339,7 +340,7 @@ class Edittab5 extends React.Component {
                     };
                     //console.log("edit!!!!!!");
                     //console.log(`list_of_certi:`, list_of_certi);
-                    fetch("http://localhost:2000/register/certificate/" + id_list_certi_edit, {
+                    fetch(ApplicationURL.backend+"register/certificate/" + id_list_certi_edit, {
                         method: "PATCH",
                         headers: {
                             'Authorization': 'Bearer ' + token5,
@@ -397,7 +398,7 @@ class Edittab5 extends React.Component {
                     };
                     //console.log("add!!!!!!")
                     var id_of_certi = create_UUID();
-                    fetch("http://localhost:2000/register/addcertificate", {
+                    fetch(ApplicationURL.backend+"register/addcertificate", {
                         method: "POST",
                         headers: {
                             'Authorization': 'Bearer ' + token5,

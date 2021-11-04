@@ -19,6 +19,7 @@ import LoadingS from './Components/loadingS';
 import { uploadFile } from 'react-s3';
 import { v4 as uuidv4 } from 'uuid';
 import { Cropper } from 'react-cropper';
+import ApplicationURL from './Components/path';
 
 const S3_BUCKET = 'nisitfolio';
 const REGION = 'ap-southeast-1';
@@ -338,7 +339,7 @@ class Editprofile extends React.Component {
 					"ProfilePicBase64":picUrl,
 				}
 				
-				fetch("http://localhost:2000/Datasetstateter/",{
+				fetch("ApplicationURL.backend+"Datasetstateter/",{
 				method: "PATCH",
 				headers: {
 					'Authorization': 'Bearer '+token,
@@ -590,7 +591,7 @@ pa2.addEventListener('keyup', checkPass, false);
 			console.log(pack);
 			//console.log(pack);
 			//console.log(JSON.stringify(pack));
-			fetch("http://localhost:2000/register",
+			fetch(ApplicationURL.backend+"register",
 				{
 					method: "PATCH",
 					headers: {
@@ -653,7 +654,7 @@ pa2.addEventListener('keyup', checkPass, false);
 			return new Promise((resolve, reject) => {
 				//var token = cookie.load('login-token')
 				//console.log('Your Token is: ' + token);
-				fetch("http://localhost:2000/register/getinfo", {
+				fetch(ApplicationURL.backend+"register/getinfo", {
 					method: "GET",
 					headers: {
 						'Authorization': 'Bearer ' + token,
