@@ -395,7 +395,9 @@ class Resume_topNavbar extends React.Component {
 	}
 
 	handleSection2 = () => {
-		var login_token = cookie.load('login-token') != "undefined" ? cookie.load('login-token') : ''
+		// console.log('login token1:'+ cookie.load('login-token'))
+		var login_token = cookie.load('login-token') != undefined ? cookie.load('login-token') : 'none'
+		// console.log('login token2:'+login_token)
 		if (this.state.is_owner) {
 				// console.log('you are owner2')
 			return (
@@ -468,10 +470,11 @@ class Resume_topNavbar extends React.Component {
 	}
 
 	content() {
-		var user_token = cookie.load('login-token') != 'undefined' ? cookie.load('login-token') : 'none'
+		var login_token = cookie.load('login-token') != undefined ? cookie.load('login-token') : 'none'
+
 		// console.log('user-token in content: ' + JSON.stringify(user_token))
-		if (this.state.fetch == true) {
-			if(this.state.is_owner || this.state.privacy == 'Public' || (this.state.privacy == 'Members' && user_token != 'none') ){
+		if (this.state.fetch) {
+			if(this.state.is_owner || this.state.privacy == 'Public' || (this.state.privacy == 'Members' && login_token != 'none') ){
 				return (
 					<>
 						<div class="tab-content" id="myresume1-content">
