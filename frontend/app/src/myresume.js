@@ -29,6 +29,7 @@ class MyResume extends React.Component {
 	
 	componentWillUnmount() { 
 	   window.removeEventListener('load', this.handleLoad)  	
+	   cookie.save('search-userid', '' );	
 	}
 	
 	handleLoad() {
