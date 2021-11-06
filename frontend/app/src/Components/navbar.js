@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import $ from 'jquery';
 import cookie from 'react-cookies';
 import ApplicationURL from './path';
+import { withRouter } from "react-router";
+import { Redirect } from "react-router-dom";
 
 class Navbar extends React.Component {
 	constructor(props) {
@@ -14,6 +16,7 @@ class Navbar extends React.Component {
 	 }
 	
 	componentDidMount() {
+		var refThis = this;
 		window.addEventListener('load', this.handleLoad);
 		console.log("Mounted Navbar script!");
 		const script = document.createElement("script");
@@ -21,6 +24,7 @@ class Navbar extends React.Component {
 		document.body.appendChild(script);
 		
 		var x = cookie.load('login-token');
+		var jc = cookie.load('user-job-count');
 		
 		//Is token still valid?
 		fetch(ApplicationURL.backend+"profile/",{
@@ -56,7 +60,37 @@ class Navbar extends React.Component {
 		}*/
 		
 		$(function(){
+			$('#mrs').on('click', function(){
+				console.log('user job count: '+jc);
+				if(jc < 1){
+					//alert('isEmpty!')
+					//refThis.setState({ redirect: "/Choosenothing" });
+					window.location = ("/Choosenothing");
+				}else{
+					//alert('Go!');
+					window.location = ("/myresume");
+				}
+			});
+				
+			$('#mrs2').on('click', function(){
+				console.log('user job count: '+jc);
+				if(jc < 1){
+					//alert('isEmpty!')
+					//refThis.setState({ redirect: "/Choosenothing" });
+					window.location = ("/Choosenothing");
+				}else{
+					//alert('Go!');
+					window.location = ("/myresume");
+				}
+			});
+			
 			$("#logout").click(function(){
+			  //alert('logout!');
+			  cookie.save('login-token', 'none', { path: '/' })
+			  cookie.save('login-user', 'none', { path: '/' })
+		   });
+		   
+		   $("#logout2").click(function(){
 			  //alert('logout!');
 			  cookie.save('login-token', 'none', { path: '/' })
 			  cookie.save('login-user', 'none', { path: '/' })
@@ -213,14 +247,12 @@ class Navbar extends React.Component {
 										  </a>
 									  </Link>
 									</li>
-									<li class="nav-item tooltips-item shadow-box" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Myresume">
-									  <Link to="/myresume">
+									<li class="nav-item tooltips-item shadow-box pointer" id="mrs" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Myresume">
 										  <a class="nav-link">
 											<span class="lg-view">
 												<img src="assets/images/resume_navigation_bar2.png" alt="" width="70" height="30"/>
 											</span>
 										  </a>
-									  </Link>
 									</li>
 									<li class="nav-item tooltips-item shadow-box" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Analytics">
 									  <Link to="/analytics">
@@ -278,14 +310,12 @@ class Navbar extends React.Component {
 							  </a>
 						  </Link>
 						</li>
-						<li class="nav-item shadow-box">
-						  <Link to="/myresume">
-							  <a class="nav-link">
-								<span class="sm-view">
-									เรซูเม่
-								</span>
-							  </a>
-						  </Link>
+						<li class="nav-item shadow-box" id="mrs2">
+						  <a class="nav-link">
+							<span class="sm-view">
+								เรซูเม่
+							</span>
+						  </a>
 						</li>
 						<li class="nav-item shadow-box">
 						  <Link to="/analytics">
@@ -296,7 +326,7 @@ class Navbar extends React.Component {
 							  </a>
 						  </Link>
 						</li>
-						<li class="nav-item shadow-box">
+						<li class="nav-item shadow-box" id="logout2">
 						  <Link to="/landing">
 							  <a class="nav-link">
 								<span class="sm-view">

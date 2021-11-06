@@ -2254,7 +2254,12 @@ a.btn-cta-secondary:hover, a.btn-cta-secondary:not(:disabled):not(.disabled):act
 }
 
 .nav-margin{
-	margin-bottom: 60px;
+	/*margin-bottom: 60px;*/
+	height: 60px;
+}
+
+.pointer{
+	cursor: pointer;
 }
 
 .pt-header{

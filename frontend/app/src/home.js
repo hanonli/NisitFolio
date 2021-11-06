@@ -128,6 +128,8 @@ class Home extends React.Component {
 				console.log(datas.ProfilePic);
 				console.log(datas.Job_JobName);
 				
+				cookie.save('user-job-count', datas.Job_JobName.length, { path: '/' })
+				
 				this.setState({ render: true });
 				
 				$('#fetch-name').text(datas.Firstname+' '+datas.Lastname);
@@ -229,17 +231,18 @@ class Home extends React.Component {
 				$('#editport').on('click', function(){
 					 //alert('Crop!');
 					cookie.save('port-entry', 'new', { path: '/' })
-					refThis.setState({ redirect: "/editport" });
+					//refThis.setState({ redirect: "/editport" });
+					window.location = ("/editport");
 				});
 				
 				
-				$('#mrs').on('click', function(){
+				$('#mrsb').on('click', function(){
 					if(datas.Job_JobName.length < 1){
 						//alert('isEmpty!')
-						refThis.setState({ redirect: "/Choosenothing" });
+						window.location = ("/Choosenothing");
 					}else{
 						//alert('Go!');
-						refThis.setState({ redirect: "/myresume" });
+						window.location = ("/myresume");
 					}
 				});
 				
@@ -357,7 +360,7 @@ class Home extends React.Component {
 					<div class="container-fluid md-view" id="inner-home">
 						<div class="d-flex df-f justify-content-center align-items-center">
 							<div class="row">
-								<div class="col-md-auto" id="mrs">
+								<div class="col-md-auto" id="mrsb">
 									<div class="transition-component scale-up-s resume-icon" id="cross-fade">
 										<img class="resume-icon bottom" src="assets/images/myresume2.png" type='button' id="myresume-home" alt="" />
 										<img class="resume-icon top" src="assets/images/myresume1.png" type='button' id="myresume-home" alt="" />
