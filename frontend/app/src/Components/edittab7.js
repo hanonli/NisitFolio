@@ -36,7 +36,7 @@ class Registab7 extends React.Component {
 		});
 		//console.log("I am Parent component. I got", value, "from my child.");
 		//console.log("I am",this.state.checkstatust7);
-		var token7 = cookie.load('login-token')
+		//var token7 = cookie.load('login-token');
 		var ddt7_un1 ='<div class="container-fluid dropbtn-box form-f margin-bottom1 ssl1" id={ssk_id}>\
 		<div class="row">\
 			<div class="col-10">\
@@ -83,7 +83,7 @@ class Registab7 extends React.Component {
 			fetch(ApplicationURL.backend+"register/addsoftskill", {
                 method: "POST",
                 headers: {
-                    'Authorization': 'Bearer ' + token7,
+                    'Authorization': 'Bearer ' + this.state.token,
                     "Access-Control-Allow-Origin": "*",
                     "Access-Control-Allow-Methods": "*",
                     "Access-Control-Allow-Credentials": true,
@@ -125,6 +125,7 @@ class Registab7 extends React.Component {
 							this.setState({countsideskill:3,ssk3:value,ssk_id3:raws.id})
 							$('#dangerzonet7').addClass('red_markOnly');
 							$('#dangerzonet7').text('*ท่านเพิ่มทักษะเสริมที่ถนัดครบจำนวนแล้ว');
+							$('.ahhahat7').hide();
 						}
 						this.setState({ statusUpload7: "", imgStatus7: "" });
                     	this.setState({ statusDelHeader: "Saved", imgStatusHeader: "assets/images/outline_cloud_done_black_24dp.png" });
@@ -200,8 +201,10 @@ class Registab7 extends React.Component {
 					$("#for-error-dgd").addClass("status-saving5555-red");
 					this.setState({ statusDelHeader: "Save Failed", imgStatusHeader: "assets/images/baseline_error_black_24dp.png" });
 					$(".status-present-headerrr114").addClass("status-saving5555-red");
+					$('.ahhahat7').show();
 				}
 				else {
+					$('.ssl1').remove();
 					if(this.state.countsideskill==1){
 						this.setState({countsideskill:0})
 					}
@@ -232,6 +235,7 @@ class Registab7 extends React.Component {
 					this.setState({ssk1:this.state.ssk2,ssk_id1:this.state.ssk_id2,ssk2:this.state.ssk3,ssk_id2:this.state.ssk_id3,ssk3:"",ssk_id3:""})
 					this.setState({ statusDelHeader: "Saved", imgStatusHeader: "assets/images/outline_cloud_done_black_24dp.png" });
 					$(".status-present-headerrr114").removeClass("status-saving5555-red");
+					
 				}
 				
 			}).catch((error) => {
@@ -239,7 +243,6 @@ class Registab7 extends React.Component {
 				this.setState({ statusDelHeader: "Save Failed", imgStatusHeader: "assets/images/baseline_error_black_24dp.png" });
 				//$(".status-present-headerrr114").addClass("status-saving5555-red");
 			});
-			$('.ssl1').remove();
 	  };
 
 	  onDel2 = () => {
@@ -274,8 +277,10 @@ class Registab7 extends React.Component {
 				if ("message" in raws) {
 					this.setState({ statusDelHeader: "Save Failed", imgStatusHeader: "assets/images/baseline_error_black_24dp.png" });
 					$(".status-present-headerrr114").addClass("status-saving5555-red");
+					$('.ahhahat7').show();
 				}
 				else {
+					$('.ssl2').remove();
 					if(this.state.countsideskill==2){
 						this.setState({countsideskill:1})
 					}
@@ -299,7 +304,6 @@ class Registab7 extends React.Component {
 				this.setState({ statusDelHeader: "Save Failed", imgStatusHeader: "assets/images/baseline_error_black_24dp.png" });
 				//$(".status-present-headerrr114").addClass("status-saving5555-red");
 			});
-			$('.ssl2').remove();
 	  };
 
 	  onDel3 = () => {
@@ -322,6 +326,7 @@ class Registab7 extends React.Component {
 				if ("message" in raws) {
 					this.setState({ statusDelHeader: "Save Failed", imgStatusHeader: "assets/images/baseline_error_black_24dp.png" });
 					$(".status-present-headerrr114").addClass("status-saving5555-red");
+					$('.ahhahat7').show();
 				}
 				else {
 					$('.ssl3').remove();
@@ -349,7 +354,7 @@ class Registab7 extends React.Component {
 		var start_count=0;
 		var myssk = this.props.myssk_data ? this.props.myssk_data : [];
         list_of_ssk = [...myssk];
-		//console.log(list_of_ssk);
+		console.log(list_of_ssk);
 		list_of_ssk.forEach(ele => {(start_count=start_count+1)});
 		//alert(start_count);
 		show_ssk();
@@ -359,6 +364,7 @@ class Registab7 extends React.Component {
 			var ssk3 = aaa.state.ssk3;
 			//$('#ddt7s').val('');
 			//console.log('Add sideskill dropdown!');
+			console.log(ssk1 + ssk2+ ssk3);
 			if (ssk1 == '') {
 				console.log('ใส่อันที่1แล้วจ้า');
 				$('#ddt7s').show();
@@ -484,7 +490,7 @@ class Registab7 extends React.Component {
 			$('.dropdowntap7').append(ddt7_un3);
 			$('#dangerzonet7').addClass('red_markOnly');
 			$('#dangerzonet7').text('*ท่านเพิ่มทักษะเสริมที่ถนัดครบจำนวนแล้ว');
-			$('.ahhahat7').hide();
+			//$('.ahhahat7').hide();
 		}
 		//console.log(aaa.state.countsideskill);
 		}
