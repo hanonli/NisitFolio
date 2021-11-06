@@ -457,6 +457,13 @@ datalist {
   background-color: "#fffff";
 }
 
+.sharingSize3 {
+  height: 14vw;
+  width: 150vw;
+  border-radius: 1vw;
+  padding-top: 0.7vw;
+}
+
 .SharingFontHead {
   margin-left: 1vw;
   margin-top: 0.6vw;
@@ -760,3 +767,14 @@ datalist {
   font-family: 'Kanit';
   /*padding: 0.5vw;*/
 }
+
+.font-sharelink-resume {
+  text-align: center;
+}
+
+.font-shareqr-resume {
+  text-align: center;
+  color:#000;
+  padding-right:10%;
+}
+

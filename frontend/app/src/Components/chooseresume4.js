@@ -79,7 +79,13 @@ class Editresume4 extends React.Component {
 				t5_port = t5_port.replace("{ele.Port_idvalue}", ele.Port_id);
 				t5_port = t5_port.replace("{isCheckPort}", ele.isCheckPort);
 				t5_port = t5_port.replace("{forxxx}", `xxx` + ele.Port_id);
-				t5_port = t5_port.replace("{ele.PortName}", ele.Port_Name);
+				//t5_port = t5_port.replace("{ele.PortName}", ele.Port_Name);
+				if (ele["Port_Name"].length > 40) {
+					t5_port = t5_port.replace("{ele.PortName}", ele["Port_Name"].slice(0, 40) + "...");
+				}
+				else {
+					t5_port = t5_port.replace("{ele.PortName}", ele.Port_Name);
+				}
 				//alert('Sawaddeekrub Port',t5_port);
 				$(".port-box1").append(t5_port);
 			});

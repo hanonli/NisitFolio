@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-
+import cookie from 'react-cookies'
+import $ from 'jquery';
 
 var myTemplate = {
     "red": "assets/images/pdfR.png",
@@ -37,13 +38,46 @@ class SharingPopup extends React.Component {
     handleSubmitExport = e => {
         console.log('selectedOption',select_color_template);
         /*window.location = '/makepdf/?template='+select_color_template+'&resume=0';*/ 
-		window.location = new URL(window.location.origin+'/makepdf/?template='+select_color_template+'&resume=0');
+        var resume_index = cookie.load('resume-index');
+        if(resume_index!=''){
+            window.location = new URL(window.location.origin+'/makepdf/?template='+select_color_template+'&resume='+resume_index);
+            cookie.load('resume-index',"");
+        }
+        else{
+            console.log('Cant Export this bc u dont selected resume');
+        }
+        //cookie.load('resume-index',"");
     };
 
+    copyToClipboard(){
+        console.log('Yahoo!');
+        var copyText = document.getElementById("copylink1");
+        /* Select the text field */
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+        /* Copy the text inside the text field */
+        navigator.clipboard.writeText(copyText.value);
+
+        /* Alert the copied text */
+        alert("Copied the text: " + copyText.value);
+    };
       componentDidMount() {
+        var link_now = window.location.href;
+        console.log(link_now);
+        console.log($('#copylink1').text());
+        var user_resumeid = cookie.load('search-userid');
+        console.log(user_resumeid);
+        var url_to_use = link_now+'/'+user_resumeid;
+        $('#copylink1').text(url_to_use);
+        /*$("#copylink2").on('click',function () {
+            $(this).parents(".ggcopyez").children("a").select();
+            alert('Im running');
+        });*/
     }
       componentWillUnmount() {
         window.removeEventListener('load', this.handleLoad)  
+        $(document).unbind();
       }
       handleLoad() {
 		console.log("YEAH!");
@@ -59,35 +93,37 @@ class SharingPopup extends React.Component {
                     </div>
                     <div class="row mg-l1">
                         <div class="col-4 transition-component scale-up-s" id="cross-fade">
-                            <img class="col-10 bottom" src="assets/images/share_link_hover.png" type="button" data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharinglink"/>
-                            <img class="col-10  top" src="assets/images/share_link.png" type="button" data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharinglink"/>
+                            <img class="col-10 bottom" src="assets/images/share_link_hover.png" type="button" data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharinglink1"/>
+                            <img class="col-10  top" src="assets/images/share_link.png" type="button" data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharinglink1" id="sharinglink"/>
                         </div>
                         <div class="col-4 transition-component scale-up-s" id="cross-fade">
-                            <img class="col-10 bottom" src="assets/images/share_qr_hover.png" type="button" data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharingqr"/>
-                            <img class="col-10 top" src="assets/images/share_qr.png" type="button" data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharingqr"/>
+                            <img class="col-10 bottom" src="assets/images/share_qr_hover.png" type="button" data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharingqr1"/>
+                            <img class="col-10 top" src="assets/images/share_qr.png" type="button" data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharingqr1" id="sharingqr"/>
                         </div>
                         <div class="col-4 transition-component scale-up-s" id="cross-fade">
-                        <img class="col-10 bottom" src="assets/images/share_pdf_hover.png" type="button" data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharingpdf"/>
-                        <img class="col-10 top" src="assets/images/share_pdf.png" type="button" data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharingpdf"/>
+                        <img class="col-10 bottom" src="assets/images/share_pdf_hover.png" type="button" data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharingpdf1"/>
+                        <img class="col-10 top" src="assets/images/share_pdf.png" type="button" data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharingpdf1" id="sharingpdf"/>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="sharinglink" aria-hidden="true" tabindex="-1">
+        <div class="modal fade" id="sharinglink1" aria-hidden="true" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content sharingSize container-fluid">
+                <div class="modal-content sharingSize3 container-fluid">
                     <div class="row marginBEx1">
                         <h1 class="SharingFontHead col-10" id="exampleModalToggleLabel2">Sharing</h1>
                     </div>
-                    <div class="row dropbtn margin1">
-                        <h5 class="col-10 link-text" id="copylink1">link</h5>
-                        <img class="col-2 block-right3 del-pad-col1" href="" src="assets/images/outline_content_copy_black_48dp.png" onclick="copyToCliBoard()" type="button"/>
+                    <div class="row dropbtn margin1 ggcopyez">
+                        <a class="col-10 link-text" id="copylink1" type="text">link</a>
+                        <img class="col-2 block-right3 del-pad-col1" href="" src="assets/images/outline_content_copy_black_48dp.png" onclick={this.copyToClipboard} type="button" id='copylink1'/>
                     </div>
+                    <label class='font-sharelink-resume'>ลิงก์ของคุณสร้างสำเร็จแล้ว</label>
+                    <label class='font-sharelink-resume'>สามารถคัดลอกเพื่อแชร์ MyResume ของคุณ !</label>
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="sharingpdf" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+        <div class="modal fade" id="sharingpdf1" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content sharingSize2 container-fluid">
                     <div class="header-export1 marginBEx1">
@@ -185,13 +221,24 @@ class SharingPopup extends React.Component {
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="sharingqr" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+        <div class="modal fade" id="sharingqr1" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content sharingSize container-fluid">
-                    <div class="row">
+                <div class="modal-content sharingSize3 container-fluid">
+                    <div class="row margin-bottom1">
                         <h1 class="SharingFontHead col-10" id="exampleModalToggleLabel2">Sharing QR</h1>
-
                     </div>
+                    <div class='row'>
+                        <img id='qr-image' class="col-6" src='assets/images/clock.png' height='150' width='50'></img> 
+                        <div class='col-6'>
+                            <div class='row font-shareqr-resume'>
+                                <p class=''>คุณสามารถเข้าถึง MyResume ได้จาก QR Code ด้านซ้าย</p>
+                                <p class=''>หรือ</p>
+                                <button class="btn btn-cta-primary-yellowwide round profile-button mg-l1" target="_blank" id="exportQrcode" >บันทึกภาพ QR Code</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
                 </div>
             </div>
         </div>
