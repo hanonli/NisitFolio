@@ -130,13 +130,13 @@ class Navbar extends React.Component {
 							</div>
 
 							<div class="nvw2">
-								<form class="nvf">
+								<form class="nvf sf">
 									<input class="form-control btn-search-box home" id="search-input" type="search" placeholder="ค้นหา" aria-label="Search"/>
-									<Link to="/search" class="d-flex">
+									<div class="d-flex">
 									<button class="btn btn-search yellow" type="submit">
 										<img src="assets/images/search.png" class="fx" alt="" width="20" height="20"/>
 									</button>
-									</Link>
+									</div>
 								</form>
 							</div>
 							<div class="nvw3">
@@ -145,7 +145,7 @@ class Navbar extends React.Component {
 									</button>
 									<div>
 									  <div class="lg-view">
-											<Link to="/landing">
+											<Link to="/anonymouslogin">
 												<a class="btn btn-cta-primary-yellow nav-round regis-mar" id="nav-login" target="_blank">เข้าสู่ระบบ</a>
 											</Link>
 											<Link to="/register">
@@ -170,7 +170,7 @@ class Navbar extends React.Component {
 							  </Link>
 							</li>
 							<li class="nav-item shadow-box">
-							  <Link to="/landing">
+							  <Link to="/anonymouslogin">
 								  <a class="nav-link">
 									<span class="sm-view">
 										เข้าสู่ระบบ
@@ -205,13 +205,13 @@ class Navbar extends React.Component {
 						</div>
 
 						<div class="nvw2">
-							<form class="nvf">
+							<form class="nvf sf">
 								<input class="form-control btn-search-box home" id="search-input" type="search" placeholder="ค้นหา" aria-label="Search"/>
-								<Link to="/search" class="d-flex">
+								<div class="d-flex">
 								<button class="btn btn-search yellow" type="submit">
 									<img src="assets/images/search.png" class="fx" alt="" width="20" height="20"/>
 								</button>
-								</Link>
+								</div>
 							</form>
 						</div>
 						<div class="nvw3">

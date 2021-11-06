@@ -935,6 +935,10 @@ function AddListenerToDynamicComponents(){
 		$('#to-regis').click(function(e) {
 			window.location.assign("/register");
 		});
+		
+		$('#to-login').click(function(e) {
+			window.location.assign("/anonymouslogin");
+		});
    }else{ // user event
 	   $('.obj-icon').click(function(e) {
 		   e.stopPropagation();	   

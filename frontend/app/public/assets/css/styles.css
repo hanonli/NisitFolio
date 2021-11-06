@@ -78,6 +78,7 @@ mff { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 18px; font-we
 mdf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 32px; font-weight: 500;  color: #C7C7C7; }
 kf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 19px; font-weight: lighter;  color: #C7C7C7;}
 ktf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 22px; font-weight: bold;  color: #C7C7C7;}
+mpf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 18px; font-weight: 300;  color: black;}
 .text-extra{
 	line-height: 1.2;
 }
@@ -4297,15 +4298,16 @@ body {
 	position:absolute;
 	top:50%;
 	transform: translate(0%, -50%);
-	right:5%;
+	right:10%;
     height: auto;
-	width: 20vw;
+	/*width: 25vw;*/
 }
 
 .port-button{
 	padding: 1vh 3vw 1vh 3vw !important;
 	font-size: 18px;
 	font-weight: 600;
+	left: 15%;
 }
 
 .p-common:focus {
@@ -4469,6 +4471,23 @@ a.btn-cta-primary-yellowshort:hover, .btn-cta-primary-yellowshort:hover {
   border: 1px solid #e0c652;
 }
 
+a.btn-cta-primary-blue, .btn-cta-primary-blue {
+  color: white;
+  font-weight: 400;
+  font-size: 2.2vh;
+  
+  border: 1px solid #F9DC5C;
+  background: rgb(13,110,253);
+  height: 50px;
+  width: 160px;
+}
+
+a.btn-cta-primary-blue:hover, .btn-cta-primary-blue:hover {
+  color: white;
+  background: rgb(8,69,160);
+  border: 1px solid #e0c652;
+}
+
 a.btn-cta-primary-blackshort, .btn-cta-primary-blackshort {
   color: #FFFFFF;
   font-weight: 400;
@@ -4571,6 +4590,10 @@ a.btn-cta-primary-whitewide, .btn-cta-primary-whitewide {
 	border: 1px solid #7A8492;
   }
 
+.x-pad{
+	width: 200px !important;
+}
+ 
 .tabs-list {
   text-align: center;
   font-weight: 300;
@@ -4604,6 +4627,14 @@ a.btn-cta-primary-whitewide, .btn-cta-primary-whitewide {
   margin-left: 72vw;
 }
 
+.mysize{
+	width: 650px;
+    height: 300px;
+    text-align: center;
+    border-radius: 24px;
+    padding: 10%;
+}
+
 /*Agreement page*/
 #agree1 {
   background-color: #BFF4A6;
@@ -4623,6 +4654,14 @@ a.btn-cta-primary-whitewide, .btn-cta-primary-whitewide {
   /*margin-right: 55vw;*/
   color: black;
   font-weight: 400;
+}
+
+.cflex{
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
 }
 
 /*Emailverify page*/

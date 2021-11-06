@@ -132,13 +132,14 @@ class Search extends React.Component {
 				
 				<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div class="modal-dialog modal-dialog-centered">
-						<div class="modal-content minisize">
-							<h4 class="del-b">คุณยังไม่ได้สมัครสมาชิก ?</h4>
-							<div class="centerverify">
-								<a type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m" data-bs-dismiss="modal">คราวหลัง</a>
-								<a id="cancel-port" type="button" id="to-regis" class="btn btn-cta-primary-yellowshort profile-button round" data-bs-dismiss="modal">สมัครเลย</a>
+						<div class="modal-content mysize">
+								<h4 class="del-b">คุณต้องเข้าสู่ระบบก่อนกด Bookmark</h4>
+								<div class="centerverify cflex">
+									<a type="button" class="btn btn-cta-primary-yellowshort round profile-button x-pad" id="to-login" data-bs-dismiss="modal">เข้าสู่ระบบ</a>
+									<mpf>ยังไม่ได้สมัครสมาชิก ?</mpf>
+									<a id="cancel-port" type="button" id="to-regis" class="btn btn-cta-primary-blue profile-button round x-pad" id="to-regis" data-bs-dismiss="modal">สมัครสมาชิก</a>
+								</div>
 							</div>
-						</div>
 					</div>
 				</div>
 				

@@ -39,13 +39,13 @@ class NavbarTransparent extends React.Component {
 						</div>
 						<div class="col-6 d-flex align-items-center justify-content-center">
 							<div class="lg-view-search container-fluid container-search">
-								<form class="d-flex">
+								<form class="d-flex sf">
 									<input class="form-control btn-search-box home" id="search-input" type="search" placeholder="ค้นหา" aria-label="Search"/>
-									<Link to="/search" class="d-flex">
-									<button class="btn btn-search yellow" type="submit">
-										<img src="assets/images/search.png" class="fx" alt="" width="20" height="20"/>
-									</button>
-									</Link>
+									<div class="d-flex">
+										<button class="btn btn-search yellow" type="submit">
+											<img src="assets/images/search.png" class="fx" alt="" width="20" height="20"/>
+										</button>
+									</div>
 								</form>
 							</div>
 						</div>
