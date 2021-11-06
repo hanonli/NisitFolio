@@ -86,7 +86,7 @@ class Editresume4 extends React.Component {
 			var count_pp = $(".myresume-choose-port1:input:checkbox:checked").length;
 			//alert(count_pp);
 			$("#dangerzonect5").text(`คุณเลือกไปแล้ว ${count_pp} รายการ`);
-		}, 3000);
+		}, 1000);
 		//console.log("isCheck_Port :", isCheck_Port);
 		$(document).on("click", ".myresume-choose-port1", function () {
 			choose_Port = $('.myresume-choose-port1:input[type=checkbox]:checked').map(function (_, el) {
