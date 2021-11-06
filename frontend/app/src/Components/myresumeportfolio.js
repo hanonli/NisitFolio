@@ -9,19 +9,21 @@ class MyresumePortfolio extends React.Component {
     constructor(props){
         super(props)
         var user = cookie.load('login-user');
+        //console.log(user);
         var state = this.props.state;
+        console.log(state);
         let whosee;
         if(user==="none"){
 			console.log("it's none");
             whosee = "guest";
 		}
-        else if(user===state.userID){
+        else if(user===state.targetuserID){
             whosee = "owner";
         }
         else{
             whosee = "other";
         }
-        this.state = {cookieid : user, ownerid : state.userID, index : state.index, data1 : [], data2 : [], data3 : [], seeby : whosee};
+        this.state = {cookieid : user, ownerid : state.targetuserID, index : state.index, data1 : [], data2 : [], data3 : [], seeby : whosee};
         this.GetUserPortData()
     }
 
