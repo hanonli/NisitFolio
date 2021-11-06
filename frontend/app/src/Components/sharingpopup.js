@@ -36,7 +36,7 @@ class SharingPopup extends React.Component {
 
     handleSubmitExport = e => {
         console.log('selectedOption',select_color_template);
-        window.location.pathname = '/makepdf/?template='+select_color_template+'&resume=0';
+        window.location.pathname = '/makepdf/'+"?"+'template='+select_color_template+'&resume=0';
     };
 
       componentDidMount() {

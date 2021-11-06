@@ -4,6 +4,7 @@ import $ from 'jquery';
 import cookie from 'react-cookies'
 import { GetDominantColorFromImage } from './GetDominantColorFromImage'
 import './chooseresume3.css';
+import ApplicationURL from './path';
 
 /*Wait for Port*/
 var choose_Port = [];
@@ -21,7 +22,7 @@ class Editresume4 extends React.Component {
 		var token = cookie.load('login-token')
 		var ResumeId_Now = cookie.load('ResumeIdForEdit')
 		//console.log('Your Token is: ' + token);
-		fetch("http://localhost:2000/portfolio", {
+		fetch(ApplicationURL.backend+"portfolio", {
 			method: "GET",
 			headers: {
 				'Authorization': 'Bearer ' + token,

@@ -287,7 +287,10 @@ class Register extends React.Component {
 				var saveEmail = cookie.load('Email-verify');
 				//console.log(avatar1.src);
 				regis.setState({ render: true });
-				if (avatar1.src == "assets/images/Circleuploadprofile.png") {
+				console.log(avatar1.src);
+				//console.log(window.location.origin+"/assets/images/Circleuploadprofile.png");
+				if (avatar1.src == window.location.origin+"/assets/images/Circleuploadprofile.png") {
+					console.log('ไม่ต้องอัพรูป!');
 					last_avatar = "assets/images/profile_uk.png";
 				}
 				else {
