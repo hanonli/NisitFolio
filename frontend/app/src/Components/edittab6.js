@@ -704,6 +704,7 @@ class Edittab6 extends React.Component {
                                 jobedit.setState({ statusUpload6: "", imgStatus6: "" });
                                 jobedit.setState({ statusDelHeader: "Saved", imgStatusHeader: "assets/images/outline_cloud_done_black_24dp.png" });
                                 $(".status-present-headerrr116").removeClass("status-saving5555-red");
+                                UpdateAnalyticsCache();
                             }
 
                         }).catch((error) => {
@@ -774,6 +775,7 @@ class Edittab6 extends React.Component {
                                 jobedit.setState({ statusUpload6: "", imgStatus6: "" });
                                 jobedit.setState({ statusDelHeader: "Saved", imgStatusHeader: "assets/images/outline_cloud_done_black_24dp.png" });
                                 $(".status-present-headerrr116").removeClass("status-saving5555-red");
+                                UpdateAnalyticsCache();
                             }
 
                         }).catch((error) => {
@@ -844,6 +846,7 @@ class Edittab6 extends React.Component {
                             $(".limit-job-pos-3").removeClass("limit-job-pos-3-red");
                             $('.limit-job-pos-3').text('ท่านสามารถเพิ่มตำแหน่งงานที่สนใจได้สูงสุด 3 อัน');
                         }
+                        UpdateAnalyticsCache();
                     }
                     else {
                         jobedit.setState({ statusDelHeader: "Save Failed", imgStatusHeader: "assets/images/baseline_error_black_24dp.png" });
@@ -979,6 +982,29 @@ class Edittab6 extends React.Component {
                 $("#pos-del-obj-button3").hide();
             }
         });
+
+        function UpdateAnalyticsCache(){
+            var userId = cookie.load('login-user');
+			fetch(ApplicationURL.backend+"analytics/cache/"+userId,{
+				method: "POST",
+				headers: {
+					"Access-Control-Allow-Origin": "*",
+					"Access-Control-Allow-Methods": "*",
+					"Access-Control-Allow-Credentials": true,
+					"Content-Type": "application/json"
+				}
+			})
+				.then(response =>  {
+					//console.log(datas);
+					console.log(response);
+					//GetSearchBookmarkData();
+				})
+				.catch((error) => {
+					console.log('Failed to update analytics!');
+					//this.setState({ redirect: "/landing" });
+				});
+		}
+
     }
 
     componentWillUnmount() {

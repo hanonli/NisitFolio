@@ -112,7 +112,7 @@ class Register extends React.Component {
 		}
 
 		/* *************** For Rung tabs *************** */
-		var last_avatar = "http://localhost:3000/assets/images/profile_uk.png";
+		var last_avatar = "assets/images/profile_uk.png";
 
 		window.onload = () => {
 			//const myInput1 = document.getElementById('pass05');
@@ -287,8 +287,8 @@ class Register extends React.Component {
 				var saveEmail = cookie.load('Email-verify');
 				//console.log(avatar1.src);
 				regis.setState({ render: true });
-				if (avatar1.src == "http://localhost:3000/assets/images/Circleuploadprofile.png") {
-					last_avatar = "http://localhost:3000/assets/images/profile_uk.png";
+				if (avatar1.src == "assets/images/Circleuploadprofile.png") {
+					last_avatar = "assets/images/profile_uk.png";
 				}
 				else {
 					await UploadToS3(file_profilepic);
@@ -783,7 +783,7 @@ class Register extends React.Component {
 					else {
 						console.log("ok");
 						regis.setState({ render: true });
-						window.location.href = "http://localhost:3000/emailverify";
+						window.location.pathname = '/emailverify'
 						//console.log(response);
 					}
 					//return response;
@@ -895,6 +895,7 @@ class Register extends React.Component {
 			$('#aca_faculty').val('');
 			$('#aca_field').val('');
 			$('#aca_grade').val('');
+			$('#submit_aca').text = 'เพิ่ม';
 		});
 
 		//func edit aca
@@ -1164,6 +1165,7 @@ class Register extends React.Component {
 			$('#high_name').val('');
 			$('#high_field').val('');
 			$('#high_grade').val('');
+			$('#submit_high').text = 'เพิ่ม';
 		});
 
 		//func edit high

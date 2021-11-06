@@ -311,6 +311,9 @@
 .margin-top1 {
     margin-top: 10px;
 }
+.margin-top2 {
+  margin-top: 20px;
+}
 
 .fontsmallhere {
     font-size: 16px;
@@ -731,4 +734,29 @@ datalist {
 	text-align: left;
 	font-size: 24px;
   overflow: visible;
+}
+
+.reset-pass{
+  padding:1%;
+  border: 1px solid #939393;
+  border-radius: 0.5vw;
+  margin-left: 4.5vw;
+  padding-left: 3%;
+  padding-right: 2%;
+}
+
+#header-reset-pass-font{
+  font-size: 20px;
+  font-weight: 600;
+  color: #000;
+  padding-top:10px;
+  /*margin-top:10px;*/
+}
+
+#forget-pass-editprofile {
+  color: #167bff;
+  font-weight: 300;
+  font-size: 18px;
+  font-family: 'Kanit';
+  /*padding: 0.5vw;*/
 }
