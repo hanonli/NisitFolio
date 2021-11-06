@@ -56,9 +56,11 @@ naf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 19px; font-we
 amf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 18px; font-weight: lighter;  color: black;}
 atf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 20px; font-weight: bold;  color: black;}
 agf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 22px; font-weight: lighter;  color: grey;}
+azf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 22px; font-weight: 200;  color: grey;}
 akf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 16px; font-weight: 300;  color: grey;}
 azf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 20px; font-weight: 300;  color: grey;}
 abf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 22px; font-weight: lighter;  color: black;}
+awf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 22px; font-weight: 300;  color: black;}
 aaf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 32px; font-weight: bold;  color: black; }
 cf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 24px; font-weight: 600;  color: black; }
 hf { font-family: 'Nunito','Kanit', arial, sans-serif; font-size: 42px; font-weight: bold;  color: black; }
@@ -3360,7 +3362,7 @@ a.btn-cta-primary-white:hover, .btn-cta-primary-white:hover {
 
 .tab-list-item-pp {
   width: 100%;
-  font-weight: 300;
+  font-weight: 400;
   color: black;
   font-size: 20px;
   word-wrap: break-word;

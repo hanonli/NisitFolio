@@ -430,7 +430,7 @@ class PortRoot extends React.Component {
 					<div class="nf-flex">
 						<header class="header header-azure nf-header round" id="empty-zone">
 							<img class="nf-i" src="assets/images/outline_add_black_24dp hd.png" alt=""/>
-							<abf class="nf-n">เพิ่มผลงานเจ๋ง ๆ ของคุณได้ที่นี่</abf>
+							<awf class="nf-n">เพิ่มผลงานเจ๋ง ๆ ของคุณได้ที่นี่</awf>
 						</header>
 					</div>
 				</div>
