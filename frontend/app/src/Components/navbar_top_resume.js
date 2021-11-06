@@ -79,7 +79,7 @@ class Resume_topNavbar extends React.Component {
 		// console.log('in resumeid state.index1: ' + this.state.index);
 		// console.log('getResumeID called')
 		// console.log('in getResumeID index is :' + index + ' userid is: ' + userid )
-		fetch("http://localhost:2000/myresume/user/" + userid, {
+		fetch("https://nisitfolio-backend.herokuapp.com/myresume/user/" + userid, {
 			method: "GET",
 			headers: {
 				"Access-Control-Allow-Origin": "*",
@@ -166,7 +166,7 @@ class Resume_topNavbar extends React.Component {
 		console.log('begin change prvacy')
 		var resumeid = this.state.resumeID
 		var token = cookie.load('login-token')
-		fetch("http://localhost:2000/myresume/" + resumeid, {
+		fetch("https://nisitfolio-backend.herokuapp.com/myresume/" + resumeid, {
 			method: "PATCH",
 			headers: {
 				'Authorization': 'Bearer ' + token,
@@ -226,7 +226,7 @@ class Resume_topNavbar extends React.Component {
 		var pic_src = document.getElementById("icon-myresume-bookmark").src
 		// console.log('pic: '+pic_src);
 		if ( pic_src == "http://localhost:3000/assets/images/bookmark_1.png") {
-			fetch("http://localhost:2000/bookmark/saveBookmark/",{
+			fetch("https://nisitfolio-backend.herokuapp.com/bookmark/saveBookmark/",{
 				method: "POST",
 				body: {
 					'userID' : this.state.userID,
@@ -237,7 +237,7 @@ class Resume_topNavbar extends React.Component {
             document.getElementById("icon-myresume-bookmark").src = "http://localhost:3000/assets/images/bookmark_2.png";
         }
         else {
-			fetch("http://localhost:2000/bookmark/saveBookmark/",{
+			fetch("https://nisitfolio-backend.herokuapp.com/bookmark/saveBookmark/",{
 				method: "DELETE",
 				body: {
 					'userID' : this.state.userID,
@@ -605,7 +605,7 @@ class Resume_topNavbar extends React.Component {
 		// console.log( 'not blank: '+ (ssid != ''))
 		// console.log(( undefined))
 		// console.log(( null))
-		fetch("http://localhost:2000/profile/", {
+		fetch("https://nisitfolio-backend.herokuapp.com/profile/", {
 				method: "GET",
 				headers: {
 					'Authorization': 'Bearer ' + token,
@@ -632,7 +632,7 @@ class Resume_topNavbar extends React.Component {
 			// console.log('case2')
 			// console.log('token: ' + token)
 			var token = cookie.load('login-token')
-			fetch("http://localhost:2000/profile/", {
+			fetch("https://nisitfolio-backend.herokuapp.com/profile/", {
 				method: "GET",
 				headers: {
 					'Authorization': 'Bearer ' + token,
