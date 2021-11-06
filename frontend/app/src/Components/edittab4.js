@@ -152,7 +152,7 @@ class Edittab4 extends React.Component {
                         grid_work3 = grid_work3.replace("{salary_work}", ele["Salary"]);
                     }
                     else {
-                        grid_work3 = grid_work3.replace("{salary_work}", "-");
+                        grid_work3 = grid_work3.replace("{salary_work} บาท", "");
                     }
                 }
                 grid_work3 = grid_work3.replace("{inform_work}", ele["Infomation"]);
@@ -445,13 +445,13 @@ class Edittab4 extends React.Component {
             else if (document.getElementById("month_startwork").value == "") {
                 $("#month_startwork").addClass("is-invalid");
             }
-            else if ((document.getElementById("salary_work").value != "" && isNumberTab4(document.getElementById("salary_work").value) == false) || parseInt(document.getElementById("salary_work").value) < 0) {
+            else if ((document.getElementById("salary_work").value != "" && isNumberTab4(document.getElementById("salary_work").value) == false) || Number.parseInt(document.getElementById("salary_work").value) < 0) {
                 $("#salary_work").addClass("is-invalid");
             }
-            else if ($('#regist4_cb').prop('checked') == false && parseInt(document.getElementById("year_endwork").value) < parseInt(document.getElementById("year_startwork").value)) {
+            else if ($('#regist4_cb').prop('checked') == false && Number.parseInt(document.getElementById("year_endwork").value) < Number.parseInt(document.getElementById("year_startwork").value)) {
                 $("#year_endwork").addClass("is-invalid");
             }
-            else if ($('#regist4_cb').prop('checked') == false && parseInt(document.getElementById("year_endwork").value) == parseInt(document.getElementById("year_startwork").value) && parseInt(document.getElementById("month_endwork").value) < parseInt(document.getElementById("month_startwork").value)) {
+            else if ($('#regist4_cb').prop('checked') == false && Number.parseInt(document.getElementById("year_endwork").value) == Number.parseInt(document.getElementById("year_startwork").value) && Number.parseInt(document.getElementById("month_endwork").value) < Number.parseInt(document.getElementById("month_startwork").value)) {
                 $("#month_endwork").addClass("is-invalid");
             }
             else {
@@ -462,12 +462,12 @@ class Edittab4 extends React.Component {
                     "Work_JobName": pos_work,
                     "Work_JobType": type_work,
                     "Company": company_work,
-                    "Work_Start_Month": parseInt(month_startwork),
-                    "Work_Start_Year": parseInt(year_startwork),
-                    "Work_End_Month": reeggiist4_cb ? 99 : (year_endwork === "" ? 0 : parseInt(month_endwork)),
-                    "Work_End_Year": reeggiist4_cb ? 9999 : (year_endwork === "" ? 0 : parseInt(year_endwork)),
+                    "Work_Start_Month": Number.parseInt(month_startwork),
+                    "Work_Start_Year": Number.parseInt(year_startwork),
+                    "Work_End_Month": reeggiist4_cb ? 99 : (year_endwork === "" ? 0 : Number.parseInt(month_endwork)),
+                    "Work_End_Year": reeggiist4_cb ? 9999 : (year_endwork === "" ? 0 : Number.parseInt(year_endwork)),
                     "SalaryType": type_salary_work,
-                    "Salary": parseInt(salary_work),
+                    "Salary": Number.parseInt(salary_work),
                     "Infomation": inform_work
                 }
                 if (choose_function == 1) {
@@ -496,14 +496,14 @@ class Edittab4 extends React.Component {
                                 for_edit["Company"] = company_work;
                                 for_edit["SalaryType"] = type_salary_work;
                                 //for_edit["SalaryType_select"] = document.getElementById("salarytype_work").selectedIndex;
-                                for_edit["Salary"] = parseInt(salary_work);
-                                for_edit["Work_Start_Year"] = parseInt(year_startwork);
+                                for_edit["Salary"] = Number.parseInt(salary_work);
+                                for_edit["Work_Start_Year"] = Number.parseInt(year_startwork);
                                 //for_edit["Work_Start_Year_select"] = document.getElementById("year_startwork").selectedIndex;
-                                for_edit["Work_Start_Month"] = parseInt(month_startwork);
+                                for_edit["Work_Start_Month"] = Number.parseInt(month_startwork);
                                 //for_edit["Work_Start_Month_select"] = document.getElementById("month_startwork").selectedIndex;
-                                for_edit["Work_End_Year"] = parseInt(year_endwork);
+                                for_edit["Work_End_Year"] = Number.parseInt(year_endwork);
                                 //for_edit["Work_End_Year_select"] = document.getElementById("year_endwork").selectedIndex;
-                                for_edit["Work_End_Month"] = parseInt(month_endwork);
+                                for_edit["Work_End_Month"] = Number.parseInt(month_endwork);
                                 //for_edit["Work_End_Month_select"] = document.getElementById("month_endwork").selectedIndex;
                                 for_edit["reeggiist4_cb"] = reeggiist4_cb;
                                 for_edit["Infomation"] = inform_work;
@@ -555,14 +555,14 @@ class Edittab4 extends React.Component {
                                     Company: company_work,
                                     SalaryType: type_salary_work,
                                     //SalaryType_select: document.getElementById("salarytype_work").selectedIndex,
-                                    Salary: parseInt(salary_work),
-                                    Work_Start_Year: parseInt(year_startwork),
+                                    Salary: Number.parseInt(salary_work),
+                                    Work_Start_Year: Number.parseInt(year_startwork),
                                     //Work_Start_Year_select: document.getElementById("year_startwork").selectedIndex,
-                                    Work_Start_Month: parseInt(month_startwork),
+                                    Work_Start_Month: Number.parseInt(month_startwork),
                                     //Work_Start_Month_select: document.getElementById("month_startwork").selectedIndex,
-                                    Work_End_Year: parseInt(year_endwork),
+                                    Work_End_Year: Number.parseInt(year_endwork),
                                     //Work_End_Year_select: document.getElementById("year_endwork").selectedIndex,
-                                    Work_End_Month: parseInt(month_endwork),
+                                    Work_End_Month: Number.parseInt(month_endwork),
                                     //Work_End_Month_select: document.getElementById("month_endwork").selectedIndex,
                                     reeggiist4_cb: reeggiist4_cb,
                                     Infomation: inform_work,
