@@ -345,7 +345,7 @@ class Registab7 extends React.Component {
 	  };
 
 	  componentDidMount(){
-		var token7 = cookie.load('login-token')
+		//var token7 = cookie.load('login-token')
 		/*var ddt7_un1 ='<h3>Table:{sideskill1}</h3> \
 		';*/
 		$('#ddt7s').hide();
@@ -490,7 +490,7 @@ class Registab7 extends React.Component {
 			$('.dropdowntap7').append(ddt7_un3);
 			$('#dangerzonet7').addClass('red_markOnly');
 			$('#dangerzonet7').text('*ท่านเพิ่มทักษะเสริมที่ถนัดครบจำนวนแล้ว');
-			//$('.ahhahat7').hide();
+			$('.ahhahat7').hide();
 		}
 		//console.log(aaa.state.countsideskill);
 		}

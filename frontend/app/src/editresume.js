@@ -96,7 +96,7 @@ class Editresume extends React.Component {
 				"Color": select_color_template
 			}
 			console.log(FormEdit);
-			alert('Confirm Edit Resume');
+			//alert('Confirm Edit Resume');
 			editresumeState.setState({ render: false });
 			EditResume(FormEdit);
 			//window.location = ("myresume");
@@ -277,6 +277,10 @@ class Editresume extends React.Component {
 		/* Zone to show html */
 		$(async function () {
 			console.log('Start Fetch!!');
+			if(cookie.load('Job_EditName')==''){
+				window.history.back();
+				return;
+			}
 			await GetResumeData();
 			editresumeState.setState({ render: true });
 
@@ -885,6 +889,7 @@ class Editresume extends React.Component {
 	componentWillUnmount() {
 		window.removeEventListener('load', this.handleLoad)
 		cookie.save('Edit_tabselect', '');
+		cookie.save('Job_EditName','');
 		$(document).unbind();
 	}
 

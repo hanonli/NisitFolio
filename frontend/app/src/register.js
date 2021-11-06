@@ -287,7 +287,10 @@ class Register extends React.Component {
 				var saveEmail = cookie.load('Email-verify');
 				//console.log(avatar1.src);
 				regis.setState({ render: true });
-				if (avatar1.src == "assets/images/Circleuploadprofile.png") {
+				console.log(avatar1.src);
+				//console.log(window.location.origin+"/assets/images/Circleuploadprofile.png");
+				if (avatar1.src == window.location.origin+"/assets/images/Circleuploadprofile.png") {
+					console.log('ไม่ต้องอัพรูป!');
 					last_avatar = "assets/images/profile_uk.png";
 				}
 				else {
@@ -2629,7 +2632,7 @@ class Register extends React.Component {
 					$("#each_skill3").prop('selectedIndex', for_edit["skill3_select"]);
 					document.getElementById("input_mySlider3").disabled = false;
 				}
-			}, 280);
+			}, 600);
 		});
 
 		document.getElementById("submit-job11").addEventListener("click", function () {
