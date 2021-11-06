@@ -895,6 +895,7 @@ class Register extends React.Component {
 			$('#aca_faculty').val('');
 			$('#aca_field').val('');
 			$('#aca_grade').val('');
+			$('#submit_aca').text = 'เพิ่ม';
 		});
 
 		//func edit aca
@@ -1164,6 +1165,7 @@ class Register extends React.Component {
 			$('#high_name').val('');
 			$('#high_field').val('');
 			$('#high_grade').val('');
+			$('#submit_high').text = 'เพิ่ม';
 		});
 
 		//func edit high

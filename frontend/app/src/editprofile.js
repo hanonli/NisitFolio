@@ -53,14 +53,15 @@ class Editprofile extends React.Component {
 			data: [],
 			render: false,
 			statusRepass: false,
-			statusParent: false
+			statusParent: false,
+			token: cookie.load('login-token'),
 		}
 	}
 
 	componentDidMount() {
 		window.addEventListener('load', this.handleLoad);
 		/********************Zone Define variables & important functions ******************/
-		certdata = []; workdata = []; jobdata = []; sideskilldata=[]; list_tab1=[]; list_tab2=[];
+		certdata = []; workdata = []; jobdata = []; sideskilldata=[]; list_tab1=[]; list_tab2=[]; list_of_high = []; list_of_aca = [];
 		var token = cookie.load('login-token')
 		console.log('Your Token is: ' + token);
 		var Datasetstate = this;
@@ -81,7 +82,7 @@ class Editprofile extends React.Component {
 			$('.tab-content').hide();
 			if (Tab_select == 1) {
 				$('#Edittab1-content').show();
-				$('#basic-date-picker1').attr('placeholder', 'วัน/เดือน/ปี');
+				$('#basic-date-picker').attr('placeholder', 'วัน/เดือน/ปี');
 				$('.edit-pass-now').hide();
 			}
 			else if (Tab_select == 2) {
@@ -117,7 +118,7 @@ class Editprofile extends React.Component {
 			else {
 				//alert("Don't selected");
 				$('#Edittab1-content').show();
-				$('#basic-date-picker1').attr('placeholder', 'วัน/เดือน/ปี');
+				$('#basic-date-picker').attr('placeholder', 'วัน/เดือน/ปี');
 				$('.edit-pass-now').hide();
 			}
 			console.log("Yahaha!");
@@ -126,7 +127,7 @@ class Editprofile extends React.Component {
 				$('.tab-list-item').removeClass('tab-list-active');
 				$('#tab-1').addClass('tab-list-active')
 				$('#Edittab1-content').show();
-				$('#basic-date-picker1').attr('placeholder', 'วัน/เดือน/ปี');
+				$('#basic-date-picker').attr('placeholder', 'วัน/เดือน/ปี');
 				$('.edit-pass-now').hide();
 			});
 
@@ -173,21 +174,139 @@ class Editprofile extends React.Component {
 				$('#Edittab7-content').show();
 			});
 
+		var startYear3 = 1970;
+		var endYear3 = new Date().getFullYear();
+		for (var i = endYear3; i > startYear3; i--) {
+			$('#year_higher').append($('<option />').val(i).html(i));
+			$('#year_secondary').append($('<option />').val(i).html(i));
+			$('#year_startwork').append($('<option />').val(i).html(i));
+			$('#year_endwork').append($('<option />').val(i).html(i));
+		}
+		$('#province').change(function () {
+			var selectedText1 = $(this).find("option:selected").text();
+			console.log(selectedText1);
+			removeOptions(document.getElementById('townny'));
+			GetDistrict(selectedText1);
+		});
+
 		$('#confirmEdit').click(async function () {
-			var BDDate = $('#basic-date-picker1').val();
+			//console.log(file_profilepic);
+			//console.log($('#avatar11').attr('src'));
+			var BDDate = $('#basic-date-picker').val();
 			var last_province = $('#province').val();
 			var last_city = $('#townny').val();
 			var last_aboutme = $('#aboutme2').val();
-			if (RequireCount_pass == 1) {
-				var last_first = $('#re01').val();
-				var last_last = $('#re02').val();
-				var last_gender = $('#sexgen').val();
-				var last_pass = $('#pass05').val();
+			var last_avatar = $('#avatar11').attr('src');
+			var last_first = $('#re01').val();
+			var last_last = $('#re02').val();
+			var last_gender = $('#sexgen').val();
+			//RequireCount_pass = 1;
+			if (last_province == null) {
+				last_province = '';
+			}
+			if (last_city == null) {
+				last_city = '';
+			}
+			if (last_aboutme == null) {
+				last_aboutme = '';
+			}
+			/*var last_tab1 = [];
+			last_tab1.push({
+				Firstname : last_first,
+				Lastname : last_last,
+				Email : Datasetstate.state.data.Email,
+				Gender : last_gender,
+				ProfilePic : last_avatar,
+				Birthday : BDDate,
+			});
+			console.log(list_tab1[0]);
+			console.log(last_tab1[0]);
+			if(last_tab1[0]==list_tab1[0]){
+				console.log('ไม่แก้แล้วจะกดเสร็จสิ้นทำไมอะเตง');
+			}*/
+			var CheckpassOld = 0;
+			if($('#passOld').val() != ""){
+				console.log({username:Datasetstate.state.data.Email,password:$('#passOld').val()});
+				fetch(ApplicationURL.backend + 'auth/login', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						"Access-Control-Allow-Origin": "*",
+						"Access-Control-Allow-Methods": "*",
+						"Access-Control-Allow-Credentials": true
+					},
+					body: JSON.stringify({username:Datasetstate.state.data.Email,password:$('#passOld').val()})
+				})
+				.then(response => response.json())
+				.then((data) => {
+					if ('accessToken' in data) {
+						CheckpassOld = 1;
+					}
+					else if ('error' in data) {
+						CheckpassOld = 0;
+						//$('.reset-pass').addClass('borderred');
+					}
+				}).catch((error) => {
+					console.log(error);
+				});
+				if ($('#passOld').val()==$('#pass05').val()){
+					CheckpassOld = 0;
+					alert('เมิงจะตั้งรหัสผ่านใหม่เป็นรหัสผ่านเดิมเพื่อ???');
+				}
+				else if (RequireCount_pass + CheckpassOld == 2) {
+					var last_pass = $('#pass05').val();
+					console.log('You Pass!');
+					Datasetstate.setState({ render: false });
+					if(last_avatar!=Datasetstate.state.data.ProfilePic){
+						await UploadToS3(file_profilepic);
+						last_avatar = uploadurl;
+						console.log('continue after upload');
+					}
+					/*if (last_province == null) {
+						last_province = '';
+					}
+					if (last_city == null) {
+						last_city = '';
+					}
+					if (last_aboutme == null) {
+						last_aboutme = '';
+					}*/
+					//console.log('grade = ' + last_grade);
+					//console.log(last_eduyear);
+					var FormEdit2 = {
+						Password: last_pass,
+						Firstname: last_first,
+						Lastname: last_last,
+						Birthday: BDDate,
+						Gender: last_gender,
+						AboutMe: last_aboutme,
+						Province: last_province,
+						City: last_city,
+						ProfilePic: last_avatar
+					}
+					//console.log(FormEdit2);
+					console.log(JSON.stringify(FormEdit2));
+					console.log(FormEdit2);
+					PatchEditParent(FormEdit2);
+				}
+				else {
+					console.log('You Wrong!');
+					Datasetstate.setState({ render: true });
+					$('.tab-content').hide();
+					$('.tab-list-item').removeClass('tab-list-active');
+					$('#tab-1').addClass('tab-list-active')
+					$('#Edittab1-content').show();
+				}
+			}
+			else {
 				console.log('You Pass!');
 				Datasetstate.setState({ render: false });
-				await UploadProfileToS3(file_profilepic);
-				console.log('continue after upload');
-				if (last_province == null) {
+				if(last_avatar!=Datasetstate.state.data.ProfilePic){
+					await UploadToS3(file_profilepic);
+					last_avatar = uploadurl;
+					console.log('continue after upload');
+				}
+				/*if (last_province == null) {
 					last_province = '';
 				}
 				if (last_city == null) {
@@ -195,11 +314,10 @@ class Editprofile extends React.Component {
 				}
 				if (last_aboutme == null) {
 					last_aboutme = '';
-				}
+				}*/
 				//console.log('grade = ' + last_grade);
 				//console.log(last_eduyear);
 				var FormEdit2 = {
-					Password: last_pass,
 					Firstname: last_first,
 					Lastname: last_last,
 					Birthday: BDDate,
@@ -207,56 +325,29 @@ class Editprofile extends React.Component {
 					AboutMe: last_aboutme,
 					Province: last_province,
 					City: last_city,
+					ProfilePic: last_avatar
 				}
 				//console.log(FormEdit2);
 				console.log(JSON.stringify(FormEdit2));
 				console.log(FormEdit2);
-				//PatchEditParent(FormEdit2);
-			}
-			else {
-				console.log('You Wrong!');
-				Datasetstate.setState({ render: true });
-				$('.tab-content').hide();
-				$('.tab-list-item').removeClass('tab-list-active');
-				$('#tab-1').addClass('tab-list-active')
-				$('#Edittab1-content').show();
+				PatchEditParent(FormEdit2);
 			}
 		});
+		var uploadurl;
+		function UploadToS3(_img) {
+			return new Promise((resolve, reject) => {
 
-		function UploadProfileToS3(file){
-			uploadFile(file, config)
-				.then(data => { 
-					UploadProfile(data.location);
-				})
-				.catch(err => console.error(err))
-		}
+				uploadFile(_img, config)
+					.then(data => {
+						uploadurl = data.location;
+						//alert(current_i+' push! (from file)');
+						resolve();
 
-		function UploadProfile(picUrl){
-			//alert(111);
-				var datapic = {
-					"ProfilePic":picUrl,
-					"ProfilePicBase64":picUrl,
-				}
-				
-				fetch(ApplicationURL.backend+"Datasetstateter/",{
-				method: "PATCH",
-				headers: {
-					'Authorization': 'Bearer '+Datasetstate.state.token,
-					"Access-Control-Allow-Origin": "*",
-					"Access-Control-Allow-Methods": "*",
-					"Access-Control-Allow-Credentials": true,
-					"Content-Type": "application/json"
-				},
-				body: JSON.stringify(datapic),
-			})
-				.then(response => response.json())
-				.then((datas) => {
-					//console.log(datas);
-					console.log('patch complete!');
-				}).catch((error) => {
-					console.log('Token Error!');
-					//this.setState({ redirect: "/landing" });
-				});
+					})
+					.catch(err => console.error(err))
+
+
+			});
 		}
 
 		console.log("HELLO LV4!");
@@ -329,7 +420,7 @@ class Editprofile extends React.Component {
 					//console.log("HELLO LV5!");
 					file_profilepic = new File([blob], 'user_pf_' + uuidv4(), { lastModified: new Date().getTime(), type: blob.type });
 					console.log(file_profilepic);
-					UploadProfileToS3(file_profilepic);
+					//UploadProfileToS3(file_profilepic);
 				});
 			}
 		});
@@ -470,13 +561,6 @@ pa2.addEventListener('keyup', checkPass, false);
 			}
 		}
 
-		$('#province').change(function () {
-			var selectedText1 = $(this).find("option:selected").text();
-			console.log(selectedText1);
-			removeOptions(document.getElementById('townny'));
-			GetDistrict(selectedText1);
-		});
-
 		function GetDistrict(text) {
 			fetch("https://thaiaddressapi-thaikub.herokuapp.com/v1/thailand/provinces/" + text + '/district',
 				{ method: "GET", })
@@ -509,8 +593,9 @@ pa2.addEventListener('keyup', checkPass, false);
 				{
 					method: "PATCH",
 					headers: {
-						"Content-Type": "application/json",
-						"Accept": "application/json"
+						'Authorization': 'Bearer ' + Datasetstate.state.token,
+                        "Accept": "application/json",
+                        "Content-Type": "application/json"
 					},
 					body: JSON.stringify(pack)
 				}
@@ -524,9 +609,11 @@ pa2.addEventListener('keyup', checkPass, false);
 					}
 					else {
 						console.log("ok");
-						Datasetstate.setState({ render: true });
-						alert('Patch Success');
+						//Datasetstate.setState({ render: true });
+						//alert('Patch Success');
 						//console.log(response);
+						//window.go(-1);
+						window.history.back();
 					}
 					//return response;
 				}).catch(function (error) {
@@ -535,20 +622,12 @@ pa2.addEventListener('keyup', checkPass, false);
 		}
 
 		/*Tab3*/
-		var startYear3 = 1970;
-		var endYear3 = new Date().getFullYear();
-		for (var i = endYear3; i > startYear3; i--) {
-			$('#year_higher').append($('<option />').val(i).html(i));
-			$('#year_secondary').append($('<option />').val(i).html(i));
-			$('#year_startwork').append($('<option />').val(i).html(i));
-			$('#year_endwork').append($('<option />').val(i).html(i));
-		}
 
 		function get_high_id(list_of_high, x) {
 			//var x = 1;
 			list_of_high.forEach(ele => {
 				ele["high_pos"] = x;
-				console.log("x:", x);
+				//console.log("x:", x);
 				x++;
 			});
 			return list_of_high;
@@ -558,7 +637,7 @@ pa2.addEventListener('keyup', checkPass, false);
 			//var x = 1;
 			list_of_aca.forEach(ele => {
 				ele["aca_pos"] = x;
-				console.log("x:", x);
+				//console.log("x:", x);
 				x++;
 			});
 			return list_of_aca;
@@ -585,7 +664,7 @@ pa2.addEventListener('keyup', checkPass, false);
 						Datasetstate.setState({
 							data: datas,
 						})
-						console.log('Datasetstate.state.data :');
+						//console.log('Datasetstate.state.data :');
 						console.log(Datasetstate.state.data);
 						/*Zone to use datas*/
 						//console.log(Datasetstate.state.data.Degree);
@@ -593,7 +672,6 @@ pa2.addEventListener('keyup', checkPass, false);
 							Firstname : Datasetstate.state.data.Firstname,
 							Lastname : Datasetstate.state.data.Lastname,
 							Email : Datasetstate.state.data.Email,
-							Password : Datasetstate.state.data.Password,
 							Gender : Datasetstate.state.data.Gender,
 							ProfilePic : Datasetstate.state.data.ProfilePic,
 							Birthday : Datasetstate.state.data.Birthday,
@@ -604,34 +682,34 @@ pa2.addEventListener('keyup', checkPass, false);
 							City : Datasetstate.state.data.City,
 							Aboutme : Datasetstate.state.data.AboutMe,
 						});
-						Datasetstate.state.data.Degree.forEach(element => {
+						Datasetstate.state.data.Degree.forEach((element,index) => {
 							if (element == 'มัธยมศึกษาตอนปลาย' || element == 'ปวช.') {
 								list_of_high.push({
-									id: Datasetstate.state.data.EducationHistory_id,
+									id: Datasetstate.state.data.EducationHistory_id[index],
 									high_pos: 0,
-									high_name: Datasetstate.state.data.Academy,
+									high_name: Datasetstate.state.data.Academy[index],
 									high_faculty: 'none',
-									high_degree: Datasetstate.state.data.Degree,
-									high_grade: Datasetstate.state.data.Grade,
-									high_field: Datasetstate.state.data.Field_of_study,
-									high_year: Datasetstate.state.data.Education_End_Year,
+									high_degree: Datasetstate.state.data.Degree[index],
+									high_grade: Datasetstate.state.data.Grade[index],
+									high_field: Datasetstate.state.data.Field_of_study[index],
+									high_year: Datasetstate.state.data.Education_End_Year[index],
 								});
 								get_high_id(list_of_high, 1);
-								console.log(list_of_high);
+								//console.log(list_of_high);
 							}
 							else {
 								list_of_aca.push({
-									id: Datasetstate.state.data.EducationHistory_id,
+									id: Datasetstate.state.data.EducationHistory_id[index],
 									aca_pos: 0,
-									aca_name: Datasetstate.state.data.Academy,
-									aca_faculty: Datasetstate.state.data.Facalty,
-									aca_degree: Datasetstate.state.data.Degree,
-									aca_grade: Datasetstate.state.data.Grade,
-									aca_field: Datasetstate.state.data.Field_of_study,
-									aca_year: Datasetstate.state.data.Education_End_Year,
+									aca_name: Datasetstate.state.data.Academy[index],
+									aca_faculty: Datasetstate.state.data.Facalty[index],
+									aca_degree: Datasetstate.state.data.Degree[index],
+									aca_grade: Datasetstate.state.data.Grade[index],
+									aca_field: Datasetstate.state.data.Field_of_study[index],
+									aca_year: Datasetstate.state.data.Education_End_Year[index],
 								});
 								get_aca_id(list_of_aca, 1);
-								console.log(list_of_aca);
+								//console.log(list_of_aca);
 							}
 						});
 						Datasetstate.state.data.Certificate_id.forEach((ele, index) => {
@@ -692,7 +770,10 @@ pa2.addEventListener('keyup', checkPass, false);
 							})
 						});
 						GetProvince();
-						if(Datasetstate.state.data.Province != "" ){GetDistrict(Datasetstate.state.data.Province)};
+						if(Datasetstate.state.data.Province != "" ){
+							console.log('Look my townie!');
+							GetDistrict(Datasetstate.state.data.Province);
+						};
 						//alert(Datasetstate.state.data.AboutMe);
 						/*if(Datasetstate.state.data.AboutMe != "" ){
 							$('#aboutme2').val(Datasetstate.state.data.AboutMe);

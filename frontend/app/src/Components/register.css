@@ -311,6 +311,9 @@
 .margin-top1 {
     margin-top: 10px;
 }
+.margin-top2 {
+  margin-top: 20px;
+}
 
 .fontsmallhere {
     font-size: 16px;
@@ -734,11 +737,12 @@ datalist {
 }
 
 .reset-pass{
-  padding:2%;
+  padding:1%;
   border: 1px solid #939393;
   border-radius: 0.5vw;
   margin-left: 4.5vw;
   padding-left: 3%;
+  padding-right: 2%;
 }
 
 #header-reset-pass-font{

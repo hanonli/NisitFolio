@@ -79,6 +79,7 @@ class Registab7 extends React.Component {
 		var status_now = cookie.load('StatusSelecttab7');
 		if(value!="unselected"){
 			console.log({"SoftSkill": value,"SoftSkillType":status_now});
+			this.setState({ statusDelHeader: "Saving...", imgStatusHeader: "assets/images/outline_cached_black_24dp.png" });
 			fetch(ApplicationURL.backend+"register/addsoftskill", {
                 method: "POST",
                 headers: {
@@ -180,6 +181,7 @@ class Registab7 extends React.Component {
 		</div>\
 	</div>\
 		';
+		this.setState({ statusDelHeader: "Saving...", imgStatusHeader: "assets/images/outline_cached_black_24dp.png" });
 		fetch(ApplicationURL.backend+"register/additionalSkill/"+this.state.ssk_id1, {
 			method: "DELETE",
 			headers: {
@@ -220,7 +222,7 @@ class Registab7 extends React.Component {
 						//console.log(ddt7_un);
 						$('.dropdowntap7').append(ddt7_un1);
 						ddt7_un2 = ddt7_un2.replace("{sideskillName}",this.state.ssk3);
-						ddt7_un1 = ddt7_un2.replace("{ssk_id}", this.state.ssk_id3);
+						ddt7_un2 = ddt7_un2.replace("{ssk_id}", this.state.ssk_id3);
 						//console.log(ddt7_un);
 						$('.dropdowntap7').append(ddt7_un2);
 						$('#dangerzonet7').removeClass('red_markOnly');
@@ -255,6 +257,7 @@ class Registab7 extends React.Component {
 		</div>\
 	</div>\
 		';
+		this.setState({ statusDelHeader: "Saving...", imgStatusHeader: "assets/images/outline_cached_black_24dp.png" });
 		fetch(ApplicationURL.backend+"register/additionalSkill/"+this.state.ssk_id2, {
 			method: "DELETE",
 			headers: {
@@ -278,7 +281,8 @@ class Registab7 extends React.Component {
 					}
 					else if(this.state.countsideskill==3){
 						this.setState({countsideskill:2})
-						ddt7_un2 = ddt7_un2.replace("{sideskillName}", cookie.load('sideskill2'));
+						ddt7_un2 = ddt7_un2.replace("{sideskillName}",this.state.ssk3);
+						ddt7_un2 = ddt7_un2.replace("{ssk_id}", this.state.ssk_id3);
 						//console.log(ddt7_un);
 						$('.dropdowntap7').append(ddt7_un2);
 						$('.ssl3').remove();
@@ -301,6 +305,7 @@ class Registab7 extends React.Component {
 	  onDel3 = () => {
 		//alert(cookie.load('sideskill1')+ '+' +cookie.load('sideskill2')+'+'+cookie.load('sideskill3'));
 		this.setState({countsideskill:2})
+		this.setState({ statusDelHeader: "Saving...", imgStatusHeader: "assets/images/outline_cached_black_24dp.png" });
 		fetch(ApplicationURL.backend+"register/additionalSkill/"+this.state.ssk_id3, {
 			method: "DELETE",
 			headers: {

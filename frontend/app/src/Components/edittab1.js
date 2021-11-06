@@ -36,7 +36,7 @@ class Edittab1 extends React.Component {
 		  token: cookie.load('login-token'),
 		  render:true,
 		  status_changepass : false,
-		  currentDate: new Date()
+		  currentDate: ""
 		};
 	  }
 	  componentDidMount(){
@@ -59,6 +59,26 @@ class Edittab1 extends React.Component {
 				$('#sexgen').append($('<option />').val(element).html(element));
 			}
 		});
+		if(list_tab1[0].Birthday != null){
+			//alert(777);
+			//setInterval(function() { console.log(aaa1.state.currentDate); }, 1000);
+			var tpp = list_tab1[0].Birthday.split('/');
+			var date = tpp[0]; var month = tpp[1]; var year = tpp[2];
+			if(month == '01') month = 'Jan';
+			else if(month == '02') month = 'Feb';
+			else if(month == '03') month = 'Mar';
+			else if(month == '04') month = 'Apr';
+			else if(month == '05') month = 'May';
+			else if(month == '06') month = 'Jun';
+			else if(month == '07') month = 'Jul';
+			else if(month == '08') month = 'Aug';
+			else if(month == '09') month = 'Sep';
+			else if(month == '10') month = 'Oct';
+			else if(month == '11') month = 'Sep';
+			else if(month == '12') month = 'Dec';
+			var day = 'NON'; // Mon, Tue, Wed, ...
+			aaa1.setState({ currentDate: day+' '+month+' '+date+' '+year+' 01:24:50 GMT+0700 (Indochina Time)' });
+		}
 
 		$('#change-pass').on('click', function () {
 			if(aaa1.state.status_changepass){
@@ -71,16 +91,17 @@ class Edittab1 extends React.Component {
 				$('#change-pass').text('ปิด');
 				aaa1.setState({status_changepass:true});
 			}
-	
-})
-
+		})
+		$('#forget-pass-editprofile').on('click', function () {
+			window.location.pathname = '/forgotpassword'
+		})
 	  }
 	render (){
 		return (
 			<div className="Registab1">
 				<img class="status-img-headerrrr114" src={this.state.imgStatusHeader} onContextMenu={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()}></img>
                 <h1 class="status-present-headerrr114">{this.state.statusDelHeader}</h1>
-				<div class="Editresume-box-content1 container-fluid">
+				<div class="regis-box-content1 container-fluid">
 					<div class="row">
 						<div class="col-9 container-fluid">
 								<div class="row">
@@ -118,11 +139,18 @@ class Edittab1 extends React.Component {
 										<label class=" form-f-sex ">วันเกิด<label class="red_markEp1">*</label></label>
 									</div>
 									<div class="col-4 ">
-										<DatePickerBD />
+									<LocalizationProvider dateAdapter={AdapterDateFns} locale={thLocale}>
+									<DatePicker
+										value={this.state.currentDate}
+										onChange={currentDate => this.setState({ currentDate })}
+										maxDate={new Date()}
+										renderInput={(params) => <TextField variant="filled" id="basic-date-picker" {...params} />}
+									/>
+									</LocalizationProvider>
 									</div>
                 				</div>
 								<div class='reset-pass'>
-									<div class="row margin-bottom1">
+									<div class="row">
                                         <div class="col-md-8">
                                             <label class="disablecopypaste" id="header-reset-pass-font">เปลี่ยนรหัสผ่าน</label>
                                         </div>
@@ -131,12 +159,12 @@ class Edittab1 extends React.Component {
 										</div>
 									</div>
 									<div class="edit-pass-now">
-										<div class="row">
+										<div class="row margin-top2">
 											<div class="col-md-3 chidright del-padrightbit">
 												<label class="form-f-sex disablecopypaste">รหัสผ่านปัจจุบัน<label class="red_markEp1">*</label></label>
 											</div>
 											<div class="col-9">
-												<input maxlength="100" type="password" class="form-control dropbtn margin-bottom1 " id="pass05" aria-describedby="passwordHelpInline" required></input>
+												<input maxlength="100" type="password" class="form-control dropbtn margin-bottom1 " id="passOld" aria-describedby="passwordHelpInline" required></input>
 											</div>
 										</div>
 										<div class="row triggerRed1 chidright">
@@ -144,7 +172,7 @@ class Edittab1 extends React.Component {
 												<label class="form-f-cfp disablecopypaste">รหัสผ่านใหม่<label class="red_markEp1">*</label></label>
 											</div>
 											<div class="col-9">
-												<input maxlength="100" type="password" class="form-control dropbtn margin-bottom1 " id="pass06" placeholder="ความยาวอย่างน้อย 8 อักขระ" required></input>
+												<input maxlength="100" type="password" class="form-control dropbtn margin-bottom1 " id="pass05" placeholder="ความยาวอย่างน้อย 8 อักขระ" required></input>
 											</div>
 										</div>
 										<div class="row triggerRed1 chidright">
