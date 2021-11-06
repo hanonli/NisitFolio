@@ -547,7 +547,7 @@ class Resume_topNavbar extends React.Component {
 								<div className='resume_selectresume'> 
 									<div className='resume_selectresume_block'> 
 										<div type='button' className='resume_selectresume_text' style={this.state.index == 0 && this.state.jobname1 != 'ยังไม่มีตำแหน่งงาน' ? Activestyle : null}>
-											<text  id='resume_selectresume1' style={this.state.jobname1 != 'ยังไม่มีตำแหน่งงาน' ?  this.state.index == 0 ? ActiveFontstyle : DefaultFontstyle : DisableFontstyle} onClick={this.state.jobname1 != 'ยังไม่มีตำแหน่งงาน' || this.state.is_owner ? this.portfoliotab1 : null} >{this.state.jobname1}</text> 
+											<text  id='resume_selectresume1' style={this.state.jobname1 != 'ยังไม่มีตำแหน่งงาน' ?  this.state.index == 0 ? ActiveFontstyle : DefaultFontstyle : DisableFontstyle} onClick={this.state.jobname1 != 'ยังไม่มีตำแหน่งงาน' || this.state.is_owner ? this.state.index == 0 ? null : this.portfoliotab1 : null} >{this.state.jobname1}</text> 
 										</div>
 										<div className='resume_selectresume_text' >
 											<span className="resume_verticalline"></span>
@@ -556,7 +556,7 @@ class Resume_topNavbar extends React.Component {
 									</div>
 									<div className='resume_selectresume_block'> 		
 										<div type='button' className='resume_selectresume_text' style={this.state.index == 1 && this.state.jobname2 != 'ยังไม่มีตำแหน่งงาน' ? Activestyle : null}>
-											<text  id='resume_selectresume2' style={this.state.jobname2 != 'ยังไม่มีตำแหน่งงาน' ? this.state.index == 1 ? ActiveFontstyle : DefaultFontstyle : DisableFontstyle} onClick={this.state.jobname2 != 'ยังไม่มีตำแหน่งงาน' || this.state.is_owner ? this.portfoliotab2 : null} >{this.state.jobname2}</text> 
+											<text  id='resume_selectresume2' style={this.state.jobname2 != 'ยังไม่มีตำแหน่งงาน' ? this.state.index == 1 ? ActiveFontstyle : DefaultFontstyle : DisableFontstyle} onClick={this.state.jobname2 != 'ยังไม่มีตำแหน่งงาน' || this.state.is_owner ? this.state.index == 1 ? null : this.portfoliotab2 : null} >{this.state.jobname2}</text> 
 										</div>
 										<div className='resume_selectresume_text' >
 											<span className="resume_verticalline"></span>
@@ -565,7 +565,7 @@ class Resume_topNavbar extends React.Component {
 									</div>
 									<div className='resume_selectresume_block'> 
 										<div type='button' className='resume_selectresume_text' style={this.state.index == 2 && this.state.jobname3 != 'ยังไม่มีตำแหน่งงาน'? Activestyle : null}>
-											<text  id='resume_selectresume3' style={this.state.jobname3 != 'ยังไม่มีตำแหน่งงาน' ? this.state.index == 2 ? ActiveFontstyle : DefaultFontstyle : DisableFontstyle} onClick={this.state.jobname3 != 'ยังไม่มีตำแหน่งงาน' || this.state.is_owner ? this.portfoliotab3 : null} >{this.state.jobname3}</text> 
+											<text  id='resume_selectresume3' style={this.state.jobname3 != 'ยังไม่มีตำแหน่งงาน' ? this.state.index == 2 ? ActiveFontstyle : DefaultFontstyle : DisableFontstyle} onClick={this.state.jobname3 != 'ยังไม่มีตำแหน่งงาน' || this.state.is_owner ? this.state.index == 2 ? null : this.portfoliotab3 : null} >{this.state.jobname3}</text> 
 										</div>
 									</div>
 								</div>
