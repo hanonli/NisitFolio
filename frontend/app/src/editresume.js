@@ -35,7 +35,7 @@ class Editresume extends React.Component {
 			render: false,
 			Color_Resume: '',
 			firstchoosecolor: false,
-			resumeId: '',
+			resumeId: "",
 			selectedOption: "",
 			sample_template: "",
 		}
@@ -104,6 +104,7 @@ class Editresume extends React.Component {
 		}
 
 		function EditResume(pack) {
+			console.log(editresumeState.state.resumeId);
 			fetch(ApplicationURL.backend+"myresume/" + editresumeState.state.resumeId,
 				{
 					method: "PATCH",
@@ -125,7 +126,8 @@ class Editresume extends React.Component {
 					}
 					else {
 						console.log("ok");
-						editresumeState.props.history.push('/myresume');
+						window.location.pathname = '/myresume'
+						//editresumeState.props.history.push('/emailverify');
 						//editresumeState.setState({ render: true });
 						//window.location.href = "http://localhost:3000/myresume";
 					}
@@ -287,13 +289,15 @@ class Editresume extends React.Component {
 			/* Zone Button on this page */
 			$('#cancelChoose').on('click', function () {
 				//alert("YES SIR!!");
-				editresumeState.props.history.push('/myresume');
+				//editresumeState.props.history.push('/myresume');
+				window.location.pathname = "/myresume";
 			});
 			$('#goToeditProfile').on('click', function () {
 				//alert("YES SIR!!");
 				cookie.save('Edit_tabselect', '1');
 				//window.location = ("editprofile");
-				editresumeState.props.history.push('/editprofile');
+				//editresumeState.props.history.push('/editprofile');
+				window.location.pathname = "/editprofile";
 			});
 			$('#submiteditt').on('click', function () {
 				//alert("YES SIR!!");
@@ -890,6 +894,7 @@ class Editresume extends React.Component {
 		window.removeEventListener('load', this.handleLoad)
 		cookie.save('Edit_tabselect', '');
 		cookie.save('Job_EditName','');
+		cookie.save("choose_Port","");
 		$(document).unbind();
 	}
 

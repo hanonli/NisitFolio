@@ -282,6 +282,7 @@ class Editprofile extends React.Component {
 						AboutMe: last_aboutme,
 						Province: last_province,
 						City: last_city,
+						Country: "ประเทศไทย",
 						ProfilePic: last_avatar
 					}
 					//console.log(FormEdit2);
@@ -325,6 +326,7 @@ class Editprofile extends React.Component {
 					AboutMe: last_aboutme,
 					Province: last_province,
 					City: last_city,
+					Country: "ประเทศไทย",
 					ProfilePic: last_avatar
 				}
 				//console.log(FormEdit2);

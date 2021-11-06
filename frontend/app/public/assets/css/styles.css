@@ -3348,6 +3348,7 @@ a.btn-cta-primary-white:hover, .btn-cta-primary-white:hover {
   padding-left: 1.5%;
   padding-right: 1.5%;
   color: black;
+  font-weight: 300;
 }
 
 .tab-list-item-p {
