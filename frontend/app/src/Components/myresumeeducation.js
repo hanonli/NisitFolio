@@ -11,7 +11,7 @@ class EducationContent extends React.Component {
         let year;
         let line3;
         let line3x;
-        if(data.Education_End_Year === 0){
+        if(Number(data.Education_End_Year) === 0){
             content.push(
                 <div class="educationcontentLine1">
                     <p class="degree inline2">{data.Degree}</p>
