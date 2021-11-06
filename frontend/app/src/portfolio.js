@@ -426,7 +426,7 @@ class Portfolio extends React.Component {
 			});*/
 			
 			
-			fetch('http://localhost:2000/register/jobtitle',{
+			fetch(ApplicationURL.backend+'register/jobtitle',{
 				method: "GET",
 				headers: {
 					"Access-Control-Allow-Origin": "*",
@@ -828,7 +828,7 @@ class Portfolio extends React.Component {
 				}
 				
 				if(file == null){ // this pic is url, convert to base64
-					toDataURL(b64Pic, function(dataUrl) {
+					toDataURL(b64Pic.replace('https','http'), function(dataUrl) {
 						b64Pic = dataUrl;
 						//alert('lidd'+lid);
 						nImg.src = b64Pic;

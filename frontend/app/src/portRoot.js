@@ -163,7 +163,7 @@ class PortRoot extends React.Component {
 						
 						var thumb = null;
 						if(data.portfolioPictures[0].Pic[0] != null)
-							thumb = data.portfolioPictures[0].Pic[0];
+							thumb = data.portfolioPictures[0].Pic[0].replace('https','http');
 						else
 							thumb = 'assets/images/emp_thumb.jpg';
 						

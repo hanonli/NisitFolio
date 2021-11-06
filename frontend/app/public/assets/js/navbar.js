@@ -4,6 +4,7 @@ console.log(Cookies.get('name')); //debug cookies
 $(function(){
 
     $(".btn-search").click(function(){
+		if($('#search-input').val().length < 1) return;
 		console.log("search button clicked!");
 		Cookies.set('search-entry', $('#search-input').val())
 		console.log("saved user's input: "+Cookies.get('search-entry')+"as cookies!");
@@ -14,6 +15,7 @@ $(function(){
    });
    
    $(".btn-search-static").click(function(){
+	   if($('#search-input').val().length < 1) return;
 		console.log("search button clicked!");
 		Cookies.set('search-entry', $('#stupidSearch').val())
 		console.log("saved user's input: "+Cookies.get('search-entry')+"as cookies!");

@@ -461,7 +461,7 @@ class PortInfo extends React.Component {
 						
 						var thumb = null;
 						if(data.portfolioPictures[0].Pic.length > 0)
-							thumb = data.portfolioPictures[0].Pic[0];
+							thumb = data.portfolioPictures[0].Pic[0].replace('https','http');
 						else
 							thumb = 'assets/images/emp_thumb.jpg';
 						
@@ -998,7 +998,9 @@ class PortInfo extends React.Component {
 						</div>
 						<br></br>
 						<div class="ds1" />
-						<img class="profile-image img-fluid float-start rounded-circle pointer" id="avatar" src="assets/images/profile_uk.png" alt="profile image" height="150" width="150" />
+						<OverlayTrigger key={'top'} placement={'top'} overlay={ <Tooltip id='tooltip-uic-1'>ดูเรซูเม่ของเจ้าของผลงาน</Tooltip> }>
+							<img class="profile-image img-fluid float-start rounded-circle pointer" id="avatar" src="assets/images/profile_uk.png" alt="profile image" height="150" width="150" />
+						</OverlayTrigger>
 						<af >ผลงานอื่นที่คุณอาจสนใจของ</af>
 						<mhf id="port-owner-b">ชื่อ นามสกุล</mhf>
 					</div>

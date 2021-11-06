@@ -108,7 +108,7 @@ class PDF extends React.Component {
 				var b64Pic = "";
 				console.log(datas);
 				// Option: 1 - Convert to base64 using canvas
-				await convertImgToBase64(datas[resume].ProfilePic, function(base64Img){
+				await convertImgToBase64(datas[resume].ProfilePic.replace('https','http'), function(base64Img){
 					console.log(base64Img);
 					b64Pic = base64Img;
 				});
