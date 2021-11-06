@@ -5,6 +5,7 @@ import MyResumeNothing from './myresumeNothing.js'
 import MyResumeNothingforUser from './myresumeNothingforuser.js'
 import MyResumeLimitforUser from './myresumeLimitforuser.js'
 import MyResumeContent from './myresumeContent.js';
+import PortInfo from '../portInfo';
 import Resume_sideNavbar from './navbar_resume.js';
 import SharingPopup from './sharingpopup';
 import LoadingL from './loadingL';
@@ -153,11 +154,13 @@ class Resume_topNavbar extends React.Component {
 			})
 	}
 
-	getDatas() {
-
-
+	Redirect_Register = () => {
+		window.location = 'register' ;
 	}
 
+	Redirect_Login = () => {
+		window.location = 'landing' ;
+	}
 
 	changePrivacy = (message) => {
 		console.log('begin change prvacy')
@@ -181,11 +184,7 @@ class Resume_topNavbar extends React.Component {
 	}
 
 	handlePrivacy = () => {
-		// var userid = this.state.targetuserID	
-		// var index = this.state.index
-		// console.log('handlePrivacy called')
 		// document.getElementById('icon-myresume-private').src =  'assets/images/outline_grid_view_black_48dp2.png' ;
-		
 		if (this.state.privacy == 'Private') {
 			var pic_src = document.getElementById("icon-myresume-private").src
             document.getElementById("icon-myresume-private").src = "http://localhost:3000/assets/images/outline_cached_black_24dp.png";
@@ -216,7 +215,6 @@ class Resume_topNavbar extends React.Component {
 				privacy: 'Private'
 			})
 		}
-
 	}
 
 	handleEdit = () =>{
@@ -224,7 +222,7 @@ class Resume_topNavbar extends React.Component {
 		window.location = 'editresume'
 	}
 
-	handleBookmark = () =>{
+	BookmarkforUser = () =>{
 		var pic_src = document.getElementById("icon-myresume-bookmark").src
 		// console.log('pic: '+pic_src);
 		if ( pic_src == "http://localhost:3000/assets/images/bookmark_1.png") {
@@ -249,6 +247,19 @@ class Resume_topNavbar extends React.Component {
 			})
             document.getElementById("icon-myresume-bookmark").src = "http://localhost:3000/assets/images/bookmark_1.png";
         }
+	}
+
+	BookmarkforGuest = () =>{		
+		$('#staticBackdropB').modal('show');
+	}
+
+	handleBookmark = () =>{
+		if(this.state.userID != 'none'){
+			this.BookmarkforUser();
+		}else{
+			this.BookmarkforGuest();
+		}
+		
 	}
 
 	portfoliotab1 = () => {
@@ -377,7 +388,6 @@ class Resume_topNavbar extends React.Component {
 							<img  id='icon-myresume-public' src="assets/images/outline_grid_view_black_48dp 2.png" />
 
 						</div>
-
 					</div>
 					)
 			}
@@ -514,6 +524,17 @@ class Resume_topNavbar extends React.Component {
 	showingScreen(){
 			return(
 				<div>
+					<div class="modal fade" id="staticBackdropB" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered">
+							<div class="modal-content minisize">
+								<h4 class="del-b">คุณต้องเข้าสู่ระบบก่อนกด Bookmark ?</h4>
+								<div class="centerverify">
+									<a type="button" class="btn btn-cta-primary-svshort round profile-button grey margin-right-m"  onClick={this.Redirect_Login} data-bs-dismiss="modal">เข้าสู่ระบบ</a>
+									<a type="button" class="btn btn-cta-primary-yellowshort profile-button round" onClick={this.Redirect_Register} data-bs-dismiss="modal">สมัครสมาชิก</a>
+								</div>
+							</div>
+						</div>
+					</div>
 					<SharingPopup/>
 					<div className="Resume_topNavbar" id='topNav'>
 						<div  className='myresumetoppath'> 
@@ -591,13 +612,12 @@ class Resume_topNavbar extends React.Component {
 					"Content-Type": "application/json"
 				},
 			})
-				.then(response => response.text())
+				.then(response => response.text() )
 				.then((datas) => {
 					this.setState({
-						userID: datas,
+						userID: datas != "{\"statusCode\":401,\"message\":\"Unauthorized\"}" ? datas : 'none',
 					})
-				});
-
+				})
 		if ( ssid != 'none') {
 			// console.log('case1')
 			// console.log('ssid incase1: '+ ssid)
@@ -687,12 +707,6 @@ class Resume_topNavbar extends React.Component {
 			// console.log('call getResumeID');
 			this.getResumeID(this.state.index);
 		}
-		// console.log('in render() state before : ' + JSON.stringify(this.state))
-		// if(this.state.resumeID !== '' && this.state.loading){
-		// 	// alert('call getDatas');
-		// 	this.getDatas();
-		// }
-
 
 		// console.log('in render() state : ' + JSON.stringify(this.state))	
 		// console.log('in render() skil : ' + JSON.stringify(this.state.additionalSkills))

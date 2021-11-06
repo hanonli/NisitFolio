@@ -21,7 +21,7 @@ class SignInLand extends React.Component {
     }
 
     async loginUser(credentials) {
-        fetch(ApplicationURL.backend+'auth/login', {
+        fetch(ApplicationURL.backend + 'auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ class SignInLand extends React.Component {
             .then((data) => {
                 if ('accessToken' in data) {
                     cookie.save('login-token', data["accessToken"], { path: '/' })
-					//alert(data["accessToken"]);
+                    //alert(data["accessToken"]);
                     window.location.href = "/home";
                 }
                 else if ('error' in data) {
