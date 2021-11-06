@@ -282,7 +282,6 @@ class Resume_topNavbar extends React.Component {
 	}
 
 	portfoliotab1 = () => {
-		// console.log('Porfoliotab1 is called')
 		var index = 0;
 		this.setState({
 			resumeID: '',
@@ -303,14 +302,11 @@ class Resume_topNavbar extends React.Component {
 			loading: true,
 			fetch: true,
 		});
-		// console.log('call GetreumeID from tab1')
+		cookie.save('resume-index',0)
 		this.getResumeID(index);
-		// this.getDatas();
 	}
 
 	portfoliotab2 = () => {
-		// console.log('Porfoliotab2 is called')
-		// console.log('before change state: ' + JSON.stringify(this.state))
 		var index = 1;
 		this.setState({
 			resumeID: '',
@@ -331,9 +327,8 @@ class Resume_topNavbar extends React.Component {
 			loading: true,
 			fetch: true,
 		})
+		cookie.save('resume-index',1)
 		this.getResumeID(index);
-		// this.getDatas();
-		// this.forceUpdate()
 	}
 
 	portfoliotab3 = () => {
@@ -357,6 +352,7 @@ class Resume_topNavbar extends React.Component {
 			loading: true,
 			fetch: true,
 		})
+		cookie.save('resume-index',2)
 		this.getResumeID(index);
 
 	}
@@ -445,6 +441,7 @@ class Resume_topNavbar extends React.Component {
 		else if( login_token != 'none' ){
 			// console.log('login-tokenfdfdf :' + login_token)
 			console.log('userud ub fe:'+this.state.userID)
+			console.log('going to fetch bookmark')
 			fetch("https://nisitfolio-backend.herokuapp.com/bookmark/" + this.state.userID +'&&total',{
 				method: "GET",
 				headers: {
@@ -490,7 +487,55 @@ class Resume_topNavbar extends React.Component {
 				// console.log('datas of bookamrk: '+JSON.stringify(datas))
 				// console.log('bookmark length: '+JSON.stringify(datas.length))
 			})
+
+
+			console.log('after fetch bookmark')
 			console.log('not found simislar one this pateern is beig use')
+			fetch("https://nisitfolio-backend.herokuapp.com/bookmark/" + this.state.userID +'&&total',{
+				method: "GET",
+				headers: {
+					"Access-Control-Allow-Origin": "*",
+					"Access-Control-Allow-Methods": "*",
+					"Access-Control-Allow-Credentials": true,
+					"Content-Type": "application/json",
+					},
+			})
+			.then(response => response.json() )
+			.then((datas) => {
+				var data_range = datas.length
+				console.log('range of bookmark is/: '+data_range)
+				for ( var i = 0 ; i < data_range ; i++ ){
+					var data = datas[i]
+					console.log('compare ' + data.thatUserId + ' ' + cookie.load('search-userid'))
+					if(data.thatUserId == cookie.load('search-userid')){
+						console.log('found similar userid in bookmark')
+						console.log('found simislar one this pateern is beig use')
+						return (
+							<div className='resume_selectoption' >
+								<div className='resume_selectoption_block'>
+									<div type='button' onClick={this.handleBookmark} >
+										<img  id='icon-myresume-bookmark' src={ window.location.origin + "/assets/images/bookmark_2.png" }/>
+									</div>
+												
+								</div>
+								
+								<span className='resume_verticalline2'> </span>
+			
+								<div className='resume_selectoption_block'>
+									<div type='button'>
+										<img   id='icon-myresume-share' 	src={ window.location.origin + "/assets/images/outline_ios_share_black_48dp.png"}data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharingResume" alt="" />
+									</div>
+								</div>
+											
+							</div>
+						)
+					}else{
+						console.log('not found simislar one')
+					}
+				}
+				// console.log('datas of bookamrk: '+JSON.stringify(datas))
+				// console.log('bookmark length: '+JSON.stringify(datas.length))
+			})
 			return (
 				<div className='resume_selectoption' >
 					<div className='resume_selectoption_block'>
@@ -536,6 +581,7 @@ class Resume_topNavbar extends React.Component {
 	}
 
 	content() {
+		console.log('ogin : '+cookie.load('login-token'))
 		var login_token = cookie.load('login-token') != undefined ? cookie.load('login-token') : 'none'
 
 		// console.log('user-token in content: ' + JSON.stringify(user_token))
@@ -666,12 +712,8 @@ class Resume_topNavbar extends React.Component {
 		// console.log('sessionid from search-userid: '+ JSON.stringify(ssid))
 		var sPageURL = window.location.search.substring(1)
 		var isURLBlank = (sPageURL == '')
-		// console.log(sPageURL)
-		// console.log(isURLBlank)
-		// console.log( 'not undefined: '+ (ssid != 'undefined'))
-		// console.log( 'not blank: '+ (ssid != ''))
-		// console.log(( undefined))
-		// console.log(( null))
+		cookie.save('resume-index',0)
+
 		fetch("https://nisitfolio-backend.herokuapp.com/profile/", {
 				method: "GET",
 				headers: {
