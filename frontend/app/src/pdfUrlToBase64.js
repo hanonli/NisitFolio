@@ -1,6 +1,7 @@
 import labelmake from "labelmake";
 import React from 'react';
 import LoadingL from './Components/loadingL';
+import ApplicationURL from './Components/path';
 import { Redirect } from "react-router-dom";
 import cookie from 'react-cookies'
 import tahomo from './font/tahomo';
@@ -1357,7 +1358,7 @@ class PDF extends React.Component {
 
 		
 		//fetch("http://localhost:3000/temp_resume",{
-		fetch("http://localhost:2000/myresume/",{
+		fetch(ApplicationURL.backend+"myresume/",{
 			method: "GET",
 			headers: {
 				'Authorization': 'Bearer '+token,

@@ -272,6 +272,10 @@ class PortInfo extends React.Component {
 				
 				$('#avatar').attr('src',portfolioData.ProfilePic);
 				
+				$("#avatar").click(function() {
+					window.location.assign("/myresume/"+portfolioData.UserId);
+				});
+				
 				$("#to-regis").click(function() {
 					refThis.setState({ redirect: "/register" });
 				});
@@ -994,7 +998,7 @@ class PortInfo extends React.Component {
 						</div>
 						<br></br>
 						<div class="ds1" />
-						<img class="profile-image img-fluid float-start rounded-circle" id="avatar" src="assets/images/profile_uk.png" alt="profile image" height="150" width="150" />
+						<img class="profile-image img-fluid float-start rounded-circle pointer" id="avatar" src="assets/images/profile_uk.png" alt="profile image" height="150" width="150" />
 						<af >ผลงานอื่นที่คุณอาจสนใจของ</af>
 						<mhf id="port-owner-b">ชื่อ นามสกุล</mhf>
 					</div>

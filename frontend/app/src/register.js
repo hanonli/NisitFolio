@@ -48,6 +48,7 @@ class Register extends React.Component {
 		var regis = this;
 		window.addEventListener('load', this.handleLoad);
 		console.log("YEAHXXX!");
+		console.log(window.location.origin);
 		var uploadurl;
 		function UploadToS3(_img) {
 			return new Promise((resolve, reject) => {
