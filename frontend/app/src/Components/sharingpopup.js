@@ -223,7 +223,7 @@ class SharingPopup extends React.Component {
         </div>
         <div class="modal fade" id="sharingqr1" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content sharingSize3 container-fluid">
+                <div class="modal-content sharingSize4 container-fluid">
                     <div class="row margin-bottom1">
                         <h1 class="SharingFontHead col-10" id="exampleModalToggleLabel2">Sharing QR</h1>
                     </div>
@@ -231,9 +231,10 @@ class SharingPopup extends React.Component {
                         <img id='qr-image' class="col-6" src='assets/images/clock.png' height='150' width='50'></img> 
                         <div class='col-6'>
                             <div class='row font-shareqr-resume'>
+                                <label class='head-shareqr-resume'>QR Code สร้างเสร็จแล้ว!</label>
                                 <p class=''>คุณสามารถเข้าถึง MyResume ได้จาก QR Code ด้านซ้าย</p>
                                 <p class=''>หรือ</p>
-                                <button class="btn btn-cta-primary-yellowwide round profile-button mg-l1" target="_blank" id="exportQrcode" >บันทึกภาพ QR Code</button>
+                                <button class="btn btn-cta-primary-yellow round profile-button" target="_blank" id="exportQrcode" >บันทึกภาพ QR Code</button>
                             </div>
                         </div>
                     </div>

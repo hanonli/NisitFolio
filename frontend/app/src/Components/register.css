@@ -464,6 +464,13 @@ datalist {
   padding-top: 0.7vw;
 }
 
+.sharingSize4 {
+  height: 15vw;
+  width: 150vw;
+  border-radius: 1vw;
+  padding-top: 0.7vw;
+}
+
 .SharingFontHead {
   margin-left: 1vw;
   margin-top: 0.6vw;
@@ -770,6 +777,7 @@ datalist {
 
 .font-sharelink-resume {
   text-align: center;
+  color: #000;
 }
 
 .font-shareqr-resume {
@@ -778,3 +786,8 @@ datalist {
   padding-right:10%;
 }
 
+.head-shareqr-resume {
+  font-size:18px;
+  font-weight: 500;
+  color:#000 !important
+}
