@@ -212,6 +212,8 @@ class Editresume extends React.Component {
 								//console.log(list_of_aca);
 							}
 						});
+						console.log(list_of_high);
+						console.log(list_of_aca);
 						//console.log("Certificate_ResumeId:", editresumeState.state.data.hasOwnProperty('Certificate_ResumeId'));
 						editresumeState.state.data.Certificate_id.forEach((ele, index) => {
 							certdata.push({
