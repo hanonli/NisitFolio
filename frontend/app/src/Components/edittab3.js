@@ -1,16 +1,40 @@
 import React, { useState } from 'react';
 import Registab3_addHigher from './registab3_addHigher';
 import Registab3_addSecondary from './registab3_addSecondary';
+import cookie from 'react-cookies'
+import ApplicationURL from './path';
 import './register.css'
 import './registab3.css'
 
 class Registab3 extends React.Component {
+    constructor(props) {
+		super(props);
+		this.state = {
+          statusUpload3: "",
+          imgStatus3: "",
+		  statusDelHeader: "Saved",
+          imgStatusHeader: "assets/images/outline_cloud_done_black_24dp.png",
+		  token: cookie.load('login-token'),
+		  render:true,
+          status_Eduid_now:""
+		};
+	  }
 
     componentDidMount() {
 		window.addEventListener('load', this.handleLoad);
-		const script = document.createElement("script");
+		/*const script = document.createElement("script");
 		script.src = "assets/js/registab3_script.js";
-		document.body.appendChild(script);
+		document.body.appendChild(script);*/
+        var aaa3 = this;
+        var list_of_aca,list_of_high;
+        var choose_function3 = -1; //default stutus before add(2) or edit(1)
+        var for_editaca,for_edithigh;
+        var myaca = this.props.myaca_data ? this.props.myaca_data : [];
+        list_of_aca = [...myaca];
+        var myhigh = this.props.myhigh_data ? this.props.myhigh_data : [];
+        list_of_high = [...myhigh];
+        console.log(list_of_aca);
+        console.log(list_of_high);
 	}
 
 	componentWillUnmount() { 
@@ -20,8 +44,10 @@ class Registab3 extends React.Component {
 	render(){
 
 		return (
-			<div className="Registab3 regis-box-content1">
-				<div class='container-fluid'>
+			<div className="Registab3">
+                <img class="status-img-headerrrr114" src={this.state.imgStatusHeader} onContextMenu={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()}></img>
+                <h1 class="status-present-headerrr114">{this.state.statusDelHeader}</h1>
+				<div class='regis-box-content1 container-fluid'>
 					<div class='col-16'>
 						<div class='row'>
 								<div className='registab3_formbox col-6'>
@@ -45,6 +71,8 @@ class Registab3 extends React.Component {
 											<div class="modal-content modalworkaddH" >
 												<div class='modal-body'>
 													<h1 class='modal-title' id='regisModallabel1' >เพิ่มประวัติการศึกษา</h1>
+                                                    <img class="status-img-saving-3r3r" src={this.state.imgStatus3} height="36" onContextMenu={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()}></img>
+                                                    <h5 class="inline status-saving5555" id="for-error-dgd">{this.state.statusUpload3}</h5>
 													<div className='addHigher'>
                                                         <div className="Registab3_addHigher ">
                                                             <form  id='HigherForm'>
@@ -139,6 +167,8 @@ class Registab3 extends React.Component {
 											<div class="modal-content modalworkaddH2" >
 												<div class='modal-body'>
 													<h1 class='modal-title' id='regisModallabel2' >เพิ่มประวัติการศึกษา</h1>
+                                                    <img class="status-img-saving-3r3r" src={this.state.imgStatus3} height="36" onContextMenu={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()}></img>
+                                                    <h5 class="inline status-saving5555" id="for-error-dgd">{this.state.statusUpload3}</h5>
 													<div className='addSecondary'>
 													<div className="Registab3_addSecondary">
 				

@@ -1,11 +1,33 @@
 import React, { Component } from 'react'
+import cookie from 'react-cookies'
+import ApplicationURL from './path';
+import $ from 'jquery';
 
 class Registab2 extends React.Component {
-
+	constructor(props) {
+		super(props);
+		this.state = {
+		  statusDelHeader: "Saved",
+          imgStatusHeader: "assets/images/outline_cloud_done_black_24dp.png",
+		  token: cookie.load('login-token'),
+		  render:true
+		};
+	  }
+	  componentDidMount(){
+		var myaboutme = this.props.myaboutme_data ? this.props.myaboutme_data : [];
+        var list_tab2 = [...myaboutme];
+		//console.log(list_tab2);
+		if(list_tab2.Aboutme!=""){
+			//alert(list_tab2[0].Aboutme);
+			$('#aboutme2').val(list_tab2[0].Aboutme);
+		}
+	  }
 	render (){
 		return (
-			<div className="Registab2 regis-box-content1">
-				<div class="container-fluid margin-top1">
+			<div className="Registab2">
+				<img class="status-img-headerrrr114" src={this.state.imgStatusHeader} onContextMenu={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()}></img>
+                <h1 class="status-present-headerrr114">{this.state.statusDelHeader}</h1>
+				<div class="regis-box-content1 container-fluid">
 					<form class="row">
 						<div class="col-1"></div>
 						<div class="col-10">

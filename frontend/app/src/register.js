@@ -111,7 +111,7 @@ class Register extends React.Component {
 		}
 
 		/* *************** For Rung tabs *************** */
-		var last_avatar = "http://localhost:3000/assets/images/profile_uk.png";
+		var last_avatar = "assets/images/profile_uk.png";
 
 		window.onload = () => {
 			//const myInput1 = document.getElementById('pass05');
@@ -286,8 +286,8 @@ class Register extends React.Component {
 				var saveEmail = cookie.load('Email-verify');
 				//console.log(avatar1.src);
 				regis.setState({ render: true });
-				if (avatar1.src == "http://localhost:3000/assets/images/Circleuploadprofile.png") {
-					last_avatar = "http://localhost:3000/assets/images/profile_uk.png";
+				if (avatar1.src == "assets/images/Circleuploadprofile.png") {
+					last_avatar = "assets/images/profile_uk.png";
 				}
 				else {
 					await UploadToS3(file_profilepic);
@@ -782,7 +782,7 @@ class Register extends React.Component {
 					else {
 						console.log("ok");
 						regis.setState({ render: true });
-						window.location.href = "http://localhost:3000/emailverify";
+						window.location.pathname = '/emailverify'
 						//console.log(response);
 					}
 					//return response;
