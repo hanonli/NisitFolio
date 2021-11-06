@@ -594,8 +594,9 @@ class Resume_topNavbar extends React.Component {
 
 		// var ssid = this.props.userid
 		var token = cookie.load('login-token')
-		var ssid = cookie.load('search-userid') != 'undefined' ? cookie.load('search-userid') : 'none'
-		// console.log('sessionid search-userid: '+ ssid)
+		// console.log('searc:' + cookie.load('search-userid'))
+		var search_userID = cookie.load('search-userid') != '' ? cookie.load('search-userid') : 'none'
+		// console.log('sessionid search-userid: '+ search_userID)
 		// console.log('sessionid from search-userid: '+ JSON.stringify(ssid))
 		var sPageURL = window.location.search.substring(1)
 		var isURLBlank = (sPageURL == '')
@@ -621,15 +622,15 @@ class Resume_topNavbar extends React.Component {
 						userID: datas != "{\"statusCode\":401,\"message\":\"Unauthorized\"}" ? datas : 'none',
 					})
 				})
-		if ( ssid != 'none') {
-			// console.log('case1')
+		if ( search_userID != 'none') {
+			console.log('case1')
 			// console.log('ssid incase1: '+ ssid)
 			this.setState({
-				targetuserID: ssid,
+				targetuserID: search_userID,
 				is_owner: false,
 			})
 		} else {
-			// console.log('case2')
+			console.log('case2')
 			// console.log('token: ' + token)
 			var token = cookie.load('login-token')
 			fetch("https://nisitfolio-backend.herokuapp.com/profile/", {
@@ -720,6 +721,7 @@ class Resume_topNavbar extends React.Component {
 		return (
 
 			this.state.loading ? this.loadingScreen() : this.showingScreen()
+			
 			// this.state.loading ? this.loadingScreen() : this.state.fetch? this.showingScreen() : this.resumeNothing()
 		);
 	}
