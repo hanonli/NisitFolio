@@ -13,10 +13,11 @@ class Forgotpassword extends React.Component{
     render() {
         var token = this.props.match.params.token;
         console.log(token);
-        var user = cookie.load('login-user');
-        if(user !== "none"){
+        //disable
+        //var user = cookie.load('login-user');
+        /*if(user !== "none"){
             window.location = ("home");
-        }
+        }*/
         var token = this.props.match.params.token?this.props.match.params.token:"none";
         console.log(token);
         let res;
