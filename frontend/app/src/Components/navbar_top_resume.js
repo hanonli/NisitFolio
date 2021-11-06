@@ -5,7 +5,6 @@ import MyResumeNothing from './myresumeNothing.js'
 import MyResumeNothingforUser from './myresumeNothingforuser.js'
 import MyResumeLimitforUser from './myresumeLimitforuser.js'
 import MyResumeContent from './myresumeContent.js';
-import PortInfo from '../portInfo';
 import Resume_sideNavbar from './navbar_resume.js';
 import SharingPopup from './sharingpopup';
 import LoadingL from './loadingL';
@@ -184,10 +183,12 @@ class Resume_topNavbar extends React.Component {
 	}
 
 	handlePrivacy = () => {
-		// document.getElementById('icon-myresume-private').src =  'assets/images/outline_grid_view_black_48dp2.png' ;
+		// document.getElementById('icon-myresume-private').src =  '/assets/images/outline_grid_view_black_48dp2.png' ;
+		var locate =  window.location.origin 
 		if (this.state.privacy == 'Private') {
+			
 			var pic_src = document.getElementById("icon-myresume-private").src
-            document.getElementById("icon-myresume-private").src = "http://localhost:3000/assets/images/outline_cached_black_24dp.png";
+            document.getElementById("icon-myresume-private").src = locate + "/assets/images/outline_cached_black_24dp.png";
 
 			var message = { "Resume_Privacy" : "Members"}
 			this.changePrivacy(message)
@@ -197,7 +198,7 @@ class Resume_topNavbar extends React.Component {
 			})
 		} else if (this.state.privacy == 'Member' || this.state.privacy == 'Members') {
 			var pic_src = document.getElementById("icon-myresume-member").src
-            document.getElementById("icon-myresume-member").src = "http://localhost:3000/assets/images/outline_cached_black_24dp.png";
+            document.getElementById("icon-myresume-member").src = locate + "/assets/images/outline_cached_black_24dp.png";
 
 			var message = { "Resume_Privacy" : "Public"}
 			this.changePrivacy(message)
@@ -207,7 +208,7 @@ class Resume_topNavbar extends React.Component {
 			})
 		} else if (this.state.privacy == 'Public') {
 			var pic_src = document.getElementById("icon-myresume-public").src
-            document.getElementById("icon-myresume-public").src = "http://localhost:3000/assets/images/outline_cached_black_24dp.png";
+            document.getElementById("icon-myresume-public").src = locate + "/assets/images/outline_cached_black_24dp.png";
 			var message = { "Resume_Privacy" : "Private"}
 			this.changePrivacy(message)
 			console.log('change loading to Private')
@@ -225,27 +226,45 @@ class Resume_topNavbar extends React.Component {
 	BookmarkforUser = () =>{
 		var pic_src = document.getElementById("icon-myresume-bookmark").src
 		// console.log('pic: '+pic_src);
-		if ( pic_src == "http://localhost:3000/assets/images/bookmark_1.png") {
-			fetch("https://nisitfolio-backend.herokuapp.com/bookmark/saveBookmark/",{
+		if ( pic_src == window.location.origin + "/assets/images/bookmark_1.png") {
+			fetch("https://nisitfolio-backend.herokuapp.com/bookmark/saveBookmark",{
 				method: "POST",
-				body: {
-					'userID' : this.state.userID,
+				headers: {
+					"Access-Control-Allow-Origin": "*",
+					"Access-Control-Allow-Methods": "*",
+					"Access-Control-Allow-Credentials": true,
+					"Content-Type": "application/json",
+					},
+				body: JSON.stringify(
+					{
+					'userId' : this.state.userID,
 					'thatUserId' : this.state.targetuserID,
 					'type' : 'profile',
-				}
+					}
+				)
 			})
-            document.getElementById("icon-myresume-bookmark").src = "http://localhost:3000/assets/images/bookmark_2.png";
+			.then(response => console.log('create : '+JSON.stringify(response.status) ))
+            document.getElementById("icon-myresume-bookmark").src = window.location.origin + "/assets/images/bookmark_2.png";
         }
         else {
-			fetch("https://nisitfolio-backend.herokuapp.com/bookmark/saveBookmark/",{
+			fetch("https://nisitfolio-backend.herokuapp.com/bookmark/saveBookmark",{
 				method: "DELETE",
-				body: {
-					'userID' : this.state.userID,
+				headers: {
+					"Access-Control-Allow-Origin": "*",
+					"Access-Control-Allow-Methods": "*",
+					"Access-Control-Allow-Credentials": true,
+					"Content-Type": "application/json",
+					},
+				body: JSON.stringify(
+					{
+					'userId' : this.state.userID,
 					'thatUserId' : this.state.targetuserID,
 					'type' : 'profile',
-				}
+					}
+				)
 			})
-            document.getElementById("icon-myresume-bookmark").src = "http://localhost:3000/assets/images/bookmark_1.png";
+			.then(response => console.log('delete : '+JSON.stringify(response.status) ))
+            document.getElementById("icon-myresume-bookmark").src = window.location.origin + "/assets/images/bookmark_1.png";
         }
 	}
 
@@ -349,7 +368,7 @@ class Resume_topNavbar extends React.Component {
 					<div className='resume_topnav' >
 						<div className='topnav_section1' type='button' onClick={ this.state.is_owner ? this.handlePrivacy : null } >
 
-							<img  id='icon-myresume-private' src="assets/images/outline_lock_black_24dp.png" />
+							<img  id='icon-myresume-private' src="/assets/images/outline_lock_black_24dp.png" />
 
 						</div>
 
@@ -361,7 +380,7 @@ class Resume_topNavbar extends React.Component {
 					<div className='resume_topnav' >
 						<div className='topnav_section1' type='button' onClick={ this.state.is_owner ? this.handlePrivacy : null}>
 
-							<img  id='icon-myresume-member' src="assets/images/outline_people_black_24dp.png" />
+							<img  id='icon-myresume-member' src="/assets/images/outline_people_black_24dp.png" />
 
 						</div>
 
@@ -373,7 +392,7 @@ class Resume_topNavbar extends React.Component {
 					<div className='resume_topnav' >
 						<div className='topnav_section1' type='button' onClick={ this.state.is_owner ? this.handlePrivacy : null}>
 
-							<img  id='icon-myresume-public' src="assets/images/outline_public_black_24dp.png" />
+							<img  id='icon-myresume-public' src="/assets/images/outline_public_black_24dp.png" />
 
 						</div>
 
@@ -385,7 +404,7 @@ class Resume_topNavbar extends React.Component {
 					<div className='resume_topnav' >
 						<div className='topnav_section1' type='button'>
 
-							<img  id='icon-myresume-public' src="assets/images/outline_grid_view_black_48dp 2.png" />
+							<img  id='icon-myresume-public' src="/assets/images/outline_grid_view_black_48dp 2.png" />
 
 						</div>
 					</div>
@@ -395,25 +414,25 @@ class Resume_topNavbar extends React.Component {
 	}
 
 	handleSection2 = () => {
-		// console.log('login token1:'+ cookie.load('login-token'))
+		console.log('login token1:'+ cookie.load('login-token'))
 		var login_token = cookie.load('login-token') != undefined ? cookie.load('login-token') : 'none'
-		// console.log('login token2:'+login_token)
+		console.log('login token2:'+login_token)
 		if (this.state.is_owner) {
 				// console.log('you are owner2')
 			return (
 				<div className='resume_selectoption' >
 					<div className='resume_selectoption_block'>
 						<div type='button' onClick={this.state.fetch ? this.handleEdit : null} >
-							<img  id='icon-myresume-edit' src="assets/images/blackedit.png"/>
+							<img  id='icon-myresume-edit' src="/assets/images/blackedit.png"/>
 						</div>
 									
-					</div>
+					</div>	
 					
 					<span className='resume_verticalline2'> </span>
 
 					<div className='resume_selectoption_block'>
 						<div type='button'>
-							<img   id='icon-myresume-share' 	src="assets/images/outline_ios_share_black_48dp.png"data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharingResume" alt="" />
+							<img   id='icon-myresume-share' 	src="/assets/images/outline_ios_share_black_48dp.png"data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharingResume" alt="" />
 						</div>
 						
 									
@@ -425,11 +444,58 @@ class Resume_topNavbar extends React.Component {
 		}
 		else if( login_token != 'none' ){
 			// console.log('login-tokenfdfdf :' + login_token)
+			console.log('userud ub fe:'+this.state.userID)
+			fetch("https://nisitfolio-backend.herokuapp.com/bookmark/" + this.state.userID +'&&total',{
+				method: "GET",
+				headers: {
+					"Access-Control-Allow-Origin": "*",
+					"Access-Control-Allow-Methods": "*",
+					"Access-Control-Allow-Credentials": true,
+					"Content-Type": "application/json",
+					},
+			})
+			.then(response => response.json() )
+			.then((datas) => {
+				var data_range = datas.length
+				console.log('range of bookmark is: '+data_range)
+				for ( var i = 0 ; i < data_range ; i++ ){
+					var data = datas[i]
+					console.log('compare ' + data.thatUserId + ' ' + cookie.load('search-userid'))
+					if(data.thatUserId == cookie.load('search-userid')){
+						console.log('found similar userid in bookmark')
+						console.log('found simislar one this pateern is beig use')
+						return (
+							<div className='resume_selectoption' >
+								<div className='resume_selectoption_block'>
+									<div type='button' onClick={this.handleBookmark} >
+										<img  id='icon-myresume-bookmark' src={ window.location.origin + "/assets/images/bookmark_2.png" }/>
+									</div>
+												
+								</div>
+								
+								<span className='resume_verticalline2'> </span>
+			
+								<div className='resume_selectoption_block'>
+									<div type='button'>
+										<img   id='icon-myresume-share' 	src={ window.location.origin + "/assets/images/outline_ios_share_black_48dp.png"}data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharingResume" alt="" />
+									</div>
+								</div>
+											
+							</div>
+						)
+					}else{
+						console.log('not found simislar one')
+					}
+				}
+				// console.log('datas of bookamrk: '+JSON.stringify(datas))
+				// console.log('bookmark length: '+JSON.stringify(datas.length))
+			})
+			console.log('not found simislar one this pateern is beig use')
 			return (
 				<div className='resume_selectoption' >
 					<div className='resume_selectoption_block'>
 						<div type='button' onClick={this.handleBookmark} >
-							<img  id='icon-myresume-bookmark' src="assets/images/bookmark_1.png"/>
+							<img  id='icon-myresume-bookmark' src={ window.location.origin + "/assets/images/bookmark_1.png"}/>
 						</div>
 									
 					</div>
@@ -438,7 +504,7 @@ class Resume_topNavbar extends React.Component {
 
 					<div className='resume_selectoption_block'>
 						<div type='button'>
-							<img   id='icon-myresume-share' 	src="assets/images/outline_ios_share_black_48dp.png"data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharingResume" alt="" />
+							<img   id='icon-myresume-share' 	src={ window.location.origin + "/assets/images/outline_ios_share_black_48dp.png"} data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharingResume" alt="" />
 						</div>
 					</div>
 								
@@ -450,7 +516,7 @@ class Resume_topNavbar extends React.Component {
 				<div className='resume_selectoption' >
 					<div className='resume_selectoption_block'>
 						<div type='button' onClick={this.handleBookmark} >
-							<img  id='icon-myresume-bookmark' src="assets/images/bookmark_1.png"/>
+							<img  id='icon-myresume-bookmark' src={ window.location.origin + "/assets/images/bookmark_1.png" }/>
 						</div>
 									
 					</div>
@@ -459,7 +525,7 @@ class Resume_topNavbar extends React.Component {
 
 					<div className='resume_selectoption_block'>
 						<div type='button' >
-							<img   id='icon-myresume-share' 	src="assets/images/outline_ios_share_black_48dp.png" data-bs-toggle={ this.state.fetch ? "modal" : null } toggle-type="dynamic" data-bs-target="#sharingResume" alt="" />
+							<img   id='icon-myresume-share' 	src={ window.location.origin + "/assets/images/outline_ios_share_black_48dp.png" } data-bs-toggle={ this.state.fetch ? "modal" : null } toggle-type="dynamic" data-bs-target="#sharingResume" alt="" />
 						</div>
 					</div>
 								
@@ -625,6 +691,7 @@ class Resume_topNavbar extends React.Component {
 		if ( search_userID != 'none') {
 			console.log('case1')
 			// console.log('ssid incase1: '+ ssid)
+			
 			this.setState({
 				targetuserID: search_userID,
 				is_owner: false,
@@ -712,7 +779,7 @@ class Resume_topNavbar extends React.Component {
 			this.getResumeID(this.state.index);
 		}
 
-		// console.log('in render() state : ' + JSON.stringify(this.state))	
+		console.log('in render() state : ' + JSON.stringify(this.state))	
 		// console.log('in render() skil : ' + JSON.stringify(this.state.additionalSkills))
 		// console.log('render this.state.loading: '+this.state.loading)
 		// console.log('render this.state.ready: '+this.state.ready)
