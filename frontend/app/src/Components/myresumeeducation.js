@@ -6,6 +6,7 @@ class EducationContent extends React.Component {
 
     render(){
         const data = this.props.data;
+        console.log(data);
         let content = [];
         let year;
         let line3;
@@ -18,7 +19,7 @@ class EducationContent extends React.Component {
             );
         }
         else{
-            if(data.Education_End_Year === 9999){
+            if(Number(data.Education_End_Year) === 9999){
                 year = "กำลังศึกษา";
             }
             

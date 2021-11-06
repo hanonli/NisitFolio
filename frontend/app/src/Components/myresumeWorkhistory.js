@@ -23,7 +23,7 @@ class MyresumeWorkelement extends React.Component {
         console.log(data);
         let content = [];
         let endyear;
-        if((data.Work_End_Year===9999) & (data.Work_End_Month===99)){
+        if((Number(data.Work_End_Year)===9999) & (Number(data.Work_End_Month)===99)){
             endyear = "ปัจจุบัน";
         }
         else{
