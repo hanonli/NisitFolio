@@ -2632,7 +2632,7 @@ class Register extends React.Component {
 					$("#each_skill3").prop('selectedIndex', for_edit["skill3_select"]);
 					document.getElementById("input_mySlider3").disabled = false;
 				}
-			}, 280);
+			}, 600);
 		});
 
 		document.getElementById("submit-job11").addEventListener("click", function () {
