@@ -1892,7 +1892,7 @@ class Register extends React.Component {
 											<h1 id="name-of-certi">{name-certi}</h1>\
 											<h1 id="year-of-certi">{year-certi}</h1>\
 											<div class="pos-pic-of-certi">\
-												<img height="142" src="{pic-of-certi}" id="border_certi" oncontextmenu="return false;" ondragstart="return false;"></img>\
+												<img src="{pic-of-certi}" id="border_certi" oncontextmenu="return false;" ondragstart="return false;"></img>\
 											</div>\
 											<div class="layer-button-certi">\
 												<div class="set-layer-button-certi">\
