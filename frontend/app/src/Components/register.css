@@ -791,3 +791,12 @@ datalist {
   font-weight: 500;
   color:#000 !important
 }
+
+#copylink1 {
+  overflow-x: scroll;
+}
+
+#copylink2 {
+  overflow-x: scroll;
+  margin-top: 0.5vw;
+}

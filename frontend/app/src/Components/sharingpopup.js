@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import cookie from 'react-cookies'
+import { OverlayTrigger, Overlay, Tooltip, Button } from 'react-bootstrap';
 import $ from 'jquery';
 
 var myTemplate = {
@@ -68,12 +69,20 @@ class SharingPopup extends React.Component {
         console.log($('#copylink1').text());
         var user_resumeid = cookie.load('search-userid');
         console.log(user_resumeid);
-        var url_to_use = link_now+'/'+user_resumeid;
+        if(user_resumeid=='none'){
+            var url_to_use = link_now+'/'+ cookie.load('login-user');
+        }
+        else{
+            var url_to_use = link_now;
+        }  
         $('#copylink1').text(url_to_use);
         /*$("#copylink2").on('click',function () {
             $(this).parents(".ggcopyez").children("a").select();
             alert('Im running');
         });*/
+        $('#copylink2').on('click', function(){
+            navigator.clipboard.writeText($('#copylink1').text());
+        });
     }
       componentWillUnmount() {
         window.removeEventListener('load', this.handleLoad)  
@@ -114,9 +123,12 @@ class SharingPopup extends React.Component {
                     <div class="row marginBEx1">
                         <h1 class="SharingFontHead col-10" id="exampleModalToggleLabel2">Sharing</h1>
                     </div>
-                    <div class="row dropbtn margin1 ggcopyez">
-                        <a class="col-10 link-text" id="copylink1" type="text">link</a>
-                        <img class="col-2 block-right3 del-pad-col1" href="" src="assets/images/outline_content_copy_black_48dp.png" onclick={this.copyToClipboard} type="button" id='copylink1'/>
+                    <div class="row dropbtn margin1">
+                        <text class="col-11 link-text" id="copylink1" type="text">link</text>
+                        <OverlayTrigger key={'bottom'} placement={'bottom'} overlay={ <Tooltip>คัดลอก</Tooltip> }>
+                            <img class="col-1 block-right3 del-pad-col1" href="" src="assets/images/outline_content_copy_black_48dp.png" type="button" id='copylink2' height='25' width='25'/>
+                        </OverlayTrigger>
+                        
                     </div>
                     <label class='font-sharelink-resume'>ลิงก์ของคุณสร้างสำเร็จแล้ว</label>
                     <label class='font-sharelink-resume'>สามารถคัดลอกเพื่อแชร์ MyResume ของคุณ !</label>
