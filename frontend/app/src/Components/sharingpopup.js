@@ -64,6 +64,7 @@ class SharingPopup extends React.Component {
         alert("Copied the text: " + copyText.value);
     };
       componentDidMount() {
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         var link_now = window.location.href;
         console.log(link_now);
         console.log($('#copylink1').text());
@@ -76,12 +77,17 @@ class SharingPopup extends React.Component {
             var url_to_use = link_now;
         }  
         $('#copylink1').text(url_to_use);
-        /*$("#copylink2").on('click',function () {
-            $(this).parents(".ggcopyez").children("a").select();
-            alert('Im running');
-        });*/
         $('#copylink2').on('click', function(){
             navigator.clipboard.writeText($('#copylink1').text());
+        });
+        $('#qr-image').attr('src','https://chart.googleapis.com/chart?cht=qr&chs=400&chl='+$("#copylink1").text())
+        $('#exportQrcode').click(function(){
+            console.log($('#qr-image').src);
+            var link = document.createElement('a');
+                         link.href = $('#qr-image').attr('src');  // use realtive url 
+                         link.download = 'qr-resume'+$("#copylink1").text()+'.jpeg';
+                         document.body.appendChild(link);
+                         link.click();     
         });
     }
       componentWillUnmount() {
@@ -236,14 +242,14 @@ class SharingPopup extends React.Component {
         <div class="modal fade" id="sharingqr1" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content sharingSize4 container-fluid">
-                    <div class="row margin-bottom1">
+                    <div class="row">
                         <h1 class="SharingFontHead col-10" id="exampleModalToggleLabel2">Sharing QR</h1>
                     </div>
                     <div class='row'>
-                        <img id='qr-image' class="col-6" src='assets/images/clock.png' height='150' width='50'></img> 
+                        <img id='qr-image' class="col-6" src='assets/images/clock.png' ></img> 
                         <div class='col-6'>
-                            <div class='row font-shareqr-resume'>
-                                <label class='head-shareqr-resume'>QR Code สร้างเสร็จแล้ว!</label>
+                            <div class='row font-shareqr-resume padtop1'>
+                                <h5 class='head-shareqr-resume'>QR Code สร้างเสร็จแล้ว!</h5>
                                 <p class=''>คุณสามารถเข้าถึง MyResume ได้จาก QR Code ด้านซ้าย</p>
                                 <p class=''>หรือ</p>
                                 <button class="btn btn-cta-primary-yellow round profile-button" target="_blank" id="exportQrcode" >บันทึกภาพ QR Code</button>

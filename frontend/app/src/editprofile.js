@@ -587,6 +587,11 @@ pa2.addEventListener('keyup', checkPass, false);
 				});
 
 		}
+		var referrer =  document.referrer;
+		console.log(referrer);
+		var reffbefore = window.location.origin+'/Choosenothing';
+		console.log(reffbefore);
+
 		function PatchEditParent(pack) {
 			console.log(pack);
 			//console.log(pack);
@@ -615,7 +620,13 @@ pa2.addEventListener('keyup', checkPass, false);
 						//alert('Patch Success');
 						//console.log(response);
 						//window.go(-1);
-						window.history.back();
+						if(referrer==reffbefore){
+							window.location.pathname = '/myresume';
+						}
+						else{
+							window.history.back();
+						}
+						
 					}
 					//return response;
 				}).catch(function (error) {
