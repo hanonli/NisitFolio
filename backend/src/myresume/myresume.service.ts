@@ -447,7 +447,7 @@ export class MyResumeService {
           subportfolio.Port_Tag = portfolio.Port_Tag;
           subportfolio.Port_Info = portfolio.Port_Info;
           subportfolio.Port_Date = portfolio.Port_Date;
-          subportfolio.id  = portfolio.id;
+          subportfolio._id  = portfolio.id;
           subportfolio.portfolioPictures = [portpic];
           if ( portfolio.ResumeId.includes(resumeId) == false){
             portfolio.ResumeId.push(resumeId);
@@ -463,7 +463,8 @@ export class MyResumeService {
 
         if(old_Port_id_arr.length!=0){
           for (var _i = 0; _i < old_Port_id_arr.length; _i++) {
-            const edit_Port=await this.portModel.findOne({where:{ _id: new ObjectID(old_Port_id_arr[_i]) }});
+            const objID = new ObjectID(old_Port_id_arr[_i]);
+            const edit_Port=await this.portModel.findOne({ _id: objID });
             const tmp=edit_Port.ResumeId.indexOf(resumeId)
             edit_Port.ResumeId.splice(tmp,1)
             await this.portModel.create(edit_Port);

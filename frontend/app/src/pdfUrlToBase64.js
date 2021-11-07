@@ -1358,7 +1358,7 @@ class PDF extends React.Component {
 
 		
 		//fetch("http://localhost:3000/temp_resume",{
-		fetch(ApplicationURL.backend+"myresume/",{
+		fetch(ApplicationURL.backend+"myresume",{
 			method: "GET",
 			headers: {
 				'Authorization': 'Bearer '+token,
