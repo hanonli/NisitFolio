@@ -486,11 +486,16 @@ class Resume_topNavbar extends React.Component {
 			return (
 				<div className='resume_selectoption' >
 					<div className='resume_selectoption_block'>
-						<div type='button' onClick={this.handleBookmark} >
+						<div type='button' onClick={this.state.fetch ? this.handleBookmark : null} >
 							<img  id='icon-myresume-bookmark' src={ window.location.origin + "/assets/images/bookmark_1.png" }/>
 						</div>
-									
 					</div>		
+					<span className='resume_verticalline2'> </span>
+					<div className='resume_selectoption_block'>
+						<div type='button'>
+							<img   id='icon-myresume-share' 	src={ window.location.origin + "/assets/images/outline_ios_share_black_48dp.png"} data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharingResume" alt="" />
+						</div>
+					</div>
 				</div>
 			)
 
