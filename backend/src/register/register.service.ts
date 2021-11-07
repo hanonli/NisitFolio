@@ -257,6 +257,7 @@ export class RegisterService {
     const isoTime = time.toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: 'numeric', hour: "2-digit", minute: "2-digit" });
     const userid = new ObjectID(UserId);
     const acc = await this.accountRepository.findOne({ where: { _id: userid } });
+    const userinfo = await this.userInfoModel.findOne({ UserId: UserId });
 
 
 
@@ -265,12 +266,14 @@ export class RegisterService {
     acc.last_modified.push(isoTime);
     if (patchDto.ProfilePic != null)
       acc.ProfilePic = patchDto.ProfilePic;
+      userinfo.ProfilePic = patchDto.ProfilePic;
     if (patchDto.Privacy != null)
       acc.Privacy = patchDto.Privacy;
+      
 
     await this.accountRepository.save(acc);
   
-    const userinfo = await this.userInfoModel.findOne({ UserId: UserId });
+    //const userinfo = await this.userInfoModel.findOne({ UserId: UserId });
 
     if (patchDto.Firstname || patchDto.Lastname || patchDto.Birthday || patchDto.Gender || patchDto.AboutMe || patchDto.Email2nd || patchDto.Country || patchDto.City || patchDto.Province)
       userinfo.last_modified.push(isoTime);
@@ -292,8 +295,8 @@ export class RegisterService {
       userinfo.Province = patchDto.Province;
     if (patchDto.City != null)
       userinfo.City = patchDto.City;
-    if (patchDto.ProfilePic != null)
-      userinfo.ProfilePic = patchDto.ProfilePic;
+    /*if (patchDto.ProfilePic != null)
+      userinfo.ProfilePic = patchDto.ProfilePic;*/
 
     const resume =  await this.resumeModel.find({UserId: UserId });
     for (var _i = 0; _i < resume.length; _i++) {
