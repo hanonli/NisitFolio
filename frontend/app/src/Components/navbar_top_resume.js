@@ -1,4 +1,4 @@
-import $, { data, get } from 'jquery';
+import $, { camelCase, data, get } from 'jquery';
 import cookie from 'react-cookies';
 import React from 'react';
 import MyResumeNothing from './myresumeNothing.js'
@@ -625,13 +625,15 @@ class Resume_topNavbar extends React.Component {
 
 		// var ssid = this.props.userid
 		
-		// console.log('sessionid search-userid: '+ search_userID)
+		
 		// console.log('sessionid from search-userid: '+ JSON.stringify(ssid))
 		// var sPageURL = window.location.search.substring(1)
 		// var isURLBlank = (sPageURL == '')
 		cookie.save('resume-index',0)
 		var token = cookie.load('login-token')
 		var search_userID = cookie.load('search-userid') ? cookie.load('search-userid') : 'none'
+		// console.log('sessionid search-userid: '+ search_userID + ' ')
+		// console.log('token: '+ token)
 		fetch("https://nisitfolio-backend.herokuapp.com/profile/", {
 				method: "GET",
 				headers: {
@@ -684,7 +686,8 @@ class Resume_topNavbar extends React.Component {
 	}
 
 	componentWillUnmount() {
-		cookie.save('search-userid', 'none');
+		
+		
 	}
 
 

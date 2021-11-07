@@ -33,6 +33,7 @@ class MyResume extends React.Component {
 	
 	componentWillUnmount() { 
 	   window.removeEventListener('load', this.handleLoad)  	
+	   cookie.save('userid-pdf', cookie.load('seaech-userid'));
 	   cookie.save('search-userid', 'none' );	
 	}
 	
