@@ -266,9 +266,10 @@ export class RegisterService {
     acc.last_modified.push(isoTime);
     if (patchDto.ProfilePic != null)
       acc.ProfilePic = patchDto.ProfilePic;
+      userinfo.ProfilePic = patchDto.ProfilePic;
     if (patchDto.Privacy != null)
       acc.Privacy = patchDto.Privacy;
-      userinfo.ProfilePic = patchDto.ProfilePic;
+      
 
     await this.accountRepository.save(acc);
   
