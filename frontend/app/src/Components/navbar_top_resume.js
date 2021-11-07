@@ -425,16 +425,13 @@ class Resume_topNavbar extends React.Component {
 					<span className='resume_verticalline2'> </span>
 					<div className='resume_selectoption_block'>
 						<div type='button'>
-							<img   id='icon-myresume-share' 	src="/assets/images/outline_ios_share_black_48dp.png"data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharingResume" alt="" />
+							<img   id='icon-myresume-share' 	src="/assets/images/outline_ios_share_black_48dp.png"data-bs-toggle={this.state.fetch ? "modal" : null} toggle-type="dynamic" data-bs-target="#sharingResume" alt="" />
 						</div>
 					</div>
 				</div>
 			)
 		}
 		else if( login_token != 'none' ){
-			// console.log('login-tokenfdfdf :' + login_token)
-			// console.log('userud ub fe:'+this.state.userID)
-			// console.log('going to fetch bookmark')
 			fetch("https://nisitfolio-backend.herokuapp.com/bookmark/" + this.state.userID +'&&total',{
 				method: "GET",
 				headers: {
@@ -474,7 +471,7 @@ class Resume_topNavbar extends React.Component {
 
 					<div className='resume_selectoption_block'>
 						<div type='button'>
-							<img   id='icon-myresume-share' 	src={ window.location.origin + "/assets/images/outline_ios_share_black_48dp.png"} data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharingResume" alt="" />
+							<img   id='icon-myresume-share' 	src={ window.location.origin + "/assets/images/outline_ios_share_black_48dp.png"} data-bs-toggle={this.state.fetch ? "modal" : null} toggle-type="dynamic" data-bs-target="#sharingResume" alt="" />
 						</div>
 					</div>
 								
@@ -486,14 +483,14 @@ class Resume_topNavbar extends React.Component {
 			return (
 				<div className='resume_selectoption' >
 					<div className='resume_selectoption_block'>
-						<div type='button' onClick={this.state.fetch ? this.handleBookmark : null} >
+						<div type='button' onClick={this.handleBookmark} >
 							<img  id='icon-myresume-bookmark' src={ window.location.origin + "/assets/images/bookmark_1.png" }/>
 						</div>
 					</div>		
 					<span className='resume_verticalline2'> </span>
 					<div className='resume_selectoption_block'>
 						<div type='button'>
-							<img   id='icon-myresume-share' 	src={ window.location.origin + "/assets/images/outline_ios_share_black_48dp.png"} data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharingResume" alt="" />
+							<img   id='icon-myresume-share' 	src={ window.location.origin + "/assets/images/outline_ios_share_black_48dp.png"} data-bs-toggle={ this.state.fetch ? "modal" : null} toggle-type="dynamic" data-bs-target="#sharingResume" alt="" />
 						</div>
 					</div>
 				</div>
