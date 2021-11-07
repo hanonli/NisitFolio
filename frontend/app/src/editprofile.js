@@ -55,6 +55,7 @@ class Editprofile extends React.Component {
 			statusRepass: false,
 			statusParent: false,
 			token: cookie.load('login-token'),
+			CheckpassOld: 1
 		}
 	}
 
@@ -192,6 +193,7 @@ class Editprofile extends React.Component {
 		$('#confirmEdit').click(async function () {
 			//console.log(file_profilepic);
 			//console.log($('#avatar11').attr('src'));
+			$('#passOld').removeClass('borderred');
 			var BDDate = $('#basic-date-picker').val();
 			var last_province = $('#province').val();
 			var last_city = $('#townny').val();
@@ -224,7 +226,7 @@ class Editprofile extends React.Component {
 			if(last_tab1[0]==list_tab1[0]){
 				console.log('ไม่แก้แล้วจะกดเสร็จสิ้นทำไมอะเตง');
 			}*/
-			var CheckpassOld = 0;
+			//var CheckpassOld = 0;
 			if($('#passOld').val() != ""){
 				console.log({username:Datasetstate.state.data.Email,password:$('#passOld').val()});
 				fetch(ApplicationURL.backend + 'auth/login', {
@@ -240,20 +242,25 @@ class Editprofile extends React.Component {
 				.then(response => response.json())
 				.then((data) => {
 					if ('accessToken' in data) {
-						CheckpassOld = 1;
+						Datasetstate.setState({CheckpassOld:1});
 					}
 					else if ('error' in data) {
-						CheckpassOld = 0;
+						Datasetstate.setState({CheckpassOld:0});
 						//$('.reset-pass').addClass('borderred');
+						$('#passOld').addClass('borderred');
 					}
 				}).catch((error) => {
 					console.log(error);
 				});
+				//alert(RequireCount_pass);
+				//console.log($('#passOld').val());
+				//alert(Datasetstate.state.CheckpassOld);
 				if ($('#passOld').val()==$('#pass05').val()){
-					CheckpassOld = 0;
-					alert('เมิงจะตั้งรหัสผ่านใหม่เป็นรหัสผ่านเดิมเพื่อ???');
+					Datasetstate.setState({CheckpassOld:0});
+					//alert('เมิงจะตั้งรหัสผ่านใหม่เป็นรหัสผ่านเดิมเพื่อ???');
+					$('#passOld').addClass('borderred');
 				}
-				else if (RequireCount_pass + CheckpassOld == 2) {
+				else if (RequireCount_pass + Datasetstate.state.CheckpassOld == 2) {
 					var last_pass = $('#pass05').val();
 					console.log('You Pass!');
 					Datasetstate.setState({ render: false });
