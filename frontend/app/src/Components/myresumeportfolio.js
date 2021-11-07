@@ -9,19 +9,21 @@ class MyresumePortfolio extends React.Component {
     constructor(props){
         super(props)
         var user = cookie.load('login-user');
+        //console.log(user);
         var state = this.props.state;
+        console.log(state);
         let whosee;
         if(user==="none"){
 			console.log("it's none");
             whosee = "guest";
 		}
-        else if(user===state.userID){
+        else if(user===state.targetuserID){
             whosee = "owner";
         }
         else{
             whosee = "other";
         }
-        this.state = {cookieid : user, ownerid : state.userID, index : state.index, data1 : [], data2 : [], data3 : [], seeby : whosee};
+        this.state = {cookieid : user, ownerid : state.targetuserID, index : state.index, data1 : [], data2 : [], data3 : [], seeby : whosee};
         this.GetUserPortData()
     }
 
@@ -114,9 +116,11 @@ class MyresumePortfolio extends React.Component {
         let m = [];
         let d = [];
         let day;
+        let day_a;
         let udate;
         for(var i=0; i<portfolios.length; i++){
-            if(portfolios[i].Port_Date !== null){
+            if (portfolios[i].Port_Date !== null) {
+                day_a = portfolios[i].Port_Date;
                 day = portfolios[i].Port_Date.split("/");
                 udate = day[0] + " " + monthdict[parseInt(day[1])] + " " + day[2];
                 d[i] = parseInt(day[0]); m[i] = parseInt(day[1]); y[i] = parseInt(day[2]);
@@ -130,7 +134,7 @@ class MyresumePortfolio extends React.Component {
                 port_id: portfolios[i].id,
                 port_name: portfolios[i].Port_Name,
                 image: portfolios[i].portfolioPictures[0].Pic[0]? portfolios[i].portfolioPictures[0].Pic[0]: "assets/images/ldwithgradient.png",
-                date: udate,
+                date: day_a,
                 privacy: portfolios[i].Port_Privacy,
                 owner: owner_status
             });

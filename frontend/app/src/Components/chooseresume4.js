@@ -79,14 +79,20 @@ class Editresume4 extends React.Component {
 				t5_port = t5_port.replace("{ele.Port_idvalue}", ele.Port_id);
 				t5_port = t5_port.replace("{isCheckPort}", ele.isCheckPort);
 				t5_port = t5_port.replace("{forxxx}", `xxx` + ele.Port_id);
-				t5_port = t5_port.replace("{ele.PortName}", ele.Port_Name);
+				//t5_port = t5_port.replace("{ele.PortName}", ele.Port_Name);
+				if (ele["Port_Name"].length > 40) {
+					t5_port = t5_port.replace("{ele.PortName}", ele["Port_Name"].slice(0, 40) + "...");
+				}
+				else {
+					t5_port = t5_port.replace("{ele.PortName}", ele.Port_Name);
+				}
 				//alert('Sawaddeekrub Port',t5_port);
 				$(".port-box1").append(t5_port);
 			});
 			var count_pp = $(".myresume-choose-port1:input:checkbox:checked").length;
 			//alert(count_pp);
 			$("#dangerzonect5").text(`คุณเลือกไปแล้ว ${count_pp} รายการ`);
-		}, 3000);
+		}, 1000);
 		//console.log("isCheck_Port :", isCheck_Port);
 		$(document).on("click", ".myresume-choose-port1", function () {
 			choose_Port = $('.myresume-choose-port1:input[type=checkbox]:checked').map(function (_, el) {

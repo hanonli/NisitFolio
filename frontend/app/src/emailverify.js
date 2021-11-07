@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import { Link } from "react-router-dom";
 import $ from "jquery";
 import cookie from "react-cookies";
+import ApplicationURL from './Components/path';
 
 class Emailverify extends React.Component {
 
@@ -24,7 +25,7 @@ class Emailverify extends React.Component {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ Email: EmailtoResend })
       };
-      fetch('http://localhost:2000/resend-confirmation-link', requestOptions)
+      fetch(ApplicationURL.backend+'resend-confirmation-link', requestOptions)
         .then(function (response) {
           if (!response.ok) {
             console.log(EmailtoResend);

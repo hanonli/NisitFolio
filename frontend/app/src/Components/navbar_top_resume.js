@@ -5,7 +5,6 @@ import MyResumeNothing from './myresumeNothing.js'
 import MyResumeNothingforUser from './myresumeNothingforuser.js'
 import MyResumeLimitforUser from './myresumeLimitforuser.js'
 import MyResumeContent from './myresumeContent.js';
-import PortInfo from '../portInfo';
 import Resume_sideNavbar from './navbar_resume.js';
 import SharingPopup from './sharingpopup';
 import LoadingL from './loadingL';
@@ -163,7 +162,7 @@ class Resume_topNavbar extends React.Component {
 	}
 
 	changePrivacy = (message) => {
-		console.log('begin change prvacy')
+		// console.log('begin change prvacy')
 		var resumeid = this.state.resumeID
 		var token = cookie.load('login-token')
 		fetch("https://nisitfolio-backend.herokuapp.com/myresume/" + resumeid, {
@@ -177,40 +176,42 @@ class Resume_topNavbar extends React.Component {
 				},
 			body: JSON.stringify(message)
 		})
-		.then(response =>{ console.log( 'PATCH Privacy status: '+response.status) ; return response.json();})
+		.then(response =>{  return response.json();})
 
-		console.log('end change privay')
-		// .then(data => {console.log('data after PATCH'+JSON.stringify(data))} )
+		// console.log('end change privay')
+		// .then(data => {// console.log('data after PATCH'+JSON.stringify(data))} )
 	}
 
 	handlePrivacy = () => {
-		// document.getElementById('icon-myresume-private').src =  'assets/images/outline_grid_view_black_48dp2.png' ;
+		// document.getElementById('icon-myresume-private').src =  '/assets/images/outline_grid_view_black_48dp2.png' ;
+		var locate =  window.location.origin 
 		if (this.state.privacy == 'Private') {
+			
 			var pic_src = document.getElementById("icon-myresume-private").src
-            document.getElementById("icon-myresume-private").src = "http://localhost:3000/assets/images/outline_cached_black_24dp.png";
+            document.getElementById("icon-myresume-private").src = locate + "/assets/images/outline_cached_black_24dp.png";
 
 			var message = { "Resume_Privacy" : "Members"}
 			this.changePrivacy(message)
-			console.log('change loading to Members')
+			// console.log('change loading to Members')
 			this.setState({
 				privacy: 'Members'
 			})
 		} else if (this.state.privacy == 'Member' || this.state.privacy == 'Members') {
 			var pic_src = document.getElementById("icon-myresume-member").src
-            document.getElementById("icon-myresume-member").src = "http://localhost:3000/assets/images/outline_cached_black_24dp.png";
+            document.getElementById("icon-myresume-member").src = locate + "/assets/images/outline_cached_black_24dp.png";
 
 			var message = { "Resume_Privacy" : "Public"}
 			this.changePrivacy(message)
-			console.log('change loading to Public')
+			// console.log('change loading to Public')
 			this.setState({
 				privacy: 'Public'
 			})
 		} else if (this.state.privacy == 'Public') {
 			var pic_src = document.getElementById("icon-myresume-public").src
-            document.getElementById("icon-myresume-public").src = "http://localhost:3000/assets/images/outline_cached_black_24dp.png";
+            document.getElementById("icon-myresume-public").src = locate + "/assets/images/outline_cached_black_24dp.png";
 			var message = { "Resume_Privacy" : "Private"}
 			this.changePrivacy(message)
-			console.log('change loading to Private')
+			// console.log('change loading to Private')
 			this.setState({
 				privacy: 'Private'
 			})
@@ -225,27 +226,45 @@ class Resume_topNavbar extends React.Component {
 	BookmarkforUser = () =>{
 		var pic_src = document.getElementById("icon-myresume-bookmark").src
 		// console.log('pic: '+pic_src);
-		if ( pic_src == "http://localhost:3000/assets/images/bookmark_1.png") {
-			fetch("https://nisitfolio-backend.herokuapp.com/bookmark/saveBookmark/",{
+		if ( pic_src == window.location.origin + "/assets/images/bookmark_1.png") {
+			fetch("https://nisitfolio-backend.herokuapp.com/bookmark/saveBookmark",{
 				method: "POST",
-				body: {
-					'userID' : this.state.userID,
+				headers: {
+					"Access-Control-Allow-Origin": "*",
+					"Access-Control-Allow-Methods": "*",
+					"Access-Control-Allow-Credentials": true,
+					"Content-Type": "application/json",
+					},
+				body: JSON.stringify(
+					{
+					'userId' : this.state.userID,
 					'thatUserId' : this.state.targetuserID,
 					'type' : 'profile',
-				}
+					}
+				)
 			})
-            document.getElementById("icon-myresume-bookmark").src = "http://localhost:3000/assets/images/bookmark_2.png";
+			
+            document.getElementById("icon-myresume-bookmark").src = window.location.origin + "/assets/images/bookmark_2.png";
         }
         else {
-			fetch("https://nisitfolio-backend.herokuapp.com/bookmark/saveBookmark/",{
+			fetch("https://nisitfolio-backend.herokuapp.com/bookmark/saveBookmark",{
 				method: "DELETE",
-				body: {
-					'userID' : this.state.userID,
+				headers: {
+					"Access-Control-Allow-Origin": "*",
+					"Access-Control-Allow-Methods": "*",
+					"Access-Control-Allow-Credentials": true,
+					"Content-Type": "application/json",
+					},
+				body: JSON.stringify(
+					{
+					'userId' : this.state.userID,
 					'thatUserId' : this.state.targetuserID,
 					'type' : 'profile',
-				}
+					}
+				)
 			})
-            document.getElementById("icon-myresume-bookmark").src = "http://localhost:3000/assets/images/bookmark_1.png";
+			
+            document.getElementById("icon-myresume-bookmark").src = window.location.origin + "/assets/images/bookmark_1.png";
         }
 	}
 
@@ -263,7 +282,6 @@ class Resume_topNavbar extends React.Component {
 	}
 
 	portfoliotab1 = () => {
-		// console.log('Porfoliotab1 is called')
 		var index = 0;
 		this.setState({
 			resumeID: '',
@@ -284,14 +302,11 @@ class Resume_topNavbar extends React.Component {
 			loading: true,
 			fetch: true,
 		});
-		// console.log('call GetreumeID from tab1')
+		cookie.save('resume-index',0)
 		this.getResumeID(index);
-		// this.getDatas();
 	}
 
 	portfoliotab2 = () => {
-		// console.log('Porfoliotab2 is called')
-		// console.log('before change state: ' + JSON.stringify(this.state))
 		var index = 1;
 		this.setState({
 			resumeID: '',
@@ -312,9 +327,8 @@ class Resume_topNavbar extends React.Component {
 			loading: true,
 			fetch: true,
 		})
+		cookie.save('resume-index',1)
 		this.getResumeID(index);
-		// this.getDatas();
-		// this.forceUpdate()
 	}
 
 	portfoliotab3 = () => {
@@ -338,6 +352,7 @@ class Resume_topNavbar extends React.Component {
 			loading: true,
 			fetch: true,
 		})
+		cookie.save('resume-index',2)
 		this.getResumeID(index);
 
 	}
@@ -349,7 +364,7 @@ class Resume_topNavbar extends React.Component {
 					<div className='resume_topnav' >
 						<div className='topnav_section1' type='button' onClick={ this.state.is_owner ? this.handlePrivacy : null } >
 
-							<img  id='icon-myresume-private' src="assets/images/outline_lock_black_24dp.png" />
+							<img  id='icon-myresume-private' src="/assets/images/outline_lock_black_24dp.png" />
 
 						</div>
 
@@ -361,7 +376,7 @@ class Resume_topNavbar extends React.Component {
 					<div className='resume_topnav' >
 						<div className='topnav_section1' type='button' onClick={ this.state.is_owner ? this.handlePrivacy : null}>
 
-							<img  id='icon-myresume-member' src="assets/images/outline_people_black_24dp.png" />
+							<img  id='icon-myresume-member' src="/assets/images/outline_people_black_24dp.png" />
 
 						</div>
 
@@ -373,7 +388,7 @@ class Resume_topNavbar extends React.Component {
 					<div className='resume_topnav' >
 						<div className='topnav_section1' type='button' onClick={ this.state.is_owner ? this.handlePrivacy : null}>
 
-							<img  id='icon-myresume-public' src="assets/images/outline_public_black_24dp.png" />
+							<img  id='icon-myresume-public' src="/assets/images/outline_public_black_24dp.png" />
 
 						</div>
 
@@ -385,7 +400,7 @@ class Resume_topNavbar extends React.Component {
 					<div className='resume_topnav' >
 						<div className='topnav_section1' type='button'>
 
-							<img  id='icon-myresume-public' src="assets/images/outline_grid_view_black_48dp 2.png" />
+							<img  id='icon-myresume-public' src="/assets/images/outline_grid_view_black_48dp 2.png" />
 
 						</div>
 					</div>
@@ -396,7 +411,7 @@ class Resume_topNavbar extends React.Component {
 
 	handleSection2 = () => {
 		// console.log('login token1:'+ cookie.load('login-token'))
-		var login_token = cookie.load('login-token') != undefined ? cookie.load('login-token') : 'none'
+		var login_token = cookie.load('login-token') ? cookie.load('login-token') : 'none'
 		// console.log('login token2:'+login_token)
 		if (this.state.is_owner) {
 				// console.log('you are owner2')
@@ -404,32 +419,50 @@ class Resume_topNavbar extends React.Component {
 				<div className='resume_selectoption' >
 					<div className='resume_selectoption_block'>
 						<div type='button' onClick={this.state.fetch ? this.handleEdit : null} >
-							<img  id='icon-myresume-edit' src="assets/images/blackedit.png"/>
+							<img  id='icon-myresume-edit' src="/assets/images/blackedit.png"/>
 						</div>
-									
-					</div>
-					
+					</div>	
 					<span className='resume_verticalline2'> </span>
-
 					<div className='resume_selectoption_block'>
 						<div type='button'>
-							<img   id='icon-myresume-share' 	src="assets/images/outline_ios_share_black_48dp.png"data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharingResume" alt="" />
+							<img   id='icon-myresume-share' 	src="/assets/images/outline_ios_share_black_48dp.png"data-bs-toggle={this.state.fetch ? "modal" : null} toggle-type="dynamic" data-bs-target="#sharingResume" alt="" />
 						</div>
-						
-									
 					</div>
-								
 				</div>
-
 			)
 		}
 		else if( login_token != 'none' ){
-			// console.log('login-tokenfdfdf :' + login_token)
+			fetch("https://nisitfolio-backend.herokuapp.com/bookmark/" + this.state.userID +'&&total',{
+				method: "GET",
+				headers: {
+					"Access-Control-Allow-Origin": "*",
+					"Access-Control-Allow-Methods": "*",
+					"Access-Control-Allow-Credentials": true,
+					"Content-Type": "application/json",
+					},
+			})
+			.then(response => response.json() )
+			.then((datas) => {
+				var data_range = datas.length
+				// console.log('range of bookmark is: '+data_range)
+				for ( var i = 0 ; i < data_range ; i++ ){
+					var data = datas[i]
+					// console.log('compare ' + data.thatUserId + ' ' + cookie.load('search-userid'))
+					if(data.thatUserId == cookie.load('search-userid')){
+						// console.log('found similar userid in bookmark')
+						// console.log('found simislar one this pateern is beig use')
+						document.getElementById("icon-myresume-bookmark").src = window.location.origin + "/assets/images/bookmark_2.png";
+						
+					}else{
+						// console.log('not found simislar one')
+					}
+				}
+			})
 			return (
 				<div className='resume_selectoption' >
 					<div className='resume_selectoption_block'>
 						<div type='button' onClick={this.handleBookmark} >
-							<img  id='icon-myresume-bookmark' src="assets/images/bookmark_1.png"/>
+							<img  id='icon-myresume-bookmark' src={ window.location.origin + "/assets/images/bookmark_1.png"}/>
 						</div>
 									
 					</div>
@@ -438,31 +471,28 @@ class Resume_topNavbar extends React.Component {
 
 					<div className='resume_selectoption_block'>
 						<div type='button'>
-							<img   id='icon-myresume-share' 	src="assets/images/outline_ios_share_black_48dp.png"data-bs-toggle="modal" toggle-type="dynamic" data-bs-target="#sharingResume" alt="" />
+							<img   id='icon-myresume-share' 	src={ window.location.origin + "/assets/images/outline_ios_share_black_48dp.png"} data-bs-toggle={this.state.fetch ? "modal" : null} toggle-type="dynamic" data-bs-target="#sharingResume" alt="" />
 						</div>
 					</div>
 								
 				</div>
 			)
+			
 		}
 		else{
 			return (
 				<div className='resume_selectoption' >
 					<div className='resume_selectoption_block'>
 						<div type='button' onClick={this.handleBookmark} >
-							<img  id='icon-myresume-bookmark' src="assets/images/bookmark_1.png"/>
+							<img  id='icon-myresume-bookmark' src={ window.location.origin + "/assets/images/bookmark_1.png" }/>
 						</div>
-									
-					</div>
-					
+					</div>		
 					<span className='resume_verticalline2'> </span>
-
 					<div className='resume_selectoption_block'>
-						<div type='button' >
-							<img   id='icon-myresume-share' 	src="assets/images/outline_ios_share_black_48dp.png" data-bs-toggle={ this.state.fetch ? "modal" : null } toggle-type="dynamic" data-bs-target="#sharingResume" alt="" />
+						<div type='button'>
+							<img   id='icon-myresume-share' 	src={ window.location.origin + "/assets/images/outline_ios_share_black_48dp.png"} data-bs-toggle={ this.state.fetch ? "modal" : null} toggle-type="dynamic" data-bs-target="#sharingResume" alt="" />
 						</div>
 					</div>
-								
 				</div>
 			)
 
@@ -470,6 +500,7 @@ class Resume_topNavbar extends React.Component {
 	}
 
 	content() {
+		// console.log('ogin : '+cookie.load('login-token'))
 		var login_token = cookie.load('login-token') != undefined ? cookie.load('login-token') : 'none'
 
 		// console.log('user-token in content: ' + JSON.stringify(user_token))
@@ -593,19 +624,14 @@ class Resume_topNavbar extends React.Component {
 		document.body.appendChild(script);
 
 		// var ssid = this.props.userid
-		var token = cookie.load('login-token')
-		// console.log('searc:' + cookie.load('search-userid'))
-		var search_userID = cookie.load('search-userid') != '' ? cookie.load('search-userid') : 'none'
+		
 		// console.log('sessionid search-userid: '+ search_userID)
 		// console.log('sessionid from search-userid: '+ JSON.stringify(ssid))
-		var sPageURL = window.location.search.substring(1)
-		var isURLBlank = (sPageURL == '')
-		// console.log(sPageURL)
-		// console.log(isURLBlank)
-		// console.log( 'not undefined: '+ (ssid != 'undefined'))
-		// console.log( 'not blank: '+ (ssid != ''))
-		// console.log(( undefined))
-		// console.log(( null))
+		// var sPageURL = window.location.search.substring(1)
+		// var isURLBlank = (sPageURL == '')
+		cookie.save('resume-index',0)
+		var token = cookie.load('login-token')
+		var search_userID = cookie.load('search-userid') ? cookie.load('search-userid') : 'none'
 		fetch("https://nisitfolio-backend.herokuapp.com/profile/", {
 				method: "GET",
 				headers: {
@@ -616,21 +642,23 @@ class Resume_topNavbar extends React.Component {
 					"Content-Type": "application/json"
 				},
 			})
-				.then(response => response.text() )
-				.then((datas) => {
-					this.setState({
-						userID: datas != "{\"statusCode\":401,\"message\":\"Unauthorized\"}" ? datas : 'none',
-					})
+			.then(response => response.text() )
+			.then((datas) => {
+				this.setState({
+					userID: datas != "{\"statusCode\":401,\"message\":\"Unauthorized\"}" ? datas : 'none',
 				})
+			})
 		if ( search_userID != 'none') {
-			console.log('case1')
+			// console.log('case1')
 			// console.log('ssid incase1: '+ ssid)
+			
 			this.setState({
 				targetuserID: search_userID,
 				is_owner: false,
 			})
+			$.getScript('assets/js/search-bookmark.js');
 		} else {
-			console.log('case2')
+			// console.log('case2')
 			// console.log('token: ' + token)
 			var token = cookie.load('login-token')
 			fetch("https://nisitfolio-backend.herokuapp.com/profile/", {
@@ -656,7 +684,7 @@ class Resume_topNavbar extends React.Component {
 	}
 
 	componentWillUnmount() {
-		cookie.save('search-userid', '');
+		cookie.save('search-userid', 'none');
 	}
 
 

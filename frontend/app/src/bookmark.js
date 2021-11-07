@@ -40,7 +40,7 @@ class Bookmark extends React.Component {
 			console.log(cookie.load('login-user'));
 			this.setState({userId : cookie.load('login-user')});
 			setTimeout(function() {
-				$.getScript('assets/js/search-bookmark.js');
+				$.getScript('assets/js/search-bookmark.js');	
 			}, 500);
 			
 		}

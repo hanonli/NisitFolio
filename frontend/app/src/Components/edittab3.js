@@ -678,7 +678,7 @@ class Registab3 extends React.Component {
                     aaa3.setState({ statusDelHeader: "Saving...", imgStatusHeader: "assets/images/outline_cached_black_24dp.png" });
                     $(".status-present-headerrr114").removeClass("status-saving5555-red");
 					console.log("edit!!!!!!");
-                    fetch(ApplicationURL.backend+"register/educationHistory/"+id_list_aca_edit, {
+                    fetch(ApplicationURL.backend+"register/educationHistory/"+id_list_high_edit, {
                         method: "PATCH",
                         headers: {
                             'Authorization': 'Bearer ' + aaa3.state.token,
@@ -831,8 +831,6 @@ class Registab3 extends React.Component {
 											<div class="modal-content modalworkaddH" >
 												<div class='modal-body'>
 													<h1 class='modal-title' id='regisModallabel1' >เพิ่มประวัติการศึกษา</h1>
-                                                    <img class="status-img-saving-3r3r" src={this.state.imgStatus3} height="36" onContextMenu={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()}></img>
-                                                    <h5 class="inline status-saving5555" id="for-error-dgd">{this.state.statusUpload3}</h5>
 													<div className='addHigher'>
                                                         <div className="Registab3_addHigher ">
                                                             <form  id='HigherForm'>
@@ -927,8 +925,6 @@ class Registab3 extends React.Component {
 											<div class="modal-content modalworkaddH2" >
 												<div class='modal-body'>
 													<h1 class='modal-title' id='regisModallabel2' >เพิ่มประวัติการศึกษา</h1>
-                                                    <img class="status-img-saving-3r3r" src={this.state.imgStatus3} height="36" onContextMenu={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()}></img>
-                                                    <h5 class="inline status-saving5555" id="for-error-dgd">{this.state.statusUpload3}</h5>
 													<div className='addSecondary'>
 													<div className="Registab3_addSecondary">
 				

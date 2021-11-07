@@ -1892,7 +1892,7 @@ class Register extends React.Component {
 											<h1 id="name-of-certi">{name-certi}</h1>\
 											<h1 id="year-of-certi">{year-certi}</h1>\
 											<div class="pos-pic-of-certi">\
-												<img height="142" src="{pic-of-certi}" id="border_certi" oncontextmenu="return false;" ondragstart="return false;"></img>\
+												<img src="{pic-of-certi}" id="border_certi" oncontextmenu="return false;" ondragstart="return false;"></img>\
 											</div>\
 											<div class="layer-button-certi">\
 												<div class="set-layer-button-certi">\
@@ -2289,10 +2289,8 @@ class Register extends React.Component {
 		}
 
 		/*---slider range----*/
-		var score_slider1, score_slider2, score_slider3, pre_click_slider1 = -1, pre_click_slider2 = -1, pre_click_slider3 = -1;
-
-		function set_slider_range1(value1) {
-			pre_click_slider1 = -1;
+		var score_slider1, score_slider2, score_slider3, pre_click_slider1 = "xx", pre_click_slider2 = "xx", pre_click_slider3 = "xx";
+		function set_slider_range1(value1) {	
 			setupSlider('mySlider1', ["พอได้เล็กน้อย", "พื้นฐาน", "ดี", "ยอดเยี่ยม"], value1);
 			if (document.getElementById("each_skill1").value == 'none') {
 				document.getElementById("input_mySlider1").disabled = true;
@@ -2302,19 +2300,22 @@ class Register extends React.Component {
 			}
 			document.getElementById("each_skill1").addEventListener("click", function () {
 				var skill_job_1 = document.getElementById("each_skill1").value;
-				if (skill_job_1 != 'none' && skill_job_1 != pre_click_slider1) {
+				if (skill_job_1 != 'none') {
 					document.getElementById("input_mySlider1").disabled = false;
-					document.getElementById("input_mySlider1").value = "6.25";
-					document.getElementById("input_mySlider1").style.background = 'linear-gradient(to right, #f0a143 0%, #f0a143 ' + 50 + '%, #c4c4c4 ' + 50 + '%, #c4c4c4 100%)';
+					//if(skill_job_1 != pre_click_slider1){
+					if(pre_click_slider1 === "xx"){
+						document.getElementById("input_mySlider1").value = "6.25";
+						document.getElementById("input_mySlider1").style.background = 'linear-gradient(to right, #f0a143 0%, #f0a143 ' + 50 + '%, #c4c4c4 ' + 50 + '%, #c4c4c4 100%)';
+					}			
 					pre_click_slider1 = skill_job_1;
-					score_slider1 = "6.25";
+					//score_slider1 = "6.25";
 				}
 				else if (skill_job_1 == 'none') {
 					document.getElementById("input_mySlider1").disabled = true;
-					document.getElementById("input_mySlider1").value = "2.5";
-					document.getElementById("input_mySlider1").style.background = 'linear-gradient(to right, #f0a143 0%, #f0a143 ' + 0 + '%, #c4c4c4 ' + 0 + '%, #c4c4c4 100%)';
-					pre_click_slider1 = -1;
-					score_slider1 = "2.5";
+					/*document.getElementById("input_mySlider1").value = "2.5";
+					document.getElementById("input_mySlider1").style.background = 'linear-gradient(to right, #f0a143 0%, #f0a143 ' + 0 + '%, #c4c4c4 ' + 0 + '%, #c4c4c4 100%)';*/
+					pre_click_slider1 = "xx";
+					//score_slider1 = "2.5";
 				}
 			});
 			$(document).on("click", "#reset-skill1", function () {
@@ -2322,7 +2323,7 @@ class Register extends React.Component {
 				document.getElementById("input_mySlider1").value = "2.5";
 				document.getElementById("input_mySlider1").disabled = true;
 				document.getElementById("input_mySlider1").style.background = 'linear-gradient(to right, #f0a143 0%, #f0a143 ' + 0 + '%, #c4c4c4 ' + 0 + '%, #c4c4c4 100%)';
-				pre_click_slider1 = -1;
+				pre_click_slider1 = "xx";
 				score_slider1 = "2.5";
 			});
 			var slider1 = document.getElementById("input_mySlider1");
@@ -2337,7 +2338,6 @@ class Register extends React.Component {
 		}
 
 		function set_slider_range2(value2) {
-			pre_click_slider2 = -1;
 			setupSlider('mySlider2', ["พอได้เล็กน้อย", "พื้นฐาน", "ดี", "ยอดเยี่ยม"], value2);
 			if (document.getElementById("each_skill2").value == 'none') {
 				document.getElementById("input_mySlider2").disabled = true;
@@ -2347,19 +2347,22 @@ class Register extends React.Component {
 			}
 			document.getElementById("each_skill2").addEventListener("click", function () {
 				var skill_job_2 = document.getElementById("each_skill2").value;
-				if (skill_job_2 != 'none' && skill_job_2 != pre_click_slider2) {
+				if (skill_job_2 != 'none') {
 					document.getElementById("input_mySlider2").disabled = false;
-					document.getElementById("input_mySlider2").value = "6.25";
-					document.getElementById("input_mySlider2").style.background = 'linear-gradient(to right, #0fe17c 0%, #0fe17c ' + 50 + '%, #c4c4c4 ' + 50 + '%, #c4c4c4 100%)';
+					//if(skill_job_2 != pre_click_slider2){
+					if(pre_click_slider2 === "xx"){
+						document.getElementById("input_mySlider2").value = "6.25";
+						document.getElementById("input_mySlider2").style.background = 'linear-gradient(to right, #0fe17c 0%, #0fe17c ' + 50 + '%, #c4c4c4 ' + 50 + '%, #c4c4c4 100%)';
+					}	
 					pre_click_slider2 = skill_job_2;
-					score_slider2 = "6.25";
+					//score_slider2 = "6.25";
 				}
 				else if (skill_job_2 == 'none') {
 					document.getElementById("input_mySlider2").disabled = true;
-					document.getElementById("input_mySlider2").value = "2.5";
-					document.getElementById("input_mySlider2").style.background = 'linear-gradient(to right, #0fe17c 0%, #0fe17c ' + 0 + '%, #c4c4c4 ' + 0 + '%, #c4c4c4 100%)';
-					pre_click_slider2 = -1;
-					score_slider2 = "2.5";
+					/*document.getElementById("input_mySlider2").value = "2.5";
+					document.getElementById("input_mySlider2").style.background = 'linear-gradient(to right, #0fe17c 0%, #0fe17c ' + 0 + '%, #c4c4c4 ' + 0 + '%, #c4c4c4 100%)';*/
+					pre_click_slider2 = "xx";
+					//score_slider2 = "2.5";
 				}
 			});
 			$(document).on("click", "#reset-skill2", function () {
@@ -2367,7 +2370,7 @@ class Register extends React.Component {
 				document.getElementById("input_mySlider2").disabled = true;
 				document.getElementById("input_mySlider2").value = "2.5";
 				document.getElementById("input_mySlider2").style.background = 'linear-gradient(to right, #0fe17c 0%, #0fe17c ' + 0 + '%, #c4c4c4 ' + 0 + '%, #c4c4c4 100%)';
-				pre_click_slider2 = -1;
+				pre_click_slider2 = "xx";
 				score_slider2 = "2.5";
 			});
 			var slider2 = document.getElementById("input_mySlider2");
@@ -2381,7 +2384,6 @@ class Register extends React.Component {
 		}
 
 		function set_slider_range3(value3) {
-			pre_click_slider3 = -1;
 			setupSlider('mySlider3', ["พอได้เล็กน้อย", "พื้นฐาน", "ดี", "ยอดเยี่ยม"], value3);
 			if (document.getElementById("each_skill3").value == 'none') {
 				document.getElementById("input_mySlider3").disabled = true;
@@ -2391,19 +2393,22 @@ class Register extends React.Component {
 			}
 			document.getElementById("each_skill3").addEventListener("click", function () {
 				var skill_job_3 = document.getElementById("each_skill3").value;
-				if (skill_job_3 != 'none' && skill_job_3 != pre_click_slider3) {
+				if (skill_job_3 != 'none') {
 					document.getElementById("input_mySlider3").disabled = false;
-					document.getElementById("input_mySlider3").value = "6.25";
-					document.getElementById("input_mySlider3").style.background = 'linear-gradient(to right, #c98a11 0%, #c98a11 ' + 50 + '%, #c4c4c4 ' + 50 + '%, #c4c4c4 100%)';
+					//if(skill_job_3 != pre_click_slider3){
+					if(pre_click_slider3 === "xx"){
+						document.getElementById("input_mySlider3").value = "6.25";
+						document.getElementById("input_mySlider3").style.background = 'linear-gradient(to right, #c98a11 0%, #c98a11 ' + 50 + '%, #c4c4c4 ' + 50 + '%, #c4c4c4 100%)';
+					}
 					pre_click_slider3 = skill_job_3;
-					score_slider3 = "6.25";
+					//score_slider3 = "6.25";
 				}
 				else if (skill_job_3 == 'none') {
 					document.getElementById("input_mySlider3").disabled = true;
-					document.getElementById("input_mySlider3").value = "2.5";
-					document.getElementById("input_mySlider3").style.background = 'linear-gradient(to right, #c98a11 0%, #c98a11 ' + 0 + '%, #c4c4c4 ' + 0 + '%, #c4c4c4 100%)';
-					pre_click_slider3 = -1;
-					score_slider3 = "2.5";
+					//document.getElementById("input_mySlider3").value = "2.5";
+					//document.getElementById("input_mySlider3").style.background = 'linear-gradient(to right, #c98a11 0%, #c98a11 ' + 0 + '%, #c4c4c4 ' + 0 + '%, #c4c4c4 100%)';
+					pre_click_slider3 = "xx";
+					//score_slider3 = "2.5";
 				}
 			});
 			$(document).on("click", "#reset-skill3", function () {
@@ -2411,7 +2416,7 @@ class Register extends React.Component {
 				document.getElementById("input_mySlider3").disabled = true;
 				document.getElementById("input_mySlider3").value = "2.5";
 				document.getElementById("input_mySlider3").style.background = 'linear-gradient(to right, #c98a11 0%, #c98a11 ' + 0 + '%, #c4c4c4 ' + 0 + '%, #c4c4c4 100%)';
-				pre_click_slider3 = -1;
+				pre_click_slider3 = "xx";
 				score_slider3 = "2.5";
 			});
 			var slider3 = document.getElementById("input_mySlider3");
@@ -2455,22 +2460,32 @@ class Register extends React.Component {
 		GetJob();
 		var jobname2findskill;
 		function GetSkill(jobname2findskill) {
-			fetch(ApplicationURL.backend+`register/` + jobname2findskill + `/skill`,
-				{ method: "GET", })
-				.then(response => response.json())
-				//.then(response => response.result)
-				.then((raws) => {
-					//console.log(raws);
-					raws.forEach((eleSkill, index) => {
-						var skill_now = eleSkill.skill;
-						//var job_now_eng = eleSkill.Name;
-						$('#each_skill1').append($('<option />').val(skill_now).html(skill_now));
-						$('#each_skill2').append($('<option />').val(skill_now).html(skill_now));
-						$('#each_skill3').append($('<option />').val(skill_now).html(skill_now));
+			return new Promise((resolve, reject) => {
+				fetch(ApplicationURL.backend+`register/` + jobname2findskill + `/skill`,{ 
+					method: "GET",
+					headers: {
+						"Access-Control-Allow-Origin": "*",
+						"Access-Control-Allow-Methods": "*",
+						"Access-Control-Allow-Credentials": true,
+						"Content-Type": "application/json"
+					},			 
+				})
+					.then(response => response.json())
+					//.then(response => response.result)
+					.then((raws) => {
+						//console.log(raws);
+						raws.forEach((eleSkill, index) => {
+							var skill_now = eleSkill.skill;
+							//var job_now_eng = eleSkill.Name;
+							$('#each_skill1').append($('<option />').val(skill_now).html(skill_now));
+							$('#each_skill2').append($('<option />').val(skill_now).html(skill_now));
+							$('#each_skill3').append($('<option />').val(skill_now).html(skill_now));
+						});
+						resolve();
+					}).catch((error) => {
+						console.log(error);
 					});
-				}).catch((error) => {
-					console.log(error);
-				});
+			});
 		}
 
 		$(document).on("change", "#each_skill2", function () {
@@ -2491,7 +2506,7 @@ class Register extends React.Component {
 			}
 		});
 
-		$(document).on("change", "#nm_job", function () {
+		$(document).on("change", "#nm_job",async function () {
 			if (document.getElementById("nm_job").selectedIndex != 0) {
 				$("#nm_job").removeClass("is-invalid");
 				$('#each_skill1').prop("disabled", false);
@@ -2511,8 +2526,7 @@ class Register extends React.Component {
 				removeOptionsJob(document.getElementById("each_skill1"));
 				removeOptionsJob(document.getElementById("each_skill2"));
 				removeOptionsJob(document.getElementById("each_skill3"));
-				GetSkill(jobname2findskill = tomapjobeng);
-
+				await GetSkill(jobname2findskill = tomapjobeng);
 			}
 			$(".step-marks").remove();
 			$(".step-labels").remove();
@@ -2525,6 +2539,7 @@ class Register extends React.Component {
 		});
 
 		$(document).on("click", ".frame_add_job_interest", function () {
+			pre_click_slider1 = "xx"; pre_click_slider2 = "xx"; pre_click_slider3 = "xx";
 			/*$('#tab01').addClass('current2');
 			$('.tabs_pop li').addClass('current2');
 			$('.tab-pane_pop').addClass('current2');*/
@@ -2558,7 +2573,7 @@ class Register extends React.Component {
 		});
 
 		var for_edit, id_list_job_edit;
-		$(document).on("click", "#edit-job", function () {
+		$(document).on("click", "#edit-job", async function () {
 			$("#nm_job").removeClass("is-invalid");
 			id_list_job_edit = $(this).parents().parents().attr('id');
 			//console.log(`edit:`, id_list_job_edit);
@@ -2574,7 +2589,7 @@ class Register extends React.Component {
 			$('#each_skill3').removeClass("dis_input3");
 			document.getElementById("nm_job").selectedIndex = for_edit["name_job_select"];
 			let tomapjobeng = mapEngNameJob[document.getElementById("nm_job").value];
-			GetSkill(jobname2findskill = tomapjobeng);
+			await GetSkill(jobname2findskill = tomapjobeng);
 			set_slider_range1(for_edit["score_skill1"]);
 			set_slider_range2(for_edit["score_skill2"]);
 			set_slider_range3(for_edit["score_skill3"]);
@@ -2619,20 +2634,23 @@ class Register extends React.Component {
 			}
 
 			$('#exampleModalJob').modal('toggle');
-			setTimeout(function () {
+			//setTimeout(function () {
 				if (for_edit["skill1"] != "none") {
 					$("#each_skill1").prop('selectedIndex', for_edit["skill1_select"]);
+					pre_click_slider1 = for_edit["skill1"];
 					document.getElementById("input_mySlider1").disabled = false;
 				}
 				if (for_edit["skill2"] != "none") {
 					$("#each_skill2").prop('selectedIndex', for_edit["skill2_select"]);
+					pre_click_slider2 = for_edit["skill2"];
 					document.getElementById("input_mySlider2").disabled = false;
 				}
 				if (for_edit["skill3"] != "none") {
 					$("#each_skill3").prop('selectedIndex', for_edit["skill3_select"]);
+					pre_click_slider3 = for_edit["skill3"];
 					document.getElementById("input_mySlider3").disabled = false;
 				}
-			}, 600);
+			//}, 600);
 		});
 
 		document.getElementById("submit-job11").addEventListener("click", function () {

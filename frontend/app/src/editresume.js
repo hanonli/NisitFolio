@@ -35,7 +35,7 @@ class Editresume extends React.Component {
 			render: false,
 			Color_Resume: '',
 			firstchoosecolor: false,
-			resumeId: '',
+			resumeId: "",
 			selectedOption: "",
 			sample_template: "",
 		}
@@ -56,7 +56,7 @@ class Editresume extends React.Component {
 		//select_color_template = "#ffce55";
 		var choose_aca = [], choose_high = [], choose_sideskill = [], choose_certi = [], choose_work = [];
 		var tmp1 = [], tmp2 = [], list_of_year_certi = {}, year_before_certi, year_before_work = -1, list_of_year_work = {}, certdata = [], workdata = [];
-		var token = cookie.load('login-token')
+		var token = cookie.load('login-token');
 		console.log('Your Token is: ' + token);
 		function get_high_id(list_of_high, x) {
 			//var x = 1;
@@ -104,6 +104,7 @@ class Editresume extends React.Component {
 		}
 
 		function EditResume(pack) {
+			console.log(editresumeState.state.resumeId);
 			fetch(ApplicationURL.backend+"myresume/" + editresumeState.state.resumeId,
 				{
 					method: "PATCH",
@@ -125,7 +126,8 @@ class Editresume extends React.Component {
 					}
 					else {
 						console.log("ok");
-						editresumeState.props.history.push('/myresume');
+						window.location.pathname = '/myresume'
+						//editresumeState.props.history.push('/emailverify');
 						//editresumeState.setState({ render: true });
 						//window.location.href = "http://localhost:3000/myresume";
 					}
@@ -210,6 +212,8 @@ class Editresume extends React.Component {
 								//console.log(list_of_aca);
 							}
 						});
+						console.log(list_of_high);
+						console.log(list_of_aca);
 						//console.log("Certificate_ResumeId:", editresumeState.state.data.hasOwnProperty('Certificate_ResumeId'));
 						editresumeState.state.data.Certificate_id.forEach((ele, index) => {
 							certdata.push({
@@ -287,13 +291,15 @@ class Editresume extends React.Component {
 			/* Zone Button on this page */
 			$('#cancelChoose').on('click', function () {
 				//alert("YES SIR!!");
-				editresumeState.props.history.push('/myresume');
+				//editresumeState.props.history.push('/myresume');
+				window.location.pathname = "/myresume";
 			});
 			$('#goToeditProfile').on('click', function () {
 				//alert("YES SIR!!");
 				cookie.save('Edit_tabselect', '1');
 				//window.location = ("editprofile");
-				editresumeState.props.history.push('/editprofile');
+				//editresumeState.props.history.push('/editprofile');
+				window.location.pathname = "/editprofile";
 			});
 			$('#submiteditt').on('click', function () {
 				//alert("YES SIR!!");
@@ -402,8 +408,8 @@ class Editresume extends React.Component {
 											<div class="font-titlet3_2">{name_high}</div>\
 											<div class="font-titlet3_2">เกรด {grade_high}</div>\
 										</div>\
+										<div class="icon-checkboxct2"><img height="50" src="assets/images/check_black.png" ></img></div>\
 									</div>\
-									<div class="icon-checkboxct2"><img height="50" src="assets/images/check_black.png" ></img></div>\
 								</label>';
 				grid_high1 = grid_high1.replace("{ele.high_id}", ele.id);
 				grid_high1 = grid_high1.replace("{xyy}", `xyy` + ele.id);
@@ -456,8 +462,8 @@ class Editresume extends React.Component {
 							<div class="font-titlet3_1">{name_aca}</div>\
 							<div class="font-titlet3_1">เกรด {grade_aca}</div>\
 						</div>\
+						<div class="icon-checkboxct1"><img height="50" src="assets/images/check_black.png" ></img></div>\
 					</div>\
-					<div class="icon-checkboxct1"><img height="50" src="assets/images/check_black.png" ></img></div>\
 				</label>';
 				grid_aca1 = grid_aca1.replace("{ele.aca_id}", ele.id);
 				grid_aca1 = grid_aca1.replace("{xxy}", `xxy` + ele.id);
@@ -753,7 +759,8 @@ class Editresume extends React.Component {
 		});
 
 		$(document).on("click", ".myresume-choose-high1:input:checkbox", function () {
-			var bol = $(".myresume-choose-high1:input:checkbox:checked").length + $(".myresume-choose-aca1:input:checkbox:checked").length >= 6;
+			var bol = $(".myresume-choose-high1:input:checkbox:checked").length + $(".myresume-choose-aca1:input:checkbox:checked").length >= 3;
+			//console.log(bol);
 			$(".myresume-choose-high1:input:checkbox").not(":checked").attr("disabled", bol);
 			$(".myresume-choose-aca1:input:checkbox").not(":checked").attr("disabled", bol);
 		});
@@ -766,7 +773,8 @@ class Editresume extends React.Component {
 		});
 
 		$(document).on("click", ".myresume-choose-aca1:input:checkbox", function () {
-			var bol = $(".myresume-choose-high1:input:checkbox:checked").length + $(".myresume-choose-aca1:input:checkbox:checked").length >= 6;
+			var bol = $(".myresume-choose-high1:input:checkbox:checked").length + $(".myresume-choose-aca1:input:checkbox:checked").length >= 3;
+			//console.log(bol);
 			$(".myresume-choose-high1:input:checkbox").not(":checked").attr("disabled", bol);
 			$(".myresume-choose-aca1:input:checkbox").not(":checked").attr("disabled", bol);
 		});
@@ -890,6 +898,7 @@ class Editresume extends React.Component {
 		window.removeEventListener('load', this.handleLoad)
 		cookie.save('Edit_tabselect', '');
 		cookie.save('Job_EditName','');
+		cookie.save("choose_Port","");
 		$(document).unbind();
 	}
 

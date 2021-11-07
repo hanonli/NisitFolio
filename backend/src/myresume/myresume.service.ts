@@ -511,6 +511,11 @@ export class MyResumeService {
 
       if(CreateDto.Resume_Privacy!=null){
         resume.Privacy = CreateDto.Resume_Privacy;
+        const Privacy2 = await this.resumePictureRepository.find({where:{UserId:userId}});
+        for (var _i = 0; _i < Privacy2.length; _i++) {
+          Privacy2[_i].Privacy=CreateDto.Resume_Privacy
+        await this.resumePictureRepository.save(Privacy2[_i])
+        }
       }
         resume.Color = CreateDto.Color;
         const CColor = await this.resumePictureRepository.find({where:{UserId:userId}});

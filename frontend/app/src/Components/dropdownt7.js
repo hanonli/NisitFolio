@@ -7,6 +7,7 @@ import axios from 'axios';
 import $ from 'jquery';
 import { setRawCookie } from 'react-cookies';
 import cookie from 'react-cookies'
+import ApplicationURL from './path';
 
 const options = [
   { value: 'Technical', label: 'Technical' },
@@ -99,7 +100,7 @@ const customStyles = {
   }
 
   async getOptions(typeC){
-    const res = await axios.get("http://localhost:2000/register/" + typeC +"/hardskill")
+    const res = await axios.get(ApplicationURL.backend+"register/" + typeC +"/hardskill")
     const data = res.data
     //console.log(res);
     if(res.data==[]){

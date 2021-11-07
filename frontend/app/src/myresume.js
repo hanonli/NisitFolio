@@ -13,9 +13,11 @@ class MyResume extends React.Component {
 	constructor(props) {
 		super(props);
 		this.handleLoad = this.handleLoad.bind(this);
-		var userid = this.props.match.params.id;
-		// console.log('search-userid:'+userid);
+		
+		var userid = this.props.match.params.id != undefined ? this.props.match.params.id : 'none';
 		cookie.save('search-userid', userid );	
+		// console.log('from Myresumejs search-userid:'+userid);
+		
 	 }
 	
 	componentDidMount() {
@@ -24,11 +26,14 @@ class MyResume extends React.Component {
 		const script = document.createElement("script");
 		script.src = "assets/js/myresume.js";
 		document.body.appendChild(script);
+		
+		
 
 	}
 	
 	componentWillUnmount() { 
 	   window.removeEventListener('load', this.handleLoad)  	
+	   cookie.save('search-userid', 'none' );	
 	}
 	
 	handleLoad() {
@@ -36,6 +41,7 @@ class MyResume extends React.Component {
 	 }
 	
 	render (){
+		
 		return (
 			
 			<div className="Home">

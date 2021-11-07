@@ -479,13 +479,13 @@
 .myworkname{
     /*margin-top: 10.8Vw;*/
     /*margin-left: 1.5Vw;*/
-    font-size: 2Vw;
+    font-size: 24px;
     color:rgb(255, 255, 255);
 }
 
 .myworkdate{
     /*margin-left: 1.5Vw;*/
-    font-size: 1Vw;
+    font-size: 16px;
     font-weight: 500;
     color:white;
 }
@@ -528,10 +528,10 @@
 }*/
 
 .img-mywork-edit{
-    width: 1.9Vw;
-    height: 1.9Vw;
-    margin-top: 0.6Vw;
-    margin-left: 11.7Vw;
+    width: 25px;
+    height: 25px;
+    margin-top: 0.4Vw;
+    margin-left: 12Vw;
     z-index: 999;
     position: absolute;
 }

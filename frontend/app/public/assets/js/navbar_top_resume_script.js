@@ -140,7 +140,7 @@
 
     $('.resume_verticalline2').css({
         'margin-top': '3px',
-        'margin-left': '3px',
+        'margin-left': '0px',
         'padding-bottom': '3px',
         'font-size' : '25px',
         'border-left' : '0.1vw solid  black',
@@ -188,8 +188,8 @@
         'height' : '35px',
     });
     $('#icon-myresume-share' ).css({
-        'margin-left': '-7px',
-        'margin-right': '2px',
+        'margin-left': '-10px',
+        'margin-right': '-2px',
 
     
     });
@@ -201,7 +201,7 @@
     
     });
     $('#icon-myresume-bookmark' ).css({
-        'margin-left': '3px',
+        'margin-left': '0px',
     
     });
     

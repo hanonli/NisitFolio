@@ -149,6 +149,10 @@ export class RegisterController {
     return this.registerService.NewinterestedJob(CreateDto,"617e5749f7a03441e0fadd99","xtest");
     return this.registerService.DeleteInterestedJob("61797211e40d554a302c3ac2","61797216e40d554a302c3ace");
   }
+  @Get("getinfoTEST")
+  async GetInfoTEST() {
+    return this.registerService.GetInfo("61794423aaceca27a822a448");
+  }
 
 
   /*@Get('/random')
