@@ -162,7 +162,7 @@ class Resume_topNavbar extends React.Component {
 	}
 
 	changePrivacy = (message) => {
-		console.log('begin change prvacy')
+		// console.log('begin change prvacy')
 		var resumeid = this.state.resumeID
 		var token = cookie.load('login-token')
 		fetch("https://nisitfolio-backend.herokuapp.com/myresume/" + resumeid, {
@@ -176,10 +176,10 @@ class Resume_topNavbar extends React.Component {
 				},
 			body: JSON.stringify(message)
 		})
-		.then(response =>{ console.log( 'PATCH Privacy status: '+response.status) ; return response.json();})
+		.then(response =>{  return response.json();})
 
-		console.log('end change privay')
-		// .then(data => {console.log('data after PATCH'+JSON.stringify(data))} )
+		// console.log('end change privay')
+		// .then(data => {// console.log('data after PATCH'+JSON.stringify(data))} )
 	}
 
 	handlePrivacy = () => {
@@ -192,7 +192,7 @@ class Resume_topNavbar extends React.Component {
 
 			var message = { "Resume_Privacy" : "Members"}
 			this.changePrivacy(message)
-			console.log('change loading to Members')
+			// console.log('change loading to Members')
 			this.setState({
 				privacy: 'Members'
 			})
@@ -202,7 +202,7 @@ class Resume_topNavbar extends React.Component {
 
 			var message = { "Resume_Privacy" : "Public"}
 			this.changePrivacy(message)
-			console.log('change loading to Public')
+			// console.log('change loading to Public')
 			this.setState({
 				privacy: 'Public'
 			})
@@ -211,7 +211,7 @@ class Resume_topNavbar extends React.Component {
             document.getElementById("icon-myresume-public").src = locate + "/assets/images/outline_cached_black_24dp.png";
 			var message = { "Resume_Privacy" : "Private"}
 			this.changePrivacy(message)
-			console.log('change loading to Private')
+			// console.log('change loading to Private')
 			this.setState({
 				privacy: 'Private'
 			})
@@ -243,7 +243,7 @@ class Resume_topNavbar extends React.Component {
 					}
 				)
 			})
-			.then(response => console.log('create : '+JSON.stringify(response.status) ))
+			
             document.getElementById("icon-myresume-bookmark").src = window.location.origin + "/assets/images/bookmark_2.png";
         }
         else {
@@ -263,7 +263,7 @@ class Resume_topNavbar extends React.Component {
 					}
 				)
 			})
-			.then(response => console.log('delete : '+JSON.stringify(response.status) ))
+			
             document.getElementById("icon-myresume-bookmark").src = window.location.origin + "/assets/images/bookmark_1.png";
         }
 	}
@@ -410,9 +410,9 @@ class Resume_topNavbar extends React.Component {
 	}
 
 	handleSection2 = () => {
-		console.log('login token1:'+ cookie.load('login-token'))
+		// console.log('login token1:'+ cookie.load('login-token'))
 		var login_token = cookie.load('login-token') ? cookie.load('login-token') : 'none'
-		console.log('login token2:'+login_token)
+		// console.log('login token2:'+login_token)
 		if (this.state.is_owner) {
 				// console.log('you are owner2')
 			return (
