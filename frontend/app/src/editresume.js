@@ -56,7 +56,7 @@ class Editresume extends React.Component {
 		//select_color_template = "#ffce55";
 		var choose_aca = [], choose_high = [], choose_sideskill = [], choose_certi = [], choose_work = [];
 		var tmp1 = [], tmp2 = [], list_of_year_certi = {}, year_before_certi, year_before_work = -1, list_of_year_work = {}, certdata = [], workdata = [];
-		var token = cookie.load('login-token')
+		var token = cookie.load('login-token');
 		console.log('Your Token is: ' + token);
 		function get_high_id(list_of_high, x) {
 			//var x = 1;
@@ -408,8 +408,8 @@ class Editresume extends React.Component {
 											<div class="font-titlet3_2">{name_high}</div>\
 											<div class="font-titlet3_2">เกรด {grade_high}</div>\
 										</div>\
+										<div class="icon-checkboxct2"><img height="50" src="assets/images/check_black.png" ></img></div>\
 									</div>\
-									<div class="icon-checkboxct2"><img height="50" src="assets/images/check_black.png" ></img></div>\
 								</label>';
 				grid_high1 = grid_high1.replace("{ele.high_id}", ele.id);
 				grid_high1 = grid_high1.replace("{xyy}", `xyy` + ele.id);
@@ -462,8 +462,8 @@ class Editresume extends React.Component {
 							<div class="font-titlet3_1">{name_aca}</div>\
 							<div class="font-titlet3_1">เกรด {grade_aca}</div>\
 						</div>\
+						<div class="icon-checkboxct1"><img height="50" src="assets/images/check_black.png" ></img></div>\
 					</div>\
-					<div class="icon-checkboxct1"><img height="50" src="assets/images/check_black.png" ></img></div>\
 				</label>';
 				grid_aca1 = grid_aca1.replace("{ele.aca_id}", ele.id);
 				grid_aca1 = grid_aca1.replace("{xxy}", `xxy` + ele.id);
