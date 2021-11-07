@@ -201,8 +201,12 @@
 
 .pos-pic-of-certi {
     position: absolute;
-    right: 20px;;
-    top: 30px
+    right: 4px;
+    top: 2px;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
 }
 
 #pic-of-certi {
@@ -288,13 +292,16 @@
     height: 115px;
 }
 
-
 .error_select_certi{
     border: 1px solid red;
 }
 
 #border_certi {
     border-radius: 10px;
+    margin: auto;
+    height: auto;
+    max-height: 80%;
+    max-width: 80%;
 }
 
 #textOfyear_certi {
