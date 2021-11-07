@@ -931,8 +931,11 @@ export class RegisterService {
       const account=await this.accountRepository.findOne({where:{_id:userid}});
       const userinfo=await this.userinfoRepository.findOne({where:{UserId:UserId}});
       
+      //account.Password = [Md5.hashStr(createDto.Password)];
+      result.Password = Md5.apply(account.Password[account.Password.length - 1]);
+
       result.Email=account.Email;
-      result.Password=account.Password[account.Password.length - 1];
+      //result.Password=account.Password[account.Password.length - 1];
       result.ProfilePic=account.ProfilePic;
       result.Privacy=account.Privacy;
       result.Account_id=account._id.toString();
