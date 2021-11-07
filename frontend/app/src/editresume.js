@@ -759,7 +759,8 @@ class Editresume extends React.Component {
 		});
 
 		$(document).on("click", ".myresume-choose-high1:input:checkbox", function () {
-			var bol = $(".myresume-choose-high1:input:checkbox:checked").length + $(".myresume-choose-aca1:input:checkbox:checked").length >= 6;
+			var bol = $(".myresume-choose-high1:input:checkbox:checked").length + $(".myresume-choose-aca1:input:checkbox:checked").length >= 3;
+			//console.log(bol);
 			$(".myresume-choose-high1:input:checkbox").not(":checked").attr("disabled", bol);
 			$(".myresume-choose-aca1:input:checkbox").not(":checked").attr("disabled", bol);
 		});
@@ -772,7 +773,8 @@ class Editresume extends React.Component {
 		});
 
 		$(document).on("click", ".myresume-choose-aca1:input:checkbox", function () {
-			var bol = $(".myresume-choose-high1:input:checkbox:checked").length + $(".myresume-choose-aca1:input:checkbox:checked").length >= 6;
+			var bol = $(".myresume-choose-high1:input:checkbox:checked").length + $(".myresume-choose-aca1:input:checkbox:checked").length >= 3;
+			//console.log(bol);
 			$(".myresume-choose-high1:input:checkbox").not(":checked").attr("disabled", bol);
 			$(".myresume-choose-aca1:input:checkbox").not(":checked").attr("disabled", bol);
 		});
