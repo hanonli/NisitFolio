@@ -678,7 +678,7 @@ class Registab3 extends React.Component {
                     aaa3.setState({ statusDelHeader: "Saving...", imgStatusHeader: "assets/images/outline_cached_black_24dp.png" });
                     $(".status-present-headerrr114").removeClass("status-saving5555-red");
 					console.log("edit!!!!!!");
-                    fetch(ApplicationURL.backend+"register/educationHistory/"+id_list_aca_edit, {
+                    fetch(ApplicationURL.backend+"register/educationHistory/"+id_list_high_edit, {
                         method: "PATCH",
                         headers: {
                             'Authorization': 'Bearer ' + aaa3.state.token,

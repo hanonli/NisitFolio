@@ -189,7 +189,7 @@
     });
     $('#icon-myresume-share' ).css({
         'margin-left': '-10px',
-        'margin-right': '0px',
+        'margin-right': '-2px',
 
     
     });
