@@ -56,6 +56,13 @@ class PDF extends React.Component {
 		else if (template == "blue"){
 			basePdf = basePdf5;
 		}
+
+		var user_resumeid = cookie.load('userid-pdf');
+		console.log(user_resumeid);
+		console.log("อันนี้");
+		if(user_resumeid=='none'){
+			var user_resumeid = cookie.load('login-user');
+			}
 		
 		function convertImgToBase64(url, callback, outputFormat){
 			return new Promise((resolve,reject)=>{
@@ -443,6 +450,8 @@ class PDF extends React.Component {
 				for (let i = 1; i < 64; i++) {
 					console.log(`${`{fill${i}}`}`);
 				}
+
+				
 
 				refThis.setState({ render: true });
                 const font = { tahomo };
@@ -1355,13 +1364,12 @@ class PDF extends React.Component {
                 })();
 			
 		}
-
 		
+	
 		//fetch("http://localhost:3000/temp_resume",{
-		fetch(ApplicationURL.backend+"myresume",{
+		fetch(ApplicationURL.backend+"myresume/user/"+"6186c50dfc8d5f0016bcbfbb",{
 			method: "GET",
 			headers: {
-				'Authorization': 'Bearer '+token,
 				"Access-Control-Allow-Origin": "*",
 				"Access-Control-Allow-Methods": "*",
 				"Access-Control-Allow-Credentials": true,
